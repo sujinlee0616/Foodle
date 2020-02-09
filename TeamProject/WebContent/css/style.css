@@ -636,10 +636,6 @@ p {
   margin-bottom: 30px;
 }
 
-.single-post .tags {
-  margin-top: 40px;
-}
-
 .single-post h1 {
   margin-top: 20px;
   margin-bottom: 20px;
@@ -649,33 +645,36 @@ p {
   margin-bottom: 10px;
 }
 
-.single-post .comment-wrap ul li {
-  display: inline-block;
-  margin-right: 15px;
-}
-
-@media (max-width: 414px) {
-  .single-post .comment-wrap {
-    margin-top: 10px;
-  }
-}
-
-.single-post .comment-wrap ul li a {
-  color: #777777;
-}
-
 /* 20.02.10 추가 */ 
 .single-post .details{
 	padding: 30px;
 }
 
-.single-post .details .res_title{
-	font-size: 15px;
+@media (max-width: 414px){
+	.single-post .details{
+		padding: 10px;
+		margin-top: 10px;
+	}
 }
+
+@media (max-width: 736px){
+	.single-post .thumb img{
+		width: 100%;
+	}
+}
+
+@media (max-width: 736px){
+	.details .res_title h4{
+   		font-size: 21px;
+   		padding-bottom: 10px;
+	}
+}
+
 .single-post .details .res_title a{
 	text-decoration: none;
 	color: #000;
 }
+
 
 .details ul.btns li a {
 	text-decoration: none;
@@ -1189,7 +1188,7 @@ footer {
   width: 100%; }
   
 /* 
-   BOARD PATE
+   BOARD PAGE
    */
 /* ==============================================================
    BOARD
