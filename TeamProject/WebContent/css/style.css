@@ -160,10 +160,10 @@ p {
 .slider {
   background: url(../images/slider_bg.jpg) no-repeat;
   background-size: cover;
-  min-height: 800px; }
+  min-height: 700px; }
   @media (max-width: 992px) {
     .slider {
-      min-height: 700px; } }
+      min-height: 600px; } }
 
 .btn-outline-light {
   padding: 10px 16px; }
@@ -202,7 +202,7 @@ p {
 
 .btn-group1 {
   padding: 24px;
-  width: 80%;
+  width: 40%;
   border-top-left-radius: 3px;
   border-bottom-left-radius: 3px;
   border: none; }
@@ -212,6 +212,22 @@ p {
       border-radius: 3px;
       margin: 0 0 10px;
       padding: 17px; } }
+
+.btn-group2 {
+  position: relative;
+  padding: 24px;
+  width: 33%;
+  border-top: none;
+  border-right: none;
+  border-bottom: none;
+  border-left: 1px solid #ccc; }
+  @media (max-width: 576px) {
+    .btn-group2 {
+      width: 100%;
+      border-radius: 3px;
+      margin: 0 0 10px;
+      padding: 17px; } }
+
 
 .btn-form {
   font-weight: 400;
@@ -329,7 +345,7 @@ p {
     
 
 /* ==============================================================
-   FIND PLACES
+    THEME
    ============================================================== */
 .styled-heading {
   text-align: center;
@@ -359,7 +375,7 @@ p {
       padding: 0; } }
 
 /* ==============================================================
-   FEATURED PLACES
+   POPULAR TOP 3
    ============================================================== */
 .featured-place-wrap {
   background: #fff;
@@ -491,58 +507,7 @@ p {
       -webkit-box-shadow: none;
       box-shadow: none; }
 
-/* ==============================================================
-   CATEGORIES
-   ============================================================== */
-@media (max-width: 992px) {
-  .category-responsive {
-    max-width: 50%;
-    -webkit-box-flex: 0;
-    -webkit-flex: 0 0 50%;
-    -ms-flex: 0 0 50%;
-    flex: 0 0 50%; } }
 
-@media (max-width: 576px) {
-  .category-responsive {
-    max-width: 100%;
-    -webkit-box-flex: 0;
-    -webkit-flex: 0 0 100%;
-    -ms-flex: 0 0 100%;
-    flex: 0 0 100%; } }
-
-.category-wrap:hover {
-  text-decoration: none; }
-
-.category-wrap:hover .category-block {
-  background: #f34e79;
-  -webkit-transition: 0.3s;
-  -o-transition: 0.3s;
-  transition: 0.3s; }
-
-.category-wrap:hover .category-img path {
-  text-decoration: none;
-  fill: #fff;
-  -webkit-transition: 0.3s;
-  -o-transition: 0.3s;
-  transition: 0.3s; }
-
-.category-wrap:hover .category-block h6 {
-  color: #fff;
-  text-decoration: none; }
-
-.category-block {
-  margin: 0 auto;
-  text-align: center;
-  border: 1px solid #e5e7ef;
-  padding: 30px;
-  margin: 0 0 30px; }
-  .category-block h6 {
-    color: #3e434b;
-    margin: 10px 0 0; }
-
-.category-img {
-  width: 64px;
-  height: 64px; }
   
 /* ==============================================================
    CURRENT POPULAR TOP 30
@@ -734,28 +699,28 @@ footer {
 
 .copyright {
   text-align: center; }
-  .copyright p {
-    font-size: 18px;
-    font-weight: 400;
-    color: #ccc;
-    margin: 0; }
-  .copyright ul {
-    margin: 25px 0 0;
-    padding: 0; }
-    .copyright ul li {
-      list-style: none;
-      display: inline-block; }
-      .copyright ul li a {
-        color: #ccc;
-        font-size: 22px;
-        padding: 0 10px;
-        opacity: 0.6;
-        -webkit-transition: 0.3s;
-        -o-transition: 0.3s;
-        transition: 0.3s; }
-        .copyright ul li a:hover {
-          opacity: 1;
-          text-decoration: none; }
+.copyright p {
+  font-size: 18px;
+  font-weight: 300;
+  color: #CCC;
+  margin: 0; }
+.copyright ul {
+  margin: 25px 0 0;
+  padding: 0; }
+.copyright ul li {
+  list-style: none;
+  display: inline-block; }
+.copyright ul li a {
+  color: #ccc; 
+  font-size: 22px;
+  padding: 0 10px;
+  opacity: 0.6;
+  -webkit-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s; }
+.copyright ul li a:hover {
+  opacity: 1;
+  text-decoration: none; }
 
 /* ==============================================================
    SUB PAGES
@@ -1219,5 +1184,66 @@ footer {
 	color: #ffb006;
 }
 
+
+/* 
+   MY PAGE
+   */
+
+.categoryName{
+  font-size: 1em;
+}
+
+/* ==============================================================
+   CATEGORIES
+   ============================================================== */
+@media (max-width: 992px) {
+  .category-responsive {
+    max-width: 50%;
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 50%;
+    -ms-flex: 0 0 50%;
+    flex: 0 0 50%; } }
+
+@media (max-width: 576px) {
+  .category-responsive {
+    max-width: 100%;
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 100%;
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%; } }
+
+.category-wrap:hover {
+  text-decoration: none; }
+
+.category-wrap:hover .category-block {
+  background: #f34e79;
+  -webkit-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s; }
+
+.category-wrap:hover .category-img path, .category-wrap:hover .category-img circle {
+  text-decoration: none;
+  fill: #fff;
+  -webkit-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s; }
+
+.category-wrap:hover .category-block h6 {
+  color: #fff;
+  text-decoration: none; }
+
+.category-block {
+  margin: 0 auto;
+  text-align: center;
+  border: 1px solid #e5e7ef;
+  padding: 30px;
+  margin: 0 0 30px; }
+  .category-block h6 {
+    color: #3e434b;
+    margin: 10px 0 0; }
+
+.category-img {
+  width: 64px;
+  height: 64px; }
 
 /*# sourceMappingURL=style.css.map */
