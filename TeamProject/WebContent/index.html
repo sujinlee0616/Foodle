@@ -95,7 +95,8 @@
 				<div class="modal-body">
 					<div class="login-page">
 						<div class="form">
-							<form class="register-form">
+							<!-- Modal에서의 회원가입 주석처리
+                                <form class="register-form">
 								<input type="text" placeholder="아이디"> 
 								<input type="password" placeholder="비밀번호"> 
 								<input type="text" placeholder="이메일 주소">
@@ -103,13 +104,13 @@
 								<p class="message">
 									이미 계정을 가지고 있으신가요? <a href="#">여기서 로그인하세요.</a>
 								</p>
-							</form>
+							</form> -->
 							<form class="login-form">
 								<input type="text" placeholder="아이디" /> <input
 									type="password" placeholder="비밀번호" />
 								<button>로그인</button>
 								<p class="message">
-									혹시 아직 계정이 없으신가요? <a href="#">새로운 계정을 만드세요.</a>
+									혹시 아직 계정이 없으신가요? <a href="signup.html">새로운 계정을 만드세요.</a>
 								</p>
 							</form>
 						</div>
@@ -573,9 +574,6 @@
     </footer>
     <!--//END FOOTER -->
 
-
-
-
     <!-- jQuery, Bootstrap JS. -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="js/jquery-3.2.1.min.js"></script>
@@ -598,12 +596,7 @@
         });
     </script>
     
-    <!-- loginModal Script -->
-    <script>
- 	   $('#loginModal .message a').click(function(){
-    	   $('#loginModal form').animate({height: "toggle", opacity: "toggle"}, "slow");
-    	});
-    </script>
+    
 </body>
 
 </html>

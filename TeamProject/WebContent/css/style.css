@@ -296,7 +296,16 @@ p {
   -webkit-transition: all 0.3 ease;
   transition: all 0.3 ease;
   cursor: pointer;
+  border-radius: 0.25rem;
 }
+
+#loginModal button:hover, #loginModal button:focus {
+  background: #f34e79;
+  outline: none;
+  -webkit-box-shadow: none;
+  box-shadow: none; }
+
+
 #loginModal .form .message {
   margin: 15px 0 0;
   color: #616161;
@@ -319,27 +328,6 @@ p {
   content: "";
   display: block;
   clear: both;
-}
-#loginModal .container .info {
-  margin: 50px auto;
-  text-align: center;
-}
-#loginModal .container .info h1 {
-  margin: 0 0 15px;
-  padding: 0;
-  font-size: 36px;
-  font-weight: 300;
-  color: #1a1a1a;
-}
-#loginModal .container .info span {
-  color: #4d4d4d;
-}
-#loginModal .container .info span a {
-  color: #000000;
-  text-decoration: none;
-}
-#loginModal .container .info span .fa {
-  color: #EF3B3A;
 }
 /* End of loginModal */
     
@@ -486,26 +474,25 @@ p {
   font-weight: 400;
   display: inline-block; }
 
-.featured-btn-wrap {
-  text-align: center; }
-  @media (max-width: 1200px) {
-    .featured-btn-wrap {
-      margin: 3px 0 0; } }
-  .featured-btn-wrap .btn-danger {
-    background: #ff3a6d;
-    padding: 16px 50px;
-    -webkit-transition: 0.3s;
-    -o-transition: 0.3s;
-    transition: 0.3s;
-    border: 0; }
-    @media (max-width: 576px) {
-      .featured-btn-wrap .btn-danger {
-        width: 100%; } }
-    .featured-btn-wrap .btn-danger:hover, .featured-btn-wrap .btn-danger:focus {
-      background: #f34e79;
-      outline: none;
-      -webkit-box-shadow: none;
-      box-shadow: none; }
+.featured-btn-wrap {text-align: center; }
+@media (max-width: 1200px) {
+  .featured-btn-wrap {
+    margin: 3px 0 0; } }
+.featured-btn-wrap .btn-danger {
+  background: #ff3a6d;
+   padding: 16px 50px;
+  -webkit-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+  border: 0; }
+@media (max-width: 576px) {
+  .featured-btn-wrap .btn-danger {width: 100%; } 
+}
+.featured-btn-wrap .btn-danger:hover, .featured-btn-wrap .btn-danger:focus {
+  background: #f34e79;
+  outline: none;
+  -webkit-box-shadow: none;
+  box-shadow: none; }
 
 
   
@@ -1245,5 +1232,73 @@ footer {
 .category-img {
   width: 64px;
   height: 64px; }
+
+
+/* 
+   SIGN UP PAGE
+   */
+/* ==============================================================
+   SIGN UP FORM
+   ============================================================== */
+
+
+.signup .signup-form p.info{
+  color: #1a1a1a;
+  font-size: 1em;
+}
+
+.signup .signup-form span.essential{
+  margin: 0 5px;
+  color: #ff3a6d; font-size: 0.8em;
+}
+
+.signup input, .signup select {
+  outline: 0;
+  border: solid 1px #E0E0E0 !important;
+  width: 100%;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+.signup .birth .birth-input #yy{width: 95%;}
+.signup .birth .birth-input select{width: 95%;}
+@media (max-width: 576px){.signup .birth .birth-input #yy{width: 100%;}}
+@media (max-width: 576px){.signup .birth .birth-input select{width: 100%;}}
+
+.signup-bottom .message {
+  margin: 15px 0 0;
+  color: #212529;
+  font-size: 14px;
+}
+.signup-bottom .message a {
+  color: #ff3a6d;
+  text-decoration: none;
+}
+
+.signup.container:before, .container:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.signup-btn-wrap {text-align: center; }
+.signup-btn-wrap .btn-danger {
+  width:100%;
+  background: #ff3a6d;
+   padding: 16px 50px;
+  -webkit-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+  border: 0; }
+.signup-btn-wrap .btn-danger:hover, .featured-btn-wrap .btn-danger:focus {
+  background: #f34e79;
+  outline: none;
+  -webkit-box-shadow: none;
+  box-shadow: none; }
+
+/* End of signup*/
 
 /*# sourceMappingURL=style.css.map */
