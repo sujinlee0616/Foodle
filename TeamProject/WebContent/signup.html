@@ -39,6 +39,17 @@
         <div class="col-md-12">
           <nav class="navbar navbar-expand-lg navbar-light">
             <a class="navbar-brand" href="index.html">Foodler</a>
+            <div class="search_wrap">
+              <form name="header_search" action="">
+                <div class="header_searchbox">
+                  <img class="header_searchicon" src="images/header_searchicon.png">
+                  <label class="header_searchinputwrap">
+                    <input type="text" class="header_searchinput" name="header_searchword" placeholder="검색어를 입력하세요."
+                      value="" autocomplete="off" maxlength="50">
+                  </label>
+                </div>
+              </form>
+            </div>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
               aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
               <span class="icon-menu"></span>
@@ -57,20 +68,6 @@
                 <li class="nav-item active">
                   <a class="nav-link" href="board.html">자유게시판</a>
                 </li>
-                <!-- 드롭다운 메뉴 구현 시 아래와 같이 -->
-                <!-- <li class="nav-item dropdown">
-	                                    <a class="nav-link" href="#" id="navbarDropdownMenuLink"
-											data-toggle="dropdown" aria-haspopup="true"
-											aria-expanded="false"> 실시간 맛집 
-											<span class="icon-arrow-down"></span>
-										</a>
-										<div class="dropdown-menu"
-											aria-labelledby="navbarDropdownMenuLink">
-											<a class="dropdown-item" href="#">Action</a> 
-											<a class="dropdown-item" href="#">Another action</a> 
-											<a class="dropdown-item" href="#">Something else here</a>
-										</div>
-                                    </li> -->
                 <li>
                   <a href="#" class="btn btn-outline-light top-btn" data-toggle="modal" data-target="#loginModal">
                     <span class="ti-plus"></span> 로그인

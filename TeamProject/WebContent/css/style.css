@@ -271,7 +271,34 @@ p {
       color: #fff; }
   .slider-link span {
     padding: 0 18px; }
+
+/* ==============================================================
+   SIDEPAGES HEADER
+   ============================================================== */
+
+.header_searchicon{
+  position: absolute;
+  width: 30px;
+  top: 20px;
+  left: 150px;
+}
+
+.header_searchinput{
+  background-color: transparent;
+  border: none;
+  padding: 5px;
+  margin: 5px 0 0 60px;
+  font-size: 16px;
+  color: #fff;
+}
+
+.header_searchinput::placeholder{
+  color: #fff;
+  opacity: 0.5;
+  font-size: 16px;
+}
     
+  
 /* ==============================================================
    LOGIN MODAL
    ============================================================== */
