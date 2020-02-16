@@ -27,7 +27,7 @@
 
 <body>
     <!--============================= HEADER =============================-->
-    <div class="nav-menu">
+    <div class="nav-menu" id="header">
         <div class="bg transition">
             <div class="container-fluid fixed">
                 <div class="row">
@@ -122,7 +122,7 @@
 			</div>
 		</div>
 	</div>
-	<!-- End of Login Modal -->
+    <!-- End of Login Modal -->
 	<!-- SLIDER -->
     <section class="slider d-flex align-items-center">
         <!-- <img src="images/slider_bg.jpg" class="img-fluid" alt="#"> -->
@@ -158,8 +158,34 @@
     </section>
     <!--// SLIDER -->
     <!--//END HEADER -->
+    <!-- Start of Fixed Sidebar -->
+    <div class="sidenav" id="quick-menu">
+        <ul class="p-0">
+            <li>
+                <a href="#header">
+                    <svg height="30" viewBox="10 0 30 30" width="40" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M14.83 30.83l9.17-9.17 9.17 9.17 2.83-2.83-12-12-12 12z"></path>
+                        <path d="M0 0h48v48h-48z" fill="none""></path>
+                    </svg>
+                </a>
+            </li>
+            <li><a href="#theme">테마별 맛집</a></li>
+            <li><a href="#popular_top3">인기맛집</a></li>
+            <li><a href="#current_pop_top30">실시간 맛집</a></li>
+            <li>
+                <a href="#footer">
+                    <svg height="30" viewBox="10 0 30 30" width="40" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M14.83 16.42l9.17 9.17 9.17-9.17 2.83 2.83-12 12-12-12z"></path>
+                        <path d="M0-.75h48v48h-48z" fill="none"></path>
+                    </svg>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!-- End of Fixed Sidebar -->
+    
     <!--============================= THEME =============================-->
-    <section class="main-block">
+    <section class="main-block" id="theme">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-5">
@@ -261,7 +287,7 @@
     </section>
     <!--//END FIND PLACES -->
     <!--============================= POPULAR TOP 3 =============================-->
-    <section class="main-block light-bg">
+    <section class="main-block light-bg" id="popular_top3">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-5">
@@ -377,7 +403,7 @@
     <!--//END FEATURED PLACES -->
     <!--============================= CURRENT POPULAR TOP 30 =============================-->
     <!-- Start of new  -->  
-	<section class="main-block">
+	<section class="main-block" id="current_pop_top30">
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="col-md-5">
@@ -556,10 +582,11 @@
             </div>
 		</div>
 	</section>
-	<!--//END CATEGORIES -->
+    <!--//END CATEGORIES -->
+    
     
     <!--============================= FOOTER =============================-->
-    <footer class="main-block dark-bg">
+    <footer class="main-block dark-bg" id="footer">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -580,22 +607,30 @@
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
 
+    <!-- GNB Fixed 되는 스크롤 시점 -->
     <script>
         $(window).scroll(function() {
             // 100 = The point you would like to fade the nav in.
-
             if ($(window).scrollTop() > 100) {
-
                 $('.fixed').addClass('is-sticky');
-
             } else {
-
                 $('.fixed').removeClass('is-sticky');
-
             };
         });
     </script>
-    
+
+    <!-- Fixed Sidebar 특정 픽셀 이상부터 fixed시키기 -->
+    <script>
+        $(window).scroll(function () {
+            if ($(window).scrollTop() > 300) {
+                $(".sidenav").css("position", "fixed");
+                $(".sidenav").css("top", "40%");
+            } else {
+                $(".sidenav").css("position", "absolute");
+                $(".sidenav").css("top", "785px");
+            };
+        });
+    </script>    
     
 </body>
 
