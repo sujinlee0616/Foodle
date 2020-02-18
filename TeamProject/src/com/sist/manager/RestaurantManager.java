@@ -1,4 +1,4 @@
-package com.sist.foodler;
+package com.sist.manager;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.regex.Matcher;
@@ -7,6 +7,9 @@ import java.util.regex.Pattern;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
+
+import com.sist.dao.RestaurantDAO;
+import com.sist.vo.RestaurantVO;
 public class RestaurantManager {
 	 
 	// <지니뮤직에서 순위곡 200곡을 받는다.>

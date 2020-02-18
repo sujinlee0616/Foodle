@@ -1,7 +1,10 @@
 // DAO (Data Access Object) : DB를 사용해서 데이터를 조회/조작
-package com.sist.foodler;
+package com.sist.dao;
 //오라클 연결 
 import java.util.*;
+
+import com.sist.vo.RestaurantVO;
+
 import java.sql.*;
 public class RestaurantDAO {
 	private Connection conn; // 오라클 연결 

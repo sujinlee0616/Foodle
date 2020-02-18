@@ -1,5 +1,5 @@
 // VO(Value Object) : 계층간 데이터 교환
-package com.sist.foodler;
+package com.sist.vo;
 //VO : 음악정보 한 개에 관한 정보를 가지고 있는 애. (한 줄에 대한 정보를 갖고 있음) ★★★ ==> VO : 리스트 출력 
 //VO를 50개 묶고 싶다? ==> ArrayList 이용 ==> ArrayList : 목록 출력 
 /*
