@@ -1273,10 +1273,18 @@ footer {
 /* 
    MY PAGE
    */
-
-.categoryName{
-  font-size: 1em;
+.category-block{background-color: #FFFFFF;}
+.categoryName{font-size: 1em;
 }
+
+.myContents{
+  background-color: #FFFFFF;
+  border: 1px solid rgb(229, 231, 239);
+}
+.myContents .mySubMenu{
+  margin: 10px auto;
+}
+.myContents .noInfo{text-align: center; display: block; margin: 100px auto;}
 
 /* ==============================================================
    CATEGORIES
