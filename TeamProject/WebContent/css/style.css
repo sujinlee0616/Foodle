@@ -7,7 +7,7 @@ Author: Surjith S M
    GLOBAL STYLES
    ============================================================== */
 body {
-  font-family: 'Roboto', sans-serif; }
+  font-family: 'Nanum Gothic'; }
 
 h1 {
   font-size: 72px;
@@ -48,6 +48,13 @@ h6 {
 
 p {
   font-size: 15px; }
+
+.dohyeon{
+  font-family: 'Do Hyeon';
+}
+.nGothic{
+  font-family: 'Nanum Gothic';
+}
 
 .main-block {
   padding: 90px 0; }
@@ -592,6 +599,17 @@ p {
   font-weight: 300;
   margin-bottom: 15px;
 }
+
+.featured-title-box span{
+  padding: 0;
+}
+
+.single-post .details .res_title .rating{
+  font-size: 25px;
+  margin: 0 10px;
+  color: #ff3a6d;
+}
+
 
 @media (max-width: 414px) {
   .post-list .single-post h6 {
