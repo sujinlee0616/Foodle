@@ -27,6 +27,8 @@
     <link rel="stylesheet" href="css/style.css">
     <!-- Font -->
     <link href="https://fonts.googleapis.com/css?family=Do+Hyeon|Nanum+Gothic&display=swap" rel="stylesheet">
+    <!-- Kakao Map Script -->
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=671fb4748c5025ba667a7fc5d41d217a"></script>
 </head>
 
 <body>
@@ -338,6 +340,10 @@
                         <!-- data-toggle="affix" -->
                         <!-- Google map will appear here! Edit the Latitude, Longitude and Zoom Level below using data-attr-*  -->
                         <div id="map" data-lat="40.674" data-lon="-73.945" data-zoom="14"></div>
+
+
+
+
                     </div>
                 </div>
             </div>
@@ -369,39 +375,27 @@
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
 
-
+    <!-- 이전에 남아있던 map 관련 소스 : 파악 중 -->
     <script>
         $(".map-icon").click(function() {
             $(".map-fix").toggle();
         });
     </script>
-    <script>
-        // Want to customize colors? go to snazzymaps.com
-        function myMap() {
-            var maplat = $('#map').data('lat');
-            var maplon = $('#map').data('lon');
-            var mapzoom = $('#map').data('zoom');
-            // Styles a map in night mode.
-            var map = new google.maps.Map(document.getElementById('map'), {
-                center: {
-                    lat: maplat,
-                    lng: maplon
-                },
-                zoom: mapzoom,
-                scrollwheel: false
-            });
-            var marker = new google.maps.Marker({
-                position: {
-                    lat: maplat,
-                    lng: maplon
-                },
-                map: map,
-                title: 'We are here!'
-            });
-        }
+   
+   <!-- Kakao Map Script -->
+   <script>
+        var container = document.getElementById('map');
+        var options = {
+            center: new kakao.maps.LatLng(33.450701, 126.570667),
+            level: 3
+        };
+
+        var map = new kakao.maps.Map(container, options);
     </script>
-    <!-- Map JS (Please change the API key below. Read documentation for more info) -->
-    <script src="https://maps.googleapis.com/maps/api/js?callback=myMap&key=AIzaSyDMTUkJAmi1ahsx9uCGSgmcSmqDTBF9ygg"></script>
+
+
+
+   
 </body>
 
 </html>
