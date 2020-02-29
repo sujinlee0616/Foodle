@@ -31,6 +31,8 @@
   <link rel="stylesheet" href="css/style.css">
   <!-- Font -->
   <link href="https://fonts.googleapis.com/css?family=Do+Hyeon|Nanum+Gothic&display=swap" rel="stylesheet">
+  <!-- Member Join CSS -->
+  <link rel="stylesheet" href="css/memberjoin.css">
 </head>
 
 <body>
@@ -114,100 +116,162 @@
   <!-- End of Login Modal -->
   <!--//END HEADER -->
 
-  <!--============================= MY PAGE =============================-->
-  <section class="board-block light-bg">
+  <!--============================= SINGUP =============================-->
+  <section class="singup-block light-bg">
     <div class="container py-5">
       <div class="row justify-content-center">
-        <div class="col-md-6 pb-5">
+        <div class="col-md-6 mb-4">
           <h5>회원가입</h5>
         </div>
       </div>
-      <!-- START OF SIGNUP FORM -->
+      <!-- START OF SIGNUP INFO INPUTS -->
       <div class="row justify-content-center">
         <div class="col-md-6 signup">
-            <form class="signup-form">
-              <div>
-                <p class="info">회원유형<span class="essential">*</span></p></p>
-                <input type="text" placeholder="탭으로 만들까..?">
-              </div>
-              <div>
-                <p class="info">아이디<span class="essential">*</span></p>
-                <input type="text" placeholder="아이디">
-              </div>
-              <div>
-                <p class="info">비밀번호<span class="essential">*</span></p></p>
-                <input type="password" placeholder="영어 대소문자 10글자 이상">
-              </div>
-              <div>
-                <p class="info">비밀번호 확인<span class="essential">*</span></p></p>
-                <input type="password" placeholder="영어 대소문자 10글자 이상">
-              </div>
-              <div>
-                <p class="info">이름<span class="essential">*</span></p>
-                <input type="text" placeholder="이름">
-              </div>
-              <div>
-                <p class="info">이메일<span class="essential">*</span></p></p>
-                <input type="email" placeholder="이메일 주소">
-              </div>
-              <div>
-                <p class="info">연락처<span class="essential">*</span></p></p>
-                <input type="tel" placeholder="'-'없이 입력''">
-              </div>
-              <div class="birth">
-                <p class="info">생년월일</p>
+          <!-- 회원 유형 선택 : 개인/기업 -->
+          <div class="member_type mb-3">
+            <ul class="member_category">
+              <li class="on">
+                <!-- 클릭 시 on으로 변경 -->
+                <h2 class="tab01 mb-0">
+                  <a href="signup.html/usertype=person" class="tab_btn">개인회원가입</a>
+                </h2>
+              </li>
+              <li class="">
+                <h2 class="tab02 mb-0">
+                  <a href="signup.html/usertype=company" class="tab_btn">기업회원가입</a>
+                </h2>
+              </li>
+            </ul>
+          </div>
+          
+          <div class="cont_division">
+            <!-- 회원정보 입력 : 필수정보-->
+            <ul class="write_base select_input">
+              <!-- ID (N-N) -->
+              <li class="item must">
+                <label for="user_id" class="tit_inp"><span class="essential">*</span>ID</label>
+                <input type="text" name="tmp_user_id" id="user_id" autocapitalize="off"
+                  placeholder="아이디">
+                <p class="alert_column warning_txt hidden" id="user_id_msg" name="user_id_msg">필수정보 입니다.</p>
+              </li>
+              <!-- Password (N-N) -->
+              <li class="item must">
+                <label for="user_pwd" class="tit_inp"><span class="essential">*</span>비밀번호</label>
+                <input type="password" name="tmp_user_pwd" id="user_pwd" autocapitalize="off"
+                  placeholder="비밀번호">
+                <p class="alert_column warning_txt hidden" id="user_pwd_msg" name="user_pwd_msg">필수정보 입니다.</p>
+              </li>
+              <!-- 이름 (N-N)-->
+              <li class="item must">
+                <label for="user_nm" class="tit_inp"><span class="essential">*</span>이름</label>
+                <input type="text" name="tmp_user_nm" id="user_nm" autocapitalize="off"
+                  placeholder="">
+                <p class="alert_column warning_txt hidden" id="user_nm_msg" name="user_nm_msg">필수정보 입니다.</p>
+              </li>
+              <!-- 성별 (NN) -->
+              <li class="item must">
+                <strong class="anterior_txt tit_inp"><span class="essential">*</span>성별</strong>
+                <p class="btn_check btn_gender" id="sex_btn">
+                    <a href="javascript:" class="man" onclick="document.getElementById('msg_sex').style.display='none';">남자</a>
+                    <a href="javascript:" class="woman" onclick="document.getElementById('msg_sex').style.display='none';">여자</a>
                 </p>
-                <div class="birth-input">
-                  <div class="row px-3">
-                    <div class="col-md-4 px-0" >
-                      <input type="text" id="yy" placeholder="년(4자)" aria-label="년(4자)" maxlength="4">
-                    </div>
-                    <div class="col-md-4 px-0">
-                      <select id="mm" class="sel" aria-label="월">
-                        <option value="">월</option>
-                        <option value="01">1</option>
-                        <option value="02">2</option>
-                        <option value="03">3</option>
-                        <option value="04">4</option>
-                        <option value="05">5</option>
-                        <option value="06">6</option>
-                        <option value="07">7</option>
-                        <option value="08">8</option>
-                        <option value="09">9</option>
-                        <option value="10">10</option>
-                        <option value="11">11</option>
-                        <option value="12">12</option>
-                      </select>
-                    </div>
-                    <div class="col-md-4 px-0">
-                      <input type="text" id="dd" placeholder="일" aria-label="일" class="int" maxlength="2">
-                    </div>
-                  </div>
+                <p class="alert_column warning_txt hidden" id="msg_sex">&nbsp;</p>
+              </li>
+              <!-- 생년월일 (N-N ) -->
+              <li class="item must">
+                <div class="select_align_row">
+                  <label for="birth_date" class="tit_inp"><span class="essential">*</span>생년월일</label>
+                  <input type="text" name="tmp_birth_date" id="birth_date" title="사용자 출생년도" maxlength="8"
+                    autocapitalize="off" placeholder="YYYYMMDD" class="che">
                 </div>
-              </div>
-              <div>
-                <p class="info">주소<span class="essential">*</span></p></p>
-                <input type="text" placeholder="우편번호">
-              </div>
-              <div>
-                <p class="info">상세주소<span class="essential">*</span></p></p>
-                <input type="text" placeholder="상세주소">
-              </div>
-              <div>
-                <p class="info">성별<span class="essential">*</span></p></p>
-                <input type="text" placeholder="체크박스로 변경해야함">
-              </div>
-              <div>
-                <p class="info">비밀번호 힌트 질문<span class="essential">*</span></p></p>
-                <input type="text" placeholder="드롭다운 리스트로 변경해야함">
-              </div>
-              <div>
-                <p class="info">비밀번호 힌트 질문 답<span class="essential">*</span></p></p>
-                <input type="text" placeholder="답">
-              </div>
-          </form>
+                <p class="alert_column warning_txt hidden" id="cyr_msg" name="cyr_msg">&nbsp;</p>
+              </li>
+              <!-- 이메일 (N-N)-->
+              <li class="email_column item must">
+                <div class="select_align_row input item">
+                  <label for="email_id" class="tit_inp"><span class="essential">*</span>이메일</label>
+                  <input type="text" id="email_id" name="tmp_email_id" style="ime-mode:inactive" placeholder="">
+                </div>
+                <!-- Start of 자동리스트 영역 -->
+                <ul class="auto_list_area email_list" style="display:none;">
+                  <li class="auto_list"><a href="javascript:;" onclick="return false;" class="email_domain"><strong
+                        class="txt_input"></strong>@naver.com</a></li>
+                  <li class="auto_list"><a href="javascript:;" onclick="return false;" class="email_domain"><strong
+                        class="txt_input"></strong>@gmail.com</a></li>
+                  <li class="auto_list"><a href="javascript:;" onclick="return false;" class="email_domain"><strong
+                        class="txt_input"></strong>@daum.net</a></li>
+                  <li class="auto_list"><a href="javascript:;" onclick="return false;" class="email_domain"><strong
+                        class="txt_input"></strong>@nate.com</a></li>
+                  <li class="auto_list"><a href="javascript:;" onclick="return false;" class="email_domain"><strong
+                        class="txt_input"></strong>@outlook.com</a></li>
+                </ul>
+                <!-- Start of 자동리스트 영역 -->
+                <p class="alert_column warning_txt hidden" id="sms_msg_email1" name="msg_email1">이메일 주소를 다시 확인해주세요.</p>    
+              </li>
+              
+            </ul>
+          </div>
+
+          <!-- 비밀번호 힌트 질문 및 답변 -->
+          <div class="cont_division">
+            <ul class="hint">
+              <!-- 비밀번호 힌트 질문 -->
+              <li class="item must">
+                <label for="user_hint" class="tit_inp"><span class="essential">*</span>비밀번호 힌트 질문</label>
+                <input type="text" name="tmp_user_hint" id="user_hint" autocapitalize="off"
+                  placeholder="">
+                <p class="alert_column warning_txt hidden" id="user_hint_msg" name="user_hint_msg">필수정보 입니다.</p>
+              </li>
+              <!-- 비밀번호 힌트 질문 답 -->
+              <li class="item must">
+                <label for="user_hintAns" class="tit_inp"><span class="essential">*</span>비밀번호 힌트 질문 답</label>
+                <input type="text" name="tmp_user_hintAns" id="user_hintAns" autocapitalize="off"
+                  placeholder="">
+                <p class="alert_column warning_txt hidden" id="user_hintAns_msg" name="user_hintAns_msg">필수정보 입니다.</p>
+              </li>
+            </ul>
+          </div>
+
+          <!--  회원정보 입력 : 선택항목 -->
+          <div class="cont_division">
+            <ul class="write_base select_input">
+              <!-- 휴대폰번호 (NULL) -->
+              <li class="">
+                <div class="input_collect item">
+                  <label for="sms_cellnum" class="tit_inp fullsize_input except">연락처</label> <!-- 입력시 on class 삭제 -->
+                  <input type="text" id="sms_cellnum" name="tmp_cellnum" placeholder="'-' 없이 입력">
+                </div>
+                <p class="alert_column warning_txt hidden" name="msg_phone" id="sms_phone_msg" style="display: block;">휴대폰번호가
+                  올바르지 않습니다.</p>
+              </li>
+              <!-- 집 전화번호 (NULL) -->
+              <li class="">
+                <div class="input_collect item">
+                  <label for="sms_cellnum" class="tit_inp fullsize_input except">집 전화번호</label> <!-- 입력시 on class 삭제 -->
+                  <input type="text" id="sms_cellnum" name="tmp_cellnum" placeholder="'-' 없이 입력">
+                </div>
+              </li>            
+              <!-- 주소(우편번호) (NULL) -->
+              <li class="adress_column item">
+                  <div class="adress_domestic _searchArea">
+                      <label for="address_main" id="address_label" class="tit_inp">주소</label>
+                      <input type="text" id="address_main" name="address_main" class="" readonly="1" placeholder="우편번호/주소">
+                  </div>
+                  <p class="alert_column warning_txt hidden" id="msg_addr">&nbsp;</p>
+              </li>
+              <!-- 주소 (상세주소) (NULL) -->
+              <li class="item">
+                  <label for="address_sebu" class="tit_inp">상세주소</label>
+                  <input type="text" id="address_sebu" name="address_sebu" class="" maxlength="50" style="ime-mode:active" placeholder="상세 주소" readonly="">
+                  <input type="hidden" name="address_details" value="" id="address_details">
+              </li>
+            </ul>
+          </div>
+          
+
         </div>
       </div>
+      <!-- END OF INFO INPUT-->
       <div class="row justify-content-center">
         <div class="col-md-6 pt-4">
           <div class="signup-btn-wrap">
@@ -218,15 +282,17 @@
       <div class="row justify-content-center mt-2">
         <div class="signup-bottom col-md-6">
           <p class="message">
+            <span class="essential">*</span>은 필수 입력 항목입니다. 
+          </p>
+          <p class="message">
             이미 계정을 가지고 있으신가요? <a href="#"> 여기서 로그인하세요.</a>
           </p>
         </div>
       </div>
     </div>
-    <!-- END OF SIGNUP FORM -->
     </div>
-  </section>
-  <!--//END BOARD -->
+    </section>
+    <!--//END SINGUP  -->
   <!--============================= FOOTER =============================-->
   <footer class="main-block dark-bg">
     <div class="container">
@@ -253,40 +319,6 @@
   <script src="js/jquery.magnific-popup.js"></script>
   <!-- Swipper Slider JS -->
   <script src="js/swiper.min.js"></script>
-  <script>
-    var swiper = new Swiper('.swiper-container', {
-      slidesPerView: 3,
-      slidesPerGroup: 3,
-      loop: true,
-      loopFillGroupWithBlank: true,
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-      },
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-    });
-  </script>
-  <script>
-    if ($('.image-link').length) {
-      $('.image-link').magnificPopup({
-        type: 'image',
-        gallery: {
-          enabled: true
-        }
-      });
-    }
-    if ($('.image-link2').length) {
-      $('.image-link2').magnificPopup({
-        type: 'image',
-        gallery: {
-          enabled: true
-        }
-      });
-    }
-  </script>
 
 </body>
 
