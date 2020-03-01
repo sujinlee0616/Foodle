@@ -1261,6 +1261,10 @@ p {
 	padding: 0 0 0 8px;
 	margin: 0 0 8px;
 }
+
+.board-block a{
+  color: #212529;
+}
 @media (max-width : 992px) {
 	.board-block p {
 		margin: 0;
@@ -1268,6 +1272,10 @@ p {
 }
 .board-block p span {
 	color: #ffb006;
+}
+
+.board-block .content pre{
+  font-size: 1rem;
 }
 
 
