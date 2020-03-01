@@ -80,29 +80,43 @@
     cursor: text;
     margin-bottom: 0;
 }
+.hint .tit_inp{
+    float: left;
+    width: 40%;
+    height: 32px;
+    border-right: 1px solid #EEEEEE;
+    color: #222;
+    line-height: 32px;
+    vertical-align: middle;
+    cursor: text;
+    margin-bottom: 0;
+}
 
 /* input 스타일 */
-.write_base li input[type="text"], 
-.write_base li input[type="number"], 
-.write_base li input[type="password"]{
+.write_base.select_input li input[type="text"],
+.write_base.select_input li input[type="number"], 
+.write_base.select_input li input[type="password"]{
     width: 75%;
     height: 29px;
     line-height: 29px;
-    margin-top: 1px;
+    margin: 1px 0 0 0;
     border: none;
-    background-color: #fff;
-    margin-bottom: 0;
+    /* background-color: #fff; */
+
+    float: left;
+    padding-left: 20px;
+    vertical-align: middle;
 }
 .write_base li input[type="radio"] {
     margin: 12px 5px 5px 20px; 
 }
-
-.write_base.select_input li input[type="text"],
-.write_base.select_input li input[type="number"], 
-.write_base.select_input li input[type="password"]{
+.hint li input[type="text"]{
+    width: 60%;
+    height: 29px;
+    line-height: 29px;
+    margin: 1px 0 0 0;
+    border: none;
     float: left;
-    width: 75%;
-    margin: 0;
     padding-left: 20px;
     vertical-align: middle;
 }
