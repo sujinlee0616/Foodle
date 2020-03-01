@@ -223,8 +223,15 @@
               <!-- 비밀번호 힌트 질문 -->
               <li class="item must">
                 <label for="user_hint" class="tit_inp"><span class="essential">*</span>비밀번호 힌트 질문</label>
-                <input type="text" name="tmp_user_hint" id="user_hint" autocapitalize="off"
-                  placeholder="">
+                <select id="user_hint" name="cars">
+                  <option value="">질문을 선택하세요.</option>
+                  <option value="place">기억에 남는 추억의 장소는?</option>
+                  <option value="motto">자신의 인생 좌우명은?</option>
+                  <option value="treasure">자신의 보물 제 1호는?</option>
+                  <option value="teacher">가장 기억에 남는 선생님의 성향은?</option>
+                  <option value="date">추억하고 싶은 날짜가 있다면?</option>
+                  <option value="friend">유년시절 가장 생각나는 친구 이름은?</option>
+                </select>
                 <p class="alert_column warning_txt hidden" id="user_hint_msg" name="user_hint_msg">필수정보 입니다.</p>
               </li>
               <!-- 비밀번호 힌트 질문 답 -->
@@ -329,7 +336,8 @@
     $( function() {
       $( "#birth_date" ).datepicker({
         changeMonth: true,
-        changeYear: true
+        changeYear: true,
+        yearRange: "-100:+0"
       });
     } );
   </script>
