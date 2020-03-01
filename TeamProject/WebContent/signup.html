@@ -31,8 +31,10 @@
   <link rel="stylesheet" href="css/style.css">
   <!-- Font -->
   <link href="https://fonts.googleapis.com/css?family=Do+Hyeon|Nanum+Gothic&display=swap" rel="stylesheet">
-  <!-- Member Join CSS -->
-  <link rel="stylesheet" href="css/memberjoin.css">
+  <!-- Signup CSS -->
+  <link rel="stylesheet" href="css/signup.css">
+  <!-- jQuery Datepicker UI for birth_date-->
+  <link rel="stylesheet" href="./js/jquery-ui-1.12.1/jquery-ui.min.css">
 </head>
 
 <body>
@@ -170,11 +172,14 @@
               </li>
               <!-- 성별 (NN) -->
               <li class="item must">
-                <strong class="anterior_txt tit_inp"><span class="essential">*</span>성별</strong>
-                <p class="btn_check btn_gender" id="sex_btn">
+                <label for="user_gender" class="tit_inp"><span class="essential">*</span>성별</label>
+                <label for="user_gender_male"><input type="radio" name="tmp_user_gender" id="user_gender_male" value="male">남성</label>
+                <label for="user_gender_female"><input type="radio" name="tmp_user_gender" id="user_gender_female" value="female">여성</label>
+              
+                <!-- <p class="btn_check btn_gender" id="sex_btn">
                     <a href="javascript:" class="man" onclick="document.getElementById('msg_sex').style.display='none';">남자</a>
                     <a href="javascript:" class="woman" onclick="document.getElementById('msg_sex').style.display='none';">여자</a>
-                </p>
+                </p> -->
                 <p class="alert_column warning_txt hidden" id="msg_sex">&nbsp;</p>
               </li>
               <!-- 생년월일 (N-N ) -->
@@ -182,7 +187,7 @@
                 <div class="select_align_row">
                   <label for="birth_date" class="tit_inp"><span class="essential">*</span>생년월일</label>
                   <input type="text" name="tmp_birth_date" id="birth_date" title="사용자 출생년도" maxlength="8"
-                    autocapitalize="off" placeholder="YYYYMMDD" class="che">
+                    autocapitalize="off" placeholder="YYYYMMDD" class="che" autocomplete="off">
                 </div>
                 <p class="alert_column warning_txt hidden" id="cyr_msg" name="cyr_msg">&nbsp;</p>
               </li>
@@ -239,7 +244,7 @@
               <li class="">
                 <div class="input_collect item">
                   <label for="sms_cellnum" class="tit_inp fullsize_input except">연락처</label> <!-- 입력시 on class 삭제 -->
-                  <input type="text" id="sms_cellnum" name="tmp_cellnum" placeholder="'-' 없이 입력">
+                  <input type="text" id="sms_cellnum" name="tmp_cellnum" placeholder="'-' 없이 입력" maxlength="11">
                 </div>
                 <p class="alert_column warning_txt hidden" name="msg_phone" id="sms_phone_msg" style="display: block;">휴대폰번호가
                   올바르지 않습니다.</p>
@@ -248,22 +253,23 @@
               <li class="">
                 <div class="input_collect item">
                   <label for="sms_cellnum" class="tit_inp fullsize_input except">집 전화번호</label> <!-- 입력시 on class 삭제 -->
-                  <input type="text" id="sms_cellnum" name="tmp_cellnum" placeholder="'-' 없이 입력">
+                  <input type="text" id="sms_cellnum" name="tmp_cellnum" placeholder="'-' 없이 입력" maxlength="11">
                 </div>
               </li>            
               <!-- 주소(우편번호) (NULL) -->
               <li class="adress_column item">
                   <div class="adress_domestic _searchArea">
-                      <label for="address_main" id="address_label" class="tit_inp">주소</label>
-                      <input type="text" id="address_main" name="address_main" class="" readonly="1" placeholder="우편번호/주소">
+                      <label for="address_main" id="address" class="tit_inp">주소</label>
+                      <input type="text" id="address_main" name="address_main" class="" readonly="1" placeholder="우편번호/주소"
+                      onclick="zipcode()">
                   </div>
                   <p class="alert_column warning_txt hidden" id="msg_addr">&nbsp;</p>
               </li>
               <!-- 주소 (상세주소) (NULL) -->
               <li class="item">
-                  <label for="address_sebu" class="tit_inp">상세주소</label>
-                  <input type="text" id="address_sebu" name="address_sebu" class="" maxlength="50" style="ime-mode:active" placeholder="상세 주소" readonly="">
-                  <input type="hidden" name="address_details" value="" id="address_details">
+                  <label for="address_detail" class="tit_inp">상세 주소</label>
+                  <input type="text" id="address_detail" name="address_detail" class="" maxlength="50" placeholder="상세 주소">
+                  <input type="hidden" name="address_extra" value="" id="address_extra">
               </li>
             </ul>
           </div>
@@ -315,10 +321,70 @@
   <script src="js/jquery-3.2.1.min.js"></script>
   <script src="js/popper.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
-  <!-- Magnific popup JS -->
-  <script src="js/jquery.magnific-popup.js"></script>
-  <!-- Swipper Slider JS -->
-  <script src="js/swiper.min.js"></script>
+
+  <!-- jQuery Datepicker UI for birthdate -->
+  <script src="./js/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+  <script src="./js/jquery-ui-1.12.1/datepicker-ko.js"></script>
+  <script>
+    $( function() {
+      $( "#birth_date" ).datepicker({
+        changeMonth: true,
+        changeYear: true
+      });
+    } );
+  </script>
+
+  <!-- Kakao zipcode -->
+  <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+  <script>
+    function zipcode() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                var addr = ''; // 주소 변수
+                var extraAddr = ''; // 참고항목 변수
+
+                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                    addr = data.roadAddress;
+                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                    addr = data.jibunAddress;
+                }
+
+                // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+                if(data.userSelectedType === 'R'){
+                    // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                    // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                    if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                        extraAddr += data.bname;
+                    }
+                    // 건물명이 있고, 공동주택일 경우 추가한다.
+                    if(data.buildingName !== '' && data.apartment === 'Y'){
+                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                    }
+                    // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                    if(extraAddr !== ''){
+                        extraAddr = ' (' + extraAddr + ')';
+                    }
+                    //조합된 참고항목을 해당 필드에 넣는다.
+                    document.getElementById("address_extra").value = extraAddr;
+                
+                } else {
+                    document.getElementById("address_extra").value = '';
+                }
+
+                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                //document.getElementById('sample6_postcode').value = data.zonecode;
+                document.getElementById("address_main").value = addr;
+                // 커서를 상세주소 필드로 이동한다.
+                document.getElementById("address_detail").focus();
+            }
+        }).open();
+    }
+</script>
 
 </body>
 
