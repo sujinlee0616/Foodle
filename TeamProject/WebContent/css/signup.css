@@ -27,6 +27,7 @@
     cursor: pointer;
 }
 .member_category li a {
+    margin: 0 0 1px 0;
     text-decoration: none;
     display: block;
     height: 65px;
@@ -39,7 +40,7 @@
     text-align: center;
 }
 .member_category li.on a {
-    margin: -1px -1px 0;
+    margin: 0 0 1px 0;
     color: #fff;
     height: 65px;
     line-height: 65px;
@@ -67,7 +68,6 @@
 }
 
 
-
 /* input title 스타일 */
 .write_base.select_input .tit_inp {
     float: left;
@@ -84,7 +84,7 @@
 /* input 스타일 */
 .write_base li input[type="text"], 
 .write_base li input[type="number"], 
-.write_base li input[type="password"] {
+.write_base li input[type="password"]{
     width: 75%;
     height: 29px;
     line-height: 29px;
@@ -92,6 +92,9 @@
     border: none;
     background-color: #fff;
     margin-bottom: 0;
+}
+.write_base li input[type="radio"] {
+    margin: 12px 5px 5px 20px; 
 }
 
 .write_base.select_input li input[type="text"],
