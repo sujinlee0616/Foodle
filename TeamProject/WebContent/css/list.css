@@ -1,0 +1,108 @@
+@charset "utf-8";
+/*------------------------------------------------------------------
+Theme Name: List Page Style
+Version: 1.0
+Author: Sujin Lee
+-------------------------------------------------------------------*/
+
+/* ==============================================================
+   LIST PAGE
+   ============================================================== */
+
+   @media (max-width: 992px) {
+    .responsive-wrap {
+      max-width: 100%;
+      -webkit-box-flex: 100%;
+      -webkit-flex: 100%;
+      -ms-flex: 100%;
+      flex: 100%; } }
+  
+  .list-block h5 {
+      color: #3e434b;
+      font-weight: 400;
+      display: inline-block;
+      margin: 0;
+  }
+  
+  .list-block p {
+    display: inline-block;
+    font-size: 15px;
+    color: #b2b8c3;
+    font-weight: 400;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .list-block p span {
+      color: #ff7474;
+  }
+  
+  .filter{border: 1px solid #bbb; border-radius: 3px;}
+  .filter_row{background-color: #FFFFFF; }
+  .filter_row a{text-decoration: none; color: #3e434b; }
+  .filter_row a:hover {color: #ff3a6d; }
+  
+  .filter_head{
+    display: inline-block;
+    width: 100px; background-color: #E0E0E0; color: #000; height: 40px; 
+  }
+  .filter_head h6{
+    display: inline-block;
+    height: 40px; line-height: 40px; font-size: 18px; font-weight: 500; padding-left: 10px;
+  }
+  
+  .scrollbar_content{
+     display: inline-block; height: 40px; 
+  }
+  
+  .filter_row ul{
+    list-style-type: none; padding-left: 0; 
+  }
+  .filter_row ul li{
+    display: inline-block; 
+     height: 40px; line-height: 40px; font-size: 18px; padding: 0 5px;
+  }
+  
+  a.selected{
+      position: relative;
+      display: inline-block;
+      height: 35px;
+      line-height: 35px;
+      font-size: 17px;
+      margin: 10px 5px;
+      padding: 0 15px;
+      background-color: #ff3a6d;
+      color: #fff;
+      letter-spacing: -0.5px;
+      text-decoration: none;
+  }
+  
+  a.selected span.del{padding-left: 5px;}
+  
+
+  .map-wrap {
+    padding: 0; }
+  
+  .map-fix {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 41.7%; }
+    @media (max-width: 992px) {
+      .map-fix {
+        display: none;
+        top: 17%;
+        left: 0;
+        width: 100%; } }
+    @media (max-width: 480px) {
+      .map-fix {
+        top: 24%; } }
+    @media (max-width: 365px) {
+      .map-fix {
+        top: 29.3%; } }
+  
+  #map {
+    height: 100%;
+    width: 100%; }
+  
