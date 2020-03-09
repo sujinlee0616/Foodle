@@ -1,0 +1,212 @@
+
+@charset "utf-8";
+
+/* ============================================================================================================================
+   SIGN UP PAGE
+   ============================================================================================================================ */
+
+/* ==============================================================
+   SIGN UP FORM
+   ============================================================== */
+
+.signup ul, .member_category, .member_category li{
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.signup ul{overflow: hidden;}
+  
+/* 회원유형 tab */
+.member_category li {
+    float: left;
+    width: 50%;
+    color: #999;
+    border: solid #dcdcdc;
+    box-sizing: border-box;
+    border-width: 1px;
+    cursor: pointer;
+}
+.member_category li a {
+    margin: 0 0 1px 0;
+    text-decoration: none;
+    display: block;
+    height: 65px;
+    line-height: 65px;
+    box-sizing: border-box;
+    background-color: #fff;
+    color: #707070;
+    font-size: 1.2rem;
+    letter-spacing: -1px;
+    text-align: center;
+}
+.member_category li.on a {
+    margin: 0 0 1px 0;
+    color: #fff;
+    height: 65px;
+    line-height: 65px;
+    border: solid #ff3a6d;
+    border-width: 1px;
+    background-color: #ff3a6d;
+}
+
+
+
+/* list 스타일 */
+.cont_division li {
+    float: left;
+    width: 100%;
+    min-height: 46px;
+    padding: 8px 15px;
+    box-sizing: border-box;
+    border-top: 1px solid #CCCCCC;
+    border-left: 1px solid #CCCCCC;
+    border-right: 1px solid #CCCCCC;
+    background-color: #FFFFFF;
+}
+.cont_division li:last-child{
+    border-bottom: 1px solid #CCCCCC;
+}
+
+
+/* input title 스타일 */
+.write_base.select_input .tit_inp {
+    float: left;
+    width: 25%;
+    height: 32px;
+    border-right: 1px solid #EEEEEE;
+    color: #222;
+    line-height: 32px;
+    vertical-align: middle;
+    cursor: text;
+    margin-bottom: 0;
+}
+.hint .tit_inp{
+    float: left;
+    width: 40%;
+    height: 32px;
+    border-right: 1px solid #EEEEEE;
+    color: #222;
+    line-height: 32px;
+    vertical-align: middle;
+    cursor: text;
+    margin-bottom: 0;
+}
+
+/* input 스타일 */
+.write_base.select_input li input[type="text"],
+.write_base.select_input li input[type="number"], 
+.write_base.select_input li input[type="password"]{
+    width: 75%;
+    height: 29px;
+    line-height: 29px;
+    margin: 1px 0 0 0;
+    border: none;
+    /* background-color: #fff; */
+
+    float: left;
+    padding-left: 20px;
+    vertical-align: middle;
+}
+.write_base li input[type="radio"] {
+    margin: 12px 5px 5px 20px; 
+}
+.hint li input[type="text"]{
+    width: 60%;
+    height: 29px;
+    line-height: 29px;
+    margin: 1px 0 0 0;
+    border: none;
+    float: left;
+    padding-left: 20px;
+    vertical-align: middle;
+}
+
+
+
+/* input 경고문구 control */
+.hidden{display: none !important;}
+  
+  
+/* 필수입력란 */
+.signup span.essential, .signup-bottom span.essential {
+    margin: 0 5px;
+    color: #ff3a6d; font-size: 0.8em;
+}
+
+/* 하단 회원가입 버튼 */
+.signup-btn-wrap {text-align: center; }
+.signup-btn-wrap .btn-danger {
+    width:100%;
+    background: #ff3a6d;
+     padding: 16px 50px;
+    -webkit-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+    border: 0; 
+}
+.signup-btn-wrap .btn-danger:hover, .featured-btn-wrap .btn-danger:focus {
+    background: #f34e79;
+    outline: none;
+    -webkit-box-shadow: none;
+    box-shadow: none; 
+}
+.signup-btn-wrap a{font-size: 1.2rem;}
+  
+/* 하단 안내문구 - 이미 계정 있는지 */
+.signup-bottom .message {
+    margin: 10px 0;
+    color: #212529;
+    font-size: 14px;
+}
+.signup-bottom .message a {
+    color: #ff3a6d;
+    text-decoration: none;
+}
+
+
+
+/* ==============================================================
+   회원가입 UI 바꾸기 전 코딩 (HTML FILE: signup_old.html) 
+   ============================================================== */
+  
+/* .signup .signup-form p.info{
+    color: #1a1a1a;
+    font-size: 1em;
+} */
+  
+/* .signup .signup-form span.essential{
+    margin: 0 5px;
+    color: #ff3a6d; font-size: 0.8em;
+} */
+/*   
+.signup input, .signup select {
+    outline: 0;
+    border: solid 1px #E0E0E0 !important;
+    width: 100%;
+    border: 0;
+    margin: 0 0 15px;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 14px;
+} */
+/*   
+.signup .birth .birth-input #yy{width: 95%;}
+.signup .birth .birth-input select{width: 95%;}
+@media (max-width: 576px){.signup .birth .birth-input #yy{width: 100%;}}
+@media (max-width: 576px){.signup .birth .birth-input select{width: 100%;}}
+   */
+
+  
+/* .signup.container:before, .container:after {
+    content: "";
+    display: block;
+    clear: both;
+} */
+  
+
+  /* End of signup*/
+
+
+
+
+
