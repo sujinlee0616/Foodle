@@ -6,7 +6,7 @@ Author: Sujin Lee
 -------------------------------------------------------------------*/
 
 /* ==============================================================
-   RESERVE A SEAT
+   TITLE
 ============================================================== */
 .reserve-block {
   padding: 30px 0; }
@@ -105,7 +105,7 @@ Author: Sujin Lee
   padding: 0 10px 0 0; }
   
 /* ==============================================================
-     BOOKING DETAILS
+     INFO
 ============================================================== */
   .booking-details_wrap {
     padding: 26px 0; }
@@ -369,7 +369,6 @@ Author: Sujin Lee
 }
 
 .area_grade, .area_reviewNo{
-  float: left;
   height: 140px;
   /* background-color: pink; */
   /* border: 1px solid black; */
@@ -403,3 +402,26 @@ Author: Sujin Lee
 }
 
 .pagination{margin: 0 auto;}
+
+
+
+/* Image Gallery */
+.main-img img, 
+.imgs img{
+    width: 100%;
+}
+.imgs{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-gap: 5px;
+}
+/* Fade in animation */
+@keyframes fadeIn{
+    to{
+        opacity: 1;
+    }
+}
+.fade-in{
+    opacity: 0;
+    animation: fadeIn 0.5s ease-in 1 forwards;
+}
