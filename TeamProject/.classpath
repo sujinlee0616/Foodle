@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path=""/>
+	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="output" path="bin"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+<<<<<<< HEAD
+	<classpathentry kind="lib" path="C:/javaDev/라이브러리/jsoup-1.12.1.jar"/>
+=======
+	<classpathentry kind="lib" path="C:/javaDev/jsoup-1.12.1.jar"/>
+>>>>>>> 279f0a17b589daeb99818f5dd2b3b8aa7128a417
+	<classpathentry kind="output" path="build/classes"/>
 </classpath>
