@@ -1,0 +1,72 @@
+.my_list_box {
+	
+	margin-bottom: 15px;
+    padding: 18px 35px 22px 37px;
+    background-color: #e9ecef;
+    border-right: 1px solid #d1d4d7;
+    border-bottom: 1px solid #d1d4d7;
+    border-left: 1px solid #d1d4d7;
+	
+}
+
+.my_list_box .my_tit {
+    position: relative;
+    padding: 14px 0 1px 5px;
+}
+
+.my_list_box .wrap_mylst {
+    margin-top: -6px;
+}
+
+.my_list_box .wrap_mylst .cards_wrap {
+    display: table;
+    border-collapse: separate;
+    border-spacing: 0 13px;
+}
+
+.cards_wrap .card_row {
+    display: table-row;
+}
+
+.my_list_box .wrap_mylst .cards_wrap .card.even {
+    padding-right: 24px;
+}
+
+
+.wrap_mylst .cards_wrap .card {
+    display: table-cell;
+    width: 419px;
+    vertical-align: top;
+}
+
+.cards_wrap .card.used .card_header {
+    background-image: url(assets/bg_card_header3.070c01a….png);
+}
+
+.wrap_my .my_list_box .wrap_mylst .cards_wrap .card .card_header {
+    position: relative;
+    padding-top: 12px;
+    padding-left: 55px;
+    width: 419px;
+    height: 60px;
+    background-image: url(assets/bg_card_header.bebfdf6….png);
+    background-repeat: no-repeat;
+    color: #fff;
+    font-size: 14px;
+    letter-spacing: -.5px;
+    vertical-align: top;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+#wrap {
+    text-align: left;
+    zoom: 1;
+}
+
+div {
+    display: block;
+}
+
