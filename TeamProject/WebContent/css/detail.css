@@ -107,25 +107,84 @@ Author: Sujin Lee
 /* ==============================================================
      INFO
 ============================================================== */
-  .booking-details_wrap {
+ 
+/* ==============================================================
+     INFO - 1. OVERVIEW
+============================================================== */
+
+/* Image Gallery */
+.main-img img, 
+.imgs img{
+    width: 100%;
+}
+.imgs{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-gap: 5px;
+}
+/* Fade in animation */
+@keyframes fadeIn{
+    to{
+        opacity: 1;
+    }
+}
+.fade-in{
+    opacity: 0;
+    animation: fadeIn 0.5s ease-in 1 forwards;
+}
+
+
+
+.res_info_wrap {
     padding: 26px 0; }
-  
-  .booking-checkbox_wrap {
+
+  .res_intro_wrap{
+      background: #fff;
+      padding: 30px 30px 16px 30px; 
+      color: #737882;
+      font-size: 15px;
+  }
+
+  .res_intro_wrap p {
+    line-height: 1.8; }
+
+/* ==============================================================
+    INFO - 2. DETAIL INFO
+============================================================== */
+
+.detail_info table{
+  background-color: #fff;
+}
+
+.area_title h5 {
+  padding: 10px 0 5px 0;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.detail_info th{
+  font-weight: 400;
+  background-color: #E0E0E0;
+  text-align: center;
+}
+
+.detail_info td{
+  color: #737882;
+}
+
+/* ==============================================================
+    INFO - 3. CUSTOMER REVIEW
+============================================================== */
+ .review_wrap{
     background: #fff;
     padding: 30px 30px 16px 30px; 
   }
-  .booking-checkbox_wrap h5 {
+
+  .overview_wrap h5 {
     color: #3e434b;
     text-align: center;
     font-weight: 400; 
-  }
-  
-  .booking-checkbox {
-    color: #737882;
-    font-size: 15px; }
-  .booking-checkbox p {
-    line-height: 1.8; }
-  
+  }  
   .customer-review_wrap {
     display: inline-block;
     width: 100%; }
@@ -242,96 +301,20 @@ Author: Sujin Lee
   
   .customer-description {
     margin: 0 0 0 50px; }
-  
-  .contact-info {
-    background: #fff;
-    padding: 0 0 6px;
-    margin: 0 0 15px; }
-  .contact-info img {
-    width: 100%; }
-  .contact-info label {
-    color: #46cd38;
-    font-size: 14px;
-    padding: 0 0 0 50px; }
-  @media (max-width: 992px) {
-    .contact-info label {
-      display: block; } }
-  
-  .address {
-    color: #737882;
-    padding: 18px 0 0 16px; }
-  .address > span {
-    font-size: 18px;
-    float: left;
-    margin: 4px 0 0; }
-  .address p {
-    margin: 0 0 0 34px; }
-  .address .featured-open {
-    font-size: 13px;
-    padding: 0 0 0 34px; }
-  
-  .btn-contact {
-    display: block;
-    padding: 16px;
-    margin: 12px 16px;
-    border: 2px solid #ff3a6d;
-    color: #ff3a6d;
-    font-weight: 400; }
-  .btn-contact:hover {
-    background: #ff3a6d;
-    border: 2px solid #ff3a6d; }
 
-  .follow {
-    background: #fff; }
-  .follow ul {
-    margin: 0;
-    padding: 0;
-    border-top: 1px solid #ededed;
-    border-bottom: 1px solid #ededed;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-    -webkit-flex-direction: row;
-    -ms-flex-direction: row;
-    flex-direction: row;
-    -webkit-justify-content: space-around;
-    -ms-flex-pack: distribute;
-    justify-content: space-around;
-    text-align: center; }
-  .follow ul li {
-    list-style: none;
-    padding: 13px 0;
-    width: 33%; }
-  @media (max-width: 1200px) {
-    .follow ul li {
-      padding: 12px 18px; } }
-  .follow ul li:first-child, .follow ul li:nth-child(2) {
-    border-right: 1px solid #ededed; }
-  .follow ul li h6 {
-    margin: 0; }
-  .follow a {
-    color: #ff3a6d;
-    text-align: center;
-    display: block;
-    font-size: 14px;
-    font-weight: 400;
-    padding: 14px 0; }
-  
-  .follow-img {
-    text-align: center;
-    padding: 20px 16px;
-    color: #3e434b; }
-  .follow-img img {
-    border-radius: 50%; }
-  .follow-img h6 {
-    margin: 11px 0 0; }
-  
-  .social-counts span {
-    font-size: 14px;
-    color: #737882; }
+
+/* 평균 총점 영역 */
+.customer-review-avg .area_grade .stars-outer::before{
+  font-size: 28px;
+}
+.customer-review-avg .area_grade .stars-inner::before{
+  font-size: 28px;
+  color: #ff3a6d;
+}
+.customer-review-avg .area_grade .stars-outer{
+  top: 23px;
+}
+.pagination{margin: 0 auto;}
   
     
 /* 별점 이미지 - 2020.03.08 (일) */
@@ -387,41 +370,69 @@ Author: Sujin Lee
   height: 80px;
 }
 
-/* 평균 총점 영역 */
 
-.customer-review-avg .area_grade .stars-outer::before{
-  font-size: 28px;
-}
+/* ==============================================================
+    INFO - 4. CONTACT INFO
+============================================================== */
 
-.customer-review-avg .area_grade .stars-inner::before{
-  font-size: 28px;
+.contact_wrap {
+  background: #fff;
+  padding: 0 0 6px;
+  margin: 0 0 15px; }
+.contact_wrap img {
+  width: 100%; }
+.contact_wrap label {
+  color: #46cd38;
+  font-size: 14px;
+  padding: 0 0 0 50px; }
+@media (max-width: 992px) {
+  .contact_wrap label {
+    display: block; 
+  } }
+
+  
+.address {
+  color: #737882;
+  padding: 18px 0 0 16px; }
+.address > span {
+  font-size: 18px;
+  float: left;
+  margin: 4px 0 0; }
+.address p {
+  margin: 0 0 0 34px; }
+.address .featured-open {
+  font-size: 13px;
+  padding: 0 0 0 34px; }
+      
+.btn-contact {
+  display: block;
+  padding: 16px;
+  margin: 12px 16px;
+  border: 2px solid #ff3a6d;
   color: #ff3a6d;
-}
-.customer-review-avg .area_grade .stars-outer{
-  top: 23px;
-}
+  font-weight: 400; }
+.btn-contact:hover {
+  background: #ff3a6d;
+  border: 2px solid #ff3a6d; }
 
-.pagination{margin: 0 auto;}
+/* ==============================================================
+    INFO - 5. RESERVATION
+============================================================== */
 
+.reserve_wrap{background-color: #fff; padding: 10px;}
+.reserve_wrap ul{list-style-type: none; padding-left: 0;}
+.reserve_wrap ul li{margin: 10px 5px;}
+/* .reserve_wrap label{width: 20%;} */
+/* .reserve_wrap select, .reservation input{width: 65%;} */
+.reserve_wrap select, .reservation input{width: 100%; display: block;}
 
-
-/* Image Gallery */
-.main-img img, 
-.imgs img{
-    width: 100%;
-}
-.imgs{
-    display: grid;
-    grid-template-columns: repeat(4,1fr);
-    grid-gap: 5px;
-}
-/* Fade in animation */
-@keyframes fadeIn{
-    to{
-        opacity: 1;
-    }
-}
-.fade-in{
-    opacity: 0;
-    animation: fadeIn 0.5s ease-in 1 forwards;
-}
+.btn-reserve {
+  display: block;
+  padding: 16px;
+  margin: 15px 5px;
+  border: 2px solid #ff3a6d;
+  color: #ff3a6d;
+  font-weight: 400; }
+.btn-reserve:hover {
+  background: #ff3a6d;
+  border: 2px solid #ff3a6d; }
