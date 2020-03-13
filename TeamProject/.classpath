@@ -4,10 +4,5 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-<<<<<<< HEAD
-	<classpathentry kind="lib" path="C:/javaDev/라이브러리/jsoup-1.12.1.jar"/>
-=======
-	<classpathentry kind="lib" path="C:/javaDev/jsoup-1.12.1.jar"/>
->>>>>>> 279f0a17b589daeb99818f5dd2b3b8aa7128a417
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

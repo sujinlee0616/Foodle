@@ -21,9 +21,9 @@ public class InfoManager {
 	public String MediaSubString(String cutchar, String fulltitle) {
 		
 		String temp ="";
-		StringTokenizer a = new StringTokenizer(str)
+		/*StringTokenizer a = new StringTokenizer(str);*/
 		 int i=0;
-		while(true)
+		/*while(true)
 		{
 			i++;
 			token
@@ -34,7 +34,7 @@ public class InfoManager {
 			}catch(Exception ex) {
 				break;
 			}
-		}
+		}*/
 		return temp.trim();
 	}
 	
@@ -53,42 +53,42 @@ public class InfoManager {
 
 
 
-//		//°¡°Ô ½¬´Â³¯
+//		//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â³ï¿½
 //		private String r_Holiday;
-//		//°¡°Ô ¼Ò°³
+//		//ï¿½ï¿½ï¿½ï¿½ ï¿½Ò°ï¿½
 //		private String r_Content;
-//		//°¡°Ô ÁÁ¾Æ¿ä °¹¼ö
+//		//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Æ¿ï¿½ ï¿½ï¿½ï¿½ï¿½
 //		private String r_Good;
-//		//°¡°Ô ÁÂ¼® °¹¼ö
+//		//ï¿½ï¿½ï¿½ï¿½ ï¿½Â¼ï¿½ ï¿½ï¿½ï¿½ï¿½
 //		private String r_Seat;
-//		//°¡°Ô ¹æ °¹¼ö
+//		//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 //		private String r_Room;
-//		//ÁÖ·ùÆÇ¸Å ¿©ºÎ
+//		//ï¿½Ö·ï¿½ï¿½Ç¸ï¿½ ï¿½ï¿½ï¿½ï¿½
 //		private String r_Drink;
-//		//±Ý¿¬¼®Á¤º¸
+//		//ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 //		private String r_Nosmoking;
-//		//¿¹¾à ¿©ºÎ
+//		//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 //		private String r_Reserve;
-//		//È­Àå½Ç ¿©ºÎ
+//		//È­ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 //		private String r_Restroom;
-//		//ÁÖÂ÷ ¿©ºÎ
+//		//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 //		private String r_Park;
-//		//¹è´Þ ¿©ºÎ
+//		//ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 //		private String r_Delivery;
-//		//´©Àû ¹æ¹®ÀÚ¼ýÀÚ
+//		//ï¿½ï¿½ï¿½ï¿½ ï¿½æ¹®ï¿½Ú¼ï¿½ï¿½ï¿½
 //		private int r_hit;
-//		//È¨ÆäÀÌÁö Ã³À½ ½ÃÀÛÇÑ ³¯Â¥
+//		//È¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Â¥
 //		private Date r_Start;
-//		//°¡°ÔÁ¤º¸ ¼öÁ¤ÀÏÀÚ
+//		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 //		private Date r_Date;
 
-//		//´©Àû ¹æ¹®ÀÚ¼ýÀÚ
+//		//ï¿½ï¿½ï¿½ï¿½ ï¿½æ¹®ï¿½Ú¼ï¿½ï¿½ï¿½
 //		private int r_hit;
-//		//È¨ÆäÀÌÁö Ã³À½ ½ÃÀÛÇÑ ³¯Â¥
+//		//È¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Â¥
 //		private Date r_Start;
-//		//°¡°Ô Áö¿ª(ex.¼­¿ï°­³²,¼­¿ï°­ºÏ...)
+//		//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½(ex.ï¿½ï¿½ï¿½ï°­ï¿½ï¿½,ï¿½ï¿½ï¿½ï°­ï¿½ï¿½...)
 //		private String r_Area;
-//		//°¡°Ô ¼¼ºÎÁö¿ª(ex.°¡·Î¼ö±æ,°­³²¿ª...)
+//		//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ex.ï¿½ï¿½ï¿½Î¼ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½...)
 //		private String r_AreaDetail;
 		
 		Element r_No;
@@ -101,18 +101,18 @@ public class InfoManager {
 		Element r_ScoreCount;
 //		private int r_Lowprice;	
 //		private int r_Highprice;
-		//À§¿¡ µÎ°³ ÇÕÄ£°Í
+		//ï¿½ï¿½ï¿½ï¿½ ï¿½Î°ï¿½ ï¿½ï¿½Ä£ï¿½ï¿½
 		Element r_Price;		
 //		Element r_Opentime;
 //		Element r_Closetime;
-		//À§¿¡ µÎ°³ ÇÕÄ£°Í
+		//ï¿½ï¿½ï¿½ï¿½ ï¿½Î°ï¿½ ï¿½ï¿½Ä£ï¿½ï¿½
 		Element r_Businesstime;
 		Element r_Holiday;
 		Element r_Content;
 		Element r_Good;
 //		Element r_Seat;
 //		Element r_Room;
-		//À§¿¡µÎ°³ ÇÕÄ£°Í
+		//ï¿½ï¿½ï¿½ï¿½ï¿½Î°ï¿½ ï¿½ï¿½Ä£ï¿½ï¿½
 		Element r_Seat_Room;		
 		Element r_Drink;
 		Element r_Nosmoking;
@@ -131,8 +131,8 @@ public class InfoManager {
 		Element r_Date;
 
 		
-//		System.out.println("ÇöÀç Ä«Å×°í¸® ¹øÈ£ : "+ (z+1)  + ",ÇöÀçÆäÀÌÁö¹øÈ£ : " + (j+1) +",ÇöÀçÁö¿ª¹øÈ£ : "+(i+1));
-		//i < ac.size()·Î º¯°æ
+//		System.out.println("ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½×°ï¿½ ï¿½ï¿½È£ : "+ (z+1)  + ",ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£ : " + (j+1) +",ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£ : "+(i+1));
+		//i < ac.size()ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		for(int i = 0 ; i < 2 ; i++)
 		{
 			for(int j = 0 ; j < page ; j++)
@@ -151,61 +151,61 @@ public class InfoManager {
 							
 							vo = new InfoVO();
 							
-							//°¡°Ô °íÀ¯¹øÈ£
+							//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£
 							vo.setR_No(((z) + ((j)*kategorie) + ((i)*(page*kategorie))));
-							//°¡°ÔÀÌ¸§
+							//ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½
 							try 
 							{		
 								r_Name = doc2.select("span.storeName").get(0);
 								vo.setR_Name(r_Name.text());						
 							} catch (Exception ex) {break;}
-							//°¡°Ô¾÷Á¾
+							//ï¿½ï¿½ï¿½Ô¾ï¿½ï¿½ï¿½
 							try {
 							r_Foodtype = doc2.select("dl.restType dd.type").get(0);
 							if(r_Foodtype.text().indexOf("-") != -1)
 								vo.setR_Foodtype(r_Foodtype.text().substring(0,r_Foodtype.text().indexOf("-")));
 							else
 								vo.setR_Foodtype(r_Foodtype.text());
-							}catch(Exception ex) {vo.setR_Foodtype("±âÅ¸");}
-							//°¡°Ô ÀüÈ­¹øÈ£
+							}catch(Exception ex) {vo.setR_Foodtype("ï¿½ï¿½Å¸");}
+							//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È­ï¿½ï¿½È£
 							try {
 							r_Tel = doc2.select("dl.restTel dd.tel1").get(0);
 							vo.setR_Tel(r_Tel.text());
-							}catch(Exception ex) {vo.setR_Tel("¾øÀ½");}					
-							//°¡°Ô ±¸ÁÖ¼Ò
+							}catch(Exception ex) {vo.setR_Tel("ï¿½ï¿½ï¿½ï¿½");}					
+							//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ö¼ï¿½
 							try {
 								r_Addr1 = doc2.select("dl.restAdd dd.add1").get(0);
 								vo.setR_Addr1(r_Addr1.text());
-							}catch (Exception ex) {vo.setR_Addr1("¾øÀ½");}
-							//°¡°Ô ½ÅÁÖ¼Ò
+							}catch (Exception ex) {vo.setR_Addr1("ï¿½ï¿½ï¿½ï¿½");}
+							//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ö¼ï¿½
 							try{
 								r_Addr2 = doc2.select("dl.restAdd dd.add2").get(0);
 								vo.setR_Addr2(r_Addr2.text());
 							}catch (Exception ex) {vo.setR_Addr1("");}
-							//°¡°Ô ÆòÁ¡
+							//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 							try {
 								r_Score = doc2.select("dl.restGrade span.total").get(0);
 								vo.setR_Score(Double.parseDouble(r_Score.text()));
 							}catch(Exception ex) {vo.setR_Score(0);}
-							//°¡°ÔÆòÁ¡ Æò°¡ÀÎ¿ø¼ö
+							//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î¿ï¿½ï¿½ï¿½
 							try {
 								r_ScoreCount = doc2.select("dl.restGrade span.count").get(0);
-								String[] temp = r_ScoreCount.text().split("¸í");
+								String[] temp = r_ScoreCount.text().split("ï¿½ï¿½");
 								vo.setR_ScoreCount(Integer.parseInt(temp[0]));
 							}catch(Exception ex) {vo.setR_ScoreCount(0);}
-							//ÃßÃµ°¡°Ý´ë(³ôÀ½)						
-							//ÃßÃµ°¡°Ý´ë(³·À½)
+							//ï¿½ï¿½Ãµï¿½ï¿½ï¿½Ý´ï¿½(ï¿½ï¿½ï¿½ï¿½)						
+							//ï¿½ï¿½Ãµï¿½ï¿½ï¿½Ý´ï¿½(ï¿½ï¿½ï¿½ï¿½)
 							try {
 								r_Price = doc2.select("p.price strong").get(0);
 								vo.setR_Lowprice(r_Price.text());
-							}catch(Exception ex) {vo.setR_Lowprice("¾øÀ½");}
+							}catch(Exception ex) {vo.setR_Lowprice("ï¿½ï¿½ï¿½ï¿½");}
 							try {
 								r_Price = doc2.select("p.price strong").get(1);
 								vo.setR_Highprice(r_Price.text());								
-							}catch(Exception ex) {vo.setR_Highprice("¾øÀ½");}	
+							}catch(Exception ex) {vo.setR_Highprice("ï¿½ï¿½ï¿½ï¿½");}	
 							
-							//°¡°Ô ¿ÀÇÂ½Ã°£
-							//°¡°Ô ´Ý´Â½Ã°£			
+							//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â½Ã°ï¿½
+							//ï¿½ï¿½ï¿½ï¿½ ï¿½Ý´Â½Ã°ï¿½			
 							try {
 								r_Businesstime = doc2.select("ul.tableTopA dd.txt2").get(0);
 
@@ -213,94 +213,94 @@ public class InfoManager {
 								vo.setR_Closetime(r_Businesstime.text().substring(r_Businesstime.text().indexOf("~")+1).trim());
 							}catch(Exception ex) 
 							{
-								vo.setR_Opentime("¾øÀ½");
-								vo.setR_Closetime("¾øÀ½");
+								vo.setR_Opentime("ï¿½ï¿½ï¿½ï¿½");
+								vo.setR_Closetime("ï¿½ï¿½ï¿½ï¿½");
 							}	
-							//°¡°Ô ½¬´Â³¯
+							//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â³ï¿½
 							try {
 							r_Holiday = doc2.select("ul.tableTopA dd.txt1").get(0);
 							vo.setR_Holiday(r_Holiday.text());
 							}catch(Exception ex) {
-								vo.setR_Holiday("¾øÀ½");}
-							//°¡°Ô ¼³¸í
+								vo.setR_Holiday("ï¿½ï¿½ï¿½ï¿½");}
+							//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 							try {
 								r_Content = doc2.select("div#info_ps_f").get(0);
 								vo.setR_Content(r_Content.text());
-							}catch(Exception ex) {vo.setR_Content("¾øÀ½");}
+							}catch(Exception ex) {vo.setR_Content("ï¿½ï¿½ï¿½ï¿½");}
 							
-							//°¡°Ô ÁÁ¾Æ¿ä °¹¼ö
+							//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Æ¿ï¿½ ï¿½ï¿½ï¿½ï¿½
 							try {
 								r_Good = doc2.select("dl.btnGood span").get(0);
 								vo.setR_Good(r_Good.text());
 							}catch(Exception ex) {}
 							
-							//°¡°Ô ÁÂ¼® °¹¼ö
+							//ï¿½ï¿½ï¿½ï¿½ ï¿½Â¼ï¿½ ï¿½ï¿½ï¿½ï¿½
 							try {
 								r_Seat_Room = doc2.select("ul.tableLR dd").get(0);
 								String[] temp2 = r_Seat_Room.text().split("/");						
 								vo.setR_Seat(temp2[0].trim());
 							}catch(Exception ex) {
-								vo.setR_Seat("¾øÀ½");
+								vo.setR_Seat("ï¿½ï¿½ï¿½ï¿½");
 							}
-							//°¡°Ô ¹æ °¹¼ö
+							//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 							try {
 								r_Seat_Room = doc2.select("ul.tableLR dd").get(0);
 								String[] temp2 = r_Seat_Room.text().split("/");	
 								vo.setR_Room(temp2[1].trim());			
 							}catch(Exception ex) {
-								vo.setR_Room("¹æ: ¹æ¾øÀ½");
+								vo.setR_Room("ï¿½ï¿½: ï¿½ï¿½ï¿½ï¿½ï¿½");
 							}
 							///////////////////////
-							vo.setR_Drink("¾øÀ½");
-							vo.setR_Nosmoking("¾øÀ½");
-							vo.setR_Reserve("¾øÀ½");
-							vo.setR_Restroom("¾øÀ½");
-							vo.setR_Park("¾øÀ½");
-							vo.setR_Other("¾øÀ½");
-							vo.setR_Delivery("¾øÀ½");
+							vo.setR_Drink("ï¿½ï¿½ï¿½ï¿½");
+							vo.setR_Nosmoking("ï¿½ï¿½ï¿½ï¿½");
+							vo.setR_Reserve("ï¿½ï¿½ï¿½ï¿½");
+							vo.setR_Restroom("ï¿½ï¿½ï¿½ï¿½");
+							vo.setR_Park("ï¿½ï¿½ï¿½ï¿½");
+							vo.setR_Other("ï¿½ï¿½ï¿½ï¿½");
+							vo.setR_Delivery("ï¿½ï¿½ï¿½ï¿½");
 							//////////////////////
 							for(int count = 1 ; count < 9 ; count++)
 							{
 								try 
 								{
 									
-									if (doc2.select("ul.tableLR dt").get(count).text().equals("ÁÖ·ùÆÇ¸Å")) 
+									if (doc2.select("ul.tableLR dt").get(count).text().equals("ï¿½Ö·ï¿½ï¿½Ç¸ï¿½")) 
 										vo.setR_Drink(doc2.select("ul.tableLR dd").get(count).text());
 									
-									else if(doc2.select("ul.tableLR dt").get(count).text().equals("±Ý¿¬¼®"))
+									else if(doc2.select("ul.tableLR dt").get(count).text().equals("ï¿½Ý¿ï¿½ï¿½ï¿½"))
 										vo.setR_Nosmoking(doc2.select("ul.tableLR dd").get(count).text());
 									
-									else if (doc2.select("ul.tableLR dt").get(count).text().equals("¿¹¾àÁ¤º¸")) 
+									else if (doc2.select("ul.tableLR dt").get(count).text().equals("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½")) 
 										vo.setR_Reserve(doc2.select("ul.tableLR dd").get(count).text());
 										
-									else if (doc2.select("ul.tableLR dt").get(count).text().equals("È­Àå½Ç")) 
+									else if (doc2.select("ul.tableLR dt").get(count).text().equals("È­ï¿½ï¿½ï¿½")) 
 										vo.setR_Restroom(doc2.select("ul.tableLR dd").get(count).text());
 										
-									else if (doc2.select("ul.tableLR dt").get(count).text().equals("ÁÖÂ÷")) 
+									else if (doc2.select("ul.tableLR dt").get(count).text().equals("ï¿½ï¿½ï¿½ï¿½")) 
 										vo.setR_Park(doc2.select("ul.tableLR dd").get(count).text());
 									
-									else if (doc2.select("ul.tableLR dt").get(count).text().equals("±âÅ¸½Ã¼³")) 
+									else if (doc2.select("ul.tableLR dt").get(count).text().equals("ï¿½ï¿½Å¸ï¿½Ã¼ï¿½")) 
 										vo.setR_Other(doc2.select("ul.tableLR dd").get(count).text());
 											
-									else if (doc2.select("ul.tableLR dt").get(count).text().equals("¹è´Þ/Æ÷Àå")) 
+									else if (doc2.select("ul.tableLR dt").get(count).text().equals("ï¿½ï¿½ï¿½/ï¿½ï¿½ï¿½ï¿½")) 
 										vo.setR_Delivery(doc2.select("ul.tableLR dd").get(count).text());
 								}catch(Exception ex){break;}
 							}	
-							//´©Àû ¹æ¹®ÀÚ¼ýÀÚ
+							//ï¿½ï¿½ï¿½ï¿½ ï¿½æ¹®ï¿½Ú¼ï¿½ï¿½ï¿½
 							try {
 								
 								r_hit = doc2.select("dl.visitor dd").get(0);
 								vo.setR_hit(r_hit.text().substring(0,(r_hit.text().length()-1)));						
 							}catch(Exception ex) {vo.setR_hit("0");}
-							//È¨ÆäÀÌÁö Ã³À½ ½ÃÀÛÇÑ ³¯Â¥
+							//È¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Â¥
 							try {
 								r_Start = doc2.select("dl.visitor dd").get(1);
-								vo.setR_Start(r_Start.text().substring(0,(r_Start.text().indexOf("ÀÌ"))));
-							//ÃÊ±â°ªÀ» 2014.01.01·Î ÇÔ
+								vo.setR_Start(r_Start.text().substring(0,(r_Start.text().indexOf("ï¿½ï¿½"))));
+							//ï¿½Ê±â°ªï¿½ï¿½ 2014.01.01ï¿½ï¿½ ï¿½ï¿½
 							}catch(Exception ex) {vo.setR_Start("2014.01.01");}
-							///////////////////// ¼öÁ¤ ÇÊ¿ä
+							///////////////////// ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½
 							
-							String[] area = {"¼­¿ï °­³²|ss","¼­¿ï °­ºÏ|sn","°æ±â ³²ºÎ|cs","°æ±â ºÏºÎ|cn","ÀÎÃµ|ic","ºÎ»ê|bs","´ë±¸|dg","±¤ÁÖ|gj","´ëÀü|dj","¿ï»ê|us","°­¿ø|gw","ÃæÃ»|cc","°æ»ó|gs","Àü¶ó|jl","Á¦ÁÖ|jj"};
+							String[] area = {"ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½|ss","ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½|sn","ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½|cs","ï¿½ï¿½ï¿½ ï¿½Ïºï¿½|cn","ï¿½ï¿½Ãµ|ic","ï¿½Î»ï¿½|bs","ï¿½ë±¸|dg","ï¿½ï¿½ï¿½ï¿½|gj","ï¿½ï¿½ï¿½ï¿½|dj","ï¿½ï¿½ï¿½|us","ï¿½ï¿½ï¿½ï¿½|gw","ï¿½ï¿½Ã»|cc","ï¿½ï¿½ï¿½|gs","ï¿½ï¿½ï¿½ï¿½|jl","ï¿½ï¿½ï¿½ï¿½|jj"};
 
 						
 							for(int count = 0 ; count < area.length ; count++)
