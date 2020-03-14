@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="ko">
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -37,87 +36,93 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css"/>
     <!-- jQuery Datepicker UI for #reservation_date-->
     <link rel="stylesheet" href="./js/jquery-ui-1.12.1/jquery-ui.min.css">
+    <!-- Kakao Map Script -->
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=671fb4748c5025ba667a7fc5d41d217a"></script>
 </head>
-
 <body>
     <!--============================= HEADER =============================-->
-    <div class="dark-bg sticky-top">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12">
-                    <nav class="navbar navbar-expand-lg navbar-light">
-                        <a class="navbar-brand" href="index.html">Foodle</a>
-                        <div class="search_wrap">
-                            <form name="header_search" action="">
-                                <div class="header_searchbox">
-                                    <img class="header_searchicon" src="images/header_searchicon.png">
-                                    <label class="header_searchinputwrap">
-                                        <input type="text" class="header_searchinput" name="header_searchword" placeholder="검색어를 입력하세요."
-                                            value="" autocomplete="off" maxlength="50">
-                                    </label>
-                                </div>
-                            </form>
-                        </div>
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
-                            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="icon-menu"></span>
-                        </button>
-                        <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
-                            <ul class="navbar-nav">
-                                <li class="nav-item active">
-                                    <a class="nav-link" href="listing.html">실시간 맛집</a>
-                                </li>
-                                <li class="nav-item active">
-                                    <a class="nav-link" href="listing.html">주간 맛집</a>
-                                </li>
-                                <li class="nav-item active">
-                                    <a class="nav-link" href="listing.html">테마 맛집</a>
-                                </li>
-                                <li class="nav-item active">
-                                    <a class="nav-link" href="board.html">자유게시판</a>
-                                </li>
-                                <li>
-                                    <a href="#" class="btn btn-outline-light top-btn" data-toggle="modal" data-target="#loginModal">
-                                        <span class="ti-plus"></span> 로그인
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </nav>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Start of Login Modal -->
-    <div class="modal fade come-from-modal right" id="loginModal" role="dialog" aria-labelledby="loginModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h6 class="modal-title" id="myModalLabel">로그인</h6>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="login-page">
-                        <div class="form">
-                            <form class="login-form">
-                                <input type="text" placeholder="아이디" /> <input type="password" placeholder="비밀번호" />
-                                <button>로그인</button>
-                                <p class="message">
-                                    혹시 아직 계정이 없으신가요? <a href="signup.html">새로운 계정을 만드세요.</a>
-                                </p>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End of Login Modal -->
+	<div class="dark-bg sticky-top">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-12">
+					<nav class="navbar navbar-expand-lg navbar-light">
+						<a class="navbar-brand" href="index.html">Foodle</a>
+						<div class="search_wrap">
+							<form name="header_search" action="">
+								<div class="header_searchbox">
+									<img class="header_searchicon" src="images/header_searchicon.png">
+									<label class="header_searchinputwrap">
+										<input type="text" class="header_searchinput" name="header_searchword" placeholder="검색어를 입력하세요." value=""
+										 autocomplete="off" maxlength="50">
+									</label>
+								</div>
+							</form>
+						</div>
+						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+						 aria-expanded="false" aria-label="Toggle navigation">
+							<span class="icon-menu"></span>
+						</button>
+						<div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+							<ul class="navbar-nav">
+								<li class="nav-item active">
+									<a class="nav-link" href="list_general.html">실시간 맛집</a>
+								</li>
+								<li class="nav-item active">
+									<a class="nav-link" href="list_general.html">주간 맛집</a>
+								</li>
+								<li class="nav-item active">
+									<a class="nav-link" href="list_general.html">테마 맛집</a>
+								</li>
+								<li class="nav-item active">
+									<a class="nav-link" href="list_nearby.html">주변 맛집</a>
+								</li>
+								<li class="nav-item active">
+									<a class="nav-link" href="board.html">자유게시판</a>
+								</li>
+								<li>
+									<a href="#" class="btn btn-outline-light top-btn" data-toggle="modal" data-target="#loginModal">
+										<span class="ti-plus"></span> 로그인
+									</a>
+								</li>
+							</ul>
+						</div>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</div>
+    <!-- Start of Login Modal -->	
+	<div class="modal fade come-from-modal right" id="loginModal" role="dialog"
+		aria-labelledby="loginModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h6 class="modal-title" id="myModalLabel">로그인</h6>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="login-page">
+						<div class="form">
+							<form class="login-form">
+								<input type="text" placeholder="아이디" /> <input
+									type="password" placeholder="비밀번호" />
+								<button>로그인</button>
+								<p class="message">
+									혹시 아직 계정이 없으신가요? <a href="signup.html">새로운 계정을 만드세요.</a>
+								</p>
+							</form>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End of Login Modal -->
     <!--//END HEADER -->
     <!--============================= TITLE =============================-->
     <section class="reserve-block">
@@ -464,10 +469,18 @@
                         </div>
                     </div>
                     <!-- 지도 -->
+
                     <div class="contact-info mt-4">
                         <div class="area_title">
-                            <h5>찾아가기</h5>
+                            <h5>위치</h5>
                         </div>
+                        <!-- 카카오맵 : 왜 안나오는지 확인 필요-->
+                        <div class="map-wrap">
+                            <div class="map-fix">
+                                <div id="map" data-lat="40.674" data-lon="-73.945" data-zoom="14"></div>
+                            </div>
+                        </div>
+                        <!-- 지도 이미지 (임시) -->
                         <div class="contact_wrap">
                             <img src="images/map.jpg" class="img-fluid" alt="#">
                         <div class="address">
@@ -578,6 +591,25 @@
             yearRange: "-100:+0"
         });
         } );
+    </script>
+
+
+    <!-- 이전에 남아있던 map 관련 소스 : 파악 중 -->
+    <script>
+        $(".map-icon").click(function() {
+            $(".map-fix").toggle();
+        });
+    </script>
+
+    <!-- Kakao Map Script -->
+   <script>
+    var container = document.getElementById('map');
+    var options = {
+        center: new kakao.maps.LatLng(33.450701, 126.570667),
+        level: 3
+    };
+
+    var map = new kakao.maps.Map(container, options);
     </script>
 
 </body>

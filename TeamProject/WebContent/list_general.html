@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Colorlib">
+    <meta name="description" content="#">
+    <meta name="keywords" content="#">
+    <!-- Favicons -->
+    <link rel="shortcut icon" href="#">
+    <!-- Page Title -->
+    <title>Listing &amp; Directory Website Template</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,700,900" rel="stylesheet">
+    <!-- Simple line Icon -->
+    <link rel="stylesheet" href="css/simple-line-icons.css">
+    <!-- Themify Icon -->
+    <link rel="stylesheet" href="css/themify-icons.css">
+    <!-- Hover Effects -->
+    <link rel="stylesheet" href="css/set1.css">
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- List CSS -->
+    <link rel="stylesheet" href="css/list.css">
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css?family=Do+Hyeon|Nanum+Gothic&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!--============================= HEADER =============================-->
+    <div class="dark-bg sticky-top">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <nav class="navbar navbar-expand-lg navbar-light">
+                        <a class="navbar-brand" href="index.html">Foodle</a>
+                        <div class="search_wrap">
+                            <form name="header_search" action="">
+                                <div class="header_searchbox">
+                                    <img class="header_searchicon" src="images/header_searchicon.png">
+                                    <label class="header_searchinputwrap">
+                                        <input type="text" class="header_searchinput" name="header_searchword" placeholder="검색어를 입력하세요." value=""
+                                        autocomplete="off" maxlength="50">
+                                    </label>
+                                </div>
+                            </form>
+                        </div>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="icon-menu"></span>
+                        </button>
+                        <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+                            <ul class="navbar-nav">
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="list_general.html">실시간 맛집</a>
+                                </li>
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="list_general.html">주간 맛집</a>
+                                </li>
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="list_general.html">테마 맛집</a>
+                                </li>
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="list_nearby.html">주변 맛집</a>
+                                </li>
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="board.html">자유게시판</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="btn btn-outline-light top-btn" data-toggle="modal" data-target="#loginModal">
+                                        <span class="ti-plus"></span> 로그인
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Start of Login Modal -->	
+    <div class="modal fade come-from-modal right" id="loginModal" role="dialog"
+        aria-labelledby="loginModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 class="modal-title" id="myModalLabel">로그인</h6>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="login-page">
+                        <div class="form">
+                            <form class="login-form">
+                                <input type="text" placeholder="아이디" /> <input
+                                    type="password" placeholder="비밀번호" />
+                                <button>로그인</button>
+                                <p class="message">
+                                    혹시 아직 계정이 없으신가요? <a href="signup.html">새로운 계정을 만드세요.</a>
+                                </p>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End of Login Modal -->
+    <!--//END HEADER -->
+    <!--============================= LIST =============================-->
+    <section class="list-block light-bg">
+        <div class="container py-5">
+            <!-- Menu Title -->
+            <div class="row ">
+                <div class="col-md-5">
+                    <div class="title">
+                        <h5>실시간 맛집</h5>
+                        <p>총 <span>###개</span></p>
+                    </div>
+                </div>
+            </div>
+            <!-- CUSTOM FILTER (like hashtag) -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="filter mt-4">
+                        <div class="filter_row area">
+                            <div class="filter_head">
+                                <h6>지역</h6>
+                            </div>
+                            <div class="scrollbar_content">
+                                <div class="filter_data">
+                                    <ul class="finder_list">
+                                        <li>
+                                            <a href="#" data-filter-name="cat_id" data-filter-value="50000003" title="강남">
+                                                <span class="text_over">
+                                                    강남<span class="num _category_count" style="display: none">2,209,887</span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" data-filter-name="cat_id" data-filter-value="50000008" title="강북">
+                                                <span class="text_over">
+                                                    강북<span class="num _category_count" style="display: none">12,364</span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!-- finder_data에서 강남 or 강북 선택 시 나타남 -->
+                                <!-- <div class="finder_cell hidden">
+                                                    <h4 class="finder_cell_tit">
+                                                        <a href="#" id="_catSummaryBack" data-parent-cat="" data-parent-cat-nm=""><span class="tit_pre">이전카테고리로 이동</span>강남
+                                                    </h4>
+                                                    <ul class="finder_list">
+                                                        <li class="">
+                                                            <a href="#" data-filter-name="cat_id" data-filter-value="50000097" title="가로수길">
+                                                                <span class="text_over">
+                                                                    가로수길<span class="num _category_count" style="">72</span>
+                                                                </span>
+                                                            </a>
+                                                        </li>
+                                                        <li class="">
+                                                            <a href="#" data-filter-name="cat_id" data-filter-value="50000097" title="강남역">
+                                                                <span class="text_over">
+                                                                    강남역<span class="num _category_count" style="">95</span>
+                                                                </span>
+                                                            </a>
+                                                        </li>
+                                                        <li class="">
+                                                            <a href="#" data-filter-name="cat_id" data-filter-value="50000097" title="관악/신림">
+                                                                <span class="text_over">
+                                                                    관악/신림<span class="num _category_count" style="">105</span>
+                                                                </span>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div> -->
+                            </div>
+                        </div>
+                        <div class="filter_row food_cat">
+                            <div class="filter_head">
+                                <h6>업종</h6>
+                            </div>
+                            <div class="scrollbar_content">
+                                <div class="filter_data">
+                                    <ul class="finder_list">
+                                        <li class="">
+                                            <a href="#" data-filter-name="cat_id" data-filter-value="50000003" title="한식">
+                                                <span class="text_over">
+                                                    한식<span class="num _category_count" style="display: none">2,209,887</span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li class="">
+                                            <a href="#" data-filter-name="cat_id" data-filter-value="50000008" title="양식">
+                                                <span class="text_over">
+                                                    양식<span class="num _category_count" style="display: none">12,364</span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li class="">
+                                            <a href="#" data-filter-name="cat_id" data-filter-value="50000008" title="일식">
+                                                <span class="text_over">
+                                                    일식<span class="num _category_count" style="display: none">12,364</span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li class="">
+                                            <a href="#" data-filter-name="cat_id" data-filter-value="50000008" title="중식">
+                                                <span class="text_over">
+                                                    중식<span class="num _category_count" style="display: none">12,364</span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li class="">
+                                            <a href="#" data-filter-name="cat_id" data-filter-value="50000008" title="패스트푸드">
+                                                <span class="text_over">
+                                                    패스트푸드<span class="num _category_count" style="display: none">12,364</span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li class="">
+                                            <a href="#" data-filter-name="cat_id" data-filter-value="50000008" title="베이커리">
+                                                <span class="text_over">
+                                                    베이커리<span class="num _category_count" style="display: none">12,364</span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li class="">
+                                            <a href="#" data-filter-name="cat_id" data-filter-value="50000008" title="퓨전음식">
+                                                <span class="text_over">
+                                                    퓨전음식<span class="num _category_count" style="display: none">12,364</span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li class="">
+                                            <a href="#" data-filter-name="cat_id" data-filter-value="50000008" title="뷔페">
+                                                <span class="text_over">
+                                                    뷔페<span class="num _category_count" style="display: none">12,364</span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li class="">
+                                            <a href="#" data-filter-name="cat_id" data-filter-value="50000008" title="카페/술집">
+                                                <span class="text_over">
+                                                    카페/술집<span class="num _category_count" style="display: none">12,364</span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="selected_filter mt-2">
+                        <a href="#" class="selected" data-filter-name="food_cat" data-filter-value="108602"
+                            data-nclick-code="rcc.reset" data-filter-action="nclick" title="양식">강남역<span class="del">X</span></a>
+                        <a href="#" class="selected" data-filter-name="food_cat" data-filter-value="108602"
+                            data-nclick-code="rcc.reset" data-filter-action="nclick" title="양식">양식<span class="del">X</span></a>
+                        <a href="#" class="selected" data-filter-name="food_cat" data-filter-value="108602"
+                            data-nclick-code="rcc.reset" data-filter-action="nclick" title="양식">카페/술집<span class="del">X</span></a>
+                    </div>
+                </div>
+            </div>
+            <div class="row detail-options-wrap py-5">
+                <!-- ============================= RESTAURANTS ============================= -->
+                <div class="col-md-4 featured-responsive">
+                    <div class="featured-place-wrap">
+                        <a href="detail.html">
+                            <img src="images/featured1.jpg" class="img-fluid" alt="#">
+                            <span class="featured-rating">6.5</span>
+                            <div class="featured-title-box">
+                                <h6>브루클린더버거조인트</h6>
+                                <p>양식(수제버거) </p> <span>• </span>
+                                <p>리뷰 12개</p> <span> • </span>
+                                <p><span>\\\\</span>\</p>
+                                <ul>
+                                    <li><span class="icon-location-pin"></span>
+                                        <p>서울 서초구 서래로2길 27</p>
+                                    </li>
+                                    <li><span class="icon-screen-smartphone"></span>
+                                        <p>(02) 533-7180</p>
+                                    </li>
+                                </ul>
+                                <div class="bottom-icons">
+                                    <div class="closed-now">CLOSED NOW</div>
+                                    <span class="ti-heart"></span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4 featured-responsive">
+                    <div class="featured-place-wrap">
+                        <a href="detail.html">
+                            <img src="images/featured2.jpg" class="img-fluid" alt="#">
+                            <span class="featured-rating">9.5</span>
+                            <div class="featured-title-box">
+                                <h6>사모님돈까스</h6>
+                                <p>한식 </p> <span>• </span>
+                                <p>리뷰 3개</p> <span> • </span>
+                                <p><span>\\</span>\\\</p>
+                                <ul>
+                                    <li><span class="icon-location-pin"></span>
+                                        <p>서울 마포구 와우산로 39-13</p>
+                                    </li>
+                                    <li><span class="icon-screen-smartphone"></span>
+                                        <p>(02) 337-2207</p>
+                                    </li>
+                                </ul>
+                                <div class="bottom-icons">
+                                    <div class="open-now">OPEN NOW</div>
+                                    <span class="ti-heart"></span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4 featured-responsive">
+                    <div class="featured-place-wrap">
+                        <a href="detail.html">
+                            <img src="images/featured3.jpg" class="img-fluid" alt="#">
+                            <span class="featured-rating">3.2</span>
+                            <div class="featured-title-box">
+                                <h6>스트릿(strEAT) 여의도점</h6>
+                                <p>기타/세계-퓨전푸드 </p> <span>• </span>
+                                <p>리뷰 3개</p> <span> • </span>
+                                <p><span>\\\</span>\\</p>
+                                <ul>
+                                    <li><span class="icon-location-pin"></span>
+                                        <p>서울 영등포구 여의대로 66 KTB 투...</p>
+                                    </li>
+                                    <li><span class="icon-screen-smartphone"></span>
+                                        <p>(02) 761-7672</p>
+                                    </li>
+                                </ul>
+                                <div class="bottom-icons">
+                                    <div class="closed-now">CLOSED NOW</div>
+                                    <span class="ti-heart"></span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4 featured-responsive">
+                    <div class="featured-place-wrap">
+                        <a href="detail.html">
+                            <img src="images/featured1.jpg" class="img-fluid" alt="#">
+                            <span class="featured-rating">6.5</span>
+                            <div class="featured-title-box">
+                                <h6>브루클린더버거조인트</h6>
+                                <p>양식(수제버거) </p> <span>• </span>
+                                <p>리뷰 12개</p> <span> • </span>
+                                <p><span>\\\\</span>\</p>
+                                <ul>
+                                    <li><span class="icon-location-pin"></span>
+                                        <p>서울 서초구 서래로2길 27</p>
+                                    </li>
+                                    <li><span class="icon-screen-smartphone"></span>
+                                        <p>(02) 533-7180</p>
+                                    </li>
+                                </ul>
+                                <div class="bottom-icons">
+                                    <div class="closed-now">CLOSED NOW</div>
+                                    <span class="ti-heart"></span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4 featured-responsive">
+                    <div class="featured-place-wrap">
+                        <a href="detail.html">
+                            <img src="images/featured2.jpg" class="img-fluid" alt="#">
+                            <span class="featured-rating">9.5</span>
+                            <div class="featured-title-box">
+                                <h6>사모님돈까스</h6>
+                                <p>한식 </p> <span>• </span>
+                                <p>리뷰 3개</p> <span> • </span>
+                                <p><span>\\</span>\\\</p>
+                                <ul>
+                                    <li><span class="icon-location-pin"></span>
+                                        <p>서울 마포구 와우산로 39-13</p>
+                                    </li>
+                                    <li><span class="icon-screen-smartphone"></span>
+                                        <p>(02) 337-2207</p>
+                                    </li>
+                                </ul>
+                                <div class="bottom-icons">
+                                    <div class="open-now">OPEN NOW</div>
+                                    <span class="ti-heart"></span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4 featured-responsive">
+                    <div class="featured-place-wrap">
+                        <a href="detail.html">
+                            <img src="images/featured3.jpg" class="img-fluid" alt="#">
+                            <span class="featured-rating">3.2</span>
+                            <div class="featured-title-box">
+                                <h6>스트릿(strEAT) 여의도점</h6>
+                                <p>기타/세계-퓨전푸드 </p> <span>• </span>
+                                <p>리뷰 3개</p> <span> • </span>
+                                <p><span>\\\</span>\\</p>
+                                <ul>
+                                    <li><span class="icon-location-pin"></span>
+                                        <p>서울 영등포구 여의대로 66 KTB 투...</p>
+                                    </li>
+                                    <li><span class="icon-screen-smartphone"></span>
+                                        <p>(02) 761-7672</p>
+                                    </li>
+                                </ul>
+                                <div class="bottom-icons">
+                                    <div class="closed-now">CLOSED NOW</div>
+                                    <span class="ti-heart"></span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+    <!--//END DETAIL -->
+    <!--============================= FOOTER =============================-->
+    <footer class="main-block dark-bg py-5" id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="copyright">
+                        <p><span>프로젝트명:</span> Foodle</p>
+                        <p><span>팀원: </span>
+                            <a href="https://github.com/jihyunkim-dollbi">김지현, </a>
+                            <a href="https://github.com/public-J">남준우, </a>
+                            <a href="https://github.com/pch9501">박찬휘, </a>
+                            <a href="https://github.com/sujinlee0616">이수진, </a>
+                            <a href="https://github.com/hajieun1218">하지은</a>
+                            (가나다순)
+                        </p>
+                        <p>
+                            <span>Github Repository: </span>
+                            <a href="https://github.com/sujinlee0616/Foodle"> 이 곳</a>를 클릭하세요.
+                        </p>
+                        <p><span>Tech Spec:</span> JPA, JAVA, HTML, CSS, Bootstrap, JavaScript, jQuery </p>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        <p><span>Bootstrap Template:</span> Copyright © 2018 Listing. All rights reserved | This template is made with <i class="ti-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--//END FOOTER -->
+
+    <!-- jQuery, Bootstrap JS. -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>   
+</body>
+
+</html>
