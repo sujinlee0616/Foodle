@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -8,141 +10,71 @@
     <meta name="author" content="Colorlib">
     <meta name="description" content="#">
     <meta name="keywords" content="#">
-    <!-- Favicons -->
-    <link rel="shortcut icon" href="#">
     <!-- Page Title -->
     <title>Foodle: 자유게시판</title>
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,700,900" rel="stylesheet">
-    <!-- Simple line Icon -->
-    <link rel="stylesheet" href="css/simple-line-icons.css">
-    <!-- Themify Icon -->
-    <link rel="stylesheet" href="css/themify-icons.css">
-    <!-- Hover Effects -->
-    <link rel="stylesheet" href="css/set1.css">
-    <!-- Swipper Slider -->
-    <link rel="stylesheet" href="css/swiper.min.css">
-    <!-- Magnific Popup CSS -->
-    <link rel="stylesheet" href="css/magnific-popup.css">
-    <!-- Main CSS -->
-	<link rel="stylesheet" href="css/style.css">
-	<!-- Font -->
-	<link href="https://fonts.googleapis.com/css?family=Do+Hyeon|Nanum+Gothic&display=swap" rel="stylesheet">
+    <!-- Board CSS -->
+    <link rel="stylesheet" href="css/board.css">
 </head>
 <body>
-    <!--============================= HEADER =============================-->
-	<div class="dark-bg sticky-top">
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-md-12">
-					<nav class="navbar navbar-expand-lg navbar-light">
-						<a class="navbar-brand" href="index.html">Foodle</a>
-						<div class="search_wrap">
-							<form name="header_search" action="">
-								<div class="header_searchbox">
-									<img class="header_searchicon" src="images/header_searchicon.png">
-									<label class="header_searchinputwrap">
-										<input type="text" class="header_searchinput" name="header_searchword" placeholder="검색어를 입력하세요." value=""
-										 autocomplete="off" maxlength="50">
-									</label>
-								</div>
-							</form>
-						</div>
-						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
-						 aria-expanded="false" aria-label="Toggle navigation">
-							<span class="icon-menu"></span>
-						</button>
-						<div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
-							<ul class="navbar-nav">
-								<li class="nav-item active">
-									<a class="nav-link" href="list_general.html">실시간 맛집</a>
-								</li>
-								<li class="nav-item active">
-									<a class="nav-link" href="list_general.html">주간 맛집</a>
-								</li>
-								<li class="nav-item active">
-									<a class="nav-link" href="list_general.html">테마 맛집</a>
-								</li>
-								<li class="nav-item active">
-									<a class="nav-link" href="list_nearby.html">주변 맛집</a>
-								</li>
-								<li class="nav-item active">
-									<a class="nav-link" href="board.html">자유게시판</a>
-								</li>
-								<li>
-									<a href="#" class="btn btn-outline-light top-btn" data-toggle="modal" data-target="#loginModal">
-										<span class="ti-plus"></span> 로그인
-									</a>
-								</li>
-							</ul>
-						</div>
-					</nav>
-				</div>
-			</div>
-		</div>
-	</div>
-    <!-- Start of Login Modal -->	
-	<div class="modal fade come-from-modal right" id="loginModal" role="dialog"
-		aria-labelledby="loginModalLabel">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h6 class="modal-title" id="myModalLabel">로그인</h6>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<div class="login-page">
-						<div class="form">
-							<form class="login-form">
-								<input type="text" placeholder="아이디" /> <input
-									type="password" placeholder="비밀번호" />
-								<button>로그인</button>
-								<p class="message">
-									혹시 아직 계정이 없으신가요? <a href="signup.html">새로운 계정을 만드세요.</a>
-								</p>
-							</form>
-						</div>
-					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- End of Login Modal -->
-    <!--//END HEADER -->
-    <!--============================= BOARD DETAIL =============================-->
+    <!-- HEADER_SUB -->
+    <jsp:include page="header_sub.jsp"></jsp:include>
+	<!--============================= IMAGE SWIPER =============================-->
+    <div>
+        <!-- Swiper -->
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+
+                <div class="swiper-slide">
+                    <a href="images/reserve-slide2.jpg" class="grid image-link">
+                        <img src="images/reserve-slide2.jpg" class="img-fluid" alt="#">
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="images/reserve-slide1.jpg" class="grid image-link">
+                        <img src="images/reserve-slide1.jpg" class="img-fluid" alt="#">
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="images/reserve-slide3.jpg" class="grid image-link">
+                        <img src="images/reserve-slide3.jpg" class="img-fluid" alt="#">
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="images/reserve-slide1.jpg" class="grid image-link">
+                        <img src="images/reserve-slide1.jpg" class="img-fluid" alt="#">
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="images/reserve-slide2.jpg" class="grid image-link">
+                        <img src="images/reserve-slide2.jpg" class="img-fluid" alt="#">
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="images/reserve-slide3.jpg" class="grid image-link">
+                        <img src="images/reserve-slide3.jpg" class="img-fluid" alt="#">
+                    </a>
+                </div>
+            </div>
+            <!-- Add Pagination -->
+            <div class="swiper-pagination swiper-pagination-white"></div>
+            <!-- Add Arrows -->
+            <div class="swiper-button-next swiper-button-white"></div>
+            <div class="swiper-button-prev swiper-button-white"></div>
+        </div>
+    </div>
+    <!--//END BOOKING -->
+    <!--============================= BOARD =============================-->
     <section class="board-block light-bg">
         <div class="container py-5">
+			<div class="row">
+                <div class="col-md-6">
+                    <h5>자유게시판</h5>
+                    <p>총 <span>###개</span></p>
+                </div>
+            </div>
 			<div class="py-3">
 				<div class="table-responsive">
-                    <!-- 해당 글 내용 -->
 					<table class="table freeboard" style="background-color: #FFFFFF;">						
-							<tr>
-                                 <!-- 제목 -->
-								<td class="">대구 대왕 닭칼국수 다 먹으면 100만원 준다고 합니다!!</td>
-                            </tr>
-                            <tr>
-                                <!-- 본문 -->
-                                <td class="content">
-                                    <pre>
-실제로 자신감 가지고 도전해봤는데
-그릇 크기가 어마어마 합니다~
-5인분 양이라고 하는데
-먹성 좋으신분들도 왠만하면 다 실패할듯요....
-대구 현풍닭칼국수 신천점 이에요~
-                                    </pre>
-                                </td>
-                            </tr>
-                    </table>
-
-                     <!-- 하단에 리스트 노출 -->
-                     <table class="table freeboard" style="background-color: #FFFFFF;">						
 						<thead class="thead-dark">
 							<tr style="background-color: #E0E0E0;">
 								<th scope="col" style="width:7%;" class="text-center">No.</th>
@@ -232,7 +164,6 @@
 							</tr>
 						</tbody>
 					</table>
-
 				</div>
 			</div>
 			<div>
@@ -267,35 +198,8 @@
 		</div>
     </section>
     <!--//END BOARD -->
-    
     <!--============================= FOOTER =============================-->
-    <footer class="main-block dark-bg py-5" id="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="copyright">
-                        <p><span>프로젝트명:</span> Foodle</p>
-                        <p><span>팀원: </span>
-                            <a href="https://github.com/jihyunkim-dollbi">김지현, </a>
-                            <a href="https://github.com/public-J">남준우, </a>
-                            <a href="https://github.com/pch9501">박찬휘, </a>
-                            <a href="https://github.com/sujinlee0616">이수진, </a>
-                            <a href="https://github.com/hajieun1218">하지은</a>
-                            (가나다순)
-                        </p>
-                        <p>
-                            <span>Github Repository: </span>
-                            <a href="https://github.com/sujinlee0616/Foodle"> 이 곳</a>를 클릭하세요.
-                        </p>
-                        <p><span>Tech Spec:</span> JPA, JAVA, HTML, CSS, Bootstrap, JavaScript, jQuery </p>
-                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                        <p><span>Bootstrap Template:</span> Copyright © 2018 Listing. All rights reserved | This template is made with <i class="ti-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <!--//END FOOTER -->
+    <jsp:include page="footer.jsp"></jsp:include>
 
     <!-- jQuery, Bootstrap JS. -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
