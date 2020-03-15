@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -8,118 +10,16 @@
   <meta name="author" content="Colorlib">
   <meta name="description" content="#">
   <meta name="keywords" content="#">
-  <!-- Favicons -->
-  <link rel="shortcut icon" href="#">
   <!-- Page Title -->
   <title>Foodle: 회원가입</title>
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="css/bootstrap.min.css">
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,700,900" rel="stylesheet">
-  <!-- Simple line Icon -->
-  <link rel="stylesheet" href="css/simple-line-icons.css">
-  <!-- Themify Icon -->
-  <link rel="stylesheet" href="css/themify-icons.css">
-  <!-- Hover Effects -->
-  <link rel="stylesheet" href="css/set1.css">
-  <!-- Swipper Slider -->
-  <link rel="stylesheet" href="css/swiper.min.css">
-  <!-- Magnific Popup CSS -->
-  <link rel="stylesheet" href="css/magnific-popup.css">
-  <!-- Main CSS -->
-  <link rel="stylesheet" href="css/style.css">
-  <!-- Font -->
-  <link href="https://fonts.googleapis.com/css?family=Do+Hyeon|Nanum+Gothic&display=swap" rel="stylesheet">
-  <!-- Signup CSS -->
+  <!-- SIGN UP CSS -->
   <link rel="stylesheet" href="css/signup.css">
   <!-- jQuery Datepicker UI for birth_date-->
   <link rel="stylesheet" href="./js/jquery-ui-1.12.1/jquery-ui.min.css">
 </head>
 <body>
-<!--============================= HEADER =============================-->
-  <div class="dark-bg sticky-top">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-md-12">
-          <nav class="navbar navbar-expand-lg navbar-light">
-            <a class="navbar-brand" href="index.html">Foodle</a>
-            <div class="search_wrap">
-              <form name="header_search" action="">
-                <div class="header_searchbox">
-                  <img class="header_searchicon" src="images/header_searchicon.png">
-                  <label class="header_searchinputwrap">
-                    <input type="text" class="header_searchinput" name="header_searchword" placeholder="검색어를 입력하세요." value=""
-                    autocomplete="off" maxlength="50">
-                  </label>
-                </div>
-              </form>
-            </div>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
-            aria-expanded="false" aria-label="Toggle navigation">
-              <span class="icon-menu"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
-              <ul class="navbar-nav">
-                <li class="nav-item active">
-                  <a class="nav-link" href="list_general.html">실시간 맛집</a>
-                </li>
-                <li class="nav-item active">
-                  <a class="nav-link" href="list_general.html">주간 맛집</a>
-                </li>
-                <li class="nav-item active">
-                  <a class="nav-link" href="list_general.html">테마 맛집</a>
-                </li>
-                <li class="nav-item active">
-                  <a class="nav-link" href="list_nearby.html">주변 맛집</a>
-                </li>
-                <li class="nav-item active">
-                  <a class="nav-link" href="board.html">자유게시판</a>
-                </li>
-                <li>
-                  <a href="#" class="btn btn-outline-light top-btn" data-toggle="modal" data-target="#loginModal">
-                    <span class="ti-plus"></span> 로그인
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </nav>
-        </div>
-      </div>
-    </div>
-  </div>
-    <!-- Start of Login Modal -->	
-  <div class="modal fade come-from-modal right" id="loginModal" role="dialog"
-    aria-labelledby="loginModalLabel">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h6 class="modal-title" id="myModalLabel">로그인</h6>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="login-page">
-            <div class="form">
-              <form class="login-form">
-                <input type="text" placeholder="아이디" /> <input
-                  type="password" placeholder="비밀번호" />
-                <button>로그인</button>
-                <p class="message">
-                  혹시 아직 계정이 없으신가요? <a href="signup.html">새로운 계정을 만드세요.</a>
-                </p>
-              </form>
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- End of Login Modal -->
-  <!--//END HEADER -->
+	<!-- HEADER_SUB -->
+	<jsp:include page="header_sub.jsp"></jsp:include>
   <!--============================= SINGUP =============================-->
   <section class="singup-block light-bg">
     <div class="container py-5">
@@ -309,33 +209,7 @@
     </section>
     <!--//END SINGUP  -->
   <!--============================= FOOTER =============================-->
-  <footer class="main-block dark-bg py-5" id="footer">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="copyright">
-                    <p><span>프로젝트명:</span> Foodle</p>
-                    <p><span>팀원: </span>
-                        <a href="https://github.com/jihyunkim-dollbi">김지현, </a>
-                        <a href="https://github.com/public-J">남준우, </a>
-                        <a href="https://github.com/pch9501">박찬휘, </a>
-                        <a href="https://github.com/sujinlee0616">이수진, </a>
-                        <a href="https://github.com/hajieun1218">하지은</a>
-                        (가나다순)
-                    </p>
-                    <p>
-                        <span>Github Repository: </span>
-                        <a href="https://github.com/sujinlee0616/Foodle"> 이 곳</a>를 클릭하세요.
-                    </p>
-                    <p><span>Tech Spec:</span> JPA, JAVA, HTML, CSS, Bootstrap, JavaScript, jQuery </p>
-                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                    <p><span>Bootstrap Template:</span> Copyright © 2018 Listing. All rights reserved | This template is made with <i class="ti-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a></p>
-                </div>
-            </div>
-        </div>
-    </div>
-</footer>
-<!--//END FOOTER -->
+  <jsp:include page="footer.jsp"></jsp:include>
 
   <!-- jQuery, Bootstrap JS. -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
