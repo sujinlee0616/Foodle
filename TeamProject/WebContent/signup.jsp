@@ -37,12 +37,12 @@
               <li class="on">
                 <!-- 클릭 시 on으로 변경 -->
                 <h2 class="tab01 mb-0">
-                  <a href="signup.html/usertype=person" class="tab_btn">개인회원가입</a>
+                  <a href="signup.jsp/usertype=person" class="tab_btn">개인회원가입</a>
                 </h2>
               </li>
               <li class="">
                 <h2 class="tab02 mb-0">
-                  <a href="signup.html/usertype=company" class="tab_btn">기업회원가입</a>
+                  <a href="signup.jsp/usertype=company" class="tab_btn">기업회원가입</a>
                 </h2>
               </li>
             </ul>
