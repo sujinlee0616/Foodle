@@ -22,7 +22,7 @@
 							<div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
                                 <ul class="navbar-nav">
                                     <li class="nav-item active">
-                                        <a class="nav-link" href="main.jsp?mode=1">실시간 맛집</a>
+                                        <a class="nav-link" href="main.jsp?=1">실시간 맛집</a>
                                     </li>
                                     <li class="nav-item active">
                                         <a class="nav-link" href="main.jsp?mode=2">주간 맛집</a>

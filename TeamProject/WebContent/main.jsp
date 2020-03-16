@@ -61,6 +61,9 @@
 	case 9:
 		jsp="mypage.jsp"; /* 마이페이지  */
 		break;
+	case 10:
+		jsp="mypage_coupon1.jsp"; /* 마이페이지-쿠폰  */
+		break;	
 	} 
 %>
 
@@ -96,6 +99,8 @@
     <link rel="stylesheet" href="css/mypage.css">
     <!-- SIGN UP CSS -->
   	<link rel="stylesheet" href="css/signup.css">
+  	<!-- COUPON CSS -->
+  	<link rel="stylesheet" href="css/coupon.css">
     <!-- Kakao Map Script -->
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=671fb4748c5025ba667a7fc5d41d217a"></script>
     <!-- jQuery Datepicker UI-->
