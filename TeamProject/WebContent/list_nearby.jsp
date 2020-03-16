@@ -3,23 +3,8 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="author" content="Colorlib">
-    <meta name="description" content="#">
-    <meta name="keywords" content="#">
-    <!-- Page Title -->
-    <title>Foodle: 주변 맛집</title>
-    <!-- List CSS -->
-    <link rel="stylesheet" href="css/list.css">
-    <!-- Kakao Map Script -->
-    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=671fb4748c5025ba667a7fc5d41d217a"></script>
 </head>
 <body>
-    <!-- HEADER_SUB -->
-    <jsp:include page="header_sub.jsp"></jsp:include>
     <!--============================= LIST =============================-->
     <section class="list-block">
         <div class="container-fluid py-4 light-bg">
@@ -292,9 +277,7 @@
         </div>
     </section>
     <!--//END DETAIL -->
-    <!--============================= FOOTER =============================-->
-    <jsp:include page="footer.jsp"></jsp:include>
-
+    
     <!-- jQuery, Bootstrap JS. -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="js/jquery-3.2.1.min.js"></script>

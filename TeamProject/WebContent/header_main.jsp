@@ -3,8 +3,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
 </head>
 <body>
 <!--============================= HEADER =============================-->
@@ -14,7 +12,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <nav class="navbar navbar-expand-lg navbar-light">
-                            <a class="navbar-brand" href="index.jsp">Foodle</a>
+                            <a class="navbar-brand" href="main.jsp">Foodle</a>
 							<button class="navbar-toggler" type="button"
 								data-toggle="collapse" data-target="#navbarNavDropdown"
 								aria-controls="navbarNavDropdown" aria-expanded="false"
@@ -24,19 +22,19 @@
 							<div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
                                 <ul class="navbar-nav">
                                     <li class="nav-item active">
-                                        <a class="nav-link" href="list_general.jsp">실시간 맛집</a>
+                                        <a class="nav-link" href="main.jsp?mode=1">실시간 맛집</a>
                                     </li>
                                     <li class="nav-item active">
-                                        <a class="nav-link" href="list_general.jsp">주간 맛집</a>
+                                        <a class="nav-link" href="main.jsp?mode=2">주간 맛집</a>
                                     </li>
                                     <li class="nav-item active">
-                                        <a class="nav-link" href="list_general.jsp">테마 맛집</a>
+                                        <a class="nav-link" href="main.jsp?mode=3">테마 맛집</a>
                                     </li>
                                     <li class="nav-item active">
-                                        <a class="nav-link" href="list_nearby.jsp">주변 맛집</a>
+                                        <a class="nav-link" href="main.jsp?mode=4">주변 맛집</a>
                                     </li>
                                     <li class="nav-item active">
-                                        <a class="nav-link" href="board.jsp">자유게시판</a>
+                                        <a class="nav-link" href="main.jsp?mode=6">자유게시판</a>
                                     </li>
                                     <!-- 드롭다운 메뉴 구현 시 -->
                                     <!-- <li class="nav-item dropdown">
@@ -94,7 +92,7 @@
 									type="password" placeholder="비밀번호" />
 								<button>로그인</button>
 								<p class="message">
-									혹시 아직 계정이 없으신가요? <a href="signup.jsp">새로운 계정을 만드세요.</a>
+									혹시 아직 계정이 없으신가요? <a href="main.jsp?mode=8">새로운 계정을 만드세요.</a>
 								</p>
 							</form>
 						</div>

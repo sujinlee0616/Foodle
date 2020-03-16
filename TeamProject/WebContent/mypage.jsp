@@ -3,21 +3,8 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="author" content="Colorlib">
-    <meta name="description" content="#">
-    <meta name="keywords" content="#">
-    <!-- Page Title -->
-    <title>Foodle: My Page</title>
-    <!-- My Page CSS -->
-    <link rel="stylesheet" href="css/mypage.css">
 </head>
 <body>
-    <!-- HEADER_SUB -->
-    <jsp:include page="header_sub.jsp"></jsp:include>
     <!--============================= MY PAGE =============================-->
     <section class="board-block light-bg">
         <div class="container py-5">
@@ -194,8 +181,6 @@
         </div>
     </section>
     <!--//END MY PAGE -->
-    <!--============================= FOOTER =============================-->
-    <jsp:include page="footer.jsp"></jsp:include>
 
     <!-- jQuery, Bootstrap JS. -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

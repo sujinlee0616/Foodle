@@ -3,33 +3,8 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="author" content="Colorlib">
-    <meta name="description" content="#">
-    <meta name="keywords" content="#">
-    <!-- Page Title -->
-    <title>Foodle</title>
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,700,900" rel="stylesheet">
-    <!-- Simple line Icon -->
-    <link rel="stylesheet" href="css/simple-line-icons.css">
-    <!-- Themify Icon -->
-    <link rel="stylesheet" href="css/themify-icons.css">
-    <!-- Hover Effects -->
-    <link rel="stylesheet" href="css/set1.css">
-    <!-- Main CSS -->
-    <link rel="stylesheet" href="css/style.css">
-    <!-- Font -->
-    <link href="https://fonts.googleapis.com/css?family=Do+Hyeon|Nanum+Gothic&display=swap" rel="stylesheet">
 </head>
 <body>
-	<!-- HEADER_MAIN -->
-    <jsp:include page="header_main.jsp"></jsp:include>
 	<!-- SLIDER -->
     <section class="slider d-flex align-items-center">
         <!-- <img src="images/slider_bg.jpg" class="img-fluid" alt="#"> -->
@@ -511,9 +486,6 @@
             </div>
         </section>
         <!--//END FEATURED PLACES -->
-    
-    <!--============================= FOOTER =============================-->
-    <jsp:include page="footer.jsp"></jsp:include>
 
     <!-- jQuery, Bootstrap JS. -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
