@@ -3,9 +3,11 @@
 	margin-bottom: 15px;
     padding: 18px 35px 22px 37px;
     background-color: #e9ecef;
+    border-top: 1px solid #d1d4d7;
     border-right: 1px solid #d1d4d7;
     border-bottom: 1px solid #d1d4d7;
     border-left: 1px solid #d1d4d7;
+    text-align: left;
 	
 }
 
@@ -15,58 +17,161 @@
 }
 
 .my_list_box .wrap_mylst {
-    margin-top: -6px;
+    margin-top: 15px;
+
 }
 
 .my_list_box .wrap_mylst .cards_wrap {
-    display: table;
+    
+    margin: 0 auto;
     border-collapse: separate;
+    display: table;
     border-spacing: 0 13px;
+    
 }
 
 .cards_wrap .card_row {
-    display: table-row;
+
+	display: table-row;
+    
+
 }
 
 .my_list_box .wrap_mylst .cards_wrap .card.even {
-    padding-right: 24px;
+    padding-right: 50px;
+   
 }
+
+
+
+
 
 
 .wrap_mylst .cards_wrap .card {
     display: table-cell;
     width: 419px;
     vertical-align: top;
+    border: 0px solid rgba(0,0,0,.125);
+    background-color: #e9ecef;
+    
+    
 }
 
 .cards_wrap .card.used .card_header {
-    background-image: url(assets/bg_card_header3.070c01a….png);
+    background-image: url(https://booking.naver.com/assets/bg_card_header3.070c01a65f1edf6942b1b3b6d7a6d03b.png);
 }
 
-.wrap_my .my_list_box .wrap_mylst .cards_wrap .card .card_header {
+
+.my_list_box .wrap_mylst .cards_wrap .card .card_header {
     position: relative;
-    padding-top: 12px;
-    padding-left: 55px;
+    padding-top: 10px;
+    padding-left: 0px;
+    text-align: center;
     width: 419px;
     height: 60px;
-    background-image: url(assets/bg_card_header.bebfdf6….png);
+    
     background-repeat: no-repeat;
     color: #fff;
-    font-size: 14px;
+    font-size: 20px;
     letter-spacing: -.5px;
     vertical-align: top;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
+  
     box-sizing: border-box;
 }
 
+.card .card_header {
+    font-family: -apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo',Helvetica Nenu,Helvetica,Roboto,Arial,NanumGothicWebB,'나눔고딕','맑은 고딕',MalgunGothic,Dotum,'돋움',Sans-serif;
+    font-weight: 600;
+    color: #fff;
+    font-size: 18px;
+    letter-spacing: -.5px;
+}
 
 #wrap {
     text-align: left;
     zoom: 1;
 }
 
-div {
-    display: block;
+
+.wrap_mylst .cards_wrap .card .card_body {
+    width: 419px;
+    height: 100%;
+    background-image: url(https://booking.naver.com/assets/bg_card_body.373dd04c4ba6d36392af74e0f1dcc6ba.png);
+    background-repeat: repeat-y;
+    box-sizing: border-box;
+	box-shadow: 5px 5px 5px #ccc;
 }
 
+.wrap_mylst .cards_wrap .card .card_body .card_body_inn {
+    position: relative;
+    padding: 3px 38px 24px;
+}
+
+.cards_wrap .card .card_body .booking_number {
+    margin-top: 10px;
+    margin-bottom: 6px;
+    padding-left: 120px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 800;
+    color: #111;
+}
+
+.card .card_body .tit {
+    display: block;
+    padding-top: 2px;
+    padding-left: 1px;
+    padding-right: 0px;
+    text-align: center;
+    font-size: 60px;
+    font-weight: 600;
+    color: #fb338f;
+    line-height: 70px;
+    font-family: -apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo',Helvetica Nenu,Helvetica,Roboto,Arial,NanumGothicWebB,'나눔고딕','맑은 고딕',MalgunGothic,Dotum,'돋움',Sans-serif;
+}
+
+
+.cards_wrap .card .card_body .detail {
+    margin-top: 12px;
+    padding-top: 11px;
+    border-top: 1px solid #e7e9ed;
+}
+
+ol, ul {
+    list-style: none;
+    
+}
+
+ul {	
+    margin: 0;
+    padding: 0;
+
+}
+
+.card_body .detail .item {
+    position: relative;
+    padding-left: 0px;
+    padding-bottom: 5px;
+    font-size: 13px;
+    text-align: center;
+    box-sizing: border-box;
+    color: #868e96;
+    font-weight: 500;
+}
+
+.cards_wrap .card .card_body .detail .item .item_dsc {
+    font-size: 13px;
+    color: #868e96;
+    font-weight: 500;
+}
+
+address, em, i {
+    font-style: normal;
+}
+
+.cards_wrap .card .card_footer {
+    background-image: url(' ');
+    width: 419px;
+    height: 7px;
+    background-repeat: no-repeat;
+}
