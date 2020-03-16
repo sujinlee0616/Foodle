@@ -16,8 +16,6 @@
     <link rel="stylesheet" href="css/detail.css">
 </head>
 <body>
-    <!-- HEADER_SUB -->
-    <jsp:include page="header_sub.jsp"></jsp:include>
     <!--============================= TITLE =============================-->
     <section class="reserve-block">
         <div class="container">
@@ -398,8 +396,6 @@
         </div>
     </section>
     <!--//END INFO -->
-    <!--============================= FOOTER =============================-->
-    <jsp:include page="footer.jsp"></jsp:include>
 
     <!-- jQuery, Bootstrap JS. -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

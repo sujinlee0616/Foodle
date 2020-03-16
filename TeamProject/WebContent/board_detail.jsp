@@ -16,8 +16,6 @@
     <link rel="stylesheet" href="css/board.css">
 </head>
 <body>
-    <!-- HEADER_SUB -->
-    <jsp:include page="header_sub.jsp"></jsp:include>
     <!--============================= BOARD DETAIL =============================-->
     <section class="board-block light-bg">
         <div class="container py-5">
@@ -169,8 +167,6 @@
 		</div>
     </section>
     <!--//END BOARD -->
-    <!--============================= FOOTER =============================-->
-    <jsp:include page="footer.jsp"></jsp:include>
 
     <!-- jQuery, Bootstrap JS. -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

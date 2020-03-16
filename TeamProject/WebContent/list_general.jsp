@@ -3,21 +3,8 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="author" content="Colorlib">
-    <meta name="description" content="#">
-    <meta name="keywords" content="#">
-    <!-- Page Title -->
-    <title>Foodle: 맛집 리스트</title>
-    <!-- List CSS -->
-    <link rel="stylesheet" href="css/list.css">
 </head>
 <body>
-    <!-- HEADER_SUB -->
-    <jsp:include page="header_sub.jsp"></jsp:include>
     <!--============================= LIST =============================-->
     <section class="list-block light-bg">
         <div class="container py-5">
@@ -336,8 +323,6 @@
         </div>
     </section>
     <!--//END DETAIL -->
-    <!--============================= FOOTER =============================-->
-    <jsp:include page="footer.jsp"></jsp:include>
 
     <!-- jQuery, Bootstrap JS. -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
