@@ -66,7 +66,6 @@
 		break;	
 	} 
 %>
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -91,10 +90,14 @@
     <link rel="stylesheet" href="css/set1.css">
     <!-- Main CSS -->
     <link rel="stylesheet" href="css/style.css">
-    <!-- Board CSS -->
-    <link rel="stylesheet" href="css/board.css">
     <!-- List CSS -->
     <link rel="stylesheet" href="css/list.css">
+    <!-- List CSS -->
+    <link rel="stylesheet" href="css/detail.css">
+    <!-- Board CSS -->
+    <link rel="stylesheet" href="css/board.css">
+    <!-- Board Swiper CSS -->
+    <link rel="stylesheet" href="css/swiper.min.css">
     <!-- My Page CSS -->
     <link rel="stylesheet" href="css/mypage.css">
     <!-- SIGN UP CSS -->
@@ -107,15 +110,16 @@
   	<link rel="stylesheet" href="./js/jquery-ui-1.12.1/jquery-ui.min.css">
     <!-- Font -->
     <link href="https://fonts.googleapis.com/css?family=Do+Hyeon|Nanum+Gothic&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css"/>
 </head>
 <body>
 	<jsp:include page="<%=header %>"></jsp:include>  
 
 	<jsp:include page="<%=jsp %>"></jsp:include>  
-	<!-- 동적: include되는 페이지를 바꿀 수 있다. -->   
-
+	<!-- 동적: include되는 페이지를 바꿀 수 있다. -->
+	
     <jsp:include page="footer.jsp"></jsp:include>
-    
     
     <!-- jQuery, Bootstrap JS. -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -160,6 +164,7 @@
             });
         }
     </script>
+    
 </body>
 
 </html>
