@@ -79,7 +79,7 @@
             </div>
             <div class="row">
                 <div class="col-md-4">
-                	<a href="list_general.jsp">
+                	<a href="main.jsp?mode=4">
 	                    <div class="find-place-img_wrap">
 	                        <div class="grid">
 	                            <figure class="effect-ruby">
@@ -96,7 +96,7 @@
                 <div class="col-md-4">
                     <div class="row find-img-align">
                         <div class="col-md-12">
-                       	 	<a href="list_general.jsp">
+                       	 	<a href="main.jsp?mode=1">
 	                            <div class="find-place-img_wrap">
 	                                <div class="grid">
 	                                    <figure class="effect-ruby">
@@ -113,7 +113,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                        	<a href="list_general.jsp">
+                        	<a href="main.jsp?mode=1">
 	                            <div class="find-place-img_wrap">
 	                                <div class="grid">
 	                                    <figure class="effect-ruby">
@@ -132,7 +132,7 @@
                 <div class="col-md-4">
                     <div class="row find-img-align">
                         <div class="col-md-12">
-                      		<a href="list_general.jsp">
+                      		<a href="main.jsp?mode=1">
 	                            <div class="find-place-img_wrap">
 	                                <div class="grid">
 	                                    <figure class="effect-ruby">
@@ -149,7 +149,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                        	<a href="list_general.jsp">
+                        	<a href="main.jsp?mode=1">
 	                            <div class="find-place-img_wrap">
 	                                <div class="grid">
 	                                    <figure class="effect-ruby">
@@ -182,7 +182,7 @@
             <div class="row">
                 <div class="col-md-4 featured-responsive">
                     <div class="featured-place-wrap">
-                        <a href="detail.jsp">
+                        <a href="main.jsp?mode=5">
                             <img src="images/featured1.jpg" class="img-fluid" alt="#">
                             <span class="featured-rating">3.5</span>
                             <!-- <span class="featured-rating-orange">3.5</span> -->
@@ -209,7 +209,7 @@
                 </div>
                 <div class="col-md-4 featured-responsive">
                     <div class="featured-place-wrap">
-                        <a href="detail.jsp">
+                        <a href="main.jsp?mode=5">
                             <img src="images/featured2.jpg" class="img-fluid" alt="#">
                             <span class="featured-rating">3.5</span>
                             <!-- <span class="featured-rating-green">3.5</span> -->
@@ -239,7 +239,7 @@
                 </div>
                 <div class="col-md-4 featured-responsive">
                     <div class="featured-place-wrap">
-                        <a href="detail.jsp">
+                        <a href="main.jsp?mode=5">
                             <img src="images/featured3.jpg" class="img-fluid" alt="#">
                             <span class="featured-rating">4.2</span>
                             <div class="featured-title-box">
@@ -286,14 +286,14 @@
 					<!-- Start of a content -->
 					<div class="single-post d-flex flex-row">
 						<div class="thumb">
-							<a href="detail.jsp">
+							<a href="main.jsp?mode=5">
 								<img src="images/featured1.jpg" alt="">
 							</a>
 						</div>
 						<div class="details">
 							<div class="title d-flex flex-row justify-content-between">
 								<div class="res_title pt-2">
-									<a href="detail.jsp"><h4>브루클린더버거조인트<span class="rating">3.5</span></h4></a>
+									<a href="main.jsp?mode=5"><h4>브루클린더버거조인트<span class="rating">3.5</span></h4></a>
 								</div>
 								<ul class="btns px-0">
 									<li><a href="#"><span class="ti-heart"></span></a></li>
@@ -317,14 +317,14 @@
 					<!-- End of a content -->
 					<div class="single-post d-flex flex-row">
 						<div class="thumb">
-							<a href="detail.jsp">
+							<a href="main.jsp?mode=5">
 								<img src="images/featured2.jpg" alt="">
 							</a>
 						</div>
 						<div class="details">
 							<div class="title d-flex flex-row justify-content-between">
 								<div class="res_title pt-2">
-									<a href="detail.jsp"><h4>사모님 돈까스<span class="rating">3.5</span></h4></a>
+									<a href="main.jsp?mode=5"><h4>사모님 돈까스<span class="rating">3.5</span></h4></a>
 								</div>
 								<ul class="btns px-0">
 									<li><a href="#"><span class="ti-heart"></span></a></li>
@@ -345,14 +345,14 @@
 					</div>
 					<div class="single-post d-flex flex-row">
 						<div class="thumb">
-							<a href="detail.jsp">
+							<a href="main.jsp?mode=5">
 								<img src="images/featured3.jpg" alt="">
 							</a>
 						</div>
                         <div class="details">
                             <div class="title d-flex flex-row justify-content-between">
                                 <div class="res_title pt-2">
-                                    <a href="detail.jsp">
+                                    <a href="main.jsp?mode=5">
                                         <h4>스트릿(strEAT) 여의도점<span class="rating">4.2</span></h4>
                                     </a>
                                 </div>
@@ -375,14 +375,14 @@
 					</div>
                     <div class="single-post d-flex flex-row">
                         <div class="thumb">
-                            <a href="detail.jsp">
+                            <a href="main.jsp?mode=5">
                                 <img src="images/featured1.jpg" alt="">
                             </a>
                         </div>
                         <div class="details">
                             <div class="title d-flex flex-row justify-content-between">
                                 <div class="res_title pt-2">
-                                    <a href="detail.jsp">
+                                    <a href="main.jsp?mode=5">
                                         <h4>브루클린더버거조인트<span class="rating">3.5</span></h4>
                                     </a>
                                 </div>
@@ -404,14 +404,14 @@
                     </div>
                     <div class="single-post d-flex flex-row">
                         <div class="thumb">
-                            <a href="detail.jsp">
+                            <a href="main.jsp?mode=5">
                                 <img src="images/featured2.jpg" alt="">
                             </a>
                         </div>
                         <div class="details">
                             <div class="title d-flex flex-row justify-content-between">
                                 <div class="res_title pt-2">
-                                    <a href="detail.jsp">
+                                    <a href="main.jsp?mode=5">
                                         <h4>사모님 돈까스<span class="rating">3.5</span></h4>
                                     </a>
                                 </div>
@@ -437,7 +437,7 @@
 			<div class="row justify-content-center">
                 <div class="col-md-4">
                     <div class="featured-btn-wrap">
-                        <a href="list_general.jsp" class="btn btn-danger">+ 더 보기</a>
+                        <a href="main.jsp?mode=1" class="btn btn-danger">+ 더 보기</a>
                     </div>
                 </div>
             </div>
@@ -456,7 +456,7 @@
                 </div>
                 <div class="row mb-5">
                     <div class="card" style="width: 30%; margin: 0 15px;">
-                        <a href="detail.jsp">
+                        <a href="main.jsp?mode=5">
                             <img src="images/featured1.jpg" class="card-img-top" alt="...">
                             <div class="card-body">
                                     <h5 class="card-title">Card title</h5>
@@ -466,7 +466,7 @@
                         </a>
                     </div>
                     <div class="card" style="width: 30%; margin: 0 15px;">
-                        <a href="detail.jsp">
+                        <a href="main.jsp?mode=5">
                             <img src="images/featured2.jpg" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">Card title</h5>
