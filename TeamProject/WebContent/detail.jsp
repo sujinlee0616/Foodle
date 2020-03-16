@@ -3,17 +3,6 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="author" content="Colorlib">
-    <meta name="description" content="#">
-    <meta name="keywords" content="#">
-    <!-- Page Title -->
-    <title>Foodle: 음식점 상세</title>
-    <!-- Detail CSS -->
-    <link rel="stylesheet" href="css/detail.css">
 </head>
 <body>
     <!--============================= TITLE =============================-->
@@ -367,11 +356,11 @@
                             <h5>위치</h5>
                         </div>
                         <!-- 카카오맵 : 왜 안나오는지 확인 필요-->
-                        <div class="map-wrap">
+                        <!-- <div class="map-wrap">
                             <div class="map-fix">
                                 <div id="map" data-lat="40.674" data-lon="-73.945" data-zoom="14"></div>
                             </div>
-                        </div>
+                        </div> -->
                         <!-- 지도 이미지 (임시) -->
                         <div class="contact_wrap">
                             <img src="images/map.jpg" class="img-fluid" alt="#">
