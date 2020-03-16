@@ -62,7 +62,7 @@
 		jsp="mypage.jsp"; /* 마이페이지  */
 		break;
 	case 10:
-		jsp="mypage_coupon1.jsp"; /* 마이페이지-쿠폰  */
+		jsp="mypage_coupon1.jsp"; /* 마이페이지-쿠폰  */    
 		break;	
 	} 
 %>
