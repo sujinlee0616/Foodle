@@ -1,4 +1,4 @@
-//////////////////////////////////////////////////////////¾ÆÁ÷ ´ú ¿Ï¼º
+//////////////////////////////////////////////////////////ì•„ì§ ëœ ì™„ì„±
 import com.sist.manager.*;
 import java.util.*;
 import java.sql.*;
@@ -7,11 +7,11 @@ public class DefaultDAO {
 
 	private Connection conn; // Socket
 	private PreparedStatement ps;// OutputStream , BufferedReader
-	private final String URL="jdbc:oracle:thin:@211.238.142.207:1521:XE";
-	//private final String URL="jdbc:oracle:thin:@localhost:1521:XE";
+	//private final String URL="jdbc:oracle:thin:@211.238.142.207:1521:XE";
+	private final String URL="jdbc:oracle:thin:@localhost:1521:XE";
 			
 
-	// µå¶óÀÌ¹ö µî·Ï => ÇÑ¹ø¸¸ ¼öÇà
+	// ë“œë¼ì´ë²„ ë“±ë¡ => í•œë²ˆë§Œ ìˆ˜í–‰
 	public DefaultDAO()
      {
     	 try
@@ -23,7 +23,7 @@ public class DefaultDAO {
     	 }
      }
 
-	// ¿À¶óÅ¬ ¿¬°á
+	// ì˜¤ë¼í´ ì—°ê²°
 	public void getConnection() {
 		try {
 			conn = DriverManager.getConnection(URL, "hr", "happy");
@@ -31,7 +31,7 @@ public class DefaultDAO {
 		}
 	}
 
-	// ¿À¶óÅ¬ ÇØÁ¦
+	// ì˜¤ë¼í´ í•´ì œ
 	public void disConnection() {
 		try {
 			if (ps != null)
@@ -42,7 +42,7 @@ public class DefaultDAO {
 		}
 	}
 
-	// ±â´É Ã³¸® => Ãß°¡ ==> CURD
+	// ê¸°ëŠ¥ ì²˜ë¦¬ => ì¶”ê°€ ==> CURD
 	public void AreacodeCreate() {
 		try 
 		{
@@ -70,7 +70,7 @@ public class DefaultDAO {
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, vo.getA_AreaCode());
 			ps.setString(2, vo.getR_Area());
-			ps.setString(3, vo.getR_AreaDetail());
+			ps.setString(3, vo.getR_AreaDetail());		
 			
 			ps.executeUpdate();
 		} catch (Exception ex) {

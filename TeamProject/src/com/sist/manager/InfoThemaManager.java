@@ -28,9 +28,9 @@ public class InfoThemaManager {
 		Element image_Name;
 		Element main_Name;
 		
-//		System.out.println("ÇöÀç Ä«Å×°í¸® ¹øÈ£ : "+ (z+1)  + ",ÇöÀçÆäÀÌÁö¹øÈ£ : " + (j+1) +",ÇöÀçÁö¿ª¹øÈ£ : "+(i+1));
-		//ac.size()À¸·Î ¹Ù²Ü°Í
-		for(int i = 0 ; i < ac.size() ; i++)
+//		System.out.println("í˜„ì¬ ì¹´í…Œê³ ë¦¬ ë²ˆí˜¸ : "+ (z+1)  + ",í˜„ì¬í˜ì´ì§€ë²ˆí˜¸ : " + (j+1) +",í˜„ì¬ì§€ì—­ë²ˆí˜¸ : "+(i+1));
+		//ac.size()ìœ¼ë¡œ ë°”ê¿€ê²ƒ
+		for(int i = 0 ; i < 2 ; i++)
 		{
 			for(int j = 0 ; j < page ; j++)
 			{
@@ -52,13 +52,14 @@ public class InfoThemaManager {
 							vo = new InfoThemaVO();
 							vo.setR_No(((z) + ((j)*kategorie) + ((i)*(page*kategorie))));
 									
-							// Å×¸¶ ³Ö´Â ºÎºĞ
+							// í…Œë§ˆ ë„£ëŠ” ë¶€ë¶„
 							Element R_Thema = doc2.select("dd.Theme a").get(count);
 							vo.setR_Thema(R_Thema.text());
 							
 							list.add(vo);
 							count++;
 							
+							Thread.sleep(1000);
 							
 						}catch(Exception ex) {break;}		
 					}

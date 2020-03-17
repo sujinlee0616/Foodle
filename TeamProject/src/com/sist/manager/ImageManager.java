@@ -24,7 +24,7 @@ public class ImageManager {
 		Element image_Name;
 		Element main_Name;
 		
-//		System.out.println("ÇöÀç Ä«Å×°í¸® ¹øÈ£ : "+ (z+1)  + ",ÇöÀçÆäÀÌÁö¹øÈ£ : " + (j+1) +",ÇöÀçÁö¿ª¹øÈ£ : "+(i+1));
+//		System.out.println("í˜„ì¬ ì¹´í…Œê³ ë¦¬ ë²ˆí˜¸ : "+ (z+1)  + ",í˜„ì¬í˜ì´ì§€ë²ˆí˜¸ : " + (j+1) +",í˜„ì¬ì§€ì—­ë²ˆí˜¸ : "+(i+1));
 		for(int i = 0 ; i < ac.size() ; i++)
 		{
 			for(int j = 0 ; j < page ; j++)
@@ -40,21 +40,21 @@ public class ImageManager {
 						String mLink = "http://www.menupan.com" + elem.attr("href");
 						Document doc2 = Jsoup.connect(mLink).get();
 					
-						//ÀÌ¹ÌÁö ÆÄ½Ì
+						//ì´ë¯¸ì§€ íŒŒì‹±
 						int count=0;
 						while (true) {
 							try {
 								
 								vo = new ImageVO(); 
-								//°¡°ÔNo³Ö´ÂºÎºĞÀÎµ¥ °ãÄ¡Áö ¾Ê°Ô ÇÏ±â À§ÇØ¼­
+								//ê°€ê²ŒNoë„£ëŠ”ë¶€ë¶„ì¸ë° ê²¹ì¹˜ì§€ ì•Šê²Œ í•˜ê¸° ìœ„í•´ì„œ
 								vo.setR_No(((z) + ((j)*kategorie) + ((i)*(page*kategorie))));							
 								
-								//»çÁø¸µÅ© ³Ö´Â ºÎºĞ
+								//ì‚¬ì§„ë§í¬ ë„£ëŠ” ë¶€ë¶„
 								image = doc2.select("img#restphoto_img_" + count).get(0);
 								vo.setI_Link("https://www.menupan.com/" + image.attr("src"));
 
 
-								//»çÁø ÀÌ¸§ ³Ö´Â ºÎºĞ
+								//ì‚¬ì§„ ì´ë¦„ ë„£ëŠ” ë¶€ë¶„
 								image_Name = doc2.select("img#restphoto_img_"+count).get(0);
 								vo.setI_Name(image_Name.attr("title"));
 								

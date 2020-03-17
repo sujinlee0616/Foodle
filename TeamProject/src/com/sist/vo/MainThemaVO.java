@@ -1,13 +1,12 @@
 package com.sist.vo;
 
 public class MainThemaVO {
-	//¸ŞÀÎÅ×¸¶(ex.»óÈ²º°,¸Ş´ºº°,½ºÆä¼È)
+	// ë©”ì¸í…Œë§ˆ(ex.ìƒí™©ë³„,ë©”ë‰´ë³„,ìŠ¤í˜ì…œ)
 	private String t_MainThema;
-	//»ó¼¼Å×¸¶(ex.¿¬ÀÎ°úÇÔ²²,Ä£±¸¿ÍÇÔ²²,¿Ü±¹ÀÎ°úÇÔ²²...)
+	// ìƒì„¸í…Œë§ˆ(ex.ì—°ì¸ê³¼í•¨ê»˜,ì¹œêµ¬ì™€í•¨ê»˜,ì™¸êµ­ì¸ê³¼í•¨ê»˜...)
 	private String t_DetailThema;
-	//»ó¼¼Å×¸¶ ¼³¸í
+	// ìƒì„¸í…Œë§ˆ ì„¤ëª…
 	private String t_Info;
-	
 	
 	public String getT_Info() {
 		return t_Info;

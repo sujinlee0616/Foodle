@@ -1,17 +1,17 @@
 package com.sist.vo;
 
 public class MenuVO {
-	//°¡°Ô °íÀ¯¹øÈ£
+	// ê°€ê²Œ ê³ ìœ ë²ˆí˜¸
 	private int r_No;
-	//¸Ş´ºÀÌ¸§
+	// ë©”ë‰´ì´ë¦„
 	private String m_Name;
-	//¸Ş´º°¡°İ
+	// ë©”ë‰´ê°€ê²©
 	private int m_Price;
-	//¸Ş´ºÁ¤º¸
+	// ë©”ë‰´ì •ë³´
 	private String m_Info;
-	//À¯Àú ÁÁ¾Æ¿ä °¹¼ö
+	// ìœ ì € ì¢‹ì•„ìš” ê°¯ìˆ˜
 	private int m_UsergoodCount;
-	//ÁÖÀÎÀå ÃßÃµ
+	// ì£¼ì¸ì¥ ì¶”ì²œ
 	private String m_Hostgood;
 	
 	public int getR_No() {

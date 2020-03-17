@@ -11,7 +11,7 @@ public class AreacodeDAO {
 	//private final String URL="jdbc:oracle:thin:@localhost:1521:XE";
 			
 
-	// µå¶óÀÌ¹ö µî·Ï => ÇÑ¹ø¸¸ ¼öÇà
+	// ë“œë¼ì´ë²„ ë“±ë¡ => í•œë²ˆë§Œ ìˆ˜í–‰
 	public AreacodeDAO()
      {
     	 try
@@ -23,7 +23,7 @@ public class AreacodeDAO {
     	 }
      }
 
-	// ¿À¶óÅ¬ ¿¬°á
+	// ì˜¤ë¼í´ ì—°ê²°
 	public void getConnection() {
 		try {
 			conn = DriverManager.getConnection(URL, "hr", "happy");
@@ -31,7 +31,7 @@ public class AreacodeDAO {
 		}
 	}
 
-	// ¿À¶óÅ¬ ÇØÁ¦
+	// ì˜¤ë¼í´ í•´ì œ
 	public void disConnection() {
 		try {
 			if (ps != null)
@@ -42,7 +42,7 @@ public class AreacodeDAO {
 		}
 	}
 
-	// ±â´É Ã³¸® => Ãß°¡ ==> CURD
+	// ê¸°ëŠ¥ ì²˜ë¦¬ => ì¶”ê°€ ==> CURD
 	public void AreacodeCreate() {
 		try 
 		{

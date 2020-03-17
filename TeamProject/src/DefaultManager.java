@@ -1,5 +1,3 @@
-
-//±Â±Âb ¾ÆÁÖ ÀßÇß¾î¿ä b (¹Ú¼ö) 
 import java.util.*;
 
 
@@ -16,7 +14,7 @@ public class DefaultManager {
 
 	public ArrayList<InfoVO> AllData(ArrayList<AreacodeVO> areacode) {
 		
-		//°¢ÆÄÆ®ÀÇ vo
+		//ê°íŒŒíŠ¸ì˜ vo
 		//ImageVO vo = new ImageVO();
 		ArrayList<InfoVO> list = new  ArrayList<InfoVO>();
 		
@@ -29,7 +27,7 @@ public class DefaultManager {
 		Element image_Name;
 		Element main_Name;
 		
-//		System.out.println("ÇöÀç Ä«Å×°í¸® ¹øÈ£ : "+ (z+1)  + ",ÇöÀçÆäÀÌÁö¹øÈ£ : " + (j+1) +",ÇöÀçÁö¿ª¹øÈ£ : "+(i+1));
+//		System.out.println("í˜„ì¬ ì¹´í…Œê³ ë¦¬ ë²ˆí˜¸ : "+ (z+1)  + ",í˜„ì¬í˜ì´ì§€ë²ˆí˜¸ : " + (j+1) +",í˜„ì¬ì§€ì—­ë²ˆí˜¸ : "+(i+1));
 		for(int i = 0 ; i < ac.size(); i++)
 		{
 			for(int j = 0 ; j < page ; j++)
@@ -46,10 +44,10 @@ public class DefaultManager {
 						Document doc2 = Jsoup.connect(mLink).get();
 						
 						System.out.println("mno : "+((z) + ((j)*kategorie) + ((i)*(page*kategorie))));
-						System.out.println("ÇöÀçÁö¿ªÄÚµå : " + ac.get(i).getA_AreaCode()+ ",ÇöÀçÁö¿ª : "+ ac.get(i).getR_Area()+",ÇöÀç »ó¼¼ Áö¿ª : "+ac.get(i).getR_AreaDetail());
-						System.out.println("ÇöÀç Ä«Å×°í¸® ¹øÈ£ : "+ (z+1)  + ",ÇöÀçÆäÀÌÁö¹øÈ£ : " + (j+1) +",ÇöÀçÁö¿ª¹øÈ£ : "+(i+1));
+						System.out.println("í˜„ì¬ì§€ì—­ì½”ë“œ : " + ac.get(i).getA_AreaCode()+ ",í˜„ì¬ì§€ì—­ : "+ ac.get(i).getR_Area()+",í˜„ì¬ ìƒì„¸ ì§€ì—­ : "+ac.get(i).getR_AreaDetail());
+						System.out.println("í˜„ì¬ ì¹´í…Œê³ ë¦¬ ë²ˆí˜¸ : "+ (z+1)  + ",í˜„ì¬í˜ì´ì§€ë²ˆí˜¸ : " + (j+1) +",í˜„ì¬ì§€ì—­ë²ˆí˜¸ : "+(i+1));
 						
-						//ÀÌ¹ÌÁö ÆÄ½Ì
+						//ì´ë¯¸ì§€ íŒŒì‹±
 						while (true) {
 							try {
 								break;
