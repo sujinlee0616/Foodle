@@ -6,71 +6,69 @@ import org.jsoup.nodes.Element;
 
 public class InfoVO {
 	
-	//°¡°Ô °íÀ¯¹øÈ£
+	// ê°€ê²Œ ê³ ìœ ë²ˆí˜¸
 	private int r_No;
-	//°¡°Ô ÀÌ¸§
+	// ê°€ê²Œ ì´ë¦„
 	private String r_Name;
-	//°¡°Ô ¾÷Á¾
+	// ê°€ê²Œ ì—…ì¢…
 	private String r_Foodtype;
-	//°¡°Ô ÀüÈ­¹øÈ£
+	// ê°€ê²Œ ì „í™”ë²ˆí˜¸
 	private String r_Tel;
-	//°¡°Ô ±¸ÁÖ¼Ò
+	// ê°€ê²Œ êµ¬ì£¼ì†Œ
 	private String r_Addr1;
-	//°¡°Ô ½ÅÁÖ¼Ò
+	// ê°€ê²Œ ì‹ ì£¼ì†Œ
 	private String r_Addr2;
-	//°¡°Ô ÆòÁ¡
+	// ê°€ê²Œ í‰ì 
 	private double r_Score;
-	//°¡°Ô ÆòÁ¡Æò°¡ ÀÎ¿ø
+	// ê°€ê²Œ í‰ì í‰ê°€ ì¸ì›
 	private int r_ScoreCount;
-	//ÃßÃµ°¡°İ´ë(³·À½)
+	// ì¶”ì²œê°€ê²©ëŒ€(ë‚®ìŒ)
 	private String r_Lowprice;
-	//ÃßÃµ°¡°İ´ë(³ôÀ½)
+	// ì¶”ì²œê°€ê²©ëŒ€(ë†’ìŒ)
 	private String r_Highprice;
-	//°¡°Ô ¿ÀÇÂ½Ã°£
+	// ê°€ê²Œ ì˜¤í”ˆì‹œê°„
 	private String r_Opentime;
-	//°¡°Ô ´İ´Â½Ã°£
+	// ê°€ê²Œ ë‹«ëŠ”ì‹œê°„
 	private String r_Closetime;
-	//°¡°Ô ½¬´Â³¯
+	// ê°€ê²Œ ì‰¬ëŠ”ë‚ 
 	private String r_Holiday;
-	//°¡°Ô ¼Ò°³
+	// ê°€ê²Œ ì†Œê°œ
 	private String r_Content;
-	//°¡°Ô ÁÁ¾Æ¿ä °¹¼ö
+	// ê°€ê²Œ ì¢‹ì•„ìš” ê°¯ìˆ˜
 	private String r_Good;
-	//°¡°Ô ÁÂ¼® °¹¼ö
+	// ê°€ê²Œ ì¢Œì„ ê°¯ìˆ˜
 	private String r_Seat;
-	//°¡°Ô ¹æ °¹¼ö
+	// ê°€ê²Œ ë°© ê°¯ìˆ˜
 	private String r_Room;
-	
-	
-	//ÁÖ·ùÆÇ¸Å ¿©ºÎ
+
+	// ì£¼ë¥˜íŒë§¤ ì—¬ë¶€
 	private String r_Drink;
-	//±İ¿¬¼®Á¤º¸
+	// ê¸ˆì—°ì„ì •ë³´
 	private String r_Nosmoking;
-	//¿¹¾à ¿©ºÎ
+	// ì˜ˆì•½ ì—¬ë¶€
 	private String r_Reserve;
-	//È­Àå½Ç ¿©ºÎ
+	// í™”ì¥ì‹¤ ì—¬ë¶€
 	private String r_Restroom;
-	//ÁÖÂ÷ ¿©ºÎ
+	// ì£¼ì°¨ ì—¬ë¶€
 	private String r_Park;
-	
-	//¹è´Ş ¿©ºÎ
+
+	// ë°°ë‹¬ ì—¬ë¶€
 	private String r_Delivery;
-	
-	//±âÅ¸½Ã¼³	
+
+	// ê¸°íƒ€ì‹œì„¤
 	private String r_Other;
-	//Æ÷Àå°¡´É
+	// í¬ì¥ê°€ëŠ¥
 	private String r_Takeout;
-	//´©Àû ¹æ¹®ÀÚ¼ıÀÚ
+	// ëˆ„ì  ë°©ë¬¸ììˆ«ì
 	private String r_hit;
-	//È¨ÆäÀÌÁö Ã³À½ ½ÃÀÛÇÑ ³¯Â¥
+	// í™ˆí˜ì´ì§€ ì²˜ìŒ ì‹œì‘í•œ ë‚ ì§œ
 	private String r_Start;
-	//°¡°ÔÁ¤º¸ ¼öÁ¤ÀÏÀÚ
+	// ê°€ê²Œì •ë³´ ìˆ˜ì •ì¼ì
 	private Date r_Date;
-	//°¡°Ô Áö¿ª(ex.¼­¿ï°­³²,¼­¿ï°­ºÏ...)
+	// ê°€ê²Œ ì§€ì—­(ex.ì„œìš¸ê°•ë‚¨,ì„œìš¸ê°•ë¶...)
 	private String r_Area;
-	//°¡°Ô ¼¼ºÎÁö¿ª(ex.°¡·Î¼ö±æ,°­³²¿ª...)
+	// ê°€ê²Œ ì„¸ë¶€ì§€ì—­(ex.ê°€ë¡œìˆ˜ê¸¸,ê°•ë‚¨ì—­...)
 	private String r_AreaDetail;
-	
 	
 	
 	

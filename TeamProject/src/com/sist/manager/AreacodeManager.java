@@ -17,9 +17,9 @@ public class AreacodeManager {
 		
 		
 		String[][] areaDetail = new String[15][];
-		String[] area = {"¼­¿ï °­³²|ss","¼­¿ï °­ºÏ|sn","°æ±â ³²ºÎ|cs","°æ±â ºÏºÎ|cn","ÀÎÃµ|ic","ºÎ»ê|bs","´ë±¸|dg","±¤ÁÖ|gj","´ëÀü|dj","¿ï»ê|us","°­¿ø|gw","ÃæÃ»|cc","°æ»ó|gs","Àü¶ó|jl","Á¦ÁÖ|jj"};
+		String[] area = {"ì„œìš¸ ê°•ë‚¨|ss","ì„œìš¸ ê°•ë¶|sn","ê²½ê¸° ë‚¨ë¶€|cs","ê²½ê¸° ë¶ë¶€|cn","ì¸ì²œ|ic","ë¶€ì‚°|bs","ëŒ€êµ¬|dg","ê´‘ì£¼|gj","ëŒ€ì „|dj","ìš¸ì‚°|us","ê°•ì›|gw","ì¶©ì²­|cc","ê²½ìƒ|gs","ì „ë¼|jl","ì œì£¼|jj"};
 		
-		//gs203 : ±¸¹Ì  ÀÌ·±½ÄÀÇ ÄÚµå°¡ ÁÖ¼ÒµÚ¿¡ ºÙ¾î ÀÖÀ½ 
+		//gs203 : êµ¬ë¯¸  ì´ëŸ°ì‹ì˜ ì½”ë“œê°€ ì£¼ì†Œë’¤ì— ë¶™ì–´ ìˆìŒ 
 		
 		
 		areaDetail[0]= new String[18];
@@ -38,185 +38,183 @@ public class AreacodeManager {
 		areaDetail[13]= new String[10];
 		areaDetail[14]= new String[10];
 			
-		//¼­¿ï°­³²
-		areaDetail[0][0]= "°­³²¿ª"; 
-		areaDetail[0][1]= "°ü¾Ç/½Å¸²"; 
-		areaDetail[0][2]= "±¸·Î"; 
-		areaDetail[0][3]= "¸ñµ¿/°­¼­"; 
-		areaDetail[0][4]= "¹İÆ÷/¼­·¡¸¶À»"; 
-		areaDetail[0][5]= "¹æ¹è/»ç´ç"; 
-		areaDetail[0][6]= "¼­ÃÊ/±³´ë"; 
-		areaDetail[0][7]= "Àá½Ç/½ÅÃµ"; 
-		areaDetail[0][8]= "½Å³íÇö/¿µµ¿½ÃÀå"; 
-		areaDetail[0][9]= "½Å»ç/Àá¿ø"; 
-		areaDetail[0][10]= "¾Ğ±¸Á¤/Ã»´ã"; 
-		areaDetail[0][11]= "¾çÀç/µµ°î"; 
-		areaDetail[0][12]= "¼±¸ª/»ï¼º/´ëÄ¡"; 
-		areaDetail[0][13]= "¿ª»ï"; 
-		areaDetail[0][14]= "¿µµîÆ÷/¿©ÀÇµµ"; 
-		areaDetail[0][15]= "ÃµÈ£/°­µ¿"; 
-		areaDetail[0][16]= "³ë·®Áø"; 
-		areaDetail[0][17]= "°¡·Î¼ö±æ"; 
-		
-		//¼­¿ï°­ºÏ
-		areaDetail[1][0]= "±¤Áø/°Ç´ëÀÔ±¸"; 
-		areaDetail[1][1]= "±¤È­¹®/½ÃÃ»"; 
-		areaDetail[1][2]= "³ë¿ø/µµºÀ/¹Ì¾Æ"; 
-		areaDetail[1][3]= "´ëÇĞ·Î"; 
-		areaDetail[1][4]= "µ¿´ë¹®"; 
-		areaDetail[1][5]= "¸¶Æ÷"; 
-		areaDetail[1][6]= "¸íµ¿"; 
-		areaDetail[1][7]= "»ïÃ»µ¿"; 
-		areaDetail[1][8]= "¼ºµ¿/¼º¼ö"; 
-		areaDetail[1][9]= "¼ººÏ"; 
-		areaDetail[1][10]= "½ÅÃÌ/ÀÌ´ë"; 
-		areaDetail[1][11]= "ÀÌÅÂ¿ø/ÇÑ³²µ¿"; 
-		areaDetail[1][12]= "Á¾·Î/ÀÎ»çµ¿"; 
-		areaDetail[1][13]= "Ãæ¹«·Î/½Å´çµ¿"; 
-		areaDetail[1][14]= "È«´ë/»ó¼ö/ÇÕÁ¤"; 
-		areaDetail[1][15]= "¾È¾Ï/°í´ë";
-		areaDetail[1][16]= "¼÷´ë/¼­¿ï¿ª"; 
-		areaDetail[1][17]= "ºÎ¾Ïµ¿/ÆòÃ¢µ¿"; 
-		areaDetail[1][18]= "¼­ÃÌ/°æº¹±Ã"; 
-		areaDetail[1][19]= "ÀÌÃÌµ¿/¿ë»ê"; 
-		areaDetail[1][20]= "È¸±â"; 
-		areaDetail[1][21]= "¿¬³²µ¿/¿¬Èñµ¿"; 
-		areaDetail[1][22]= "»ó¾Ï"; 
-		areaDetail[1][23]= "¿¬½Å³»/ºÒ±¤"; 
-	
-		//°æ±â³²ºÎ
-		areaDetail[2][0]= "°úÃµ"; 
-		areaDetail[2][1]= "±¤¸í"; 
-		areaDetail[2][2]= "µ¿Åº/¿À»ê"; 
-		areaDetail[2][3]= "ºÎÃµ"; 
-		areaDetail[2][4]= "ºĞ´ç/¼º³²/ÆÇ±³"; 
-		areaDetail[2][5]= "¼ö¿ø"; 
-		areaDetail[2][6]= "¾È»ê"; 
-		areaDetail[2][7]= "¾È¼º"; 
-		areaDetail[2][8]= "¾È¾ç/±ºÆ÷/ÀÇ¿Õ"; 
-		areaDetail[2][9]= "¾çÆò"; 
-		areaDetail[2][10]= "¿©ÁÖ"; 
-		areaDetail[2][11]= "¿ëÀÎ"; 
-		areaDetail[2][12]= "Á×Àü/¼öÁö"; 
-		areaDetail[2][13]= "ÀÌÃµ"; 
-		areaDetail[2][14]= "ÇÏ³²"; 
-		areaDetail[2][15]= "È­¼º"; 
-		areaDetail[2][16]= "±èÆ÷"; 
-		areaDetail[2][17]= "±¤ÁÖ"; 
-		areaDetail[2][18]= "¿ÀÀÌµµ"; 
-		areaDetail[2][19]= "½ÃÈï"; 				
+		// ì„œìš¸ê°•ë‚¨
+		areaDetail[0][0] = "ê°•ë‚¨ì—­";
+		areaDetail[0][1] = "ê´€ì•…/ì‹ ë¦¼";
+		areaDetail[0][2] = "êµ¬ë¡œ";
+		areaDetail[0][3] = "ëª©ë™/ê°•ì„œ";
+		areaDetail[0][4] = "ë°˜í¬/ì„œë˜ë§ˆì„";
+		areaDetail[0][5] = "ë°©ë°°/ì‚¬ë‹¹";
+		areaDetail[0][6] = "ì„œì´ˆ/êµëŒ€";
+		areaDetail[0][7] = "ì ì‹¤/ì‹ ì²œ";
+		areaDetail[0][8] = "ì‹ ë…¼í˜„/ì˜ë™ì‹œì¥";
+		areaDetail[0][9] = "ì‹ ì‚¬/ì ì›";
+		areaDetail[0][10] = "ì••êµ¬ì •/ì²­ë‹´";
+		areaDetail[0][11] = "ì–‘ì¬/ë„ê³¡";
+		areaDetail[0][12] = "ì„ ë¦‰/ì‚¼ì„±/ëŒ€ì¹˜";
+		areaDetail[0][13] = "ì—­ì‚¼";
+		areaDetail[0][14] = "ì˜ë“±í¬/ì—¬ì˜ë„";
+		areaDetail[0][15] = "ì²œí˜¸/ê°•ë™";
+		areaDetail[0][16] = "ë…¸ëŸ‰ì§„";
+		areaDetail[0][17] = "ê°€ë¡œìˆ˜ê¸¸";
 
-		//°æ±âºÏºÎ
-		areaDetail[3][0]= "ÀÇÁ¤ºÎ"; 				
-		areaDetail[3][1]= "ÀÏ»ê"; 				
-		areaDetail[3][2]= "ÆÄÁÖ"; 				
-		areaDetail[3][3]= "Æ÷Ãµ/µ¿µÎÃµ"; 				
-		areaDetail[3][4]= "³²¾çÁÖ"; 				
-		areaDetail[3][5]= "±¸¸®"; 				
-		areaDetail[3][6]= "°¡Æò"; 				
+		// ì„œìš¸ê°•ë¶
+		areaDetail[1][0] = "ê´‘ì§„/ê±´ëŒ€ì…êµ¬";
+		areaDetail[1][1] = "ê´‘í™”ë¬¸/ì‹œì²­";
+		areaDetail[1][2] = "ë…¸ì›/ë„ë´‰/ë¯¸ì•„";
+		areaDetail[1][3] = "ëŒ€í•™ë¡œ";
+		areaDetail[1][4] = "ë™ëŒ€ë¬¸";
+		areaDetail[1][5] = "ë§ˆí¬";
+		areaDetail[1][6] = "ëª…ë™";
+		areaDetail[1][7] = "ì‚¼ì²­ë™";
+		areaDetail[1][8] = "ì„±ë™/ì„±ìˆ˜";
+		areaDetail[1][9] = "ì„±ë¶";
+		areaDetail[1][10] = "ì‹ ì´Œ/ì´ëŒ€";
+		areaDetail[1][11] = "ì´íƒœì›/í•œë‚¨ë™";
+		areaDetail[1][12] = "ì¢…ë¡œ/ì¸ì‚¬ë™";
+		areaDetail[1][13] = "ì¶©ë¬´ë¡œ/ì‹ ë‹¹ë™";
+		areaDetail[1][14] = "í™ëŒ€/ìƒìˆ˜/í•©ì •";
+		areaDetail[1][15] = "ì•ˆì•”/ê³ ëŒ€";
+		areaDetail[1][16] = "ìˆ™ëŒ€/ì„œìš¸ì—­";
+		areaDetail[1][17] = "ë¶€ì•”ë™/í‰ì°½ë™";
+		areaDetail[1][18] = "ì„œì´Œ/ê²½ë³µê¶";
+		areaDetail[1][19] = "ì´ì´Œë™/ìš©ì‚°";
+		areaDetail[1][20] = "íšŒê¸°";
+		areaDetail[1][21] = "ì—°ë‚¨ë™/ì—°í¬ë™";
+		areaDetail[1][22] = "ìƒì•”";
+		areaDetail[1][23] = "ì—°ì‹ ë‚´/ë¶ˆê´‘";
 
-		//ÀÎÃµ
-		areaDetail[4][0]= "³²±¸/³²µ¿±¸"; 				
-		areaDetail[4][1]= "µ¿±¸/Áß±¸"; 				
-		areaDetail[4][2]= "ºÎÆò±¸/°è¾ç±¸"; 				
-		areaDetail[4][3]= "¿¬¼ö±¸/¼Ûµµ"; 				
-		areaDetail[4][4]= "°­È­µµ"; 				
-		
-		//ºÎ»ê
-		areaDetail[5][0]= "±¤¾È¸®/°æ¼º´ë"; 				
-		areaDetail[5][1]= "³²Æ÷/¿µµµ/Áß±¸"; 				
-		areaDetail[5][2]= "µ¿·¡/ºÎ»ê´ë"; 	
-		areaDetail[5][3]= "¼­¸é/ºÎ»êÁø"; 	
-		areaDetail[5][4]= "ÇØ¿î´ë/¼¾ÅÒ"; 	
+		// ê²½ê¸°ë‚¨ë¶€
+		areaDetail[2][0] = "ê³¼ì²œ";
+		areaDetail[2][1] = "ê´‘ëª…";
+		areaDetail[2][2] = "ë™íƒ„/ì˜¤ì‚°";
+		areaDetail[2][3] = "ë¶€ì²œ";
+		areaDetail[2][4] = "ë¶„ë‹¹/ì„±ë‚¨/íŒêµ";
+		areaDetail[2][5] = "ìˆ˜ì›";
+		areaDetail[2][6] = "ì•ˆì‚°";
+		areaDetail[2][7] = "ì•ˆì„±";
+		areaDetail[2][8] = "ì•ˆì–‘/êµ°í¬/ì˜ì™•";
+		areaDetail[2][9] = "ì–‘í‰";
+		areaDetail[2][10] = "ì—¬ì£¼";
+		areaDetail[2][11] = "ìš©ì¸";
+		areaDetail[2][12] = "ì£½ì „/ìˆ˜ì§€";
+		areaDetail[2][13] = "ì´ì²œ";
+		areaDetail[2][14] = "í•˜ë‚¨";
+		areaDetail[2][15] = "í™”ì„±";
+		areaDetail[2][16] = "ê¹€í¬";
+		areaDetail[2][17] = "ê´‘ì£¼";
+		areaDetail[2][18] = "ì˜¤ì´ë„";
+		areaDetail[2][19] = "ì‹œí¥";
 
-		//´ë±¸
-		areaDetail[6][0]= "°¡Ã¢"; 
-		areaDetail[6][1]= "´Ş¼­±¸/³²±¸"; 
-		areaDetail[6][2]= "µ¿±¸"; 
-		areaDetail[6][3]= "µ¿¼º·Î/Áß±¸"; 
-		areaDetail[6][4]= "¼ö¼º±¸"; 
-		areaDetail[6][5]= "Ä¥°î/ºÏ±¸/¼­±¸"; 
+		// ê²½ê¸°ë¶ë¶€
+		areaDetail[3][0] = "ì˜ì •ë¶€";
+		areaDetail[3][1] = "ì¼ì‚°";
+		areaDetail[3][2] = "íŒŒì£¼";
+		areaDetail[3][3] = "í¬ì²œ/ë™ë‘ì²œ";
+		areaDetail[3][4] = "ë‚¨ì–‘ì£¼";
+		areaDetail[3][5] = "êµ¬ë¦¬";
+		areaDetail[3][6] = "ê°€í‰";
 
-		//±¤ÁÖ
-		areaDetail[7][0]= "±¤»ê±¸"; 
-		areaDetail[7][1]= "µ¿±¸/³²±¸"; 
-		areaDetail[7][2]= "ºÏ±¸"; 
-		areaDetail[7][3]= "¼­±¸"; 
+		// ì¸ì²œ
+		areaDetail[4][0] = "ë‚¨êµ¬/ë‚¨ë™êµ¬";
+		areaDetail[4][1] = "ë™êµ¬/ì¤‘êµ¬";
+		areaDetail[4][2] = "ë¶€í‰êµ¬/ê³„ì–‘êµ¬";
+		areaDetail[4][3] = "ì—°ìˆ˜êµ¬/ì†¡ë„";
+		areaDetail[4][4] = "ê°•í™”ë„";
 
-		//´ëÀü
-		areaDetail[8][0]= "µ¿±¸/´ë´ö±¸"; 
-		areaDetail[8][1]= "À¯¼º±¸"; 
-		areaDetail[8][2]= "Áß±¸"; 
+		// ë¶€ì‚°
+		areaDetail[5][0] = "ê´‘ì•ˆë¦¬/ê²½ì„±ëŒ€";
+		areaDetail[5][1] = "ë‚¨í¬/ì˜ë„/ì¤‘êµ¬";
+		areaDetail[5][2] = "ë™ë˜/ë¶€ì‚°ëŒ€";
+		areaDetail[5][3] = "ì„œë©´/ë¶€ì‚°ì§„";
+		areaDetail[5][4] = "í•´ìš´ëŒ€/ì„¼í…€";
 
-		
-		//¿ï»ê
-		areaDetail[9][0]= "¿ï»ê"; 
-	
-		//°­¿ø
-		areaDetail[10][0]= "°­¸ª"; 
-		areaDetail[10][1]= "¼ÓÃÊ"; 
-		areaDetail[10][2]= "¾ç¾ç"; 
-		areaDetail[10][3]= "¿øÁÖ"; 
-		areaDetail[10][4]= "ÃáÃµ"; 
-		areaDetail[10][5]= "ÆòÃ¢"; 
-		areaDetail[10][6]= "È«Ãµ"; 
-		areaDetail[10][7]= "µ¿ÇØ"; 
-		areaDetail[10][8]= "ÅÂ¹é/Á¤¼±"; 
-		areaDetail[10][9]= "»ïÃ´"; 
+		// ëŒ€êµ¬
+		areaDetail[6][0] = "ê°€ì°½";
+		areaDetail[6][1] = "ë‹¬ì„œêµ¬/ë‚¨êµ¬";
+		areaDetail[6][2] = "ë™êµ¬";
+		areaDetail[6][3] = "ë™ì„±ë¡œ/ì¤‘êµ¬";
+		areaDetail[6][4] = "ìˆ˜ì„±êµ¬";
+		areaDetail[6][5] = "ì¹ ê³¡/ë¶êµ¬/ì„œêµ¬";
 
-		// ÃæÃ»
-		areaDetail[11][0]= "°øÁÖ"; 
-		areaDetail[11][1]= "´Ü¾ç"; 
-		areaDetail[11][2]= "º¸·É"; 
-		areaDetail[11][3]= "¾Æ»ê"; 
-		areaDetail[11][4]= "Ãµ¾ÈÀü¿ª"; 
-		areaDetail[11][5]= "Ã»ÁÖ"; 
-		areaDetail[11][6]= "ÃæÁÖ"; 
-		areaDetail[11][7]= "ÅÂ¾È"; 
-		areaDetail[11][8]= "ºÎ¿©"; 
-		areaDetail[11][9]= "Ãµ¾È-µ¶¸³±â³ä°ü"; 
-		areaDetail[11][10]= "Ãµ¾È-µÎÁ¤/¼ºÁ¤"; 
-		areaDetail[11][11]= "Ãµ¾È-ºÒ´ç/½Ö¿ë"; 
-		areaDetail[11][12]= "Ãµ¾È-¼ºÈ¯/Á÷»ê"; 
-		areaDetail[11][13]= "Ãµ¾È-½ÅºÎ/¾È¼­"; 
-		areaDetail[11][14]= "¼­Ãµ"; 
+		// ê´‘ì£¼
+		areaDetail[7][0] = "ê´‘ì‚°êµ¬";
+		areaDetail[7][1] = "ë™êµ¬/ë‚¨êµ¬";
+		areaDetail[7][2] = "ë¶êµ¬";
+		areaDetail[7][3] = "ì„œêµ¬";
 
-		//°æ»ó
-		areaDetail[12][0]= "°ÅÁ¦"; 
-		areaDetail[12][1]= "°æÁÖ"; 
-		areaDetail[12][2]= "±¸¹Ì"; 
-		areaDetail[12][3]= "¾Èµ¿"; 
-		areaDetail[12][4]= "¿ïÁø"; 
-		areaDetail[12][5]= "ÁøÁÖ"; 
-		areaDetail[12][6]= "Ã¢¿ø"; 
-		areaDetail[12][7]= "Åë¿µ"; 
-		areaDetail[12][8]= "Æ÷Ç×"; 
-		areaDetail[12][9]= "³²ÇØ"; 
+		// ëŒ€ì „
+		areaDetail[8][0] = "ë™êµ¬/ëŒ€ë•êµ¬";
+		areaDetail[8][1] = "ìœ ì„±êµ¬";
+		areaDetail[8][2] = "ì¤‘êµ¬";
 
-		//Àü¶ó
-		areaDetail[13][0]= "±¸·Ê"; 
-		areaDetail[13][1]= "±º»ê/ºÎ¾È"; 
-		areaDetail[13][2]= "´ã¾ç"; 
-		areaDetail[13][3]= "º¸¼º"; 
-		areaDetail[13][4]= "¼øÃµ"; 
-		areaDetail[13][5]= "¿©¼ö"; 
-		areaDetail[13][6]= "ÀüÁÖ"; 
-		areaDetail[13][7]= "¸ñÆ÷"; 
-		areaDetail[13][8]= "¹«ÁÖ"; 
-		areaDetail[13][9]= "ÀÍ»ê"; 
+		// ìš¸ì‚°
+		areaDetail[9][0] = "ìš¸ì‚°";
 
-		//Á¦ÁÖ
-		areaDetail[14][0]= "Á¦ÁÖµµÀü¿ª"; 
-		areaDetail[14][1]= "¸ğ½½Æ÷/È­¼ø"; 
-		areaDetail[14][2]= "¼­±ÍÆ÷½Ã³»"; 
-		areaDetail[14][3]= "¼º»ê/¿ìµµ"; 
-		areaDetail[14][4]= "¾Ö¿ù"; 
-		areaDetail[14][5]= "¿ùÁ¤/ÇÔ´ö/±è³ç"; 
-		areaDetail[14][6]= "Á¦ÁÖ½Ã³»"; 
-		areaDetail[14][7]= "Áß¹®"; 
-		areaDetail[14][8]= "Ç¥¼±/¼ºÀ¾"; 
-		areaDetail[14][9]= "ÇÑ¸²/ÇÑ°æ"; 
-				
+		// ê°•ì›
+		areaDetail[10][0] = "ê°•ë¦‰";
+		areaDetail[10][1] = "ì†ì´ˆ";
+		areaDetail[10][2] = "ì–‘ì–‘";
+		areaDetail[10][3] = "ì›ì£¼";
+		areaDetail[10][4] = "ì¶˜ì²œ";
+		areaDetail[10][5] = "í‰ì°½";
+		areaDetail[10][6] = "í™ì²œ";
+		areaDetail[10][7] = "ë™í•´";
+		areaDetail[10][8] = "íƒœë°±/ì •ì„ ";
+		areaDetail[10][9] = "ì‚¼ì²™";
+
+		// ì¶©ì²­
+		areaDetail[11][0] = "ê³µì£¼";
+		areaDetail[11][1] = "ë‹¨ì–‘";
+		areaDetail[11][2] = "ë³´ë ¹";
+		areaDetail[11][3] = "ì•„ì‚°";
+		areaDetail[11][4] = "ì²œì•ˆì „ì—­";
+		areaDetail[11][5] = "ì²­ì£¼";
+		areaDetail[11][6] = "ì¶©ì£¼";
+		areaDetail[11][7] = "íƒœì•ˆ";
+		areaDetail[11][8] = "ë¶€ì—¬";
+		areaDetail[11][9] = "ì²œì•ˆ-ë…ë¦½ê¸°ë…ê´€";
+		areaDetail[11][10] = "ì²œì•ˆ-ë‘ì •/ì„±ì •";
+		areaDetail[11][11] = "ì²œì•ˆ-ë¶ˆë‹¹/ìŒìš©";
+		areaDetail[11][12] = "ì²œì•ˆ-ì„±í™˜/ì§ì‚°";
+		areaDetail[11][13] = "ì²œì•ˆ-ì‹ ë¶€/ì•ˆì„œ";
+		areaDetail[11][14] = "ì„œì²œ";
+
+		// ê²½ìƒ
+		areaDetail[12][0] = "ê±°ì œ";
+		areaDetail[12][1] = "ê²½ì£¼";
+		areaDetail[12][2] = "êµ¬ë¯¸";
+		areaDetail[12][3] = "ì•ˆë™";
+		areaDetail[12][4] = "ìš¸ì§„";
+		areaDetail[12][5] = "ì§„ì£¼";
+		areaDetail[12][6] = "ì°½ì›";
+		areaDetail[12][7] = "í†µì˜";
+		areaDetail[12][8] = "í¬í•­";
+		areaDetail[12][9] = "ë‚¨í•´";
+
+		// ì „ë¼
+		areaDetail[13][0] = "êµ¬ë¡€";
+		areaDetail[13][1] = "êµ°ì‚°/ë¶€ì•ˆ";
+		areaDetail[13][2] = "ë‹´ì–‘";
+		areaDetail[13][3] = "ë³´ì„±";
+		areaDetail[13][4] = "ìˆœì²œ";
+		areaDetail[13][5] = "ì—¬ìˆ˜";
+		areaDetail[13][6] = "ì „ì£¼";
+		areaDetail[13][7] = "ëª©í¬";
+		areaDetail[13][8] = "ë¬´ì£¼";
+		areaDetail[13][9] = "ìµì‚°";
+
+		// ì œì£¼
+		areaDetail[14][0] = "ì œì£¼ë„ì „ì—­";
+		areaDetail[14][1] = "ëª¨ìŠ¬í¬/í™”ìˆœ";
+		areaDetail[14][2] = "ì„œê·€í¬ì‹œë‚´";
+		areaDetail[14][3] = "ì„±ì‚°/ìš°ë„";
+		areaDetail[14][4] = "ì• ì›”";
+		areaDetail[14][5] = "ì›”ì •/í•¨ë•/ê¹€ë…•";
+		areaDetail[14][6] = "ì œì£¼ì‹œë‚´";
+		areaDetail[14][7] = "ì¤‘ë¬¸";
+		areaDetail[14][8] = "í‘œì„ /ì„±ì";
+		areaDetail[14][9] = "í•œë¦¼/í•œê²½";
 	
 		for(int i = 0 ; i < area.length ; i++)
 		{

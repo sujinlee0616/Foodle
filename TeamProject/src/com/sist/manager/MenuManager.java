@@ -16,36 +16,28 @@ public class MenuManager {
 
 	public ArrayList<MenuVO> MenuAllData(ArrayList<AreacodeVO> areacode) {
 		
-		//����Ʈ�� vo
-		//ImageVO vo = new ImageVO();
-		ArrayList<MenuVO> list = new  ArrayList<MenuVO>();
+		// 각파트의 vo
+		// ImageVO vo = new ImageVO();
+		ArrayList<MenuVO> list = new ArrayList<MenuVO>();
 		MenuVO vo;
-		
+
 		ArrayList<AreacodeVO> ac = areacode;
 		int page = 2;
 		int kategorie = 3;
-		
-		/*	 
-		//���� ������ȣ	
-		private int r_No;
-		//�޴��̸�
-		private String m_Name;
-		//�޴�����
-		private int m_Price;
-		//�޴�����
-		private String m_Info;
-		//���� ���ƿ� ����
-		private int m_UsergoodCount;
-		//������ ��õ
-		private String m_Hostgood;
-		*/
+
+		/*
+		 * //가게 고유번호 private int r_No; //메뉴이름 private String m_Name; //메뉴가격
+		 * private int m_Price; //메뉴정보 private String m_Info; //유저 좋아요 갯수
+		 * private int m_UsergoodCount; //주인장 추천 private String m_Hostgood;
+		 */
 		Element m_Name;
 		Element m_Price;
 		Element m_Info;
 		Element m_UsergoodCount;
 		Element m_Hostgood;
-		
-//		System.out.println("���� ī�װ� ��ȣ : "+ (z+1)  + ",������������ȣ : " + (j+1) +",����������ȣ : "+(i+1));
+
+		// System.out.println("현재 카테고리 번호 : "+ (z+1) + ",현재페이지번호 : " + (j+1)
+		// +",현재지역번호 : "+(i+1));
 		for(int i = 0 ; i < ac.size(); i++)
 		{
 			for(int j = 0 ; j < page ; j++)
@@ -64,7 +56,7 @@ public class MenuManager {
 						
 			
 						System.out.println(mLink);
-						//�̹��� �Ľ�
+						//이미지 파싱
 						int count = 0;
 						while (true) {
 							vo = new MenuVO();
@@ -72,7 +64,7 @@ public class MenuManager {
 							vo.setR_No(((z) + ((j)*kategorie) + ((i)*(page*kategorie))));
 							
 							try {
-								// http://www.menupan.com/restaurant/onepage.asp?acode=T168356 (¹�c �c�� ?c��� ��µ� ?)
+								// http://www.menupan.com/restaurant/onepage.asp?acode=T168356 (쨔c c가 ?c라고 출력됨 ?)
 								m_Name = doc2.select("span.mTitle input").get(count);
 								vo.setM_Name(m_Name.attr("value"));
 							} catch (Exception ex) {break;}
@@ -88,7 +80,7 @@ public class MenuManager {
 								m_Info = doc2.select("span.mDetail").get(count);
 								vo.setM_Info(m_Info.text());
 							} catch (Exception ex) {
-								vo.setM_Info("����");
+								vo.setM_Info("없음");
 							}
 							try {
 								m_UsergoodCount = doc2.select("p.good").get(count);
@@ -98,7 +90,7 @@ public class MenuManager {
 								m_Hostgood = doc2.select("span.ic_recom1 img").get(count);
 								vo.setM_Hostgood(m_Hostgood.attr("alt"));
 							} catch (Exception ex) {
-								vo.setM_Hostgood("����");
+								vo.setM_Hostgood("없음");
 							}
 							list.add(vo);
 							count++;
@@ -123,12 +115,12 @@ public class MenuManager {
 		
 		for(int i = 0; i < list.size() ; i++)
 		{
-			System.out.printf("���� ���� ��ȣ : "+list.get(i).getR_No()+"     ");
-			System.out.printf("�޴� �̸� : "+list.get(i).getM_Name()+"     ");
-			System.out.printf("�޴� ���� : "+list.get(i).getM_Price()+"     ");
-			System.out.printf("�޴� ���� : "+list.get(i).getM_Info()+"     ");
-			System.out.printf("���� ���ƿ� ���� : "+list.get(i).getM_UsergoodCount()+"     ");
-			System.out.printf("���� ��õ : "+list.get(i).getM_Hostgood()+"     ");
+			System.out.printf("가게 고유 번호 : "+list.get(i).getR_No()+"     ");
+			System.out.printf("메뉴 이름 : "+list.get(i).getM_Name()+"     ");
+			System.out.printf("메뉴 가격 : "+list.get(i).getM_Price()+"     ");
+			System.out.printf("메뉴 정보 : "+list.get(i).getM_Info()+"     ");
+			System.out.printf("유저 좋아요 숫자 : "+list.get(i).getM_UsergoodCount()+"     ");
+			System.out.printf("주인 추천 : "+list.get(i).getM_Hostgood()+"     ");
 			System.out.println();
 		}
 	}

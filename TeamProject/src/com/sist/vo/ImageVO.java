@@ -2,14 +2,12 @@ package com.sist.vo;
 
 public class ImageVO {
 
-	//°¡°Ô °íÀ¯¹øÈ£
+	// ê°€ê²Œ ê³ ìœ ë²ˆí˜¸
 	private int r_No;
-	//ÀÌ¹ÌÁö ÀÌ¸§
+	// ì´ë¯¸ì§€ ì´ë¦„
 	private String i_Name;
-	//ÀÌ¹ÌÁö ¸µÅ©
+	// ì´ë¯¸ì§€ ë§í¬
 	private String i_Link;
-	
-	
 	
 	public int getR_No() {
 		return r_No;

@@ -1,9 +1,9 @@
 package com.sist.vo;
 
 public class DetailThemaVO {
-	//���׸�(ex.���ΰ��Բ�,ģ�����Բ�,�ܱ��ΰ��Բ�...)
+	//상세테마(ex.연인과함께,친구와함께,외국인과함께...)
 	private String t_DetailThema;
-	//�׸�����(ex.�����ܽ�,��߷�,����ġ/ȸ��/����,����Բ����)
+	//테마정보(ex.가족외식,상견례,돌잔치/회갑/생일,어른과함께라면)
 	private String t_Info;
 	
 	
