@@ -1,7 +1,5 @@
 package com.sist.vo;
 
-
-
 public class InfoThemaVO {
 	private int r_No;
 	private String r_Thema;

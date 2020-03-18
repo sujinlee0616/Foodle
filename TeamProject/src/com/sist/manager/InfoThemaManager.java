@@ -2,6 +2,7 @@ package com.sist.manager;
 
 import java.util.*;
 
+import com.sist.dao.InfoThemeDAO;
 import com.sist.manager.*;
 import com.sist.vo.*;
 
@@ -12,6 +13,8 @@ import org.jsoup.select.Elements;
 
 
 public class InfoThemaManager {
+	
+	InfoThemeDAO dao = new InfoThemeDAO();
 
 	public ArrayList<InfoThemaVO> InfoThemaAllData(ArrayList<AreacodeVO> areacode) {
 		
@@ -47,21 +50,25 @@ public class InfoThemaManager {
 						
 						int count = 0;
 						while(true)
-						try
 						{
-							vo = new InfoThemaVO();
-							vo.setR_No(((z) + ((j)*kategorie) + ((i)*(page*kategorie))));
-									
-							// 테마 넣는 부분
-							Element R_Thema = doc2.select("dd.Theme a").get(count);
-							vo.setR_Thema(R_Thema.text());
+							try
+							{
+								vo = new InfoThemaVO();
+								vo.setR_No(((z) + ((j)*kategorie) + ((i)*(page*kategorie))));
+										
+								// 테마 넣는 부분
+								// rno=1, rthema=aaa,bbb,ccc... 이렇게 하려면 for문 하나 더 만들어야 할듯. 
+								Element R_Thema = doc2.select("dd.Theme a").get(count);
+								vo.setR_Thema(R_Thema.text());
+								
+								dao.resThemeInsert(vo);
+								count++;
+								Thread.sleep(1000);
+								
+								
+							}catch(Exception ex) {break;}	
+						}
 							
-							list.add(vo);
-							count++;
-							
-							Thread.sleep(1000);
-							
-						}catch(Exception ex) {break;}		
 					}
 				}
 				catch(Exception ex)	{ex.printStackTrace();}
@@ -71,19 +78,18 @@ public class InfoThemaManager {
 	}
 	public static void main(String[] args) {
 	
-		
-		
 		InfoThemaManager a = new InfoThemaManager();
 		AreacodeManager b = new AreacodeManager();
+	
+		a.InfoThemaAllData(b.AreacodeAllData());
 		
-		ArrayList<InfoThemaVO> list = new  ArrayList<InfoThemaVO>();
-		list = a.InfoThemaAllData(b.AreacodeAllData());
 		
-		for(int i = 0 ; i < list.size() ; i++)
+		System.out.println("========================= END =========================");
+		/*for(int i = 0 ; i < list.size() ; i++)
 		{
 			System.out.println(list.get(i).getR_No());
 			System.out.println(list.get(i).getR_Thema());
 		}
-		
+		*/
 	}
 }
