@@ -44,14 +44,17 @@ public class InfoThemeDAO {
 		try 
 		{
 			getConnection();
+			/*String sql="INSERT INTO infoThema VALUES("
+					+"(SELECT NVL(MAX(rno)+1,1) FROM infoThema),?)";*/
 			String sql="INSERT INTO infoThema VALUES("
-					+"(SELECT NVL(MAX(mno)+1,1) FROM music_genie),?)";
+					+"?,?)";
 			/* <infoThema 테이블>
 		    RNO    NOT NULL NUMBER       
 			RTHEMA          VARCHAR2(50) 
 			 */			
 			ps=conn.prepareStatement(sql);
-			ps.setString(1, vo.getR_Thema());
+			ps.setInt(1, vo.getR_No());
+			ps.setString(2, vo.getR_Thema());
 			ps.executeUpdate();
 			
 		} 
