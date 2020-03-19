@@ -1,16 +1,28 @@
 package com.sist.manager;
 
 import java.util.*;
+import com.sist.dao.*;
 import com.sist.vo.*;
+
 
 public class ThemaManager {
 
-	
+	//MainThemaVO를 ArrayList로 만들어서 각각의 vo가 리스트로 받을 수 있도록 만듬!
+	//MainThemaAllData() 메소드는  3개의 변수를 각각 ArrayList로 받을 예정!
+	//tempList.add("상황별|가족모임|어떤 가족모임 장소를 찾고 계신가요?");
+	//				값 1		값2			값3
 	public ArrayList<MainThemaVO> MainThemaAllData() {
+		
+		//MainThemaVO를 ArrayList로 list객체를 만들고
 		ArrayList<MainThemaVO> list = new ArrayList<MainThemaVO>();
+		
+		//tempList를 ArrayList로 따로 만든다!
+		//ArrayList의 tempList객체를 만들어준다.
+		//tempList에 값을 넣어주고 잘라진 값을 원래 ArrayList에 넣을 예정!
 		ArrayList<String> tempList = new ArrayList<String>();
 		
-
+		
+		//tempList에 값을 넣어준다.
 		tempList.add("상황별|가족모임|어떤 가족모임 장소를 찾고 계신가요?");
 		tempList.add("상황별|연인과 함께|연인에게 감동을 선사해드려요");
 		tempList.add("상황별|친구와 함께|어떤 친구와 함께 가실 건가요?");
@@ -23,8 +35,8 @@ public class ThemaManager {
 		
 		tempList.add("메뉴별|고급음식점|미식가가 엄선하여 추천하는 최고급 맛집");
 		tempList.add("메뉴별|가성비 좋은 맛집|저예산, 고효율! 널 사랑하지 않을 수 없다");
-		tempList.add("메뉴별|유러피안 다이닝	|'진짜 제대로' 하는 곳 의외로 찾기 힘든 유러피안 다이닝");
-		tempList.add("메뉴별|아메리칸 다이닝	|단순하지만 강렬한 한방이 있다! 아메리칸푸드");
+		tempList.add("메뉴별|유러피안 다이닝|'진짜 제대로' 하는 곳 의외로 찾기 힘든 유러피안 다이닝");
+		tempList.add("메뉴별|아메리칸 다이닝|단순하지만 강렬한 한방이 있다! 아메리칸푸드");
 		tempList.add("메뉴별|동남아&인디안 밥|비행기티켓 없이 당장 떠날 수 있는 동남아&인도 여행");
 		tempList.add("메뉴별|코스요리|어떤 코스요리를 찾으세요?");
 		tempList.add("메뉴별|뷔페|메뉴 고민될 때 모두의 취향을 충족시켜주는 최고의 장소!");
@@ -65,30 +77,63 @@ public class ThemaManager {
 		tempList.add("스페셜|서초구 추천맛집|서초구청과 함께 까다롭게 검증한 맛집!");
 		
 		
-		for(int i = 0 ; i < tempList.size() ; i++)
+		// 한개의 문자열을 for문을 돌려서 문장을 3개로 자를예정 
+		// 자르는 동시에 첫번째 값은 t_MainThema에 arraylist로 들어가고
+		// 자르는 동시에 두번째 값은 t_DetailThema에 arraylist로 들어가고
+		// 자르는 동시에 세번째 값은 t_Info 에 arraylist로 들어간다.
+		
+		for(int i=0 ; i<tempList.size() ; i++)
 		{
+			//MainThemaVO 객체를 생성하여..
 			MainThemaVO vo = new MainThemaVO();
-			vo.setT_DetailThema(tempList.get(i).substring(0,tempList.get(i).indexOf("|")));
-			vo.setT_MainThema(tempList.get(i).substring((tempList.get(i).indexOf("|")+1),(tempList.get(i).lastIndexOf("|"))));
+			
+			/*
+			 * private String t_MainThema;  첫번째 값! => 스페셜
+			   private String t_DetailThema; 두번째 값! => 서초구 추천맛집
+			   private String t_Info; 세번째 값! => 서초구청과 함께 까다롭게 검증한 맛집!
+			 */
+			
+			//vo에 tempList의 i번째의 subString(0, indexOf("|")) 
+			//subString을 이용하여 i번째 값을 0에서 indexOf("|") => |앞자리까지 자르기  
+			//vo.setT_DetailThema(tempList.get(i).substring(0,tempList.get(i).indexOf("|")));
+			//new
+			vo.setT_MainThema(tempList.get(i).substring(0,tempList.get(i).indexOf("|")));
+			
+			
+			//tempList에서 두번쨰 값 자르기
+			//vo.setT_MainThema(tempList.get(i).substring((tempList.get(i).indexOf("|")+1),(tempList.get(i).lastIndexOf("|"))));
+			//new
+			vo.setT_DetailThema(tempList.get(i).substring((tempList.get(i).indexOf("|")+1),(tempList.get(i).lastIndexOf("|"))));
+			
+			
+			//tempList에서 세번째값 자르기
 			vo.setT_Info(tempList.get(i).substring(tempList.get(i).lastIndexOf("|")+1));
-			list.add(vo);			
+			
+			
+			// 각각 얻어진 vo를 list에 담기!!
+			list.add(vo);
+			
 		}
+		
+		//리턴 list!
 		return list;
 	}
 	
 	
 	
 	public ArrayList<DetailThemaVO> DetailThemaAllData() {
+		
 		ArrayList<DetailThemaVO> list = new ArrayList<DetailThemaVO>();
+		
 		ArrayList<String> tempList = new ArrayList<String>();
 	
-
+		
 		tempList.add("가족모임|가족외식,상견례,돌잔치/회갑/생일,어른과 함께라면,아이와 함께라면");
 		tempList.add("연인과 함께|소개팅,일상데이트,특별한 날엔");
-		tempList.add("친구와 함께	|마시는 친구와 함께,술 못마시는 친구와 함께");
+		tempList.add("친구와 함께|마시는 친구와 함께,술 못마시는 친구와 함께");
 		tempList.add("외국인과 함께|외국 현지 음식(for 외국인),전통 한국 음식(for 외국인)");
 		tempList.add("직장인이라면|점심식사,접대,송년/신년회");
-		tempList.add("야심한 밤에	|24시간 맛집");
+		tempList.add("야심한 밤에 |24시간 맛집");
 		tempList.add("포장&배달|배달 가능,포장 가능");
 		tempList.add("날씨에 따라|더운날,비오는날");
 		tempList.add("공간에 따라|브런치,야외테라스,전망 좋은 곳,드라이브,주차공간");
@@ -123,7 +168,7 @@ public class ThemaManager {
 		tempList.add("특별한 날, 특별한 데이트|발렌타인&화이트데이,블랙데이");
 		tempList.add("고메위크|고메위크 2015");
 		tempList.add("전국 야구장|광주기아챔피언스필드,대구야구장,대전한밭야구장,목동야구장,부산사직야구장,수원KT위즈파크,인천문학야구장,잠실야구장,창원마산야구장,청주야구장");
-		tempList.add("전국 스키장	|곤지암 리조트,대명 비발디파크,덕유산 리조트,베어스타운 리조트,수안보 이글벨리리조트,스타힐 리조트,알펜시아/용평/휘닉스,양지파인 리조트,엘리시안 강촌,지산 포레스트 리조트,하이원/오투 리조트,한솔 오크밸리");
+		tempList.add("전국 스키장|곤지암 리조트,대명 비발디파크,덕유산 리조트,베어스타운 리조트,수안보 이글벨리리조트,스타힐 리조트,알펜시아/용평/휘닉스,양지파인 리조트,엘리시안 강촌,지산 포레스트 리조트,하이원/오투 리조트,한솔 오크밸리");
 		tempList.add("봄축제-벚꽃축제|강릉 경포대 벚꽃축제,구례 섬진강 벚꽃축제,대구 별빛벚꽃축제,대구 팔공산 벚꽃축제,서울 석촌호수벚꽃축제,서울 여의도 봄꽃축제,제주 왕벚꽃축제,창원 진해군항제");
 		tempList.add("봄축제 - 봄꽃축제|강화 진달래축제,고양 국제꽃박람회,구례 산수유꽃축제,서귀포 유채꽃축제,양평 산수유한우축제,에버랜드 튤립축제,여수 진달래축제,이천 산수유꽃축제,제주 튤립축제,태안 세계튤립축제");
 		tempList.add("봄축제 - 전통/문화체험|강릉 단오제,담양 대나무축제,대구 약령한방문화축제,서울 연등축제,여주 도자기축제,울산 옹기축제,이천 도자기축제,전주 한지문화축제,제주 가파도 청보리축제,제주 들불축제,춘천 마임축제");
@@ -135,18 +180,48 @@ public class ThemaManager {
 		tempList.add("해돋이 명소|강릉 정동진 해돋이축제,여수 향일암 일출제,울산 간절곶 해맞이축제,제주 성산 일출축제,포항 호미곶 해맞이축전,부산 해맞이축제");
 		tempList.add("LG U+ 추천맛집|LG U+ 추천맛집");
 		tempList.add("서초구 추천맛집|YUMMY서초 2015년판");
-			
-		for(int i = 0 ; i < tempList.size() ; i++)
+		
+		
+		//값을 자르기!
+		for(int i=0; i<tempList.size(); i++)
 		{
 			DetailThemaVO vo = new DetailThemaVO();
+
 			vo.setT_DetailThema(tempList.get(i).substring(0,tempList.get(i).indexOf("|")));
-			vo.setT_Info(tempList.get(i).substring((tempList.get(i).indexOf("|"))+1));
-			list.add(vo);	
+			
+			//System.out.println(i + tempList.get(i).substring(0,tempList.get(i).indexOf("|")));
+			
+			//vo.setT_Info(tempList.get(i).substring((tempList.get(i).indexOf("|"))+1));
+			
+		
+			String temp = tempList.get(i).substring((tempList.get(i).indexOf("|"))+1);
+			
+			
+			StringTokenizer str1 = new StringTokenizer(temp, ",");
+			
+			
+			while(str1.hasMoreTokens())
+			{
+				
+				String token = str1.nextToken();
+			
+				//System.out.println(i+"번째: "+token);
+				
+				vo.setT_Info(token);
+				
+			    list.add(vo);	  
+			}
+			
 		}
 		return list;
 	}
-	/*
+	
+	
+	
+	
 	public static void main(String[] args) {
+		
+		/*
 		ThemaManager tm = new ThemaManager();
 		ArrayList<MainThemaVO> list1 = new  ArrayList<MainThemaVO>();
 		ArrayList<DetailThemaVO> list2 = new  ArrayList<DetailThemaVO>();
@@ -155,18 +230,105 @@ public class ThemaManager {
 		
 		for(int i = 0; i < list1.size() ; i++)
 		{
-			System.out.println(list1.get(i).getT_DetailThema());
 			System.out.println(list1.get(i).getT_MainThema());
+			System.out.println(list1.get(i).getT_DetailThema());
 			System.out.println(list1.get(i).getT_Info());
 			System.out.println();
 		}
+
 		System.out.println("====================================================================");
-		for(int i = 0; i < list1.size() ; i++)
+		
+		/*
+		for(int i = 0; i < list2.size() ; i++)
 		{
 			System.out.println(list2.get(i).getT_DetailThema());
-			System.out.println(list2.get(i).getT_Info());
+			System.out.print(list2.get(i).getT_Info());
 			System.out.println();
+		
 		}
+		
+		*/
+		
+		/*
+		
+		FoodManager fm = new FoodManager();
+		ArrayList<FoodHouseVO> list=fm.foodAllData();
+		FoodDAO dao=FoodDAO.newInstance();
+		
+		int k=1;
+		for(FoodHouseVO vo:list)
+		{
+			dao.foodHouseInsert(vo);
+			
+			System.out.println("k="+k);
+			
+			
+			try
+			{
+				Thread.sleep(100);
+				
+			}catch(Exception ex){}
+			
+			k++;
+		}
+		
+	
+		/*
+		 *
+		 *ThemaManager tm = new ThemaManager();
+		ArrayList<MainThemaVO> list = tm.MainThemaAllData();
+		//ArrayList<DetailThemaVO> list2 = new  ArrayList<DetailThemaVO>();
+		
+		
+		detailThemaDAO dao =detailThemaDAO.newInstance();
+		
+		int k=1;
+		for(MainThemaVO vo:list)
+		{
+			dao.mainThemaInsert(vo);
+			
+			System.out.println("k="+k);
+			
+			try{
+				
+				Thread.sleep(500);
+				
+			}catch(Exception ex) {}
+			
+			k++;
+		}
+		System.out.println("save end.........");
+		
+		
+		 */
+		
+		
+		ThemaManager tm = new ThemaManager();
+		//ArrayList<MainThemaVO> list = tm.MainThemaAllData();
+		ArrayList<DetailThemaVO> list2 = tm.DetailThemaAllData();
+		
+		
+		detailThemaDAO dao =detailThemaDAO.newInstance();
+		
+		int k=1; 
+		for(DetailThemaVO vo:list2)
+		{
+			
+			dao.detailThemaInsert(vo);
+			
+			System.out.println("k="+k);
+			
+			try{
+				
+				Thread.sleep(500);
+				
+			}catch(Exception ex) {}	
+			k++;
+		}
+		System.out.println("save end.........");
+		
+		
+		
 	}
-	*/
+	
 }

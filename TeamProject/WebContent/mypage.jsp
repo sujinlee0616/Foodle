@@ -21,7 +21,7 @@ String jsp="mypage_coupon1.jsp";
 
 switch(no)
 {
-case 20:
+case 15:
 	jsp="mypage_coupon1.jsp";
 	break;
 
@@ -164,7 +164,7 @@ case 20:
                                     </g>
                                 </g>
                             </svg>
-                            <h6 class="categoryName"> <a href="main.jsp?mode=10">보유 쿠폰</a></h6>
+                            <h6 class="categoryName"><a href="main.jsp?mode=10">보유 쿠폰</a></h6>
                         </div>
                     </a>
                 </div>
