@@ -22,7 +22,7 @@ public class InfoDAO {
 			ex.printStackTrace();
 		}
 	}
-
+ 
 	// 오라클 연결
 	public void getConnection() {
 		try {

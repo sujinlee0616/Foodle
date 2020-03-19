@@ -379,7 +379,7 @@ public class InfoManager {
 		}
 */
 		
-		
+		 
 //		dao.MainInfoCreate();
 //		dao.SubInfoCreate();
 //		dao.ReserveCreate();
