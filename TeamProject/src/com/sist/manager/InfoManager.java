@@ -1,41 +1,39 @@
 package com.sist.manager;
 
 import java.text.SimpleDateFormat;
+
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-
-import com.sist.dao.InfoDAO;
 import com.sist.vo.AreacodeVO;
 import com.sist.vo.ImageVO;
 import com.sist.vo.InfoVO;
 
 
-
 public class InfoManager {
+	
 	
 	public String MediaSubString(String cutchar, String fulltitle) {
 		
 		String temp ="";
-	//	StringTokenizer a = new StringTokenizer(str)
+		/*StringTokenizer a = new StringTokenizer(str);*/
 		 int i=0;
-		while(true)
+		/*while(true)
 		{
 			i++;
-		//token
-		//	temp = fulltitle.substring(0,fulltitle.indexOf(cutchar)).trim();
+			token
+			temp = fulltitle.substring(0,fulltitle.indexOf(cutchar)).trim();
 			try {
 				temp += fulltitle.substring(fulltitle.indexOf(cutchar,i),fulltitle.indexOf(cutchar,i+1)+1).trim();
 				
 			}catch(Exception ex) {
 				break;
 			}
-		}
+		}*/
 		return temp.trim();
 	}
 	
@@ -45,47 +43,51 @@ public class InfoManager {
 		InfoVO vo;
 		
 		ArrayList<AreacodeVO> ac = areacode;
-		int page = 10;
-		int kategorie = 25;
+		int page = 2;
+		int kategorie = 1;
 		
 
 
-//		//°¡°Ô ½¬´Â³¯
+
+
+
+
+//		//ê°€ê²Œ ì‰¬ëŠ”ë‚ 
 //		private String r_Holiday;
-//		//°¡°Ô ¼Ò°³
+//		//ê°€ê²Œ ì†Œê°œ
 //		private String r_Content;
-//		//°¡°Ô ÁÁ¾Æ¿ä °¹¼ö
+//		//ê°€ê²Œ ì¢‹ì•„ìš” ê°¯ìˆ˜
 //		private String r_Good;
-//		//°¡°Ô ÁÂ¼® °¹¼ö
+//		//ê°€ê²Œ ì¢Œì„ ê°¯ìˆ˜
 //		private String r_Seat;
-//		//°¡°Ô ¹æ °¹¼ö
-//		private String r_Room; 
-//		//ÁÖ·ùÆÇ¸Å ¿©ºÎ
+//		//ê°€ê²Œ ë°© ê°¯ìˆ˜
+//		private String r_Room;
+//		//ì£¼ë¥˜íŒë§¤ ì—¬ë¶€
 //		private String r_Drink;
-//		//±İ¿¬¼®Á¤º¸
+//		//ê¸ˆì—°ì„ì •ë³´
 //		private String r_Nosmoking;
-//		//¿¹¾à ¿©ºÎ
+//		//ì˜ˆì•½ ì—¬ë¶€
 //		private String r_Reserve;
-//		//È­Àå½Ç ¿©ºÎ
+//		//í™”ì¥ì‹¤ ì—¬ë¶€
 //		private String r_Restroom;
-//		//ÁÖÂ÷ ¿©ºÎ
+//		//ì£¼ì°¨ ì—¬ë¶€
 //		private String r_Park;
-//		//¹è´Ş ¿©ºÎ
+//		//ë°°ë‹¬ ì—¬ë¶€
 //		private String r_Delivery;
-//		//´©Àû ¹æ¹®ÀÚ¼ıÀÚ
+//		//ëˆ„ì  ë°©ë¬¸ììˆ«ì
 //		private int r_hit;
-//		//È¨ÆäÀÌÁö Ã³À½ ½ÃÀÛÇÑ ³¯Â¥
+//		//í™ˆí˜ì´ì§€ ì²˜ìŒ ì‹œì‘í•œ ë‚ ì§œ
 //		private Date r_Start;
-//		//°¡°ÔÁ¤º¸ ¼öÁ¤ÀÏÀÚ
+//		//ê°€ê²Œì •ë³´ ìˆ˜ì •ì¼ì
 //		private Date r_Date;
 
-//		//´©Àû ¹æ¹®ÀÚ¼ıÀÚ
+//		//ëˆ„ì  ë°©ë¬¸ììˆ«ì
 //		private int r_hit;
-//		//È¨ÆäÀÌÁö Ã³À½ ½ÃÀÛÇÑ ³¯Â¥
+//		//í™ˆí˜ì´ì§€ ì²˜ìŒ ì‹œì‘í•œ ë‚ ì§œ
 //		private Date r_Start;
-//		//°¡°Ô Áö¿ª(ex.¼­¿ï°­³²,¼­¿ï°­ºÏ...)
+//		//ê°€ê²Œ ì§€ì—­(ex.ì„œìš¸ê°•ë‚¨,ì„œìš¸ê°•ë¶...)
 //		private String r_Area;
-//		//°¡°Ô ¼¼ºÎÁö¿ª(ex.°¡·Î¼ö±æ,°­³²¿ª...)
+//		//ê°€ê²Œ ì„¸ë¶€ì§€ì—­(ex.ê°€ë¡œìˆ˜ê¸¸,ê°•ë‚¨ì—­...)
 //		private String r_AreaDetail;
 		
 		Element r_No;
@@ -98,18 +100,18 @@ public class InfoManager {
 		Element r_ScoreCount;
 //		private int r_Lowprice;	
 //		private int r_Highprice;
-		//À§¿¡ µÎ°³ ÇÕÄ£°Í
+		//ìœ„ì— ë‘ê°œ í•©ì¹œê²ƒ
 		Element r_Price;		
 //		Element r_Opentime;
 //		Element r_Closetime;
-		//À§¿¡ µÎ°³ ÇÕÄ£°Í
+		//ìœ„ì— ë‘ê°œ í•©ì¹œê²ƒ
 		Element r_Businesstime;
 		Element r_Holiday;
 		Element r_Content;
 		Element r_Good;
 //		Element r_Seat;
 //		Element r_Room;
-		//À§¿¡µÎ°³ ÇÕÄ£°Í
+		//ìœ„ì—ë‘ê°œ í•©ì¹œê²ƒ
 		Element r_Seat_Room;		
 		Element r_Drink;
 		Element r_Nosmoking;
@@ -128,9 +130,9 @@ public class InfoManager {
 		Element r_Date;
 
 		
-//		System.out.println("ÇöÀç Ä«Å×°í¸® ¹øÈ£ : "+ (z+1)  + ",ÇöÀçÆäÀÌÁö¹øÈ£ : " + (j+1) +",ÇöÀçÁö¿ª¹øÈ£ : "+(i+1));
-		//i < ac.size()·Î º¯°æ
-		for(int i = 0 ; i < ac.size() ; i++)
+//		System.out.println("í˜„ì¬ ì¹´í…Œê³ ë¦¬ ë²ˆí˜¸ : "+ (z+1)  + ",í˜„ì¬í˜ì´ì§€ë²ˆí˜¸ : " + (j+1) +",í˜„ì¬ì§€ì—­ë²ˆí˜¸ : "+(i+1));
+		//i < ac.size()ë¡œ ë³€ê²½
+		for(int i = 0 ; i < 2 ; i++)
 		{
 			for(int j = 0 ; j < page ; j++)
 			{
@@ -148,66 +150,61 @@ public class InfoManager {
 							
 							vo = new InfoVO();
 							
-							//°¡°Ô °íÀ¯¹øÈ£
-							System.out.println(i);
-							System.out.println(j);
-							System.out.println(z);
-							System.out.println();
-							
+							//ê°€ê²Œ ê³ ìœ ë²ˆí˜¸
 							vo.setR_No(((z) + ((j)*kategorie) + ((i)*(page*kategorie))));
-							//°¡°ÔÀÌ¸§
+							//ê°€ê²Œì´ë¦„
 							try 
 							{		
 								r_Name = doc2.select("span.storeName").get(0);
 								vo.setR_Name(r_Name.text());						
 							} catch (Exception ex) {break;}
-							//°¡°Ô¾÷Á¾
+							//ê°€ê²Œì—…ì¢…
 							try {
 							r_Foodtype = doc2.select("dl.restType dd.type").get(0);
 							if(r_Foodtype.text().indexOf("-") != -1)
 								vo.setR_Foodtype(r_Foodtype.text().substring(0,r_Foodtype.text().indexOf("-")));
 							else
 								vo.setR_Foodtype(r_Foodtype.text());
-							}catch(Exception ex) {vo.setR_Foodtype("±âÅ¸");}
-							//°¡°Ô ÀüÈ­¹øÈ£
+							}catch(Exception ex) {vo.setR_Foodtype("ê¸°íƒ€");}
+							//ê°€ê²Œ ì „í™”ë²ˆí˜¸
 							try {
 							r_Tel = doc2.select("dl.restTel dd.tel1").get(0);
 							vo.setR_Tel(r_Tel.text());
-							}catch(Exception ex) {vo.setR_Tel("¾øÀ½");}					
-							//°¡°Ô ±¸ÁÖ¼Ò
+							}catch(Exception ex) {vo.setR_Tel("ì—†ìŒ");}					
+							//ê°€ê²Œ êµ¬ì£¼ì†Œ
 							try {
 								r_Addr1 = doc2.select("dl.restAdd dd.add1").get(0);
 								vo.setR_Addr1(r_Addr1.text());
-							}catch (Exception ex) {vo.setR_Addr1("¾øÀ½");}
-							//°¡°Ô ½ÅÁÖ¼Ò
+							}catch (Exception ex) {vo.setR_Addr1("ì—†ìŒ");}
+							//ê°€ê²Œ ì‹ ì£¼ì†Œ
 							try{
 								r_Addr2 = doc2.select("dl.restAdd dd.add2").get(0);
 								vo.setR_Addr2(r_Addr2.text());
 							}catch (Exception ex) {vo.setR_Addr1("");}
-							//°¡°Ô ÆòÁ¡
+							//ê°€ê²Œ í‰ì 
 							try {
 								r_Score = doc2.select("dl.restGrade span.total").get(0);
 								vo.setR_Score(Double.parseDouble(r_Score.text()));
 							}catch(Exception ex) {vo.setR_Score(0);}
-							//°¡°ÔÆòÁ¡ Æò°¡ÀÎ¿ø¼ö
+							//ê°€ê²Œí‰ì  í‰ê°€ì¸ì›ìˆ˜
 							try {
 								r_ScoreCount = doc2.select("dl.restGrade span.count").get(0);
-								String[] temp = r_ScoreCount.text().split("¸í");
+								String[] temp = r_ScoreCount.text().split("ëª…");
 								vo.setR_ScoreCount(Integer.parseInt(temp[0]));
 							}catch(Exception ex) {vo.setR_ScoreCount(0);}
-							//ÃßÃµ°¡°İ´ë(³ôÀ½)						
-							//ÃßÃµ°¡°İ´ë(³·À½)
+							//ì¶”ì²œê°€ê²©ëŒ€(ë†’ìŒ)						
+							//ì¶”ì²œê°€ê²©ëŒ€(ë‚®ìŒ)
 							try {
 								r_Price = doc2.select("p.price strong").get(0);
 								vo.setR_Lowprice(r_Price.text());
-							}catch(Exception ex) {vo.setR_Lowprice("¾øÀ½");}
+							}catch(Exception ex) {vo.setR_Lowprice("ì—†ìŒ");}
 							try {
 								r_Price = doc2.select("p.price strong").get(1);
 								vo.setR_Highprice(r_Price.text());								
-							}catch(Exception ex) {vo.setR_Highprice("¾øÀ½");}	
+							}catch(Exception ex) {vo.setR_Highprice("ì—†ìŒ");}	
 							
-							//°¡°Ô ¿ÀÇÂ½Ã°£
-							//°¡°Ô ´İ´Â½Ã°£			
+							//ê°€ê²Œ ì˜¤í”ˆì‹œê°„
+							//ê°€ê²Œ ë‹«ëŠ”ì‹œê°„			
 							try {
 								r_Businesstime = doc2.select("ul.tableTopA dd.txt2").get(0);
 
@@ -215,94 +212,96 @@ public class InfoManager {
 								vo.setR_Closetime(r_Businesstime.text().substring(r_Businesstime.text().indexOf("~")+1).trim());
 							}catch(Exception ex) 
 							{
-								vo.setR_Opentime("¾øÀ½");
-								vo.setR_Closetime("¾øÀ½");
+								vo.setR_Opentime("ì—†ìŒ");
+								vo.setR_Closetime("ì—†ìŒ");
 							}	
-							//°¡°Ô ½¬´Â³¯
+							//ê°€ê²Œ ì‰¬ëŠ”ë‚ 
 							try {
 							r_Holiday = doc2.select("ul.tableTopA dd.txt1").get(0);
 							vo.setR_Holiday(r_Holiday.text());
 							}catch(Exception ex) {
-								vo.setR_Holiday("¾øÀ½");}
-							//°¡°Ô ¼³¸í
+								vo.setR_Holiday("ì—†ìŒ");}
+							//ê°€ê²Œ ì„¤ëª…
 							try {
 								r_Content = doc2.select("div#info_ps_f").get(0);
 								vo.setR_Content(r_Content.text());
-							}catch(Exception ex) {vo.setR_Content("¾øÀ½");}
+							}catch(Exception ex) {vo.setR_Content("ì—†ìŒ");}
 							
-							//°¡°Ô ÁÁ¾Æ¿ä °¹¼ö
+							//ê°€ê²Œ ì¢‹ì•„ìš” ê°¯ìˆ˜
 							try {
 								r_Good = doc2.select("dl.btnGood span").get(0);
 								vo.setR_Good(r_Good.text());
 							}catch(Exception ex) {}
 							
-							//°¡°Ô ÁÂ¼® °¹¼ö
+							//ê°€ê²Œ ì¢Œì„ ê°¯ìˆ˜
 							try {
 								r_Seat_Room = doc2.select("ul.tableLR dd").get(0);
 								String[] temp2 = r_Seat_Room.text().split("/");						
 								vo.setR_Seat(temp2[0].trim());
 							}catch(Exception ex) {
-								vo.setR_Seat("¾øÀ½");
+								vo.setR_Seat("ì—†ìŒ");
 							}
-							//°¡°Ô ¹æ °¹¼ö
+							//ê°€ê²Œ ë°© ê°¯ìˆ˜
 							try {
 								r_Seat_Room = doc2.select("ul.tableLR dd").get(0);
 								String[] temp2 = r_Seat_Room.text().split("/");	
 								vo.setR_Room(temp2[1].trim());			
 							}catch(Exception ex) {
-								vo.setR_Room("¹æ: ¹æ¾øÀ½");
+								vo.setR_Room("ë°©: ë°©ì—†ìŒ");
 							}
 							///////////////////////
-							vo.setR_Drink("¾øÀ½");
-							vo.setR_Nosmoking("¾øÀ½");
-							vo.setR_Reserve("¾øÀ½");
-							vo.setR_Restroom("¾øÀ½");
-							vo.setR_Park("¾øÀ½");
-							vo.setR_Other("¾øÀ½");
-							vo.setR_Delivery("¾øÀ½");
+							vo.setR_Drink("ì—†ìŒ");
+							vo.setR_Nosmoking("ì—†ìŒ");
+							vo.setR_Reserve("ì—†ìŒ");
+							vo.setR_Restroom("ì—†ìŒ");
+							vo.setR_Park("ì—†ìŒ");
+							vo.setR_Other("ì—†ìŒ");
+							vo.setR_Delivery("ì—†ìŒ");
 							//////////////////////
 							for(int count = 1 ; count < 9 ; count++)
 							{
 								try 
 								{
 									
-									if (doc2.select("ul.tableLR dt").get(count).text().equals("ÁÖ·ùÆÇ¸Å")) 
+									if (doc2.select("ul.tableLR dt").get(count).text().equals("ì£¼ë¥˜íŒë§¤")) 
 										vo.setR_Drink(doc2.select("ul.tableLR dd").get(count).text());
 									
-									else if(doc2.select("ul.tableLR dt").get(count).text().equals("±İ¿¬¼®"))
+									else if(doc2.select("ul.tableLR dt").get(count).text().equals("ê¸ˆì—°ì„"))
 										vo.setR_Nosmoking(doc2.select("ul.tableLR dd").get(count).text());
 									
-									else if (doc2.select("ul.tableLR dt").get(count).text().equals("¿¹¾àÁ¤º¸")) 
+									else if (doc2.select("ul.tableLR dt").get(count).text().equals("ì˜ˆì•½ì •ë³´")) 
 										vo.setR_Reserve(doc2.select("ul.tableLR dd").get(count).text());
 										
-									else if (doc2.select("ul.tableLR dt").get(count).text().equals("È­Àå½Ç")) 
+									else if (doc2.select("ul.tableLR dt").get(count).text().equals("í™”ì¥ì‹¤")) 
 										vo.setR_Restroom(doc2.select("ul.tableLR dd").get(count).text());
 										
-									else if (doc2.select("ul.tableLR dt").get(count).text().equals("ÁÖÂ÷")) 
+									else if (doc2.select("ul.tableLR dt").get(count).text().equals("ì£¼ì°¨")) 
 										vo.setR_Park(doc2.select("ul.tableLR dd").get(count).text());
 									
-									else if (doc2.select("ul.tableLR dt").get(count).text().equals("±âÅ¸½Ã¼³")) 
+									else if (doc2.select("ul.tableLR dt").get(count).text().equals("ê¸°íƒ€ì‹œì„¤")) 
 										vo.setR_Other(doc2.select("ul.tableLR dd").get(count).text());
 											
-									else if (doc2.select("ul.tableLR dt").get(count).text().equals("¹è´Ş/Æ÷Àå")) 
+									else if (doc2.select("ul.tableLR dt").get(count).text().equals("ë°°ë‹¬/í¬ì¥")) 
 										vo.setR_Delivery(doc2.select("ul.tableLR dd").get(count).text());
+								
 								}catch(Exception ex){break;}
+							
 							}	
-							//´©Àû ¹æ¹®ÀÚ¼ıÀÚ
+							//ëˆ„ì  ë°©ë¬¸ììˆ«ì
 							try {
 								
 								r_hit = doc2.select("dl.visitor dd").get(0);
 								vo.setR_hit(r_hit.text().substring(0,(r_hit.text().length()-1)));						
 							}catch(Exception ex) {vo.setR_hit("0");}
-							//È¨ÆäÀÌÁö Ã³À½ ½ÃÀÛÇÑ ³¯Â¥
+							//í™ˆí˜ì´ì§€ ì²˜ìŒ ì‹œì‘í•œ ë‚ ì§œ
 							try {
 								r_Start = doc2.select("dl.visitor dd").get(1);
-								vo.setR_Start(r_Start.text().substring(0,(r_Start.text().indexOf("ÀÌ"))));
-							//ÃÊ±â°ªÀ» 2014.01.01·Î ÇÔ
+								vo.setR_Start(r_Start.text().substring(0,(r_Start.text().indexOf("ì´"))));
+							//ì´ˆê¸°ê°’ì„ 2014.01.01ë¡œ í•¨
 							}catch(Exception ex) {vo.setR_Start("2014.01.01");}
-							///////////////////// ¼öÁ¤ ÇÊ¿ä
+							///////////////////// ìˆ˜ì • í•„ìš”
 							
-							String[] area = {"¼­¿ï °­³²|ss","¼­¿ï °­ºÏ|sn","°æ±â ³²ºÎ|cs","°æ±â ºÏºÎ|cn","ÀÎÃµ|ic","ºÎ»ê|bs","´ë±¸|dg","±¤ÁÖ|gj","´ëÀü|dj","¿ï»ê|us","°­¿ø|gw","ÃæÃ»|cc","°æ»ó|gs","Àü¶ó|jl","Á¦ÁÖ|jj"};
+							String[] area = {"ì„œìš¸ ê°•ë‚¨|ss","ì„œìš¸ ê°•ë¶|sn","ê²½ê¸° ë‚¨ë¶€|cs","ê²½ê¸° ë¶ë¶€|cn","ì¸ì²œ|ic","ë¶€ì‚°|bs","ëŒ€êµ¬|dg","ê´‘ì£¼|gj","ëŒ€ì „|dj","ìš¸ì‚°|us","ê°•ì›|gw","ì¶©ì²­|cc","ê²½ìƒ|gs","ì „ë¼|jl","ì œì£¼|jj"};
 
 						
 							for(int count = 0 ; count < area.length ; count++)
@@ -323,7 +322,6 @@ public class InfoManager {
 								}
 							}
 							list.add(vo);
-							Thread.sleep(1000);
 						}
 				}catch(Exception ex) {ex.printStackTrace();}
 			}
@@ -336,12 +334,14 @@ public class InfoManager {
 		
 		InfoManager ifm = new InfoManager();
 		AreacodeManager am = new AreacodeManager();
-		InfoDAO dao = new InfoDAO();
+		
 		
 		ArrayList<InfoVO> list = new  ArrayList<InfoVO>();
-			
+		
+		System.out.println(ifm.MediaSubString(",", "aaa,bbb,ccc"));
+		/*
 		list = ifm.InfoAllData(am.AreacodeAllData());
-/*		
+		
 		for(int i = 0 ; i < list.size() ; i++)
 		{
 			System.out.println(list.get(i).getR_No());
@@ -377,22 +377,6 @@ public class InfoManager {
 			
 			System.out.println();
 		}
-*/
-		
-		 
-//		dao.MainInfoCreate();
-//		dao.SubInfoCreate();
-//		dao.ReserveCreate();
-//		
-//		
-//		for(int i = 0 ; i < list.size() ; i++)
-//		{
-//			try{
-//			dao.MainInfoInsert(list.get(i));
-//			dao.SubInfoInsert(list.get(i));
-//			dao.ReserveInfoInsert(list.get(i));
-//			Thread.sleep(1000);
-//			}catch(Exception ex){}
-//		}
+		*/
 	}
 }
