@@ -1,8 +1,10 @@
 package com.sist.dao;
+
 import com.sist.manager.*;
 import java.util.*;
 import java.sql.*;
 import com.sist.vo.*;
+
 public class AreacodeDAO {
 
 	private Connection conn; // Socket
@@ -44,6 +46,7 @@ public class AreacodeDAO {
 
 	// 기능 처리 => 추가 ==> CURD
 	public void AreacodeCreate() {
+		
 		try 
 		{
 			getConnection();
@@ -61,6 +64,7 @@ public class AreacodeDAO {
 	public void AreacodeInsert(AreacodeVO vo) {
 		try {
 			getConnection();
+			
 			String sql = "INSERT INTO areacode VALUES(?,?,?)";
 
 //			private String r_Area;
@@ -73,6 +77,7 @@ public class AreacodeDAO {
 			ps.setString(3, vo.getR_AreaDetail());
 			
 			ps.executeUpdate();
+			
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {

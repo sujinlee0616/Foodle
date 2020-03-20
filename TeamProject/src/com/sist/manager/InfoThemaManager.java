@@ -42,8 +42,9 @@ public class InfoThemaManager {
 				String url = "http://www.menupan.com/restaurant/bestrest/bestrest.asp?page="+(j+1)+"&trec=293&areacode="+ac.get(i).getA_AreaCode()+"&pt=wk";
 				Document doc =Jsoup.connect(url).get();
 				Elements link = doc.select("p.listName a");
-					for(int z = 0 ; z < kategorie ; z++)
-					{
+					
+						for(int z = 0 ; z < kategorie ; z++)
+						{
 						Element elem = link.get(z);
 						String mLink = "http://www.menupan.com" + elem.attr("href");
 						Document doc2 = Jsoup.connect(mLink).get();

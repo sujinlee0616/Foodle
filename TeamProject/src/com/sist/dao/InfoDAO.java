@@ -1,6 +1,7 @@
 package com.sist.dao;
 
 import com.sist.manager.*;
+
 import java.util.*;
 import java.sql.*;
 import java.sql.Date;
@@ -14,7 +15,7 @@ public class InfoDAO {
 	private final String URL="jdbc:oracle:thin:@211.238.142.207:1521:XE";
 	//private final String URL = "jdbc:oracle:thin:@localhost:1521:XE";
 
-	// µå¶óÀÌ¹ö µî·Ï => ÇÑ¹ø¸¸ ¼öÇà
+	// ï¿½ï¿½ï¿½ï¿½Ì¹ï¿½ ï¿½ï¿½ï¿½ => ï¿½Ñ¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	public InfoDAO() {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -23,7 +24,7 @@ public class InfoDAO {
 		}
 	}
  
-	// ¿À¶óÅ¬ ¿¬°á
+	// ï¿½ï¿½ï¿½ï¿½Å¬ ï¿½ï¿½ï¿½ï¿½
 	public void getConnection() {
 		try {
 			conn = DriverManager.getConnection(URL, "hr", "happy");
@@ -31,7 +32,7 @@ public class InfoDAO {
 		}
 	}
 
-	// ¿À¶óÅ¬ ÇØÁ¦
+	// ï¿½ï¿½ï¿½ï¿½Å¬ ï¿½ï¿½ï¿½ï¿½
 	public void disConnection() {
 		try {
 			if (ps != null)
@@ -43,6 +44,7 @@ public class InfoDAO {
 	}
 
 	public void MainInfoCreate() {
+		
 		try {
 			getConnection();
 
