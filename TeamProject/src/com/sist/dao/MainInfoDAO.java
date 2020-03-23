@@ -63,55 +63,68 @@ public class MainInfoDAO { //오라클에 연결하는 클래스
 		
 	
 		
-		public void MainInfoCreate() {
+		public void mainInfoCreate() {
 			
 			try {
+				
 				getConnection();
 
-				String sql = "CREATE TABLE Maininfo(rNo VARCHAR2(1000), rName VARCHAR2(1000),rType VARCHAR2(1000),rTel VARCHAR2(1000),"
-							+ "rScore VARCHAR2(1000),rScoreCount VARCHAR2(1000),"
-							+ "rAddr1 VARCHAR2(1000),rAddr2 VARCHAR2(1000),"
-							+ "rPwd VARCHAR2(1000),rArea VARCHAR2(1000),rAreaDetail VARCHAR2(1000))";
-				
-				
+				String sql = "CREATE TABLE mainInfo("
+							+ "rNo NUMBER,"
+							+ "rName VARCHAR2(1000),"
+							+ "rType VARCHAR2(1000),"
+							+ "rTel VARCHAR2(1000),"
+							+ "rScore NUMBER,"
+							+ "rScoreCount NUMBER,"
+							+ "rAddr1 VARCHAR2(1000),"
+							+ "rAddr2 VARCHAR2(1000),"
+							+ "rPwd VARCHAR2(1000),"
+							+ "rArea VARCHAR2(1000),"
+							+ "rAreaDetail VARCHAR2(1000))";
+								
 				ps = conn.prepareStatement(sql);
 				ps.executeQuery();
 
 			} catch (Exception ex) {
+		
 				ex.printStackTrace();
+		
 			} finally {
+				
 				disConnection();
+			
 			}
 		}
 	
 		
 		
-		
-		
 
-	public void MainInfoInsert(MainInfoVO vo) {
+	public void mainInfoInsert(MainInfoVO vo) {
 		
 		try {
+			
 			getConnection();
-			String sql = "INSERT INTO maininfo VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+			
+			String sql = "INSERT INTO mainInfo VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+			/*
+			 * String sql="INSERT INTO replyBoard(no,name,subject,content, pwd, group_id) VALUES("
+					 + "rb_no_seq.nextval,?,?,?,?,(SELECT NVL(MAX(group_id)+1,1)FROM replyBoard))";
+			 * 
+			 * 
+			 */
 			ps=conn.prepareStatement(sql);
 
-
-
-
-			ps.setString(1, String.valueOf(vo.getR_No()));
-
-			ps.setString(2, vo.getR_Name());
-			ps.setString(3, vo.getR_Type());
-			ps.setString(4, vo.getR_Tel());
-			ps.setString(5, String.valueOf(vo.getR_Score()));
-			ps.setString(6, String.valueOf(vo.getR_ScoreCount()));
-			ps.setString(7, vo.getR_Addr1());
-			ps.setString(8, vo.getR_Addr2());
+			ps.setString(1, String.valueOf(vo.getrNo()));
+			ps.setString(2, vo.getrName());
+			ps.setString(3, vo.getrType());
+			ps.setString(4, vo.getrTel());
+			ps.setString(5, String.valueOf(vo.getrScore()));
+			ps.setString(6, String.valueOf(vo.getrScoreCount()));
+			ps.setString(7, vo.getrAddr1());
+			ps.setString(8, vo.getrAddr2());
 			ps.setString(9, "1234");
-
-			ps.setString(10, vo.getR_Area());
-			ps.setString(11, vo.getR_AreaDetail());
+			ps.setString(10, vo.getrArea());
+			ps.setString(11, vo.getrAreaDetail());
 
 			ps.executeUpdate();
 

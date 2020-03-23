@@ -1,7 +1,6 @@
 package com.sist.manager;
 
 import java.text.SimpleDateFormat;
-
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -90,44 +89,44 @@ public class InfoManager {
 //		//가게 세부지역(ex.가로수길,강남역...)
 //		private String r_AreaDetail;
 		
-		Element r_No;
-		Element r_Name;
-		Element r_Foodtype;
-		Element r_Tel;
-		Element r_Addr1;
-		Element r_Addr2;
-		Element r_Score;
-		Element r_ScoreCount;
+		Element rNo;
+		Element rName;
+		Element rType;
+		Element rTel;
+		Element rAddr1;
+		Element rAddr2;
+		Element rScore;
+		Element rScoreCount;
 //		private int r_Lowprice;	
 //		private int r_Highprice;
 		//위에 두개 합친것
-		Element r_Price;		
+		Element rPrice;		
 //		Element r_Opentime;
 //		Element r_Closetime;
 		//위에 두개 합친것
-		Element r_Businesstime;
-		Element r_Holiday;
-		Element r_Content;
-		Element r_Good;
+		Element rBusinesstime;
+		Element rHoliday;
+		Element rContent;
+		Element rGood;
 //		Element r_Seat;
 //		Element r_Room;
 		//위에두개 합친것
-		Element r_Seat_Room;		
-		Element r_Drink;
-		Element r_Nosmoking;
-		Element r_Reserve;
-		Element r_Restroom;
-		Element r_Park;
-		Element r_Delivery;
-		Element r_Other;
-		Element r_Takeout;
+		Element rSeat_Room;		
+		Element rDrink;
+		Element rNosmoking;
+		Element rReserve;
+		Element rRestroom;
+		Element rPark;
+		Element rDelivery;
+		Element rOther;
+		Element rTakeout;
 		
-		Element r_hit;	
-		Element r_Start;
-		Element r_AreaDetail;
-		Element r_Area;
+		Element rhit;	
+		Element rStart;
+		Element rAreaDetail;
+		Element rArea;
 		
-		Element r_Date;
+		Element rDate;
 
 		
 //		System.out.println("현재 카테고리 번호 : "+ (z+1)  + ",현재페이지번호 : " + (j+1) +",현재지역번호 : "+(i+1));
@@ -151,112 +150,112 @@ public class InfoManager {
 							vo = new InfoVO();
 							
 							//가게 고유번호
-							vo.setR_No(((z) + ((j)*kategorie) + ((i)*(page*kategorie))));
+							vo.setrNo(((z) + ((j)*kategorie) + ((i)*(page*kategorie))));
 							//가게이름
 							try 
 							{		
-								r_Name = doc2.select("span.storeName").get(0);
-								vo.setR_Name(r_Name.text());						
+								rName = doc2.select("span.storeName").get(0);
+								vo.setrName(rName.text());						
 							} catch (Exception ex) {break;}
 							//가게업종
 							try {
-							r_Foodtype = doc2.select("dl.restType dd.type").get(0);
-							if(r_Foodtype.text().indexOf("-") != -1)
-								vo.setR_Foodtype(r_Foodtype.text().substring(0,r_Foodtype.text().indexOf("-")));
+							rType = doc2.select("dl.restType dd.type").get(0);
+							if(rType.text().indexOf("-") != -1)
+								vo.setrType(rType.text().substring(0,rType.text().indexOf("-")));
 							else
-								vo.setR_Foodtype(r_Foodtype.text());
-							}catch(Exception ex) {vo.setR_Foodtype("기타");}
+								vo.setrType(rType.text());
+							}catch(Exception ex) {vo.setrType("기타");}
 							//가게 전화번호
 							try {
-							r_Tel = doc2.select("dl.restTel dd.tel1").get(0);
-							vo.setR_Tel(r_Tel.text());
-							}catch(Exception ex) {vo.setR_Tel("없음");}					
+							rTel = doc2.select("dl.restTel dd.tel1").get(0);
+							vo.setrTel(rTel.text());
+							}catch(Exception ex) {vo.setrTel("없음");}					
 							//가게 구주소
 							try {
-								r_Addr1 = doc2.select("dl.restAdd dd.add1").get(0);
-								vo.setR_Addr1(r_Addr1.text());
-							}catch (Exception ex) {vo.setR_Addr1("없음");}
+								rAddr1 = doc2.select("dl.restAdd dd.add1").get(0);
+								vo.setrAddr1(rAddr1.text());
+							}catch (Exception ex) {vo.setrAddr1("없음");}
 							//가게 신주소
 							try{
-								r_Addr2 = doc2.select("dl.restAdd dd.add2").get(0);
-								vo.setR_Addr2(r_Addr2.text());
-							}catch (Exception ex) {vo.setR_Addr1("");}
+								rAddr2 = doc2.select("dl.restAdd dd.add2").get(0);
+								vo.setrAddr2(rAddr2.text());
+							}catch (Exception ex) {vo.setrAddr1("");}
 							//가게 평점
 							try {
-								r_Score = doc2.select("dl.restGrade span.total").get(0);
-								vo.setR_Score(Double.parseDouble(r_Score.text()));
-							}catch(Exception ex) {vo.setR_Score(0);}
+								rScore = doc2.select("dl.restGrade span.total").get(0);
+								vo.setrScore(Double.parseDouble(rScore.text()));
+							}catch(Exception ex) {vo.setrScore(0);}
 							//가게평점 평가인원수
 							try {
-								r_ScoreCount = doc2.select("dl.restGrade span.count").get(0);
-								String[] temp = r_ScoreCount.text().split("명");
-								vo.setR_ScoreCount(Integer.parseInt(temp[0]));
-							}catch(Exception ex) {vo.setR_ScoreCount(0);}
+								rScoreCount = doc2.select("dl.restGrade span.count").get(0);
+								String[] temp = rScoreCount.text().split("명");
+								vo.setrScoreCount(Integer.parseInt(temp[0]));
+							}catch(Exception ex) {vo.setrScoreCount(0);}
 							//추천가격대(높음)						
 							//추천가격대(낮음)
 							try {
-								r_Price = doc2.select("p.price strong").get(0);
-								vo.setR_Lowprice(r_Price.text());
-							}catch(Exception ex) {vo.setR_Lowprice("없음");}
+								rPrice = doc2.select("p.price strong").get(0);
+								vo.setrLowprice(rPrice.text());
+							}catch(Exception ex) {vo.setrLowprice("없음");}
 							try {
-								r_Price = doc2.select("p.price strong").get(1);
-								vo.setR_Highprice(r_Price.text());								
-							}catch(Exception ex) {vo.setR_Highprice("없음");}	
+								rPrice = doc2.select("p.price strong").get(1);
+								vo.setrHighprice(rPrice.text());								
+							}catch(Exception ex) {vo.setrHighprice("없음");}	
 							
 							//가게 오픈시간
 							//가게 닫는시간			
 							try {
-								r_Businesstime = doc2.select("ul.tableTopA dd.txt2").get(0);
+								rBusinesstime = doc2.select("ul.tableTopA dd.txt2").get(0);
 
-								vo.setR_Opentime(r_Businesstime.text().substring(0,r_Businesstime.text().indexOf("~")).trim());		
-								vo.setR_Closetime(r_Businesstime.text().substring(r_Businesstime.text().indexOf("~")+1).trim());
+								vo.setrOpentime(rBusinesstime.text().substring(0,rBusinesstime.text().indexOf("~")).trim());		
+								vo.setrClosetime(rBusinesstime.text().substring(rBusinesstime.text().indexOf("~")+1).trim());
 							}catch(Exception ex) 
 							{
-								vo.setR_Opentime("없음");
-								vo.setR_Closetime("없음");
+								vo.setrOpentime("없음");
+								vo.setrClosetime("없음");
 							}	
 							//가게 쉬는날
 							try {
-							r_Holiday = doc2.select("ul.tableTopA dd.txt1").get(0);
-							vo.setR_Holiday(r_Holiday.text());
+							rHoliday = doc2.select("ul.tableTopA dd.txt1").get(0);
+							vo.setrHoliday(rHoliday.text());
 							}catch(Exception ex) {
-								vo.setR_Holiday("없음");}
+								vo.setrHoliday("없음");}
 							//가게 설명
 							try {
-								r_Content = doc2.select("div#info_ps_f").get(0);
-								vo.setR_Content(r_Content.text());
-							}catch(Exception ex) {vo.setR_Content("없음");}
+								rContent = doc2.select("div#info_ps_f").get(0);
+								vo.setrContent(rContent.text());
+							}catch(Exception ex) {vo.setrContent("없음");}
 							
 							//가게 좋아요 갯수
 							try {
-								r_Good = doc2.select("dl.btnGood span").get(0);
-								vo.setR_Good(r_Good.text());
+								rGood = doc2.select("dl.btnGood span").get(0);
+								vo.setrGood(rGood.text());
 							}catch(Exception ex) {}
 							
 							//가게 좌석 갯수
 							try {
-								r_Seat_Room = doc2.select("ul.tableLR dd").get(0);
-								String[] temp2 = r_Seat_Room.text().split("/");						
-								vo.setR_Seat(temp2[0].trim());
+								rSeat_Room = doc2.select("ul.tableLR dd").get(0);
+								String[] temp2 = rSeat_Room.text().split("/");						
+								vo.setrSeat(temp2[0].trim());
 							}catch(Exception ex) {
-								vo.setR_Seat("없음");
+								vo.setrSeat("없음");
 							}
 							//가게 방 갯수
 							try {
-								r_Seat_Room = doc2.select("ul.tableLR dd").get(0);
-								String[] temp2 = r_Seat_Room.text().split("/");	
-								vo.setR_Room(temp2[1].trim());			
+								rSeat_Room = doc2.select("ul.tableLR dd").get(0);
+								String[] temp2 = rSeat_Room.text().split("/");	
+								vo.setrRoom(temp2[1].trim());			
 							}catch(Exception ex) {
-								vo.setR_Room("방: 방없음");
+								vo.setrRoom("방: 방없음");
 							}
 							///////////////////////
-							vo.setR_Drink("없음");
-							vo.setR_Nosmoking("없음");
-							vo.setR_Reserve("없음");
-							vo.setR_Restroom("없음");
-							vo.setR_Park("없음");
-							vo.setR_Other("없음");
-							vo.setR_Delivery("없음");
+							vo.setrDrink("없음");
+							vo.setrNosmoking("없음");
+							vo.setrReserve("없음");
+							vo.setrRestroom("없음");
+							vo.setrPark("없음");
+							vo.setrOther("없음");
+							vo.setrDelivery("없음");
 							//////////////////////
 							for(int count = 1 ; count < 9 ; count++)
 							{
@@ -264,25 +263,25 @@ public class InfoManager {
 								{
 									
 									if (doc2.select("ul.tableLR dt").get(count).text().equals("주류판매")) 
-										vo.setR_Drink(doc2.select("ul.tableLR dd").get(count).text());
+										vo.setrDrink(doc2.select("ul.tableLR dd").get(count).text());
 									
 									else if(doc2.select("ul.tableLR dt").get(count).text().equals("금연석"))
-										vo.setR_Nosmoking(doc2.select("ul.tableLR dd").get(count).text());
+										vo.setrNosmoking(doc2.select("ul.tableLR dd").get(count).text());
 									
 									else if (doc2.select("ul.tableLR dt").get(count).text().equals("예약정보")) 
-										vo.setR_Reserve(doc2.select("ul.tableLR dd").get(count).text());
+										vo.setrReserve(doc2.select("ul.tableLR dd").get(count).text());
 										
 									else if (doc2.select("ul.tableLR dt").get(count).text().equals("화장실")) 
-										vo.setR_Restroom(doc2.select("ul.tableLR dd").get(count).text());
+										vo.setrRestroom(doc2.select("ul.tableLR dd").get(count).text());
 										
 									else if (doc2.select("ul.tableLR dt").get(count).text().equals("주차")) 
-										vo.setR_Park(doc2.select("ul.tableLR dd").get(count).text());
+										vo.setrPark(doc2.select("ul.tableLR dd").get(count).text());
 									
 									else if (doc2.select("ul.tableLR dt").get(count).text().equals("기타시설")) 
-										vo.setR_Other(doc2.select("ul.tableLR dd").get(count).text());
+										vo.setrOther(doc2.select("ul.tableLR dd").get(count).text());
 											
 									else if (doc2.select("ul.tableLR dt").get(count).text().equals("배달/포장")) 
-										vo.setR_Delivery(doc2.select("ul.tableLR dd").get(count).text());
+										vo.setrDelivery(doc2.select("ul.tableLR dd").get(count).text());
 								
 								}catch(Exception ex){break;}
 							
@@ -290,15 +289,15 @@ public class InfoManager {
 							//누적 방문자숫자
 							try {
 								
-								r_hit = doc2.select("dl.visitor dd").get(0);
-								vo.setR_hit(r_hit.text().substring(0,(r_hit.text().length()-1)));						
-							}catch(Exception ex) {vo.setR_hit("0");}
+								rhit = doc2.select("dl.visitor dd").get(0);
+								vo.setRhit(rhit.text().substring(0,(rhit.text().length()-1)));						
+							}catch(Exception ex) {vo.setRhit("0");}
 							//홈페이지 처음 시작한 날짜
 							try {
-								r_Start = doc2.select("dl.visitor dd").get(1);
-								vo.setR_Start(r_Start.text().substring(0,(r_Start.text().indexOf("이"))));
+								rStart = doc2.select("dl.visitor dd").get(1);
+								vo.setrStart(rStart.text().substring(0,(rStart.text().indexOf("이"))));
 							//초기값을 2014.01.01로 함
-							}catch(Exception ex) {vo.setR_Start("2014.01.01");}
+							}catch(Exception ex) {vo.setrStart("2014.01.01");}
 							///////////////////// 수정 필요
 							
 							String[] area = {"서울 강남|ss","서울 강북|sn","경기 남부|cs","경기 북부|cn","인천|ic","부산|bs","대구|dg","광주|gj","대전|dj","울산|us","강원|gw","충청|cc","경상|gs","전라|jl","제주|jj"};
@@ -308,16 +307,16 @@ public class InfoManager {
 							{
 						
 								if(area[count].substring(area[count].indexOf("|")+1).equals(ac.get(i).getA_AreaCode().substring(0,2)))
-									vo.setR_Area(area[count].substring(0,area[count].indexOf("|")));
+									vo.setrArea(area[count].substring(0,area[count].indexOf("|")));
 							}
 				
 
 							for(int count = 0 ; count < ac.size(); count++)	
 							{
-								if(ac.get(count).getR_Area().equals(vo.getR_Area()))
+								if(ac.get(count).getR_Area().equals(vo.getrArea()))
 								{
 									
-									vo.setR_AreaDetail(ac.get(count + (Integer.parseInt(ac.get(i).getA_AreaCode().substring(3))) -1).getR_AreaDetail());
+									vo.setrAreaDetail(ac.get(count + (Integer.parseInt(ac.get(i).getA_AreaCode().substring(3))) -1).getR_AreaDetail());
 									break;
 								}
 							}

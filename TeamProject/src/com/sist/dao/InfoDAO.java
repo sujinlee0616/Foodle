@@ -114,19 +114,19 @@ public class InfoDAO {
 
 
 
-			ps.setString(1, String.valueOf(vo.getR_No()));
+			ps.setString(1, String.valueOf(vo.getrNo()));
 
-			ps.setString(2, vo.getR_Name());
-			ps.setString(3, vo.getR_Foodtype());
-			ps.setString(4, vo.getR_Tel());
-			ps.setString(5, String.valueOf(vo.getR_Score()));
-			ps.setString(6, String.valueOf(vo.getR_ScoreCount()));
-			ps.setString(7, vo.getR_Addr1());
-			ps.setString(8, vo.getR_Addr2());
+			ps.setString(2, vo.getrName());
+			ps.setString(3, vo.getrType());
+			ps.setString(4, vo.getrTel());
+			ps.setString(5, String.valueOf(vo.getrScore()));
+			ps.setString(6, String.valueOf(vo.getrScoreCount()));
+			ps.setString(7, vo.getrAddr1());
+			ps.setString(8, vo.getrAddr2());
 			ps.setString(9, "1234");
 
-			ps.setString(10, vo.getR_Area());
-			ps.setString(11, vo.getR_AreaDetail());
+			ps.setString(10, vo.getrArea());
+			ps.setString(11, vo.getrAreaDetail());
 
 			ps.executeUpdate();
 
@@ -149,19 +149,19 @@ public class InfoDAO {
 			getConnection();
 			String sql = "INSERT INTO subinfo VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			ps=conn.prepareStatement(sql);
-			ps.setString(1, String.valueOf(vo.getR_No()));
-			ps.setString(2, vo.getR_Drink());
-			ps.setString(3, vo.getR_Nosmoking());
-			ps.setString(4, vo.getR_Restroom());
-			ps.setString(5, vo.getR_Park());
-			ps.setString(6, vo.getR_Delivery());
-			ps.setString(7, vo.getR_Other());
-			ps.setString(8, vo.getR_Takeout());
-			ps.setString(9, vo.getR_Content());
-			ps.setString(10, vo.getR_Good());
-			ps.setString(11, vo.getR_hit());
-			ps.setString(12, vo.getR_Start());
-			ps.setString(13, String.valueOf(vo.getR_Date()));
+			ps.setString(1, String.valueOf(vo.getrNo()));
+			ps.setString(2, vo.getrDrink());
+			ps.setString(3, vo.getrNosmoking());
+			ps.setString(4, vo.getrRestroom());
+			ps.setString(5, vo.getrPark());
+			ps.setString(6, vo.getrDelivery());
+			ps.setString(7, vo.getrOther());
+			ps.setString(8, vo.getrTakeout());
+			ps.setString(9, vo.getrContent());
+			ps.setString(10, vo.getrGood());
+			ps.setString(11, vo.getRhit());
+			ps.setString(12, vo.getrStart());
+			ps.setString(13, String.valueOf(vo.getrDate()));
 
 			ps.executeUpdate();
 
@@ -183,15 +183,15 @@ public class InfoDAO {
 			getConnection();
 			String sql = "INSERT INTO reserveinfo VALUES(?,?,?,?,?,?,?,?,?)";
 			ps=conn.prepareStatement(sql);
-			ps.setString(1, String.valueOf(vo.getR_No()));
-			ps.setString(2, vo.getR_Lowprice());
-			ps.setString(3, vo.getR_Highprice());
-			ps.setString(4, vo.getR_Opentime());
-			ps.setString(5, vo.getR_Closetime());
-			ps.setString(6, vo.getR_Holiday());
-			ps.setString(7, vo.getR_Reserve());
-			ps.setString(8, vo.getR_Seat());
-			ps.setString(9, vo.getR_Room());
+			ps.setString(1, String.valueOf(vo.getrNo()));
+			ps.setString(2, vo.getrLowprice());
+			ps.setString(3, vo.getrHighprice());
+			ps.setString(4, vo.getrOpentime());
+			ps.setString(5, vo.getrClosetime());
+			ps.setString(6, vo.getrHoliday());
+			ps.setString(7, vo.getrReserve());
+			ps.setString(8, vo.getrSeat());
+			ps.setString(9, vo.getrRoom());
 
 			ps.executeUpdate();
 
