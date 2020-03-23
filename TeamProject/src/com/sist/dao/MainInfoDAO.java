@@ -83,7 +83,7 @@ public class MainInfoDAO { //오라클에 연결하는 클래스
 							+ "rAreaDetail VARCHAR2(1000))";
 								
 				ps = conn.prepareStatement(sql);
-				ps.executeQuery();
+				ps.executeUpdate();
 
 			} catch (Exception ex) {
 		

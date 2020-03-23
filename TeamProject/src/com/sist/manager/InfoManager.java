@@ -47,10 +47,6 @@ public class InfoManager {
 		
 
 
-
-
-
-
 //		//가게 쉬는날
 //		private String r_Holiday;
 //		//가게 소개
