@@ -1,11 +1,9 @@
 package com.sist.dao;
 
 import com.sist.manager.*;
-
 import java.util.*;
 import java.sql.*;
 import java.sql.Date;
-
 import com.sist.vo.*;
 
 public class InfoDAO {
