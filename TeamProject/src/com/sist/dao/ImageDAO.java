@@ -1,12 +1,9 @@
 package com.sist.dao;
-
-import com.sist.manager.*;
 import java.util.*;
 import java.sql.*;
 import com.sist.vo.*;
-
-public class AreacodeDAO {
-
+public class ImageDAO {
+	
 	private Connection conn; // Socket
 	private PreparedStatement ps;// OutputStream , BufferedReader
 	private final String URL="jdbc:oracle:thin:@211.238.142.207:1521:XE";
@@ -14,7 +11,7 @@ public class AreacodeDAO {
 			
 
 	// 드라이버 등록 => 한번만 수행
-	public AreacodeDAO()
+	public ImageDAO()
      {
     	 try
     	 {
@@ -43,48 +40,43 @@ public class AreacodeDAO {
 		} catch (Exception ex) {
 		}
 	}
-
-	// 기능 처리 => 추가 ==> CURD
-	public void AreacodeCreate() {
-		
-		try 
-		{
+	// 오라클에 이미지 테이블 생성하기!
+	public void CreateImageTable()
+	{
+		try {
 			getConnection();
-			
-			String sql ="CREATE TABLE areacode(A_Area VARCHAR2(50), R_areacode VARCHAR2(50), r_areadetail VARCHAR2(50))";
-			ps = conn.prepareStatement(sql);
+			String sql="CREATE TABLE image("
+					+ "rno NUMBER, "
+					+ "iname VARCHAR2(200) CONSTRAINT image_iname_nn NOT NULL, "
+					+ "ilink VARCHAR2(2000) CONSTRAINT image_ilink_nn NOT NULL, "
+					+ "CONSTRAINT image_rno_fk FOREIGN KEY(rno) "
+					+ "REFERENCES maininfo(rno));";
+			ps=conn.prepareStatement(sql);
 			ps.executeQuery();
 			
-		}catch (Exception ex) {
-			ex.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
 		} finally {
 			disConnection();
 		}
 	}
-	public void AreacodeInsert(AreacodeVO vo) {
+	
+	// 이미지 오라클에 넣기!
+	public void InsertImageData(ImageVO vo)
+	{
 		try {
 			getConnection();
-			
-			String sql = "INSERT INTO areacode VALUES(?,?,?)";
-
-//			private String r_Area;
-//			private String r_AreaDetail;
-//			private String a_AreaCode;
-			
-			ps = conn.prepareStatement(sql);
-			ps.setString(1, vo.getA_AreaCode());
-			ps.setString(2, vo.getR_Area());
-			ps.setString(3, vo.getR_AreaDetail());
-			
+			String sql="INSERT INTO image VALUES("
+					+ "?,?,?)";
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, vo.getR_No());
+			ps.setString(2, vo.getI_Name());
+			ps.setString(3, vo.getI_Link());
 			ps.executeUpdate();
-			
-		} catch (Exception ex) {
-			ex.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
 		} finally {
 			disConnection();
-			
 		}
 	}
 }
-
-
