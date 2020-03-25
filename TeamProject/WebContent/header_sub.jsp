@@ -45,7 +45,7 @@
 									<a class="nav-link" href="main.jsp?mode=6">자유게시판</a>
 								</li>
 								<li>
-									<a href="#" class="btn btn-outline-light top-btn" data-toggle="modal" data-target="#loginModal">
+									<a href="main.jsp?mode=9" class="btn btn-outline-light top-btn">
 										<span class="ti-plus"></span> 로그인
 									</a>
 								</li>
