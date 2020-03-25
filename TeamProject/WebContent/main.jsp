@@ -32,7 +32,7 @@
 	switch(no)
 	{
 	case 0:
-		jsp="home.jsp";
+		jsp="home.jsp"; 
 		break;
 	case 1:
 		jsp="list_general.jsp"; /* 실시간 맛집 */
@@ -59,9 +59,12 @@
 		jsp="signup.jsp"; /* 회원가입  */
 		break;
 	case 9:
-		jsp="mypage.jsp"; /* 마이페이지  */
+		jsp="login.jsp"; /* 로그인  */
 		break;
 	case 10:
+		jsp="mypage.jsp"; /* 마이페이지  */
+		break;
+	case 11:
 		jsp="mypage_coupon1.jsp"; /* 마이페이지-쿠폰  */    
 		break;	
 	} 
@@ -102,6 +105,8 @@
     <link rel="stylesheet" href="css/mypage.css">
     <!-- SIGN UP CSS -->
   	<link rel="stylesheet" href="css/signup.css">
+  	<!-- LOGIN CSS -->
+  	<link rel="stylesheet" href="css/login.css">
   	<!-- COUPON CSS -->
   	<link rel="stylesheet" href="css/coupon.css">
     <!-- Kakao Map Script -->
@@ -114,11 +119,9 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css"/>
 </head>
 <body>
-	<jsp:include page="<%=header %>"></jsp:include>  
-
+	<jsp:include page="<%=header%>"></jsp:include>  
 	<jsp:include page="<%=jsp %>"></jsp:include>  
 	<!-- 동적: include되는 페이지를 바꿀 수 있다. -->
-	
     <jsp:include page="footer.jsp"></jsp:include>
     
     <!-- jQuery, Bootstrap JS. -->
@@ -164,8 +167,6 @@
             });
         }
     </script>
-    
 </body>
-
 </html>
     

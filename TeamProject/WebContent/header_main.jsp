@@ -22,7 +22,7 @@
 							<div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
                                 <ul class="navbar-nav">
                                     <li class="nav-item active">
-                                        <a class="nav-link" href="main.jsp?=1">실시간 맛집</a>
+                                        <a class="nav-link" href="main.jsp?mode=1">실시간 맛집</a>
                                     </li>
                                     <li class="nav-item active">
                                         <a class="nav-link" href="main.jsp?mode=2">주간 맛집</a>
@@ -50,7 +50,7 @@
 										</div>
                                     </li> -->
                                     <li>
-                                    	<a href="#" class="btn btn-outline-light top-btn" data-toggle="modal" data-target="#loginModal">
+                                    	<a href="main.jsp?mode=9" class="btn btn-outline-light top-btn">
                                     		<span class="ti-plus"></span> 로그인
                                     	</a>
                                     </li>
