@@ -9,7 +9,7 @@
 	<section class="login-block light-bg">
 	  <div class="container py-5">
 	    <div class="row justify-content-center">
-	      <div class="logo_parent col-md-5 mb-4 pt-5">
+	      <div class="logo_parent col-md-5 mb-4">
 	        <h2>Foodle</h2>
 	        <!-- 로고 생기면 h2 제거 후 로고 넣기 -->
 	        <!-- <img class="logo" src=""> -->
