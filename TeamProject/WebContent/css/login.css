@@ -6,13 +6,14 @@
 /* Header높이: 72px, footer 높이: 236px */
 
 /*  */
-.logo_parent{text-align: center;}
+.logo_parent{text-align: center; padding-top: 50px;}
 img.logo{width: 70%; margin: 0 auto;}
 
 .login ul, .member_category, .member_category li{
     list-style-type: none;
     padding-left: 0;
 }
+
 
 /* list 스타일 */
 .input_division li {
@@ -25,6 +26,21 @@ img.logo{width: 70%; margin: 0 auto;}
     background-color: #FFFFFF;
     margin: 10px 0;
 }
+
+/* MacBook Air에서 로그인 창이 높이때문에 짤리는 현상 수 - 2020.03.26(목) */
+@media only screen and (max-width: 1440px) {
+  .input_division li {
+    border-bottom: 0;
+    margin: 0;
+	}
+	.input_division li:last-child{
+	border-bottom: 1px solid #CCCCCC;
+	}
+	.logo_parent{padding-top: 0;}
+	.login-bottom hr{display: none;}
+}
+
+
 /* .cont_division li:last-child{
     border-bottom: 1px solid #CCCCCC;
 } */
