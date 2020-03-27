@@ -36,25 +36,30 @@
                                     <li class="nav-item active">
                                         <a class="nav-link" href="main.jsp?mode=6">자유게시판</a>
                                     </li>
-                                    <!-- 드롭다운 메뉴 구현 시 -->
-                                    <!-- <li class="nav-item dropdown">
-	                                    <a class="nav-link" href="#" id="navbarDropdownMenuLink"
-											data-toggle="dropdown" aria-haspopup="true"
-											aria-expanded="false"> 실시간 맛집 
-											<span class="icon-arrow-down"></span>
+									<!-- 로그인 안 한 경우 -->
+									<li class="not_loggedin">
+										<a href="login.html" class="btn btn-outline-light top-btn">
+										<span class="ti-plus"></span> 로그인
 										</a>
-										<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-											<a class="dropdown-item" href="#">Action</a> 
-											<a class="dropdown-item" href="#">Another action</a> 
-											<a class="dropdown-item" href="#">Something else here</a>
+									</li>
+									<!-- 로그인 한 경우 -->
+									<!-- <li class="loggendin nav-item dropdown">
+										<a class="nav-link" href="#" id="navbarDropdownMenuLink"
+										data-toggle="dropdown" aria-haspopup="true"
+										aria-expanded="false">
+										<span class="profile_pic"></span>
+										<img class="propic" src="images/no_profile_pic.png" style="display: inline-block;">
+										이수진님 <img src="images/arrow_down.png">
+										<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+											<a class="dropdown-item" href="#">예약내역</a> 
+											<a class="dropdown-item" href="#">찜한 맛집</a>
+											<a class="dropdown-item" href="#">최근 본 맛집</a> 
+											<a class="dropdown-item" href="#">My Page</a>
+											<div class="dropdown-divider"></div>
+											<a class="dropdown-item" href="#">로그아웃</a>
 										</div>
-                                    </li> -->
-                                    <li>
-                                    	<a href="main.jsp?mode=9" class="btn btn-outline-light top-btn">
-                                    		<span class="ti-plus"></span> 로그인
-                                    	</a>
-                                    </li>
-									
+										</a>
+									</li> -->
 								</ul>
                             </div>
                         </nav>
