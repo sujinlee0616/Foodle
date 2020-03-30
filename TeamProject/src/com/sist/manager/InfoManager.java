@@ -333,6 +333,8 @@ public class InfoManager {
 		
 		ArrayList<InfoVO> list = new  ArrayList<InfoVO>();
 		
+		
+		
 		System.out.println(ifm.MediaSubString(",", "aaa,bbb,ccc"));
 		/*
 		list = ifm.InfoAllData(am.AreacodeAllData());

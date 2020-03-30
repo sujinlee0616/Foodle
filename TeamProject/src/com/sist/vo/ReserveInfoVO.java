@@ -21,14 +21,15 @@ public class ReserveInfoVO {
 	*/
 	
 	private int rNo;
-	private String rLowprice;
-	private String rHighprice;
-	private String rOpentime;
-	private String rClosetime;
+	private int rLowprice;
+	private int rHighprice;
+	private int rOpentime;
+	private int rClosetime;
 	private String rReserve;
 	private String rHoliday;
-	private String rSeat;
+	private int rSeat;
 	private int rRoom;
+	private int rRoomcount;
 	
 	
 }
