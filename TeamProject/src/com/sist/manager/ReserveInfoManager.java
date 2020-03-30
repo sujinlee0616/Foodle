@@ -16,7 +16,8 @@ public class ReserveInfoManager {
 	
 	public ArrayList<ReserveInfoVO> ReserveInfoData(ArrayList<AreacodeVO> areacode)
 	{
-		//dao.ReserveInfoCreate();
+		// 테이블 생성 
+		// dao.ReserveInfoCreate();
 		
 		ReserveInfoVO vo;
 		ArrayList<ReserveInfoVO> list = new  ArrayList<ReserveInfoVO>();
@@ -59,21 +60,21 @@ public class ReserveInfoManager {
 									vo = new ReserveInfoVO();
 									
 									// 1. rNo 가게 고유번호
-									vo.setRNo(z + j*category + i*page*category);
+									vo.setrNo(z + j*category + i*page*category);
 
 									// 2. rLowprice 추천가격대(높음)						
 									try {
 										rPrice = doc2.select("p.price strong").get(0);
-										vo.setRLowprice(Integer.parseInt(rPrice.text().replace(",", "")));
-									}catch(Exception ex) {vo.setRLowprice(0);}
+										vo.setrLowprice(Integer.parseInt(rPrice.text().replace(",", "")));
+									}catch(Exception ex) {vo.setrLowprice(0);}
 									
 									// 3. rHighprice 추천가격대(낮음)
 									try {
 										rPrice = doc2.select("p.price strong").get(1);
 										// String temp1=rPrice.text().replace(",", "");
 										// System.out.println("temp1="+temp1);
-										vo.setRHighprice(Integer.parseInt(rPrice.text().replace(",", "")));								
-									}catch(Exception ex) {vo.setRHighprice(0);}	
+										vo.setrHighprice(Integer.parseInt(rPrice.text().replace(",", "")));								
+									}catch(Exception ex) {vo.setrHighprice(0);}	
 									
 									// 4. rOpentime 가게 오픈시간
 									// 5. rClosetime 가게 닫는시간			
@@ -83,12 +84,12 @@ public class ReserveInfoManager {
 										// System.out.println(temp1);
 										int clst=Integer.parseInt(rBusinesstime.text().substring(rBusinesstime.text().indexOf("~")+1).trim().substring(0,2));
 										// System.out.println(temp2);
-										vo.setROpentime(opt);		
-										vo.setRClosetime(clst);
+										vo.setrOpentime(opt);		
+										vo.setrClosetime(clst);
 									}catch(Exception ex) 
 									{
-										vo.setROpentime(9);
-										vo.setRClosetime(18);
+										vo.setrOpentime(9);
+										vo.setrClosetime(18);
 									}	
 									
 									// 7. rHoliday 가게 쉬는날
@@ -96,7 +97,7 @@ public class ReserveInfoManager {
 										// rHoliday = doc2.select("ul.tableTopA dd.txt1").get(0);
 										// vo.setRHoliday(rHoliday.text());
 										String hol;
-										int rand=(int)Math.random()*7; // 0~6 난수
+										int rand=(int)(Math.random()*7); // 0~6 난수
 										switch (rand) {
 											case 0:  hol = "일";
 													 break;
@@ -115,61 +116,62 @@ public class ReserveInfoManager {
 								            default: hol = "일";
 								                     break;
 										}
-										vo.setRHoliday(hol);
+										vo.setrHoliday(hol);
 										
 									}catch(Exception ex) {
-										vo.setRHoliday("없음");}
+										vo.setrHoliday("없음");}
 									
 									// 8. rSeat 가게 좌석 갯수
 									try {
 										rSeat_Room = doc2.select("ul.tableLR dd").get(0);
-										String[] temp2 = rSeat_Room.text().split("/");						
-										vo.setRSeat(Integer.parseInt(temp2[0].trim().substring(0,temp2[0].indexOf("석"))));
+										String[] temp2 = rSeat_Room.text().split("/");			
+										vo.setrSeat(Integer.parseInt(temp2[0].trim().substring(0,temp2[0].indexOf("석"))));
 									}catch(Exception ex) {
-										vo.setRSeat(0);
+										vo.setrSeat(0);
 									}
-									// 9. rRoom 가게 방 갯수 - String을 int로 변경 
+									// 9. rRoom 가게 방 갯수  
 									try {
 										rSeat_Room = doc2.select("ul.tableLR dd").get(0);
 										String[] temp2 = rSeat_Room.text().split("/");	
-										vo.setRRoom(Integer.parseInt(temp2[1].trim()));			
+										int roomNum=Integer.parseInt(temp2[1].trim().substring(3,temp2[1].indexOf("개")-1));
+										vo.setrRoom(roomNum);		
 									}catch(Exception ex) {
-										vo.setRRoom(0);
+										vo.setrRoom(0);
 									}
 									
 									// 10. rRoomcount - 랜덤값 5~10 
 									try
 									{
-										int rand=(int)Math.random()*6 + 5;
-										vo.setRRoomcount(rand);
+										int rand=(int)(Math.random()*6 + 5);
+										vo.setrRoomcount(rand);
 									}catch(Exception ex){
-										vo.setRRoomcount(5);
+										vo.setrRoomcount(5);
 									}
 									
 									
 									// 6. rReserve 예약정보
-									vo.setRReserve("없음");
+									vo.setrReserve("없음");
 									for(int cnt=1; cnt<9 ; cnt++)
 									{
 										try 
 										{
 											if (doc2.select("ul.tableLR dt").get(cnt).text().equals("예약정보")) 
-												vo.setRReserve(doc2.select("ul.tableLR dd").get(cnt).text().substring(0,3));
+												vo.setrReserve(doc2.select("ul.tableLR dd").get(cnt).text().substring(0,3));
 										}catch(Exception ex){break;}
 									}	
 											
-									// Check 
+									// Data Check 
 									System.out.println("현재 카테고리 번호:"+ (z+1)  + ", 현재페이지번호:" + (j+1) +", 현재지역번호:"+(i+1));
-									System.out.println("rNo="+vo.getRNo()
-														+", rLowprice="+vo.getRLowprice()
-														+", rHighprice="+vo.getRHighprice()
-														+", rOpentime="+vo.getROpentime()
-														+", rClosetime="+vo.getRClosetime()
-														+", rReserve="+vo.getRReserve()
-														+", rHoliday="+vo.getRHoliday()
-														+", rSeat="+vo.getRSeat()
-														+", rRoom="+vo.getRRoom()
-														+", rRoomcount="+vo.getRRoomcount());
+									System.out.println("rNo="+vo.getrNo()
+														+", rLowprice="+vo.getrLowprice()
+														+", rHighprice="+vo.getrHighprice()
+														+", rOpentime="+vo.getrOpentime()
+														+", rClosetime="+vo.getrClosetime()
+														+", rReserve="+vo.getrReserve()
+														+", rHoliday="+vo.getrHoliday()
+														+", rSeat="+vo.getrSeat()
+														+", rRoom="+vo.getrRoom()
+														+", rRoomcount="+vo.getrRoomcount());
 									
 									// 넣는 부분								
 									dao.ReserveInfoInsert(vo);

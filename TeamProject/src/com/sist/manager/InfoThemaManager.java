@@ -18,6 +18,8 @@ public class InfoThemaManager {
 
 	public ArrayList<InfoThemaVO> InfoThemaAllData(ArrayList<AreacodeVO> areacode) {
 		
+		// 테이블 생성
+		dao.resThemeCreate();
 		
 		InfoThemaVO vo;
 		ArrayList<InfoThemaVO> list = new  ArrayList<InfoThemaVO>();
@@ -25,7 +27,7 @@ public class InfoThemaManager {
 		
 		ArrayList<AreacodeVO> ac = areacode;
 		int page = 2;
-		int kategorie = 3;
+		int category = 3;
 		
 		Element image;
 		Element image_Name;
@@ -33,9 +35,9 @@ public class InfoThemaManager {
 		
 //		System.out.println("현재 카테고리 번호 : "+ (z+1)  + ",현재페이지번호 : " + (j+1) +",현재지역번호 : "+(i+1));
 		//ac.size()으로 바꿀것
-		for(int i = 0 ; i < 2 ; i++)
+		for(int i=0; i<2; i++)
 		{
-			for(int j = 0 ; j < page ; j++)
+			for(int j=0; j<page; j++)
 			{
 				try
 				{
@@ -43,7 +45,7 @@ public class InfoThemaManager {
 				Document doc =Jsoup.connect(url).get();
 				Elements link = doc.select("p.listName a");
 					
-						for(int z = 0 ; z < kategorie ; z++)
+						for(int z=0; z<category; z++)
 						{
 						Element elem = link.get(z);
 						String mLink = "http://www.menupan.com" + elem.attr("href");
@@ -55,16 +57,19 @@ public class InfoThemaManager {
 							try
 							{
 								vo = new InfoThemaVO();
-								vo.setR_No(((z) + ((j)*kategorie) + ((i)*(page*kategorie))));
+								vo.setrNo(z + j*category + i*page*category);
 										
 								// 테마 넣는 부분
-								// rno=1, rthema=aaa,bbb,ccc... 이렇게 하려면 for문 하나 더 만들어야 할듯. 
 								Element R_Thema = doc2.select("dd.Theme a").get(count);
-								vo.setR_Thema(R_Thema.text());
+								vo.setrThema(R_Thema.text());
+								
+								// Data Check 
+								System.out.println("현재 카테고리 번호:"+ (z+1)  + ", 현재페이지번호:" + (j+1) +", 현재지역번호:"+(i+1));
+								System.out.println("rNo="+vo.getrNo()+", rThema="+vo.getrThema());
 								
 								dao.resThemeInsert(vo);
-								count++;
 								Thread.sleep(1000);
+								count++;
 								
 								
 							}catch(Exception ex) {break;}	

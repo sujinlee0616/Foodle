@@ -38,6 +38,29 @@ public class InfoThemeDAO {
 		} catch (Exception ex) {}
 	}
 	
+	// resTheme 테이블 생성 
+	public void resThemeCreate() {
+			
+		try {
+			getConnection();
+
+			String sql = "CREATE TABLE infoThema( "
+					+ "rNo NUMBER CONSTRAINT it_rNo_nn NOT NULL,"
+					+ "rThema VARCHAR2(50)"
+					/*+ ",CONSTRAINTS it_rNo_fk FOREIGN KEY(rNo)"
+					+ "REFERENCES mainInfo(rNo)" */
+					+ ")";
+			ps = conn.prepareStatement(sql);
+			ps.executeQuery();
+
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			disConnection();
+		}
+	}
+	
+	// InfoTheme 데이터 삽입 
 	public void resThemeInsert(InfoThemaVO vo)
 	{
 
@@ -53,8 +76,8 @@ public class InfoThemeDAO {
 			RTHEMA          VARCHAR2(50) 
 			 */			
 			ps=conn.prepareStatement(sql);
-			ps.setInt(1, vo.getR_No());
-			ps.setString(2, vo.getR_Thema());
+			ps.setInt(1, vo.getrNo());
+			ps.setString(2, vo.getrThema());
 			ps.executeUpdate();
 			
 		} 
