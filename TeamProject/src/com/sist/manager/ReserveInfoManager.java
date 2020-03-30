@@ -16,7 +16,7 @@ public class ReserveInfoManager {
 	
 	public ArrayList<ReserveInfoVO> ReserveInfoData(ArrayList<AreacodeVO> areacode)
 	{
-		/*dao.ReserveInfoCreate();*/
+		//dao.ReserveInfoCreate();
 		
 		ReserveInfoVO vo;
 		ArrayList<ReserveInfoVO> list = new  ArrayList<ReserveInfoVO>();
@@ -64,31 +64,59 @@ public class ReserveInfoManager {
 									// 2. rLowprice 추천가격대(높음)						
 									try {
 										rPrice = doc2.select("p.price strong").get(0);
-										vo.setRLowprice(rPrice.text());
-									}catch(Exception ex) {vo.setRLowprice("없음");}
+										vo.setRLowprice(Integer.parseInt(rPrice.text().replace(",", "")));
+									}catch(Exception ex) {vo.setRLowprice(0);}
 									
 									// 3. rHighprice 추천가격대(낮음)
 									try {
 										rPrice = doc2.select("p.price strong").get(1);
-										vo.setRHighprice(rPrice.text());								
-									}catch(Exception ex) {vo.setRHighprice("없음");}	
+										// String temp1=rPrice.text().replace(",", "");
+										// System.out.println("temp1="+temp1);
+										vo.setRHighprice(Integer.parseInt(rPrice.text().replace(",", "")));								
+									}catch(Exception ex) {vo.setRHighprice(0);}	
 									
 									// 4. rOpentime 가게 오픈시간
 									// 5. rClosetime 가게 닫는시간			
 									try {
 										rBusinesstime = doc2.select("ul.tableTopA dd.txt2").get(0);
-										vo.setROpentime(rBusinesstime.text().substring(0,rBusinesstime.text().indexOf("~")).trim());		
-										vo.setRClosetime(rBusinesstime.text().substring(rBusinesstime.text().indexOf("~")+1).trim().substring(0,5));
+										int opt=Integer.parseInt(rBusinesstime.text().substring(0,rBusinesstime.text().indexOf("~")).trim().substring(0,2));
+										// System.out.println(temp1);
+										int clst=Integer.parseInt(rBusinesstime.text().substring(rBusinesstime.text().indexOf("~")+1).trim().substring(0,2));
+										// System.out.println(temp2);
+										vo.setROpentime(opt);		
+										vo.setRClosetime(clst);
 									}catch(Exception ex) 
 									{
-										vo.setROpentime("없음");
-										vo.setRClosetime("없음");
+										vo.setROpentime(9);
+										vo.setRClosetime(18);
 									}	
 									
 									// 7. rHoliday 가게 쉬는날
 									try {
-									rHoliday = doc2.select("ul.tableTopA dd.txt1").get(0);
-									vo.setRHoliday(rHoliday.text());
+										// rHoliday = doc2.select("ul.tableTopA dd.txt1").get(0);
+										// vo.setRHoliday(rHoliday.text());
+										String hol;
+										int rand=(int)Math.random()*7; // 0~6 난수
+										switch (rand) {
+											case 0:  hol = "일";
+													 break;
+								            case 1:  hol = "월";
+								                     break;
+								            case 2:  hol = "화";
+								                     break;
+								            case 3:  hol = "수";
+								                     break;
+								            case 4:  hol = "목";
+								                     break;
+								            case 5:  hol = "금";
+								                     break;
+								            case 6:  hol = "토";
+								                     break;
+								            default: hol = "일";
+								                     break;
+										}
+										vo.setRHoliday(hol);
+										
 									}catch(Exception ex) {
 										vo.setRHoliday("없음");}
 									
@@ -96,9 +124,9 @@ public class ReserveInfoManager {
 									try {
 										rSeat_Room = doc2.select("ul.tableLR dd").get(0);
 										String[] temp2 = rSeat_Room.text().split("/");						
-										vo.setRSeat(temp2[0].trim());
+										vo.setRSeat(Integer.parseInt(temp2[0].trim().substring(0,temp2[0].indexOf("석"))));
 									}catch(Exception ex) {
-										vo.setRSeat("없음");
+										vo.setRSeat(0);
 									}
 									// 9. rRoom 가게 방 갯수 - String을 int로 변경 
 									try {
@@ -108,6 +136,16 @@ public class ReserveInfoManager {
 									}catch(Exception ex) {
 										vo.setRRoom(0);
 									}
+									
+									// 10. rRoomcount - 랜덤값 5~10 
+									try
+									{
+										int rand=(int)Math.random()*6 + 5;
+										vo.setRRoomcount(rand);
+									}catch(Exception ex){
+										vo.setRRoomcount(5);
+									}
+									
 									
 									// 6. rReserve 예약정보
 									vo.setRReserve("없음");
@@ -130,7 +168,8 @@ public class ReserveInfoManager {
 														+", rReserve="+vo.getRReserve()
 														+", rHoliday="+vo.getRHoliday()
 														+", rSeat="+vo.getRSeat()
-														+", rRoom="+vo.getRRoom());
+														+", rRoom="+vo.getRRoom()
+														+", rRoomcount="+vo.getRRoomcount());
 									
 									// 넣는 부분								
 									dao.ReserveInfoInsert(vo);

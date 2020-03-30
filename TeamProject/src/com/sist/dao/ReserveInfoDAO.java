@@ -46,14 +46,15 @@ public class ReserveInfoDAO {
 
 			String sql = "CREATE TABLE reserveInfo( "
 					+ "rNo NUMBER CONSTRAINT ri_rNo_nn NOT NULL,"
-					+ "rLowprice VARCHAR2(100),"
-					+ "rHighprice VARCHAR2(100),"
-					+ "rOpentime VARCHAR2(100) CONSTRAINT ri_ot_nn NOT NULL,"
-					+ "rClosetime VARCHAR2(100),"
+					+ "rLowprice NUMBER,"
+					+ "rHighprice NUMBER,"
+					+ "rOpentime NUMBER CONSTRAINT ri_ot_nn NOT NULL,"
+					+ "rClosetime NUMBER,"
 					+ "rReserve VARCHAR2(20) CONSTRAINT ri_res_nn NOT NULL,"
 					+ "rHoliday	VARCHAR2(100) CONSTRAINT ri_hol_nn NOT NULL,"
-					+ "rSeat	VARCHAR2(20) CONSTRAINT ri_seat_nn NOT NULL,"
-					+ "rRoom	NUMBER CONSTRAINT ri_room_nn NOT NULL"
+					+ "rSeat	NUMBER CONSTRAINT ri_seat_nn NOT NULL,"
+					+ "rRoom	NUMBER CONSTRAINT ri_room_nn NOT NULL,"
+					+ "rRoomcount NUMBER CONSTRAINT rc_room_nn NOT NULL"
 					/*+ ",CONSTRAINTS ri_fk FOREIGN KEY(rNo)"
 					+ "REFERENCES mainInfo(rNo)" */
 					+ ")";
@@ -84,18 +85,19 @@ public class ReserveInfoDAO {
 				8	rSeat		VARCHAR2	20	N-N	
 				9	rRoom		NUMBER			N-N	
 			*/			
-			String sql = "INSERT INTO reserveInfo VALUES(?,?,?,?,?,?,?,?,?)";
+			String sql = "INSERT INTO reserveInfo VALUES(?,?,?,?,?,?,?,?,?,?)";
 			
 			ps=conn.prepareStatement(sql);
 			ps.setInt(1, vo.getRNo());
-			ps.setString(2, vo.getRLowprice());
-			ps.setString(3, vo.getRHighprice());
-			ps.setString(4, vo.getROpentime());
-			ps.setString(5, vo.getRClosetime());
+			ps.setInt(2, vo.getRLowprice());
+			ps.setInt(3, vo.getRHighprice());
+			ps.setInt(4, vo.getROpentime());
+			ps.setInt(5, vo.getRClosetime());
 			ps.setString(6, vo.getRReserve());
 			ps.setString(7, vo.getRHoliday());
-			ps.setString(8, vo.getRSeat());
-			ps.setInt(9, vo.getRRoom());			
+			ps.setInt(8, vo.getRSeat());
+			ps.setInt(9, vo.getRRoom());		
+			ps.setInt(10, vo.getRRoomcount());
 			
 			ps.executeUpdate();
 
