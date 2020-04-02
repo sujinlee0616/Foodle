@@ -88,16 +88,16 @@ public class ReserveInfoDAO {
 			String sql = "INSERT INTO reserveInfo VALUES(?,?,?,?,?,?,?,?,?,?)";
 			
 			ps=conn.prepareStatement(sql);
-			ps.setInt(1, vo.getRNo());
-			ps.setInt(2, vo.getRLowprice());
-			ps.setInt(3, vo.getRHighprice());
-			ps.setInt(4, vo.getROpentime());
-			ps.setInt(5, vo.getRClosetime());
-			ps.setString(6, vo.getRReserve());
-			ps.setString(7, vo.getRHoliday());
-			ps.setInt(8, vo.getRSeat());
-			ps.setInt(9, vo.getRRoom());		
-			ps.setInt(10, vo.getRRoomcount());
+			ps.setInt(1, vo.getrNo());
+			ps.setInt(2, vo.getrHighprice());
+			ps.setInt(3, vo.getrHighprice());
+			ps.setInt(4, vo.getrOpentime());
+			ps.setInt(5, vo.getrClosetime());
+			ps.setString(6, vo.getrReserve());
+			ps.setString(7, vo.getrHoliday());
+			ps.setInt(8, vo.getrSeat());
+			ps.setInt(9, vo.getrRoom());		
+			ps.setInt(10, vo.getrRoomcount());
 			
 			ps.executeUpdate();
 

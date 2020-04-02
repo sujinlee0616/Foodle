@@ -1,20 +1,20 @@
 package com.sist.vo;
 
 public class InfoThemaVO {
-	private int r_No;
-	private String r_Thema;
+	private int rNo;
+	private String rThema;
 	
-	public int getR_No() {
-		return r_No;
+	public int getrNo() {
+		return rNo;
 	}
-	public void setR_No(int r_No) {
-		this.r_No = r_No;
+	public void setrNo(int rNo) {
+		this.rNo = rNo;
 	}
-	public String getR_Thema() {
-		return r_Thema;
+	public String getrThema() {
+		return rThema;
 	}
-	public void setR_Thema(String r_Thema) {
-		this.r_Thema = r_Thema;
+	public void setrThema(String rThema) {
+		this.rThema = rThema;
 	}
 
 }
