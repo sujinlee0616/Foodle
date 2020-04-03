@@ -1,29 +1,30 @@
-package com.sist.board.model;
-
-import java.util.List;
+package com.sist.member.model;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import com.sist.controller.Controller;
 import com.sist.controller.RequestMapping;
 
 @Controller
-public class BoardModel {
-	@RequestMapping("board/list.do")
-	public String board_list(HttpServletRequest request, HttpServletResponse response)
+public class MemberModel {
+	@RequestMapping("member/login.do")
+	public String login(HttpServletRequest request, HttpServletResponse response)
 	{
 		request.setAttribute("header_jsp", "common/header_sub.jsp");
-		request.setAttribute("main_jsp", "board/list.jsp");
+		request.setAttribute("main_jsp", "member/login.jsp");
 		// request.setAttribute("path", "../");
 		return "../main.jsp";
 	}
 	
-	@RequestMapping("board/detail.do")
-	public String board_detail(HttpServletRequest request, HttpServletResponse response)
+	@RequestMapping("member/signup.do")
+	public String signup(HttpServletRequest request, HttpServletResponse response)
 	{
 		request.setAttribute("header_jsp", "common/header_sub.jsp");
-		request.setAttribute("main_jsp", "board/detail.jsp");
+		request.setAttribute("main_jsp", "member/signup.jsp");
 		// request.setAttribute("path", "../");
 		return "../main.jsp";
 	}
+	
+	
 }

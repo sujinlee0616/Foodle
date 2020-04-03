@@ -22,16 +22,17 @@
               <li class="on">
                 <!-- 클릭 시 on으로 변경 -->
                 <h2 class="tab01 mb-0">
-                  <a href="signup.jsp/usertype=person" class="tab_btn">개인회원가입</a>
+                  <a href="signup.do?usertype=person" class="tab_btn">개인회원가입</a>
                 </h2>
               </li>
               <li class="">
                 <h2 class="tab02 mb-0">
-                  <a href="signup.jsp/usertype=company" class="tab_btn">기업회원가입</a>
+                  <a href="signup.do?usertype=company" class="tab_btn">기업회원가입</a>
                 </h2>
               </li>
             </ul>
           </div>
+          
           
           <div class="cont_division">
             <!-- 회원정보 입력 : 필수정보-->
@@ -167,11 +168,10 @@
               </li>
             </ul>
           </div>
-          
-
         </div>
       </div>
       <!-- END OF INFO INPUT-->
+      
       <div class="row justify-content-center">
         <div class="col-md-6 pt-4">
           <div class="signup-btn-wrap">
@@ -185,7 +185,7 @@
             <span class="essential">*</span>은 필수 입력 항목입니다. 
           </p>
           <p class="message">
-            이미 계정을 가지고 있으신가요? <a href="#"> 여기서 로그인하세요.</a>
+            이미 계정을 가지고 있으신가요? <a href="login.do"> 여기서 로그인하세요.</a>
           </p>
         </div>
       </div>

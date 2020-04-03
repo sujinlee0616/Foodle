@@ -50,7 +50,7 @@
 	          <span class="bar">|</span>
 	          <a href="#">비밀번호 찾기</a>
 	          <span class="bar">|</span>
-	          <a href="main.jsp?mode=8">회원가입</a>
+	          <a href="signup.do">회원가입</a>
 	        </p>
 	      </div>
 	    </div>
