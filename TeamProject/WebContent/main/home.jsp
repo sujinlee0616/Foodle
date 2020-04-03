@@ -83,7 +83,7 @@
 	                    <div class="find-place-img_wrap">
 	                        <div class="grid">
 	                            <figure class="effect-ruby">
-	                                <img src="images/find1.jpg" class="img-fluid" alt="img13" />
+	                                <img src="${pageContext.request.contextPath }/images/find1.jpg" class="img-fluid" alt="img13" />
 	                                <figcaption>
 	                                    <h5>특별한 날엔 </h5>
 	                                    <p>1,848개</p>
@@ -100,7 +100,7 @@
 	                            <div class="find-place-img_wrap">
 	                                <div class="grid">
 	                                    <figure class="effect-ruby">
-	                                        <img src="images/find-place2.jpg" class="img-fluid" alt="img13" />
+	                                        <img src="${pageContext.request.contextPath }/images/find-place2.jpg" class="img-fluid" alt="img13" />
 	                                        <figcaption>
 	                                            <h5>브런치</h5>
 	                                            <p>1,204개</p>
@@ -117,7 +117,7 @@
 	                            <div class="find-place-img_wrap">
 	                                <div class="grid">
 	                                    <figure class="effect-ruby">
-	                                        <img src="images/find3.jpg" class="img-fluid" alt="img13" />
+	                                        <img src="${pageContext.request.contextPath }/images/find3.jpg" class="img-fluid" alt="img13" />
 	                                        <figcaption>
 	                                            <h5>치맥(치킨&맥주)</h5>
 	                                            <p>199개</p>
@@ -136,7 +136,7 @@
 	                            <div class="find-place-img_wrap">
 	                                <div class="grid">
 	                                    <figure class="effect-ruby">
-	                                        <img src="images/find4.jpg" class="img-fluid" alt="img13" />
+	                                        <img src="${pageContext.request.contextPath }/images/find4.jpg" class="img-fluid" alt="img13" />
 	                                        <figcaption>
 	                                            <h5>아이와 함께라면</h5>
 	                                            <p>3,824개</p>
@@ -153,7 +153,7 @@
 	                            <div class="find-place-img_wrap">
 	                                <div class="grid">
 	                                    <figure class="effect-ruby">
-	                                        <img src="images/find5.jpg" class="img-fluid" alt="img13" />
+	                                        <img src="${pageContext.request.contextPath }/images/find5.jpg" class="img-fluid" alt="img13" />
 	                                        <figcaption>
 	                                            <h5>술 마시는 친구와 함께</h5>
 	                                            <p>4,427개</p>
@@ -183,7 +183,7 @@
                 <div class="col-md-4 featured-responsive">
                     <div class="featured-place-wrap">
                         <a href="main.jsp?mode=5">
-                            <img src="images/featured1.jpg" class="img-fluid" alt="#">
+                            <img src="${pageContext.request.contextPath }/images/featured1.jpg" class="img-fluid" alt="#">
                             <span class="featured-rating">3.5</span>
                             <!-- <span class="featured-rating-orange">3.5</span> -->
                             <div class="featured-title-box">
@@ -209,8 +209,8 @@
                 </div>
                 <div class="col-md-4 featured-responsive">
                     <div class="featured-place-wrap">
-                        <a href="main.jsp?mode=5">
-                            <img src="images/featured2.jpg" class="img-fluid" alt="#">
+                        <a href="../restaurant/detail.do">
+                            <img src="${pageContext.request.contextPath }/images/featured2.jpg" class="img-fluid" alt="#">
                             <span class="featured-rating">3.5</span>
                             <!-- <span class="featured-rating-green">3.5</span> -->
                             <div class="featured-title-box">
@@ -240,7 +240,7 @@
                 <div class="col-md-4 featured-responsive">
                     <div class="featured-place-wrap">
                         <a href="main.jsp?mode=5">
-                            <img src="images/featured3.jpg" class="img-fluid" alt="#">
+                            <img src="${pageContext.request.contextPath }/images/featured3.jpg" class="img-fluid" alt="#">
                             <span class="featured-rating">4.2</span>
                             <div class="featured-title-box">
                                 <h6>스트릿(strEAT) 여의도점</h6>
@@ -287,7 +287,7 @@
 					<div class="single-post d-flex flex-row">
 						<div class="thumb">
 							<a href="main.jsp?mode=5">
-								<img src="images/featured1.jpg" alt="">
+								<img src="${pageContext.request.contextPath }/images/featured1.jpg" alt="">
 							</a>
 						</div>
 						<div class="details">
@@ -318,7 +318,7 @@
 					<div class="single-post d-flex flex-row">
 						<div class="thumb">
 							<a href="main.jsp?mode=5">
-								<img src="images/featured2.jpg" alt="">
+								<img src="${pageContext.request.contextPath }/images/featured2.jpg" alt="">
 							</a>
 						</div>
 						<div class="details">
@@ -346,7 +346,7 @@
 					<div class="single-post d-flex flex-row">
 						<div class="thumb">
 							<a href="main.jsp?mode=5">
-								<img src="images/featured3.jpg" alt="">
+								<img src="${pageContext.request.contextPath }/images/featured3.jpg" alt="">
 							</a>
 						</div>
                         <div class="details">
@@ -376,7 +376,7 @@
                     <div class="single-post d-flex flex-row">
                         <div class="thumb">
                             <a href="main.jsp?mode=5">
-                                <img src="images/featured1.jpg" alt="">
+                                <img src="${pageContext.request.contextPath }/images/featured1.jpg" alt="">
                             </a>
                         </div>
                         <div class="details">
@@ -405,7 +405,7 @@
                     <div class="single-post d-flex flex-row">
                         <div class="thumb">
                             <a href="main.jsp?mode=5">
-                                <img src="images/featured2.jpg" alt="">
+                                <img src="${pageContext.request.contextPath }/images/featured2.jpg" alt="">
                             </a>
                         </div>
                         <div class="details">
@@ -457,7 +457,7 @@
                 <div class="row mb-5">
                     <div class="card" style="width: 30%; margin: 0 15px;">
                         <a href="main.jsp?mode=5">
-                            <img src="images/featured1.jpg" class="card-img-top" alt="...">
+                            <img src="${pageContext.request.contextPath }/images/featured1.jpg" class="card-img-top" alt="...">
                             <div class="card-body">
                                     <h5 class="card-title">Card title</h5>
                                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
@@ -467,7 +467,7 @@
                     </div>
                     <div class="card" style="width: 30%; margin: 0 15px;">
                         <a href="main.jsp?mode=5">
-                            <img src="images/featured2.jpg" class="card-img-top" alt="...">
+                            <img src="${pageContext.request.contextPath }/images/featured2.jpg" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">Card title</h5>
                                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
@@ -489,9 +489,9 @@
 
     <!-- jQuery, Bootstrap JS. -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="js/jquery-3.2.1.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath }/js/jquery-3.2.1.min.js"></script>
+    <script src="${pageContext.request.contextPath }/js/popper.min.js"></script>
+    <script src="${pageContext.request.contextPath }/js/bootstrap.min.js"></script>
 
     <!-- GNB Fixed 되는 스크롤 시점 -->
     <script>
