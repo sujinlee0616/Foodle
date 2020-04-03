@@ -15,7 +15,7 @@
 						<div class="search_wrap">
 							<form name="header_search" action="">
 								<div class="header_searchbox">
-									<img class="header_searchicon" src="images/header_searchicon.png">
+									<img class="header_searchicon" src="${pageContext.request.contextPath }/images/header_searchicon.png">
 									<label class="header_searchinputwrap">
 										<input type="text" class="header_searchinput" name="header_searchword" placeholder="검색어를 입력하세요." value=""
 										 autocomplete="off" maxlength="50">
