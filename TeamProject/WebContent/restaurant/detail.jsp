@@ -10,7 +10,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <h5>피자디나폴리(Pizza di Napoli)</h5>
+                    <h5>피자디나폴리(Pizza di Napoli)${msg }</h5>
                     <p><span>\\\</span>\\</p>
                     <p class="reserve-description">정통 나폴리 방식의 화덕피자 전문점 “피자디나폴리”를 소개한다.</p>
                 </div>
@@ -42,13 +42,13 @@
                     <div class="res-photo">
                         <div class="photo">
                             <div class="main-img">
-                                <img src="images/featured1.jpg" id="current">
+                                <img src="${pageContext.request.contextPath }/images/featured1.jpg" id="current">
                             </div>
                             <div class="imgs">
-                                <img src="images/featured1.jpg">
-                                <img src="images/featured2.jpg">
-                                <img src="images/featured3.jpg">
-                                <img src="images/featured4.jpg">
+                                <img src="${pageContext.request.contextPath }/images/featured1.jpg">
+                                <img src="${pageContext.request.contextPath }/images/featured2.jpg">
+                                <img src="${pageContext.request.contextPath }/images/featured3.jpg">
+                                <img src="${pageContext.request.contextPath }/images/featured4.jpg">
                             </div>
                         </div>
                     </div>
@@ -388,13 +388,13 @@
 
     <!-- jQuery, Bootstrap JS. -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="js/jquery-3.2.1.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath }/js/jquery-3.2.1.min.js"></script>
+    <script src="${pageContext.request.contextPath }/js/popper.min.js"></script>
+    <script src="${pageContext.request.contextPath }/js/bootstrap.min.js"></script>
     <!-- Magnific popup JS -->
-    <script src="js/jquery.magnific-popup.js"></script>
+    <script src="${pageContext.request.contextPath }/js/jquery.magnific-popup.js"></script>
     <!-- Swipper Slider JS -->
-    <script src="js/swiper.min.js"></script>
+    <script src="${pageContext.request.contextPath }/js/swiper.min.js"></script>
     <script>
         var swiper = new Swiper('.swiper-container', {
             slidesPerView: 3,
@@ -433,8 +433,8 @@
     <script type="text/JavaScript" src="js/detail_imageGallery.js"></script>
 
     <!-- jQuery Datepicker UI for reservation date -->
-    <script src="./js/jquery-ui-1.12.1/jquery-ui.min.js"></script>
-    <script src="./js/jquery-ui-1.12.1/datepicker-ko.js"></script>
+    <script src="${pageContext.request.contextPath }/js/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+    <script src="${pageContext.request.contextPath }/js/jquery-ui-1.12.1/datepicker-ko.js"></script>
     <script>
         $( function() {
         $( "#reservation_date" ).datepicker({
