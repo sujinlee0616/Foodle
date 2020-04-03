@@ -82,7 +82,7 @@
     <!-- Page Title -->
     <title>Foodle</title>
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="${path }css/bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/css/bootstrap.min.css">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,700,900" rel="stylesheet">
     <!-- Simple line Icon -->
@@ -119,7 +119,8 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css"/>
 </head>
 <body>
-	<jsp:include page="common/header_main.jsp"></jsp:include>  
+	<%-- <jsp:include page="common/header_main.jsp"></jsp:include>   --%>
+	<jsp:include page="${main_header }"></jsp:include>  
 	<jsp:include page="${main_jsp }"></jsp:include>
 	<!-- 동적: include되는 페이지를 바꿀 수 있다. -->
 	

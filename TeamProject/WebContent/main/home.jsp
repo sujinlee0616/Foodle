@@ -209,7 +209,7 @@
                 </div>
                 <div class="col-md-4 featured-responsive">
                     <div class="featured-place-wrap">
-                        <a href="main.jsp?mode=5">
+                        <a href="../restaurant/detail.do">
                             <img src="${pageContext.request.contextPath }/images/featured2.jpg" class="img-fluid" alt="#">
                             <span class="featured-rating">3.5</span>
                             <!-- <span class="featured-rating-green">3.5</span> -->
