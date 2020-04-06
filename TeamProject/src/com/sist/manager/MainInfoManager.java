@@ -416,24 +416,7 @@ public class MainInfoManager {
 			System.out.println(list.get(i).getR_Tel());
 			System.out.println(list.get(i).getR_Addr1());
 			System.out.println(list.get(i).getR_Addr2());
-			System.out.println(list.get(i).getR_Score());
-			System.out.println(list.get(i).getR_ScoreCount());		
-			System.out.println(list.get(i).getR_Lowprice());
-			System.out.println(list.get(i).getR_Highprice());
-			System.out.println(list.get(i).getR_Opentime());
-			System.out.println(list.get(i).getR_Closetime());
-			System.out.println(list.get(i).getR_Holiday());
-			System.out.println(list.get(i).getR_Content());
-			System.out.println(list.get(i).getR_Good());
-			System.out.println(list.get(i).getR_Seat());
-			System.out.println(list.get(i).getR_Room());
 			
-			System.out.println(list.get(i).getR_Drink());
-			System.out.println(list.get(i).getR_Nosmoking());
-			System.out.println(list.get(i).getR_Reserve());
-			System.out.println(list.get(i).getR_Restroom());
-			System.out.println(list.get(i).getR_Park());
-			System.out.println(list.get(i).getR_Other());
 			System.out.println(list.get(i).getR_Delivery());
 			System.out.println(list.get(i).getR_hit());
 			System.out.println(list.get(i).getR_Start());
