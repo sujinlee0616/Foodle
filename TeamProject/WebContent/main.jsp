@@ -50,6 +50,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css"/>
 </head>
 <body>
+
 	<%-- <jsp:include page="common/header_main.jsp"></jsp:include>   --%>
 	<jsp:include page="${main_header }"></jsp:include>  
 	<jsp:include page="${main_jsp }"></jsp:include>

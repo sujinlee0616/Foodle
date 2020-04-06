@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Config.xml: 공통 파일. Connection 관련. -->
+<!DOCTYPE configuration
+ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-config.dtd">
+ <configuration>
+  <typeAliases> <!-- VO 등록 -->
+  	<typeAlias type="com.sist.vo.AreacodeVO" alias="AreacodeVO"/>
+  	<typeAlias type="com.sist.vo.DetailThemaVO" alias="DetailThemaVO"/>
+  	<typeAlias type="com.sist.vo.ImageVO" alias="ImageVO"/>
+  	<typeAlias type="com.sist.vo.InfoThemaVO" alias="InfoThemaVO"/>
+  	<typeAlias type="com.sist.vo.InfoVO" alias="InfoVO"/>
+  	<typeAlias type="com.sist.vo.MainInfoVO" alias="MainInfoVO"/>
+  	<typeAlias type="com.sist.vo.MainThemaVO" alias="MainThemaVO"/>
+  	<typeAlias type="com.sist.vo.MenuVO" alias="MenuVO"/>
+  	<typeAlias type="com.sist.vo.ReserveInfoVO" alias="ReserveInfoVO"/>
+  </typeAliases>
+  <environments default="development">
+  	<environment id="development">
+  		<transactionManager type="JDBC"></transactionManager> 
+  		<dataSource type="POOLED"> 
+			<property name="driver" value="oracle.jdbc.driver.OracleDriver"/>
+			<property name="url" value="jdbc:oracle:thin:@localhost:1521:XE"/>
+			<property name="username" value="hr"/>
+			<property name="password" value="happy"/>
+  		</dataSource>
+  	</environment>
+  </environments>
+ </configuration>
+ 
+ 
+ 
