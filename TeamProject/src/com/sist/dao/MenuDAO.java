@@ -6,8 +6,8 @@ import com.sist.vo.*;
 public class MenuDAO {
 	private Connection conn; // Socket
 	private PreparedStatement ps;// OutputStream , BufferedReader
-//	private final String URL="jdbc:oracle:thin:@211.238.142.207:1521:XE";
-	private final String URL="jdbc:oracle:thin:@localhost:1521:XE";
+	private final String URL="jdbc:oracle:thin:@211.238.142.207:1521:XE";
+//	private final String URL="jdbc:oracle:thin:@localhost:1521:XE";
 			
 
 	public MenuDAO()
@@ -58,6 +58,7 @@ public class MenuDAO {
 					  +"mHostgood VARCHAR2(50)"
 					  + ")";*/
 			ps=conn.prepareStatement(sql);
+//			ps.executeQuery();
 			ps.executeUpdate();
 
 		} catch(Exception ex) {

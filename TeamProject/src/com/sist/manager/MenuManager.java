@@ -49,6 +49,7 @@ public class MenuManager {
 //		for(int i = 0 ; i < 3; i++)
 		{
 			for(int j = 0 ; j < page ; j++)
+//			for(int j = 0 ; j < 1 ; j++)
 			{
 				try
 				{
@@ -56,6 +57,7 @@ public class MenuManager {
 				Document doc =Jsoup.connect(url).get();
 				Elements link = doc.select("p.listName a");
 					for(int z = 0 ; z < kategorie ; z++)
+//					for(int z = 0 ; z < 5 ; z++)
 					{
 						
 						Element elem = link.get(z);
@@ -135,15 +137,15 @@ public class MenuManager {
 			System.out.println();
 		}*/
 		
-		/*for(MenuVO vo:list) {
-			System.out.printf("가게 고유 번호 : "+vo.getR_No()+"     ");
-			System.out.printf("메뉴 이름 : "+vo.getM_Name()+"     ");
-			System.out.printf("메뉴 가격 : "+vo.getM_Price()+"     ");
-			System.out.printf("메뉴 정보 : "+vo.getM_Info()+"     ");
-			System.out.printf("유저 좋아요 숫자 : "+vo.getM_UsergoodCount()+"     ");
-			System.out.printf("주인 추천 : "+vo.getM_Hostgood()+"     ");
-			System.out.println();
-		}*/
+//		for(MenuVO vo:list) {
+//			System.out.printf("가게 고유 번호 : "+vo.getR_No()+"     ");
+//			System.out.printf("메뉴 이름 : "+vo.getM_Name()+"     ");
+//			System.out.printf("메뉴 가격 : "+vo.getM_Price()+"     ");
+//			System.out.printf("메뉴 정보 : "+vo.getM_Info()+"     ");
+//			System.out.printf("유저 좋아요 숫자 : "+vo.getM_UsergoodCount()+"     ");
+//			System.out.printf("주인 추천 : "+vo.getM_Hostgood()+"     ");
+//			System.out.println();
+//		}
 		
 		MenuDAO dao=new MenuDAO();
 		dao.menuCreate();
@@ -155,7 +157,7 @@ public class MenuManager {
 			ex.printStackTrace();
 		}
 		
-		int k=1;
+		int menu_k=1;
 		for(MenuVO vo:list) {
 			dao.menuInsert(vo);
 			try {
@@ -163,8 +165,8 @@ public class MenuManager {
 			} catch(Exception ex) {
 				ex.printStackTrace();
 			}
-			System.out.println("k="+k);
-			k++;
+			System.out.println("Menu_k="+menu_k);
+			menu_k++;
 		}
 		System.out.println("END!!");
 		
