@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -271,167 +272,83 @@
     </section>
     <!--//END FEATURED PLACES -->
     <!--============================= CURRENT POPULAR TOP 30 =============================-->
+    <!-- 2020.04.06(월) 작업: 이미지랑 가게설명은 아직 못 함. main-mapper.xml에서 rNO 기준으로 조인해야 함. 테이블 만들어진 이후 가능할 듯. -->
+    <!-- 데이터 들어가는 부분 임시로 주석처리 해놨어요. Config.xml에서 server로 IP 변경하고 주석해제하면 데이터 나올거에요. -->
     <!-- Start of new  -->  
 	<section class="main-block" id="current">
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="col-md-5">
 					<div class="styled-heading">
-						<h3>실시간 맛집 Top30</h3>
+						<h3>주간 맛집 Top30</h3>
 					</div>
 				</div>
 			</div>
+			
 			<div class="row justify-content-center d-flex">
 				<div class="col-lg-12 post-list">
-					<!-- Start of a content -->
-					<div class="single-post d-flex flex-row">
-						<div class="thumb">
-							<a href="main.jsp?mode=5">
-								<img src="${pageContext.request.contextPath }/images/featured1.jpg" alt="">
-							</a>
-						</div>
-						<div class="details">
-							<div class="title d-flex flex-row justify-content-between">
-								<div class="res_title pt-2">
-									<a href="main.jsp?mode=5"><h4>브루클린더버거조인트<span class="rating">3.5</span></h4></a>
-								</div>
-								<ul class="btns px-0">
-									<li><a href="#"><span class="ti-heart"></span></a></li>
-									<li><a href="#">예약하기</a></li>
-								</ul>
+					<!-- ============================== 데이터 연동 O ==============================  -->
+					<%-- <c:forEach var="vo" items="${weeklytop30list }">
+						<!-- Start of a content -->
+						<div class="single-post d-flex flex-row">
+							<div class="thumb">
+								<a href="main.jsp?mode=5">
+									<img src="${pageContext.request.contextPath }/images/featured1.jpg" alt="">
+								</a>
 							</div>
-							<p>20석도 채 안되는 작은 규모이지만 실속있는 수제버거 전문점이다. 외국인들이 많이 찾을 정도로 오리지널 수제버거의 맛을 재현하고 있다.
-							 <ul class="detailed-info">
-                                    <li><span class="icon-location-pin"></span>
-                                        <p>서울 서초구 서래로2길 27</p>
-                                    </li>
-                                    <li><span class="icon-screen-smartphone"></span>
-                                        <p>(02) 533-7180</p>
-                                    </li>
-                                    <!-- <li><span class="icon-link"></span>
-                                        <p>http://www.naver.com</p>
-                                    </li> -->
-                             </ul>
-						</div>
-					</div>
-					<!-- End of a content -->
-					<div class="single-post d-flex flex-row">
-						<div class="thumb">
-							<a href="main.jsp?mode=5">
-								<img src="${pageContext.request.contextPath }/images/featured2.jpg" alt="">
-							</a>
-						</div>
-						<div class="details">
-							<div class="title d-flex flex-row justify-content-between">
-								<div class="res_title pt-2">
-									<a href="main.jsp?mode=5"><h4>사모님 돈까스<span class="rating">3.5</span></h4></a>
+							<div class="details">
+								<div class="title d-flex flex-row justify-content-between">
+									<div class="res_title pt-2">
+										<a href="main.jsp?mode=5"><h4>${vo.rName }<span class="rating">${vo.rScore }</span></h4></a>
+									</div>
+									<ul class="btns px-0">
+										<li><a href="#"><span class="ti-heart"></span></a></li>
+										<li><a href="#">예약하기</a></li>
+									</ul>
 								</div>
-								<ul class="btns px-0">
-									<li><a href="#"><span class="ti-heart"></span></a></li>
-									<li><a href="#">예약하기</a></li>
-								</ul>
+								<p>20석도 채 안되는 작은 규모이지만 실속있는 수제버거 전문점이다. 외국인들이 많이 찾을 정도로 오리지널 수제버거의 맛을 재현하고 있다.
+								 <ul class="detailed-info">
+	                                    <li><span class="icon-location-pin"></span>
+	                                        <p>${vo.rAddr2 }</p>
+	                                    </li>
+	                                    <li><span class="icon-screen-smartphone"></span>
+	                                        <p>${vo.rTel }</p>
+	                                    </li>
+	                             </ul>
 							</div>
-							<p>상수역에서 맛있는 돈까스를 맛볼 수 있는 “사모님돈까스”를 소개한다.                    
-                            깔끔한 나무풍 인테리어 디자인으로 되어있는 이집은 줄서서 먹을정도로 인기가 높다.</p>
-							 <ul class="detailed-info">
-                                    <li><span class="icon-location-pin"></span>
-                                        <p>서울 영등포구 여의대로 66 KTB 투자증권 1층</p>
-                                    </li>
-                                    <li><span class="icon-screen-smartphone"></span>
-                                        <p>02-1234-5678</p>
-                                    </li>
-                             </ul>
 						</div>
-					</div>
+						<!-- End of a content -->
+					</c:forEach> --%>
+					
+					<!-- ============================== 데이터 연동 X. ==============================  -->
 					<div class="single-post d-flex flex-row">
-						<div class="thumb">
-							<a href="main.jsp?mode=5">
-								<img src="${pageContext.request.contextPath }/images/featured3.jpg" alt="">
-							</a>
+							<div class="thumb">
+								<a href="main.jsp?mode=5">
+									<img src="${pageContext.request.contextPath }/images/featured1.jpg" alt="">
+								</a>
+							</div>
+							<div class="details">
+								<div class="title d-flex flex-row justify-content-between">
+									<div class="res_title pt-2">
+										<a href="main.jsp?mode=5"><h4>${vo.rName }<span class="rating">${vo.rScore }</span></h4></a>
+									</div>
+									<ul class="btns px-0">
+										<li><a href="#"><span class="ti-heart"></span></a></li>
+										<li><a href="#">예약하기</a></li>
+									</ul>
+								</div>
+								<p>20석도 채 안되는 작은 규모이지만 실속있는 수제버거 전문점이다. 외국인들이 많이 찾을 정도로 오리지널 수제버거의 맛을 재현하고 있다.
+								 <ul class="detailed-info">
+	                                    <li><span class="icon-location-pin"></span>
+	                                        <p>${vo.rAddr2 }</p>
+	                                    </li>
+	                                    <li><span class="icon-screen-smartphone"></span>
+	                                        <p>${vo.rTel }</p>
+	                                    </li>
+	                             </ul>
+							</div>
 						</div>
-                        <div class="details">
-                            <div class="title d-flex flex-row justify-content-between">
-                                <div class="res_title pt-2">
-                                    <a href="main.jsp?mode=5">
-                                        <h4>스트릿(strEAT) 여의도점<span class="rating">4.2</span></h4>
-                                    </a>
-                                </div>
-                                <ul class="btns px-0">
-                                    <li><a href="#"><span class="ti-heart"></span></a></li>
-                                    <li><a href="#">예약하기</a></li>
-                                </ul>
-                            </div>
-                            <p>따뜻함, 건강함, 편리함을 추구하는 누들 & 라이스 레스토랑 '스트릿(strEAT)'.<br>
-                                길거리와 먹거리라는 뜻을 가지고 있는 '스트릿(strEAT)'은 아시아 각 지역의 특색있는 요리를 선보이는 퓨전 레스토랑이다.</p>
-                            <ul class="detailed-info">
-                                <li><span class="icon-location-pin"></span>
-                                    <p>서울 영등포구 여의대로 66 KTB 투자증권 1층</p>
-                                </li>
-                                <li><span class="icon-screen-smartphone"></span>
-                                    <p>02-1234-5678</p>
-                                </li>
-                            </ul>
-                        </div>
-					</div>
-                    <div class="single-post d-flex flex-row">
-                        <div class="thumb">
-                            <a href="main.jsp?mode=5">
-                                <img src="${pageContext.request.contextPath }/images/featured1.jpg" alt="">
-                            </a>
-                        </div>
-                        <div class="details">
-                            <div class="title d-flex flex-row justify-content-between">
-                                <div class="res_title pt-2">
-                                    <a href="main.jsp?mode=5">
-                                        <h4>브루클린더버거조인트<span class="rating">3.5</span></h4>
-                                    </a>
-                                </div>
-                                <ul class="btns px-0">
-                                    <li><a href="#"><span class="ti-heart"></span></a></li>
-                                    <li><a href="#">예약하기</a></li>
-                                </ul>
-                            </div>
-                            <p>20석도 채 안되는 작은 규모이지만 실속있는 수제버거 전문점이다. 외국인들이 많이 찾을 정도로 오리지널 수제버거의 맛을 재현하고 있다.
-                                <ul class="detailed-info">
-                                    <li><span class="icon-location-pin"></span>
-                                        <p>서울 서초구 서래로2길 27</p>
-                                    </li>
-                                    <li><span class="icon-screen-smartphone"></span>
-                                        <p>(02) 533-7180</p>
-                                    </li>
-                                </ul>
-                        </div>
-                    </div>
-                    <div class="single-post d-flex flex-row">
-                        <div class="thumb">
-                            <a href="main.jsp?mode=5">
-                                <img src="${pageContext.request.contextPath }/images/featured2.jpg" alt="">
-                            </a>
-                        </div>
-                        <div class="details">
-                            <div class="title d-flex flex-row justify-content-between">
-                                <div class="res_title pt-2">
-                                    <a href="main.jsp?mode=5">
-                                        <h4>사모님 돈까스<span class="rating">3.5</span></h4>
-                                    </a>
-                                </div>
-                                <ul class="btns px-0">
-                                    <li><a href="#"><span class="ti-heart"></span></a></li>
-                                    <li><a href="#">예약하기</a></li>
-                                </ul>
-                            </div>
-                            <p>상수역에서 맛있는 돈까스를 맛볼 수 있는 “사모님돈까스”를 소개한다.
-                                깔끔한 나무풍 인테리어 디자인으로 되어있는 이집은 줄서서 먹을정도로 인기가 높다.</p>
-                            <ul class="detailed-info">
-                                <li><span class="icon-location-pin"></span>
-                                    <p>서울 영등포구 여의대로 66 KTB 투자증권 1층</p>
-                                </li>
-                                <li><span class="icon-screen-smartphone"></span>
-                                    <p>02-1234-5678</p>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+					
 				</div>
 			</div>
 			<div class="row justify-content-center">
