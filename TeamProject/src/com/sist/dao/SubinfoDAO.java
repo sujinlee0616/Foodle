@@ -6,8 +6,8 @@ import java.sql.*;
 public class SubinfoDAO {
 	private Connection conn; // Socket
 	private PreparedStatement ps;// OutputStream , BufferedReader
-//	private final String URL="jdbc:oracle:thin:@211.238.142.207:1521:XE";
-	private final String URL="jdbc:oracle:thin:@localhost:1521:XE";
+	private final String URL="jdbc:oracle:thin:@211.238.142.207:1521:XE";
+//	private final String URL="jdbc:oracle:thin:@localhost:1521:XE";
 	
 	public SubinfoDAO() {
 		try {
@@ -46,11 +46,11 @@ public class SubinfoDAO {
 					+ "rdelivery VARCHAR2(30) CONSTRAINT subinfo_rdelivery_nn NOT NULL, "
 					+ "rother VARCHAR2(50) CONSTRAINT subinfo_rother_nn NOT NULL, "
 					+ "rtakeout VARCHAR2(30) CONSTRAINT subinfo_rtakeout_nn NOT NULL, "
-					+ "rcontent CLOB, "
-					+ "rgood NUMBER, "
-					+ "rhit NUMBER, "
-					+ "rstart VARCHAR2(30), "
-					+ "rdate VARCHAR2(30), "
+					+ "rcontent CLOB CONSTRAINT subinfo_rcontent_nn NOT NULL, "
+					+ "rgood NUMBER CONSTRAINT subinfo_rgood_nn NOT NULL, "
+					+ "rhit NUMBER CONSTRAINT subinfo_rhit_nn NOT NULL, "
+					+ "rstart VARCHAR2(30) CONSTRAINT subinfo_rstart_nn NOT NULL, "
+					+ "rdate VARCHAR2(30) CONSTRAINT subinfo_rdate_nn NOT NULL, "
 					+ "CONSTRAINT subinfo_rno_fk FOREIGN KEY(rno) "
 					+ "REFERENCES maininfo(rno)"
 					+ ")";

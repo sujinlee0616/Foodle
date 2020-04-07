@@ -8,7 +8,7 @@ public class ReserveInfoDAO {
 
 	private Connection conn;
 	private PreparedStatement ps;
-	private final String URL="jdbc:oracle:thin:@localhost:1521:XE";
+	private final String URL="jdbc:oracle:thin:@211.238.142.207:1521:XE";
 	
 	// 1. 드라이버 등록
 	public ReserveInfoDAO() {
@@ -55,8 +55,8 @@ public class ReserveInfoDAO {
 					+ "rSeat	NUMBER CONSTRAINT ri_seat_nn NOT NULL,"
 					+ "rRoom	NUMBER CONSTRAINT ri_room_nn NOT NULL,"
 					+ "rRoomcount NUMBER CONSTRAINT rc_room_nn NOT NULL"
-					/*+ ",CONSTRAINTS ri_fk FOREIGN KEY(rNo)"
-					+ "REFERENCES mainInfo(rNo)" */
+					+ ",CONSTRAINTS ri_fk FOREIGN KEY(rNo)"
+					+ "REFERENCES mainInfo(rNo)" 
 					+ ")";
 			ps = conn.prepareStatement(sql);
 			ps.executeQuery();

@@ -24,6 +24,7 @@ public class MainInfoVO {
 	private String rArea;
 	// 가게 세부지역(ex.가로수길,강남역...)
 	private String rAreaDetail;
+	
 	public int getrNo() {
 		return rNo;
 	}

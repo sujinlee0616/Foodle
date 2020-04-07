@@ -33,6 +33,7 @@ public class ReserveInfoManager {
 		Element rHoliday;
 		Element rSeat_Room; // r_Seat, r_Room 합친 것 	
 		
+		int count=1;
 		// System.out.println("현재 카테고리 번호 : "+ (z+1)  + ",현재페이지번호 : " + (j+1) +",현재지역번호 : "+(i+1));
 		// i < ac.size()로 변경
 		for(int i=0; i<ac.size(); i++)
@@ -52,7 +53,7 @@ public class ReserveInfoManager {
 							String mLink = "http://www.menupan.com" + elem.attr("href");
 							Document doc2 = Jsoup.connect(mLink).get();
 							
-							int count=0;
+							
 							while(true)
 							{
 								try
@@ -161,21 +162,22 @@ public class ReserveInfoManager {
 									}	
 											
 									// Data Check 
-									System.out.println("현재 카테고리 번호:"+ (z+1)  + ", 현재페이지번호:" + (j+1) +", 현재지역번호:"+(i+1));
-									System.out.println("rNo="+vo.getrNo()
-														+", rLowprice="+vo.getrLowprice()
-														+", rHighprice="+vo.getrHighprice()
-														+", rOpentime="+vo.getrOpentime()
-														+", rClosetime="+vo.getrClosetime()
-														+", rReserve="+vo.getrReserve()
-														+", rHoliday="+vo.getrHoliday()
-														+", rSeat="+vo.getrSeat()
-														+", rRoom="+vo.getrRoom()
-														+", rRoomcount="+vo.getrRoomcount());
-									
+//									System.out.println("현재 카테고리 번호:"+ (z+1)  + ", 현재페이지번호:" + (j+1) +", 현재지역번호:"+(i+1));
+//									System.out.println("rNo="+vo.getrNo()
+//														+", rLowprice="+vo.getrLowprice()
+//														+", rHighprice="+vo.getrHighprice()
+//														+", rOpentime="+vo.getrOpentime()
+//														+", rClosetime="+vo.getrClosetime()
+//														+", rReserve="+vo.getrReserve()
+//														+", rHoliday="+vo.getrHoliday()
+//														+", rSeat="+vo.getrSeat()
+//														+", rRoom="+vo.getrRoom()
+//														+", rRoomcount="+vo.getrRoomcount());
+//									
 									// 넣는 부분								
 									dao.ReserveInfoInsert(vo);
-									Thread.sleep(1000);
+									Thread.sleep(100);
+									System.out.println("Reserveinfo Count: "+count);
 									count++;
 									break;
 									

@@ -10,45 +10,55 @@ import com.sist.dao.*;
 public class Manager {
 
 	public static void main(String[] args) {
-
+		////////////////////////////maininfo////////////////////
+		AreacodeManager am=new AreacodeManager();
 		
-//		ThemaManager tm = new ThemaManager();
-		AreacodeManager am = new AreacodeManager();
-//		ImageManager im = new ImageManager();
-//		InfoManager ifm = new InfoManager();
-//		
-//		ArrayList<MainThemaVO> mtVO = new ArrayList<MainThemaVO>();
-//		ArrayList<DetailThemaVO> dtVO = new ArrayList<DetailThemaVO>();
-		ArrayList<AreacodeVO> aVO = new ArrayList<AreacodeVO>();
-//		ArrayList<ImageVO> iVO = new ArrayList<ImageVO>();
-//		ArrayList<InfoVO> ifVO = new ArrayList<InfoVO>();		
-//		
-//		mtVO=tm.MainThemaAllData();
-//		dtVO=tm.DetailThemaAllData();
-		aVO=am.AreacodeAllData();
-//		iVO=im.ImageAllData(aVO);
-//		ifVO=ifm.InfoAllData(aVO);
+		
+		MainInfoManager ifm = new MainInfoManager();
+		SubinfoManager sm=new SubinfoManager();
+		
+		ArrayList<MainInfoVO> mainlist = new  ArrayList<MainInfoVO>();
+		
+		MainInfoDAO dao=MainInfoDAO.newInstance();
+		
+		
+		dao.mainInfoCreate();
+		System.out.println("create Main table!");
+		
+		mainlist = ifm.mainInfoAllData(am.AreacodeAllData());
 		
 		
 		
-		AreacodeDAO a = new AreacodeDAO();
-//		System.out.println(aVO.size());
-		
-		
-		a.AreacodeCreate();
 		int k=1;
-		for (int i = 0; i < aVO.size(); i++) {
-			a.AreacodeInsert(aVO.get(i));
-			System.out.println("k="+k);
-			try {
-				Thread.sleep(100);
-			} catch(Exception ex) {
-				ex.printStackTrace();
-			}
-
+		
+		for(MainInfoVO vo:mainlist)
+		{
+			dao.mainInfoInsert(vo);	
+			
+			System.out.println("MainInfo Count: "+k);
 			k++;
+			try{
+				
+				Thread.sleep(100);
+				
+			}catch(Exception ex) {}	
+			
 		}
-		System.out.println("!!END!!");
-	
+		System.out.println("Maininfo parsing done!!");
+		////////////////////////////subinfo////////////////////
+		SubinfoDAO sdao=new SubinfoDAO();
+		sdao.SubInfoCreate();
+		System.out.println("create Sub table!");
+		sm.InfoAllData(am.AreacodeAllData());
+		System.out.println("Subinfo parsing done!!");
+		
+		////////////////////reserveinfo////////////////////////
+		
+		ReserveInfoManager rim = new ReserveInfoManager();
+		ReserveInfoDAO rdao=new ReserveInfoDAO();
+		rdao.ReserveInfoCreate();
+		System.out.println("create Reserveinfo table!");
+		rim.ReserveInfoData(am.AreacodeAllData());
+		System.out.println("Reserveinfo parsing done!!");
 	}
 }

@@ -47,8 +47,8 @@ public class MainInfoManager {
 		MainInfoVO vo;
 		
 		ArrayList<AreacodeVO> ac = areacode;
-		int page = 5;
-		int kategorie = 24;
+		int page = 20;
+		int kategorie = 25;
 		
 
 		/*
@@ -159,8 +159,9 @@ public class MainInfoManager {
 		
 		
 		//System.out.println("현재 카테고리 번호 : "+ (z+1)  + ",현재페이지번호 : " + (j+1) +", 현재지역번호 : "+(i+1));
-		for(int i=0; i<2; i++)   // i < ac.size()로 변경 예정! ==> 현재 두개의 area만 돌 것!!
+		for(int i=0; i<ac.size(); i++)   // i < ac.size()로 변경 예정! ==> 현재 두개의 area만 돌 것!!
 		{
+			
 			for(int j=0; j < page; j++) // 한개의 areacode를 돌때 각 페이지 별로 자료를 가져올 예정!!  현재 0,1 페이지만 긁을 예정!!
 			{
 				try{
@@ -364,6 +365,7 @@ public class MainInfoManager {
 			}catch(Exception ex) {ex.printStackTrace();}
 		}
 	}
+	
 	return list;
 }
 
@@ -378,17 +380,21 @@ public class MainInfoManager {
 		
 		ArrayList<MainInfoVO> list = new  ArrayList<MainInfoVO>();
 		
-		System.out.println(ifm.MediaSubString(",", "aaa,bbb,ccc"));
+		//System.out.println(ifm.MediaSubString(",", "aaa,bbb,ccc"));
 		
 		list = ifm.mainInfoAllData(am.AreacodeAllData());
 		
-	//	mainInfoDAO dao=mainInfoDAO.newInstance();
+		MainInfoDAO dao=MainInfoDAO.newInstance();
+		
+		dao.mainInfoCreate();
 		
 		int k=1;
-		for(int i = 0 ; i < list.size() ; i++)
+		
+		for(MainInfoVO vo:list)
 		{
+			dao.mainInfoInsert(vo);	
 			
-			System.out.println("k="+k);
+			System.out.println("MainInfo k="+k);
 			
 			try{
 				
@@ -396,54 +402,7 @@ public class MainInfoManager {
 				
 			}catch(Exception ex) {}	
 			
-			k++;
-			
-			System.out.println(list.get(i).getrNo());
-			System.out.println(list.get(i).getrName());
-			System.out.println(list.get(i).getrType());
-			System.out.println(list.get(i).getrTel());
-			System.out.println(list.get(i).getrAddr1());
-			System.out.println(list.get(i).getrAddr2());
-			System.out.println(list.get(i).getrScore());
-			System.out.println(list.get(i).getrScoreCount());	
-			
-			System.out.println(list.get(i).getrArea());
-			System.out.println(list.get(i).getrAreaDetail());
-			
-			System.out.println();
-			
-		/*
-			System.out.println(list.get(i).getR_Tel());
-			System.out.println(list.get(i).getR_Addr1());
-			System.out.println(list.get(i).getR_Addr2());
-			System.out.println(list.get(i).getR_Score());
-			System.out.println(list.get(i).getR_ScoreCount());		
-			System.out.println(list.get(i).getR_Lowprice());
-			System.out.println(list.get(i).getR_Highprice());
-			System.out.println(list.get(i).getR_Opentime());
-			System.out.println(list.get(i).getR_Closetime());
-			System.out.println(list.get(i).getR_Holiday());
-			System.out.println(list.get(i).getR_Content());
-			System.out.println(list.get(i).getR_Good());
-			System.out.println(list.get(i).getR_Seat());
-			System.out.println(list.get(i).getR_Room());
-			
-			System.out.println(list.get(i).getR_Drink());
-			System.out.println(list.get(i).getR_Nosmoking());
-			System.out.println(list.get(i).getR_Reserve());
-			System.out.println(list.get(i).getR_Restroom());
-			System.out.println(list.get(i).getR_Park());
-			System.out.println(list.get(i).getR_Other());
-			System.out.println(list.get(i).getR_Delivery());
-			System.out.println(list.get(i).getR_hit());
-			System.out.println(list.get(i).getR_Start());
-		*/	
-			
 		}
-		System.out.println("save end.........");
-		
-		
-		
 		
 	}
 

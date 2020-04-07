@@ -37,7 +37,7 @@ public class SubinfoManager {
 		int ct=1;
 //		System.out.println("현재 카테고리 번호 : "+ (z+1)  + ",현재페이지번호 : " + (j+1) +",현재지역번호 : "+(i+1));
 		//i < ac.size()로 변경
-		for(int i = 0 ; i < 1 ; i++)
+		for(int i = 0 ; i < ac.size() ; i++)
 		{
 			for(int j = 0 ; j < page ; j++)
 			{
@@ -166,9 +166,9 @@ public class SubinfoManager {
 							}catch(Exception ex) {vo.setrStart("2019.07.24");}
 							
 							dao.SubInfoInsert(vo);
-							System.out.println("Count: "+ct);
+							System.out.println("Subinfo Count: "+ct);
 							ct++;
-							Thread.sleep(40);
+							Thread.sleep(100);
 						}
 				}catch(Exception ex) {ex.printStackTrace();}
 			}

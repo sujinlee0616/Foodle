@@ -2,6 +2,7 @@ package com.sist.dao;
 
 
 import java.sql.Connection;
+
 import java.sql.*;
 
 import com.sist.vo.*;
@@ -11,7 +12,9 @@ public class MainInfoDAO { //오라클에 연결하는 클래스
 	private Connection conn;  // 오라클 연결
 	private PreparedStatement ps; // sql문장 읽기 
 	private static MainInfoDAO dao; //싱글톤 생성
-	private final String URL="jdbc:oracle:thin:@localhost:1521:XE";
+	private final String URL="jdbc:oracle:thin:@211.238.142.207:1521:XE";
+	//private final String URL="jdbc:oracle:thin:@localhost:1521:XE";
+	
 	
 	public MainInfoDAO(){ //생성자
 		
@@ -71,16 +74,17 @@ public class MainInfoDAO { //오라클에 연결하는 클래스
 
 				String sql = "CREATE TABLE mainInfo("
 							+ "rNo NUMBER,"
-							+ "rName VARCHAR2(1000),"
-							+ "rType VARCHAR2(1000),"
-							+ "rTel VARCHAR2(1000),"
+							+ "rName VARCHAR2(1000) CONSTRAINT rName_mi_nn NOT NULL,"
+							+ "rType VARCHAR2(1000) CONSTRAINT rType_mi_nn NOT NULL,"
+							+ "rTel VARCHAR2(1000) CONSTRAINT rTel_mi_nn NOT NULL,"
 							+ "rScore NUMBER,"
-							+ "rScoreCount NUMBER,"
-							+ "rAddr1 VARCHAR2(1000),"
-							+ "rAddr2 VARCHAR2(1000),"
-							+ "rPwd VARCHAR2(1000),"
+							+ "rScoreCount NUMBER CONSTRAINT rScoreCount_mi_nn NOT NULL,"
+							+ "rAddr1 VARCHAR2(1000) CONSTRAINT rAddr1_mi_nn NOT NULL,"
+							+ "rAddr2 VARCHAR2(1000) CONSTRAINT rAddr2_mi_nn NOT NULL,"
+							+ "rPwd VARCHAR2(1000) CONSTRAINT rPwd_mi_nn NOT NULL,"
 							+ "rArea VARCHAR2(1000),"
-							+ "rAreaDetail VARCHAR2(1000))";
+							+ "rAreaDetail VARCHAR2(1000),"
+							+ "CONSTRAINT rNo_mi_pk PRIMARY KEY(rNo))";
 								
 				ps = conn.prepareStatement(sql);
 				ps.executeUpdate();
@@ -114,12 +118,12 @@ public class MainInfoDAO { //오라클에 연결하는 클래스
 			 */
 			ps=conn.prepareStatement(sql);
 
-			ps.setString(1, String.valueOf(vo.getrNo()));
+			ps.setInt(1, vo.getrNo());
 			ps.setString(2, vo.getrName());
 			ps.setString(3, vo.getrType());
 			ps.setString(4, vo.getrTel());
-			ps.setString(5, String.valueOf(vo.getrScore()));
-			ps.setString(6, String.valueOf(vo.getrScoreCount()));
+			ps.setDouble(5, vo.getrScore());
+			ps.setInt(6, vo.getrScoreCount());
 			ps.setString(7, vo.getrAddr1());
 			ps.setString(8, vo.getrAddr2());
 			ps.setString(9, "1234");
