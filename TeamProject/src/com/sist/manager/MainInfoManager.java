@@ -380,7 +380,7 @@ public class MainInfoManager {
 		
 		ArrayList<MainInfoVO> list = new  ArrayList<MainInfoVO>();
 		
-		//System.out.println(ifm.MediaSubString(",", "aaa,bbb,ccc"));
+		System.out.println(ifm.MediaSubString(",", "aaa,bbb,ccc"));
 		
 		list = ifm.mainInfoAllData(am.AreacodeAllData());
 		
@@ -389,12 +389,10 @@ public class MainInfoManager {
 		dao.mainInfoCreate();
 		
 		int k=1;
-		
-		for(MainInfoVO vo:list)
+		for(int i = 0 ; i < list.size() ; i++)
 		{
-			dao.mainInfoInsert(vo);	
 			
-			System.out.println("MainInfo k="+k);
+			System.out.println("k="+k);
 			
 			try{
 				
@@ -402,7 +400,37 @@ public class MainInfoManager {
 				
 			}catch(Exception ex) {}	
 			
+			k++;
+			
+			System.out.println(list.get(i).getrNo());
+			System.out.println(list.get(i).getrName());
+			System.out.println(list.get(i).getrType());
+			System.out.println(list.get(i).getrTel());
+			System.out.println(list.get(i).getrAddr1());
+			System.out.println(list.get(i).getrAddr2());
+			System.out.println(list.get(i).getrScore());
+			System.out.println(list.get(i).getrScoreCount());	
+			
+			System.out.println(list.get(i).getrArea());
+			System.out.println(list.get(i).getrAreaDetail());
+			
+			System.out.println();
+			
+		/*
+			System.out.println(list.get(i).getR_Tel());
+			System.out.println(list.get(i).getR_Addr1());
+			System.out.println(list.get(i).getR_Addr2());
+			
+			System.out.println(list.get(i).getR_Delivery());
+			System.out.println(list.get(i).getR_hit());
+			System.out.println(list.get(i).getR_Start());
+		*/	
+			
 		}
+		System.out.println("save end.........");
+		
+		
+		
 		
 	}
 
