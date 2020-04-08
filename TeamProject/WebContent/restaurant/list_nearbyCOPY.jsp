@@ -1,115 +1,136 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<!-- 
+<style type="text/css">
+div {
+	background-color: white;
+}
+</style>
+ -->
 </head>
 <body>
     <!--============================= LIST =============================-->
     <section class="list-block">
-    
-     	<!-- 주변맛집 전체화면 -->
         <div class="container-fluid py-4 light-bg">
             <div class="row">
-            
-        		<!-- ======================================주변맛집 페이지 왼쪽 화면============================================= -->   
                 <div class="col-md-7 responsive-wrap">
-                   
-                    <!-- ===================================검색 결과 타이틀 "~ 주변 검색 결과" ===================================-->
+                    <!-- Menu Title -->
                     <div class="row my-2">
                         <div class="col-md-6">
-                            <h5> "#검색어" 주변 맛집</h5>
-                           <!--  <p>총 <span>###개</span></p>  -->
+                            <h5> # 주변 맛집</h5>
+                <!-- jQuery, Bootstrap JS. -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <!-- Magnific popup JS -->
+    <script src="js/jquery.magnific-popup.js"></script>
+    <!-- Swipper Slider JS -->
+    <script src="js/swiper.min.js"></script>
+    <script>
+        var swiper = new Swiper('.swiper-container', {
+            slidesPerView: 3,
+            slidesPerGroup: 3,
+            loop: true,
+            loopFillGroupWithBlank: true,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
+    </script>
+    <script>
+        if ($('.image-link').length) {
+            $('.image-link').magnificPopup({
+                type: 'image',
+                gallery: {
+                    enabled: true
+                }
+            });
+        }
+        if ($('.image-link2').length) {
+            $('.image-link2').magnificPopup({
+                type: 'image',
+                gallery: {
+                    enabled: true
+                }
+            });
+        }
+    </script>
+  
+</body>
+
+</html>
+                            <p>총 <span>###개</span></p>
                         </div>
                     </div>
-                    
-
-                    <!-- ============================================카테고리!!============================================= -->
-                    <div class="mt-4">
+                    <!-- CUSTOM FILTER (like hashtag) -->
+                    <div class="filter mt-4">
                         <div class="filter_row area">
-
-							<!--첫번째  button -->
-							<div class="dropdown">
-								<button class="btn btn-default dropdown-toggle" type="button" 
-								data-toggle="dropdown">
-									Price <span class="caret"></span>
-								</button>
-								<ul class="dropdown-menu">
-									<li><a href="#">$</a></li>
-									<li><a href="#">$$</a></li>
-									<li><a href="#">$$$</a></li>
-									<li class="divider"></li>
-									<li><a href="#">Save</a></li>
-								</ul>
-							</div>
-
-							<!--두번째  button -->
-							<div class="dropdown">
-								<button class="btn btn-default dropdown-toggle" type="button"
-									data-toggle="dropdown">
-									Distance <span class="caret"></span>
-								</button>
-								<ul class="dropdown-menu">
-									<li><a href="#">1min</a></li>
-									<li><a href="#">5min</a></li>
-									<li><a href="#">15min</a></li>
-									<li><a href="#">30min</a></li>
-									<li class="divider"></li>
-									<li><a href="#">Save</a></li>
-								</ul>
-							</div>
-							
-							<!--세번째  button -->
-
-							<div class="dropdown">
-								<button class="btn btn-default dropdown-toggle" type="button"
-									data-toggle="dropdown">
-									Open Now <span class="caret"></span>
-								</button>
-							</div>
-
-							<!-- 업종 에서 기본만 올려두고 나머지는 더보기 클릭하면 새창에서 나오도록!whitebox!!! -->
-							<!--네번째  button -->
-							<div class="dropdown">
-								<button class="btn btn-default dropdown-toggle" type="button"
-									data-toggle="dropdown">
-									업종 <span class="caret"></span>
-								</button>
-								<ul class="dropdown-menu">
-									<li><a href="#">한식</a></li>
-									<li><a href="#">분식</a></li>
-									<li><a href="#">일식</a></li>
-									<li><a href="#">베이커리</a></li>
-									<li><a href="#">카페</a></li>
-									<li><a href="#">중식</a></li>
-									<li class="divider"></li>
-									<li><a href="#" id="moretype">더보기</a></li>
-								</ul>
-							</div>
-							
-							<!--다섯번째  button -->
-							
-							<div class="dropdown">
-								<button class="btn btn-default dropdown-toggle" type="button"
-									data-toggle="dropdown">
-									Top Rated <span class="caret"></span>
-								</button>
-							</div>
-							
-							<!--여섯번째  button -->
-							
-			<!-- ========================================카테고리 버튼 끝============================================ -->
-						</div>
+                            <div class="filter_head">
+                                <h6>지역</h6>
+                            </div>
+                            <div class="scrollbar_content">
+                                <div class="filter_data">
+                                    <ul class="finder_list">
+                                        <li>
+                                            <a href="#" data-filter-name="cat_id" data-filter-value="50000003" title="강남">
+                                                <span class="text_over">
+                                                    강남<span class="num _category_count" style="display: none">2,209,887</span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" data-filter-name="cat_id" data-filter-value="50000008" title="강북">
+                                                <span class="text_over">
+                                                    강북<span class="num _category_count" style="display: none">12,364</span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!-- finder_data에서 강남 or 강북 선택 시 나타남 -->
+                                 <div class="finder_cell hidden">
+                                    <h4 class="finder_cell_tit">
+                                        <a href="#" id="_catSummaryBack" data-parent-cat="" data-parent-cat-nm=""><span class="tit_pre">이전카테고리로 이동</span>강남
+                                    </h4>
+                                    <ul class="finder_list">
+                                        <li class="">
+                                            <a href="#" data-filter-name="cat_id" data-filter-value="50000097" title="가로수길">
+                                                <span class="text_over">
+                                                    가로수길<span class="num _category_count" style="">72</span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li class="">
+                                            <a href="#" data-filter-name="cat_id" data-filter-value="50000097" title="강남역">
+                                                <span class="text_over">
+                                                    강남역<span class="num _category_count" style="">95</span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li class="">
+                                            <a href="#" data-filter-name="cat_id" data-filter-value="50000097" title="관악/신림">
+                                                <span class="text_over">
+                                                    관악/신림<span class="num _category_count" style="">105</span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div> 
+                                
+                                
+                  <!-- 주석 끝! -->              
+                                
+                            </div>
                         </div>
-
-			<!-- ========================================카테고리 끝============================================ -->
-
                         <div class="filter_row food_cat">
                             <div class="filter_head">
                                 <h6>업종</h6>
@@ -185,10 +206,6 @@
                             </div>
                         </div>
                     </div>
-                    
-                    
-                    
-                    <!--================================= 카테고리 결과 출력 =========================================-->
                     <div class="selected_filter mt-2">
                         <a href="#" class="selected" data-filter-name="food_cat" data-filter-value="108602" data-nclick-code="rcc.reset"
                             data-filter-action="nclick" title="양식">강남역<span class="del">X</span></a>
@@ -198,8 +215,6 @@
                             data-filter-action="nclick" title="양식">카페/술집<span class="del">X</span></a>
                     </div>
                     
-                    
-                    <!-- ==============================선택된 데이터 출력! =============================================-->
                     <!-- ============================= RESTAURANTS ============================= -->
                     <div class="row light-bg detail-options-wrap mt-5 pt-3">
                         <div class="col-sm-6 col-lg-12 col-xl-6 featured-responsive">
@@ -345,6 +360,9 @@
         var map = new kakao.maps.Map(container, options);
     </script>
 
+
+
    
 </body>
+
 </html>
