@@ -10,9 +10,9 @@ import com.sist.controller.RequestMapping;
 public class HomeModel {
 	@RequestMapping("main/home.do")
 	public String main_home(HttpServletRequest request, HttpServletResponse response) {
-		request.setAttribute("main_header", "common/header_main.jsp");
-		request.setAttribute("main_jsp", "main/home.jsp");
+		request.setAttribute("main_header", "../common/header_main.jsp");
+		request.setAttribute("main_jsp", "../main/home.jsp");
 		//request.setAttribute("path", "../");
-		return "../main.jsp";
+		return "../main/main.jsp";
 	}
 }

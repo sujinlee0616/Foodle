@@ -11,19 +11,19 @@ public class MemberModel {
 	@RequestMapping("member/login.do")
 	public String login(HttpServletRequest request, HttpServletResponse response)
 	{
-		request.setAttribute("main_header", "common/header_sub.jsp");
-		request.setAttribute("main_jsp", "member/login.jsp");
+		request.setAttribute("main_header", "../common/header_sub.jsp");
+		request.setAttribute("main_jsp", "../member/login.jsp");
 		// request.setAttribute("path", "../");
-		return "../main.jsp";
+		return "../main/main.jsp";
 	}
 	
 	@RequestMapping("member/signup.do")
 	public String signup(HttpServletRequest request, HttpServletResponse response)
 	{
-		request.setAttribute("main_header", "common/header_sub.jsp");
-		request.setAttribute("main_jsp", "member/signup.jsp");
+		request.setAttribute("main_header", "../common/header_sub.jsp");
+		request.setAttribute("main_jsp", "../member/signup.jsp");
 		// request.setAttribute("path", "../");
-		return "../main.jsp";
+		return "../main/main.jsp";
 	}
 	
 	

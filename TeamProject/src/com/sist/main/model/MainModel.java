@@ -15,12 +15,12 @@ public class MainModel {
 	@RequestMapping("main/main.do")
 	public String main_main(HttpServletRequest request, HttpServletResponse response)
 	{
-		request.setAttribute("main_header", "common/header_main.jsp");
-		request.setAttribute("main_jsp", "main/home.jsp");
+		request.setAttribute("main_header", "../common/header_main.jsp");
+		request.setAttribute("main_jsp", "../main/home.jsp");
 		
 		List<MainInfoVO> weeklytop30list=MainDAO.weeklyTop30();
 		request.setAttribute("weeklytop30list", weeklytop30list);
 		
-		return "../main.jsp";
+		return "../main/main.jsp";
 	}
 }
