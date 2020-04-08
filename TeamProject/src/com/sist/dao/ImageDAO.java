@@ -6,8 +6,8 @@ public class ImageDAO {
 	
 	private Connection conn; // Socket
 	private PreparedStatement ps;// OutputStream , BufferedReader
-	private final String URL="jdbc:oracle:thin:@211.238.142.207:1521:XE";
-	//private final String URL="jdbc:oracle:thin:@localhost:1521:XE";
+	//private final String URL="jdbc:oracle:thin:@211.238.142.207:1521:XE";
+	private final String URL="jdbc:oracle:thin:@localhost:1521:XE";
 			
 
 	// 드라이버 등록 => 한번만 수행

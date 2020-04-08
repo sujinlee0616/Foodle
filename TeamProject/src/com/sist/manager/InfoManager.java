@@ -271,7 +271,14 @@ public class InfoManager {
 										vo.setrRestroom(doc2.select("ul.tableLR dd").get(count).text());
 										
 									else if (doc2.select("ul.tableLR dt").get(count).text().equals("주차")) 
+									{
+										String park=doc2.select("ul.tableLR dd").get(count).text();
+										if(park.equals("유료"))
+										{
+											park="유료";
+										}
 										vo.setrPark(doc2.select("ul.tableLR dd").get(count).text());
+									}
 									
 									else if (doc2.select("ul.tableLR dt").get(count).text().equals("기타시설")) 
 										vo.setrOther(doc2.select("ul.tableLR dd").get(count).text());

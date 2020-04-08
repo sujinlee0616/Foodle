@@ -63,11 +63,11 @@ public class InfoDAO {
 	public void SubInfoCreate() {
 		try {
 			getConnection();
-
-			String sql = "CREATE TABLE Subinfo(rNo VARCHAR2(1000),"
-					+ "rDrink VARCHAR2(1000),rNosmoking VARCHAR2(1000),rRestroom VARCHAR2(1000),rPark VARCHAR2(1000),"
-					+ "rDelivery VARCHAR2(1000),rFacil VARCHAR2(1000),rTakeout VARCHAR2(1000),rContent VARCHAR2(1000),rGood VARCHAR2(1000),"
-					+ "rHit VARCHAR2(1000),rStart VARCHAR2(1000),rDate VARCHAR2(1000))";
+			// rRestroom 컬럼생성 지웠습니다, rFacil은 rOther로. 200403 찬휘
+			String sql = "CREATE TABLE Subinfo(rNo NUMBER,"
+					+ "rDrink VARCHAR2(100),rNosmoking VARCHAR2(100),rPark VARCHAR2(100),"
+					+ "rDelivery VARCHAR2(100),rOther VARCHAR2(1000),rTakeout VARCHAR2(1000),rContent CLOB,rGood NUMBER,"
+					+ "rHit NUMBER,rStart VARCHAR2(1000),rDate DATE)";
 
 			ps = conn.prepareStatement(sql);
 			ps.executeQuery();
@@ -138,28 +138,27 @@ public class InfoDAO {
 
 	/*
 	 *** 
-	 * subinfo rNo rDrink rNosmoking rRestroom rPark rDelivery rFacil rTakeout
+	 * subinfo rNo rDrink rNosmoking rRestroom rPark rDelivery rOther rTakeout
 	 * rContent rGood rHit rStart rDate
 	 */
-
+	// rRestroom 삭제했습니다.
 	public void SubInfoInsert(InfoVO vo) {
 		try {
 			getConnection();
-			String sql = "INSERT INTO subinfo VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+			String sql = "INSERT INTO subinfo VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
 			ps=conn.prepareStatement(sql);
-			ps.setString(1, String.valueOf(vo.getrNo()));
+			ps.setInt(1, vo.getrNo());
 			ps.setString(2, vo.getrDrink());
 			ps.setString(3, vo.getrNosmoking());
-			ps.setString(4, vo.getrRestroom());
-			ps.setString(5, vo.getrPark());
-			ps.setString(6, vo.getrDelivery());
-			ps.setString(7, vo.getrOther());
-			ps.setString(8, vo.getrTakeout());
-			ps.setString(9, vo.getrContent());
-			ps.setString(10, vo.getrGood());
-			ps.setString(11, vo.getRhit());
-			ps.setString(12, vo.getrStart());
-			ps.setString(13, String.valueOf(vo.getrDate()));
+			ps.setString(4, vo.getrPark());
+			ps.setString(5, vo.getrDelivery());
+			ps.setString(6, vo.getrOther());
+			ps.setString(7, vo.getrTakeout());
+			ps.setString(8, vo.getrContent());
+			ps.setString(9, vo.getrGood());
+			ps.setString(10, vo.getRhit());
+			ps.setString(11, vo.getrStart());
+			ps.setString(12, String.valueOf(vo.getrDate()));
 
 			ps.executeUpdate();
 
