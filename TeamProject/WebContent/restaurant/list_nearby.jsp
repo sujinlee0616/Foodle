@@ -9,6 +9,36 @@
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="../shadow/css/shadowbox.css">
+<script type="text/javascript" src="../shadow/js/shadowbox.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript">
+
+Shadowbox.init({
+	players:['iframe']
+});
+
+$(function(){
+
+	$('#moretype').click(function(){
+	
+		Shadowbox.open({
+			
+			content:'../restaurant/moretype.do',
+			title
+			
+		})	
+		
+	})
+	
+	
+	
+})
+
+
+
+
+</script>
 </head>
 <body>
     <!--============================= LIST =============================-->
