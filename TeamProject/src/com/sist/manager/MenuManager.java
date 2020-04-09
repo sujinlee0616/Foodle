@@ -72,7 +72,12 @@ public class MenuManager {
 						while (true) {
 							vo = new MenuVO();
 							
-							vo.setR_No(z + (j*kategorie) + (i*(page*kategorie)));
+							try {
+								vo.setR_No(z + (j*kategorie) + (i*(page*kategorie)));
+							} catch(Exception ex) {
+								break;
+							}
+							
 							
 							try {
 								// http://www.menupan.com/restaurant/onepage.asp?acode=T168356 (쨔c c가 ?c라고 출력됨 ?)
@@ -122,6 +127,18 @@ public class MenuManager {
 		MenuManager mm = new MenuManager();
 		AreacodeManager am = new AreacodeManager();
 		
+		MenuDAO dao=new MenuDAO();
+		dao.menuCreate();
+		System.out.println("CREATE TABLE menu!!");
+		// 혹시모르니  잠깐 쉰다
+		try {
+			Thread.sleep(2000);
+		} catch(Exception ex) {
+			ex.printStackTrace();
+		}
+		
+		
+		
 //		ArrayList<MenuVO> list = new ArrayList<MenuVO>();
 		
 		ArrayList<MenuVO> list = mm.MenuAllData(am.AreacodeAllData());
@@ -147,15 +164,7 @@ public class MenuManager {
 //			System.out.println();
 //		}
 		
-		MenuDAO dao=new MenuDAO();
-		dao.menuCreate();
-		System.out.println("CREATE TABLE menu!!");
-		// 혹시모르니  잠깐 쉰다
-		try {
-			Thread.sleep(2000);
-		} catch(Exception ex) {
-			ex.printStackTrace();
-		}
+		
 		
 		int menu_k=1;
 		for(MenuVO vo:list) {

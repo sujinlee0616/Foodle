@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
+
+import com.sist.vo.ImageVO;
 import com.sist.vo.MainInfoVO;
 
 public class MainDAO {
@@ -33,5 +35,21 @@ public class MainDAO {
 			}
 			return list;
 		}
+		
+		/*public static List<ImageVO> weeklyTop30img() {
+			List<ImageVO> weekimglist=new ArrayList<ImageVO>();
+			SqlSession session=null;
+			try {
+				session=ssf.openSession();
+				weekimglist=session.selectList("weeklyTop30img");
+			} catch(Exception ex) {
+				System.out.println("weeklyTop30img(): "+ex.getMessage());
+			} finally {
+				if(session!=null)
+					session.close();
+			}
+			
+			return weekimglist;
+		}*/
 		
 }
