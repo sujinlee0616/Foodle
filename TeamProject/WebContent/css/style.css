@@ -277,6 +277,10 @@ p {
   -o-transition: 0.3s;
   transition: 0.3s;
 }
+a.dropdown-item:hover{
+	background-color: #cccccc;
+}
+
 .dropdown-item:hover {
   color: #fff;
   background: none;
