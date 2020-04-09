@@ -6,9 +6,16 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+ <!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> 
+<!-- 새롭게 만든 주변 맛집 페이지 CSS -->
+ <link rel="stylesheet" href="${pageContext.request.contextPath }/css/nearby.css">
+
+ 
+ 
+ <!-- ShadowBox  -->
 <link rel="stylesheet" href="../shadow/css/shadowbox.css">
 <script type="text/javascript" src="../shadow/js/shadowbox.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
@@ -25,7 +32,8 @@ $(function(){
 		Shadowbox.open({
 			
 			content:'../restaurant/moretype.do',
-			title
+			title:'More Types',
+			player:''
 			
 		})	
 		
@@ -37,8 +45,23 @@ $(function(){
 
 
 
-
 </script>
+   
+<style type="text/css">
+
+.dropdown {
+	display: inline;
+
+}
+
+.dropdown ul li {
+
+	display: inline;
+
+}
+
+</style>
+
 </head>
 <body>
     <!--============================= LIST =============================-->
@@ -50,25 +73,20 @@ $(function(){
             
         		<!-- ======================================주변맛집 페이지 왼쪽 화면============================================= -->   
                 <div class="col-md-7 responsive-wrap">
-                   
+                     
+                        <h5> # 주변 맛집</h5>
                     <!-- ===================================검색 결과 타이틀 "~ 주변 검색 결과" ===================================-->
-                    <div class="row my-2">
-                        <div class="col-md-6">
-                            <h5> "#검색어" 주변 맛집</h5>
-                           <!--  <p>총 <span>###개</span></p>  -->
-                        </div>
-                    </div>
-                    
-
-                    <!-- ============================================카테고리!!============================================= -->
+						<div>   <p>총 <span>###개</span></p> </div>
+ 					 <!-- ============================================카테고리!!============================================= -->
+                  
                     <div class="mt-4">
                         <div class="filter_row area">
-
+							<div class="category">
 							<!--첫번째  button -->
 							<div class="dropdown">
 								<button class="btn btn-default dropdown-toggle" type="button" 
 								data-toggle="dropdown">
-									Price <span class="caret"></span>
+									Price 
 								</button>
 								<ul class="dropdown-menu">
 									<li><a href="#">$</a></li>
@@ -83,7 +101,7 @@ $(function(){
 							<div class="dropdown">
 								<button class="btn btn-default dropdown-toggle" type="button"
 									data-toggle="dropdown">
-									Distance <span class="caret"></span>
+								  Distance 
 								</button>
 								<ul class="dropdown-menu">
 									<li><a href="#">1min</a></li>
@@ -100,7 +118,7 @@ $(function(){
 							<div class="dropdown">
 								<button class="btn btn-default dropdown-toggle" type="button"
 									data-toggle="dropdown">
-									Open Now <span class="caret"></span>
+									Open Now 
 								</button>
 							</div>
 
@@ -109,7 +127,7 @@ $(function(){
 							<div class="dropdown">
 								<button class="btn btn-default dropdown-toggle" type="button"
 									data-toggle="dropdown">
-									업종 <span class="caret"></span>
+									업종 
 								</button>
 								<ul class="dropdown-menu">
 									<li><a href="#">한식</a></li>
@@ -128,18 +146,16 @@ $(function(){
 							<div class="dropdown">
 								<button class="btn btn-default dropdown-toggle" type="button"
 									data-toggle="dropdown">
-									Top Rated <span class="caret"></span>
+									Top Rated 
 								</button>
 							</div>
 							
 							<!--여섯번째  button -->
 							
-			<!-- ========================================카테고리 버튼 끝============================================ -->
 						</div>
-                        </div>
 
 			<!-- ========================================카테고리 끝============================================ -->
-
+				 
                         <div class="filter_row food_cat">
                             <div class="filter_head">
                                 <h6>업종</h6>
@@ -212,12 +228,7 @@ $(function(){
                                         </li>
                                     </ul>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    
-                    
+                            </div> 
                     <!--================================= 카테고리 결과 출력 =========================================-->
                     <div class="selected_filter mt-2">
                         <a href="#" class="selected" data-filter-name="food_cat" data-filter-value="108602" data-nclick-code="rcc.reset"
@@ -339,7 +350,8 @@ $(function(){
                         </div>
                     </div>
                 </div>
-
+               </div> 
+			</div>
                 <!--============================= KAKAO MAP ============================= -->
                 <div class="col-md-5 responsive-wrap map-wrap">
                     <div class="map-fix">
