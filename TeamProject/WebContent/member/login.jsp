@@ -22,11 +22,12 @@ $(function(){
 		}
 		
 		// 로그인 - login.jsp에서 ID/PWD 판별 처리
-		/* $.ajax({
+		$.ajax({
 			type:'POST',
-			url:'../member/login.do',
-			data:{"id":user_id,"pwd":user_pwd},
+			url:'../member/login_result.do',
+			data:{"id":id,"pwd":pwd},
 			success:function(res){
+				// console.log(res);
 				if(res.trim()=='NOID')
 				{
 					alert("존재하지 않는 ID입니다.");
@@ -44,13 +45,13 @@ $(function(){
 				{
 					location.href="../main/main.do";
 					alert("로그인 성공!");
-				}
+				} 
 			},
 			error:function(e){
 				alert(e);
 			}
 		})
-		 */
+		
 		
 	})
 	
@@ -71,7 +72,7 @@ $(function(){
 	      </div>
 	    </div>
 	    <!-- =============== Start of 로그인 form =============== -->
-	    <form method="post" action="../member/login.do" name="" id="login_frm">
+	    <form method="post" action="../member/login_result.do" name="" id="login_frm">
 		    <div class="row justify-content-center">
 		      <div class="col-md-5 login">
 		        <div class="input_division">

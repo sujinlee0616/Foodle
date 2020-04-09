@@ -3,13 +3,14 @@
 <mapper namespace="com.sist.mapper.member-mapper">
 
 	<!--로그인 - ID/PWD 맞는지 확인 -->
-	<select id="idCount" resultType="int" parameterType="string">
+	<select id="idCount" resultType="int" parameterType="String">
 		SELECT COUNT(*) FROM member
-		WHERE userid=#{id}
+		WHERE userId=#{id}
 	</select>
+	
 	<select id="getPwd" resultType="MemberVO" parameterType="string">
-		SELECT upwd,uname,utype FROM member
-		WHERE userid=#{id} 
+		SELECT uPwd,uName,uType FROM member
+		WHERE userId=#{id} 
 	</select>
 	
 </mapper>

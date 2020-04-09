@@ -14,6 +14,7 @@ public class MemberDAO {
 	
 	
 	// 로그인 - ID/PWD 맞는지 확인
+	// ID/PWD 받은 값에 따라 메시지 값을 설정한다. 
 	public static MemberVO memberLogin(String id,String pwd)  // 매개변수: MemberModel에서 받아왔음
 	{
 		MemberVO vo=new MemberVO(); // 값을 4개(userid,upwd,utype,msg) 넘기니까 VO 만들어서 VO로 넘김 
@@ -21,12 +22,14 @@ public class MemberDAO {
 		
 		try 
 		{
-			session=ssf.openSession(); // 커넥션 연결.
+			session=ssf.openSession(); // 커넥션 연결.			
 			int count=session.selectOne("idCount",id); // member-mapper.xml의 idCount SQL문에 id 넣고 수행한 결과를 count에 넣는다 
+			
 			if(count==0)
 			{
 				vo.setMsg("NOID");
 			}
+			
 			else
 			{
 				MemberVO mvo=session.selectOne("getPwd",id); // member-mapper.xml의 getPwd SQL문에 id 넣고 수행한 결과를 count에 넣는다

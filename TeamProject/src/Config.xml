@@ -22,8 +22,8 @@
   		<transactionManager type="JDBC"></transactionManager> 
   		<dataSource type="POOLED"> 
 			<property name="driver" value="oracle.jdbc.driver.OracleDriver"/>
-			<property name="url" value="jdbc:oracle:thin:@localhost:1521:XE"/> <!-- 개인 local test용 -->
-			<!-- <property name="url" value="jdbc:oracle:thin:@211.238.142.207:1521:XE"/> --><!-- 서버 IP  -->
+			<!-- <property name="url" value="jdbc:oracle:thin:@localhost:1521:XE"/> --> <!-- 개인 local test용 -->
+			<property name="url" value="jdbc:oracle:thin:@211.238.142.207:1521:XE"/><!-- 서버 IP  -->
 			<property name="username" value="hr"/>
 			<property name="password" value="happy"/>
   		</dataSource>
@@ -32,6 +32,7 @@
   <mappers> <!-- XML 파일 등록 -->
   	<mapper resource="com/sist/mapper/main-mapper.xml"></mapper>
   	<mapper resource="com/sist/mapper/board-mapper.xml"></mapper>
+  	<mapper resource="com/sist/mapper/member-mapper.xml"></mapper>
   </mappers> 
  </configuration>
  
