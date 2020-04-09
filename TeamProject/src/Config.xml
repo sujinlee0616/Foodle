@@ -12,8 +12,10 @@
   	<typeAlias type="com.sist.vo.InfoVO" alias="InfoVO"/>
   	<typeAlias type="com.sist.vo.MainInfoVO" alias="MainInfoVO"/>
   	<typeAlias type="com.sist.vo.MainThemaVO" alias="MainThemaVO"/>
+  	<typeAlias type="com.sist.vo.MemberVO" alias="MemberVO"/>
   	<typeAlias type="com.sist.vo.MenuVO" alias="MenuVO"/>
   	<typeAlias type="com.sist.vo.ReserveInfoVO" alias="ReserveInfoVO"/>
+  	<typeAlias type="com.sist.vo.SubinfoVO" alias="SubinfoVO"/>
   </typeAliases>
   <environments default="development">
   	<environment id="development">
