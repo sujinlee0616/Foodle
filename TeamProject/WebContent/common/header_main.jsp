@@ -36,6 +36,10 @@
                                     <li class="nav-item active">
                                         <a class="nav-link" href="${pageContext.request.contextPath }/board/list.do">자유게시판</a>
                                     </li>
+                                    <li class="nav-item active">
+                                        <a class="nav-link" href="${pageContext.request.contextPath }/mypage/mypage.do">임시(마이페이지)</a>
+                                    </li>
+                                    
 									<!-- 로그인 안 한 경우 -->
 									<li class="not_loggedin">
 										<a href="${pageContext.request.contextPath }/member/login.do" class="btn btn-outline-light top-btn">
