@@ -45,11 +45,12 @@ public class ImageManager {
 						int count=0;
 						while (true) {
 							try {
-								System.out.println(count);
+								System.out.println("총 이미지 개수: "+count);
 								vo = new ImageVO();
 								System.out.println("========vo.no 시작========");
 								//가게No넣는부분인데 겹치지 않게 하기 위해서
-								vo.setR_No(((z) + ((j)*kategorie) + ((i)*(page*kategorie))));	
+								vo.setR_No(((z) + ((j)*kategorie) + ((i)*(page*kategorie))));
+								System.out.println("voNumber: "+vo.getR_No());
 								System.out.println("========vo.no 끝========");
 								//사진링크 넣는 부분
 								System.out.println("======이미지링크 시작=======");

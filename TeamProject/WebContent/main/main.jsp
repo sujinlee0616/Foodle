@@ -55,7 +55,7 @@
 	<jsp:include page="${main_header }"></jsp:include>  
 	<jsp:include page="${main_jsp }"></jsp:include>
 	<!-- 동적: include되는 페이지를 바꿀 수 있다. -->
-    <jsp:include page="common/footer.jsp"></jsp:include>
+    <jsp:include page="../common/footer.jsp"></jsp:include>
     
 </body>
 </html>

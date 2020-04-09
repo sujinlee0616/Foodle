@@ -1,38 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- 
-<%
-
-try{
-	
-	request.setCharacterEncoding("UTF-8");
-	
-}catch(Exception ex) {}
-//find에서 검색경우 한글이 깨지는 이유는 main을 거져처 정보를 출력하기 때문에 main에서 한글 변환을해줘야한다.
-
-
-String mode=request.getParameter("mode");
-
-if(mode==null)
-	mode="0";
-int no=Integer.parseInt(mode);
-
-String jsp="mypage_coupon1.jsp";
-
-switch(no)
-{
-case 15:
-	jsp="mypage_coupon1.jsp";
-	break;
-
-}	
-
-
-
-%>    
-    
-    
-    
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -197,13 +164,8 @@ case 15:
                 </div>
             </div>
             <!-- END OF CATEGORY -->
-            <div class="row">
-                <div class="col-md-6 py-4">
-                    <h5 class="mySubMenu">내가 찜한 음식점</h5>
-                </div>
-            </div>
             <div class="myContents">
-              <jsp:include page="<%=jsp %>"></jsp:include>
+              <jsp:include page="${mypage_sub }"></jsp:include>
             </div>
         </div>
     </section>

@@ -4,6 +4,7 @@
 	<context:component-scan base-package="com.sist.member.model"/>
 	<context:component-scan base-package="com.sist.restaurant.model"/>
 	<context:component-scan base-package="com.sist.mypage.model"/>
+	<context:component-scan base-package="com.sist.search.model"/>
 	<context:component-scan base-package="com.sist.main.model"/>
 	<context:component-scan base-package="com.sist.dao"/>
 	<context:component-scan base-package="com.sist.manager"/>

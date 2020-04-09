@@ -23,7 +23,7 @@
                         </div>
                         <div class="row d-flex justify-content-center">
                             <div class="col-md-10">
-                                <form class="form-wrap mt-4">
+                                <form class="form-wrap mt-4" action="../search/searchpage.do">
                                     <div class="btn-group" role="group" aria-label="Basic example">
                                         <input type="text" placeholder="카테고리" class="btn-group1">
                                         <input type="text" placeholder="지역" class="btn-group2">
