@@ -33,6 +33,7 @@
   	<mapper resource="com/sist/mapper/main-mapper.xml"></mapper>
   	<mapper resource="com/sist/mapper/board-mapper.xml"></mapper>
   	<mapper resource="com/sist/mapper/member-mapper.xml"></mapper>
+  	<mapper resource="com/sist/mapper/restaurantdetail-mapper.xml"></mapper>
   </mappers> 
  </configuration>
  

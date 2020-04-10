@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sist.mapper.restaurantdetail-mapper">
+
+	<select id="resDetailMaininfo" resultType="MainInfoVO" parameterType="int">
+		SELECT * FROM maininfo
+		WHERE rno=#{no}
+	</select>
+	
+	<select id="resDetailSubinfo" resultType="SubinfoVO" parameterType="int">
+		SELECT * FROM subinfo
+		WHERE rno=#{no}
+	</select>
+	
+	<select id="resDetailReserveinfo" resultType="ReserveInfoVO" parameterType="int">
+		SELECT * FROM reserveinfo
+		WHERE rno=#{no}
+	</select>
+	
+	<select id="resDetailMenu" resultType="MenuVO" parameterType="int">
+		SELECT * FROM menu
+		WHERE rno=#{no}
+	</select>
+</mapper>
