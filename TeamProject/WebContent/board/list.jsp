@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>  <!-- 날짜 형식 변환 -->
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -80,19 +82,24 @@
 								<td class="text-center">12</td>
 							</tr>
 							<tr>
-								<td class="text-center">10</td>
+								<td class="text-center">-</td>
 								<td><a href="detail.do">데이터 연동 안된 글 - NEW 뱃지</a><span class="badge badge-primary mx-2">NEW</span></td>
 								<td class="text-center">Otto</td>
 								<td class="text-center">20/01/19 20:31</td>
 								<td class="text-center">12</td>
 							</tr>
-							<tr>
-								<td class="text-center">9</td>
-								<td><a href="detail.do">데이터 연동 안된 글</a></td>
-								<td class="text-center">Thornton</td>
-								<td class="text-center">20/01/16 07:39</td>
-								<td class="text-center">56</td>
-							</tr>
+							<!-- 데이터 연동 -->
+							<c:forEach var="vo" items="${list }">
+								<tr>
+									<td class="text-center">${vo.bno }</td>
+									<td><a href="detail.do?no=${vo.bno }">${vo.bsubject }</a></td>
+									<td class="text-center">${vo.bname }</td>
+									<td class="text-center">
+										<fmt:formatDate value="${vo.regdate }" pattern="yyyy.MM.dd hh:mm"/>
+									</td>
+									<td class="text-center">${vo.hit }</td>
+								</tr>
+							</c:forEach>
 						</tbody>
 					</table>
 				</div>

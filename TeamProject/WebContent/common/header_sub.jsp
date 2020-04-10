@@ -12,7 +12,7 @@
 			<div class="row">
 				<div class="col-md-12">
 					<nav class="navbar navbar-expand-lg navbar-light">
-						<a class="navbar-brand" href="../main/home.do">Foodle</a>
+						<a class="navbar-brand" href="../main/main.do">Foodle</a>
 						<div class="search_wrap">
 							<form name="header_search" action="">
 								<div class="header_searchbox">

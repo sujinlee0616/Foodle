@@ -17,7 +17,7 @@
                             <div class="col-md-12">
                                 <div class="slider-content_wrap">
                                     <h1 class="dohyeon">주변 맛집을 찾아보세요</h1>
-                                    <h5 style="color:white;">푸드계의 구글, 푸들러에서 맛있는 일상을 찾으세요.</h5>
+                                    <h5 style="color:white;">푸드계의 구글, 푸들에서 맛있는 일상을 찾으세요.</h5>
                                 </div>
                             </div>
                         </div>

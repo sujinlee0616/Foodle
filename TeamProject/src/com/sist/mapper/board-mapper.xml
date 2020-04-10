@@ -1,4 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sist.mapper.board-mapper">
+
+	<!-- [replyBoard 테이블]
+	BNO        NOT NULL NUMBER        
+	USERID              VARCHAR2(50)  
+	BNAME      NOT NULL VARCHAR2(30)  
+	BSUBJECT   NOT NULL VARCHAR2(100) 
+	BCONTENT   NOT NULL CLOB          
+	BPWD       NOT NULL VARCHAR2(20)  
+	REGDATE             DATE          
+	HIT                 NUMBER        
+	GROUP_ID            NUMBER        
+	GROUP_STEP          NUMBER        
+	GROUP_TAB           NUMBER        
+	ROOT                NUMBER        
+	DEPTH               NUMBER        
+	NOTICE              CHAR(1)       
+	 -->
+
+	<select id="replyListData" resultType="ReplyBoardVO" parameterType="Hashmap">
+		SELECT bno,bsubject,bname,regdate,hit,group_tab,num
+		FROM (SELECT bno,bsubject,bname,regdate,hit,group_tab,rownum as num
+		FROM (SELECT bno,bsubject,bname,regdate,hit,group_tab
+		FROM replyBoard ORDER BY group_id DESC,group_step ASC)) 
+		WHERE num BETWEEN #{start} AND #{end}
+	</select>
+	
+	<select id="replyTotalPage" resultType="int">
+		SELECT CEIL (COUNT(*)/20.0) 
+		FROM replyBoard
+	</select>
+	
+	<select id="replyDetailData" resultType="ReplyBoardVO" parameterType="int">
+		SELECT * FROM replyBoard
+		WHERE bno=#{no}
+	</select>	
+	
+	<update id="hitIncrement" parameterType="int">
+		UPDATE replyBoard
+		SET hit=hit+1
+		WHERE bno=#{bno}
+		
+	</update>
+	
 </mapper>

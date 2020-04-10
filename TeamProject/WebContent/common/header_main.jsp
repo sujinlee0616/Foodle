@@ -13,7 +13,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <nav class="navbar navbar-expand-lg navbar-light">
-                            <a class="navbar-brand" href="../main/home.do">Foodle</a>
+                            <a class="navbar-brand" href="../main/main.do">Foodle</a>
 							<button class="navbar-toggler" type="button"
 								data-toggle="collapse" data-target="#navbarNavDropdown"
 								aria-controls="navbarNavDropdown" aria-expanded="false"

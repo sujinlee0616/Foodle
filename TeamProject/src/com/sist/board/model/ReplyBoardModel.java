@@ -5,9 +5,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.sist.controller.Controller;
 import com.sist.controller.RequestMapping;
+import com.sist.dao.*;
 import com.sist.service.dao.*;
 import com.sist.service.vo.*;
-import com.sist.vo.BoardVO;
 
 @Controller
 public class ReplyBoardModel {
@@ -31,13 +31,11 @@ public class ReplyBoardModel {
 		map.put("end", end);
 		
 		List<ReplyBoardVO> list=ReplyBoardDAO.replyListData(map); // 
-		//int totalpage=ReplyBoardDAO.replyTotalPage();
+		int totalpage=ReplyBoardDAO.replyTotalPage();
 		
 		request.setAttribute("list", list);
 		request.setAttribute("curpage", curpage);
-		//request.setAttribute("totalpage", totalpage);
-		
-		
+		request.setAttribute("totalpage", totalpage);		
 		
 		request.setAttribute("main_header", "../common/header_sub.jsp");
 		request.setAttribute("main_jsp", "../board/list.jsp");		
@@ -48,6 +46,15 @@ public class ReplyBoardModel {
 	@RequestMapping("board/detail.do")
 	public String reply_detail(HttpServletRequest request, HttpServletResponse response)
 	{
+		// 요청데이터
+		String no=request.getParameter("no");
+		
+		// DAO 
+		ReplyBoardVO vo=ReplyBoardDAO.replyDetailData(Integer.parseInt(no));
+		vo=ReplyBoardDAO.hitIncrement(Integer.parseInt(no));
+		
+		request.setAttribute("vo", vo);
+		
 		request.setAttribute("main_header", "../common/header_sub.jsp");
 		request.setAttribute("main_jsp", "../board/detail.jsp");
 		
