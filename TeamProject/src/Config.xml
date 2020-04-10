@@ -6,6 +6,7 @@
  <configuration>
   <typeAliases> <!-- VO 등록 -->
   	<typeAlias type="com.sist.vo.AreacodeVO" alias="AreacodeVO"/>
+  	<typeAlias type="com.sist.vo.BoardVO" alias="BoardVO"/>
   	<typeAlias type="com.sist.vo.DetailThemaVO" alias="DetailThemaVO"/>
   	<typeAlias type="com.sist.vo.ImageVO" alias="ImageVO"/>
   	<typeAlias type="com.sist.vo.InfoThemaVO" alias="InfoThemaVO"/>
