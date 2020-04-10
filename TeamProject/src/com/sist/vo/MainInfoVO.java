@@ -1,5 +1,7 @@
 package com.sist.vo;
 
+import com.sist.vo.ImageVO;
+
 public class MainInfoVO {
 	
 	// 가게 고유번호

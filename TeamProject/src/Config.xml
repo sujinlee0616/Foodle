@@ -4,19 +4,21 @@
  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-config.dtd">
  <configuration>
-  <typeAliases> <!-- VO 등록 -->
+  <typeAliases> 
+  	<!-- VO 등록 : 데이터 수집 VO -->
   	<typeAlias type="com.sist.vo.AreacodeVO" alias="AreacodeVO"/>
-  	<typeAlias type="com.sist.vo.BoardVO" alias="BoardVO"/>
   	<typeAlias type="com.sist.vo.DetailThemaVO" alias="DetailThemaVO"/>
   	<typeAlias type="com.sist.vo.ImageVO" alias="ImageVO"/>
   	<typeAlias type="com.sist.vo.InfoThemaVO" alias="InfoThemaVO"/>
   	<typeAlias type="com.sist.vo.InfoVO" alias="InfoVO"/>
   	<typeAlias type="com.sist.vo.MainInfoVO" alias="MainInfoVO"/>
   	<typeAlias type="com.sist.vo.MainThemaVO" alias="MainThemaVO"/>
-  	<typeAlias type="com.sist.vo.MemberVO" alias="MemberVO"/>
   	<typeAlias type="com.sist.vo.MenuVO" alias="MenuVO"/>
   	<typeAlias type="com.sist.vo.ReserveInfoVO" alias="ReserveInfoVO"/>
   	<typeAlias type="com.sist.vo.SubinfoVO" alias="SubinfoVO"/>
+  	<!-- VO 등록 : 서비스 VO -->
+  	<typeAlias type="com.sist.service.vo.MemberVO" alias="MemberVO"/>
+  	<typeAlias type="com.sist.service.vo.ReplyBoardVO" alias="ReplyBoardVO"/>
   </typeAliases>
   <environments default="development">
   	<environment id="development">

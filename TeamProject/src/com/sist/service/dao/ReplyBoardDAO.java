@@ -1,7 +1,7 @@
-package com.sist.dao;
+package com.sist.service.dao;
 
 import java.util.*;
-import com.sist.vo.*;
+import com.sist.service.vo.*;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -16,9 +16,9 @@ public class ReplyBoardDAO {
 
 	
 	// [답글형 게시판 리스트]
-	public static List<BoardVO> replyListData(Map map)
+	public static List<ReplyBoardVO> replyListData(Map map)
 	{
-		List<BoardVO> list = new ArrayList<BoardVO>();
+		List<ReplyBoardVO> list = new ArrayList<ReplyBoardVO>();
 		SqlSession session=null;
 		try
 		{

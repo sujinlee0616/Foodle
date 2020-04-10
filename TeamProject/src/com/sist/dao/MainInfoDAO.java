@@ -1,11 +1,9 @@
 package com.sist.dao;
 
-
 import java.sql.Connection;
-
 import java.sql.*;
-
 import com.sist.vo.*;
+
 
 public class MainInfoDAO { //오라클에 연결하는 클래스
 

@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.sist.controller.Controller;
 import com.sist.controller.RequestMapping;
-import com.sist.dao.MainDAO;
+import com.sist.service.dao.MainDAO;
 import com.sist.vo.MainInfoVO;
 
 @Controller

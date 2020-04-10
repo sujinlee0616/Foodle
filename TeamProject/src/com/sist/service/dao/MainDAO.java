@@ -1,4 +1,4 @@
-package com.sist.dao;
+package com.sist.service.dao;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,8 +6,8 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
-import com.sist.vo.ImageVO;
-import com.sist.vo.MainInfoVO;
+import com.sist.vo.*;
+import com.sist.service.vo.*;
 
 public class MainDAO {
 	private static SqlSessionFactory ssf;

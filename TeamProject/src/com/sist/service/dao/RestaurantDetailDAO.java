@@ -1,8 +1,9 @@
-package com.sist.dao;
+package com.sist.service.dao;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
+import com.sist.service.vo.*;
 import com.sist.vo.*;
 import java.util.*;
 
