@@ -43,7 +43,7 @@ select {
   border: 2px solid #ff3a6d;
    border-radius : 12px;
    margin-left: 5px;
-   height : 35px;
+   height : 40px;
 }
 
 select::-ms-expand {
