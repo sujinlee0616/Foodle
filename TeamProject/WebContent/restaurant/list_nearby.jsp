@@ -6,58 +6,71 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
- <!-- Bootstrap CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+ <!-- Bootstrap CSS
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+ <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 <!-- 새롭게 만든 주변 맛집 페이지 CSS -->
  <link rel="stylesheet" href="${pageContext.request.contextPath }/css/nearby.css">
 
  
  
- <!-- ShadowBox  -->
+ <!-- ShadowBox 
 <link rel="stylesheet" href="../shadow/css/shadowbox.css">
 <script type="text/javascript" src="../shadow/js/shadowbox.js"></script>
-<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script> -->
 <script type="text/javascript">
 
-Shadowbox.init({
-	players:['iframe']
-});
 
-$(function(){
-
-	$('#moretype').click(function(){
+ 
+ $('.del').onClick(
+			function(){
+				alert(1);
+			}		 
+		 );
+ 
+ function setFilter(c){
+		$('#test2').append("<a onClick=deleteFilter(this) href='#' id='"+c.value+"' class='selected' data-filter-name='food_cat' data-filter-value='108602' data-nclick-code='rcc.reset'"
+		         +"data-filter-action='nclick' title='"+c.value+"'>"+c.value+"<span class='del'>X</span></a>");
+		searchNearby();
+		
+	}	;
 	
-		Shadowbox.open({
-			
-			content:'../restaurant/moretype.do',
-			title:'More Types',
-			player:''
-			
-		})	
+function deleteFilter(v){
+	var tihsId = "#"+v.id;
+	$(tihsId).remove();
+};
+
+function searchNearby(){
+	$.ajax({
+		
+		type:'post',
+		url:'/TeamProject/restaurant/list_nearby_restruant.do',
+		data:{"pwd":"123","no":"555"},
+		success:function(res){//0또는 1의 값을 가지는 res/
+			//@RequestMapping("reply/password_check.do") 여기서 res받음 
+			console.log(res);
+			$('#nearbyList').html(res);
+		}
 		
 	})
-	
-	
-	
-})
 
+}
 
 
 </script>
    
 <style type="text/css">
-
 .dropdown {
 	display: inline;
-
 }
-
 .dropdown ul li {
-
 	display: inline;
-
 }
 
 </style>
@@ -68,7 +81,7 @@ $(function(){
     <section class="list-block">
     
      	<!-- 주변맛집 전체화면 -->
-        <div class="container-fluid py-4 light-bg">
+        <div class="container-fluid py-4 light-bg container py-5">
             <div class="row">
             
         		<!-- ======================================주변맛집 페이지 왼쪽 화면============================================= -->   
@@ -82,7 +95,16 @@ $(function(){
                     <div class="mt-4">
                         <div class="filter_row area">
 							<div class="category">
-							<!--첫번째  button -->
+							<button onclick="searchNearby()">test</button>
+							
+								<select id="test" onchange="setFilter(this);">
+									<option>셀렉트박스</option>
+									<option value="김밥">김밥</option>
+									<option value="떡볶이">떡볶이</option>
+									<option value="오뎅">오뎅</option>
+								</select>
+								<!-- 
+							
 							<div class="dropdown">
 								<button class="btn btn-default dropdown-toggle" type="button" 
 								data-toggle="dropdown">
@@ -97,7 +119,6 @@ $(function(){
 								</ul>
 							</div>
 
-							<!--두번째  button -->
 							<div class="dropdown">
 								<button class="btn btn-default dropdown-toggle" type="button"
 									data-toggle="dropdown">
@@ -113,7 +134,6 @@ $(function(){
 								</ul>
 							</div>
 							
-							<!--세번째  button -->
 
 							<div class="dropdown">
 								<button class="btn btn-default dropdown-toggle" type="button"
@@ -122,8 +142,6 @@ $(function(){
 								</button>
 							</div>
 
-							<!-- 업종 에서 기본만 올려두고 나머지는 더보기 클릭하면 새창에서 나오도록!whitebox!!! -->
-							<!--네번째  button -->
 							<div class="dropdown">
 								<button class="btn btn-default dropdown-toggle" type="button"
 									data-toggle="dropdown">
@@ -141,7 +159,6 @@ $(function(){
 								</ul>
 							</div>
 							
-							<!--다섯번째  button -->
 							
 							<div class="dropdown">
 								<button class="btn btn-default dropdown-toggle" type="button"
@@ -150,12 +167,12 @@ $(function(){
 								</button>
 							</div>
 							
-							<!--여섯번째  button -->
+							 -->
 							
 						</div>
 
 			<!-- ========================================카테고리 끝============================================ -->
-				 
+				 <!-- 
                         <div class="filter_row food_cat">
                             <div class="filter_head">
                                 <h6>업종</h6>
@@ -229,24 +246,30 @@ $(function(){
                                     </ul>
                                 </div>
                             </div> 
+                            
+                            -->
                     <!--================================= 카테고리 결과 출력 =========================================-->
-                    <div class="selected_filter mt-2">
+                    <div class="selected_filter mt-2" id="test2">
+                     <!-- 
                         <a href="#" class="selected" data-filter-name="food_cat" data-filter-value="108602" data-nclick-code="rcc.reset"
                             data-filter-action="nclick" title="양식">강남역<span class="del">X</span></a>
                         <a href="#" class="selected" data-filter-name="food_cat" data-filter-value="108602" data-nclick-code="rcc.reset"
                             data-filter-action="nclick" title="양식">양식<span class="del">X</span></a>
-                        <a href="#" class="selected" data-filter-name="food_cat" data-filter-value="108602" data-nclick-code="rcc.reset"
+                        <a href="javascript:deleteFilter(this);" class="selected" data-filter-name="food_cat" data-filter-value="108602" data-nclick-code="rcc.reset"
                             data-filter-action="nclick" title="양식">카페/술집<span class="del">X</span></a>
+                             -->
                     </div>
                     
                     
-                    <!-- ==============================선택된 데이터 출력! =============================================-->
+                   <!-- ==============================선택된 데이터 출력! =============================================-->
                     <!-- ============================= RESTAURANTS ============================= -->
-                    <div class="row light-bg detail-options-wrap mt-5 pt-3">
-                        <div class="col-sm-6 col-lg-12 col-xl-6 featured-responsive">
-                            <div class="featured-place-wrap">
+                    <div class="row light-bg detail-options-wrap mt-5 pt-3" id="nearbyList">
+                        <div class=" featured-responsive" >
+                            <div class="featured-place-wrap" >
                                 <a href="main.jsp?mode=5">
-                                    <img src="images/featured1.jpg" class="img-fluid" alt="#">
+                                	<div class="featured-title-box">
+                                   	 <img src="${pageContext.request.contextPath }/images/featured1.jpg" class="img-fluid" alt="#">
+                                    </div>
                                     <span class="featured-rating">6.5</span>
                                     <div class="featured-title-box">
                                         <h6>브루클린더버거조인트</h6>
@@ -269,10 +292,12 @@ $(function(){
                                 </a>
                             </div>
                         </div>
-                        <div class="col-sm-6 col-lg-12 col-xl-6 featured-responsive">
+                        <div class=" featured-responsive">
                             <div class="featured-place-wrap">
                                 <a href="main.jsp?mode=5">
-                                    <img src="images/featured2.jpg" class="img-fluid" alt="#">
+                                <div class="featured-title-box">
+                                    <img src="${pageContext.request.contextPath }/images/featured2.jpg" class="img-fluid" alt="#">
+                                    </div>
                                     <span class="featured-rating">9.5</span>
                                     <div class="featured-title-box">
                                         <h6>사모님돈까스</h6>
@@ -296,10 +321,12 @@ $(function(){
                             </div>
                         </div>
 
-                        <div class="col-sm-6 col-lg-12 col-xl-6 featured-responsive">
+                        <div class=" featured-responsive">
                             <div class="featured-place-wrap">
                                 <a href="main.jsp?mode=5">
-                                    <img src="images/featured3.jpg" class="img-fluid" alt="#">
+                                <div class="featured-title-box">
+                                    <img src="${pageContext.request.contextPath }/images/featured3.jpg" class="img-fluid" alt="#">
+                                    </div>
                                     <span class="featured-rating">3.2</span>
                                     <div class="featured-title-box">
                                         <h6>스트릿(strEAT) 여의도점</h6>
@@ -322,10 +349,14 @@ $(function(){
                                 </a>
                             </div>
                         </div>
-                        <div class="col-sm-6 col-lg-12 col-xl-6 featured-responsive">
+                        
+                        
+                        <div class=" featured-responsive">
                             <div class="featured-place-wrap">
                                 <a href="main.jsp?mode=5">
-                                    <img src="images/featured4.jpg" class="img-fluid" alt="#">
+                                <div class="featured-title-box">
+                                    <img src="${pageContext.request.contextPath }/images/featured4.jpg" class="img-fluid" alt="#">
+                                    </div>
                                     <span class="featured-rating">9.5</span>
                                     <div class="featured-title-box">
                                         <h6>피자디나폴리(Pizza di Napoli)</h6>
@@ -350,14 +381,17 @@ $(function(){
                         </div>
                     </div>
                 </div>
-               </div> 
-			</div>
-                <!--============================= KAKAO MAP ============================= -->
-                <div class="col-md-5 responsive-wrap map-wrap">
+                 <!--============================= KAKAO MAP ============================= -->
+			                <div class="col-md-5 responsive-wrap map-wrap">
                     <div class="map-fix">
                         <div id="map" data-lat="40.674" data-lon="-73.945" data-zoom="14"></div>
                     </div>
                 </div>
+               </div> 
+			
+			</div>
+               
+
             </div>
         </div>
     </section>
@@ -365,11 +399,11 @@ $(function(){
     
     <!-- jQuery, Bootstrap JS. -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="js/jquery-3.2.1.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath }/js/jquery-3.2.1.min.js"></script>
+    <script src="${pageContext.request.contextPath }/js/popper.min.js"></script>
+    <script src="${pageContext.request.contextPath }/js/bootstrap.min.js"></script>
 
-    <!-- 이전에 남아있던 map 관련 소스 : 파악 중 -->
+    <!-- 이전에 남아있던 map 관련 소스 :  파악 중 -->
     <script>
         $(".map-icon").click(function() {
             $(".map-fix").toggle();

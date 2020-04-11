@@ -1,13 +1,52 @@
-@CHARSET "UTF-8";
+/*   
+div#select_box {
+    position: relative;
+    width: 130px;
+    height: 35px;
+    background: url(../images/arrow.jpg) 90px center no-repeat; 화살표 이미지
+    border: 1px solid #E9DDDD;
+   
+}
+div#select_box label {
+    position: absolute;
+    font-size: 14px;
+    color: #a97228;
+    top: 13px;
+    left: 12px;
+    letter-spacing: 1px;
+}
+div#select_box select#color {
+    width: 100%;
+    height: 40px;
+    min-height: 40px;
+    line-height: 40px;
+    padding: 0 10px;
+    opacity: 0;
+    filter: alpha(opacity=0); IE 8
+}
+ */
 
-.category{
-	
-	border: 1px solid blue;
-	
+
+body {
+  margin: 10px;
+  font-size: 12px;
 }
 
-button {
-	
-	padding: 20px;
-	
+select {
+  width: 160px;
+  padding: .8em .5em;
+  font-family: inherit;
+  background: url(../images/arrow.jpg) no-repeat 95% 50%;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: 2px solid #ff3a6d;
+   border-radius : 12px;
+   margin-left: 5px;
+   height : 35px;
+}
+
+select::-ms-expand {
+  /* for IE 11 */
+  display: none;
 }
