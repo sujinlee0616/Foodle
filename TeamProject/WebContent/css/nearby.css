@@ -35,15 +35,11 @@ body {
 div .nearbyrow{
 	
 	background-color: white;
-	margin-right: -49px;
+	margin-right: -60px;
     margin-left: 0px;
 	
 }
-div .nearbysearchlist{
-	
-	padding-left: 1rem!important;
-    padding-right: 1rem!important;
-}
+
 
 div .nearbymd7{
 	
@@ -90,8 +86,15 @@ a .nearbyselected {
 .filter_row a {
 	
 	border-radius: 15px; 
-	
+
 }
+
+.filter_row a:hover {
+	
+	background-color: white;
+	border: #ff3a6d;
+
+ }
 
 /*
 .displaymenu{
@@ -161,4 +164,36 @@ select::-ms-expand {
     margin: 0;
     font-size: 30px;
     letter-spacing: 2px;
+}
+
+div .nearbysearchlist{
+	
+	padding-left: 1rem!important;
+    padding-right: 1rem!important;
+    
+}
+
+.nearbysearchlist p{
+
+	color: #96999cfa;
+	
+}	
+
+.nearbysearchlist h6{
+
+	font-weight: 600;
+}	
+
+
+.featured-place-wrap img {
+     width: auto; 
+}
+
+.featured-title-box {
+    padding: 22px 20px;
+    width: 320px;
+}
+
+.featured-responsive:nth-child( 2n ) {
+	margin-left: 20px;
 }

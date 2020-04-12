@@ -86,27 +86,33 @@ function searchNearby(){ //선택한 카테고리를 아래에 ajax로 값을 �
     
      	<!-- 주변맛집 전체화면 -->
         <div class="container-fluid py-4 container py-5">
-            <div class="row nearbyrow">
-            
-        		<!-- ======================================주변맛집 페이지 왼쪽 화면============================================= -->   
-                <div class="col-md-7 responsive-wrap nearbymd7">
-                     <!-- ===================================검색 결과 타이틀 "~ 주변 검색 결과" ===================================-->   
-                        <h5> Best Places near 주변 맛집 ### </h5>
-                 
-						  <p>총 
-						    <span>###개</span>
-						  </p> 
- 					 <!-- ============================================카테고리!!============================================= -->
-               
-                  
-                  
-                    <div class="mt-4">
-                        <div class="filter_row area">
+			<div class="row nearbyrow">
+
+				<!-- ======================================주변맛집 페이지 왼쪽 화면============================================= -->
+				<div class="col-md-7 responsive-wrap nearbymd7">
+					<!-- ===================================검색 결과 타이틀 "~ 주변 검색 결과" ===================================-->
+					<h5>Best Places near 주변 맛집 ###</h5>
+
+					<p>
+						총 <span>###개</span>
+					</p>
+					<!-- ============================================카테고리!!============================================= -->
+
+
+
+					<div class="mt-4">
+						<div class="filter_row area">
 							<div class="category">
-							<!-- <button onclick="searchNearby()">test</button> -->
-							
-								<select id="test" title="음식선택" class="menuarrow select7" onchange="setFilter(this);" placeholder="음식종류" style="color:black;">
-									<option value="전체" class="lemonmenu">전체 <span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" class="icon_svg"><path d="M8 10.5a1 1 0 0 1-.7-.29l-3.06-3a1 1 0 1 1 1.41-1.42L8 8.1l2.35-2.31a1 1 0 0 1 1.41 1.42l-3.06 3a1 1 0 0 1-.7.29z"></path></svg></span></option>
+								<!-- <button onclick="searchNearby()">test</button> -->
+
+								<select id="test" title="음식선택" class="menuarrow select7"
+									onchange="setFilter(this);" placeholder="음식종류"
+									style="color: black;">
+									<option value="전체" class="lemonmenu">전체 <span><svg
+												xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+												viewBox="0 0 16 16" class="icon_svg">
+												<path
+													d="M8 10.5a1 1 0 0 1-.7-.29l-3.06-3a1 1 0 1 1 1.41-1.42L8 8.1l2.35-2.31a1 1 0 0 1 1.41 1.42l-3.06 3a1 1 0 0 1-.7.29z"></path></svg></span></option>
 									<option value="한식" class="lemonmenu">한식</option>
 									<option value="일식" class="lemonmenu">일식</option>
 									<option value="중식" class="lemonmenu">중식</option>
@@ -116,37 +122,32 @@ function searchNearby(){ //선택한 카테고리를 아래에 ajax로 값을 �
 									<option value="양식" class="lemonmenu">양식</option>
 									<option value="뷔페" class="lemonmenu">뷔페</option>
 									<option value="기타" class="lemonmenu">기타/세계</option>
-									<option value="plusicon" data-icon="${pageContext.request.contextPath }/images/plusicon.png">더보기</option>
-									
-								</select>
-							
-								<select id="test" title="정렬" class="menuarrow select7" onchange="setFilter(this);">
+									<option value="plusicon"
+										data-icon="${pageContext.request.contextPath }/images/plusicon.png">더보기</option>
+
+								</select> <select id="test" title="정렬" class="menuarrow select7"
+									onchange="setFilter(this);">
 									<option value="랭킹순" class="lemonmenu">랭킹순</option>
 									<option value="조회순" class="lemonmenu">평점순</option>
 									<option value="조회순" class="lemonmenu">조회순</option>
-								</select>
-								
-								<select id="test" title="가격순" class="menuarrow select7" onchange="setFilter(this);">
+								</select> <select id="test" title="가격순" class="menuarrow select7"
+									onchange="setFilter(this);">
 									<option value="낮은가격순" class="lemonmenu">낮은 가격순</option>
 									<option value="높은가격순" class="lemonmenu">높은 가격순</option>
-								</select>
-								
-								<select id="test" title="현재오픈" class="menuarrow select7" onchange="setFilter(this);">
+								</select> <select id="test" title="현재오픈" class="menuarrow select7"
+									onchange="setFilter(this);">
 									<option value="현재오픈" class="lemonmenu">현재오픈</option>
+								</select> <select id="test" title="TakeOut" class="menuarrow select7"
+									onchange="setFilter(this);">
+									<option value="테이크아웃" style="display: none;">테이크아웃</option>
 								</select>
-								
-								
-								
-								<select id="test" title="TakeOut"class="menuarrow select7" onchange="setFilter(this);">
-									<option value="테이크아웃" style="display:none;">테이크아웃</option>
-								</select>
-								
-	
-							
-							</div>	
-								
-								
-								<!-- 
+
+
+
+							</div>
+
+
+							<!-- 
 							
 							<div class="dropdown">
 								<button class="btn btn-default dropdown-toggle" type="button" 
@@ -178,11 +179,11 @@ function searchNearby(){ //선택한 카테고리를 아래에 ajax로 값을 �
 							</div>
 							
 							 -->
-							
-					
 
-			<!-- ========================================카테고리 끝 ============================================ -->
-				 <!-- 
+
+
+							<!-- ========================================카테고리 끝 ============================================ -->
+							<!-- 
                         <div class="filter_row food_cat">
                             <div class="filter_head">
                                 <h6>업종</h6>
@@ -258,14 +259,14 @@ function searchNearby(){ //선택한 카테고리를 아래에 ajax로 값을 �
                             </div> 
                             
                             -->
-                            
-                            
-                            
-                            
-                    <!--================================= 선택한 옵션 출력 Ajax 부분!!=========================================-->
-                    <div class="selected_filter mt-2 displaymenu" id="test2">
-                    
-                     <!-- 
+
+
+
+
+							<!--================================= 선택한 옵션 출력 Ajax 부분!!=========================================-->
+							<div class="selected_filter mt-2 displaymenu" id="test2">
+
+								<!-- 
                         <a href="#" class="selected" data-filter-name="food_cat" data-filter-value="108602" data-nclick-code="rcc.reset"
                             data-filter-action="nclick" title="양식">강남역<span class="del">X</span></a>
                         <a href="#" class="selected" data-filter-name="food_cat" data-filter-value="108602" data-nclick-code="rcc.reset"
@@ -273,22 +274,34 @@ function searchNearby(){ //선택한 카테고리를 아래에 ajax로 값을 �
                         <a href="javascript:deleteFilter(this);" class="selected" data-filter-name="food_cat" data-filter-value="108602" data-nclick-code="rcc.reset"
                             data-filter-action="nclick" title="양식">카페/술집<span class="del">X</span></a>
                              -->
-                    </div>
-                    
-                    
-                   <!-- ==============================선택된 RESTAURANTS 리스트 출력! =============================================-->
-             
-                    <div class="row light-bg detail-options-wrap pt-3 nearbysearchlist" id="nearbyList">
+							</div>
+
+
+							<!-- ==============================선택된 RESTAURANTS 리스트 출력! =============================================-->
+
+							<div class="row light-bg detail-options-wrap pt-3 nearbysearchlist" id="nearbyList">
+
+
+								<!-- ================================가게 1개 =============================================-->
+								  <!-- ================================가게 1개 =============================================-->
                         <div class=" featured-responsive" >
                             <div class="featured-place-wrap" >
                                 <a href="main.jsp?mode=5">
+                   
+                   
+                   <!--  =======================그림 부분 시작 ============================= -->
                                 	<div class="featured-title-box">
                                    	 <img src="${pageContext.request.contextPath }/images/featured1.jpg" class="img-fluid" alt="#">
                                     </div>
                                     <span class="featured-rating">6.5</span>
+                    <!--  =======================그림 부분  끝============================= -->
+                    
+                    
+                   <!--  =======================요약설명  시작============================= -->
+                         
                                     <div class="featured-title-box">
-                                        <h6>브루클린더버거조인트</h6>
-                                        <p>양식(수제버거) </p> <span>• </span>
+                                        <h6>브루클린더버거조인트 AJAX</h6>
+                                        <p>양식 </p> <span>• </span>
                                         <p>리뷰 12개</p> <span> • </span>
                                         <p><span>\\\\</span>\</p>
                                         <ul>
@@ -304,9 +317,17 @@ function searchNearby(){ //선택한 카테고리를 아래에 ajax로 값을 �
                                             <span class="ti-heart"></span>
                                         </div>
                                     </div>
+                   <!--  =======================요약설명  끝 ============================= -->                  
+                                    
                                 </a>
                             </div>
                         </div>
+                        
+                        
+
+<!-- ===============================가게 한개 끝!=================================== -->
+                        
+                        
                         <div class=" featured-responsive">
                             <div class="featured-place-wrap">
                                 <a href="main.jsp?mode=5">
@@ -336,6 +357,8 @@ function searchNearby(){ //선택한 카테고리를 아래에 ajax로 값을 �
                             </div>
                         </div>
 
+
+
                         <div class=" featured-responsive">
                             <div class="featured-place-wrap">
                                 <a href="main.jsp?mode=5">
@@ -345,7 +368,7 @@ function searchNearby(){ //선택한 카테고리를 아래에 ajax로 값을 �
                                     <span class="featured-rating">3.2</span>
                                     <div class="featured-title-box">
                                         <h6>스트릿(strEAT) 여의도점</h6>
-                                        <p>기타/세계-퓨전푸드 </p> <span>• </span>
+                                        <p>기타/세계 </p> <span>• </span>
                                         <p>리뷰 3개</p> <span> • </span>
                                         <p><span>\\\</span>\\</p>
                                         <ul>
@@ -366,6 +389,10 @@ function searchNearby(){ //선택한 카테고리를 아래에 ajax로 값을 �
                         </div>
                         
                         
+                        
+                        
+                        
+                        
                         <div class=" featured-responsive">
                             <div class="featured-place-wrap">
                                 <a href="main.jsp?mode=5">
@@ -374,8 +401,8 @@ function searchNearby(){ //선택한 카테고리를 아래에 ajax로 값을 �
                                     </div>
                                     <span class="featured-rating">9.5</span>
                                     <div class="featured-title-box">
-                                        <h6>피자디나폴리(Pizza di Napoli)</h6>
-                                        <p>양식 </p> <span>• </span>
+                                        <h6>피자디나 폴리(Pizza di Napoli)</h6>
+                                        <p>양 식 </p> <span>• </span>
                                         <p>리뷰 3개</p> <span> • </span>
                                         <p><span>\\\</span>\\</p>
                                         <ul>
@@ -394,20 +421,55 @@ function searchNearby(){ //선택한 카테고리를 아래에 ajax로 값을 �
                                 </a>
                             </div>
                         </div>
-                    </div>
-                </div>
-                 <!--============================= KAKAO MAP ============================= -->
-			                <div class="col-md-5 responsive-wrap map-wrap">
-                    <div class="map-fix">
-                        <div id="map" data-lat="40.674" data-lon="-73.945" data-zoom="14"></div>
-                    </div>
-                </div>
-               </div> 
-			
-			</div>
-               
+                        
+							<div class=" featured-responsive">
+								<div class="featured-place-wrap">
+									<a href="main.jsp?mode=5">
+										<div class="featured-title-box">
+											<img
+												src="${pageContext.request.contextPath }/images/featured4.jpg"
+												class="img-fluid" alt="#">
+										</div> <span class="featured-rating">9.5</span>
+										<div class="featured-title-box">
+											<h6>피자디나폴리(Pizza di Napoli)</h6>
+											<p>양식</p>
+											<span>• </span>
+											<p>리뷰 3개</p>
+											<span> • </span>
+											<p>
+												<span>\\\</span>\\
+											</p>
+											<ul>
+												<li><span class="icon-location-pin"></span>
+													<p>서울 강남구 압구정로4길 13-17 2층</p></li>
+												<li><span class="icon-screen-smartphone"></span>
+													<p>(02) 512-3109</p></li>
+											</ul>
+											<div class="bottom-icons">
+												<div class="closed-now">CLOSED NOW</div>
+												<span class="ti-heart"></span>
+											</div>
+										</div>
+									</a>
+								</div>
+							</div>
 
-            </div>
+<!--  요약 끝! -->
+
+						</div>
+					</div>
+					<!--============================= KAKAO MAP ============================= -->
+					<div class="col-md-5 responsive-wrap map-wrap">
+						<div class="map-fix">
+							<div id="map" data-lat="40.674" data-lon="-73.945" data-zoom="14"></div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+
+		</div>
         </div>
     </section>
     <!--//END DETAIL -->
