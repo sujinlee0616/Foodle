@@ -18,7 +18,6 @@ test value: ${result} --%>
   
 				<div id ="contentRes">
 				
-								<!-- ================================가게 1개 =============================================-->
 								  <!-- ================================가게 1개 =============================================-->
                         <div class=" featured-responsive" >
                             <div class="featured-place-wrap" >
@@ -123,10 +122,6 @@ test value: ${result} --%>
                                 </a>
                             </div>
                         </div>
-                        
-                        
-                        
-                        
                         
                         
                         <div class=" featured-responsive">
