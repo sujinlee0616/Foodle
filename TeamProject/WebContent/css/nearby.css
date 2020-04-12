@@ -87,6 +87,12 @@ a .nearbyselected {
 	border-radius: 15px;
 }
 
+.filter_row a {
+	
+	border-radius: 15px; 
+	
+}
+
 /*
 .displaymenu{
 	

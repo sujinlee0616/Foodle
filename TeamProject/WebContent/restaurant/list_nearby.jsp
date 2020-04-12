@@ -75,6 +75,10 @@ function searchNearby(){ //선택한 카테고리를 아래에 ajax로 값을 �
 
 </style>
 
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
+<script src="jquery-select7.js"></script>
+
 </head>
 <body>
     <!--============================= LIST =============================-->
@@ -101,33 +105,40 @@ function searchNearby(){ //선택한 카테고리를 아래에 ajax로 값을 �
 							<div class="category">
 							<!-- <button onclick="searchNearby()">test</button> -->
 							
-								<select id="test" title="음식 선택" class="menuarrow" onchange="setFilter(this);">
+								<select id="test" title="음식선택" class="menuarrow select7" onchange="setFilter(this);" placeholder="음식종류" style="color:black;">
 									<option value="전체" class="lemonmenu">전체 <span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" class="icon_svg"><path d="M8 10.5a1 1 0 0 1-.7-.29l-3.06-3a1 1 0 1 1 1.41-1.42L8 8.1l2.35-2.31a1 1 0 0 1 1.41 1.42l-3.06 3a1 1 0 0 1-.7.29z"></path></svg></span></option>
 									<option value="한식" class="lemonmenu">한식</option>
+									<option value="일식" class="lemonmenu">일식</option>
+									<option value="중식" class="lemonmenu">중식</option>
 									<option value="카페" class="lemonmenu">카페</option>
 									<option value="베이커리" class="lemonmenu">베이커리</option>
-									<option value="일식" class="lemonmenu">일식</option>
-									<option value="plusicon" data-image="../images/plusicon.png"></option>
+									<option value="패스트푸드" class="lemonmenu">패스트부드</option>
+									<option value="양식" class="lemonmenu">양식</option>
+									<option value="뷔페" class="lemonmenu">뷔페</option>
+									<option value="기타" class="lemonmenu">기타/세계</option>
+									<option value="plusicon" data-icon="${pageContext.request.contextPath }/images/plusicon.png">더보기</option>
 									
 								</select>
 							
-								<select id="test" class="menuarrow" onchange="setFilter(this);">
+								<select id="test" title="정렬" class="menuarrow select7" onchange="setFilter(this);">
 									<option value="랭킹순" class="lemonmenu">랭킹순</option>
 									<option value="조회순" class="lemonmenu">평점순</option>
 									<option value="조회순" class="lemonmenu">조회순</option>
 								</select>
 								
-								<select id="test" class="menuarrow" onchange="setFilter(this);">
+								<select id="test" title="가격순" class="menuarrow select7" onchange="setFilter(this);">
 									<option value="낮은가격순" class="lemonmenu">낮은 가격순</option>
 									<option value="높은가격순" class="lemonmenu">높은 가격순</option>
 								</select>
 								
-								<select id="test"  class="lemon" onchange="setFilter(this);" >
-									<option style="display:none;">Open Now</option>
+								<select id="test" title="현재오픈" class="menuarrow select7" onchange="setFilter(this);">
+									<option value="현재오픈" class="lemonmenu">현재오픈</option>
 								</select>
 								
-								<select id="test" onchange="setFilter(this);">
-									<option style="display:none;">Take Out</option>
+								
+								
+								<select id="test" title="TakeOut"class="menuarrow select7" onchange="setFilter(this);">
+									<option value="테이크아웃" style="display:none;">테이크아웃</option>
 								</select>
 								
 	
