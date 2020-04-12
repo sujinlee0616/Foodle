@@ -6,15 +6,14 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+
+<link rel="stylesheet" href="${pageContext.request.contextPath }/css/nearby.css">
 </head>
 <body>
 <div id ="contentRes">
-!!!!!
-wer
-wer
-wer
-${result}  
-${result}
+list_nearby_reulst started!
+test value: ${result}  
+
                         <div class=" featured-responsive" >
                             <div class="featured-place-wrap" >
                                 <a href="main.jsp?mode=5">

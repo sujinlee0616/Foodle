@@ -6,19 +6,18 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
- <!-- Bootstrap CSS
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> 
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
--->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
- <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-<!-- 새롭게 만든 주변 맛집 페이지 CSS -->
- <link rel="stylesheet" href="${pageContext.request.contextPath }/css/nearby.css">
-
+<link rel="stylesheet" href="${pageContext.request.contextPath }/css/nearby.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/dd.css">
+<link rel="stylesheet" href="jquery-select7.css">
  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery.dd.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery.dd.js"></script>
+<!-- 새롭게 만든 주변 맛집 페이지 CSS -->
+
  
  <!-- ShadowBox 
 <link rel="stylesheet" href="../shadow/css/shadowbox.css">
@@ -26,16 +25,16 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script> -->
 <script type="text/javascript">
 
-
- 
+/* 
  $('.del').onClick(
 			function(){
 				alert(1);
 			}		 
 		 );
+ */
  
- function setFilter(c){
-		$('#test2').append("<a onClick=deleteFilter(this) href='#' id='"+c.value+"' class='selected' data-filter-name='food_cat' data-filter-value='108602' data-nclick-code='rcc.reset'"
+ function setFilter(c){ //선택한 카테고리 출력 기능
+		$('#test2').append("<a onClick=deleteFilter(this) href='#' id='"+c.value+"' class='selected nearbyselected' data-filter-name='food_cat' data-filter-value='108602' data-nclick-code='rcc.reset'"
 		         +"data-filter-action='nclick' title='"+c.value+"'>"+c.value+"<span class='del'>X</span></a>");
 		searchNearby();
 		
@@ -46,12 +45,13 @@ function deleteFilter(v){
 	$(tihsId).remove();
 };
 
-function searchNearby(){
+function searchNearby(){ //선택한 카테고리를 아래에 ajax로 값을 뿌려주는 기능
 	$.ajax({
 		
-		type:'post',
-		url:'/TeamProject/restaurant/list_nearby_restruant.do',
-		data:{"pwd":"123","no":"555"},
+		type:'post', //post방식(hide parameter)
+		//url:'/TeamProject/restaurant/list_nearby_result.do', //이 주소를 찾아서 실행해
+		url:'../restaurant/list_nearby_result.do', //이 주소를 찾아서 실행해
+		data:{"pwd":"123","no":"555"}, //위 url 주소로 보낼 건데, 데이터는 key와 value로 보내고, 위 url(~.do)에서 value를  
 		success:function(res){//0또는 1의 값을 가지는 res/
 			//@RequestMapping("reply/password_check.do") 여기서 res받음 
 			console.log(res);
@@ -81,28 +81,60 @@ function searchNearby(){
     <section class="list-block">
     
      	<!-- 주변맛집 전체화면 -->
-        <div class="container-fluid py-4 light-bg container py-5">
-            <div class="row">
+        <div class="container-fluid py-4 container py-5">
+            <div class="row nearbyrow">
             
         		<!-- ======================================주변맛집 페이지 왼쪽 화면============================================= -->   
-                <div class="col-md-7 responsive-wrap">
-                     
-                        <h5> # 주변 맛집</h5>
-                    <!-- ===================================검색 결과 타이틀 "~ 주변 검색 결과" ===================================-->
-						<div>   <p>총 <span>###개</span></p> </div>
+                <div class="col-md-7 responsive-wrap nearbymd7">
+                     <!-- ===================================검색 결과 타이틀 "~ 주변 검색 결과" ===================================-->   
+                        <h5> Best Places near 주변 맛집 ### </h5>
+                 
+						  <p>총 
+						    <span>###개</span>
+						  </p> 
  					 <!-- ============================================카테고리!!============================================= -->
+               
+                  
                   
                     <div class="mt-4">
                         <div class="filter_row area">
 							<div class="category">
-							<button onclick="searchNearby()">test</button>
+							<!-- <button onclick="searchNearby()">test</button> -->
 							
-								<select id="test" onchange="setFilter(this);">
-									<option>셀렉트박스</option>
-									<option value="김밥">김밥</option>
-									<option value="떡볶이">떡볶이</option>
-									<option value="오뎅">오뎅</option>
+								<select id="test" title="음식 선택" class="menuarrow" onchange="setFilter(this);">
+									<option value="전체" class="lemonmenu">전체 <span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" class="icon_svg"><path d="M8 10.5a1 1 0 0 1-.7-.29l-3.06-3a1 1 0 1 1 1.41-1.42L8 8.1l2.35-2.31a1 1 0 0 1 1.41 1.42l-3.06 3a1 1 0 0 1-.7.29z"></path></svg></span></option>
+									<option value="한식" class="lemonmenu">한식</option>
+									<option value="카페" class="lemonmenu">카페</option>
+									<option value="베이커리" class="lemonmenu">베이커리</option>
+									<option value="일식" class="lemonmenu">일식</option>
+									<option value="plusicon" data-image="../images/plusicon.png"></option>
+									
 								</select>
+							
+								<select id="test" class="menuarrow" onchange="setFilter(this);">
+									<option value="랭킹순" class="lemonmenu">랭킹순</option>
+									<option value="조회순" class="lemonmenu">평점순</option>
+									<option value="조회순" class="lemonmenu">조회순</option>
+								</select>
+								
+								<select id="test" class="menuarrow" onchange="setFilter(this);">
+									<option value="낮은가격순" class="lemonmenu">낮은 가격순</option>
+									<option value="높은가격순" class="lemonmenu">높은 가격순</option>
+								</select>
+								
+								<select id="test"  class="lemon" onchange="setFilter(this);" >
+									<option style="display:none;">Open Now</option>
+								</select>
+								
+								<select id="test" onchange="setFilter(this);">
+									<option style="display:none;">Take Out</option>
+								</select>
+								
+	
+							
+							</div>	
+								
+								
 								<!-- 
 							
 							<div class="dropdown">
@@ -134,44 +166,11 @@ function searchNearby(){
 								</ul>
 							</div>
 							
-
-							<div class="dropdown">
-								<button class="btn btn-default dropdown-toggle" type="button"
-									data-toggle="dropdown">
-									Open Now 
-								</button>
-							</div>
-
-							<div class="dropdown">
-								<button class="btn btn-default dropdown-toggle" type="button"
-									data-toggle="dropdown">
-									업종 
-								</button>
-								<ul class="dropdown-menu">
-									<li><a href="#">한식</a></li>
-									<li><a href="#">분식</a></li>
-									<li><a href="#">일식</a></li>
-									<li><a href="#">베이커리</a></li>
-									<li><a href="#">카페</a></li>
-									<li><a href="#">중식</a></li>
-									<li class="divider"></li>
-									<li><a href="#" id="moretype">더보기</a></li>
-								</ul>
-							</div>
-							
-							
-							<div class="dropdown">
-								<button class="btn btn-default dropdown-toggle" type="button"
-									data-toggle="dropdown">
-									Top Rated 
-								</button>
-							</div>
-							
 							 -->
 							
-						</div>
+					
 
-			<!-- ========================================카테고리 끝============================================ -->
+			<!-- ========================================카테고리 끝 ============================================ -->
 				 <!-- 
                         <div class="filter_row food_cat">
                             <div class="filter_head">
@@ -248,8 +247,13 @@ function searchNearby(){
                             </div> 
                             
                             -->
-                    <!--================================= 카테고리 결과 출력 =========================================-->
-                    <div class="selected_filter mt-2" id="test2">
+                            
+                            
+                            
+                            
+                    <!--================================= 선택한 옵션 출력 Ajax 부분!!=========================================-->
+                    <div class="selected_filter mt-2 displaymenu" id="test2">
+                    
                      <!-- 
                         <a href="#" class="selected" data-filter-name="food_cat" data-filter-value="108602" data-nclick-code="rcc.reset"
                             data-filter-action="nclick" title="양식">강남역<span class="del">X</span></a>
@@ -261,9 +265,9 @@ function searchNearby(){
                     </div>
                     
                     
-                   <!-- ==============================선택된 데이터 출력! =============================================-->
-                    <!-- ============================= RESTAURANTS ============================= -->
-                    <div class="row light-bg detail-options-wrap mt-5 pt-3" id="nearbyList">
+                   <!-- ==============================선택된 RESTAURANTS 리스트 출력! =============================================-->
+             
+                    <div class="row light-bg detail-options-wrap pt-3 nearbysearchlist" id="nearbyList">
                         <div class=" featured-responsive" >
                             <div class="featured-place-wrap" >
                                 <a href="main.jsp?mode=5">
