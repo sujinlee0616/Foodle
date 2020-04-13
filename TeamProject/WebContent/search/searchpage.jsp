@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -16,13 +17,34 @@
 		  <div class="col-md-4 featured-responsive">
 		    <div class="featured-place-wrap">
 		      <a href="#">
-		        <img src="../images/featured1.jpg" class="img-fluid" alt="#">
+		        <img src="${vo.ivo.i_Link }" class="img-fluid" alt="#">
 		        <span class="featured-rating">${vo.rScore }</span>
 		        <div class="featured-title-box">
 		          <h6>${vo.rName }</h6>
 		          <p>${vo.rType }</p> <span>• </span>
-		          <p>리뷰 ${r.ScoreCount }</p> <span> • </span>
-		          <p><span>\\\\</span>\</p>
+		          <p>리뷰 ${vo.rScoreCount }</p> <span> • </span>
+		          <fmt:parseNumber var="sre" value="${vo.rScore }" integerOnly="true"/>
+		          <c:choose>
+		            <c:when test="${sre=='5' }">
+		              <p><span>★★★★★</span></p>
+		            </c:when>
+		            <c:when test="${sre=='4' }">
+		              <p><span>★★★★</span>★</p>
+		            </c:when>
+		            <c:when test="${sre=='3' }">
+		              <p><span>★★★</span>★★</p>
+		            </c:when>
+		            <c:when test="${sre=='2' }">
+		              <p><span>★★</span>★★★</p>
+		            </c:when>
+		            <c:when test="${sre=='1' }">
+		              <p><span>★</span>★★★★</p>
+		            </c:when>
+		            <c:otherwise>
+		              <p><span></span>★★★★★</p>
+		            </c:otherwise>
+		          </c:choose>
+		          <!-- <p><span>★★★★</span>★</p> -->
 		          <ul>
 		            <li><span class="icon-location-pin"></span>
 		              <p>${vo.rAddr1 }</p>

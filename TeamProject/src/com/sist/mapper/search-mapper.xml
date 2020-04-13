@@ -1,11 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sist.mapper.search-mapper">
-  <select id="searchListData" resultType="MaininfoVO" parameterType="java.util.Map">
-    SELECT rno,rname,rtype,rscore,rscorecount,rarea,raddr1,rtel,num 
-    FROM (SELECT rno,rname,rtype,rscore,rscorecount,rarea,raddr1,rtel,rownum as num 
-    FROM (SELECT rno,rname,rtype,rscore,rscorecount,rarea,raddr1,rtel 
-    FROM maininfo ORDER BY rno ASC)) 
+  <!-- Maininfo와 Image Join -->
+  <resultMap type="MaininfoVO" id="maininfoMap">
+  	<result column="rno" property="rNo"/>
+  	<result column="rname" property="rName"/>
+  	<result column="rtype" property="rType"/>
+  	<result column="rscore" property="rScore"/>
+  	<result column="rscorecount" property="rScoreCount"/>
+  	<result column="rarea" property="rArea"/>
+  	<result column="raddr1" property="rAddr1"/>
+  	<result column="rtel" property="rTel"/>
+  	<result column="iname" property="ivo.i_Name"/>
+  	<result column="ilink" property="ivo.i_Link"/>
+  </resultMap>
+  
+  <select id="searchListData" resultMap="maininfoMap" parameterType="java.util.Map">
+    SELECT rno,rname,rtype,rscore,rscorecount,rarea,raddr1,rtel,ilink,num 
+    FROM (SELECT rno,rname,rtype,rscore,rscorecount,rarea,raddr1,rtel,ilink,rownum as num 
+    FROM (SELECT maininfo.rno,rname,rtype,rscore,rscorecount,rarea,raddr1,rtel,ilink 
+    FROM maininfo,image
+    WHERE maininfo.rno=image.rno
+    AND image.iname LIKE 'Mainimage'
+    ORDER BY maininfo.rno ASC)) 
     WHERE num BETWEEN #{start} AND #{end}
   </select>
   
