@@ -21,4 +21,10 @@
 		SELECT * FROM menu
 		WHERE rno=#{no}
 	</select>
+	
+	<select id="resDetailImage" resultType="ImageVO" parameterType="int">
+		SELECT rNo,iName,iLink FROM image
+		WHERE rNo=#{no} AND rownum&lt;=6
+	</select>
+	
 </mapper>
