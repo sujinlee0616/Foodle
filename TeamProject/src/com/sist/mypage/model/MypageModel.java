@@ -6,8 +6,9 @@ import javax.servlet.http.HttpSession;
 
 import com.sist.controller.Controller;
 import com.sist.controller.RequestMapping;
-import com.sist.dao.MemberDAO;
-import com.sist.vo.MemberVO;
+import com.sist.dao.*;
+import com.sist.service.dao.*;
+import com.sist.service.vo.*;
 
 @Controller
 public class MypageModel {

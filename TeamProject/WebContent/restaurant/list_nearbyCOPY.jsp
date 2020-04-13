@@ -65,12 +65,10 @@ div {
         }
     </script>
   
-</body>
 
-</html>
                             <p>총 <span>###개</span></p>
-                        </div>
-                    </div>
+                   
+                   
                     <!-- CUSTOM FILTER (like hashtag) -->
                     <div class="filter mt-4">
                         <div class="filter_row area">

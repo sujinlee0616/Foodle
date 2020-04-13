@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>  <!-- 날짜 형식 변환 -->
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -9,28 +11,22 @@
     <section class="board-block light-bg">
         <div class="container py-5">
 			<div class="py-3">
+				
 				<div class="table-responsive">
-                    <!-- 해당 글 내용 -->
+					<!-- ============================ 상세보기 내용 ============================ -->
 					<table class="table freeboard" style="background-color: #FFFFFF;">						
 							<tr>
-                                 <!-- 제목 -->
-								<td class="">대구 대왕 닭칼국수 다 먹으면 100만원 준다고 합니다!!</td>
+								<td class="">${vo.bsubject }</td>
                             </tr>
                             <tr>
                                 <!-- 본문 -->
                                 <td class="content">
-                                    <pre>
-실제로 자신감 가지고 도전해봤는데
-그릇 크기가 어마어마 합니다~
-5인분 양이라고 하는데
-먹성 좋으신분들도 왠만하면 다 실패할듯요....
-대구 현풍닭칼국수 신천점 이에요~
-                                    </pre>
+									${vo.bcontent }
                                 </td>
                             </tr>
                     </table>
 
-                     <!-- 하단에 리스트 노출 -->
+                     <!-- ============================ 하단 리스트 ============================ -->
                      <table class="table freeboard" style="background-color: #FFFFFF;">						
 						<thead class="thead-dark">
 							<tr style="background-color: #E0E0E0;">
@@ -58,66 +54,10 @@
 							</tr>
 							<tr>
 								<td class="text-center">9</td>
-								<td><a href="detail.do">대구 대왕 닭칼국수 다 먹으면 100만원 준다고 합니다!!</a></td>
+								<td><a href="detail.do">테이블 데이터 연동시켜야함.... 아직 작업 전 </a></td>
 								<td class="text-center">Thornton</td>
 								<td class="text-center">20/01/16 07:39</td>
 								<td class="text-center">56</td>
-							</tr>
-							<tr>
-								<td class="text-center">8</td>
-								<td><a href="detail.do">연매출 7억, 직접 짠 들기름을 발라 구운 옥돌 김 구이</a></td>
-								<td class="text-center">the Bird</td>
-								<td class="text-center">20/01/11 12:01</td>
-								<td class="text-center">235</td>
-							</tr>
-							<tr>
-								<td class="text-center">7</td>
-								<td><a href="detail.do">평양냉면 뽀개기 62곳 정리</a></td>
-								<td class="text-center">Otto</td>
-								<td class="text-center">20/01/11 01:07</td>
-								<td class="text-center">12</td>
-							</tr>
-							<tr>
-								<td class="text-center">6</td>
-								<td><a href="detail.do">아주 긴 텍스트입니다 아주 긴 텍스트입니다 아주 긴 텍스트입니다 아주 긴 텍스트.. </a></td>
-								<td class="text-center">Thornton</td>
-								<td class="text-center">20/01/10 04:08</td>
-								<td class="text-center">56</td>
-							</tr>
-							<tr>
-								<td class="text-center">5</td>
-								<td><a href="detail.do">아주 긴 텍스트입니다 아주 긴 텍스트입니다 아주 긴 텍스트입니다 아주 긴 텍스트.. </a></td>
-								<td class="text-center">the Bird</td>
-								<td class="text-center">20/01/07 13:54</td>
-								<td class="text-center">235</td>
-							</tr>
-							<tr>
-								<td class="text-center">4</td>
-								<td><a href="detail.do">아주 긴 텍스트입니다 아주 긴 텍스트입니다 아주 긴 텍스트입니다 아주 긴 텍스트..</a></td>
-								<td class="text-center">Otto</td>
-								<td class="text-center">20/01/03 14:57</td>
-								<td class="text-center">12</td>
-							</tr>
-							<tr>
-								<td class="text-center">3</td>
-								<td><a href="detail.do">아주 긴 텍스트입니다 아주 긴 텍스트입니다 아주 긴 텍스트입니다 아주 긴 텍스트..</a></td>
-								<td class="text-center">Thornton</td>
-								<td class="text-center">20/01/03 10:47</td>
-								<td class="text-center">56</td>
-							</tr>
-							<tr>
-								<td class="text-center">2</td>
-								<td><a href="detail.do">아주 긴 텍스트입니다 아주 긴 텍스트입니다 아주 긴 텍스트입니다 아주 긴 텍스트..</a></td>
-								<td class="text-center">the Bird</td>
-								<td class="text-center">20/01/02 23:27</td>
-								<td class="text-center">235</td>
-							</tr>
-							<tr>
-								<td class="text-center">1</td>
-								<td><a href="detail.do">아주 긴 텍스트입니다 아주 긴 텍스트입니다 아주 긴 텍스트입니다 아주 긴 텍스트..</a></td>
-								<td class="text-center">Otto</td>
-								<td class="text-center">19/12/31 14:54</td>
-								<td class="text-center">12</td>
 							</tr>
 						</tbody>
 					</table>

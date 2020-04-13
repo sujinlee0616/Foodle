@@ -1,0 +1,234 @@
+normalColor = #222
+hoverColor = #25972a
+borderColor = #ccc
+selectHeight = 35px
+borderRadius = 4px
+paddingV = 5px
+paddingH = 10px
+optionFontSize = 14px
+
+.select7
+	position relative
+	text-align left
+	display inline-block
+	line-height 1.428571429
+	&
+	& *
+		box-sizing border-box
+	&_native_dropdown
+		.select7__current
+			cursor default !important
+		.select7__caret
+			border-color normalColor transparent transparent !important
+	&_dropdown
+		display inline-block
+		margin 0 (paddingH * (-1) + 5)
+		.select7
+			&__current
+				height auto
+				padding 0 (paddingH + 5) 0 paddingH
+				border 0 none
+				position relative
+				cursor pointer
+				background-color transparent
+				&:hover
+					.select7
+						&__current-value
+							color hoverColor
+						&__caret
+							border-color hoverColor transparent transparent
+			&__drop
+				z-index 1000
+				top 0
+				left 0
+				min-width 100%
+				padding selectHeight 0 5px
+				margin-top -6px
+				border-width 1px
+				border-radius borderRadius
+				background-clip padding-box
+			&__current-value
+				overflow visible
+				display inline-block
+				border-bottom 1px dotted
+			&__caret
+				position static
+				margin-top 0
+				border-color normalColor transparent transparent
+			&__option
+				padding paddingV paddingH
+
+	&_noopts
+		.select7__caret
+			display none
+		.select7__current
+			cursor default
+			&:hover
+				.select7__current-value
+					color inherit
+			&-value
+				border-bottom-color transparent
+	&_position_right
+		.select7
+			&__drop
+				left auto
+				right 0
+			&__option
+				text-align right
+
+	&__current
+		position relative
+		color normalColor
+		border 1px solid borderColor
+		border-radius borderRadius
+		background-color #fff
+		padding paddingV (paddingH + 12) paddingV paddingH
+		cursor pointer
+		height selectHeight
+		&-value
+			overflow ellipsis
+			display block
+		&:hover
+			.select7
+				&__caret
+					border-color hoverColor transparent transparent
+
+	&__drop
+		display none
+		position absolute
+		top 0
+		left 0
+		z-index 1000
+		min-width 100%
+		padding selectHeight 0 5px
+		margin 0
+		font-size optionFontSize
+		background-color #fff
+		border-width 1px
+		border-style solid
+		border-color borderColor
+		border-radius borderRadius
+		box-shadow 0 3px 4px rgba(0,0,0,.1)
+		background-clip padding-box
+	&__drop-list
+		list-style none
+		margin 0
+		padding 0
+		max-height 168px
+		overflow-y auto
+		-webkit-overflow-scrolling touch
+
+	&__caret
+		position absolute
+		top 50%
+		margin-top -3px
+		right 9px
+		display inline-block
+		width 0
+		height 0
+		margin-left 5px
+		vertical-align middle
+		border-width 6px 4px 0 4px
+		border-style solid
+		border-color normalColor transparent transparent
+		transition border-color .1s linear
+
+	&__option
+	&__optgroup
+		display block
+		overflow hidden
+		padding paddingV paddingH
+		clear both
+		text-decoration none
+		font-weight normal
+		color lighten(normalColor, 10%)
+		white-space nowrap
+	&__option
+		cursor pointer
+		transition background-color .2s ease-in-out
+		font-weight normal
+		&_disabled
+			background-color lighten(normalColor, 98%) !important
+			color lighten(normalColor, 60%) !important
+			cursor default !important
+		&:hover
+			color normalColor
+			background-color lighten(normalColor, 95%)
+		&_current
+			&:before
+				content "✓ " 
+	&__optgroup
+		cursor default
+		font-weight bold
+		&:hover
+			background-color lighten(normalColor, 99%)
+		&_collapse
+			.select7__optgroup
+				&-label
+					&:after
+						content " ↓"
+				&-items
+					display none
+			&_open
+				.select7__optgroup
+					&-label
+						&:after
+							content " ↑" 
+					&-items
+						display block
+	&__optgroup-items
+		padding 0
+	&__placeholder
+		color lighten(normalColor, 60%) !important
+
+	&__icon
+		display inline-block
+		height selectHeight - (paddingV * 2) - 1
+		margin-right 5px
+		vertical-align text-top
+		text-align center
+		letter-spacing 0
+		font-size 0
+		&:after
+			content ""
+			display inline-block
+			height 100%
+			width 0
+			vertical-align middle
+		> img
+			letter-spacing normal
+			font-size 12px
+			border 0 none
+			margin 0 auto
+			max-width 100%
+			max-height 100%
+			display inline-block
+			vertical-align middle
+
+	&_open
+		.select7
+			&__current
+				z-index 1001
+				border-color transparent
+				box-shadow none
+				background-color transparent
+				&:hover
+					.select7
+						&__current-value
+							border-color transparent
+						&__caret
+							border-color transparent transparent hoverColor
+			&__caret
+				border-color transparent transparent normalColor
+				border-width 0 4px 6px 4px
+			&__drop
+				display block
+		&.select7_dropdown
+			.select7
+				&__current
+					box-shadow none
+					&:hover
+						.select7__caret
+							border-color transparent transparent hoverColor
+				&__caret
+					border-color transparent transparent normalColor

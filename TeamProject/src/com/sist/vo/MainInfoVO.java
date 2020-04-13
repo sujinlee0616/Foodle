@@ -1,5 +1,7 @@
 package com.sist.vo;
 
+import com.sist.vo.ImageVO;
+
 public class MainInfoVO {
 	
 	// 가게 고유번호
@@ -24,6 +26,17 @@ public class MainInfoVO {
 	private String rArea;
 	// 가게 세부지역(ex.가로수길,강남역...)
 	private String rAreaDetail;
+	
+	// image 조인
+	private ImageVO ivo=new ImageVO();
+	
+	public ImageVO getIvo() {
+		return ivo;
+	}
+	public void setIvo(ImageVO ivo) {
+		this.ivo = ivo;
+	}
+	
 	
 	public int getrNo() {
 		return rNo;

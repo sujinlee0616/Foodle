@@ -17,7 +17,7 @@
                             <div class="col-md-12">
                                 <div class="slider-content_wrap">
                                     <h1 class="dohyeon">주변 맛집을 찾아보세요</h1>
-                                    <h5 style="color:white;">푸드계의 구글, 푸들러에서 맛있는 일상을 찾으세요.</h5>
+                                    <h5 style="color:white;">푸드계의 구글, 푸들에서 맛있는 일상을 찾으세요.</h5>
                                 </div>
                             </div>
                         </div>
@@ -210,7 +210,7 @@
                 </div>
                 <div class="col-md-4 featured-responsive">
                     <div class="featured-place-wrap">
-                        <a href="../restaurant/detail.do">
+                        <a href="../restaurant/detail.do?">
                             <img src="${pageContext.request.contextPath }/images/featured2.jpg" class="img-fluid" alt="#">
                             <span class="featured-rating">3.5</span>
                             <!-- <span class="featured-rating-green">3.5</span> -->
@@ -288,25 +288,26 @@
 			<div class="row justify-content-center d-flex">
 				<div class="col-lg-12 post-list">
 					<!-- ============================== 데이터 연동 O ==============================  -->
-					<%-- <c:forEach var="vo" items="${weeklytop30list }">
+					<c:forEach var="vo" items="${weeklytop30list }">
 						<!-- Start of a content -->
 						<div class="single-post d-flex flex-row">
 							<div class="thumb">
-								<a href="main.jsp?mode=5">
-									<img src="${pageContext.request.contextPath }/images/featured1.jpg" alt="">
+								<a href="../restaurant/detail.do?no=${vo.rNo }">
+									<%-- <img src="${pageContext.request.contextPath }/images/featured1.jpg" alt=""> --%>
+									<img src="${vo.ivo.i_Link }" style="width: 300px; height: 200px;">
 								</a>
 							</div>
 							<div class="details">
 								<div class="title d-flex flex-row justify-content-between">
 									<div class="res_title pt-2">
-										<a href="main.jsp?mode=5"><h4>${vo.rName }<span class="rating">${vo.rScore }</span></h4></a>
+										<a href="../restaurant/detail.do?no=${vo.rNo }"><h4>${vo.rName }<span class="rating">${vo.rScore }</span></h4></a>
 									</div>
 									<ul class="btns px-0">
 										<li><a href="#"><span class="ti-heart"></span></a></li>
 										<li><a href="#">예약하기</a></li>
 									</ul>
 								</div>
-								<p>20석도 채 안되는 작은 규모이지만 실속있는 수제버거 전문점이다. 외국인들이 많이 찾을 정도로 오리지널 수제버거의 맛을 재현하고 있다.
+								<!-- <p>20석도 채 안되는 작은 규모이지만 실속있는 수제버거 전문점이다. 외국인들이 많이 찾을 정도로 오리지널 수제버거의 맛을 재현하고 있다. -->
 								 <ul class="detailed-info">
 	                                    <li><span class="icon-location-pin"></span>
 	                                        <p>${vo.rAddr2 }</p>
@@ -318,10 +319,10 @@
 							</div>
 						</div>
 						<!-- End of a content -->
-					</c:forEach> --%>
+					</c:forEach>
 					
 					<!-- ============================== 데이터 연동 X. ==============================  -->
-					<div class="single-post d-flex flex-row">
+					<%-- <div class="single-post d-flex flex-row">
 							<div class="thumb">
 								<a href="main.jsp?mode=5">
 									<img src="${pageContext.request.contextPath }/images/featured1.jpg" alt="">
@@ -347,7 +348,7 @@
 	                                    </li>
 	                             </ul>
 							</div>
-						</div>
+						</div> --%>
 					
 				</div>
 			</div>

@@ -2,52 +2,54 @@ package com.sist.vo;
 
 public class MenuVO {
 	// 가게 고유번호
-	private int r_No;
+	private int rNo;
 	// 메뉴이름
-	private String m_Name;
+	private String mName;
 	// 메뉴가격
-	private int m_Price;
+	private int mPrice;
 	// 메뉴정보
-	private String m_Info;
+	private String mInfo;
 	// 유저 좋아요 갯수
-	private int m_UsergoodCount;
+	private int mUsergoodCount;
 	// 주인장 추천
-	private String m_Hostgood;
+	private String mHostgood;
 	
-	public int getR_No() {
-		return r_No;
+	public int getrNo() {
+		return rNo;
 	}
-	public void setR_No(int r_No) {
-		this.r_No = r_No;
+	public void setrNo(int rNo) {
+		this.rNo = rNo;
 	}
-	public String getM_Name() {
-		return m_Name;
+	public String getmName() {
+		return mName;
 	}
-	public void setM_Name(String m_Name) {
-		this.m_Name = m_Name;
+	public void setmName(String mName) {
+		this.mName = mName;
 	}
-	public int getM_Price() {
-		return m_Price;
+	public int getmPrice() {
+		return mPrice;
 	}
-	public void setM_Price(int m_Price) {
-		this.m_Price = m_Price;
+	public void setmPrice(int mPrice) {
+		this.mPrice = mPrice;
 	}
-	public String getM_Info() {
-		return m_Info;
+	public String getmInfo() {
+		return mInfo;
 	}
-	public void setM_Info(String m_Info) {
-		this.m_Info = m_Info;
+	public void setmInfo(String mInfo) {
+		this.mInfo = mInfo;
 	}
-	public int getM_UsergoodCount() {
-		return m_UsergoodCount;
+	public int getmUsergoodCount() {
+		return mUsergoodCount;
 	}
-	public void setM_UsergoodCount(int m_UsergoodCount) {
-		this.m_UsergoodCount = m_UsergoodCount;
+	public void setmUsergoodCount(int mUsergoodCount) {
+		this.mUsergoodCount = mUsergoodCount;
 	}
-	public String getM_Hostgood() {
-		return m_Hostgood;
+	public String getmHostgood() {
+		return mHostgood;
 	}
-	public void setM_Hostgood(String m_Hostgood) {
-		this.m_Hostgood = m_Hostgood;
+	public void setmHostgood(String mHostgood) {
+		this.mHostgood = mHostgood;
 	}
+	
+	
 }

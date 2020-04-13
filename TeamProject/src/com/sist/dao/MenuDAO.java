@@ -74,12 +74,12 @@ public class MenuDAO {
 			String sql="INSERT INTO menu VALUES(?,?,?,?,?,?)";
 			
 			ps=conn.prepareStatement(sql);
-			ps.setInt(1, vo.getR_No());
-			ps.setString(2, vo.getM_Name());
-			ps.setInt(3, vo.getM_Price());
-			ps.setString(4, vo.getM_Info());
-			ps.setInt(5, vo.getM_UsergoodCount());
-			ps.setString(6, vo.getM_Hostgood());
+			ps.setInt(1, vo.getrNo());
+			ps.setString(2, vo.getmName());
+			ps.setInt(3, vo.getmPrice());
+			ps.setString(4, vo.getmInfo());
+			ps.setInt(5, vo.getmUsergoodCount());
+			ps.setString(6, vo.getmHostgood());
 			
 			ps.executeUpdate();
 		} catch(Exception ex) {

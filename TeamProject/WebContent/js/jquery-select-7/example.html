@@ -1,0 +1,460 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>jquery-select7 example</title>
+	<style>
+		body { font-family: 'Helvetica Neue', Helvetica, sans-serif; }
+	</style>
+	<link rel="stylesheet" href="jquery-select7.css">
+	<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+</head>
+
+<body>
+	<h1>Select 7 examples</h1>
+
+	<h2>Default select</h2>
+	<select>
+		<option>Option 1</option>
+		<option>Option 2</option>
+		<option disabled>Disabled option</option>
+		<option>Option 3</option>
+	</select>
+
+	<h2>Select7</h2>
+	<select class="select7">
+		<option>Option 1</option>
+		<option>Option 2</option>
+		<option disabled>Disabled option</option>
+		<option>Option 3</option>
+	</select>
+	<select class="select7 select7_dropdown">
+		<option>Option 1</option>
+		<option>Option 2</option>
+		<option disabled>Disabled option</option>
+		<option>Option 3</option>
+	</select>
+
+	<h2>With icons</h2>
+	<select class="select7">
+		<option data-icon="http://www.digitalmag.net/wp-content/plugins/wordpress-social-login/assets/img/32x32/wpzoom/google.png">Google</option>
+		<option data-icon="http://careerfuel.net/wp-content/plugins/wp-rss-multi-importer/images/facebook.png">Facebook</option>
+		<option disabled data-icon="http://lurkmore.so/images/3/38/Vk_small.png">Вконтакте</option>
+	</select>
+	<select class="select7 select7_dropdown">
+		<option data-icon="http://www.digitalmag.net/wp-content/plugins/wordpress-social-login/assets/img/32x32/wpzoom/google.png">Google</option>
+		<option data-icon="http://careerfuel.net/wp-content/plugins/wp-rss-multi-importer/images/facebook.png">Facebook</option>
+		<option disabled data-icon="http://lurkmore.so/images/3/38/Vk_small.png">Вконтакте</option>
+	</select>
+
+	<h2>Placeholder</h2>
+	<select class="select7" placeholder="Select something...">
+		<option><!-- first empty option required for placeholder --></option>
+		<option>Option 1</option>
+		<option>Option 2</option>
+		<option disabled>Disabled option</option>
+		<option>Option 3</option>
+	</select>
+
+	<h2>Native dropdown</h2>
+	<select class="select7 select7_native_dropdown" placeholder="Select something...">
+		<option><!-- first empty option required for placeholder --></option>
+		<option>Option 1</option>
+		<option>Option 2</option>
+		<option disabled>Disabled option</option>
+		<option>Option 3</option>
+	</select>
+
+	<h2>Scroll</h2>
+	<select class="select7">
+		<option>Option 1</option>
+		<option>Option 2</option>
+		<option disabled>Disabled option</option>
+		<option>Option 3</option>
+		<option>Option 1</option>
+		<option>Option 2</option>
+		<option disabled>Disabled option</option>
+		<option>Option 3</option>
+		<option>Option 1</option>
+		<option>Option 2</option>
+		<option disabled>Disabled option</option>
+		<option>Option 3</option>
+		<option>Option 1</option>
+		<option>Option 2</option>
+		<option disabled>Disabled option</option>
+		<option>Option 3</option>
+		<option>Option 1</option>
+		<option>Option 2</option>
+		<option disabled>Disabled option</option>
+		<option>Option 3</option>
+		<option>Option 1</option>
+		<option>Option 2</option>
+		<option disabled>Disabled option</option>
+		<option>Option 3</option>
+		<option>Option 1</option>
+		<option>Option 2</option>
+		<option disabled>Disabled option</option>
+		<option>Option 3</option>
+		<option>Option 1</option>
+		<option>Option 2</option>
+		<option disabled>Disabled option</option>
+		<option>Option 3</option>
+		<option>Option 1</option>
+		<option>Option 2</option>
+		<option disabled>Disabled option</option>
+		<option>Option 3</option>
+		<option>Option 1</option>
+		<option>Option 2</option>
+		<option disabled>Disabled option</option>
+		<option>Option 3</option>
+		<option>Option 1</option>
+		<option>Option 2</option>
+		<option disabled>Disabled option</option>
+		<option>Option 3</option>
+		<option>Option 1</option>
+		<option>Option 2</option>
+		<option disabled>Disabled option</option>
+		<option>Option 3</option>
+		<option>Option 1</option>
+		<option>Option 2</option>
+		<option disabled>Disabled option</option>
+		<option>Option 3</option>
+		<option>Option 1</option>
+		<option>Option 2</option>
+		<option disabled>Disabled option</option>
+		<option>Option 3</option>
+		<option>Option 1</option>
+		<option>Option 2</option>
+		<option disabled>Disabled option</option>
+		<option>Option 3</option>
+		<option>Option 1</option>
+		<option>Option 2</option>
+		<option disabled>Disabled option</option>
+		<option>Option 3</option>
+		<option>Option 1</option>
+		<option>Option 2</option>
+		<option disabled>Disabled option</option>
+		<option>Option 3</option>
+		<option>Option 1</option>
+		<option>Option 2</option>
+		<option disabled>Disabled option</option>
+		<option>Option 3</option>
+	</select>
+
+	<select class="select7 select7_dropdown">
+		<option>Option 1</option>
+		<option>Option 2</option>
+		<option disabled>Disabled option</option>
+		<option>Option 3</option>
+		<option>Option 1</option>
+		<option>Option 2</option>
+		<option disabled>Disabled option</option>
+		<option>Option 3</option>
+		<option>Option 1</option>
+		<option>Option 2</option>
+		<option disabled>Disabled option</option>
+		<option>Option 3</option>
+		<option>Option 1</option>
+		<option>Option 2</option>
+		<option disabled>Disabled option</option>
+		<option>Option 3</option>
+		<option>Option 1</option>
+		<option>Option 2</option>
+		<option disabled>Disabled option</option>
+		<option>Option 3</option>
+		<option>Option 1</option>
+		<option>Option 2</option>
+		<option disabled>Disabled option</option>
+		<option>Option 3</option>
+		<option>Option 1</option>
+		<option>Option 2</option>
+		<option disabled>Disabled option</option>
+		<option>Option 3</option>
+		<option>Option 1</option>
+		<option>Option 2</option>
+		<option disabled>Disabled option</option>
+		<option>Option 3</option>
+		<option>Option 1</option>
+		<option>Option 2</option>
+		<option disabled>Disabled option</option>
+		<option>Option 3</option>
+		<option>Option 1</option>
+		<option>Option 2</option>
+		<option disabled>Disabled option</option>
+		<option>Option 3</option>
+		<option>Option 1</option>
+		<option>Option 2</option>
+		<option disabled>Disabled option</option>
+		<option>Option 3</option>
+		<option>Option 1</option>
+		<option>Option 2</option>
+		<option disabled>Disabled option</option>
+		<option>Option 3</option>
+		<option>Option 1</option>
+		<option>Option 2</option>
+		<option disabled>Disabled option</option>
+		<option>Option 3</option>
+		<option>Option 1</option>
+		<option>Option 2</option>
+		<option disabled>Disabled option</option>
+		<option>Option 3</option>
+		<option>Option 1</option>
+		<option>Option 2</option>
+		<option disabled>Disabled option</option>
+		<option>Option 3</option>
+		<option>Option 1</option>
+		<option>Option 2</option>
+		<option disabled>Disabled option</option>
+		<option>Option 3</option>
+		<option>Option 1</option>
+		<option>Option 2</option>
+		<option disabled>Disabled option</option>
+		<option>Option 3</option>
+		<option>Option 1</option>
+		<option>Option 2</option>
+		<option disabled>Disabled option</option>
+		<option>Option 3</option>
+	</select>
+
+	<h2>Position right</h2>
+	Position right: 
+	<select class="select7 select7_position_right">
+		<option>Option 1</option>
+		<option>Option 2</option>
+		<option disabled>Disabled option</option>
+		<option>Option 3</option>
+		<option>Option 1</option>
+		<option>Option 2</option>
+		<option disabled>Disabled option</option>
+		<option>Option 3</option>
+		<option>Option 1</option>
+		<option>Option 2</option>
+		<option disabled>Disabled option</option>
+		<option>Option 3</option>
+		<option>Option 1</option>
+		<option>Option 2</option>
+		<option disabled>Disabled option</option>
+		<option>Option 3</option>
+		<option>Option 1</option>
+		<option>Option 2</option>
+		<option disabled>Disabled option</option>
+		<option>Option 3</option>
+		<option>Option 1</option>
+		<option>Option 2</option>
+		<option disabled>Disabled option</option>
+		<option>Option 3</option>
+		<option>Option 1</option>
+		<option>Option 2</option>
+		<option disabled>Disabled option</option>
+		<option>Option 3</option>
+		<option>Option 1</option>
+		<option>Option 2</option>
+		<option disabled>Disabled option</option>
+		<option>Option 3</option>
+		<option>Option 1</option>
+		<option>Option 2</option>
+		<option disabled>Disabled option</option>
+		<option>Option 3</option>
+		<option>Option 1</option>
+		<option>Option 2</option>
+		<option disabled>Disabled option</option>
+		<option>Option 3</option>
+		<option>Option 1</option>
+		<option>Option 2</option>
+		<option disabled>Disabled option</option>
+		<option>Option 3</option>
+		<option>Option 1</option>
+		<option>Option 2</option>
+		<option disabled>Disabled option</option>
+		<option>Option 3</option>
+		<option>Option 1</option>
+		<option>Option 2</option>
+		<option disabled>Disabled option</option>
+		<option>Option 3</option>
+		<option>Option 1</option>
+		<option>Option 2</option>
+		<option disabled>Disabled option</option>
+		<option>Option 3</option>
+		<option>Option 1</option>
+		<option>Option 2</option>
+		<option disabled>Disabled option</option>
+		<option>Option 3</option>
+		<option>Option 1</option>
+		<option>Option 2</option>
+		<option disabled>Disabled option</option>
+		<option>Option 3</option>
+		<option>Option 1</option>
+		<option>Option 2</option>
+		<option disabled>Disabled option</option>
+		<option>Option 3</option>
+		<option>Option 1</option>
+		<option>Option 2</option>
+		<option disabled>Disabled option</option>
+		<option>Option 3</option>
+	</select>
+
+	<select class="select7 select7_dropdown select7_position_right">
+		<option>Option 1</option>
+		<option>Option 2</option>
+		<option disabled>Disabled option</option>
+		<option>Option 3</option>
+		<option>Option 1</option>
+		<option>Option 2</option>
+		<option disabled>Disabled option</option>
+		<option>Option 3</option>
+		<option>Option 1</option>
+		<option>Option 2</option>
+		<option disabled>Disabled option</option>
+		<option>Option 3</option>
+		<option>Option 1</option>
+		<option>Option 2</option>
+		<option disabled>Disabled option</option>
+		<option>Option 3</option>
+		<option>Option 1</option>
+		<option>Option 2</option>
+		<option disabled>Disabled option</option>
+		<option>Option 3</option>
+		<option>Option 1</option>
+		<option>Option 2</option>
+		<option disabled>Disabled option</option>
+		<option>Option 3</option>
+		<option>Option 1</option>
+		<option>Option 2</option>
+		<option disabled>Disabled option</option>
+		<option>Option 3</option>
+		<option>Option 1</option>
+		<option>Option 2</option>
+		<option disabled>Disabled option</option>
+		<option>Option 3</option>
+		<option>Option 1</option>
+		<option>Option 2</option>
+		<option disabled>Disabled option</option>
+		<option>Option 3</option>
+		<option>Option 1</option>
+		<option>Option 2</option>
+		<option disabled>Disabled option</option>
+		<option>Option 3</option>
+		<option>Option 1</option>
+		<option>Option 2</option>
+		<option disabled>Disabled option</option>
+		<option>Option 3</option>
+		<option>Option 1</option>
+		<option>Option 2</option>
+		<option disabled>Disabled option</option>
+		<option>Option 3</option>
+		<option>Option 1</option>
+		<option>Option 2</option>
+		<option disabled>Disabled option</option>
+		<option>Option 3</option>
+		<option>Option 1</option>
+		<option>Option 2</option>
+		<option disabled>Disabled option</option>
+		<option>Option 3</option>
+		<option>Option 1</option>
+		<option>Option 2</option>
+		<option disabled>Disabled option</option>
+		<option>Option 3</option>
+		<option>Option 1</option>
+		<option>Option 2</option>
+		<option disabled>Disabled option</option>
+		<option>Option 3</option>
+		<option>Option 1</option>
+		<option>Option 2</option>
+		<option disabled>Disabled option</option>
+		<option>Option 3</option>
+		<option>Option 1</option>
+		<option>Option 2</option>
+		<option disabled>Disabled option</option>
+		<option>Option 3</option>
+	</select>
+
+	<h2>Remove current</h2>
+	<select class="select7 select7_remove_current">
+		<option>1</option>
+		<option>2</option>
+		<option>3</option>
+		<option>4</option>
+	</select>
+
+	<h2>Optgroup</h2>
+	<select class="select7">
+		<option>Option 1</option>
+		<optgroup label="Group One">
+			<option>Option 11</option>
+			<option>Option 12</option>
+		</optgroup>
+		<option>Option 2</option>
+		<optgroup label="Group Two">
+			<option>Option 21</option>
+			<option>Option 23</option>
+			<option>Option 24</option>
+		</optgroup>
+		<option>Option 3</option>
+	</select>
+
+
+	<h2>Optgroup Collapse</h2>
+	<select class="select7 select7_collapse_optgroups">
+		<option>Option 1</option>
+		<optgroup label="Group One">
+			<option>Option 11</option>
+			<option>Option 12</option>
+		</optgroup>
+		<option>Option 2</option>
+		<optgroup label="Group Two">
+			<option>Option 21</option>
+			<option>Option 23</option>
+			<option>Option 24</option>
+		</optgroup>
+		<option>Option 3</option>
+	</select>
+
+
+	<h2>Templates</h2>
+	<select class="select7 select7_collapse_optgroups" 
+		data-template-option-fn-name="example_select7_template_option"
+		data-template-optgroup-fn-name="example_select7_template_optgroup"
+		data-template-current-fn-name="example_select7_template_current"
+	>
+		<option>Option 1</option>
+		<optgroup label="Group One">
+			<option>Option 11</option>
+			<option>Option 12</option>
+		</optgroup>
+		<option>Option 2</option>
+		<optgroup label="Group Two" data-some-optgroup-text="Group-Additional">
+			<option data-some-option-text="Option-Additional">Option 21</option>
+			<option data-some-current-text="Current-Additional">Option 23</option>
+			<option>Option 24</option>
+		</optgroup>
+		<option>Option 3</option>
+	</select>
+	<script>
+		function example_select7_template_option(option) {
+			r = "<i>" + option.title + "</i>"
+			if (option.someOptionText) r += " <b>" + option.someOptionText + "</b>"
+			return r
+		}
+		function example_select7_template_optgroup(optgroup) {
+			r = "<i>" + optgroup.title + "</i>"
+			if (optgroup.someOptgroupText) r += " <b>" + optgroup.someOptgroupText + "</b>"
+			return r
+		}
+		function example_select7_template_current(option) {
+			r = "<i>" + option.title + "</i>"
+			if (option.someCurrentText) r += " <b>" + option.someCurrentText + "</b>"
+			return r
+		}
+	</script>
+
+
+
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+	<script src="jquery-select7.js"></script>
+	<script>
+		$(".select7").select7()
+	</script>
+</body>
+</html>

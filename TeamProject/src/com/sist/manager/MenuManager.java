@@ -72,36 +72,41 @@ public class MenuManager {
 						while (true) {
 							vo = new MenuVO();
 							
-							vo.setR_No(z + (j*kategorie) + (i*(page*kategorie)));
+							try {
+								vo.setrNo(z + (j*kategorie) + (i*(page*kategorie)));
+							} catch(Exception ex) {
+								break;
+							}
+							
 							
 							try {
 								// http://www.menupan.com/restaurant/onepage.asp?acode=T168356 (쨔c c가 ?c라고 출력됨 ?)
 								m_Name = doc2.select("span.mTitle input").get(count);
-								vo.setM_Name(m_Name.attr("value"));
+								vo.setmName(m_Name.attr("value"));
 							} catch (Exception ex) {break;}
 
 							try {
 								m_Price = doc2.select("p.price input").get(count);
-								vo.setM_Price(Integer.parseInt(m_Price.attr("value")));							
+								vo.setmPrice(Integer.parseInt(m_Price.attr("value")));							
 							} catch (Exception ex) {
-								vo.setM_Price(0);
+								vo.setmPrice(0);
 							}
 
 							try {									
 								m_Info = doc2.select("span.mDetail").get(count);
-								vo.setM_Info(m_Info.text());
+								vo.setmInfo(m_Info.text());
 							} catch (Exception ex) {
-								vo.setM_Info("없음");
+								vo.setmInfo("없음");
 							}
 							try {
 								m_UsergoodCount = doc2.select("p.good").get(count);
-								vo.setM_UsergoodCount(Integer.parseInt(m_UsergoodCount.text()));
-							}catch(Exception ex) {vo.setM_UsergoodCount(0);}					
+								vo.setmUsergoodCount(Integer.parseInt(m_UsergoodCount.text()));
+							}catch(Exception ex) {vo.setmUsergoodCount(0);}					
 							try {
 								m_Hostgood = doc2.select("span.ic_recom1 img").get(count);
-								vo.setM_Hostgood(m_Hostgood.attr("alt"));
+								vo.setmHostgood(m_Hostgood.attr("alt"));
 							} catch (Exception ex) {
-								vo.setM_Hostgood("없음");
+								vo.setmHostgood("없음");
 							}
 							list.add(vo);
 							count++;
@@ -121,6 +126,18 @@ public class MenuManager {
 	public static void main(String[] args) {
 		MenuManager mm = new MenuManager();
 		AreacodeManager am = new AreacodeManager();
+		
+		MenuDAO dao=new MenuDAO();
+		dao.menuCreate();
+		System.out.println("CREATE TABLE menu!!");
+		// 혹시모르니  잠깐 쉰다
+		try {
+			Thread.sleep(2000);
+		} catch(Exception ex) {
+			ex.printStackTrace();
+		}
+		
+		
 		
 //		ArrayList<MenuVO> list = new ArrayList<MenuVO>();
 		
@@ -147,15 +164,7 @@ public class MenuManager {
 //			System.out.println();
 //		}
 		
-		MenuDAO dao=new MenuDAO();
-		dao.menuCreate();
-		System.out.println("CREATE TABLE menu!!");
-		// 혹시모르니  잠깐 쉰다
-		try {
-			Thread.sleep(2000);
-		} catch(Exception ex) {
-			ex.printStackTrace();
-		}
+		
 		
 		int menu_k=1;
 		for(MenuVO vo:list) {

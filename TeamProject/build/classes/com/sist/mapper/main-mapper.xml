@@ -1,11 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sist.mapper.main-mapper">
-	<select id="weeklyTop30" resultType="MainInfoVO">	
-		SELECT rNO,rName,rScore,rAddr2,rTel
+
+	<!-- 이미지 가져오기 위해 MainInfo, Image 조인 -->
+	<resultMap type="MainInfoVO" id="imageMap">
+		<result column="rno" property="rNo"/>
+		<result column="rname" property="rName"/>
+		<result column="rtype" property="rType"/>
+		<result column="rtel" property="rTel"/>
+		<result column="rscore" property="rScore"/>
+		<result column="rscorecount" property="rScoreCount"/>
+		<result column="raddr1" property="rAddr1"/>
+		<result column="raddr2" property="rAddr2"/>
+		<result column="rpwd" property="rPwd"/>
+		<result column="rarea" property="rArea"/>
+		<result column="rareadetail" property="rAreaDetail"/>
+		<result column="iname" property="ivo.i_Name"/>
+		<result column="ilink" property="ivo.i_Link"/>
+	</resultMap>
+	
+	<select id="weeklyTop30" resultMap="imageMap">	
+		<!-- SELECT rNO,rName,rScore,rAddr2,rTel
 		FROM mainInfo
 		WHERE ROWNUM&lt;=10
-		ORDER BY rNO ASC
+		ORDER BY rNO ASC -->
+		
+		SELECT rno,rname,rscore,raddr2,rtel,iname,ilink,rownum
+		FROM (SELECT maininfo.rno,rname,rscore,raddr2,rtel,iname,ilink 
+		FROM mainInfo,image
+		WHERE mainInfo.rno=image.rno AND iname='Mainimage'
+		ORDER BY mainInfo.rno ASC)
+		WHERE rownum&lt;=10
+		
+		
 		<!-- RNO            NUMBER         
 			RNAME          VARCHAR2(1000) 
 			RTYPE          VARCHAR2(1000) 

@@ -1,9 +1,9 @@
-package com.sist.dao;
+package com.sist.service.dao;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
-import com.sist.vo.MemberVO;
+import com.sist.service.vo.MemberVO;
 
 public class MemberDAO {
 	private static SqlSessionFactory ssf;
