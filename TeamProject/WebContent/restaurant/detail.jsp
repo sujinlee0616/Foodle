@@ -12,7 +12,13 @@
             <div class="row">
                 <div class="col-md-6">
                     <h5>${mvo.rName }</h5>
-                    <p><span>\\\</span>\\</p>
+                    <!-- <p><span>\\\</span>\\</p> -->
+                    <p>
+                    	<div class="stars-outer"> <!-- grey star -->
+                    		<div class="stars-inner" style="width: ${mvo.rScore*20}%;"></div>  <!-- yellow star -->
+                        </div>
+                        &nbsp;| ${mvo.rScoreCount }명 참여
+                    </p>
                     <p class="reserve-description">${strContent}</p>
                 </div>
                 <div class="col-md-6">
@@ -68,8 +74,18 @@
                         <table class="table">
                             <tbody>
                               <tr>
+                                <th scope="row" width="20%">전화번호</th>
+                                <td width="80%" colspan="3">${mvo.rTel }</td>
+                              </tr>
+                              <tr>
+                                <th scope="row" width="20%">주소</th>
+                                <td width="80%" colspan="3">${mvo.rAddr1 }<br>[새주소] ${mvo.rAddr2 }</td>
+                              </tr>
+                              <tr>
                                 <th scope="row" width="20%">영업시간</th>
-                                <td width="80%" colspan="3">${rvo.rOpentime }:00 ~ ${rvo.rClosetime }:00</td>
+                                <td width="30%">${rvo.rOpentime }:00 ~ ${rvo.rClosetime }:00</td>
+                                <th scope="row"width="20%">업종</th>
+                                <td width="30%">${mvo.rType }</td>
                               </tr>
                               <tr>
                                 <th scope="row" width="20%">휴일</th>
@@ -311,39 +327,6 @@
                     </div>
                 </div>
                 <div class="col-md-4 responsive-wrap"> 
-                	<!-- 기본정보 -->
-                	<div class="detail_info my-4">
-                		<table class="table">
-                            <tbody>
-                              <tr>
-                                <th scope="row" width="25%">업체명</th>
-                                <td width="75%" colspan="3">${mvo.rName }</td>
-                              </tr>
-                              <tr>
-                                <th scope="row" width="25%">업종</th>
-                                <td width="75%" colspan="3">${mvo.rType }</td>
-                              </tr>
-                              <tr>
-                                <th scope="row" width="25%">전화번호</th>
-                                <td width="75%" colspan="3">${mvo.rTel }</td>
-                              </tr>
-                              <tr>
-                                <th scope="row" width="25%">주소</th>
-                                <td width="75%" colspan="3">${mvo.rAddr1 }<br>[새주소] ${mvo.rAddr2 }</td>
-                              </tr>
-                              <tr>
-                                <th scope="row" width="25%">평점</th>
-                                <td>
-                                	<div class="stars-outer"> <!-- grey star -->
-                                		<div class="stars-inner" style="width: ${mvo.rScore*20}%;"></div>  <!-- yellow star -->
-                                	</div>
-                                	&nbsp;&nbsp;| ${mvo.rScoreCount }명 참여
-                                </td>
-                              </tr>
-                            </tbody>
-                        </table>
-                	</div>      
-                	                          
                     <!-- 예약 -->
                     <div class="reservation">
                         <div class="area_title">
