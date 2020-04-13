@@ -11,7 +11,7 @@ import com.sist.controller.RequestMapping;
 public class NearByNewModel {
 	
 	@RequestMapping("restaurant/list_nearby.do")
-	public String nearby_list(HttpServletRequest request, HttpServletResponse response)
+	public String list_nearby(HttpServletRequest request, HttpServletResponse response)
 	{
 		request.setAttribute("main_header", "../common/header_sub.jsp"); 
 		// 값에 해당하는 부분 작성 법: 기준 : @RequestMapping("restaurant/list_nearby.do") 에서 list_nearby.do가 기준이 되어

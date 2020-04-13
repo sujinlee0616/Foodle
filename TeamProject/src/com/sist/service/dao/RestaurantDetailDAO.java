@@ -64,9 +64,6 @@ public class RestaurantDetailDAO {
 		try {
 			session=ssf.openSession();
 			menuList=session.selectList("resDetailMenu",no);
-			for(MenuVO vo:menuList) {
-				System.out.println(vo.getmName());
-			}
 		} catch(Exception ex) {
 			System.out.println("resDetailMenu(): "+ex.getMessage());
 		} finally {
@@ -74,6 +71,20 @@ public class RestaurantDetailDAO {
 				session.close();
 		}
 		return menuList;
-		
+	}
+	
+	public static List<ImageVO> resDetailImage(int no) {
+		List<ImageVO> list=new ArrayList<ImageVO>();
+		SqlSession session=null;
+		try {
+			session=ssf.openSession();
+			list=session.selectList("resDetailImage",no);
+		} catch(Exception ex) {
+			System.out.println("resDetailImage(): "+ex.getMessage());
+		} finally {
+			if(session!=null) 
+				session.close();
+		}
+		return list;
 	}
 }

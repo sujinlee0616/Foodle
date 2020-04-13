@@ -12,8 +12,28 @@ public class MemberDAO {
 		ssf=CreateSQLSessionFactory.getSsf();
 	}
 	
+	// [회원가입] 
+	public static void memberInsert(MemberVO vo)
+	{
+		SqlSession session=null;
+		
+		try
+		{
+			session=ssf.openSession(true); //autocommit
+			session.insert("memberInsert",vo);
+		}
+		catch (Exception ex) {
+			System.out.println("memberInsert :"+ex.getMessage());
+		}
+		finally {
+			if(session!=null)
+				session.close();
+		}
+
+	}
 	
-	// 로그인 - ID/PWD 맞는지 확인
+	
+	// [로그인] - ID/PWD 맞는지 확인
 	// ID/PWD 받은 값에 따라 메시지 값을 설정한다. 
 	public static MemberVO memberLogin(String id,String pwd)  // 매개변수: MemberModel에서 받아왔음
 	{
