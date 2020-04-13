@@ -11,7 +11,7 @@ public class MemberVO {
 	private String upost; 
 	private String uaddr1;
 	private String uaddr2;
-	private String usex;
+	private String ugender;
 	private String ubirth;
 	private String utype;
 	private String hint;
@@ -91,12 +91,12 @@ public class MemberVO {
 		this.uaddr2 = uaddr2;
 	}
 
-	public String getUsex() {
-		return usex;
+	public String getUgender() {
+		return ugender;
 	}
 
-	public void setUsex(String usex) {
-		this.usex = usex;
+	public void setUgender(String ugender) {
+		this.ugender = ugender;
 	}
 
 	public String getUbirth() {
