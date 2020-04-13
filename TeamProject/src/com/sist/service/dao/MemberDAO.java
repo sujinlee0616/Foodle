@@ -20,11 +20,13 @@ public class MemberDAO {
 		MemberVO vo=new MemberVO(); // 값을 4개(userid,upwd,utype,msg) 넘기니까 VO 만들어서 VO로 넘김 
 		SqlSession session=null;
 		
+		
 		try 
 		{
-			session=ssf.openSession(); // 커넥션 연결.			
+			session=ssf.openSession(); // 커넥션 연결.		
+			System.out.println(id);
 			int count=session.selectOne("idCount",id); // member-mapper.xml의 idCount SQL문에 id 넣고 수행한 결과를 count에 넣는다 
-			
+			System.out.println(count);
 			if(count==0)
 			{
 				vo.setMsg("NOID");

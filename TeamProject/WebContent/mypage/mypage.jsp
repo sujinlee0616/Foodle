@@ -16,7 +16,7 @@
             <!-- START OF CATEGORY -->
             <div class="row">
                 <div class="col-md-2 col-sm-6 col-xs-6 category-responsive">
-                    <a href="#" class="category-wrap">
+                    <a href="../mypage/wish.do" class="category-wrap">
                         <div class="category-block">
                             <svg class="category-img" id="Capa_1" 
                                 xmlns="http://www.w3.org/2000/svg"        
@@ -33,7 +33,7 @@
                     </a>
                 </div>
                 <div class="col-md-2 col-sm-6 col-xs-6 category-responsive">
-                    <a href="#" class="category-wrap">
+                    <a href="../mypage/recentpage.do" class="category-wrap">
                         <div class="category-block">
                             <svg class="category-img" id="Capa_2" xmlns:dc="http://purl.org/dc/elements/1.1/"   
                                 xmlns:cc="http://creativecommons.org/ns#"
@@ -51,7 +51,7 @@
                     </a>
                 </div>
                 <div class="col-md-2 col-sm-6 col-xs-6 category-responsive">
-                    <a href="#" class="category-wrap">
+                    <a href="../mypage/reserve.do" class="category-wrap">
                         <div class="category-block">
                             <svg class="category-img" id="Capa_3"
                                 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
@@ -89,7 +89,7 @@
                     </a>
                 </div>
                 <div class="col-md-2 col-sm-6 col-xs-6 category-responsive">
-                    <a href="#" class="category-wrap">
+                    <a href="../mypage/review.do" class="category-wrap">
                         <div class="category-block">
                             <svg class="category-img" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_3" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve" width="512px" height="512px"><g><g>
               <g>
@@ -113,7 +113,7 @@
                     </a>
                 </div>
                 <div class="col-md-2 col-sm-6 col-xs-6 category-responsive">
-                    <a href="#" class="category-wrap">
+                    <a href="../mypage/coupon.do" class="category-wrap">
                         <div class="category-block">
                             <svg class="category-img" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                                 version="1.1" id="Capa_2" x="0px" y="0px" viewBox="0 0 60 60" style="enable-background:new 0 0 60 60;"
@@ -136,7 +136,7 @@
                     </a>
                 </div>
                 <div class="col-md-2 col-sm-6 col-xs-6 category-responsive">
-                    <a href="#" class="category-wrap">
+                    <a href="../mypage/infoupdate.do" class="category-wrap">
                         <div class="category-block">
                             <svg class="category-img" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
                                 id="Capa_1" x="0px" y="0px" viewBox="0 0 496 496" style="enable-background:new 0 0 496 496;" xml:space="preserve"

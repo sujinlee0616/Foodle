@@ -28,9 +28,11 @@ public class MemberModel {
 	{
 		String id=request.getParameter("id");  
 		String pwd=request.getParameter("pwd");
+				
 		
 		// DAO 연결
 		MemberVO vo=MemberDAO.memberLogin(id, pwd); // 얘가 문제....
+
 		
 		// 로그인 판정결과가 OK라면(ID/PWD 모두 일치) 세션에다가 id,name,admin값 저장 
 		if(vo.getMsg().equals("OK")) 
