@@ -69,9 +69,9 @@ public class ImageDAO {
 			String sql="INSERT INTO image VALUES("
 					+ "?,?,?)";
 			ps=conn.prepareStatement(sql);
-			ps.setInt(1, vo.getR_No());
-			ps.setString(2, vo.getI_Name());
-			ps.setString(3, vo.getI_Link());
+			ps.setInt(1, vo.getrNo());
+			ps.setString(2, vo.getiName());
+			ps.setString(3, vo.getiLink());
 			ps.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -49,21 +49,21 @@ public class ImageManager {
 								vo = new ImageVO();
 								System.out.println("========vo.no 시작========");
 								//가게No넣는부분인데 겹치지 않게 하기 위해서
-								vo.setR_No(((z) + ((j)*kategorie) + ((i)*(page*kategorie))));
-								System.out.println("voNumber: "+vo.getR_No());
+								vo.setrNo(((z) + ((j)*kategorie) + ((i)*(page*kategorie))));
+								System.out.println("voNumber: "+vo.getrNo());
 								System.out.println("========vo.no 끝========");
 								//사진링크 넣는 부분
 								System.out.println("======이미지링크 시작=======");
 								image = doc2.select("img#restphoto_img_" + count).get(0);
-								vo.setI_Link("https://www.menupan.com" + image.attr("tag_src_z"));
-								System.out.println(vo.getI_Link());
+								vo.setiLink("https://www.menupan.com" + image.attr("tag_src_z"));
+								System.out.println(vo.getiLink());
 								System.out.println("======이미지링크 끝=======");
 								
 								//사진 이름 넣는 부분
 								System.out.println("=======이미지 이름 시작=========");
 								image_Name = doc2.select("img#restphoto_img_"+count).get(0);
-								vo.setI_Name(image_Name.attr("title"));
-								System.out.println(vo.getI_Name());
+								vo.setiName(image_Name.attr("title"));
+								System.out.println(vo.getiName());
 								System.out.println("=======이미지 이름 끝=========");
 								
 								dao.InsertImageData(vo);

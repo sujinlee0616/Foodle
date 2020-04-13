@@ -3,28 +3,30 @@ package com.sist.vo;
 public class ImageVO {
 
 	// 가게 고유번호
-	private int r_No;
+	private int rNo;
 	// 이미지 이름
-	private String i_Name;
+	private String iName;
 	// 이미지 링크
-	private String i_Link;
+	private String iLink;
 	
-	public int getR_No() {
-		return r_No;
+	public int getrNo() {
+		return rNo;
 	}
-	public void setR_No(int r_No) {
-		this.r_No = r_No;
+	public void setrNo(int rNo) {
+		this.rNo = rNo;
 	}
-	public String getI_Name() {
-		return i_Name;
+	public String getiName() {
+		return iName;
 	}
-	public void setI_Name(String i_Name) {
-		this.i_Name = i_Name;
+	public void setiName(String iName) {
+		this.iName = iName;
 	}
-	public String getI_Link() {
-		return i_Link;
+	public String getiLink() {
+		return iLink;
 	}
-	public void setI_Link(String i_Link) {
-		this.i_Link = i_Link;
+	public void setiLink(String iLink) {
+		this.iLink = iLink;
 	}
+	
+	
 }

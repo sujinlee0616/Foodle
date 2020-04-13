@@ -294,7 +294,7 @@
 							<div class="thumb">
 								<a href="../restaurant/detail.do?no=${vo.rNo }">
 									<%-- <img src="${pageContext.request.contextPath }/images/featured1.jpg" alt=""> --%>
-									<img src="${vo.ivo.i_Link }" style="width: 300px; height: 200px;">
+									<img src="${vo.ivo.iLink }" style="width: 300px; height: 200px;">
 								</a>
 							</div>
 							<div class="details">
