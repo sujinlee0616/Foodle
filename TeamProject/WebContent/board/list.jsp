@@ -7,7 +7,7 @@
 <head>
 </head>
 <body>
-	<!--============================= IMAGE SWIPER =============================-->
+<!--============================= IMAGE SWIPER =============================-->
     <div>
         <!-- Swiper -->
         <div class="swiper-container">
@@ -51,8 +51,8 @@
             <div class="swiper-button-prev swiper-button-white"></div>
         </div>
     </div>
-    <!--//END BOOKING -->
-    <!--============================= BOARD =============================-->
+<!--//END BOOKING -->
+<!--============================= BOARD =============================-->
     <section class="board-block light-bg">
         <div class="container py-5">
 			<div class="row">
@@ -104,6 +104,12 @@
 					</table>
 				</div>
 			</div>
+			<div class="inBtn">
+	        	<a class="insertBtn" href="../board/insert.do">
+	         		글쓰기
+	       	 	</a>
+	        </div>
+	        <!-- ================ Pagination ================ -->
 			<div>
 				<nav aria-label="...">
 					<ul class="pagination justify-content-center">

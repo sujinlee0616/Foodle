@@ -12,6 +12,7 @@ import com.sist.service.vo.*;
 @Controller
 public class ReplyBoardModel {
 	
+	// [글 목록] 
 	@RequestMapping("board/list.do")
 	public String reply_list(HttpServletRequest request, HttpServletResponse response)
 	{
@@ -43,6 +44,7 @@ public class ReplyBoardModel {
 		return "../main/main.jsp";
 	}
 	
+	// [상세보기] 
 	@RequestMapping("board/detail.do")
 	public String reply_detail(HttpServletRequest request, HttpServletResponse response)
 	{
@@ -60,4 +62,25 @@ public class ReplyBoardModel {
 		
 		return "../main/main.jsp";
 	}
+	
+	// [글쓰기] - 작성화면 보여줌  
+	@RequestMapping("board/insert.do")
+	public String reply_insert(HttpServletRequest request, HttpServletResponse response)
+	{
+				
+		request.setAttribute("main_header", "../common/header_sub.jsp");
+		request.setAttribute("main_jsp", "../board/insert.jsp");
+		
+		return "../main/main.jsp";
+	}
+	
+	// [글쓰기] - 실제 데이터 삽입
+	@RequestMapping("reply/insert_ok.do")
+	public String reply_insert_ok()
+	{
+		return "";
+	}
+	
+	
+	
 }
