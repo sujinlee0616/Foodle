@@ -69,6 +69,54 @@ Modified Date: 2020.04.14 (Tue)
 }
 .comment_num{font-size: 16px; font-weight: 600;}
 
+.insertBtn{
+	width: 100%; height: 100%; background-color: #ffffff; 
+	padding: 5px 10px;
+	border: 1px solid #aaaaaa;
+	text-decoration: none !important;
+}
+.insertBtn:hover{
+	background-color: #ff3a6d;
+	color: #ffffff;
+	border: 1px solid #ffffff;
+}
+
+/* 글쓰기 화면에서의 버튼 */
+.board-btn-wrap {text-align: center; }
+.board-btn-wrap .btn-danger {
+    width:100%;
+    background: #ff3a6d;
+     padding: 16px 50px;
+    -webkit-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+    border: 0; 
+}
+.board-btn-wrap .btn-cancle {
+    width:100%;
+    background: #ffffff;
+     padding: 16px 50px;
+    -webkit-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+    border: 0; 
+}
+.board-btn-wrap .btn-danger:hover {
+    background: #f34e79;
+    outline: none;
+    -webkit-box-shadow: none;
+    box-shadow: none; 
+}
+.board-btn-wrap a{font-size: 1.2rem;}
+
+/* 글쓰기 화면에서의 tr,th */
+.reply_insert th{
+	width: 15%;
+}
+.reply_insert input{
+	width: 100%;
+}
+
 /* 디바이스 크기 작을 경우 리스트에서 글 번호, 작성일, 조회수 정보 비노출,
 상세보기에서 bd_detail_dt 컬럼 비노출 */
 @media (max-width: 992px) {
