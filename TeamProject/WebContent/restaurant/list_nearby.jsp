@@ -36,7 +36,7 @@
 		 );
  */
  
- function setFilter(c){ //선택한 카테고리 출력 기능
+ function setFilter(c){ //선택한 카테고리를 연속 출력 기능
 		$('#test2').append("<a onClick=deleteFilter(this) href='#' id='"+c.value+"' class='selected nearbyselected' data-filter-name='food_cat' data-filter-value='108602' data-nclick-code='rcc.reset'"
 		         +"data-filter-action='nclick' title='"+c.value+"'>"+c.value+"<span class='del'>X</span></a>");
 		searchNearby();

@@ -4,6 +4,12 @@
 <html lang="ko">
 <head>
 
+    <!-- jQuery, Bootstrap JS. -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="${pageContext.request.contextPath }/js/jquery-3.2.1.min.js"></script>
+    <script src="${pageContext.request.contextPath }/js/popper.min.js"></script>
+    <script src="${pageContext.request.contextPath }/js/bootstrap.min.js"></script>
+
 
 <!--  테마 맛집 페이지 CSS -->
 <link rel="stylesheet" href="${pageContext.request.contextPath }/css/themalist.css">
@@ -17,6 +23,48 @@
 }
 
 </style>
+<script type="text/javascript">
+
+	//클릭했을때 아래 소카테고리 보이게 하려함!!
+	$(function(){
+	
+		$('.thematabmenu').click(function(){ 
+			
+			var activeTab=$(this).attr('data-tab'); //big 3메뉴의 정보를 activeTab에 넣음
+			$('div').css('background-color','white'); //선택되지 않은 탭 배경 변경
+			$(this).css('background-color','black');  //선택된 탭 배경 변경
+			
+			$.ajax({
+		
+				type: 'post',
+				url: activeTab +".jsp",  ////탭의 data-tab속성의 값으로 된 jsp 파일로 통신
+				//data:{"t_MainThema":t_MainThema},
+				dataType: "jsp", //jsp형식으로 값 읽기
+				success:function(res){
+					
+					console.log(res);
+					$('#showsmallcate').html(res);
+						
+				},
+				error:function(e){
+					
+					console.log(e);
+				}
+				
+			})
+		
+		})
+		
+		$('#defaultmenu').click();
+		
+});
+	
+	
+
+
+
+
+</script>
 
 
 </head>
@@ -42,7 +90,7 @@
 					<div class="mt-4">
 						<div class="filter_row area">
 						
-						    <!--============================= THEME =============================-->
+				<!--=============================BIG 3 THEME  =============================-->
     <section class="main-block" id="theme">
         <div class="container">
         
@@ -59,7 +107,7 @@
             
 
                
-                    <div class="themarow find-img-align">
+                    <div data-tab="bigTab1" class="themarow thematabmenu find-img-align" id="defaultmenu">
                         <div class="col-md-12">
                        	 	<a href="main.jsp?mode=1">
 	                            <div class="find-place-img_wrap">
@@ -80,7 +128,7 @@
                 
                 
             
-                    <div class="themarow find-img-align">
+                    <div data-tab="bigTab2" class="themarow thematabmenu find-img-align">
                         <div class="col-md-12">
                        	 	<a href="main.jsp?mode=1">
 	                            <div class="find-place-img_wrap">
@@ -99,11 +147,10 @@
                     </div>
                     
                     
- 
                     
                     <!-- 세번째 사진 추가해봄 -->
                     
-                      <div class="themarow find-img-align">
+                      <div data-tab="bigTab3" class="themarow thematabmenu find-img-align">
                         <div class="col-md-12">
                        	 	<a href="main.jsp?mode=1">
 	                            <div class="find-place-img_wrap">
@@ -122,194 +169,16 @@
                     </div>
                     
                 
-                <!--카테고리 3개 끝! -->
+                <!--BIG 3 THEMA END -->
                 
-                <!-- ---------------------------작은 카테고리들 출력!하기 -------------------------------->
+                <!-- ---------------------------SMALL THEMA SHOWING! START-------------------------------->
                 
-                <div class="smallcatelist">
+                <div class="smallcatelist" id="showsmallcate">
                 
-                	<div class="situation1" id="situation2" id="situation3">
-                	
-                		
-                	<div class="themarow find-img-align">
-                        <div class="col-md-12">
-                       	 	<a href="main.jsp?mode=1">
-	                            <div class="find-place-img_wrap">
-	                                <div class="grid">
-	                                    <figure class="effect-ruby">
-	                                        <img src="${pageContext.request.contextPath }/images/situ3.png" class="img-fluid" alt="img13" />
-	                                        <figcaption>
-	                                            <p></p>
-	                                        </figcaption>
-	                                    </figure>
-	                                </div>
-	                            </div>
-                        	</div>
-                        <div style="text-align: center" class="themafont"><span>가족과 함께</span></div>
-                        </a>
-                    </div>
-                    
-                    
-                    
-                    <div class="themarow find-img-align">
-                        <div class="col-md-12">
-                       	 	<a href="main.jsp?mode=1">
-	                            <div class="find-place-img_wrap">
-	                                <div class="grid">
-	                                    <figure class="effect-ruby">
-	                                        <img src="${pageContext.request.contextPath }/images/situ3.png" class="img-fluid" alt="img13" />
-	                                        <figcaption>
-	                                            <p></p>
-	                                        </figcaption>
-	                                    </figure>
-	                                </div>
-	                            </div>
-                        	</div>
-                        <div style="text-align: center" class="themafont"><span>가족과 함께</span></div>
-                        </a>
-                    </div>
-                    
-                    
-                    <div class="themarow find-img-align">
-                        <div class="col-md-12">
-                       	 	<a href="main.jsp?mode=1">
-	                            <div class="find-place-img_wrap">
-	                                <div class="grid">
-	                                    <figure class="effect-ruby">
-	                                        <img src="${pageContext.request.contextPath }/images/situ3.png" class="img-fluid" alt="img13" />
-	                                        <figcaption>
-	                                            <p></p>
-	                                        </figcaption>
-	                                    </figure>
-	                                </div>
-	                            </div>
-                        	</div>
-                        <div style="text-align: center" class="themafont"><span>가족과 함께</span></div>
-                        </a>
-                    </div>
-                    
-                    
-                    <div class="themarow find-img-align">
-                        <div class="col-md-12">
-                       	 	<a href="main.jsp?mode=1">
-	                            <div class="find-place-img_wrap">
-	                                <div class="grid">
-	                                    <figure class="effect-ruby">
-	                                        <img src="${pageContext.request.contextPath }/images/situ3.png" class="img-fluid" alt="img13" />
-	                                        <figcaption>
-	                                            <p></p>
-	                                        </figcaption>
-	                                    </figure>
-	                                </div>
-	                            </div>
-                        	</div>
-                        <div style="text-align: center" class="themafont"><span>가족과 함께</span></div>
-                        </a>
-                    </div>
-                    
-                    
-                    <div class="themarow find-img-align">
-                        <div class="col-md-12">
-                       	 	<a href="main.jsp?mode=1">
-	                            <div class="find-place-img_wrap">
-	                                <div class="grid">
-	                                    <figure class="effect-ruby">
-	                                        <img src="${pageContext.request.contextPath }/images/situ3.png" class="img-fluid" alt="img13" />
-	                                        <figcaption>
-	                                            <p></p>
-	                                        </figcaption>
-	                                    </figure>
-	                                </div>
-	                            </div>
-                        	</div>
-                        <div style="text-align: center" class="themafont"><span>가족과 함께</span></div>
-                        </a>
-                    </div>
-                    
-                    
-                    <div class="themarow find-img-align">
-                        <div class="col-md-12">
-                       	 	<a href="main.jsp?mode=1">
-	                            <div class="find-place-img_wrap">
-	                                <div class="grid">
-	                                    <figure class="effect-ruby">
-	                                        <img src="${pageContext.request.contextPath }/images/situ3.png" class="img-fluid" alt="img13" />
-	                                        <figcaption>
-	                                            <p></p>
-	                                        </figcaption>
-	                                    </figure>
-	                                </div>
-	                            </div>
-                        	</div>
-                        <div style="text-align: center" class="themafont"><span>가족과 함께</span></div>
-                        </a>
-                    </div>
-                    
-                    
-                    
-                    <div class="themarow find-img-align">
-                        <div class="col-md-12">
-                       	 	<a href="main.jsp?mode=1">
-	                            <div class="find-place-img_wrap">
-	                                <div class="grid">
-	                                    <figure class="effect-ruby">
-	                                        <img src="${pageContext.request.contextPath }/images/situ3.png" class="img-fluid" alt="img13" />
-	                                        <figcaption>
-	                                            <p></p>
-	                                        </figcaption>
-	                                    </figure>
-	                                </div>
-	                            </div>
-                        	</div>
-                        <div style="text-align: center" class="themafont"><span>가족과 함께</span></div>
-                        </a>
-                    </div>
-                    
-                    
-                   <div class="themarow find-img-align">
-                        <div class="col-md-12">
-                       	 	<a href="main.jsp?mode=1">
-	                            <div class="find-place-img_wrap">
-	                                <div class="grid">
-	                                    <figure class="effect-ruby">
-	                                        <img src="${pageContext.request.contextPath }/images/situ3.png" class="img-fluid" alt="img13" />
-	                                        <figcaption>
-	                                            <p></p>
-	                                        </figcaption>
-	                                    </figure>
-	                                </div>
-	                            </div>
-                        	</div>
-                        <div style="text-align: center" class="themafont"><span>가족과 함께</span></div>
-                        </a>
-                    </div>
-                    
-                    
-                    
-                    <div class="themarow find-img-align">
-                        <div class="col-md-12">
-                       	 	<a href="main.jsp?mode=1">
-	                            <div class="find-place-img_wrap">
-	                                <div class="grid">
-	                                    <figure class="effect-ruby">
-	                                        <img src="${pageContext.request.contextPath }/images/situ3.png" class="img-fluid" alt="img13" />
-	                                        <figcaption>
-	                                            <p></p>
-	                                        </figcaption>
-	                                    </figure>
-	                                </div>
-	                            </div>
-                        	</div>
-                        <div style="text-align: center" class="themafont"><span>가족과 함께</span></div>
-                        </a>
-                    </div>
-                		
-                		
-                		
-                		
-                			
-                	
-                	</div>
+                
+				 <!-- ---------------------------AJAX사용부분 START-------------------------------->
+                            
+
                 </div>
                 
                 
@@ -545,11 +414,7 @@
     </section>
     <!--//END DETAIL -->
     
-    <!-- jQuery, Bootstrap JS. -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="${pageContext.request.contextPath }/js/jquery-3.2.1.min.js"></script>
-    <script src="${pageContext.request.contextPath }/js/popper.min.js"></script>
-    <script src="${pageContext.request.contextPath }/js/bootstrap.min.js"></script>
+
 
    
 </body>
