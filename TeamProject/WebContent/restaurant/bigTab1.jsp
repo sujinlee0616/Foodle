@@ -18,11 +18,10 @@
 
 
 
-
 </head>
 <body>
 
-                	<div class="situation" >
+           	<div class="situation" >
                 	
                 		
                 	<div class="themarow find-img-align">
@@ -39,7 +38,7 @@
 	                                </div>
 	                            </div>
                         	</div>
-                        <div style="text-align: center" class="themafont"><span>가족과 함께</span></div>
+                        <div style="text-align: center" class="themafont"><span></span></div>
                         </a>
                     </div>
                     
@@ -198,6 +197,191 @@
                         </a>
                     </div>
                 		
+                		
+                		
+                		
+                		  
+                    <div class="themarow find-img-align">
+                        <div class="col-md-12">
+                       	 	<a href="main.jsp?mode=1">
+	                            <div class="find-place-img_wrap">
+	                                <div class="grid">
+	                                    <figure class="effect-ruby">
+	                                        <img src="${pageContext.request.contextPath }/images/situ3.png" class="img-fluid" alt="img13" />
+	                                        <figcaption>
+	                                            <p></p>
+	                                        </figcaption>
+	                                    </figure>
+	                                </div>
+	                            </div>
+                        	</div>
+                        <div style="text-align: center" class="themafont"><span>가족과 함께</span></div>
+                        </a>
+                    </div>
+                		
+                		
+                		
+                		  
+                    <div class="themarow find-img-align">
+                        <div class="col-md-12">
+                       	 	<a href="main.jsp?mode=1">
+	                            <div class="find-place-img_wrap">
+	                                <div class="grid">
+	                                    <figure class="effect-ruby">
+	                                        <img src="${pageContext.request.contextPath }/images/situ3.png" class="img-fluid" alt="img13" />
+	                                        <figcaption>
+	                                            <p></p>
+	                                        </figcaption>
+	                                    </figure>
+	                                </div>
+	                            </div>
+                        	</div>
+                        <div style="text-align: center" class="themafont"><span>가족과 함께</span></div>
+                        </a>
+                    </div>
+                		
+                		
+                		
+                		
+                		   
+                    <div class="themarow find-img-align">
+                        <div class="col-md-12">
+                       	 	<a href="main.jsp?mode=1">
+	                            <div class="find-place-img_wrap">
+	                                <div class="grid">
+	                                    <figure class="effect-ruby">
+	                                        <img src="${pageContext.request.contextPath }/images/situ3.png" class="img-fluid" alt="img13" />
+	                                        <figcaption>
+	                                            <p></p>
+	                                        </figcaption>
+	                                    </figure>
+	                                </div>
+	                            </div>
+                        	</div>
+                        <div style="text-align: center" class="themafont"><span>가족과 함께</span></div>
+                        </a>
+                    </div>
+                    
+                    
+                    <div class="themarow find-img-align">
+                        <div class="col-md-12">
+                       	 	<a href="main.jsp?mode=1">
+	                            <div class="find-place-img_wrap">
+	                                <div class="grid">
+	                                    <figure class="effect-ruby">
+	                                        <img src="${pageContext.request.contextPath }/images/situ3.png" class="img-fluid" alt="img13" />
+	                                        <figcaption>
+	                                            <p></p>
+	                                        </figcaption>
+	                                    </figure>
+	                                </div>
+	                            </div>
+                        	</div>
+                        <div style="text-align: center" class="themafont"><span>가족과 함께</span></div>
+                        </a>
+                    </div>
+                    
+                    
+                    
+                    <div class="themarow find-img-align">
+                        <div class="col-md-12">
+                       	 	<a href="main.jsp?mode=1">
+	                            <div class="find-place-img_wrap">
+	                                <div class="grid">
+	                                    <figure class="effect-ruby">
+	                                        <img src="${pageContext.request.contextPath }/images/situ3.png" class="img-fluid" alt="img13" />
+	                                        <figcaption>
+	                                            <p></p>
+	                                        </figcaption>
+	                                    </figure>
+	                                </div>
+	                            </div>
+                        	</div>
+                        <div style="text-align: center" class="themafont"><span>가족과 함께</span></div>
+                        </a>
+                    </div>
+                    
+                    
+                   <div class="themarow find-img-align">
+                        <div class="col-md-12">
+                       	 	<a href="main.jsp?mode=1">
+	                            <div class="find-place-img_wrap">
+	                                <div class="grid">
+	                                    <figure class="effect-ruby">
+	                                        <img src="${pageContext.request.contextPath }/images/situ3.png" class="img-fluid" alt="img13" />
+	                                        <figcaption>
+	                                            <p></p>
+	                                        </figcaption>
+	                                    </figure>
+	                                </div>
+	                            </div>
+                        	</div>
+                        <div style="text-align: center" class="themafont"><span>가족과 함께</span></div>
+                        </a>
+                    </div>
+                    
+                    
+                    
+                    <div class="themarow find-img-align">
+                        <div class="col-md-12">
+                       	 	<a href="main.jsp?mode=1">
+	                            <div class="find-place-img_wrap">
+	                                <div class="grid">
+	                                    <figure class="effect-ruby">
+	                                        <img src="${pageContext.request.contextPath }/images/situ3.png" class="img-fluid" alt="img13" />
+	                                        <figcaption>
+	                                            <p></p>
+	                                        </figcaption>
+	                                    </figure>
+	                                </div>
+	                            </div>
+                        	</div>
+                        <div style="text-align: center" class="themafont"><span>가족과 함께</span></div>
+                        </a>
+                    </div>
+                		
+                		
+                		
+                		
+                		  
+                    <div class="themarow find-img-align">
+                        <div class="col-md-12">
+                       	 	<a href="main.jsp?mode=1">
+	                            <div class="find-place-img_wrap">
+	                                <div class="grid">
+	                                    <figure class="effect-ruby">
+	                                        <img src="${pageContext.request.contextPath }/images/situ3.png" class="img-fluid" alt="img13" />
+	                                        <figcaption>
+	                                            <p></p>
+	                                        </figcaption>
+	                                    </figure>
+	                                </div>
+	                            </div>
+                        	</div>
+                        <div style="text-align: center" class="themafont"><span>가족과 함께</span></div>
+                        </a>
+                    </div>
+                		
+                		
+                		
+                		  
+                    <div class="themarow find-img-align">
+                        <div class="col-md-12">
+                       	 	<a href="main.jsp?mode=1">
+	                            <div class="find-place-img_wrap">
+	                                <div class="grid">
+	                                    <figure class="effect-ruby">
+	                                        <img src="${pageContext.request.contextPath }/images/situ3.png" class="img-fluid" alt="img13" />
+	                                        <figcaption>
+	                                            <p></p>
+	                                        </figcaption>
+	                                    </figure>
+	                                </div>
+	                            </div>
+                        	</div>
+                        <div style="text-align: center" class="themafont"><span>가족과 함께</span></div>
+                        </a>
+                    </div>
                 		
                 		
                 		

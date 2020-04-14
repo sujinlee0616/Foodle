@@ -19,5 +19,22 @@ public class ListThemaModel {
 	}
 	
 	
+	@RequestMapping("restaurant/selected_bigthema.do")
+	public String selected_bigthema(HttpServletRequest request, HttpServletResponse response)
+	{
+		 //String bigTabId=request.getParameter("bigTabId");
+		 
+			String res=request.getParameter("activeTab");
+			
+			request.getParameter("pwd");
+			//String aa =request.getParameter("pwd");
+			//request.setAttribute("result", aa);
+			request.setAttribute("result", request.getParameter("pwd"));
+			//System.out.println(aa);
+		
+		return "/restaurant/"+res+".jsp";
+	}
+	
+	
 	
 }

@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    
+    
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -23,24 +27,57 @@
 }
 
 </style>
+<script>
+
+function set_start(){
+	
+	document.body.style.behavior='url(#default#homepage)';
+
+	}
+
+
+$(document).ready(function(){
+	
+	
+	
+});
+
+</script>
+
 <script type="text/javascript">
+
 
 	//클릭했을때 아래 소카테고리 보이게 하려함!!
 	$(function(){
+		
+		
+		$(document).ready(function(){
+
+			
+			
+		});
+
 	
+	//    <div data-tab="bigTab1" class="themarow thematabmenu find-img-align" id="defaultmenu">
 		$('.thematabmenu').click(function(){ 
 			
 			var activeTab=$(this).attr('data-tab'); //big 3메뉴의 정보를 activeTab에 넣음
-			$('div').css('background-color','white'); //선택되지 않은 탭 배경 변경
-			$(this).css('background-color','black');  //선택된 탭 배경 변경
+			var bigTabId=$(this).attr('#id');  // big 3메뉴의 id값을 저장 => cus model => id값은 모두 다름!!
+			
+			
+			//$('div').css('opacity','0.5'); //선택되지 않은 탭 배경 변경
+			//$(this).css('background-color','white');  //선택된 탭 배경 변경
 			
 			$.ajax({
 		
 				type: 'post',
-				url: activeTab +".jsp",  ////탭의 data-tab속성의 값으로 된 jsp 파일로 통신
+				url: '../restaurant/selected_bigthema.do',
+				//url: activeTab +".jsp",  ////탭의 data-tab속성의 값으로 된 jsp 파일로 통신
 				//data:{"t_MainThema":t_MainThema},
-				dataType: "jsp", //jsp형식으로 값 읽기
-				success:function(res){
+				//data:{"bigTabId":bigTabId},
+				data:{"activeTab":activeTab},
+				//dataType: "jsp", //jsp형식으로 값 읽기
+				success:function(res){  //model에서 받아온 결과 저장..
 					
 					console.log(res);
 					$('#showsmallcate').html(res);
@@ -55,10 +92,13 @@
 		
 		})
 		
-		$('#defaultmenu').click();
+		$('#defaultThemamenu').click();
 		
 });
 	
+//디폴트 페이지를 준다
+//2와 3은 클릭했
+
 	
 
 
@@ -107,9 +147,9 @@
             
 
                
-                    <div data-tab="bigTab1" class="themarow thematabmenu find-img-align" id="defaultmenu">
+                    <div data-tab="bigTab1" class="themarow thematabmenu find-img-align" id="defaultThemamenu" onclick=clickTabs()>
                         <div class="col-md-12">
-                       	 	<a href="main.jsp?mode=1">
+                       	 	<a href="#">
 	                            <div class="find-place-img_wrap">
 	                                <div class="grid">
 	                                    <figure class="effect-ruby">
@@ -128,9 +168,9 @@
                 
                 
             
-                    <div data-tab="bigTab2" class="themarow thematabmenu find-img-align">
+                    <div data-tab="bigTab2" class="themarow thematabmenu find-img-align" id="secondeThemamenu" onclick=clickTabs()>
                         <div class="col-md-12">
-                       	 	<a href="main.jsp?mode=1">
+                       	 	<a href="#">
 	                            <div class="find-place-img_wrap">
 	                                <div class="grid">
 	                                    <figure class="effect-ruby">
@@ -150,9 +190,9 @@
                     
                     <!-- 세번째 사진 추가해봄 -->
                     
-                      <div data-tab="bigTab3" class="themarow thematabmenu find-img-align">
+                      <div data-tab="bigTab3" class="themarow thematabmenu find-img-align" id="thirdThemamenu" onclick=clickTabs()>
                         <div class="col-md-12">
-                       	 	<a href="main.jsp?mode=1">
+                       	 	<a href="#">
 	                            <div class="find-place-img_wrap">
 	                                <div class="grid">
 	                                    <figure class="effect-ruby">
@@ -177,6 +217,212 @@
                 
                 
 				 <!-- ---------------------------AJAX사용부분 START-------------------------------->
+                            
+                          	<div class="situation" >
+                	
+                	
+                	
+                	<!-- 
+                	
+                	
+                	<c:forEach var="vo" items="${list }">
+				<tr class="post_click" zip="${vo.zipcode }" addr="${vo.address }">
+					<td class="text-center"> ${vo.zipcode } </td>
+					<td>${vo.address }</td>
+				</tr>
+			</c:forEach>
+                	
+                	
+                	 -->
+                	 
+                	 
+                <c:forEach var="vo" items="${list} ">
+                	<div class="themarow find-img-align">
+                        <div class="col-md-12">
+                       	 	<a href="main.jsp?mode=1">
+	                            <div class="find-place-img_wrap">
+	                                <div class="grid">
+	                                    <figure class="effect-ruby">
+	                                        <img src="${pageContext.request.contextPath }/images/situ3.png" class="img-fluid" alt="img13" />
+	                                        <figcaption>
+	                                            <p></p>
+	                                        </figcaption>
+	                                    </figure>
+	                                </div>
+	                            </div>
+                        	</div>
+                        <div style="text-align: center" class="themafont"><span>${vo.t_DetailThema }</span></div>
+                        </a>
+                    </div>
+                  </c:forEach>  
+                    
+                    
+                    <div class="themarow find-img-align">
+                        <div class="col-md-12">
+                       	 	<a href="main.jsp?mode=1">
+	                            <div class="find-place-img_wrap">
+	                                <div class="grid">
+	                                    <figure class="effect-ruby">
+	                                        <img src="${pageContext.request.contextPath }/images/situ3.png" class="img-fluid" alt="img13" />
+	                                        <figcaption>
+	                                            <p></p>
+	                                        </figcaption>
+	                                    </figure>
+	                                </div>
+	                            </div>
+                        	</div>
+                        <div style="text-align: center" class="themafont"><span>가족과 함께</span></div>
+                        </a>
+                    </div>
+                    
+                    
+                    <div class="themarow find-img-align">
+                        <div class="col-md-12">
+                       	 	<a href="main.jsp?mode=1">
+	                            <div class="find-place-img_wrap">
+	                                <div class="grid">
+	                                    <figure class="effect-ruby">
+	                                        <img src="${pageContext.request.contextPath }/images/situ3.png" class="img-fluid" alt="img13" />
+	                                        <figcaption>
+	                                            <p></p>
+	                                        </figcaption>
+	                                    </figure>
+	                                </div>
+	                            </div>
+                        	</div>
+                        <div style="text-align: center" class="themafont"><span>가족과 함께</span></div>
+                        </a>
+                    </div>
+                    
+                    
+                    <div class="themarow find-img-align">
+                        <div class="col-md-12">
+                       	 	<a href="main.jsp?mode=1">
+	                            <div class="find-place-img_wrap">
+	                                <div class="grid">
+	                                    <figure class="effect-ruby">
+	                                        <img src="${pageContext.request.contextPath }/images/situ3.png" class="img-fluid" alt="img13" />
+	                                        <figcaption>
+	                                            <p></p>
+	                                        </figcaption>
+	                                    </figure>
+	                                </div>
+	                            </div>
+                        	</div>
+                        <div style="text-align: center" class="themafont"><span>가족과 함께</span></div>
+                        </a>
+                    </div>
+                    
+                    
+                    <div class="themarow find-img-align">
+                        <div class="col-md-12">
+                       	 	<a href="main.jsp?mode=1">
+	                            <div class="find-place-img_wrap">
+	                                <div class="grid">
+	                                    <figure class="effect-ruby">
+	                                        <img src="${pageContext.request.contextPath }/images/situ3.png" class="img-fluid" alt="img13" />
+	                                        <figcaption>
+	                                            <p></p>
+	                                        </figcaption>
+	                                    </figure>
+	                                </div>
+	                            </div>
+                        	</div>
+                        <div style="text-align: center" class="themafont"><span>가족과 함께</span></div>
+                        </a>
+                    </div>
+                    
+                    
+                    <div class="themarow find-img-align">
+                        <div class="col-md-12">
+                       	 	<a href="main.jsp?mode=1">
+	                            <div class="find-place-img_wrap">
+	                                <div class="grid">
+	                                    <figure class="effect-ruby">
+	                                        <img src="${pageContext.request.contextPath }/images/situ3.png" class="img-fluid" alt="img13" />
+	                                        <figcaption>
+	                                            <p></p>
+	                                        </figcaption>
+	                                    </figure>
+	                                </div>
+	                            </div>
+                        	</div>
+                        <div style="text-align: center" class="themafont"><span>가족과 함께</span></div>
+                        </a>
+                    </div>
+                    
+                    
+                    
+                    <div class="themarow find-img-align">
+                        <div class="col-md-12">
+                       	 	<a href="main.jsp?mode=1">
+	                            <div class="find-place-img_wrap">
+	                                <div class="grid">
+	                                    <figure class="effect-ruby">
+	                                        <img src="${pageContext.request.contextPath }/images/situ3.png" class="img-fluid" alt="img13" />
+	                                        <figcaption>
+	                                            <p></p>
+	                                        </figcaption>
+	                                    </figure>
+	                                </div>
+	                            </div>
+                        	</div>
+                        <div style="text-align: center" class="themafont"><span>가족과 함께</span></div>
+                        </a>
+                    </div>
+                    
+                    
+                   <div class="themarow find-img-align">
+                        <div class="col-md-12">
+                       	 	<a href="main.jsp?mode=1">
+	                            <div class="find-place-img_wrap">
+	                                <div class="grid">
+	                                    <figure class="effect-ruby">
+	                                        <img src="${pageContext.request.contextPath }/images/situ3.png" class="img-fluid" alt="img13" />
+	                                        <figcaption>
+	                                            <p></p>
+	                                        </figcaption>
+	                                    </figure>
+	                                </div>
+	                            </div>
+                        	</div>
+                        <div style="text-align: center" class="themafont"><span>가족과 함께</span></div>
+                        </a>
+                    </div>
+                    
+                    
+                    
+                    <div class="themarow find-img-align">
+                        <div class="col-md-12">
+                       	 	<a href="main.jsp?mode=1">
+	                            <div class="find-place-img_wrap">
+	                                <div class="grid">
+	                                    <figure class="effect-ruby">
+	                                        <img src="${pageContext.request.contextPath }/images/situ3.png" class="img-fluid" alt="img13" />
+	                                        <figcaption>
+	                                            <p></p>
+	                                        </figcaption>
+	                                    </figure>
+	                                </div>
+	                            </div>
+                        	</div>
+                        <div style="text-align: center" class="themafont"><span>가족과 함께</span></div>
+                        </a>
+                    </div>
+                		
+                		
+                		
+                		
+                			
+                	
+                	</div>
+
+                            
+                            
+                            
+                            
+                            
+                            
                             
 
                 </div>

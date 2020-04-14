@@ -36,7 +36,7 @@
 		 );
  */
  
- function setFilter(c){ //선택한 카테고리를 연속 출력 기능
+ function setFilter(c){ //선택한 카테고리를 연속 출력 기능 // 클릭하므로써 아래 페이지가 변하니까 결국 클릭하지 않으면 저절로 디폴트 페이지가 되는것이다.
 		$('#test2').append("<a onClick=deleteFilter(this) href='#' id='"+c.value+"' class='selected nearbyselected' data-filter-name='food_cat' data-filter-value='108602' data-nclick-code='rcc.reset'"
 		         +"data-filter-action='nclick' title='"+c.value+"'>"+c.value+"<span class='del'>X</span></a>");
 		searchNearby();
@@ -49,6 +49,7 @@ function deleteFilter(v){
 };
 
 function searchNearby(){ //선택한 카테고리를 아래에 ajax로 값을 뿌려주는 기능
+	
 	$.ajax({
 		
 		type:'post', //post방식(hide parameter)
