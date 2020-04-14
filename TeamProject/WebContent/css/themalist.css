@@ -187,3 +187,175 @@ figure.effect-ruby h2 {
     /* flex: 0 0 33.333333%; */
     max-width: 33.333333%;
 }
+
+
+
+body {
+
+  font-size: 18px;
+}
+
+div .nearbyrow{
+	
+	background-color: white;
+	margin-right: -60px;
+    margin-left: 0px;
+	
+}
+
+
+div .nearbymd7{
+	
+	padding-left: 0px;
+	
+}
+
+div .category{
+	
+	background-color: white;
+	margin-top: 40px;
+	margin-bottom: 20px;
+}
+
+div .contentRes{
+	
+	padding-left: 20px;
+	padding-right: 20px;
+}
+select {
+  width: 120px;
+  padding: .2em .8em;
+  font-family: inherit;
+  background: url(../images/arrow.jpg) no-repeat 95% 50%;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: 2px solid #ff7474;
+   border-radius : 15px;
+   margin-left: 5px;
+   margin-bottom: 5px;
+   height : 40px;
+   color: black;
+   font-size: 17px;
+   background-color: white;
+}
+
+a .nearbyselected {
+	
+	letter-spacing: normal;
+	border-radius: 15px;
+}
+
+.filter_row a {
+	
+	border-radius: 15px; 
+
+}
+
+.filter_row a:hover {
+	
+	background-color: white;
+	border: #ff3a6d;
+
+ }
+
+/*
+.displaymenu{
+	
+	margin-bottom: 10px;
+	margin-left: 5px;
+    margin-right: 5px;
+    
+}
+*/
+
+.displaymenu{
+
+    background-color: white;
+    margin-top: 0px;
+    margin-bottom: 20px;
+}
+
+
+.plusicon {
+	
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	padding: .2em .8em;
+	background: url(../images/plusicon.png) no-repeat 95% 50%;
+	margin-left: 5px;
+	margin-left: 5px;
+	margin-bottom: 5px;
+}
+
+option {
+	
+	border-radius: 4px;
+    background-color: #fff;
+    box-shadow: 0 0 18px rgba(0,0,0,.15);
+	border-color: #eeeeef;
+	padding-bottom: 16px!important;
+	padding-top: 16px!important;
+	padding-right: 16px!important;
+	padding-left: 16px!important;
+	display: block;
+	
+}
+
+.lemonmenu{
+
+	border-color: #eeeeef;
+	padding-bottom: 8px!important;
+	padding-top: 8px!important;
+	padding-right: 8px!important;
+	padding-left: 8px!important;
+	display: block;
+	cursor: pointer;
+	text-align: left;
+}
+}
+
+select::-ms-expand {
+  /* for IE 11 */
+  display: none;
+}
+
+.list-block h5 {
+    color: #3e434b;
+    display: inline-block;
+    margin: 0;
+    font-size: 30px;
+    letter-spacing: 2px;
+}
+
+div .nearbysearchlist{
+	
+	padding-left: 1rem!important;
+    padding-right: 1rem!important;
+    
+}
+
+.nearbysearchlist p{
+
+	color: #96999cfa;
+	
+}	
+
+.nearbysearchlist h6{
+
+	font-weight: 600;
+}	
+
+
+.featured-place-wrap img {
+     width: auto; 
+}
+
+.featured-title-box {
+    padding: 22px 20px;
+    width: 320px;
+}
+
+.featured-responsive:nth-child( 2n ) {
+	margin-left: 20px;
+}

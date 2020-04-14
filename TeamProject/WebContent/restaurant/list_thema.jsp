@@ -251,7 +251,7 @@ $(document).ready(function(){
 	                                </div>
 	                            </div>
                         	</div>
-                        <div style="text-align: center" class="themafont"><span>${vo.t_DetailThema }</span></div>
+                        <div style="text-align: center" class="themafont"><span>가족과 함께!</span></div>
                         </a>
                     </div>
                   </c:forEach>  
@@ -470,7 +470,7 @@ $(document).ready(function(){
 
 								
 			<!-- ================================가게 1개 =============================================-->
-                        <div class=" featured-responsive" >
+                        <div class="featured-responsive" >
                             <div class="featured-place-wrap" >
                                 <a href="main.jsp?mode=5">
                    

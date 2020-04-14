@@ -189,9 +189,9 @@ public class ThemaManager {
 		for(int i=0; i<tempList.size(); i++)
 		{
 			
-			DetailThemaVO vo = new DetailThemaVO();
-
-			vo.setT_DetailThema(tempList.get(i).substring(0,tempList.get(i).indexOf("|")));
+			
+			String first = tempList.get(i).substring(0,tempList.get(i).indexOf("|"));
+			
 			
 			//System.out.println(i + tempList.get(i).substring(0,tempList.get(i).indexOf("|")));
 			
@@ -207,13 +207,14 @@ public class ThemaManager {
 			
 			while(str1.hasMoreTokens())
 			{
-				DetailThemaVO vo2 = new DetailThemaVO();
-				vo2.setT_Info(str1.nextToken());
+				DetailThemaVO vo = new DetailThemaVO();
+				vo.setT_DetailThema(first);
+				vo.setT_Info(str1.nextToken());
 				
-			    list.add(vo2);
+			    list.add(vo);
 			   
 			}
-			 list.add(vo);
+			
 		}
 		return list;
 	}
@@ -303,20 +304,27 @@ public class ThemaManager {
 		
 		
 		 */
+	
 		
-	//	ThemaManager tm=new ThemaManager();
-	//	List<DetailThemaVO> list= tm.DetailThemaAllData();
-	//	for(DetailThemaVO vo:list) {
+/*		
+		ThemaManager tm=new ThemaManager();
+		List<DetailThemaVO> list= tm.DetailThemaAllData();
+		for(DetailThemaVO vo:list) {
 			
-	//		System.out.println(vo.getT_Info());
 			
-	//	}
+			System.out.printf(vo.getT_DetailThema());
+			System.out.println("   "+vo.getT_Info());
+			
+		}
+
 		
+*/
 		//-------------------------------------
 		
 		ThemaManager tm = new ThemaManager();		
 		//ArrayList<MainThemaVO> list = tm.MainThemaAllData();
-	 	ArrayList<DetailThemaVO> list2 = tm.DetailThemaAllData();
+	
+		ArrayList<DetailThemaVO> list2 = tm.DetailThemaAllData();
 		
 		
 		detailThemaDAO dao =detailThemaDAO.newInstance();
