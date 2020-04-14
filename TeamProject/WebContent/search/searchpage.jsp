@@ -17,7 +17,7 @@
 		  <div class="col-md-4 featured-responsive">
 		    <div class="featured-place-wrap">
 		      <a href="#">
-		        <img src="${vo.ivo.i_Link }" class="img-fluid" alt="#">
+		        <img src="${vo.ivo.iLink }" class="img-fluid" alt="#">
 		        <span class="featured-rating">${vo.rScore }</span>
 		        <div class="featured-title-box">
 		          <h6>${vo.rName }</h6>
