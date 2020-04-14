@@ -8,7 +8,15 @@
 <!--  테마 맛집 페이지 CSS -->
 <link rel="stylesheet" href="${pageContext.request.contextPath }/css/themalist.css">
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<style type="text/css">
 
+.themarow{
+
+ 	display: inline-block;
+
+}
+
+</style>
 
 
 </head>
@@ -21,9 +29,9 @@
 			<div class="row nearbyrow">
 
 				<!-- ======================================주변맛집 페이지 왼쪽 화면============================================= -->
-				<div class="col-md-7 responsive-wrap nearbymd7">
+				<div class="responsive-wrap nearbymd7">
 					<!-- ===================================검색 결과 타이틀 "~ 주변 검색 결과" ===================================-->
-					<h5>Various Thema List </h5>
+					<h5 class="styled-heading"> Various Thema List </h5>
 
 					<p>
 						총 <span>###개</span>
@@ -33,29 +41,288 @@
 					
 					<div class="mt-4">
 						<div class="filter_row area">
-							<div class="category">
-								<!-- <button onclick="searchNearby()">test</button> -->
+						
+						    <!--============================= THEME =============================-->
+    <section class="main-block" id="theme">
+        <div class="container">
+        
+            <div class="row justify-content-center">
+            <!-- 
+                <div class="col-md-5">
+                    <div class="styled-heading">
+                        <h3>테마별 맛집</h3>
+                    </div>
+                </div>
+                 -->
+ 
+            </div>
+            
 
-		
-								<select id="test" title="음식선택" class="menuarrow select7" onchange="setFilter(this);" placeholder="음식종류" style="color: black;">
-									<option value="전체" class="lemonmenu">전체 </option>
-									<option value="한식" class="lemonmenu">한식</option>
-									<option value="일식" class="lemonmenu">일식</option>
-									<option value="중식" class="lemonmenu">중식</option>
-									<option value="카페" class="lemonmenu">카페</option>
-									<option value="베이커리" class="lemonmenu">베이커리</option>
-									<option value="패스트푸드" class="lemonmenu">패스트부드</option>
-									<option value="양식" class="lemonmenu">양식</option>
-									<option value="뷔페" class="lemonmenu">뷔페</option>
-									<option value="기타" class="lemonmenu">기타/세계</option>
-									<option value="plusicon" data-icon="..//images/plusicon.png">더보기</option>
-
-								</select> 
-								
-								
-
-							</div>
-
+               
+                    <div class="themarow find-img-align">
+                        <div class="col-md-12">
+                       	 	<a href="main.jsp?mode=1">
+	                            <div class="find-place-img_wrap">
+	                                <div class="grid">
+	                                    <figure class="effect-ruby">
+	                                        <img src="${pageContext.request.contextPath }/images/themacate1.png" class="img-fluid" alt="img13" />
+	                                        <figcaption>
+	                                            <h5>상황별</h5>
+	                                            <p>1,204개</p>
+	                                        </figcaption>
+	                                    </figure>
+	                                </div>
+	                            </div>
+	                    	</a>
+                        </div>
+                    </div>
+                
+                
+                
+            
+                    <div class="themarow find-img-align">
+                        <div class="col-md-12">
+                       	 	<a href="main.jsp?mode=1">
+	                            <div class="find-place-img_wrap">
+	                                <div class="grid">
+	                                    <figure class="effect-ruby">
+	                                        <img src="${pageContext.request.contextPath }/images/themacate2.png" class="img-fluid" alt="img13" />
+	                                        <figcaption>
+	                                            <h5>메뉴별</h5>
+	                                            <p>1,204개</p>
+	                                        </figcaption>
+	                                    </figure>
+	                                </div>
+	                            </div>
+	                    	</a>
+                        </div>
+                    </div>
+                    
+                    
+ 
+                    
+                    <!-- 세번째 사진 추가해봄 -->
+                    
+                      <div class="themarow find-img-align">
+                        <div class="col-md-12">
+                       	 	<a href="main.jsp?mode=1">
+	                            <div class="find-place-img_wrap">
+	                                <div class="grid">
+	                                    <figure class="effect-ruby">
+	                                        <img src="${pageContext.request.contextPath }/images/themacate3.png" class="img-fluid" alt="img13" />
+	                                        <figcaption>
+	                                            <h5>스페셜</h5>
+	                                            <p>1,204개</p>
+	                                        </figcaption>
+	                                    </figure>
+	                                </div>
+	                            </div>
+	                    	</a>
+                        </div>
+                    </div>
+                    
+                
+                <!--카테고리 3개 끝! -->
+                
+                <!-- ---------------------------작은 카테고리들 출력!하기 -------------------------------->
+                
+                <div class="smallcatelist">
+                
+                	<div class="situation1" id="situation2" id="situation3">
+                	
+                		
+                	<div class="themarow find-img-align">
+                        <div class="col-md-12">
+                       	 	<a href="main.jsp?mode=1">
+	                            <div class="find-place-img_wrap">
+	                                <div class="grid">
+	                                    <figure class="effect-ruby">
+	                                        <img src="${pageContext.request.contextPath }/images/situ3.png" class="img-fluid" alt="img13" />
+	                                        <figcaption>
+	                                            <p></p>
+	                                        </figcaption>
+	                                    </figure>
+	                                </div>
+	                            </div>
+                        	</div>
+                        <div style="text-align: center" class="themafont"><span>가족과 함께</span></div>
+                        </a>
+                    </div>
+                    
+                    
+                    
+                    <div class="themarow find-img-align">
+                        <div class="col-md-12">
+                       	 	<a href="main.jsp?mode=1">
+	                            <div class="find-place-img_wrap">
+	                                <div class="grid">
+	                                    <figure class="effect-ruby">
+	                                        <img src="${pageContext.request.contextPath }/images/situ3.png" class="img-fluid" alt="img13" />
+	                                        <figcaption>
+	                                            <p></p>
+	                                        </figcaption>
+	                                    </figure>
+	                                </div>
+	                            </div>
+                        	</div>
+                        <div style="text-align: center" class="themafont"><span>가족과 함께</span></div>
+                        </a>
+                    </div>
+                    
+                    
+                    <div class="themarow find-img-align">
+                        <div class="col-md-12">
+                       	 	<a href="main.jsp?mode=1">
+	                            <div class="find-place-img_wrap">
+	                                <div class="grid">
+	                                    <figure class="effect-ruby">
+	                                        <img src="${pageContext.request.contextPath }/images/situ3.png" class="img-fluid" alt="img13" />
+	                                        <figcaption>
+	                                            <p></p>
+	                                        </figcaption>
+	                                    </figure>
+	                                </div>
+	                            </div>
+                        	</div>
+                        <div style="text-align: center" class="themafont"><span>가족과 함께</span></div>
+                        </a>
+                    </div>
+                    
+                    
+                    <div class="themarow find-img-align">
+                        <div class="col-md-12">
+                       	 	<a href="main.jsp?mode=1">
+	                            <div class="find-place-img_wrap">
+	                                <div class="grid">
+	                                    <figure class="effect-ruby">
+	                                        <img src="${pageContext.request.contextPath }/images/situ3.png" class="img-fluid" alt="img13" />
+	                                        <figcaption>
+	                                            <p></p>
+	                                        </figcaption>
+	                                    </figure>
+	                                </div>
+	                            </div>
+                        	</div>
+                        <div style="text-align: center" class="themafont"><span>가족과 함께</span></div>
+                        </a>
+                    </div>
+                    
+                    
+                    <div class="themarow find-img-align">
+                        <div class="col-md-12">
+                       	 	<a href="main.jsp?mode=1">
+	                            <div class="find-place-img_wrap">
+	                                <div class="grid">
+	                                    <figure class="effect-ruby">
+	                                        <img src="${pageContext.request.contextPath }/images/situ3.png" class="img-fluid" alt="img13" />
+	                                        <figcaption>
+	                                            <p></p>
+	                                        </figcaption>
+	                                    </figure>
+	                                </div>
+	                            </div>
+                        	</div>
+                        <div style="text-align: center" class="themafont"><span>가족과 함께</span></div>
+                        </a>
+                    </div>
+                    
+                    
+                    <div class="themarow find-img-align">
+                        <div class="col-md-12">
+                       	 	<a href="main.jsp?mode=1">
+	                            <div class="find-place-img_wrap">
+	                                <div class="grid">
+	                                    <figure class="effect-ruby">
+	                                        <img src="${pageContext.request.contextPath }/images/situ3.png" class="img-fluid" alt="img13" />
+	                                        <figcaption>
+	                                            <p></p>
+	                                        </figcaption>
+	                                    </figure>
+	                                </div>
+	                            </div>
+                        	</div>
+                        <div style="text-align: center" class="themafont"><span>가족과 함께</span></div>
+                        </a>
+                    </div>
+                    
+                    
+                    
+                    <div class="themarow find-img-align">
+                        <div class="col-md-12">
+                       	 	<a href="main.jsp?mode=1">
+	                            <div class="find-place-img_wrap">
+	                                <div class="grid">
+	                                    <figure class="effect-ruby">
+	                                        <img src="${pageContext.request.contextPath }/images/situ3.png" class="img-fluid" alt="img13" />
+	                                        <figcaption>
+	                                            <p></p>
+	                                        </figcaption>
+	                                    </figure>
+	                                </div>
+	                            </div>
+                        	</div>
+                        <div style="text-align: center" class="themafont"><span>가족과 함께</span></div>
+                        </a>
+                    </div>
+                    
+                    
+                   <div class="themarow find-img-align">
+                        <div class="col-md-12">
+                       	 	<a href="main.jsp?mode=1">
+	                            <div class="find-place-img_wrap">
+	                                <div class="grid">
+	                                    <figure class="effect-ruby">
+	                                        <img src="${pageContext.request.contextPath }/images/situ3.png" class="img-fluid" alt="img13" />
+	                                        <figcaption>
+	                                            <p></p>
+	                                        </figcaption>
+	                                    </figure>
+	                                </div>
+	                            </div>
+                        	</div>
+                        <div style="text-align: center" class="themafont"><span>가족과 함께</span></div>
+                        </a>
+                    </div>
+                    
+                    
+                    
+                    <div class="themarow find-img-align">
+                        <div class="col-md-12">
+                       	 	<a href="main.jsp?mode=1">
+	                            <div class="find-place-img_wrap">
+	                                <div class="grid">
+	                                    <figure class="effect-ruby">
+	                                        <img src="${pageContext.request.contextPath }/images/situ3.png" class="img-fluid" alt="img13" />
+	                                        <figcaption>
+	                                            <p></p>
+	                                        </figcaption>
+	                                    </figure>
+	                                </div>
+	                            </div>
+                        	</div>
+                        <div style="text-align: center" class="themafont"><span>가족과 함께</span></div>
+                        </a>
+                    </div>
+                		
+                		
+                		
+                		
+                			
+                	
+                	</div>
+                </div>
+                
+                
+            
+            
+        </div><!-- 카테고리 3개container 끝! -->
+    </section><!--  카테고리 3개 section 끝! -->
+    
+    
+						
+						
+						
+						
 
 						<!--=============================THEMA LIST END=============================-->
 							
@@ -224,6 +491,8 @@
                             </div>
                         </div>
                         
+                        
+                        
 							<div class=" featured-responsive">
 								<div class="featured-place-wrap">
 									<a href="main.jsp?mode=5">
@@ -282,28 +551,6 @@
     <script src="${pageContext.request.contextPath }/js/popper.min.js"></script>
     <script src="${pageContext.request.contextPath }/js/bootstrap.min.js"></script>
 
-    <!-- 이전에 남아있던 map 관련 소스 :  파악 중 -->
-    <script>
-        $(".map-icon").click(function() {
-            $(".map-fix").toggle();
-        });
-    </script>
    
-   <!-- Kakao Map Script -->
-   <script>
-        var container = document.getElementById('map');
-        var options = {
-            center: new kakao.maps.LatLng(33.450701, 126.570667),
-            level: 3
-        };
-
-        var map = new kakao.maps.Map(container, options);
-    </script>
-
-
-    
-   
-
-
 </body>
 </html>

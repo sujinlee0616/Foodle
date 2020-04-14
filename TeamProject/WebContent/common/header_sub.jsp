@@ -37,7 +37,7 @@
 									<a class="nav-link" href="../restaurant/list_general.do">주간 맛집</a>
 								</li>
 								<li class="nav-item active">
-									<a class="nav-link" href="../restaurant/list_general.do">테마 맛집</a>
+									<a class="nav-link" href="../restaurant/list_thema.do">테마 맛집</a>
 								</li>
 								<li class="nav-item active">
 									<a class="nav-link" href="../restaurant/list_nearby.do">주변 맛집</a>

@@ -7,7 +7,7 @@ import com.sist.controller.Controller;
 import com.sist.controller.RequestMapping;
 
 @Controller
-public class ThemaListModel {
+public class ListThemaModel {
 
 	@RequestMapping("restaurant/list_thema.do")
 	public String list_thema(HttpServletRequest request, HttpServletResponse response)
