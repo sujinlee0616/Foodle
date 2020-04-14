@@ -23,6 +23,9 @@
                 </div>
                 <div class="col-md-6">
                     <div class="reserve-seat-block">
+                    	<!-- <div class="wish-btn">
+                    		<a href="#" class="btn btn-outline-danger ti-heart"></a>
+                    	</div> -->
                         <div class="reserve-rating">
                             <span>${mvo.rScore }</span>
                         </div>

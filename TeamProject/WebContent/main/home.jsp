@@ -181,7 +181,7 @@
                 </div>
             </div>
             <div class="row">
-            	<c:forEach var="vo" items="${realTimeTop3list }">
+            	<c:forEach var="vo" items="${popularTop3list }">
 	                <div class="col-md-4 featured-responsive">
 	                    <div class="featured-place-wrap">
 	                        <a href="../restaurant/detail.do?no=${vo.rNo }">
@@ -204,7 +204,7 @@
 	                                <div class="bottom-icons">
 	                                    <!-- <div class="closed-now">CLOSED NOW</div> -->
 	                                    <div class="open-now">OPEN NOW</div>
-	                                    <span class="ti-heart"></span>
+	                                    <a href="#" class="mywish" style="text-align:right;font-size:17pt;">♡</a>
 	                                </div>
 	                            </div>
 	                        </a>
@@ -351,9 +351,9 @@
 
     <!-- jQuery, Bootstrap JS. -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="${pageContext.request.contextPath }/js/jquery-3.2.1.min.js"></script>
-    <script src="${pageContext.request.contextPath }/js/popper.min.js"></script>
-    <script src="${pageContext.request.contextPath }/js/bootstrap.min.js"></script>
+    <script src="../js/jquery-3.2.1.min.js"></script>
+    <script src="../js/popper.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
 
     <!-- GNB Fixed 되는 스크롤 시점 -->
     <script>
@@ -378,7 +378,20 @@
                 $(".sidenav").css("top", "785px");
             };
         });
-    </script>    
+    </script>  
+    
+    <script type="text/javascript">
+    	$('.mywish').mouseover(function() {
+    		$(this).text('♥');
+    		$(this).css("font-size","17pt");
+    		$(this).css("color","red");
+    	});
+    	$('.mywish').mouseout(function() {
+    		$(this).text('♡');
+    		$(this).css("font-size","17pt");
+    		$(this).css("color","black");
+    	})
+    </script>  
     
 </body>
 

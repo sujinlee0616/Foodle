@@ -16,7 +16,7 @@ public class MainModel {
 	public String main_main(HttpServletRequest request, HttpServletResponse response)
 	{
 		List<MainInfoVO> weeklytop30list=MainDAO.weeklyTop30();
-		List<MainInfoVO> realTimeTop3list=MainDAO.realTimeTop3();
+		List<MainInfoVO> popularTop3list=MainDAO.popularTop3();
 		
 		for(MainInfoVO vo:weeklytop30list) {
 			String addr=vo.getrAddr2();
@@ -25,7 +25,7 @@ public class MainModel {
 				vo.setrAddr2(addr);
 			}
 		}
-		for(MainInfoVO vo:realTimeTop3list) {
+		for(MainInfoVO vo:popularTop3list) {
 			String addr=vo.getrAddr2();
 			if(addr.length()>22) {
 				addr=addr.substring(0,22).concat("...");
@@ -35,7 +35,7 @@ public class MainModel {
 		
 		
 		request.setAttribute("weeklytop30list", weeklytop30list);
-		request.setAttribute("realTimeTop3list", realTimeTop3list);
+		request.setAttribute("popularTop3list", popularTop3list);
 		request.setAttribute("main_header", "../common/header_main.jsp");
 		request.setAttribute("main_jsp", "../main/home.jsp");
 		
