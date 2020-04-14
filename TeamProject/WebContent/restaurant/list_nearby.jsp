@@ -11,10 +11,11 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/css/nearby.css">
 
 
-<!-- SELECT OPTION -->
+<!-- SELECT7 OPTION  안먹히는 상태 -->
 <link rel="stylesheet" href="../js/jquery-select-7/jquery-select7.css">
 <script src="../js/jquery-select-7/jquery-select7.js"></script>
 
+<!--  -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -35,7 +36,7 @@
 		 );
  */
  
- function setFilter(c){ //선택한 카테고리 출력 기능
+ function setFilter(c){ //선택한 카테고리를 연속 출력 기능 // 클릭하므로써 아래 페이지가 변하니까 결국 클릭하지 않으면 저절로 디폴트 페이지가 되는것이다.
 		$('#test2').append("<a onClick=deleteFilter(this) href='#' id='"+c.value+"' class='selected nearbyselected' data-filter-name='food_cat' data-filter-value='108602' data-nclick-code='rcc.reset'"
 		         +"data-filter-action='nclick' title='"+c.value+"'>"+c.value+"<span class='del'>X</span></a>");
 		searchNearby();
@@ -48,6 +49,7 @@ function deleteFilter(v){
 };
 
 function searchNearby(){ //선택한 카테고리를 아래에 ajax로 값을 뿌려주는 기능
+	
 	$.ajax({
 		
 		type:'post', //post방식(hide parameter)
@@ -67,6 +69,10 @@ function searchNearby(){ //선택한 카테고리를 아래에 ajax로 값을 �
 
 </script>
    
+   
+   
+   
+<!-- 아래 안먹히는 script! -->
 <script>
 		function example_select7_template_option(option) {
 			r = "<i>" + option.title + "</i>"
@@ -90,7 +96,7 @@ function searchNearby(){ //선택한 카테고리를 아래에 ajax로 값을 �
 		$(".select7").select7()
 	</script>
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
 
 
 </head>
@@ -105,7 +111,7 @@ function searchNearby(){ //선택한 카테고리를 아래에 ajax로 값을 �
 				<!-- ======================================주변맛집 페이지 왼쪽 화면============================================= -->
 				<div class="col-md-7 responsive-wrap nearbymd7">
 					<!-- ===================================검색 결과 타이틀 "~ 주변 검색 결과" ===================================-->
-					<h5>Best Places near 주변 맛집 ###</h5>
+					<h5 class="styled-heading">Best Places near 주변 맛집 ###</h5>
 
 					<p>
 						총 <span>###개</span>
@@ -470,8 +476,8 @@ function searchNearby(){ //선택한 카테고리를 아래에 ajax로 값을 �
 						</div>
 					</div>
 					<!--============================= KAKAO MAP ============================= -->
-					<div class="col-md-5 responsive-wrap map-wrap">
-						<div class="map-fix">
+					<div class="col-md-5 responsive-wrap map-wrap nearbymapwrap">
+						<div class="map-fix nearbymapfix">
 							<div id="map" data-lat="40.674" data-lon="-73.945" data-zoom="14"></div>
 						</div>
 					</div>

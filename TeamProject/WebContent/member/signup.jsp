@@ -13,6 +13,9 @@
           <h5>회원가입</h5>
         </div>
       </div>
+      
+      <!-- ============================== Start of signup_frm ============================== -->
+      <form name="signup_frm" action="../member/signup_ok.do" method="post" id="signup_frm">
       <!-- START OF SIGNUP INFO INPUTS -->
       <div class="row justify-content-center">
         <div class="col-md-6 signup">
@@ -33,72 +36,68 @@
             </ul>
           </div>
           
-          
+          <!-- 회원정보 입력 : 필수정보-->
           <div class="cont_division">
-            <!-- 회원정보 입력 : 필수정보-->
+          	<!-- 회원유형 (hidden) -->
+          	<input type="hidden" name="utype" value="user">
             <ul class="write_base select_input">
               <!-- ID (N-N) -->
               <li class="item must">
                 <label for="user_id" class="tit_inp"><span class="essential">*</span>ID</label>
-                <input type="text" name="tmp_user_id" id="user_id" autocapitalize="off"
+                <input type="text" name="id" id="user_id" autocapitalize="off" autocomplete="off"
                   placeholder="아이디">
                 <p class="alert_column warning_txt hidden" id="user_id_msg" name="user_id_msg">필수정보 입니다.</p>
               </li>
               <!-- Password (N-N) -->
               <li class="item must">
                 <label for="user_pwd" class="tit_inp"><span class="essential">*</span>비밀번호</label>
-                <input type="password" name="tmp_user_pwd" id="user_pwd" autocapitalize="off"
+                <input type="password" name="pwd" id="user_pwd" autocapitalize="off"
                   placeholder="비밀번호">
                 <p class="alert_column warning_txt hidden" id="user_pwd_msg" name="user_pwd_msg">필수정보 입니다.</p>
               </li>
               <!-- 이름 (N-N)-->
               <li class="item must">
                 <label for="user_nm" class="tit_inp"><span class="essential">*</span>이름</label>
-                <input type="text" name="tmp_user_nm" id="user_nm" autocapitalize="off"
+                <input type="text" name="name" id="user_name" autocapitalize="off" autocomplete="off"
                   placeholder="">
-                <p class="alert_column warning_txt hidden" id="user_nm_msg" name="user_nm_msg">필수정보 입니다.</p>
+                <p class="alert_column warning_txt hidden" id="user_name_msg" name="user_nm_msg">필수정보 입니다.</p>
               </li>
               <!-- 성별 (NN) -->
               <li class="item must">
                 <label for="user_gender" class="tit_inp"><span class="essential">*</span>성별</label>
-                <label for="user_gender_male"><input type="radio" name="tmp_user_gender" id="user_gender_male" value="male">남성</label>
-                <label for="user_gender_female"><input type="radio" name="tmp_user_gender" id="user_gender_female" value="female">여성</label>
-              
-                <!-- <p class="btn_check btn_gender" id="sex_btn">
-                    <a href="javascript:" class="man" onclick="document.getElementById('msg_sex').style.display='none';">남자</a>
-                    <a href="javascript:" class="woman" onclick="document.getElementById('msg_sex').style.display='none';">여자</a>
-                </p> -->
+                <label for="user_gender_male"><input type="radio" name="gender" id="user_gender_male" value="male" checked="checked">남성</label>
+                <label for="user_gender_female"><input type="radio" name="gender" id="user_gender_female" value="female">여성</label>
                 <p class="alert_column warning_txt hidden" id="msg_sex">&nbsp;</p>
               </li>
               <!-- 생년월일 (N-N ) -->
               <li class="item must">
                 <div class="select_align_row">
                   <label for="birth_date" class="tit_inp"><span class="essential">*</span>생년월일</label>
-                  <input type="text" name="tmp_birth_date" id="birth_date" title="사용자 출생년도" maxlength="8"
+                  <input type="text" name="birth" id="user_birth" title="사용자 출생년도" maxlength="8"
                     autocapitalize="off" placeholder="YYYYMMDD" class="che" autocomplete="off">
                 </div>
-                <p class="alert_column warning_txt hidden" id="cyr_msg" name="cyr_msg">&nbsp;</p>
+                <p class="alert_column warning_txt hidden" id="user_birth_msg" name="cyr_msg">&nbsp;</p>
               </li>
               <!-- 이메일 (N-N)-->
               <li class="email_column item must">
                 <div class="select_align_row input item">
                   <label for="email_id" class="tit_inp"><span class="essential">*</span>이메일</label>
-                  <input type="text" id="email_id" name="tmp_email_id" style="ime-mode:inactive" placeholder="">
+                  <input type="text" name="email" id="user_email" style="ime-mode:inactive" placeholder="" autocomplete="off">
                 </div>
-                <!-- Start of 자동리스트 영역 -->
+                <!-- Start of 자동리스트 영역 : 아직 구현 안 했음  -->
                 <ul class="auto_list_area email_list" style="display:none;">
-                  <li class="auto_list"><a href="javascript:;" onclick="return false;" class="email_domain"><strong
+                  <li class="auto_list"><a href="javascript:emailKeyAction;" onclick="return false;" class="email_domain"><strong
                         class="txt_input"></strong>@naver.com</a></li>
-                  <li class="auto_list"><a href="javascript:;" onclick="return false;" class="email_domain"><strong
+                  <li class="auto_list"><a href="javascript:emailKeyAction;" onclick="return false;" class="email_domain"><strong
                         class="txt_input"></strong>@gmail.com</a></li>
-                  <li class="auto_list"><a href="javascript:;" onclick="return false;" class="email_domain"><strong
+                  <li class="auto_list"><a href="javascript:emailKeyAction;" onclick="return false;" class="email_domain"><strong
                         class="txt_input"></strong>@daum.net</a></li>
-                  <li class="auto_list"><a href="javascript:;" onclick="return false;" class="email_domain"><strong
+                  <li class="auto_list"><a href="javascript:emailKeyAction;" onclick="return false;" class="email_domain"><strong
                         class="txt_input"></strong>@nate.com</a></li>
-                  <li class="auto_list"><a href="javascript:;" onclick="return false;" class="email_domain"><strong
+                  <li class="auto_list"><a href="javascript:emailKeyAction;" onclick="return false;" class="email_domain"><strong
                         class="txt_input"></strong>@outlook.com</a></li>
                 </ul>
-                <!-- Start of 자동리스트 영역 -->
+                <!-- End of 자동리스트 영역 -->
                 <p class="alert_column warning_txt hidden" id="sms_msg_email1" name="msg_email1">이메일 주소를 다시 확인해주세요.</p>    
               </li>
               
@@ -111,7 +110,7 @@
               <!-- 비밀번호 힌트 질문 -->
               <li class="item must">
                 <label for="user_hint" class="tit_inp"><span class="essential">*</span>비밀번호 힌트 질문</label>
-                <select id="user_hint" class="custom-select" name="cars">
+                <select  name="pwd_hint" id="user_pwd_hint" class="custom-select">
                   <option value="">질문을 선택하세요.</option>
                   <option value="place">기억에 남는 추억의 장소는?</option>
                   <option value="motto">자신의 인생 좌우명은?</option>
@@ -120,12 +119,12 @@
                   <option value="date">추억하고 싶은 날짜가 있다면?</option>
                   <option value="friend">유년시절 가장 생각나는 친구 이름은?</option>
                 </select>
-                <p class="alert_column warning_txt hidden" id="user_hint_msg" name="user_hint_msg">필수정보 입니다.</p>
+                <p class="alert_column warning_txt hidden" name="user_hint_msg" id="user_hint_msg" >필수정보 입니다.</p>
               </li>
               <!-- 비밀번호 힌트 질문 답 -->
               <li class="item must">
                 <label for="user_hintAns" class="tit_inp"><span class="essential">*</span>비밀번호 힌트 질문 답</label>
-                <input type="text" name="tmp_user_hintAns" id="user_hintAns" autocapitalize="off"
+                <input type="text" name="pwd_hintAns" id="user_pwd_hintAns" autocapitalize="off"
                   placeholder="">
                 <p class="alert_column warning_txt hidden" id="user_hintAns_msg" name="user_hintAns_msg">필수정보 입니다.</p>
               </li>
@@ -139,7 +138,7 @@
               <li class="">
                 <div class="input_collect item">
                   <label for="sms_cellnum" class="tit_inp fullsize_input except">연락처</label> <!-- 입력시 on class 삭제 -->
-                  <input type="text" id="sms_cellnum" name="tmp_cellnum" placeholder="'-' 없이 입력" maxlength="11">
+                  <input type="text" name="cellnum" id="user_cellnum"  placeholder="'-' 없이 입력" maxlength="11">
                 </div>
                 <p class="alert_column warning_txt hidden" name="msg_phone" id="sms_phone_msg" style="display: block;">휴대폰번호가
                   올바르지 않습니다.</p>
@@ -148,37 +147,45 @@
               <li class="">
                 <div class="input_collect item">
                   <label for="sms_cellnum" class="tit_inp fullsize_input except">집 전화번호</label> <!-- 입력시 on class 삭제 -->
-                  <input type="text" id="sms_cellnum" name="tmp_cellnum" placeholder="'-' 없이 입력" maxlength="11">
+                  <input type="text" name="telnum" id="user_telnum" placeholder="'-' 없이 입력" maxlength="11">
                 </div>
               </li>            
               <!-- 주소(우편번호) (NULL) -->
               <li class="adress_column item">
                   <div class="adress_domestic _searchArea">
                       <label for="address_main" id="address" class="tit_inp">주소</label>
-                      <input type="text" id="address_main" name="address_main" class="" readonly="1" placeholder="우편번호/주소"
+                      <input type="text" name="address_main" id="address_main" class="" readonly="1" placeholder="우편번호/주소"
                       onclick="zipcode()">
+                      <!-- hidden으로 우편번호 받는다 -->
+                      <input type="hidden" name="postcode" id="postcode">
                   </div>
                   <p class="alert_column warning_txt hidden" id="msg_addr">&nbsp;</p>
               </li>
               <!-- 주소 (상세주소) (NULL) -->
               <li class="item">
                   <label for="address_detail" class="tit_inp">상세 주소</label>
-                  <input type="text" id="address_detail" name="address_detail" class="" maxlength="50" placeholder="상세 주소">
+                  <input type="text" name="address_detail" id="address_detail" class="" maxlength="50" placeholder="상세 주소">
                   <input type="hidden" name="address_extra" value="" id="address_extra">
               </li>
             </ul>
           </div>
+          
         </div>
       </div>
       <!-- END OF INFO INPUT-->
       
+      <!-- 회원가입 버튼 -->
       <div class="row justify-content-center">
         <div class="col-md-6 pt-4">
           <div class="signup-btn-wrap">
-            <a href="#" class="btn btn-danger">회원가입</a>
+        	<input type="submit" value="회원가입" class="btn btn-danger" id="sendBtn">
           </div>
         </div>
       </div>
+      
+      </form>
+      <!-- ============================== End of signup_frm ============================== -->
+      
       <div class="row justify-content-center mt-2">
         <div class="signup-bottom col-md-6">
           <p class="message">
@@ -196,16 +203,16 @@
 
   <!-- jQuery, Bootstrap JS. -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="js/jquery-3.2.1.min.js"></script>
-  <script src="js/popper.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
+  <script src="../js/jquery-3.2.1.min.js"></script>
+  <script src="../js/popper.min.js"></script>
+  <script src="../js/bootstrap.min.js"></script>
 
   <!-- jQuery Datepicker UI for birthdate -->
-  <script src="./js/jquery-ui-1.12.1/jquery-ui.min.js"></script>
-  <script src="./js/jquery-ui-1.12.1/datepicker-ko.js"></script>
+  <script src="../js/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+  <script src="../js/jquery-ui-1.12.1/datepicker-ko.js"></script>
   <script>
     $( function() {
-      $( "#birth_date" ).datepicker({
+      $( "#user_birth" ).datepicker({
         changeMonth: true,
         changeYear: true,
         yearRange: "-100:+0"
@@ -256,7 +263,7 @@
                 }
 
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                //document.getElementById('sample6_postcode').value = data.zonecode;
+                document.getElementById('postcode').value = data.zonecode;
                 document.getElementById("address_main").value = addr;
                 // 커서를 상세주소 필드로 이동한다.
                 document.getElementById("address_detail").focus();

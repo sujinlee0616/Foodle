@@ -181,92 +181,36 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-4 featured-responsive">
-                    <div class="featured-place-wrap">
-                        <a href="main.jsp?mode=5">
-                            <img src="${pageContext.request.contextPath }/images/featured1.jpg" class="img-fluid" alt="#">
-                            <span class="featured-rating">3.5</span>
-                            <!-- <span class="featured-rating-orange">3.5</span> -->
-                            <div class="featured-title-box">
-                                <h6>브루클린더버거조인트</h6>
-                                <p>양식(수제버거)</p><span>•</span>
-                                <p>리뷰 12개</p><span>•</span>
-                                <p><span>\\\\</span>\</p>
-                                <ul>
-                                    <li><span class="icon-location-pin"></span>
-                                        <p>서울 서초구 서래로2길 27</p>
-                                    </li>
-                                    <li><span class="icon-screen-smartphone"></span>
-                                        <p>(02) 533-7180</p>
-                                    </li>
-                                </ul>
-                                <div class="bottom-icons">
-                                    <div class="closed-now">CLOSED NOW</div>
-                                    <span class="ti-heart"></span>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-md-4 featured-responsive">
-                    <div class="featured-place-wrap">
-                        <a href="../restaurant/detail.do?">
-                            <img src="${pageContext.request.contextPath }/images/featured2.jpg" class="img-fluid" alt="#">
-                            <span class="featured-rating">3.5</span>
-                            <!-- <span class="featured-rating-green">3.5</span> -->
-                            <div class="featured-title-box">
-                                <h6>사모님돈까스</h6>
-                                <p>한식 </p> <span>• </span>
-                                <p>리뷰 3개</p> <span> • </span>
-                                <p><span>\\</span>\\\</p>
-                                <ul>
-                                    <li><span class="icon-location-pin"></span>
-                                        <p>서울 마포구 와우산로 39-13</p>
-                                    </li>
-                                    <li><span class="icon-screen-smartphone"></span>
-                                        <p>(02) 337-2207</p>
-                                    </li>
-                                    <!-- <li><span class="icon-link"></span>
-                                        <p>https://burgerandlobster.com</p>
-                                    </li> -->
-                                </ul>
-                                <div class="bottom-icons">
-                                    <div class="closed-now">CLOSED NOW</div>
-                                    <span class="ti-heart"></span>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-md-4 featured-responsive">
-                    <div class="featured-place-wrap">
-                        <a href="main.jsp?mode=5">
-                            <img src="${pageContext.request.contextPath }/images/featured3.jpg" class="img-fluid" alt="#">
-                            <span class="featured-rating">4.2</span>
-                            <div class="featured-title-box">
-                                <h6>스트릿(strEAT) 여의도점</h6>
-                                <p>기타/세계-퓨전푸드</p> <span>• </span>
-                                <p>리뷰 3개</p> <span> • </span>
-                                <p><span>\\\</span>\\</p>
-                                <ul>
-                                    <li><span class="icon-location-pin"></span>
-                                        <p>서울 영등포구 여의대로 66 KTB 투자...</p>
-                                    </li>
-                                    <li><span class="icon-screen-smartphone"></span>
-                                        <p>(02) 761-7672</p>
-                                    </li>
-                                    <!-- <li><span class="icon-link"></span>
-                                        <p>https://burgerandlobster.com</p>
-                                    </li> -->
-                                </ul>
-                                <div class="bottom-icons">
-                                    <div class="open-now">OPEN NOW</div>
-                                    <span class="ti-heart"></span>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
+            	<c:forEach var="vo" items="${popularTop3list }">
+	                <div class="col-md-4 featured-responsive">
+	                    <div class="featured-place-wrap">
+	                        <a href="../restaurant/detail.do?no=${vo.rNo }">
+	                            <img src="${vo.ivo.iLink}" class="img-fluid" alt="#">
+	                            <span class="featured-rating">${vo.rScore }</span>
+	                            <!-- <span class="featured-rating-orange">3.5</span> -->
+	                            <div class="featured-title-box">
+	                                <h6>${vo.rName }</h6>
+	                               <!--  <p>양식(수제버거)</p><span>•</span>
+	                                <p>리뷰 12개</p><span>•</span>
+	                                <p><span>\\\\</span>\</p> -->
+	                                <ul>
+	                                    <li><span class="icon-location-pin"></span>
+	                                        <p>${vo.rAddr2 }</p>
+	                                    </li>
+	                                    <li><span class="icon-screen-smartphone"></span>
+	                                        <p>${vo.rTel }</p>
+	                                    </li>
+	                                </ul>
+	                                <div class="bottom-icons">
+	                                    <!-- <div class="closed-now">CLOSED NOW</div> -->
+	                                    <div class="open-now">OPEN NOW</div>
+	                                    <a href="#" class="mywish" style="text-align:right;font-size:17pt;">♡</a>
+	                                </div>
+	                            </div>
+	                        </a>
+	                    </div>
+	                </div>
+                </c:forEach>
             </div>
         </div>
     </section>
@@ -294,7 +238,7 @@
 							<div class="thumb">
 								<a href="../restaurant/detail.do?no=${vo.rNo }">
 									<%-- <img src="${pageContext.request.contextPath }/images/featured1.jpg" alt=""> --%>
-									<img src="${vo.ivo.i_Link }" style="width: 300px; height: 200px;">
+									<img src="${vo.ivo.iLink }" style="width: 300px; height: 200px;">
 								</a>
 							</div>
 							<div class="details">
@@ -407,9 +351,9 @@
 
     <!-- jQuery, Bootstrap JS. -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="${pageContext.request.contextPath }/js/jquery-3.2.1.min.js"></script>
-    <script src="${pageContext.request.contextPath }/js/popper.min.js"></script>
-    <script src="${pageContext.request.contextPath }/js/bootstrap.min.js"></script>
+    <script src="../js/jquery-3.2.1.min.js"></script>
+    <script src="../js/popper.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
 
     <!-- GNB Fixed 되는 스크롤 시점 -->
     <script>
@@ -434,7 +378,20 @@
                 $(".sidenav").css("top", "785px");
             };
         });
-    </script>    
+    </script>  
+    
+    <script type="text/javascript">
+    	$('.mywish').mouseover(function() {
+    		$(this).text('♥');
+    		$(this).css("font-size","17pt");
+    		$(this).css("color","red");
+    	});
+    	$('.mywish').mouseout(function() {
+    		$(this).text('♡');
+    		$(this).css("font-size","17pt");
+    		$(this).css("color","black");
+    	})
+    </script>  
     
 </body>
 

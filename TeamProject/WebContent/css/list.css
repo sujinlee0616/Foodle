@@ -84,11 +84,11 @@ Author: Sujin  Lee
     padding: 0; }
   
   .map-fix {
-    position: fixed;
-    top: 13%;
-    right: 5%;
+  position: fixed;
+    top: 0;
+    right: 20.7%;
     bottom: 0;
-    width: 33.7%; }
+    width: 33.7%; 
     @media (max-width: 992px) {
       .map-fix {
         display: none;

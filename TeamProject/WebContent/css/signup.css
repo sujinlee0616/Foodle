@@ -163,7 +163,9 @@
     text-decoration: none;
 }
 
-
+.btn.btn-danger:hover{
+    cursor: pointer !important;
+}
 
 /* ==============================================================
    회원가입 UI 바꾸기 전 코딩 (HTML FILE: signup_old.html) 

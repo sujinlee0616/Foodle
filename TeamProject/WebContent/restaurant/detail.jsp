@@ -12,11 +12,20 @@
             <div class="row">
                 <div class="col-md-6">
                     <h5>${mvo.rName }</h5>
-                    <p><span>\\\</span>\\</p>
-                    <p class="reserve-description">정통 나폴리 방식의 화덕피자 전문점 “피자디나폴리”를 소개한다.</p>
+                    <!-- <p><span>\\\</span>\\</p> -->
+                    <p>
+                    	<div class="stars-outer"> <!-- grey star -->
+                    		<div class="stars-inner" style="width: ${mvo.rScore*20}%;"></div>  <!-- yellow star -->
+                        </div>
+                        &nbsp;| ${mvo.rScoreCount }명 참여
+                    </p>
+                    <p class="reserve-description">${strContent}</p>
                 </div>
                 <div class="col-md-6">
                     <div class="reserve-seat-block">
+                    	<!-- <div class="wish-btn">
+                    		<a href="#" class="btn btn-outline-danger ti-heart"></a>
+                    	</div> -->
                         <div class="reserve-rating">
                             <span>${mvo.rScore }</span>
                         </div>
@@ -42,16 +51,19 @@
                     <!-- 음식점 사진 -->
                     <div class="res-photo">
                         <div class="photo">
-                            <div class="main-img">
-                                <img src="${pageContext.request.contextPath }/images/featured1.jpg" id="current">
-                            </div>
-                            <div class="imgs">
-                                <img src="${pageContext.request.contextPath }/images/featured1.jpg">
-                                <img src="${pageContext.request.contextPath }/images/featured2.jpg">
-                                <img src="${pageContext.request.contextPath }/images/featured3.jpg">
-                                <img src="${pageContext.request.contextPath }/images/featured4.jpg">
-                            </div>
-                        </div>
+							<c:forEach var="vo" items="${imageList }">
+								<c:if test="${vo.iName=='Mainimage' }">
+									<div class="main-img">
+										<img src="${vo.iLink}" id="current" style="width: 730px; height: 550px;">
+									</div>
+								</c:if>
+								<c:if test="${vo.iName!='Mainimage' }">
+									<div class="imgs" style="display: inline-block;">
+										<img src="${vo.iLink}" style="width: 142px; height: 100px;" title="${vo.iName }">
+									</div>
+								</c:if>
+							</c:forEach>
+						</div>
                     </div>
                     <!-- 사진 하단 음식점 소개 -->
                     <div class="res_intro_wrap">
@@ -65,12 +77,22 @@
                         <table class="table">
                             <tbody>
                               <tr>
+                                <th scope="row" width="20%">전화번호</th>
+                                <td width="80%" colspan="3">${mvo.rTel }</td>
+                              </tr>
+                              <tr>
+                                <th scope="row" width="20%">주소</th>
+                                <td width="80%" colspan="3">${mvo.rAddr1 }<br>[새주소] ${mvo.rAddr2 }</td>
+                              </tr>
+                              <tr>
                                 <th scope="row" width="20%">영업시간</th>
-                                <td width="80%" colspan="3">${rvo.rOpentime }:00 ~ ${rvo.rClosetime }:00</td>
+                                <td width="30%">${rvo.rOpentime }:00 ~ ${rvo.rClosetime }:00</td>
+                                <th scope="row"width="20%">업종</th>
+                                <td width="30%">${mvo.rType }</td>
                               </tr>
                               <tr>
                                 <th scope="row" width="20%">휴일</th>
-                                <td width="30%">${rvo.rHoliday }요일</td>
+                                <td width="30%">매주 ${rvo.rHoliday }요일</td>
                                 <th scope="row"width="20%">좌석/룸/기타</th>
                                 <td width="30%">${rvo.rSeat }석/${rvo.rRoom }개</td>
                               </tr>
@@ -113,14 +135,14 @@
                                 </div>
                                 <div class="area_reviewNo col-md-4">
                                     <p>전체 리뷰 수</p>
-                                    <img src="images/dialog.png">
+                                    <img src="../images/dialog.png">
                                     <p><span>34</span></p>
                                 </div>
                             </div>
                             <hr>
                             <div class="customer-review_wrap">
                                 <div class="customer-img">
-                                    <img src="images/customer-img0.png" class="img-fluid" alt="#">
+                                    <img src="../images/customer-img0.png" class="img-fluid" alt="#">
                                     <p>산호다</p>
                                     <span>35 Reviews</span>
                                 </div>
@@ -146,9 +168,9 @@
                                     <p class="customer-text">남자친구랑 신사동 놀러갔다가 들린곳인데~ 피자가 고소하고 쫄깃쫄깃 너무 맛있었어요~
                                     </p>
                                     <ul>
-                                        <li><img src="images/review-img1.jpg" class="img-fluid" alt="#"></li>
-                                        <li><img src="images/review-img2.jpg" class="img-fluid" alt="#"></li>
-                                        <li><img src="images/review-img3.jpg" class="img-fluid" alt="#"></li>
+                                        <li><img src="../images/review-img1.jpg" class="img-fluid" alt="#"></li>
+                                        <li><img src="../images/review-img2.jpg" class="img-fluid" alt="#"></li>
+                                        <li><img src="../images/review-img3.jpg" class="img-fluid" alt="#"></li>
                                     </ul>
                                     <span>28명이 이 리뷰가 도움이 되었다고 응답했습니다.</span>
                                     <a href="#"><span class="icon-like"></span>도움이 됐어요</a>
@@ -157,7 +179,7 @@
                             <hr>
                             <div class="customer-review_wrap">
                                 <div class="customer-img">
-                                    <img src="images/customer-img0.png" class="img-fluid" alt="#">
+                                    <img src="../images/customer-img0.png" class="img-fluid" alt="#">
                                     <p>어흥흥흥</p>
                                     <span>17 Reviews</span>
                                 </div>
@@ -187,7 +209,7 @@
                             <hr>
                             <div class="customer-review_wrap">
                                 <div class="customer-img">
-                                    <img src="images/customer-img0.png" class="img-fluid" alt="#">
+                                    <img src="../images/customer-img0.png" class="img-fluid" alt="#">
                                     <p>어흥흥흥</p>
                                     <span>17 Reviews</span>
                                 </div>
@@ -217,7 +239,7 @@
                             <hr>
                             <div class="customer-review_wrap">
                                 <div class="customer-img">
-                                    <img src="images/customer-img0.png" class="img-fluid" alt="#">
+                                    <img src="../images/customer-img0.png" class="img-fluid" alt="#">
                                     <p>어흥흥흥</p>
                                     <span>17 Reviews</span>
                                 </div>
@@ -247,7 +269,7 @@
                             <hr>
                             <div class="customer-review_wrap">
                                 <div class="customer-img">
-                                    <img src="images/customer-img0.png" class="img-fluid" alt="#">
+                                    <img src="../images/customer-img0.png" class="img-fluid" alt="#">
                                     <p>어흥흥흥</p>
                                     <span>17 Reviews</span>
                                 </div>
@@ -307,7 +329,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 responsive-wrap">                 
+                <div class="col-md-4 responsive-wrap"> 
                     <!-- 예약 -->
                     <div class="reservation">
                         <div class="area_title">
@@ -339,22 +361,26 @@
                         <div class="area_title">
                             <h5>위치</h5>
                         </div>
-                        <!-- 카카오맵 : 왜 안나오는지 확인 필요-->
+                        <!-- 카카오맵 -->
                         <!-- <div class="map-wrap">
                             <div class="map-fix">
-                                <div id="map" data-lat="40.674" data-lon="-73.945" data-zoom="14"></div>
+                                <div id="map" data-lat="40.674" data-lon="-73.945" data-zoom="14" 
+                                style="width: 500px; height: 400px;"></div>
                             </div>
                         </div> -->
-                        <!-- 지도 이미지 (임시) -->
+                        <!-- 카카오맵 -->
                         <div class="contact_wrap">
-                            <img src="images/map.jpg" class="img-fluid" alt="#">
+		                    <div id="map" data-lat="40.674" data-lon="-73.945" data-zoom="14" 
+		                    	style="width: 350px; height: 250px;">
+		                    </div>
+                            <!-- <img src="../images/map.jpg" class="img-fluid" alt="#"> -->
                         <div class="address">
                             <span class="icon-location-pin"></span>
-                            <p>${mvo.rAddr1 }</p>
+                            <p id="addr">${mvo.rAddr1 }</p>
                         </div>
                         <div class="address">
                             <span class="icon-screen-smartphone"></span>
-                            <p>${mvo.rTel }</p>
+                            <p>${mvo.rTel }</p><br>
                         </div>
                         <!-- <div class="address">
                             <span class="icon-clock"></span>
@@ -372,13 +398,13 @@
 
     <!-- jQuery, Bootstrap JS. -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="${pageContext.request.contextPath }/js/jquery-3.2.1.min.js"></script>
-    <script src="${pageContext.request.contextPath }/js/popper.min.js"></script>
-    <script src="${pageContext.request.contextPath }/js/bootstrap.min.js"></script>
+    <script src="../js/jquery-3.2.1.min.js"></script>
+    <script src="../js/popper.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
     <!-- Magnific popup JS -->
-    <script src="${pageContext.request.contextPath }/js/jquery.magnific-popup.js"></script>
+    <script src="../js/jquery.magnific-popup.js"></script>
     <!-- Swipper Slider JS -->
-    <script src="${pageContext.request.contextPath }/js/swiper.min.js"></script>
+    <script src="../js/swiper.min.js"></script>
     <script>
         var swiper = new Swiper('.swiper-container', {
             slidesPerView: 3,
@@ -417,8 +443,8 @@
     <script type="text/JavaScript" src="js/detail_imageGallery.js"></script>
 
     <!-- jQuery Datepicker UI for reservation date -->
-    <script src="${pageContext.request.contextPath }/js/jquery-ui-1.12.1/jquery-ui.min.js"></script>
-    <script src="${pageContext.request.contextPath }/js/jquery-ui-1.12.1/datepicker-ko.js"></script>
+    <script src="../js/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+    <script src="../js/jquery-ui-1.12.1/datepicker-ko.js"></script>
     <script>
         $( function() {
         $( "#reservation_date" ).datepicker({
@@ -447,6 +473,49 @@
 
     var map = new kakao.maps.Map(container, options);
     </script>
+    
+    
+    <!-- 주소로 지도 찾기 -->
+    <script>
+	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+	    mapOption = {
+	        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+	        level: 3 // 지도의 확대 레벨
+	    };  
+	
+	// 지도를 생성합니다    
+	var map = new kakao.maps.Map(mapContainer, mapOption); 
+	
+	// 주소-좌표 변환 객체를 생성합니다
+	var geocoder = new kakao.maps.services.Geocoder();
+	
+	var addr=$('#addr').text();
+	// 주소로 좌표를 검색합니다
+	geocoder.addressSearch(addr, function(result, status) {
+		console.log(addr);
+	
+	    // 정상적으로 검색이 완료됐으면 
+	     if (status === kakao.maps.services.Status.OK) {
+	
+	        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+	
+	        // 결과값으로 받은 위치를 마커로 표시합니다
+	        var marker = new kakao.maps.Marker({
+	            map: map,
+	            position: coords
+	        });
+	
+	        // 인포윈도우로 장소에 대한 설명을 표시합니다
+	        var infowindow = new kakao.maps.InfoWindow({
+	            content: '<div style="width:150px;text-align:center;padding:6px 0;">${mvo.rName}</div>'
+	        });
+	        infowindow.open(map, marker); 
+	
+	        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+	        map.setCenter(coords);
+	    } 
+	});    
+	</script>
 
 </body>
 
