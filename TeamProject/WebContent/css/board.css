@@ -115,10 +115,13 @@ Modified Date: 2020.04.16 (Thu)
 .cmtBtn{
 	height: 80px; width:7%; 
 	display: inline-block; margin-top: 10px;
-	
-
 }
 
+/* 화면 작을 때 댓글 textarea와 btn 사이즈 조절 */
+@media (max-width: 992px) {
+	.cmt_input{width: 82%; height: 110px;}
+	.cmtBtn{width: 15%; height: 110px;}
+}
 
 /* 글쓰기 화면에서의 버튼 */
 .board-btn-wrap {text-align: center; }
