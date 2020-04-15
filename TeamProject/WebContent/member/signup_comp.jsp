@@ -1,113 +1,12 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="ko">
-
+<html>
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="author" content="Colorlib">
-  <meta name="description" content="#">
-  <meta name="keywords" content="#">
-  <!-- Page Title -->
-  <title>Foodle</title>
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="../css/bootstrap.min.css">
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,700,900" rel="stylesheet">
-  <!-- Simple line Icon -->
-  <link rel="stylesheet" href="../css/simple-line-icons.css">
-  <!-- Themify Icon -->
-  <link rel="stylesheet" href="../css/themify-icons.css">
-  <!-- Hover Effects -->
-  <link rel="stylesheet" href="../css/set1.css">
-  <!-- Main CSS -->
-  <link rel="stylesheet" href="../css/style.css">
-  <!-- List CSS -->
-  <link rel="stylesheet" href="../css/list.css">
-  <!-- Detail CSS -->
-  <link rel="stylesheet" href="../css/detail.css">
-  <!-- Board CSS -->
-  <link rel="stylesheet" href="../css/board.css">
-  <!-- Board Swiper CSS -->
-  <link rel="stylesheet" href="../css/swiper.min.css">
-  <!-- My Page CSS -->
-  <link rel="stylesheet" href="../css/mypage.css">
-  <!-- SIGN UP CSS -->
-  <link rel="stylesheet" href="../css/signup.css">
-  <!-- LOGIN CSS -->
-  <link rel="stylesheet" href="../css/login.css">
-  <!-- COUPON CSS -->
-  <link rel="stylesheet" href="../css/coupon.css">
-  <!-- Kakao Map Script -->
-  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=671fb4748c5025ba667a7fc5d41d217a&libraries=services"></script>
-  <!-- jQuery Datepicker UI-->
-  <link rel="stylesheet" href="../js/jquery-ui-1.12.1/jquery-ui.min.css">
-  <!-- Font -->
-  <link href="https://fonts.googleapis.com/css?family=Do+Hyeon|Nanum+Gothic&display=swap" rel="stylesheet">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" />
+<meta charset="UTF-8">
+<title>Insert title here</title>
 </head>
-
 <body>
-
-<!--============================= HEADER =============================-->
-<div class="dark-bg sticky-top">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-12">
-        <nav class="navbar navbar-expand-lg navbar-light">
-          <a class="navbar-brand" href="../main/main.do">Foodle</a>
-          <div class="search_wrap">
-            <form name="header_search" action="">
-              <div class="header_searchbox">
-                <img class="header_searchicon" src="../images/header_searchicon.png">
-                <label class="header_searchinputwrap">
-                  <input type="text" class="header_searchinput" name="header_searchword" placeholder="검색어를 입력하세요."
-                    value="" autocomplete="off" maxlength="50">
-                </label>
-              </div>
-            </form>
-          </div>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
-            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="icon-menu"></span>
-          </button>
-          <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
-            <ul class="navbar-nav">
-              <li class="nav-item active">
-                <a class="nav-link" href="../restaurant/list_general.do">실시간 맛집</a>
-              </li>
-              <li class="nav-item active">
-                <a class="nav-link" href="../restaurant/list_general.do">주간 맛집</a>
-              </li>
-              <li class="nav-item active">
-                <a class="nav-link" href="../restaurant/list_thema.do">테마 맛집</a>
-              </li>
-              <li class="nav-item active">
-                <a class="nav-link" href="../restaurant/list_nearby.do">주변 맛집</a>
-              </li>
-              <li class="nav-item active">
-                <a class="nav-link" href="../board/list.do">자유게시판</a>
-              </li>
-              <!-- =============== 로그인 안 한 경우 =============== -->
-              <c:if test="${sessionScope.id==null }">
-                <li class="not_loggedin">
-                  <a href="../member/login.do" class="btn btn-outline-light top-btn">
-                    <span class="ti-plus"></span> 로그인
-                  </a>
-                </li>
-              </c:if>
-              
-            </ul>
-          </div>
-        </nav>
-      </div>
-    </div>
-  </div>
-</div>
-<!--//END HEADER -->
-
-
 <!--============================= SINGUP =============================-->
 <section class="singup-block light-bg">
   <div class="container py-5">
@@ -126,7 +25,6 @@
           <div class="member_type mb-3">
             <ul class="member_category">
               <li class="">
-                <!-- 클릭 시 on으로 변경 -->
                 <h2 class="tab01 mb-0">
                   <a href="signup.do" class="tab_btn">개인회원가입</a>
                 </h2>
@@ -262,7 +160,7 @@
           <span class="essential">*</span>은 필수 입력 항목입니다.
         </p>
         <p class="message">
-          이미 계정을 가지고 있으신가요? <a href="login.do"> 여기서 로그인하세요.</a>
+         	이미 계정을 가지고 있으신가요? <a href="login.do"> 여기서 로그인하세요.</a>
         </p>
       </div>
     </div>
@@ -329,8 +227,5 @@
     }).open();
   }
 </script>
-
-
 </body>
-
 </html>
