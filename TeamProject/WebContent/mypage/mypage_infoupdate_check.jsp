@@ -7,11 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="../mypage/infoupdate_check_ok.do" method="post">
 		<p>비밀번호</p>
-		<input name=pwd type='password'></input>
-		
-		<input type='submit'></input>
-	</form>
+		<input id="mypage_infoupdate_check_pwd" name=pwd type='password'></input>	
+		<input id="mypage_infoupdate_check_button" type='button' value="확인"></input>
 </body>
 </html>

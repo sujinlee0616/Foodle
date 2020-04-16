@@ -20,6 +20,7 @@
 		</tr>
 
 		<c:forEach var="vo" items="${list }">
+		
 			<tr>
 				<td class="text-center">${vo.rno }</td>
 				<td class="text-center">${vo.revgood }개</td>

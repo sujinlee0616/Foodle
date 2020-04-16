@@ -151,6 +151,30 @@ public class MypageDAO {
 				session.close(); 
 		}
 	}
+	
+	public static List<MyWishVO> mypageMyWishList(String userid)
+	{
+		List<MyWishVO> list = new ArrayList<MyWishVO>();
+		SqlSession session=null;
+		
+		try 
+		{
+			session=ssf.openSession();
+			if(userid!=null)
+			{
+				list = session.selectList("mypageMyWishList",userid);
+			}
+		} 
+		catch (Exception ex) {
+			System.out.println("memberLogin: "+ex.getMessage());
+		}
+		finally {
+			if(session!=null)
+				session.close(); 
+		}
+		
+		return list;
+	}	
 }
 
 

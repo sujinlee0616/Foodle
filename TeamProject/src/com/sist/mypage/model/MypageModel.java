@@ -23,6 +23,55 @@ public class MypageModel {
 		return "../main/main.jsp";
 	}
 
+	@RequestMapping("mypage/wish.do")
+	public String mypage_wish(HttpServletRequest request, HttpServletResponse response) {
+		HttpSession session = request.getSession();
+		
+		List<MyWishVO> list = new ArrayList<MyWishVO>();
+		list = MypageDAO.mypageMyWishList((String) session.getAttribute("id"));
+
+		request.setAttribute("list", list);
+		
+		return "../mypage/mypage_wish.jsp";
+	}
+	
+	
+	@RequestMapping("mypage/recentpage.do")
+	public String mypage_recentpage(HttpServletRequest request, HttpServletResponse response) {
+		HttpSession session = request.getSession();
+
+		
+		
+		request.setAttribute("mypage_sub", "mypage_recentpage.jsp");
+		request.setAttribute("main_header", "../common/header_sub.jsp");
+		request.setAttribute("main_jsp", "../mypage/mypage.jsp");
+		return "../main/main.jsp";
+	}
+
+	@RequestMapping("mypage/reserve.do")
+	public String mypage_reserve(HttpServletRequest request, HttpServletResponse response) {
+		HttpSession session = request.getSession();
+
+		List<ReservationVO> list = new ArrayList<ReservationVO>();
+		list = MypageDAO.mypageReserveList((String) session.getAttribute("id"));
+
+		request.setAttribute("list", list);
+
+		return "../mypage/mypage_reserve.jsp";
+	}
+	
+	@RequestMapping("mypage/review.do")
+	public String mypage_review(HttpServletRequest request, HttpServletResponse response) {
+		HttpSession session = request.getSession();
+
+		List<ReviewVO> list = new ArrayList<ReviewVO>();
+		list = MypageDAO.mypageReviewList((String) session.getAttribute("id"));
+
+		request.setAttribute("list", list);
+
+		return "../mypage/mypage_review.jsp";
+	}
+	
 	@RequestMapping("mypage/coupon.do")
 	public String mypage_coupon(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
@@ -32,30 +81,17 @@ public class MypageModel {
 
 		request.setAttribute("list", list);
 
-		request.setAttribute("mypage_sub", "mypage_coupon.jsp");
-		request.setAttribute("main_header", "../common/header_sub.jsp");
-		request.setAttribute("main_jsp", "../mypage/mypage.jsp");
-		return "../main/main.jsp";
+		return "../mypage/mypage_coupon.jsp";
 	}
+	
 
-	@RequestMapping("mypage/infoupdate.do")
-	public String mypage_infoupdate(HttpServletRequest request, HttpServletResponse response) {
-		HttpSession session = request.getSession();
 
-		request.setAttribute("mypage_sub", "mypage_infoupdate.jsp");
-		request.setAttribute("main_header", "../common/header_sub.jsp");
-		request.setAttribute("main_jsp", "../mypage/mypage.jsp");
-		return "../main/main.jsp";
-	}
 
 	@RequestMapping("mypage/infoupdate_check.do")
 	public String mypage_infoupdate_check(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
 
-		request.setAttribute("mypage_sub", "mypage_infoupdate_check.jsp");
-		request.setAttribute("main_header", "../common/header_sub.jsp");
-		request.setAttribute("main_jsp", "../mypage/mypage.jsp");
-		return "../main/main.jsp";
+		return "../mypage/mypage_infoupdate_check.jsp";
 	}
 
 	@RequestMapping("mypage/infoupdate_check_ok.do")
@@ -70,9 +106,11 @@ public class MypageModel {
 
 		if (vo.getMsg().equals("OK")) {
 			request.setAttribute("vo", vo);
-			return "infoupdate.do";
+			
+			
+			return "../mypage/mypage_infoupdate.jsp";
 		} else {
-			return "infoupdate_check.do";
+			return "../mypage/mypage_infoupdate_check.jsp";
 		}
 	}
 
@@ -100,13 +138,13 @@ public class MypageModel {
 			String address_detail = request.getParameter("address_detail");
 
 			 //데이터 확인
-			 System.out.println("user_type="+utype+", id="+id+", pwd="+pwd+ 
+	/*		 System.out.println("user_type="+utype+", id="+id+", pwd="+pwd+ 
 					 ",name="+name+", gender="+gender);
 			 System.out.println("birth="+birth+", email="+email+
 					 ",pwd_hint="+pwd_hint+", pwd_hintAns="+pwd_hintAns);
 			 System.out.println("cellnum="+cellnum+", telnum="+telnum);
 			 System.out.println("address_main="+address_main+
-					 ",postcode="+postcode+", address_detail="+address_detail);
+					 ",postcode="+postcode+", address_detail="+address_detail);*/
 
 			MemberVO vo = new MemberVO();
 			vo.setUtype(utype);
@@ -133,53 +171,70 @@ public class MypageModel {
 		return "redirect:mypage.do";
 	}
 
-	@RequestMapping("mypage/recentpage.do")
-	public String mypage_recentpage(HttpServletRequest request, HttpServletResponse response) {
-		HttpSession session = request.getSession();
+	
 
-		request.setAttribute("mypage_sub", "mypage_recentpage.jsp");
-		request.setAttribute("main_header", "../common/header_sub.jsp");
-		request.setAttribute("main_jsp", "../mypage/mypage.jsp");
-		return "../main/main.jsp";
-	}
 
-	@RequestMapping("mypage/reserve.do")
-	public String mypage_reserve(HttpServletRequest request, HttpServletResponse response) {
-		HttpSession session = request.getSession();
 
-		List<ReservationVO> list = new ArrayList<ReservationVO>();
-		list = MypageDAO.mypageReserveList((String) session.getAttribute("id"));
 
-		request.setAttribute("list", list);
-
-		request.setAttribute("mypage_sub", "mypage_reserve.jsp");
-		request.setAttribute("main_header", "../common/header_sub.jsp");
-		request.setAttribute("main_jsp", "../mypage/mypage.jsp");
-		return "../main/main.jsp";
-	}
-
-	@RequestMapping("mypage/review.do")
-	public String mypage_review(HttpServletRequest request, HttpServletResponse response) {
-		HttpSession session = request.getSession();
-
-		List<ReviewVO> list = new ArrayList<ReviewVO>();
-		list = MypageDAO.mypageReviewList((String) session.getAttribute("id"));
-
-		request.setAttribute("list", list);
-
-		request.setAttribute("mypage_sub", "mypage_review.jsp");
-		request.setAttribute("main_header", "../common/header_sub.jsp");
-		request.setAttribute("main_jsp", "../mypage/mypage.jsp");
-		return "../main/main.jsp";
-	}
-
-	@RequestMapping("mypage/wish.do")
-	public String mypage_wish(HttpServletRequest request, HttpServletResponse response) {
+	
+	
+	
+	
+	
+	
+	
+//	@RequestMapping("mypage/test.do")
+//	public String test(HttpServletRequest request, HttpServletResponse response) {
+//		
+//		request.setAttribute("main", arg1);
+//		return "../main/main/jsp";
+//	}
+	@RequestMapping("mypage/test_ok.do")
+	public String test_ok(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
 		
-		request.setAttribute("mypage_sub", "mypage_wish.jsp");
-		request.setAttribute("main_header", "../common/header_sub.jsp");
-		request.setAttribute("main_jsp", "../mypage/mypage.jsp");
-		return "../main/main.jsp";
+		List<MyWishVO> list = new ArrayList<MyWishVO>();
+		list = MypageDAO.mypageMyWishList((String) session.getAttribute("id"));
+
+
+		
+		//[{a,b,c,d}]
+		String json ="[";
+				
+		for(int i = 0 ; i < list.size() ; i++)
+		{
+			json +="{";
+			json +="rno:";
+			json +="\"";
+			json +=list.get(i).getRno();
+			json +="\"";
+			json +=",";
+			json +="regdate:";
+			json +="\"";
+			json +=list.get(i).getRegdate();
+			json +="\"";
+			json +=",";
+			json +="userid:";
+			json +="\"";
+			json +=list.get(i).getUserid();
+			json +="\"";
+			json +=",";
+			json +="wishno:";
+			json +="\"";
+			json +=list.get(i).getWishno();
+			json +="\"";
+			json +="}";
+			json +=",";	
+		}
+		json=json.substring(0,json.length()-1);
+		json +="]";
+		
+		System.out.println(json);
+		
+		request.setAttribute("list", json);
+		
+
+		return "../mypage/test_ok.jsp";
 	}
+		
 }

@@ -52,5 +52,10 @@
 		 
 		WHERE userid=#{userid} 
 	</update>
+	<select id="mypageMyWishList" resultType="MyWishVO"
+		parameterType="String">
+		SELECT * FROM mywish
+		WHERE userid=#{userid}
+	</select>
 	
 </mapper>
