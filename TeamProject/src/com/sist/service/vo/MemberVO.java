@@ -16,6 +16,7 @@ public class MemberVO {
 	private String utype;
 	private String hint;
 	private String hintans;
+	private String signupdate;
 	
 	private String msg;
 
@@ -138,6 +139,14 @@ public class MemberVO {
 	public void setMsg(String msg) {
 		this.msg = msg;
 	}
+
+	public String getSignupdate() {
+		return signupdate;
+	}
+
+	public void setSignupdate(String signupdate) {
+		this.signupdate = signupdate;
+	}
 	
 	
 		
@@ -145,18 +154,19 @@ public class MemberVO {
 
 /* 
  * [member 테이블] 
- *  USERID  NOT NULL VARCHAR2(50)  
-	UPWD    NOT NULL VARCHAR2(20)  
-	UNAME   NOT NULL VARCHAR2(30)  
-	UEMAIL  NOT NULL VARCHAR2(40)  
-	UTEL             VARCHAR2(15)  
-	UPHONE           VARCHAR2(15)  
-	UPOST            VARCHAR2(7)   
-	UADDR1           VARCHAR2(200) 
-	UADDR2           VARCHAR2(200) 
-	USEX             VARCHAR2(10)  
-	UBIRTH           VARCHAR2(10)  
-	UTYPE   NOT NULL VARCHAR2(10)  
-	HINT    NOT NULL VARCHAR2(100) 
-	HINTANS NOT NULL VARCHAR2(100) 
+ *  USERID     NOT NULL VARCHAR2(50)  
+	UPWD       NOT NULL VARCHAR2(20)  
+	UNAME      NOT NULL VARCHAR2(30)  
+	UEMAIL     NOT NULL VARCHAR2(40)  
+	UTEL                VARCHAR2(11)  
+	UPHONE              VARCHAR2(11)  
+	UPOST               VARCHAR2(7)   
+	UADDR1              VARCHAR2(200) 
+	UADDR2              VARCHAR2(200) 
+	UGENDER             VARCHAR2(10)  
+	UBIRTH              VARCHAR2(15)  
+	UTYPE      NOT NULL VARCHAR2(10)  
+	HINT       NOT NULL VARCHAR2(100) 
+	HINTANS    NOT NULL VARCHAR2(100) 
+	SIGNUPDATE          VARCHAR2(50)  
  */
