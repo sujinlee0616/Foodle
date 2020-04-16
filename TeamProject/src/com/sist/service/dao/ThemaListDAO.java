@@ -6,7 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import com.sist.vo.*;
-
+//2020 04 16 test 깃
 public class ThemaListDAO {
 
 		private static SqlSessionFactory ssf;
