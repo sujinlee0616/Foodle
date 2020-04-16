@@ -23,14 +23,13 @@
           <div class="member_type mb-3">
             <ul class="member_category">
               <li class="on">
-                <!-- 클릭 시 on으로 변경 -->
                 <h2 class="tab01 mb-0">
-                  <a href="signup.do?usertype=person" class="tab_btn">개인회원가입</a>
+                  <a href="signup.do" class="tab_btn">개인회원가입</a>
                 </h2>
               </li>
               <li class="">
                 <h2 class="tab02 mb-0">
-                  <a href="signup.do?usertype=company" class="tab_btn">기업회원가입</a>
+                  <a href="signup_comp.do" class="tab_btn">기업회원가입</a>
                 </h2>
               </li>
             </ul>
