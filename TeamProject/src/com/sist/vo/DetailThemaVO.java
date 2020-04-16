@@ -20,3 +20,4 @@ public class DetailThemaVO {
 		this.t_Info = t_Info;
 	}
 }
+

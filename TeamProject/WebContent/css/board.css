@@ -1,8 +1,9 @@
 @charset "utf-8";
 /*------------------------------------------------------------------
-Theme Name: Board 
-Version: 1.0
+Theme Name: Board
+Version: 1.1
 Author: Sujin Lee
+Modified Date: 2020.04.14 (Tue)
 -------------------------------------------------------------------*/
 
 /* ==============================================================
@@ -17,7 +18,7 @@ Author: Sujin Lee
 	display: inline-block;
 	margin: 0;
 }
-.board-block p {
+.board-block .board_count {
 	display: inline-block;
 	font-size: 18px;
 	color: #b2b8c3;
@@ -34,10 +35,98 @@ Author: Sujin Lee
 		margin: 0;
 	}
 }
-.board-block p span {
+.board-block .countNum {
 	color: #ff7474;
 }
 
 .board-block .content pre{
   font-size: 1rem;
 }
+
+/* 2020.04.14(Tue) 수정 */
+
+.replyBoard{background-color: #FFFFFF;}
+
+.replyBoard th{
+	background-color: #E0E0E0;
+}
+.replyBoard .subject{
+	font-weight: 600;
+}
+.bd_detail_dt{color: #9E9E9E; font-size: 14px;}
+.td_del{color: #eeeeee; }
+.reply_detail thead td {width: 23%;}
+.bdDtBtn{
+	float: right;
+}
+
+.comment_area{
+	padding: 10px;
+}
+.comment{
+	padding: 10px;
+	border: 1px solid #aaaaaa;
+}
+.comment_num{font-size: 16px; font-weight: 600;}
+
+.insertBtn{
+	width: 100%; height: 100%; background-color: #ffffff; 
+	padding: 5px 10px;
+	border: 1px solid #aaaaaa;
+	text-decoration: none !important;
+}
+.insertBtn:hover{
+	background-color: #ff3a6d;
+	color: #ffffff;
+	border: 1px solid #ffffff;
+}
+
+/* 글쓰기 화면에서의 버튼 */
+.board-btn-wrap {text-align: center; }
+.board-btn-wrap .btn-danger {
+    width:100%;
+    background: #ff3a6d;
+     padding: 16px 50px;
+    -webkit-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+    border: 0; 
+}
+.board-btn-wrap .btn-cancle {
+    width:100%;
+    background: #ffffff;
+     padding: 16px 50px;
+    -webkit-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+    border: 0; 
+}
+.board-btn-wrap .btn-danger:hover {
+    background: #f34e79;
+    outline: none;
+    -webkit-box-shadow: none;
+    box-shadow: none; 
+}
+.board-btn-wrap a{font-size: 1.2rem;}
+
+/* 글쓰기 화면에서의 tr,th */
+.reply_insert th{
+	width: 15%;
+}
+.reply_insert input{
+	width: 100%;
+}
+
+/* 디바이스 크기 작을 경우 리스트에서 글 번호, 작성일, 조회수 정보 비노출,
+상세보기에서 bd_detail_dt 컬럼 비노출 */
+@media (max-width: 992px) {
+	.reply_list tr th:nth-child(1),.replyBoard tr th:nth-child(4),.replyBoard tr th:nth-child(5){
+		display: none;
+	}
+	.reply_list tr td:nth-child(1),.replyBoard tr td:nth-child(4),.replyBoard tr td:nth-child(5){
+		display: none;
+	}
+	.reply_detail thead tr:nth-child(2){display: none;}
+}
+
+.comment th{background-color: #FFFFFF; font-weight: 300; }

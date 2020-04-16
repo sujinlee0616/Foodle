@@ -52,14 +52,14 @@ public class MainDAO {
 		return weekimglist;
 	}*/
 	
-	public static List<MainInfoVO> realTimeTop3() {
+	public static List<MainInfoVO> popularTop3() {
 		List<MainInfoVO> list=new ArrayList<MainInfoVO>();
 		SqlSession session=null;
 		try {
 			session=ssf.openSession();
-			list=session.selectList("realTimeTop3");
+			list=session.selectList("popularTop3");
 		} catch(Exception ex) {
-			System.out.println("realTimeTop3(): "+ex.getMessage());
+			System.out.println("popularTop3(): "+ex.getMessage());
 		} finally {
 			if(session!=null)
 				session.close();

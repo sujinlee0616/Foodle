@@ -1,6 +1,9 @@
 package com.sist.manager;
 
 import java.util.*;
+
+import org.jsoup.internal.StringUtil;
+
 import com.sist.dao.*;
 import com.sist.vo.*;
 
@@ -185,16 +188,18 @@ public class ThemaManager {
 		//값을 자르기!
 		for(int i=0; i<tempList.size(); i++)
 		{
-			DetailThemaVO vo = new DetailThemaVO();
-
-			vo.setT_DetailThema(tempList.get(i).substring(0,tempList.get(i).indexOf("|")));
+			
+			
+			String first = tempList.get(i).substring(0,tempList.get(i).indexOf("|"));
+			
 			
 			//System.out.println(i + tempList.get(i).substring(0,tempList.get(i).indexOf("|")));
 			
 			//vo.setT_Info(tempList.get(i).substring((tempList.get(i).indexOf("|"))+1));
 			
-		
+		//강릉 정동진 해돋이축제,여수 향일암 일출제,울산 간절곶 해맞이축제,제주 성산 일출축제,포항 호미곶 해맞이축전,부산 해맞이축제
 			String temp = tempList.get(i).substring((tempList.get(i).indexOf("|"))+1);
+			//첫번째|부터 끝까지 자름
 			
 			
 			StringTokenizer str1 = new StringTokenizer(temp, ",");
@@ -202,14 +207,12 @@ public class ThemaManager {
 			
 			while(str1.hasMoreTokens())
 			{
+				DetailThemaVO vo = new DetailThemaVO();
+				vo.setT_DetailThema(first);
+				vo.setT_Info(str1.nextToken());
 				
-				String token = str1.nextToken();
-			
-				//System.out.println(i+"번째: "+token);
-				
-				vo.setT_Info(token);
-				
-			    list.add(vo);	  
+			    list.add(vo);
+			   
 			}
 			
 		}
@@ -301,10 +304,26 @@ public class ThemaManager {
 		
 		
 		 */
+	
 		
+/*		
+		ThemaManager tm=new ThemaManager();
+		List<DetailThemaVO> list= tm.DetailThemaAllData();
+		for(DetailThemaVO vo:list) {
+			
+			
+			System.out.printf(vo.getT_DetailThema());
+			System.out.println("   "+vo.getT_Info());
+			
+		}
+
 		
-		ThemaManager tm = new ThemaManager();
+*/
+		//-------------------------------------
+		
+		ThemaManager tm = new ThemaManager();		
 		//ArrayList<MainThemaVO> list = tm.MainThemaAllData();
+	
 		ArrayList<DetailThemaVO> list2 = tm.DetailThemaAllData();
 		
 		

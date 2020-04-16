@@ -59,7 +59,7 @@
 		ORDER BY rNO ASC
 	</select> -->
 	
-	<select id="realTimeTop3" resultMap="mainMap">
+	<select id="popularTop3" resultMap="mainMap">
 		SELECT rno,rname,rscore,raddr2,rtel,iname,ilink
 		FROM (SELECT maininfo.rno,rscore,rgood,rhit,rname,raddr2,rtel,iname,ilink
 		FROM maininfo,subinfo,image
