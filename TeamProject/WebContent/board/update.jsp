@@ -15,36 +15,30 @@
                 </div>
             </div>
 			<div class="py-3">
-					<form method=post action="insert_ok.do">
+					<form method=post action="update_ok.do">
 					 <!-- action: insert_ok.jsp 에서 데이터 받아서 처리 -->
 						 <div class="table-responsive">
 							<table class="table replyBoard reply_insert">
 							<tbody>
-							
+								<input type="hidden" name="bno" value=${vo.bno }>
 								<tr>
 									<th class="text-right success">이름</th>
-									<td>
-										<input type="text" name="name" class="" required value=${vo.bname }>
-									</td>
+									<td><input type="text" name="name" class="" required value=${vo.bname }></td>
 								</tr>
 								<tr>
 									<th class="text-right success">제목</th>
-									<td>
-										<input type="text" name="subject" required value=${vo.bsubject }>
-									</td>
+									<td><input type="text" name="subject" required value=${vo.bsubject }></td>
 								</tr>
 								<tr>
 									<th class="text-right success">내용</th>
 									<td>
-										<textarea type="text" name="content" class="content" required>
-										 ${vo.bcontent }
-										</textarea>
+										<textarea type="text" name="content" class="update_ct" required>${vo.bcontent }</textarea>
 									</td>
 								</tr>
 								<tr>
 									<th class="text-right success">비밀번호</th>
 									<td>
-										<input type="password" name="pwd" required value=${vo.bpwd }>
+										<input type="password" name="pwd" required value="">
 									</td>
 								</tr>
 							</tbody>

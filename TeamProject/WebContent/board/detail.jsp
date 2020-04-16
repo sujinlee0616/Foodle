@@ -2,7 +2,9 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<!-- 날짜 형식 변환 -->
+<jsp:useBean id="now" class="java.util.Date" />
+<fmt:formatDate var="today" value="${now}" pattern="yyyy-MM-dd" />
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -53,9 +55,10 @@
                   <a class="bdDtBtn" id="copyUrl" href="">url 복사</a>
                 </td>
                 <td class="bdDtBtnGp">
+                  <a class="bdDtBtn" href="../board/list.do">목록</a>
                   <a class="bdDtBtn" href="../board/update.do?bno=${vo.bno }">수정</a>
-                  <a class="bdDtBtn" href="../board/delete.do">삭제</a>
-                  <a class="bdDtBtn" href="../board/reply.do">답글</a>
+                  <a class="bdDtBtn" href="../board/delete.do?bno=${vo.bno }">삭제</a>
+                  <a class="bdDtBtn" href="../board/reply.do?bno=${vo.bno }">답글</a>
                 </td>
               </tr>
             </tbody>
@@ -119,94 +122,95 @@
 
 <!--============================= Start of BOARD LIST =============================-->
 <section class="board-block light-bg">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <h5>자유게시판</h5>
-        <p class="board_count">총 <span class="countNum">###개</span></p>
-      </div>
-    </div>
-    <div class="pt-3 pb-2">
-      <div class="table-responsive">
-        <table class="table replyBoard reply_list" style="background-color: #FFFFFF;">
-          <thead class="thead-dark">
-            <tr style="background-color: #E0E0E0;">
-              <th scope="col" style="width:7%;" class="text-center">No.</th>
-              <th scope="col" style="width:53%;" class="text-center">제목</th>
-              <th scope="col" style="width:15%;" class="text-center">이름</th>
-              <th scope="col" style="width:15%;" class="text-center">작성일</th>
-              <th scope="col" style="width:10%;" class="text-center">조회수</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="text-center">-</td>
-              <td><a href="detail.do">공지글입니다.</a><span class="badge badge-danger mx-2">공지</span></td>
-              <td class="text-center">Otto</td>
-              <td class="text-center">20/02/04 01:00</td>
-              <td class="text-center">12</td>
-            </tr>
-            <tr>
-              <td class="text-center">-</td>
-              <td><a href="detail.do">데이터 연동 안된 글 - NEW 뱃지</a><span class="badge badge-primary mx-2">NEW</span></td>
-              <td class="text-center">Otto</td>
-              <td class="text-center">20/01/19 20:31</td>
-              <td class="text-center">12</td>
-            </tr>
-            <tr>
-              <td class="text-center">1</td>
-              <td><a href="detail.do?no=${vo.bno }">제목</a></td>
-              <td class="text-center">이름</td>
-              <td class="text-center">
-                2020.01.01
-              </td>
-              <td class="text-center">143</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12">
-        <div class="inBtn pb-2">
-          <a class="insertBtn" href="../board/insert.do">
-            글쓰기
-          </a>
-        </div>
-      </div>
-    </div>
-    <!-- Pagination -->
-    <div>
-      <nav aria-label="...">
-        <ul class="pagination justify-content-center">
-          <li class="page-item">
-            <a class="page-link" href="#" aria-label="Previous">
-              <span aria-hidden="true">&laquo;</span>
-              <span class="sr-only">Previous</span>
-            </a>
-          </li>
-          <li class="page-item">
-            <a class="page-link" href="#">1</a>
-          </li>
-          <li class="page-item active">
-            <span class="page-link">2
-              <span class="sr-only">(current)</span>
-            </span>
-          </li>
-          <li class="page-item">
-            <a class="page-link" href="#">3</a>
-          </li>
-          <li class="page-item">
-            <a class="page-link" href="#" aria-label="Next">
-              <span aria-hidden="true">&raquo;</span>
-              <span class="sr-only">Next</span>
-            </a>
-          </li>
-        </ul>
-      </nav>
-    </div>
-  </div>
-</section>
+        <div class="container">
+			<div class="row">
+                <div class="col-md-12">
+                    <h5>자유게시판</h5>
+                    <p class="board_count">총 <span class="countNum">###개</span></p>
+                </div>
+            </div>
+			<div class="py-3">
+				<div class="table-responsive">
+					<table class="table replyBoard reply_list" style="background-color: #FFFFFF;">						
+						<thead class="thead-dark">
+							<tr style="background-color: #E0E0E0;">
+								<th scope="col" style="width:7%;" class="text-center">No.</th>
+								<th scope="col" style="width:53%;" class="text-center">제목</th>
+								<th scope="col" style="width:15%;" class="text-center">이름</th>
+								<th scope="col" style="width:15%;" class="text-center">작성일</th>
+								<th scope="col" style="width:10%;" class="text-center">조회수</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach var="vo" items="${list }">
+								<tr>
+									<td class="text-center">${vo.bno }</td>
+									<td>
+										<a href="detail.do?no=${vo.bno }">${vo.bsubject }</a>
+										<!-- 공지 글에는 공지 플래그 붙임 -->
+										<c:if test="${vo.notice=='y'}">
+											<span class="badge badge-gray ml-2" id="">공지</span>
+										</c:if>
+										<!-- 오늘 올린글에는 new 플래그 붙임 -->
+										<div style="display:none;">
+											<fmt:formatDate var="reg_dt" value="${vo.regdate}" pattern="yyyy-MM-dd"/>
+										</div>
+										<c:if test="${today<=reg_dt}">
+											<span class="badge badge-lightgray ml-2" id="">NEW</span>
+										</c:if>
+									</td>
+									<td class="text-center">${vo.bname }</td>
+									<td class="text-center">
+										<fmt:formatDate value="${vo.regdate }" pattern="yyyy.MM.dd hh:mm"/>
+									</td>
+									<td class="text-center">${vo.hit }</td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+				</div>
+			</div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="inBtn pb-2">
+                        <a class="insertBtn" href="../board/insert.do">
+                            글쓰기
+                        </a>
+                    </div>
+                </div>
+            </div>
+	        <!-- ================ Pagination ================ -->
+			<div>
+				<nav aria-label="...">
+					<ul class="pagination justify-content-center">
+						<li class="page-item">
+							<a class="page-link" href="#" aria-label="Previous"> 
+								<span aria-hidden="true">&laquo;</span>
+								<span class="sr-only">Previous</span>
+							</a>
+						</li>
+						<li class="page-item">
+							<a class="page-link" href="#">1</a>
+						</li>
+						<li class="page-item active">
+							<span class="page-link">2
+								<span class="sr-only">(current)</span>
+							</span>
+						</li>
+						<li class="page-item">
+							<a class="page-link" href="#">3</a>
+						</li>
+						<li class="page-item">
+							<a class="page-link" href="#" aria-label="Next"> 
+								<span aria-hidden="true">&raquo;</span> 
+								<span class="sr-only">Next</span>
+							</a>
+						</li>
+					</ul>
+				</nav>
+			</div>			
+		</div>
+    </section>
 <!--============================= End of BOARD LIST =============================-->
 
 

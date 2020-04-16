@@ -36,7 +36,7 @@
 								<tr>
 									<th class="text-right success">내용</th>
 									<td>
-										<textarea type="text" name="content" class="content" required></textarea>
+										<textarea type="text" name="content" class="insert_ct" required></textarea>
 									</td>
 								</tr>
 								<tr>
