@@ -69,25 +69,25 @@
           <hr class="cmt_line">
           <!-- 댓글 작성 영역 -->
           <div class="write_cmt">
-            <!-- 로그인한 사람에게 노출 -->
-            <div class="logged_in">
-              <form action="../board/write_comment.do"></form>
-              <div class="writer_info">
-                <span class="writer_nm">유저ID</span>
-              </div>
-              <textarea name="cmt" class="cmt_input" placeholder="건전한 댓글 문화를 위해, 타인에게 불쾌감을 주는 욕설 또는 특정 계층/민족, 종교 등을 비하하는 내용은 입력을 지양해주세요."></textarea>
-              <button class="cmtBtn">
-                등록
-              </button>
-              </form>
-            </div>
-            <!-- 로그인 안 한 사람에게 노출 -->
-            <!-- <div class="logged_in">
-              <textarea name="cmt" class="cmt_input disabled" placeholder="회원만 댓글을 작성할 수 있습니다. 댓글을 작성하고 싶으시다면 로그인 해주세요." disabled></textarea>
-              <button class="cmtBtn" disabled>
-                등록
-              </button>
-            </div> -->
+          	<!-- =============== 로그인 한 경우 =============== -->
+          	<c:if test="${sessionScope.id!=null }">
+	        	<div class="logged_in">
+	              <form action="../board/write_comment.do"></form>
+		              <div class="writer_info">
+		                <span class="writer_nm">${sessionScope.id}</span>
+		              </div>
+		              <textarea name="cmt" class="cmt_input" placeholder="건전한 댓글 문화를 위해, 타인에게 불쾌감을 주는 욕설 또는 특정 계층/민족, 종교 등을 비하하는 내용은 입력을 지양해주세요."></textarea>
+		              <button class="cmtBtn">등록</button>
+	              </form>
+	            </div>
+            </c:if>
+            <!-- =============== 로그인 안 한 경우 =============== -->
+			<c:if test="${sessionScope.id==null }">
+	            <div class="logged_in">
+	              <textarea name="cmt" class="cmt_input disabled" placeholder="회원만 댓글을 작성할 수 있습니다. 댓글을 작성하고 싶으시다면 로그인 해주세요." disabled></textarea>
+	              <button class="cmtBtn" disabled>등록</button>
+	            </div>
+          	</c:if>
           </div>
           <hr class="cmt_line">
           <!-- 댓글 노출 영역 -->
