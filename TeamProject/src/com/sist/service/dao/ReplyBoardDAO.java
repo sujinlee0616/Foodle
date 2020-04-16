@@ -104,6 +104,27 @@ public class ReplyBoardDAO {
 		return vo;
 	}
 	
+	// [글쓰기]
+	public static ReplyBoardVO replyInsertData(ReplyBoardVO vo)
+	{
+		SqlSession session = null;
+		
+		try
+		{
+			session=ssf.openSession(true);
+			session.insert("replyInsertData",vo);			
+		}catch (Exception ex) 
+		{
+			System.out.println("replyInsertData: "+ex.getMessage());
+		}
+		finally
+		{
+			if(session!=null)
+				session.close();
+		}
+		return vo;
+	}
+	
 }
 
 

@@ -92,7 +92,12 @@
 							<c:forEach var="vo" items="${list }">
 								<tr>
 									<td class="text-center">${vo.bno }</td>
-									<td><a href="detail.do?no=${vo.bno }">${vo.bsubject }</a></td>
+									<td>
+										<a href="detail.do?no=${vo.bno }">${vo.bsubject }</a>
+										<c:if test="${vo.notice=='y' }">
+											<span class="badge badge-danger mx-2">공지</span>
+										</c:if>
+									</td>
 									<td class="text-center">${vo.bname }</td>
 									<td class="text-center">
 										<fmt:formatDate value="${vo.regdate }" pattern="yyyy.MM.dd hh:mm"/>

@@ -15,7 +15,7 @@
                 </div>
             </div>
 			<div class="py-3">
-					<form method=post action="insert_ok.do">
+					<form method=post action="insert_ok.do" name="writeBd_frm">
 					 <!-- action: insert_ok.jsp 에서 데이터 받아서 처리 -->
 						 <div class="table-responsive">
 							<table class="table replyBoard reply_insert">

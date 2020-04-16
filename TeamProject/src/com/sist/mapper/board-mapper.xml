@@ -41,7 +41,34 @@
 		UPDATE replyBoard
 		SET hit=hit+1
 		WHERE bno=#{bno}
-		
 	</update>
+	
+	<!-- 
+		BNO        NOT NULL NUMBER        
+		USERID              VARCHAR2(50)  
+		BNAME      NOT NULL VARCHAR2(30)  
+		BSUBJECT   NOT NULL VARCHAR2(100) 
+		BCONTENT   NOT NULL CLOB          
+		BPWD       NOT NULL VARCHAR2(20)  
+		REGDATE             DATE          
+		HIT                 NUMBER        
+		GROUP_ID            NUMBER        
+		GROUP_STEP          NUMBER        
+		GROUP_TAB           NUMBER        
+		ROOT                NUMBER        
+		DEPTH               NUMBER        
+		NOTICE              CHAR(1)
+	 -->
+	<insert id="replyInsertData" parameterType="ReplyBoardVO">
+		<selectKey keyProperty="bno" resultType="int" order="BEFORE">
+			SELECT NVL(MAX(bno)+1,1) as bno FROM replyBoard
+		</selectKey>
+		INSERT INTO replyBoard(bno,bname,bsubject,bcontent,bpwd,group_id,notice)
+		VALUES(
+			#{bno},#{bname},#{bsubject},#{bcontent},#{bpwd},
+			(SELECT NVL(MAX(group_id)+1,1) FROM replyBoard),'n'
+		)		
+	</insert>
+	
 	
 </mapper>

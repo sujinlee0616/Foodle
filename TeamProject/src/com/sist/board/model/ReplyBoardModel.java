@@ -75,11 +75,45 @@ public class ReplyBoardModel {
 	}
 	
 	// [글쓰기] - 실제 데이터 삽입
-	@RequestMapping("reply/insert_ok.do")
-	public String reply_insert_ok()
+	@RequestMapping("board/insert_ok.do")
+	public String reply_insert_ok(HttpServletRequest request,HttpServletResponse response)
 	{
-		return "";
+		try
+		{
+			request.setCharacterEncoding("UTF-8");
+		}catch(Exception ex){}
+		
+		
+		// 클라이언트가 입력한 데이터를 가지고 와야...		
+		// insert.jsp의 writeBd_frm에서 데이터 받아온다
+		String bname=request.getParameter("name");
+		String bsubject=request.getParameter("subject");
+		String bcontent=request.getParameter("content");
+		String bpwd=request.getParameter("pwd");
+		// id 어떻게 받아올 것인가....
+		
+		// 데이터 확인
+		System.out.println("bname="+bname+", bsubject="+bsubject+", bcontent="+bcontent+", bpwd="+bpwd);
+		
+		// 클라이언트가 입력해준 데이터 VO에 저장 
+		ReplyBoardVO vo = new ReplyBoardVO();
+		
+		vo.setBname(bname);
+		vo.setBsubject(bsubject);
+		vo.setBcontent(bcontent);
+		vo.setBpwd(bpwd);
+		// id 어떻게 받아올 것인가....
+		
+		// VO를 INSERT 하게 mapper에서 수행 
+		ReplyBoardDAO.replyInsertData(vo);
+				
+		return "redirect:../reply/list.do";
 	}
+	
+	// [글 수정]
+	
+	// [글 삭제] 
+	
 	
 	
 	
