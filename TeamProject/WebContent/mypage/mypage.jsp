@@ -136,7 +136,7 @@
                     </a>
                 </div>
                 <div class="col-md-2 col-sm-6 col-xs-6 category-responsive">
-                    <a href="../mypage/infoupdate.do" class="category-wrap">
+                    <a href="../mypage/infoupdate_check.do" class="category-wrap">
                         <div class="category-block">
                             <svg class="category-img" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
                                 id="Capa_1" x="0px" y="0px" viewBox="0 0 496 496" style="enable-background:new 0 0 496 496;" xml:space="preserve"

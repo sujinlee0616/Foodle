@@ -9,6 +9,7 @@ import com.sist.controller.RequestMapping;
 import com.sist.service.dao.*;
 import com.sist.service.vo.MemberVO;
 
+
 @Controller
 public class MemberModel {
 	
@@ -30,12 +31,8 @@ public class MemberModel {
 				
 		
 		// DAO 연결
-<<<<<<< HEAD
 		MemberVO vo=MemberDAO.memberLogin(id, pwd); // 얘가 문제....
 
-=======
-		MemberVO vo=MemberDAO.memberLogin(id, pwd); 
->>>>>>> 9b470e1ed927796de3906cbcd1069dc32cc15ca8
 		
 		// 로그인 판정결과가 OK라면(ID/PWD 모두 일치) 세션에다가 id,name,admin값 저장 
 		if(vo.getMsg().equals("OK")) 
