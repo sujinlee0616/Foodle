@@ -2,14 +2,15 @@
     pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+ <%--2020 04 16 수정 완료!! --%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
 
-<link rel="stylesheet" href="${pageContext.request.contextPath }/css/nearby.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/css/nearby2nd.css">
 
 </head>
+
 <body>
 
 <%-- 

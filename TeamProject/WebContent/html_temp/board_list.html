@@ -6,8 +6,6 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <!-- Page Title -->
   <title>Foodle</title>
-  <!-- Page Title -->
-  <title>Foodle</title>
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="../css/bootstrap.min.css">
   <!-- Google Fonts -->
@@ -95,12 +93,12 @@
     <section class="board-block light-bg">
         <div class="container py-5">
 			<div class="row">
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <h5>자유게시판</h5>
                     <p class="board_count">총 <span class="countNum">###개</span></p>
                 </div>
             </div>
-			<div class="py-3">
+			<div class="pt-3 pb-2">
 				<div class="table-responsive">
 					<table class="table replyBoard reply_list" style="background-color: #FFFFFF;">						
 						<thead class="thead-dark">
@@ -139,14 +137,19 @@
 						</tbody>
 					</table>
 				</div>
-			</div>
-			<div>
-            <div class="inBtn">
-                <a class="insertBtn" href="../board/insert.do">
-                    글쓰기
-                </a>
             </div>
-				<nav aria-label="...">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="inBtn pb-2">
+                        <a class="insertBtn" href="../board/insert.do">
+                            글쓰기
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- Pagination -->
+			<div>
+                	<nav aria-label="...">
 					<ul class="pagination justify-content-center">
 						<li class="page-item">
 							<a class="page-link" href="#" aria-label="Previous"> 
