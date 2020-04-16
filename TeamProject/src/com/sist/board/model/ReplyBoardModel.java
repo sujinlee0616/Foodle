@@ -74,7 +74,7 @@ public class ReplyBoardModel {
 		return "../main/main.jsp";
 	}
 	
-	// [글쓰기] - 실제 데이터 삽입
+	// [글쓰기] - 실제 데이터 삽입  - 왜 안되는지 확인해봐야 ★★★★★★★
 	@RequestMapping("board/insert_ok.do")
 	public String reply_insert_ok(HttpServletRequest request,HttpServletResponse response)
 	{
@@ -105,12 +105,29 @@ public class ReplyBoardModel {
 		// id 어떻게 받아올 것인가....
 		
 		// VO를 INSERT 하게 mapper에서 수행 
-		ReplyBoardDAO.replyInsertData(vo);
+		ReplyBoardDAO.replyInsertData(vo); // ================== mapper에서 문제 발생  ================== 
 				
-		return "redirect:../reply/list.do";
+		return "redirect:../board/list.do";
 	}
 	
-	// [글 수정]
+	// [글 수정] - 기존 글의 데이터 가져옴 - 완료 
+	@RequestMapping("board/update.do")
+	public String board_update(HttpServletRequest request,HttpServletResponse response)
+	{
+		
+		// 요청 데이터 갖고 온다
+		String bno = request.getParameter("bno");
+						
+		// DAO - 해당 글의 데이터 보여준다. 
+		ReplyBoardVO vo=ReplyBoardDAO.replyDetailData((Integer.parseInt(bno)));	
+				
+		request.setAttribute("vo", vo);		
+				
+		request.setAttribute("main_jsp", "../board/update.jsp"); // main에 include시킴 
+		return "../main/main.jsp";
+		
+	}
+	
 	
 	// [글 삭제] 
 	

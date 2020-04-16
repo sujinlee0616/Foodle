@@ -49,6 +49,14 @@ Modified Date: 2020.04.16 (Thu)
 .replyBoard .subject{
 	font-weight: 600;
 }
+.board-block .badge-gray{
+	background-color: #616161;
+	color: #ffffff;
+}
+.board-block .badge-lightgray{
+	background-color: #9E9E9E;
+	color: #ffffff;
+}
 
 /* 디바이스 크기 작을 경우 리스트에서 글 번호, 작성일, 조회수 정보 비노출,
 상세보기에서 bd_detail_dt 컬럼 비노출 */

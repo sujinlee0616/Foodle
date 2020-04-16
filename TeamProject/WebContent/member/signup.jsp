@@ -44,21 +44,21 @@
               <li class="item must">
                 <label for="user_id" class="tit_inp"><span class="essential">*</span>ID</label>
                 <input type="text" name="id" id="user_id" autocapitalize="off" autocomplete="off"
-                  placeholder="아이디">
+                  placeholder="아이디" maxlength="50">
                 <p class="alert_column warning_txt hidden" id="user_id_msg" name="user_id_msg">필수정보 입니다.</p>
               </li>
               <!-- Password (N-N) -->
               <li class="item must">
                 <label for="user_pwd" class="tit_inp"><span class="essential">*</span>비밀번호</label>
                 <input type="password" name="pwd" id="user_pwd" autocapitalize="off"
-                  placeholder="비밀번호">
+                  placeholder="비밀번호" maxlength="20">
                 <p class="alert_column warning_txt hidden" id="user_pwd_msg" name="user_pwd_msg">필수정보 입니다.</p>
               </li>
               <!-- 이름 (N-N)-->
               <li class="item must">
                 <label for="user_nm" class="tit_inp"><span class="essential">*</span>이름</label>
                 <input type="text" name="name" id="user_name" autocapitalize="off" autocomplete="off"
-                  placeholder="">
+                  placeholder="" maxlength="30">
                 <p class="alert_column warning_txt hidden" id="user_name_msg" name="user_nm_msg">필수정보 입니다.</p>
               </li>
               <!-- 성별 (NN) -->
@@ -81,7 +81,7 @@
               <li class="email_column item must">
                 <div class="select_align_row input item">
                   <label for="email_id" class="tit_inp"><span class="essential">*</span>이메일</label>
-                  <input type="text" name="email" id="user_email" style="ime-mode:inactive" placeholder="" autocomplete="off">
+                  <input type="text" name="email" id="user_email" style="ime-mode:inactive" placeholder="" autocomplete="off" maxlength="40">
                 </div>
                 <!-- Start of 자동리스트 영역 : 아직 구현 안 했음  -->
                 <ul class="auto_list_area email_list" style="display:none;">

@@ -112,7 +112,9 @@ public class ReplyBoardDAO {
 		try
 		{
 			session=ssf.openSession(true);
-			session.insert("replyInsertData",vo);			
+			System.out.println("======== 여기까지 =========");
+			session.insert("replyInsertData",vo);
+			System.out.println("======== mapper 수행 완료 =========");
 		}catch (Exception ex) 
 		{
 			System.out.println("replyInsertData: "+ex.getMessage());

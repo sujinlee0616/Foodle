@@ -53,7 +53,7 @@
                   <a class="bdDtBtn" id="copyUrl" href="">url 복사</a>
                 </td>
                 <td class="bdDtBtnGp">
-                  <a class="bdDtBtn" href="../board/update.do">수정</a>
+                  <a class="bdDtBtn" href="../board/update.do?bno=${vo.bno }">수정</a>
                   <a class="bdDtBtn" href="../board/delete.do">삭제</a>
                   <a class="bdDtBtn" href="../board/reply.do">답글</a>
                 </td>

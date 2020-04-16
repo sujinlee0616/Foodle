@@ -20,9 +20,9 @@
 	 -->
 
 	<select id="replyListData" resultType="ReplyBoardVO" parameterType="Hashmap">
-		SELECT bno,bsubject,bname,regdate,hit,group_tab,num
-		FROM (SELECT bno,bsubject,bname,regdate,hit,group_tab,rownum as num
-		FROM (SELECT bno,bsubject,bname,regdate,hit,group_tab
+		SELECT bno,bsubject,bname,regdate,hit,group_tab,notice,num
+		FROM (SELECT bno,bsubject,bname,regdate,hit,group_tab,notice,rownum as num
+		FROM (SELECT bno,bsubject,bname,regdate,hit,group_tab,notice
 		FROM replyBoard ORDER BY group_id DESC,group_step ASC)) 
 		WHERE num BETWEEN #{start} AND #{end}
 	</select>
@@ -60,15 +60,21 @@
 		NOTICE              CHAR(1)
 	 -->
 	<insert id="replyInsertData" parameterType="ReplyBoardVO">
-		<selectKey keyProperty="bno" resultType="int" order="BEFORE">
-			SELECT NVL(MAX(bno)+1,1) as bno FROM replyBoard
-		</selectKey>
-		INSERT INTO replyBoard(bno,bname,bsubject,bcontent,bpwd,group_id,notice)
+		INSERT INTO replyBoard(bno,bname,bsubject,bcontent,bpwd)
 		VALUES(
-			#{bno},#{bname},#{bsubject},#{bcontent},#{bpwd},
-			(SELECT NVL(MAX(group_id)+1,1) FROM replyBoard),'n'
+			rb_bNo_seq.nextval,
+			#{bname},
+			#{bsubject},
+			#{bcontent},
+			#{bpwd}
 		)		
 	</insert>
 	
 	
 </mapper>
+
+
+
+
+
+

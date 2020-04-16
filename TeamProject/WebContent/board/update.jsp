@@ -24,25 +24,27 @@
 								<tr>
 									<th class="text-right success">이름</th>
 									<td>
-										<input type="text" name="name" class="" required>
+										<input type="text" name="name" class="" required value=${vo.bname }>
 									</td>
 								</tr>
 								<tr>
 									<th class="text-right success">제목</th>
 									<td>
-										<input type="text" name="subject" required>
+										<input type="text" name="subject" required value=${vo.bsubject }>
 									</td>
 								</tr>
 								<tr>
 									<th class="text-right success">내용</th>
 									<td>
-										<textarea type="text" name="content" class="content" required></textarea>
+										<textarea type="text" name="content" class="content" required>
+										 ${vo.bcontent }
+										</textarea>
 									</td>
 								</tr>
 								<tr>
 									<th class="text-right success">비밀번호</th>
 									<td>
-										<input type="password" name="pwd" required>
+										<input type="password" name="pwd" required value=${vo.bpwd }>
 									</td>
 								</tr>
 							</tbody>
@@ -64,6 +66,5 @@
 	        	
 		</div>
     </section>
-    <!--//END BOARD -->
 </body>
 </html>
