@@ -56,7 +56,7 @@
     <section class="board-block light-bg">
         <div class="container py-5">
 			<div class="row">
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <h5>자유게시판</h5>
                     <p class="board_count">총 <span class="countNum">###개</span></p>
                 </div>
@@ -104,11 +104,15 @@
 					</table>
 				</div>
 			</div>
-			<div class="inBtn">
-	        	<a class="insertBtn" href="../board/insert.do">
-	         		글쓰기
-	       	 	</a>
-	        </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="inBtn pb-2">
+                        <a class="insertBtn" href="../board/insert.do">
+                            글쓰기
+                        </a>
+                    </div>
+                </div>
+            </div>
 	        <!-- ================ Pagination ================ -->
 			<div>
 				<nav aria-label="...">
