@@ -27,7 +27,6 @@ $(function(){
 	let bigTabId=$('.thematabmenu').attr('#id');  
 	
 	
-	
 	$.ajax({
 	
 		type:'post',
@@ -58,7 +57,7 @@ $(function(){
 		
 		},
 		function(){
-		
+			
 			$(this).css('cursor','none');
 		
 		}
@@ -70,7 +69,7 @@ $(function(){
 	//big3 메뉴 선택시 => small 테마들 ajax로 출력 예정!
 	$('.thematabmenu').click(function(){
 	
-		let no=$(this).attr("value"); 
+		let no=$(this).attr("value");
 		
 		$.ajax({
 		
