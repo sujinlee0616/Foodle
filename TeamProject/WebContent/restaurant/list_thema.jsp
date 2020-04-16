@@ -15,7 +15,7 @@
     <script src="${pageContext.request.contextPath }/js/bootstrap.min.js"></script>
 
 
-<!--  테마 맛집 페이지 CSS -->
+<!--  테마   맛집 페이지 CSS -->
 <link rel="stylesheet" href="${pageContext.request.contextPath }/css/themalist.css">
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script> 
 

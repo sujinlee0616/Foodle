@@ -45,7 +45,7 @@ public class ThemaListDAO {
 			return list;	
 		}
 		
-		//small 카테고리 count하기위함!
+		//small 카테고리      count하기위함!
 		public static int smallThemaCount(String ff)
 		{
 			SqlSession session =null;
