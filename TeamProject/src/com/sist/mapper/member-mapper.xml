@@ -29,9 +29,11 @@
 	UTYPE   NOT NULL VARCHAR2(10)  
 	HINT    NOT NULL VARCHAR2(100) 
 	HINTANS NOT NULL VARCHAR2(100) 
+	SIGNUPDATE          VARCHAR2(50) 
 	 -->
 	<insert id="memberInsert">
-		INSERT INTO member VALUES(
+		INSERT INTO member (userid,upwd,uname,uemail,utel,uphone,upost,uaddr1,uaddr2,ugender,ubirth,utype,hint,hintans) 
+		VALUES(
 		#{userid},#{upwd},#{uname},#{uemail},#{utel},
 		#{uphone},#{upost},#{uaddr1},#{uaddr2},#{ugender},
 		#{ubirth},#{utype},#{hint},#{hintans}
