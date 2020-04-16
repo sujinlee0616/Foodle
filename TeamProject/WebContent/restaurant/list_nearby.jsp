@@ -96,7 +96,11 @@ function searchNearby(){ //선택한 카테고리를 아래에 ajax로 값을 �
 		$(".select7").select7()
 	</script>
 
+<style type="text/css">
 
+
+
+</style>
 
 
 </head>
@@ -161,42 +165,6 @@ function searchNearby(){ //선택한 카테고리를 아래에 ajax로 값을 �
 
 
 							</div>
-
-
-							<!-- 
-							
-							<div class="dropdown">
-								<button class="btn btn-default dropdown-toggle" type="button" 
-								data-toggle="dropdown">
-									Price 
-								</button>
-								<ul class="dropdown-menu">
-									<li><a href="#">$</a></li>
-									<li><a href="#">$$</a></li>
-									<li><a href="#">$$$</a></li>
-									<li class="divider"></li>
-									<li><a href="#">Save</a></li>
-								</ul>
-							</div>
-
-							<div class="dropdown">
-								<button class="btn btn-default dropdown-toggle" type="button"
-									data-toggle="dropdown">
-								  Distance 
-								</button>
-								<ul class="dropdown-menu">
-									<li><a href="#">1min</a></li>
-									<li><a href="#">5min</a></li>
-									<li><a href="#">15min</a></li>
-									<li><a href="#">30min</a></li>
-									<li class="divider"></li>
-									<li><a href="#">Save</a></li>
-								</ul>
-							</div>
-							
-							 -->
-
-
 
 							<!-- ========================================카테고리 끝 ============================================ -->
 							<!-- 

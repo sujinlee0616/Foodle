@@ -7,9 +7,10 @@
 <html lang="ko">
 <head>
 
-<link rel="stylesheet" href="${pageContext.request.contextPath }/css/nearby.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/css/nearby2nd.css">
 
 </head>
+
 <body>
 
 <%-- 

@@ -17,93 +17,83 @@
 
 <!--  테마 맛집 페이지 CSS -->
 <link rel="stylesheet" href="${pageContext.request.contextPath }/css/themalist.css">
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<style type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script> 
 
-.themarow{
-
- 	display: inline-block;
-
-}
-
-</style>
-<script>
-
-function set_start(){
-	
-	document.body.style.behavior='url(#default#homepage)';
-
-	}
-
-
-$(document).ready(function(){
-	
-	
-	
-});
-
-</script>
 
 <script type="text/javascript">
+$(function(){
 
-
-	//클릭했을때 아래 소카테고리 보이게 하려함!!
-	$(function(){
-		
-		
-		$(document).ready(function(){
-
-			
-			
-		});
-
+	let activeTab=$('.thematabmenu').attr('data-tab'); //bigTab1.jsp 로 쓸 예정!
+	let bigTabId=$('.thematabmenu').attr('#id');  
 	
-	//    <div data-tab="bigTab1" class="themarow thematabmenu find-img-align" id="defaultmenu">
-		$('.thematabmenu').click(function(){ 
+	
+	
+	$.ajax({
+	
+		type:'post',
+		url:'../restaurant/cate_select_ok.do', //디폴트 페이지 & ajax
+		data:{"no":1,"activeTab":activeTab,"bigTabId":bigTabId},
+		success:function(res){
 			
-			var activeTab=$(this).attr('data-tab'); //big 3메뉴의 정보를 activeTab에 넣음
-			var bigTabId=$(this).attr('#id');  // big 3메뉴의 id값을 저장 => cus model => id값은 모두 다름!!
+			$('#showsmallcate').html(res);
 			
+		},
+		error:function(request,status,error){
 			
-			//$('div').css('opacity','0.5'); //선택되지 않은 탭 배경 변경
-			//$(this).css('background-color','white');  //선택된 탭 배경 변경
-			
-			$.ajax({
+			alert("code = "+ request.status + " message = " + request.responseText + " error = " + error);
+		}
 		
-				type: 'post',
-				url: '../restaurant/selected_bigthema.do',
-				//url: activeTab +".jsp",  ////탭의 data-tab속성의 값으로 된 jsp 파일로 통신
-				//data:{"t_MainThema":t_MainThema},
-				//data:{"bigTabId":bigTabId},
-				data:{"activeTab":activeTab},
-				//dataType: "jsp", //jsp형식으로 값 읽기
-				success:function(res){  //model에서 받아온 결과 저장..
-					
-					console.log(res);
-					$('#showsmallcate').html(res);
-						
-				},
-				error:function(e){
-					
-					console.log(e);
-				}
+	})
+	//ajax끝
+	
+	
+	//효과 넣을 예정
+	//$('div').css('opacity','0.5'); //선택되지 않은 탭 배경 변경
+	//$(this).css('background-color','white');  //선택된 탭 배경 변경
+	//호버효과 시작
+	/*
+	$('.thematabmenu').hovor(function(){ 
+		
+			$(this).css('cursor','pointer');
+		
+		},
+		function(){
+		
+			$(this).css('cursor','none');
+		
+		}
+		
+	)//호버효과 끝!
+	*/
+	
+	
+	//big3 메뉴 선택시 => small 테마들 ajax로 출력 예정!
+	$('.thematabmenu').click(function(){
+	
+		let no=$(this).attr("value"); 
+		
+		$.ajax({
+		
+			type:'post',
+			url:'../restaurant/cate_select_ok.do', // ajax될 부분에 이 파일을 넣을 예정!
+			data:{"no":no,"activeTab":activeTab,"bigTabId":bigTabId},
+			success:function(res){
 				
-			})
+				$('#showsmallcate').html(res);
+				
+			},
+			error:function(request,status,error){
+				
+				alert("code = "+ request.status + " message = " + request.responseText + " error = " + error);
+			}
+			
+		})// ajax로 출력 끝
 		
-		})
-		
-		$('#defaultThemamenu').click();
-		
-});
+	})// 클릭 이벤트 끝!
+
 	
-//디폴트 페이지를 준다
-//2와 3은 클릭했
-
 	
-
-
-
-
+})//스크립트 끝
 </script>
 
 
@@ -112,11 +102,11 @@ $(document).ready(function(){
 <!--=============================THEMA LIST START =============================-->
  <section class="list-block">
     
-     	<!-- 주변맛집 전체화면 -->
+     <form name="themalist" action="../restaurant/cate_select_ok.do" method="post" id="themalist">
         <div class="container-fluid py-4 container py-5">
 			<div class="row nearbyrow">
 
-				<!-- ======================================주변맛집 페이지 왼쪽 화면============================================= -->
+			
 				<div class="responsive-wrap nearbymd7">
 					<!-- ===================================검색 결과 타이틀 "~ 주변 검색 결과" ===================================-->
 					<h5 class="styled-heading"> Various Thema List </h5>
@@ -131,31 +121,33 @@ $(document).ready(function(){
 						<div class="filter_row area">
 						
 				<!--=============================BIG 3 THEME  =============================-->
+  
+  
     <section class="main-block" id="theme">
-        <div class="container">
+        <div class="container themacontainer">
         
             <div class="row justify-content-center">
-            <!-- 
+   <!-- 
                 <div class="col-md-5">
                     <div class="styled-heading">
                         <h3>테마별 맛집</h3>
                     </div>
                 </div>
-                 -->
- 
-            </div>
+   -->
+             </div>
             
-
-               
-                    <div data-tab="bigTab1" class="themarow thematabmenu find-img-align" id="defaultThemamenu" onclick=clickTabs()>
+		
+                 <c:forEach var="i" begin="1" end="3"> 
+                    <div data-tab="bigTab1" class="themarow thematabmenu find-img-align" id="defaultThemamenu" value="${i }">
                         <div class="col-md-12">
                        	 	<a href="#">
 	                            <div class="find-place-img_wrap">
 	                                <div class="grid">
 	                                    <figure class="effect-ruby">
-	                                        <img src="${pageContext.request.contextPath }/images/themacate1.png" class="img-fluid" alt="img13" />
+	                                        <img src="${pageContext.request.contextPath }/images/themacate${i }.png" value="${i}" class="img-fluid" alt="img13"
+	                                        title="${data[i-1] }"/>
 	                                        <figcaption>
-	                                            <h5>상황별</h5>
+	                                            <h5 class="bysituation" style="color:white;">${data[i-1] }</h5>
 	                                            <p>1,204개</p>
 	                                        </figcaption>
 	                                    </figure>
@@ -164,303 +156,31 @@ $(document).ready(function(){
 	                    	</a>
                         </div>
                     </div>
-                
-                
-                
-            
-                    <div data-tab="bigTab2" class="themarow thematabmenu find-img-align" id="secondeThemamenu" onclick=clickTabs()>
-                        <div class="col-md-12">
-                       	 	<a href="#">
-	                            <div class="find-place-img_wrap">
-	                                <div class="grid">
-	                                    <figure class="effect-ruby">
-	                                        <img src="${pageContext.request.contextPath }/images/themacate2.png" class="img-fluid" alt="img13" />
-	                                        <figcaption>
-	                                            <h5>메뉴별</h5>
-	                                            <p>1,204개</p>
-	                                        </figcaption>
-	                                    </figure>
-	                                </div>
-	                            </div>
-	                    	</a>
-                        </div>
-                    </div>
-                    
-                    
-                    
-                    <!-- 세번째 사진 추가해봄 -->
-                    
-                      <div data-tab="bigTab3" class="themarow thematabmenu find-img-align" id="thirdThemamenu" onclick=clickTabs()>
-                        <div class="col-md-12">
-                       	 	<a href="#">
-	                            <div class="find-place-img_wrap">
-	                                <div class="grid">
-	                                    <figure class="effect-ruby">
-	                                        <img src="${pageContext.request.contextPath }/images/themacate3.png" class="img-fluid" alt="img13" />
-	                                        <figcaption>
-	                                            <h5>스페셜</h5>
-	                                            <p>1,204개</p>
-	                                        </figcaption>
-	                                    </figure>
-	                                </div>
-	                            </div>
-	                    	</a>
-                        </div>
-                    </div>
-                    
-                
-                <!--BIG 3 THEMA END -->
-                
-                <!-- ---------------------------SMALL THEMA SHOWING! START-------------------------------->
-                
-                <div class="smallcatelist" id="showsmallcate">
-                
-                
-				 <!-- ---------------------------AJAX사용부분 START-------------------------------->
-                            
-                          	<div class="situation" >
-                	
-                	
-                	
-                	<!-- 
-                	
-                	
-                	<c:forEach var="vo" items="${list }">
-				<tr class="post_click" zip="${vo.zipcode }" addr="${vo.address }">
-					<td class="text-center"> ${vo.zipcode } </td>
-					<td>${vo.address }</td>
-				</tr>
-			</c:forEach>
-                	
-                	
-                	 -->
-                	 
-                	 
-                <c:forEach var="vo" items="${list} ">
-                	<div class="themarow find-img-align">
-                        <div class="col-md-12">
-                       	 	<a href="main.jsp?mode=1">
-	                            <div class="find-place-img_wrap">
-	                                <div class="grid">
-	                                    <figure class="effect-ruby">
-	                                        <img src="${pageContext.request.contextPath }/images/situ3.png" class="img-fluid" alt="img13" />
-	                                        <figcaption>
-	                                            <p></p>
-	                                        </figcaption>
-	                                    </figure>
-	                                </div>
-	                            </div>
-                        	</div>
-                        <div style="text-align: center" class="themafont"><span>가족과 함께!</span></div>
-                        </a>
-                    </div>
-                  </c:forEach>  
-                    
-                    
-                    <div class="themarow find-img-align">
-                        <div class="col-md-12">
-                       	 	<a href="main.jsp?mode=1">
-	                            <div class="find-place-img_wrap">
-	                                <div class="grid">
-	                                    <figure class="effect-ruby">
-	                                        <img src="${pageContext.request.contextPath }/images/situ3.png" class="img-fluid" alt="img13" />
-	                                        <figcaption>
-	                                            <p></p>
-	                                        </figcaption>
-	                                    </figure>
-	                                </div>
-	                            </div>
-                        	</div>
-                        <div style="text-align: center" class="themafont"><span>가족과 함께</span></div>
-                        </a>
-                    </div>
-                    
-                    
-                    <div class="themarow find-img-align">
-                        <div class="col-md-12">
-                       	 	<a href="main.jsp?mode=1">
-	                            <div class="find-place-img_wrap">
-	                                <div class="grid">
-	                                    <figure class="effect-ruby">
-	                                        <img src="${pageContext.request.contextPath }/images/situ3.png" class="img-fluid" alt="img13" />
-	                                        <figcaption>
-	                                            <p></p>
-	                                        </figcaption>
-	                                    </figure>
-	                                </div>
-	                            </div>
-                        	</div>
-                        <div style="text-align: center" class="themafont"><span>가족과 함께</span></div>
-                        </a>
-                    </div>
-                    
-                    
-                    <div class="themarow find-img-align">
-                        <div class="col-md-12">
-                       	 	<a href="main.jsp?mode=1">
-	                            <div class="find-place-img_wrap">
-	                                <div class="grid">
-	                                    <figure class="effect-ruby">
-	                                        <img src="${pageContext.request.contextPath }/images/situ3.png" class="img-fluid" alt="img13" />
-	                                        <figcaption>
-	                                            <p></p>
-	                                        </figcaption>
-	                                    </figure>
-	                                </div>
-	                            </div>
-                        	</div>
-                        <div style="text-align: center" class="themafont"><span>가족과 함께</span></div>
-                        </a>
-                    </div>
-                    
-                    
-                    <div class="themarow find-img-align">
-                        <div class="col-md-12">
-                       	 	<a href="main.jsp?mode=1">
-	                            <div class="find-place-img_wrap">
-	                                <div class="grid">
-	                                    <figure class="effect-ruby">
-	                                        <img src="${pageContext.request.contextPath }/images/situ3.png" class="img-fluid" alt="img13" />
-	                                        <figcaption>
-	                                            <p></p>
-	                                        </figcaption>
-	                                    </figure>
-	                                </div>
-	                            </div>
-                        	</div>
-                        <div style="text-align: center" class="themafont"><span>가족과 함께</span></div>
-                        </a>
-                    </div>
-                    
-                    
-                    <div class="themarow find-img-align">
-                        <div class="col-md-12">
-                       	 	<a href="main.jsp?mode=1">
-	                            <div class="find-place-img_wrap">
-	                                <div class="grid">
-	                                    <figure class="effect-ruby">
-	                                        <img src="${pageContext.request.contextPath }/images/situ3.png" class="img-fluid" alt="img13" />
-	                                        <figcaption>
-	                                            <p></p>
-	                                        </figcaption>
-	                                    </figure>
-	                                </div>
-	                            </div>
-                        	</div>
-                        <div style="text-align: center" class="themafont"><span>가족과 함께</span></div>
-                        </a>
-                    </div>
-                    
-                    
-                    
-                    <div class="themarow find-img-align">
-                        <div class="col-md-12">
-                       	 	<a href="main.jsp?mode=1">
-	                            <div class="find-place-img_wrap">
-	                                <div class="grid">
-	                                    <figure class="effect-ruby">
-	                                        <img src="${pageContext.request.contextPath }/images/situ3.png" class="img-fluid" alt="img13" />
-	                                        <figcaption>
-	                                            <p></p>
-	                                        </figcaption>
-	                                    </figure>
-	                                </div>
-	                            </div>
-                        	</div>
-                        <div style="text-align: center" class="themafont"><span>가족과 함께</span></div>
-                        </a>
-                    </div>
-                    
-                    
-                   <div class="themarow find-img-align">
-                        <div class="col-md-12">
-                       	 	<a href="main.jsp?mode=1">
-	                            <div class="find-place-img_wrap">
-	                                <div class="grid">
-	                                    <figure class="effect-ruby">
-	                                        <img src="${pageContext.request.contextPath }/images/situ3.png" class="img-fluid" alt="img13" />
-	                                        <figcaption>
-	                                            <p></p>
-	                                        </figcaption>
-	                                    </figure>
-	                                </div>
-	                            </div>
-                        	</div>
-                        <div style="text-align: center" class="themafont"><span>가족과 함께</span></div>
-                        </a>
-                    </div>
-                    
-                    
-                    
-                    <div class="themarow find-img-align">
-                        <div class="col-md-12">
-                       	 	<a href="main.jsp?mode=1">
-	                            <div class="find-place-img_wrap">
-	                                <div class="grid">
-	                                    <figure class="effect-ruby">
-	                                        <img src="${pageContext.request.contextPath }/images/situ3.png" class="img-fluid" alt="img13" />
-	                                        <figcaption>
-	                                            <p></p>
-	                                        </figcaption>
-	                                    </figure>
-	                                </div>
-	                            </div>
-                        	</div>
-                        <div style="text-align: center" class="themafont"><span>가족과 함께</span></div>
-                        </a>
-                    </div>
-                		
-                		
-                		
-                		
-                			
-                	
-                	</div>
+                </c:forEach>
+            <!--                         BIG 3 THEMA END                                -->
+    
 
-                            
-                            
-                            
-                            
-                            
-                            
-                            
 
-                </div>
+           
+                
+           <!--                              AJAX사용부분  small thema list start                         -->
+                
+                <div class="smallcatelist" id="showsmallcate"></div>
                 
                 
             
             
-        </div><!-- 카테고리 3개container 끝! -->
-    </section><!--  카테고리 3개 section 끝! -->
+        </div><!-- 카테고리 container 끝! -->
+    </section><!--  카테고리  section 끝! -->
     
     
-						
-						
-						
-						
 
-						<!--=============================THEMA LIST END=============================-->
+		<!--=============================  AJAX사용부분     THEMA LIST END    =============================-->
 							
 							
                             
                           
 
-
-
-							<!-- ==============================선택된 RESTAURANTS START! =============================================-->
-							<!--================================= 선택한 옵션 출력 Ajax 부분!!=========================================-->
-							<div class="selected_filter mt-2 displaymenu" id="test2">
-
-								<!-- 
-                        <a href="#" class="selected" data-filter-name="food_cat" data-filter-value="108602" data-nclick-code="rcc.reset"
-                            data-filter-action="nclick" title="양식">강남역<span class="del">X</span></a>
-                        <a href="#" class="selected" data-filter-name="food_cat" data-filter-value="108602" data-nclick-code="rcc.reset"
-                            data-filter-action="nclick" title="양식">양식<span class="del">X</span></a>
-                        <a href="javascript:deleteFilter(this);" class="selected" data-filter-name="food_cat" data-filter-value="108602" data-nclick-code="rcc.reset"
-                            data-filter-action="nclick" title="양식">카페/술집<span class="del">X</span></a>
-                             -->
-                             
-							</div>
 
 
 						
@@ -471,9 +191,9 @@ $(document).ready(function(){
 								
 			<!-- ================================가게 1개 =============================================-->
                         <div class="featured-responsive" >
-                            <div class="featured-place-wrap" >
+                            <div class="featured-place-wrap listthemawap" >
                                 <a href="main.jsp?mode=5">
-                   
+                   		<!-- 		 <a href="../restaurant/detail.do?no=${vo.rNo }">   -->
                    
                    <!--  =======================그림 부분 시작 ============================= -->
                                 	<div class="featured-title-box">
@@ -515,7 +235,7 @@ $(document).ready(function(){
                         
                         
                         <div class=" featured-responsive">
-                            <div class="featured-place-wrap">
+                            <div class="featured-place-wrap listthemawap">
                                 <a href="main.jsp?mode=5">
                                 <div class="featured-title-box">
                                     <img src="${pageContext.request.contextPath }/images/featured2.jpg" class="img-fluid" alt="#">
@@ -546,7 +266,7 @@ $(document).ready(function(){
 
 
                         <div class=" featured-responsive">
-                            <div class="featured-place-wrap">
+                            <div class="featured-place-wrap listthemawap">
                                 <a href="main.jsp?mode=5">
                                 <div class="featured-title-box">
                                     <img src="${pageContext.request.contextPath }/images/featured3.jpg" class="img-fluid" alt="#">
@@ -578,7 +298,7 @@ $(document).ready(function(){
                         
                         
                         <div class=" featured-responsive">
-                            <div class="featured-place-wrap">
+                            <div class="featured-place-wrap listthemawap">
                                 <a href="main.jsp?mode=5">
                                 <div class="featured-title-box">
                                     <img src="${pageContext.request.contextPath }/images/featured4.jpg" class="img-fluid" alt="#">
@@ -609,7 +329,7 @@ $(document).ready(function(){
                         
                         
 							<div class=" featured-responsive">
-								<div class="featured-place-wrap">
+								<div class="featured-place-wrap listthemawap">
 									<a href="main.jsp?mode=5">
 										<div class="featured-title-box">
 											<img
