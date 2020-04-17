@@ -116,7 +116,13 @@ public class MemberModel {
 		// DAO 연결 
 		MemberDAO.memberInsert(vo);		
 		
-		return "redirect:../main/main.do";
+		// 로그인시켜버리고 웰컴페이지로 보냄 
+		HttpSession session=request.getSession();
+		session.setAttribute("id", id);
+		session.setAttribute("name", name);
+		session.setAttribute("usertype", "general");
+				
+		return "redirect:../member/welcome.do";
 	}
 	
 	// [기업회원가입] 
@@ -137,40 +143,54 @@ public class MemberModel {
 		} catch (Exception ex) {}
 		
 		String utype=request.getParameter("utype");
-		String rId=request.getParameter("rId");
-		String rPwd=request.getParameter("rPwd");
-		String rName=request.getParameter("rName");
-		String rTel=request.getParameter("rTel");
+		String rid=request.getParameter("rId");
+		String rpwd=request.getParameter("rPwd");
+		String rname=request.getParameter("rName");
+		String rtel=request.getParameter("rTel");
 		String address_main=request.getParameter("address_main");
 		String postcode=request.getParameter("postcode");
 		String address_detail=request.getParameter("address_detail");
-		String rType=request.getParameter("rType");
-		String rArea=request.getParameter("rArea");
-		String rAreaDetail=request.getParameter("rAreaDetail");
+		String rtype=request.getParameter("rType");
+		String rarea=request.getParameter("rArea");
+		String rareadetail=request.getParameter("rAreaDetail");
 		
 		// 데이터 확인 
-		System.out.println("user_type="+utype+", rId="+rId+", rPwd="+rPwd+ ", rName="+rName+", rTel="+rTel);
-		System.out.println("address_main="+address_main+", postcode="+postcode+", address_detail="+address_detail);
-		System.out.println("rType="+rType+", rArea="+rArea+", rAreaDetail="+rAreaDetail);
+		//System.out.println("user_type="+utype+", rid="+rid+", rpwd="+rpwd+ ", rname="+rname+", rtel="+rtel);
+		//System.out.println("address_main="+address_main+", postcode="+postcode+", address_detail="+address_detail);
+		//System.out.println("rtype="+rtype+", rarea="+rarea+", rareadetail="+rareadetail);
 		
 		CompMemberVO vo = new CompMemberVO();
-		vo.setuType(utype);
-		vo.setrId(rId);
-		vo.setrPwd(rPwd);
-		vo.setrName(rName);
-		vo.setrTel(rTel);
-		vo.setrAddr1(address_main);
-		vo.setrPost(postcode);
-		vo.setrAddr2(address_detail);
-		vo.setrType(rType);
-		vo.setrArea(rArea);
-		vo.setrAreaDetail(rAreaDetail);
+		vo.setUtype(utype);
+		vo.setRid(rid);
+		vo.setRpwd(rpwd);
+		vo.setRname(rname);
+		vo.setRtel(rtel);
+		vo.setRaddr1(address_main);
+		vo.setRpost(postcode);
+		vo.setRaddr2(address_detail);
+		vo.setRtype(rtype);
+		vo.setRarea(rarea);
+		vo.setRareadetail(rareadetail);
 	
 		// DAO 연결 
 		MemberDAO.compMemberInsert(vo);		
 		
-		return "redirect:../main/main.do";
+		// 로그인시켜버리고 웰컴페이지로 보냄 
+		HttpSession session=request.getSession();
+		session.setAttribute("id", rid);
+		session.setAttribute("name", rname);
+		session.setAttribute("usertype", "comp");
+		
+		return "redirect:../member/welcome.do";
+		
 	}
 	
-		
+	// [웰컴페이지] 
+	@RequestMapping("member/welcome.do")
+	public String welcome(HttpServletRequest request, HttpServletResponse response)
+	{
+		request.setAttribute("main_header", "../common/header_sub.jsp");
+		request.setAttribute("main_jsp", "../member/welcome.jsp");
+		return "../main/main.jsp";
+	}
 }

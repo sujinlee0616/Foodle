@@ -1,13 +1,17 @@
 package com.sist.main.model;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.sist.controller.Controller;
 import com.sist.controller.RequestMapping;
 import com.sist.service.dao.*;
+import com.sist.service.vo.MyWishVO;
 import com.sist.vo.*;
 
 @Controller
@@ -41,4 +45,5 @@ public class MainModel {
 		
 		return "../main/main.jsp";
 	}
+	
 }
