@@ -8,13 +8,17 @@
 		WHERE REGEXP_LIKE(t_MainThema,#{fd})
 </select>	
 
-<!-- 스몰 테마 개수를 알아오기   위함!! -->
+<!-- 
+ 스몰 테마 개수를 알아오기   위함!! 
 <select id="smallThemaCount" resultType="int" parameterType="java.util.Map">
 	    SELECT COUNT(*)
 		FROM detailThema
 		WHERE t_DetailThema=#{t_DetailThema}
         GROUP BY t_detailthema
 </select>
+ 			-->
+
+
 
 <!-- 모든 정보 가져오기! -->
 <select id="showMoreCate" resultType="DetailThemaVO" parameterType="java.util.Map">

@@ -122,7 +122,7 @@ $(function(){
 				<!--=============================BIG 3 THEME  =============================-->
   
   
-    <section class="main-block" id="theme">
+    <section class="main-block themablock" id="theme">
         <div class="container themacontainer">
         
             <div class="row justify-content-center">
@@ -188,7 +188,7 @@ $(function(){
 
 
 								
-			<!-- ================================가게 1개 =============================================-->
+			<!-- ==============f==================가게 1개 =============================================-->
                         <div class="featured-responsive" >
                             <div class="featured-place-wrap listthemawap" >
                                 <a href="main.jsp?mode=5">

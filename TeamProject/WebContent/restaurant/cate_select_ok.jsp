@@ -23,7 +23,7 @@
     <script src="${pageContext.request.contextPath }/js/bootstrap.min.js"></script>
 
 
-<!--  테마 맛집 페이지 CSS -->
+<!-- small 테마 맛집 페이지 CSS -->
 <link rel="stylesheet" href="${pageContext.request.contextPath }/css/cate_select.css">
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 
@@ -84,11 +84,11 @@ $(function(){
 	                            <div class="find-place-img_wrap">
 	                                <div class="grid">
 	                                    <figure class="effect-ruby">
-	                                        <img src="${pageContext.request.contextPath }/images/situ3.png" class="img-fluid" alt="img13" />
+	                                        <img src="${pageContext.request.contextPath }/images/situ3.png" id="smallthemaimg" class="img-fluid" alt="img13" />
 	                                        <figcaption>
 	                        
 	                           	
-	                                            <p>${count }</p>
+	                                            <p>${count }<p>
 	                                             
 	                                        </figcaption>
 	                                    </figure>
