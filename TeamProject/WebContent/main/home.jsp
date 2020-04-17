@@ -187,6 +187,7 @@
 	                        <a href="../restaurant/detail.do?no=${vo.rNo }">
 	                            <img src="${vo.ivo.iLink}" class="img-fluid" alt="#">
 	                            <span class="featured-rating">${vo.rScore }</span>
+	                        </a>
 	                            <!-- <span class="featured-rating-orange">3.5</span> -->
 	                            <div class="featured-title-box">
 	                                <h6>${vo.rName }</h6>
@@ -204,10 +205,12 @@
 	                                <div class="bottom-icons">
 	                                    <!-- <div class="closed-now">CLOSED NOW</div> -->
 	                                    <div class="open-now">OPEN NOW</div>
-	                                    <a href="#" class="mywish" style="text-align:right;font-size:17pt;">♡</a>
+	                                    <!-- <a href="#" class="mywish" id="mywish" style="text-align:right;font-size:17pt;">♡</a> -->
+	                                    <!-- <span class="ti-heart"></span> -->
+	                                    <span class="mywish" value="${vo.rNo }" style="text-align:right;font-size:17pt;">♡</span>
 	                                </div>
 	                            </div>
-	                        </a>
+	                        
 	                    </div>
 	                </div>
                 </c:forEach>
@@ -380,7 +383,8 @@
         });
     </script>  
     
-    <script type="text/javascript">
+    <!-- 찜 hover  -->
+    <!-- <script type="text/javascript">
     	$('.mywish').mouseover(function() {
     		$(this).text('♥');
     		$(this).css("font-size","17pt");
@@ -391,7 +395,37 @@
     		$(this).css("font-size","17pt");
     		$(this).css("color","black");
     	})
-    </script>  
+    </script>   -->
+    
+    <!-- <script type="text/javascript">
+    	$('.mywish').click(function() {
+    		let no=$(this).attr('value');
+    		//alert(no);
+    		$.ajax({
+    			type:'POST',
+    			url:'../main/mywish.do',
+    			data:{"rno":no},
+    			success:function(res){
+    				console.log(res);
+    				if(res.trim()=='NOLOGIN') {
+    					alert("로그인 후 이용해주세요.");
+    				}
+    				else { // MYWISH_INSERT
+    					if($('.mywish').attr('value')==no) {
+    						$(this).text('♥');
+        		    		$(this).css("font-size","17pt");
+        		    		$(this).css("color","red");
+    					}
+    				}
+    			},
+    			error:function(e){
+    				alert(e);
+    			}
+    		})
+    	})
+    </script> -->
+    
+  
     
 </body>
 

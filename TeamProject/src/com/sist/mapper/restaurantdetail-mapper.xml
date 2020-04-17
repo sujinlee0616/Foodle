@@ -27,4 +27,33 @@
 		WHERE rNo=#{no} AND rownum&lt;=6
 	</select>
 	
+	
+	<!-- 찜 체크 -->
+	<select id="myWishCheck" resultType="int" parameterType="hashMap">
+		SELECT COUNT(*) FROM mywish
+		WHERE rno=#{rno} AND userid=#{id}
+	</select>
+	
+	
+	<!-- 찜 INSERT -->
+	<insert id="myWishInsert" parameterType="hashMap">
+		INSERT INTO mywish VALUES(
+			(SELECT NVL(MAX(wishno)+1,1) FROM mywish),
+			#{rno},#{id},SYSDATE
+		)
+	</insert>
+	
+	<!-- 찜 DELETE -->
+	<delete id="myWishDelete" parameterType="hashMap">
+		DELETE FROM mywish
+		WHERE rno=#{rno} AND userid=#{id}
+	</delete>
+	
+	<!-- 찜 리스트 가져오기 -->
+	<!-- <select id="myWishList" resultType="MyWishVO" parameterType="String">
+		SELECT wishno,rno,regdate
+		FROM mywish
+		WHERE userid=#{id}
+	</select> -->
+	
 </mapper>

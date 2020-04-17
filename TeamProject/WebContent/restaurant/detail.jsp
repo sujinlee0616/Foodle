@@ -12,20 +12,22 @@
             <div class="row">
                 <div class="col-md-6">
                     <h5>${mvo.rName }</h5>
+                    <span class="mywish" value="${mvo.rNo }" style="font-size:23pt; color: red">${myWish }</span>
                     <!-- <p><span>\\\</span>\\</p> -->
                     <p>
                     	<div class="stars-outer"> <!-- grey star -->
                     		<div class="stars-inner" style="width: ${mvo.rScore*20}%;"></div>  <!-- yellow star -->
                         </div>
                         &nbsp;| ${mvo.rScoreCount }명 참여
+                        
                     </p>
                     <p class="reserve-description">${strContent}</p>
                 </div>
                 <div class="col-md-6">
                     <div class="reserve-seat-block">
-                    	<!-- <div class="wish-btn">
-                    		<a href="#" class="btn btn-outline-danger ti-heart"></a>
-                    	</div> -->
+                    	<div class="wish-btn">
+                    		<%-- <a href="#" class="btn btn-outline-danger mywish" value="${mvo.rNo }" style="font-size:17pt;">♡</a> --%>
+                    	</div>
                         <div class="reserve-rating">
                             <span>${mvo.rScore }</span>
                         </div>
@@ -516,6 +518,41 @@
 	    } 
 	});    
 	</script>
+	
+	<script type="text/javascript">
+    	$('.mywish').click(function() {
+    		let no=$(this).attr('value');
+    		//alert(no);
+    		$.ajax({
+    			type:'POST',
+    			url:'../restaurant/mywish.do',
+    			data:{"rno":no},
+    			success:function(res){
+    				console.log(res);
+    				if(res.trim()=='NOLOGIN') {
+    					alert("로그인 후 이용해주세요.");
+    				}
+    				else if(res.trim()=='myWishInsert'){ 
+    					if($('.mywish').attr('value')==no) {
+    						$('.mywish').text('♥');
+        		    		$('.mywish').css("font-size","23pt");
+        		    		$('.mywish').css("color","red");
+    					}
+    				}
+    				else { // myWishDelete
+    					if($('.mywish').attr('value')==no) {
+    						$('.mywish').text('♡');
+        		    		$('.mywish').css("font-size","23pt");
+        		    		$('.mywish').css("color","red");
+    					}
+    				}
+    			},
+    			error:function(e){
+    				alert(e);
+    			}
+    		})
+    	})
+    </script>
 
 </body>
 
