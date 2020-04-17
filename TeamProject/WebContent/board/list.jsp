@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>  <!-- 날짜 형식 변환 -->
+<jsp:useBean id="now" class="java.util.Date" />
+<fmt:formatDate var="today" value="${now}" pattern="yyyy-MM-dd" />
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -56,7 +58,7 @@
     <section class="board-block light-bg">
         <div class="container py-5">
 			<div class="row">
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <h5>자유게시판</h5>
                     <p class="board_count">총 <span class="countNum">###개</span></p>
                 </div>
@@ -74,25 +76,23 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td class="text-center">-</td>
-								<td><a href="detail.do">공지글입니다.</a><span class="badge badge-danger mx-2">공지</span></td>
-								<td class="text-center">Otto</td>
-								<td class="text-center">20/02/04 01:00</td>
-								<td class="text-center">12</td>
-							</tr>
-							<tr>
-								<td class="text-center">-</td>
-								<td><a href="detail.do">데이터 연동 안된 글 - NEW 뱃지</a><span class="badge badge-primary mx-2">NEW</span></td>
-								<td class="text-center">Otto</td>
-								<td class="text-center">20/01/19 20:31</td>
-								<td class="text-center">12</td>
-							</tr>						
-                            <!-- ===================== 데이터 연동 ===================== -->
 							<c:forEach var="vo" items="${list }">
 								<tr>
 									<td class="text-center">${vo.bno }</td>
-									<td><a href="detail.do?no=${vo.bno }">${vo.bsubject }</a></td>
+									<td>
+										<a href="detail.do?no=${vo.bno }">${vo.bsubject }</a>
+										<!-- 공지 글에는 공지 플래그 붙임 -->
+										<c:if test="${vo.notice=='y'}">
+											<span class="badge badge-gray ml-2" id="">공지</span>
+										</c:if>
+										<!-- 오늘 올린글에는 new 플래그 붙임 -->
+										<div style="display:none;">
+											<fmt:formatDate var="reg_dt" value="${vo.regdate}" pattern="yyyy-MM-dd"/>
+										</div>
+										<c:if test="${today<=reg_dt}">
+											<span class="badge badge-lightgray ml-2" id="">NEW</span>
+										</c:if>
+									</td>
 									<td class="text-center">${vo.bname }</td>
 									<td class="text-center">
 										<fmt:formatDate value="${vo.regdate }" pattern="yyyy.MM.dd hh:mm"/>
@@ -104,11 +104,15 @@
 					</table>
 				</div>
 			</div>
-			<div class="inBtn">
-	        	<a class="insertBtn" href="../board/insert.do">
-	         		글쓰기
-	       	 	</a>
-	        </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="inBtn pb-2">
+                        <a class="insertBtn" href="../board/insert.do">
+                            글쓰기
+                        </a>
+                    </div>
+                </div>
+            </div>
 	        <!-- ================ Pagination ================ -->
 			<div>
 				<nav aria-label="...">

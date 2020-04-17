@@ -18,21 +18,20 @@
 	DEPTH               NUMBER        
 	NOTICE              CHAR(1)       
 	 -->
-
-	<select id="replyListData" resultType="ReplyBoardVO" parameterType="Hashmap">
-		SELECT bno,bsubject,bname,regdate,hit,group_tab,num
-		FROM (SELECT bno,bsubject,bname,regdate,hit,group_tab,rownum as num
-		FROM (SELECT bno,bsubject,bname,regdate,hit,group_tab
+	<select id="boardListData" resultType="ReplyBoardVO" parameterType="Hashmap">
+		SELECT bno,bsubject,bname,regdate,hit,group_tab,notice,num
+		FROM (SELECT bno,bsubject,bname,regdate,hit,group_tab,notice,rownum as num
+		FROM (SELECT bno,bsubject,bname,regdate,hit,group_tab,notice
 		FROM replyBoard ORDER BY group_id DESC,group_step ASC)) 
 		WHERE num BETWEEN #{start} AND #{end}
 	</select>
 	
-	<select id="replyTotalPage" resultType="int">
+	<select id="boardTotalPage" resultType="int">
 		SELECT CEIL (COUNT(*)/20.0) 
 		FROM replyBoard
 	</select>
 	
-	<select id="replyDetailData" resultType="ReplyBoardVO" parameterType="int">
+	<select id="boardDetailData" resultType="ReplyBoardVO" parameterType="int">
 		SELECT * FROM replyBoard
 		WHERE bno=#{no}
 	</select>	
@@ -41,7 +40,53 @@
 		UPDATE replyBoard
 		SET hit=hit+1
 		WHERE bno=#{bno}
-		
 	</update>
 	
+	<!-- 
+		BNO        NOT NULL NUMBER        
+		USERID              VARCHAR2(50)  
+		BNAME      NOT NULL VARCHAR2(30)  
+		BSUBJECT   NOT NULL VARCHAR2(100) 
+		BCONTENT   NOT NULL CLOB          
+		BPWD       NOT NULL VARCHAR2(20)  
+		REGDATE             DATE          
+		HIT                 NUMBER        
+		GROUP_ID            NUMBER        
+		GROUP_STEP          NUMBER        
+		GROUP_TAB           NUMBER        
+		ROOT                NUMBER        
+		DEPTH               NUMBER        
+		NOTICE              CHAR(1)
+	 -->
+	<insert id="boardInsertData" parameterType="ReplyBoardVO">
+		INSERT INTO replyBoard(bno,bname,bsubject,bcontent,bpwd,group_id)
+		VALUES(
+			rb_bNo_seq.nextval,
+			#{bname},
+			#{bsubject},
+			#{bcontent},
+			#{bpwd},
+			(SELECT NVL(MAX(group_id)+1,1) FROM replyBoard)
+		)		
+	</insert>
+	
+	<!-- 삭제 -->
+	<update id="boardUpdateData" parameterType="int">
+		UPDATE replyBoard 
+		SET 
+			bname=#{bname},
+			bsubject=#{bsubject},
+			bcontent=#{bcontent},
+			bpwd=#{bpwd}
+		WHERE bno=#{bno}
+	</update>
+	
+	
+	
 </mapper>
+
+
+
+
+
+

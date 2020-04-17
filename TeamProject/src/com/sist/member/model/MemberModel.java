@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import com.sist.controller.Controller;
 import com.sist.controller.RequestMapping;
 import com.sist.service.dao.*;
+import com.sist.service.vo.CompMemberVO;
 import com.sist.service.vo.MemberVO;
 
 
@@ -49,7 +50,16 @@ public class MemberModel {
 		return "../member/login_result.jsp";
 	}
 	
-	// [회원가입] 
+	// [로그아웃]
+		@RequestMapping("member/logout.do")
+		public String member_logout(HttpServletRequest request,HttpServletResponse response)
+		{
+			HttpSession session=request.getSession();
+			session.invalidate();
+			return "redirect:../main/main.do";
+		}
+	
+	// [개인회원가입] 
 	@RequestMapping("member/signup.do")
 	public String signup(HttpServletRequest request, HttpServletResponse response)
 	{
@@ -58,7 +68,7 @@ public class MemberModel {
 		return "../main/main.jsp";
 	}
 	
-	// [회원가입 처리] - signup.jsp에서 signup_frm 전송완료 - signup_frm에 입력된 데이터를 DB에 넣기.
+	// [개인회원가입 처리] - signup.jsp에서 signup_frm 전송완료 - signup_frm에 입력된 데이터를 DB에 넣기.
 	@RequestMapping("member/signup_ok.do")
 	public String signup_ok(HttpServletRequest request, HttpServletResponse response)
 	{
@@ -109,13 +119,58 @@ public class MemberModel {
 		return "redirect:../main/main.do";
 	}
 	
-	// [로그아웃]
-	@RequestMapping("member/logout.do")
-	public String member_logout(HttpServletRequest request,HttpServletResponse response)
+	// [기업회원가입] 
+	@RequestMapping("member/signup_comp.do")
+	public String signup_comp(HttpServletRequest request, HttpServletResponse response)
 	{
-		HttpSession session=request.getSession();
-		session.invalidate();
+		request.setAttribute("main_header", "../common/header_sub.jsp");
+		request.setAttribute("main_jsp", "../member/signup_comp.jsp");
+		return "../main/main.jsp";
+	}
+		
+	// [기업회원가입 처리] - signup_comp.jsp에서 signup_frm 전송완료 - signup_frm에 입력된 데이터를 DB에 넣기.
+	@RequestMapping("member/signup_comp_ok.do")
+	public String signup_comp_ok(HttpServletRequest request, HttpServletResponse response)
+	{
+		try {
+			request.setCharacterEncoding("UTF-8");
+		} catch (Exception ex) {}
+		
+		String utype=request.getParameter("utype");
+		String rId=request.getParameter("rId");
+		String rPwd=request.getParameter("rPwd");
+		String rName=request.getParameter("rName");
+		String rTel=request.getParameter("rTel");
+		String address_main=request.getParameter("address_main");
+		String postcode=request.getParameter("postcode");
+		String address_detail=request.getParameter("address_detail");
+		String rType=request.getParameter("rType");
+		String rArea=request.getParameter("rArea");
+		String rAreaDetail=request.getParameter("rAreaDetail");
+		
+		// 데이터 확인 
+		System.out.println("user_type="+utype+", rId="+rId+", rPwd="+rPwd+ ", rName="+rName+", rTel="+rTel);
+		System.out.println("address_main="+address_main+", postcode="+postcode+", address_detail="+address_detail);
+		System.out.println("rType="+rType+", rArea="+rArea+", rAreaDetail="+rAreaDetail);
+		
+		CompMemberVO vo = new CompMemberVO();
+		vo.setuType(utype);
+		vo.setrId(rId);
+		vo.setrPwd(rPwd);
+		vo.setrName(rName);
+		vo.setrTel(rTel);
+		vo.setrAddr1(address_main);
+		vo.setrPost(postcode);
+		vo.setrAddr2(address_detail);
+		vo.setrType(rType);
+		vo.setrArea(rArea);
+		vo.setrAreaDetail(rAreaDetail);
+	
+		// DAO 연결 
+		MemberDAO.compMemberInsert(vo);		
+		
 		return "redirect:../main/main.do";
 	}
-
+	
+		
 }

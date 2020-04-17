@@ -194,10 +194,11 @@ div .nearbysearchlist{
 }
 
 
-.featured-responsive:nth-child( 2n ) {
-	margin-left: 20px;
-}
+.featured-responsive{
 
+	margin-left: 20px;
+
+}
 
 
 .nearbymapwrap{
@@ -210,7 +211,7 @@ div .nearbysearchlist{
 
 	position: fixed;
     top: 28%;
-    right: 17%;
+    right: 13%;
     bottom: 13%;
     width: 24%; 
 

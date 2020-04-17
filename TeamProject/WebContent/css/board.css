@@ -3,13 +3,15 @@
 Theme Name: Board
 Version: 1.1
 Author: Sujin Lee
-Modified Date: 2020.04.14 (Tue)
+Modified Date: 2020.04.16 (Thu)
 -------------------------------------------------------------------*/
 
 /* ==============================================================
    BOARD
-   ============================================================== */
-   .board-block {
+	 ============================================================== */
+	 
+/* 게시판 전체 스타일 */
+.board-block {
 	padding: 30px 0;
 }
 .board-block h5 {
@@ -26,7 +28,6 @@ Modified Date: 2020.04.14 (Tue)
 	padding: 0 0 0 8px;
 	margin: 0 0 8px;
 }
-
 .board-block a{
   color: #212529;
 }
@@ -38,50 +39,107 @@ Modified Date: 2020.04.14 (Tue)
 .board-block .countNum {
 	color: #ff7474;
 }
-
 .board-block .content pre{
   font-size: 1rem;
 }
-
-/* 2020.04.14(Tue) 수정 */
-
 .replyBoard{background-color: #FFFFFF;}
-
 .replyBoard th{
 	background-color: #E0E0E0;
 }
 .replyBoard .subject{
 	font-weight: 600;
 }
-.bd_detail_dt{color: #9E9E9E; font-size: 14px;}
-.td_del{color: #eeeeee; }
-.reply_detail thead td {width: 23%;}
-.bdDtBtn{
-	float: right;
+.board-block .badge-gray{
+	background-color: #616161;
+	color: #ffffff;
+}
+.board-block .badge-lightgray{
+	background-color: #9E9E9E;
+	color: #ffffff;
 }
 
-.comment_area{
-	padding: 10px;
+/* 디바이스 크기 작을 경우 리스트에서 글 번호, 작성일, 조회수 정보 비노출,
+상세보기에서 bd_detail_dt 컬럼 비노출 */
+@media (max-width: 992px) {
+	.reply_list tr th:nth-child(1),.replyBoard tr th:nth-child(4),.replyBoard tr th:nth-child(5){
+		display: none;
+	}
+	.reply_list tr td:nth-child(1),.replyBoard tr td:nth-child(4),.replyBoard tr td:nth-child(5){
+		display: none;
+	}
+	.reply_detail thead tr:nth-child(2){display: none;}
 }
-.comment{
-	padding: 10px;
-	border: 1px solid #aaaaaa;
-}
-.comment_num{font-size: 16px; font-weight: 600;}
 
-.insertBtn{
+/* 목록 - 글쓰기 버튼 */
+.inBtn,.bdDtBtnGp{display: inline-block; float:right;}
+.insertBtn,.bdDtBtn{
 	width: 100%; height: 100%; background-color: #ffffff; 
 	padding: 5px 10px;
-	border: 1px solid #aaaaaa;
+	border: 1px solid #cccccc;
 	text-decoration: none !important;
 }
-.insertBtn:hover{
+.insertBtn:hover,.bdDtBtn:hover{
 	background-color: #ff3a6d;
 	color: #ffffff;
 	border: 1px solid #ffffff;
 }
 
-/* 글쓰기 화면에서의 버튼 */
+/* 목록 - Pagination 스타일 수정 */
+.page-item.active .page-link{
+	background-color: #f34e79;
+	border: 1px solid #cccccc; 
+}
+.page-item.active .page-link:hover{color: #f34e79;}
+.page-item .page-link:hover{color: #f34e79;
+}
+
+
+/* 글 상세보기 */
+.bd_detail_dt{color: #9E9E9E; font-size: 14px;}
+.td_del{color: #eeeeee; }
+.reply_detail thead td {width: 23%;}
+.bd_title{display: inline-block;}
+
+
+/* 글 상세보기 - 댓글(comment) 관련 */
+.cmt_area{
+	padding: 10px; margin-bottom: 100px;
+}
+.cmt,.write_cmt{
+	padding: 10px; font-size: 15px; 
+}
+.cmt_num{font-size: 16px; font-weight: 600;}
+.cmt th{background-color: #FFFFFF; font-weight: 300; }
+.writer_nm{font-weight: 600; padding-left: 5px;}
+.write_time {font-size: 12px; color: #9E9E9E;}
+.cmt_line{margin: 7px 0;}
+.cmt_input{
+	width: 92%; height: 80px;
+	vertical-align: top;
+	margin-top: 10px; padding: 10px;
+	resize: none;
+}
+.cmt_input.disabled{background-color: #eeeeee;}
+.cmtBtn{
+	height: 80px; width:7%; 
+	display: inline-block; margin-top: 10px;
+}
+
+/* 화면 작을 때 댓글 textarea와 btn 사이즈 조절 */
+@media (max-width: 992px) {
+	.cmt_input{width: 82%; height: 110px;}
+	.cmtBtn{width: 15%; height: 110px;}
+}
+
+/* 글쓰기 */
+.insert_ct,.update_ct{
+	width: 100%; height: 200px;
+	vertical-align: top;
+	margin-top: 10px; padding: 10px;
+	resize: none;
+}
+
+
 .board-btn-wrap {text-align: center; }
 .board-btn-wrap .btn-danger {
     width:100%;
@@ -102,7 +160,7 @@ Modified Date: 2020.04.14 (Tue)
     border: 0; 
 }
 .board-btn-wrap .btn-danger:hover {
-    background: #f34e79;
+    background-color: #f34e79;
     outline: none;
     -webkit-box-shadow: none;
     box-shadow: none; 
@@ -117,16 +175,6 @@ Modified Date: 2020.04.14 (Tue)
 	width: 100%;
 }
 
-/* 디바이스 크기 작을 경우 리스트에서 글 번호, 작성일, 조회수 정보 비노출,
-상세보기에서 bd_detail_dt 컬럼 비노출 */
-@media (max-width: 992px) {
-	.reply_list tr th:nth-child(1),.replyBoard tr th:nth-child(4),.replyBoard tr th:nth-child(5){
-		display: none;
-	}
-	.reply_list tr td:nth-child(1),.replyBoard tr td:nth-child(4),.replyBoard tr td:nth-child(5){
-		display: none;
-	}
-	.reply_detail thead tr:nth-child(2){display: none;}
-}
 
-.comment th{background-color: #FFFFFF; font-weight: 300; }
+
+
