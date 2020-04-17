@@ -76,7 +76,7 @@ $(function(){
 
 </head>
 <body>
-		<form></form>
+		<form id="cateshadow" name="cateshadow" method="post">
            <div class="situation" >
                 <c:forEach var="vo" items="${list }">	  	
                 	<div class="themarow find-img-align" value="${vo.t_DetailThema }" id="choosenthema" data="${vo.t_DetailThema }">
@@ -97,5 +97,6 @@ $(function(){
                    </a>
                   </c:forEach>  
              </div>
+         </form>
 </body>
 </html>
