@@ -21,10 +21,7 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
  
- <!-- ShadowBox 
-<link rel="stylesheet" href="../shadow/css/shadowbox.css">
-<script type="text/javascript" src="../shadow/js/shadowbox.js"></script>
-<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script> -->
+
 
 <script type="text/javascript">
 
@@ -41,7 +38,7 @@
 		         +"data-filter-action='nclick' title='"+c.value+"'>"+c.value+"<span class='del'>X</span></a>");
 		searchNearby();
 		
-	}	;
+	};
 	
 function deleteFilter(v){
 	var tihsId = "#"+v.id;

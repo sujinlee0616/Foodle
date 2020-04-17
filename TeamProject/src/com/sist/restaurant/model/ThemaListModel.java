@@ -46,17 +46,16 @@ public class ThemaListModel {
 	
 			List<MainThemaVO> list=ThemaListDAO.cateSelectData(data[Integer.parseInt(no)-1]);
 			
-			String tName=request.getParameter("tName");
-			int count=ThemaListDAO.smallThemaCount(tName);
-			
-			
-			List<DetailThemaVO> blist=ThemaListDAO.showMoreCate();
+			//List<MainThemaVO> clist=ThemaListDAO.countBigThema();
+			//String tName=request.getParameter("tName");
+			//List<DetailThemaVO> blist=ThemaListDAO.showMoreCate();
 			
 			
 			request.setAttribute("list", list);
 			request.setAttribute("data", data);
-			request.setAttribute("count", count);
-			request.setAttribute("blist", blist);
+			//request.setAttribute("clist", clist);
+		
+			
 			
 			//String aa =request.getParameter("pwd");
 			//request.setAttribute("result", aa);
@@ -69,15 +68,18 @@ public class ThemaListModel {
 	
 	
 	
-	
-	@RequestMapping("restaurant/cateCount.do")
-	public String cateCount(HttpServletRequest request, HttpServletResponse response)
+	@RequestMapping("restaurant/catefind.do")
+	public String catefind(HttpServletRequest request, HttpServletResponse response)
 	{
 		
 		
 		
-		return "../restaurant/cate_select_ok.jsp";
+		
+		//창만보여주면 ok!!
+		return "../restaurant/catefind.jsp";
+		
 	}
+	
 	
 	
 	

@@ -58,11 +58,11 @@
 	signupDate	VARCHAR2	50
 	 -->
 	<insert id="compMemberInsert">
-		INSERT INTO compMember(rId,rPwd,rNo,rName,rTel,rPost,rAddr1,rAddr2,rType,rArea,rAreaDetail,uType)
+		INSERT INTO compMember(rid,rpwd,rno,rname,rtel,rpost,raddr1,raddr2,rtype,rarea,rareadetail,utype)
 		VALUES(
-		#{rid},#{rpwd},(SELECT NVL(MAX(rno)+1,1) FROM mainInfo),#{rName},#{rTel},
-		#{rPost},#{rAddr1},#{rAddr2},#{rType},#{rArea},
-		#{rAreaDetail},#{uType}
+		#{rid},#{rpwd},(SELECT NVL(MAX(rno)+1,1) FROM mainInfo),#{rname},#{rtel},
+		#{rpost},#{raddr1},#{raddr2},#{rtype},#{rarea},
+		#{rareadetail},#{utype}
 		)
 	</insert>
 	
