@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
     
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-    
+    <%--2020 04 16 수정 완료!! --%>
     
 <!DOCTYPE html>
 <html lang="ko">
@@ -15,7 +15,7 @@
     <script src="${pageContext.request.contextPath }/js/bootstrap.min.js"></script>
 
 
-<!--  테마 맛집 페이지 CSS -->
+<!--  테마   맛집 페이지 CSS -->
 <link rel="stylesheet" href="${pageContext.request.contextPath }/css/themalist.css">
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script> 
 
@@ -25,7 +25,6 @@ $(function(){
 
 	let activeTab=$('.thematabmenu').attr('data-tab'); //bigTab1.jsp 로 쓸 예정!
 	let bigTabId=$('.thematabmenu').attr('#id');  
-	
 	
 	
 	$.ajax({
@@ -58,7 +57,7 @@ $(function(){
 		
 		},
 		function(){
-		
+			
 			$(this).css('cursor','none');
 		
 		}
@@ -70,7 +69,7 @@ $(function(){
 	//big3 메뉴 선택시 => small 테마들 ajax로 출력 예정!
 	$('.thematabmenu').click(function(){
 	
-		let no=$(this).attr("value"); 
+		let no=$(this).attr("value");
 		
 		$.ajax({
 		
@@ -123,7 +122,7 @@ $(function(){
 				<!--=============================BIG 3 THEME  =============================-->
   
   
-    <section class="main-block" id="theme">
+    <section class="main-block themablock" id="theme">
         <div class="container themacontainer">
         
             <div class="row justify-content-center">
@@ -189,7 +188,7 @@ $(function(){
 
 
 								
-			<!-- ================================가게 1개 =============================================-->
+			<!-- ===============================가게 1개 =============================================-->
                         <div class="featured-responsive" >
                             <div class="featured-place-wrap listthemawap" >
                                 <a href="main.jsp?mode=5">

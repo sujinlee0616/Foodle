@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.sist.controller.Controller;
 import com.sist.controller.RequestMapping;
 import com.sist.service.dao.ThemaListDAO;
+import com.sist.vo.DetailThemaVO;
 import com.sist.vo.MainThemaVO;
 
 @Controller
@@ -37,24 +38,48 @@ public class ThemaListModel {
 					"상황별","메뉴별","스페셜"
 					
 				};
-		
+			
+			//디폴트 페이지 넘버를 받음!!
 			String no=request.getParameter("no");
 		 	//String bigTabId=request.getParameter("bigTabId");
 			//String res=request.getParameter("activeTab");
-			
-			
+	
 			List<MainThemaVO> list=ThemaListDAO.cateSelectData(data[Integer.parseInt(no)-1]);
+			
+			String tName=request.getParameter("tName");
+			int count=ThemaListDAO.smallThemaCount(tName);
+			
+			
+			List<DetailThemaVO> blist=ThemaListDAO.showMoreCate();
+			
 			
 			request.setAttribute("list", list);
 			request.setAttribute("data", data);
+			request.setAttribute("count", count);
+			request.setAttribute("blist", blist);
+			
 			//String aa =request.getParameter("pwd");
 			//request.setAttribute("result", aa);
 			//request.setAttribute("result", request.getParameter("pwd"));
 			//System.out.println(aa);
 		
 		return "../restaurant/cate_select_ok.jsp";
-		//"/restaurant/"+res+".jsp";
+
 	}
+	
+	
+	
+	
+	@RequestMapping("restaurant/cateCount.do")
+	public String cateCount(HttpServletRequest request, HttpServletResponse response)
+	{
+		
+		
+		
+		return "../restaurant/cate_select_ok.jsp";
+	}
+	
+	
 	
 	
 	

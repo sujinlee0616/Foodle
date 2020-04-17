@@ -45,13 +45,13 @@
               <!-- ID (N-N) -->
               <li class="item must">
                 <label for="res_id" class="tit_inp"><span class="essential">*</span>ID</label>
-                <input type="text" name="rId" id="res_id" autocapitalize="off" autocomplete="off" placeholder="아이디">
+                <input type="text" name="rId" id="res_id" autocapitalize="off" autocomplete="off" placeholder="아이디" maxlength="50">
                 <p class="alert_column warning_txt hidden" id="res_id_msg" name="res_id_msg">필수정보 입니다.</p>
               </li>
               <!-- Password (N-N) -->
               <li class="item must">
                 <label for="res_pwd" class="tit_inp"><span class="essential">*</span>비밀번호</label>
-                <input type="password" name="rPwd" id="res_pwd" autocapitalize="off" placeholder="비밀번호">
+                <input type="password" name="rPwd" id="res_pwd" autocapitalize="off" placeholder="비밀번호" maxlength="20">
                 <p class="alert_column warning_txt hidden" id="res_pwd_msg" name="res_pwd_msg">필수정보 입니다.</p>
               </li>
               <!-- 가게 이름 (N-N)-->
