@@ -113,7 +113,13 @@ public class MemberModel {
 		// DAO 연결 
 		MemberDAO.memberInsert(vo);		
 		
-		return "redirect:../main/main.do";
+		// 로그인시켜버리고 웰컴페이지로 보냄 
+		HttpSession session=request.getSession();
+		session.setAttribute("id", id);
+		session.setAttribute("name", name);
+		session.setAttribute("usertype", "general");
+				
+		return "redirect:../member/welcome.do";
 	}
 	
 	// [기업회원가입] 
@@ -166,8 +172,22 @@ public class MemberModel {
 		// DAO 연결 
 		MemberDAO.compMemberInsert(vo);		
 		
-		return "redirect:../main/main.do";
+		// 로그인시켜버리고 웰컴페이지로 보냄 
+		HttpSession session=request.getSession();
+		session.setAttribute("id", rid);
+		session.setAttribute("name", rname);
+		session.setAttribute("usertype", "comp");
+		
+		return "redirect:../member/welcome.do";
+		
 	}
 	
-		
+	// [웰컴페이지] 
+	@RequestMapping("member/welcome.do")
+	public String welcome(HttpServletRequest request, HttpServletResponse response)
+	{
+		request.setAttribute("main_header", "../common/header_sub.jsp");
+		request.setAttribute("main_jsp", "../member/welcome.jsp");
+		return "../main/main.jsp";
+	}
 }
