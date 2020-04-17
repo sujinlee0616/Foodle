@@ -4,7 +4,7 @@
    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
     
 <%-- 
-	2020 04 16 수정 test!
+
  1. big category 3개 각각 스몰 카테고리 사진 저장하여 i로 돌리기
  2. small category 사진 사이즈 변경
  3. small category 사진 넣기

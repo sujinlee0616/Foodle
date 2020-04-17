@@ -372,9 +372,9 @@ div .nearbysearchlist{
 	font-weight: 600;
 }	
 
-
+ /* width: auto; */
 .featured-place-wrap img {
-    /* width: auto; */
+   
 }
 
 .featured-title-box {
