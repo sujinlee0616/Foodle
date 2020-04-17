@@ -9,6 +9,9 @@ import com.sist.controller.RequestMapping;
 import com.sist.dao.*;
 import com.sist.service.dao.*;
 import com.sist.service.vo.*;
+import com.sist.vo.ImageVO;
+import com.sist.vo.MainInfoVO;
+
 import java.util.*;
 
 @Controller
@@ -28,9 +31,24 @@ public class MypageModel {
 		HttpSession session = request.getSession();
 		
 		List<MyWishVO> list = new ArrayList<MyWishVO>();
+		List<MainInfoVO> rlist = new ArrayList<MainInfoVO>();
+		List<ImageVO> ilist = new ArrayList<ImageVO>();
+		
 		list = MypageDAO.mypageMyWishList((String) session.getAttribute("id"));
-
+		
+		for(int i = 0 ; i < list.size() ; i++)
+		{
+			rlist.add(RestaurantDetailDAO.resDetailMaininfo(list.get(i).getRno()));
+			System.out.println(rlist.size());
+			System.out.println(rlist.get(i).getrNo()+"rlist.name");
+		}
+		
+	
+		
+		
 		request.setAttribute("list", list);
+		request.setAttribute("rlist", rlist);
+		
 		
 		return "../mypage/mypage_wish.jsp";
 	}
