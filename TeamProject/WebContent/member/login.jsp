@@ -51,13 +51,16 @@ $(function(){
 				alert(e);
 			}
 		})
-		
-		
 	})
-	
-	
-})
 
+	// 비밀번호 입력 후 엔터치면 로그인 버튼 누르게 구현 ==> form이 submit되고 화면 넘어가지 않고 ajax도 정상 동작함. 
+	$("#pwd").keydown(function(key) {
+    	if (key.keyCode == 13) {
+        	$("#loginBtn").click();
+        }
+    });
+
+})
 </script>
 </head>
 <body>
@@ -79,7 +82,7 @@ $(function(){
 		          <ul class="login input">
 		            <!-- ID -->
 		            <li>
-		              <input type="text" name="user_id" id="id" autocapitalize="off" placeholder="아이디">
+		              <input type="text" name="user_id" id="id" autocapitalize="off" placeholder="아이디" autofocus>
 		            </li>
 		            <!-- PWD -->
 		            <li>
@@ -119,5 +122,11 @@ $(function(){
 	  </div>
 	</section>
 	<!--//END LOGIN  -->
+	
+<!-- jQuery, Bootstrap JS. -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="../js/jquery-3.2.1.min.js"></script>
+<script src="../js/popper.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
 </body>
 </html>
