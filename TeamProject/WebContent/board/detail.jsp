@@ -51,14 +51,16 @@
                 </td>
               </tr>
               <tr>
-                <td colspan="3">
+                <td colspan="2">
                   <a class="bdDtBtn" id="copyUrl" href="">url 복사</a>
                 </td>
-                <td class="bdDtBtnGp">
-                  <a class="bdDtBtn" href="../board/list.do">목록</a>
-                  <a class="bdDtBtn" href="../board/update.do?bno=${vo.bno }">수정</a>
-                  <a class="bdDtBtn" href="../board/delete.do?bno=${vo.bno }">삭제</a>
-                  <a class="bdDtBtn" href="../board/reply.do?bno=${vo.bno }">답글</a>
+                <td colspan="2">
+                  <div class="bdDtBtnGp">
+	                  <a class="bdDtBtn" href="../board/list.do">목록</a>
+	                  <a class="bdDtBtn" href="../board/update.do?bno=${vo.bno }">수정</a>
+	                  <a class="bdDtBtn" href="../board/delete.do?bno=${vo.bno }">삭제</a>
+	                  <a class="bdDtBtn" href="../board/reply.do?bno=${vo.bno }">답글</a>
+                  </div>
                 </td>
               </tr>
             </tbody>

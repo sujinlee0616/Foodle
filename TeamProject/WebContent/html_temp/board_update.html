@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- Page Title -->
+  <title>Foodle</title>
+  <!-- Page Title -->
+  <title>Foodle</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="../css/bootstrap.min.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,700,900" rel="stylesheet">
+  <!-- Simple line Icon -->
+  <link rel="stylesheet" href="../css/simple-line-icons.css">
+  <!-- Themify Icon -->
+  <link rel="stylesheet" href="../css/themify-icons.css">
+  <!-- Hover Effects -->
+  <link rel="stylesheet" href="../css/set1.css">
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="../css/style.css">
+  <!-- List CSS -->
+  <link rel="stylesheet" href="../css/list.css">
+  <!-- Detail CSS -->
+  <link rel="stylesheet" href="../css/detail.css">
+  <!-- Board CSS -->
+  <link rel="stylesheet" href="../css/board.css">
+  <!-- Board Swiper CSS -->
+  <link rel="stylesheet" href="../css/swiper.min.css">
+  <!-- My Page CSS -->
+  <link rel="stylesheet" href="../css/mypage.css">
+  <!-- SIGN UP CSS -->
+  <link rel="stylesheet" href="../css/signup.css">
+  <!-- LOGIN CSS -->
+  <link rel="stylesheet" href="../css/login.css">
+  <!-- COUPON CSS -->
+  <link rel="stylesheet" href="../css/coupon.css">
+  <!-- Kakao Map Script -->
+  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=671fb4748c5025ba667a7fc5d41d217a"></script>
+  <!-- jQuery Datepicker UI-->
+  <link rel="stylesheet" href="../js/jquery-ui-1.12.1/jquery-ui.min.css">
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css?family=Do+Hyeon|Nanum+Gothic&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" />
+</head>
+
+<body>
+  <section class="board-block light-bg">
+    <div class="container py-5">
+      <div class="row">
+        <div class="col-md-6">
+          <h5>글 수정하기</h5>
+        </div>
+      </div>
+      <div class="py-3">
+        <form method=post action="update_ok.do">
+          <!-- action: insert_ok.jsp 에서 데이터 받아서 처리 -->
+          <div class="table-responsive">
+            <table class="table replyBoard reply_insert">
+              <tbody>
+                <input type="hidden" name="bno" value=${vo.bno }>
+                <tr>
+                  <th class="text-right success">이름</th>
+                  <td><input type="text" name="name" required value="${vo.bname }"></td>
+                </tr>
+                <tr>
+                  <th class="text-right success">제목</th>
+                  <td><input type="text" name="subject" required value="${vo.bsubject }"></td>
+                </tr>
+                <tr>
+                  <th class="text-right success">내용</th>
+                  <td>
+                    <textarea type="text" name="content" class="update_ct" required>${vo.bcontent }</textarea>
+                  </td>
+                </tr>
+                <tr>
+                  <th class="text-right success">비밀번호</th>
+                  <td>
+                    <input type="password" name="pwd" required value="">
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="udtBtn pb-2">
+                <a class="updateBtn" href="../board/insert.do">
+                  취소
+                </a>
+                <a class="updateBtn" href="../board/insert.do">
+                  확인
+                </a>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </section>
+</body>
+
+</html>

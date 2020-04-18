@@ -168,7 +168,26 @@ public class ReplyBoardModel {
 		
 	}
 	
-	// [글 수정] - 실제 수정, 데이터 update  - ★★★★★ 비밀번호 체크 로직 아직 안 만들었음 ★★★★★
+	// [글 수정] - 비번체크 
+	@RequestMapping("board/pwd_check.do")
+	public String board_pwd_check(HttpServletRequest request,HttpServletResponse response) 
+	{
+		// 클라이언트가 보내준 데이터
+		String no=request.getParameter("bno");
+		String user_input_pwd=request.getParameter("pwd"); // 클라이언트가 입력한 데이터  
+		System.out.println("user_input_pwd="+user_input_pwd);
+		
+		// 클라이언트가 입력한 비번과 DB의 실제비번이 같은지 확인
+		boolean result=ReplyBoardDAO.boardCheckPwd(Integer.parseInt(no),user_input_pwd); // 이게 수행이 안 됨 
+		System.out.println("result="+result);
+		
+		request.setAttribute("result", result);
+		
+		return "../board/pwd_check.jsp";
+	}
+
+	
+	// [글 수정] - 실제 수정, 데이터 update
 	@RequestMapping("board/update_ok.do")
 	public String board_update_ok(HttpServletRequest request,HttpServletResponse response)
 	{
@@ -182,7 +201,6 @@ public class ReplyBoardModel {
 		String bname=request.getParameter("name");
 		String bsubject=request.getParameter("subject");
 		String bcontent=request.getParameter("content");
-		String bpwd=request.getParameter("pwd");
 		
 		// 이 데이터들을 VO에 담아서...
 		ReplyBoardVO vo=new ReplyBoardVO();
@@ -190,7 +208,6 @@ public class ReplyBoardModel {
 		vo.setBname(bname);
 		vo.setBsubject(bsubject);
 		vo.setBcontent(bcontent);
-		vo.setBpwd(bpwd);
 		
 		// DAO 연동
 		ReplyBoardDAO.boardUpdateData(vo);
@@ -199,7 +216,7 @@ public class ReplyBoardModel {
 	}
 	
 	
-	// [글 삭제] - 잠시만... 비번을 어디서 입력받지...? JSP에서..  - ★★★★★ 비밀번호 체크해서 맞아야만 삭제 가능하게 해야함 ★★★★★
+	// [글 삭제] - ★★★★★ 비밀번호 체크해서 맞아야만 삭제 가능하게 해야함 ★★★★★ - 비번 받는 JSP 만들어야함....ㅠ.... 
 	@RequestMapping("board/delete.do")
 	public String boardDeleteData(HttpServletRequest request,HttpServletResponse response)
 	{
