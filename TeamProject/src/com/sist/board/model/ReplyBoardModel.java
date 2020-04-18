@@ -46,7 +46,7 @@ public class ReplyBoardModel {
 		endpage=((int) Math.floor((curpage-1)/10))*pageScope+pageScope;
 		if(endpage>totalpage)
 			endpage=totalpage;
-		System.out.println("curpage="+curpage+", totalpage="+totalpage+", startpage="+startpage+", endpage="+endpage);
+		//System.out.println("curpage="+curpage+", totalpage="+totalpage+", startpage="+startpage+", endpage="+endpage);
 		request.setAttribute("startpage", startpage);
 		request.setAttribute("endpage", endpage);
 		
@@ -96,7 +96,7 @@ public class ReplyBoardModel {
 		endpage=((int) Math.floor((curpage-1)/10))*pageScope+pageScope;
 		if(endpage>totalpage)
 			endpage=totalpage;
-		System.out.println("curpage="+curpage+", totalpage="+totalpage+", startpage="+startpage+", endpage="+endpage);
+		//System.out.println("curpage="+curpage+", totalpage="+totalpage+", startpage="+startpage+", endpage="+endpage);
 		request.setAttribute("startpage", startpage);
 		request.setAttribute("endpage", endpage);
 				
