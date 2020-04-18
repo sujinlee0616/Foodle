@@ -1,7 +1,6 @@
 package com.sist.service.dao;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -17,6 +16,7 @@ public class MainDAO {
 	}
 	
 	// [mainImageData] - MyBatis 에러 잡기 쉽게 try~catch 절로 만들었음 
+	// 주간 맛집 Top30
 	public static List<MainInfoVO> weeklyTop30()
 	{
 		SqlSession session=null; // null 해줘야!
@@ -34,24 +34,9 @@ public class MainDAO {
 				session.close();
 		}
 			return list;
-		}
+	}
 		
-	/*public static List<ImageVO> weeklyTop30img() {
-		List<ImageVO> weekimglist=new ArrayList<ImageVO>();
-		SqlSession session=null;
-		try {
-			session=ssf.openSession();
-			weekimglist=session.selectList("weeklyTop30img");
-		} catch(Exception ex) {
-			System.out.println("weeklyTop30img(): "+ex.getMessage());
-		} finally {
-			if(session!=null)
-				session.close();
-		}
-		
-		return weekimglist;
-	}*/
-	
+	//인기 맛집 Top3
 	public static List<MainInfoVO> popularTop3() {
 		List<MainInfoVO> list=new ArrayList<MainInfoVO>();
 		SqlSession session=null;
@@ -66,5 +51,5 @@ public class MainDAO {
 		}
 		return list;
 	}
-		
+	
 }

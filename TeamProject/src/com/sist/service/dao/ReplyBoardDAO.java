@@ -58,6 +58,30 @@ public class ReplyBoardDAO {
 		return total;
 	}
 	
+	// [총 글 수]
+	public static int boardContentsCount()
+	{
+		int total=0;
+		SqlSession session=null;
+		
+		try
+		{
+			session=ssf.openSession();	
+			total=session.selectOne("boardContentsCount");
+			
+		}catch(Exception ex)
+		{
+			System.out.println("boardContentsCount: "+ex.getMessage());
+		}
+		finally
+		{
+			if(session!=null)
+				session.close(); // 반환 
+		}
+		
+		return total;
+	}
+	
 	// [답변형 게시판 상세페이지]
 	public static ReplyBoardVO boardDetailData(int no)
 	{

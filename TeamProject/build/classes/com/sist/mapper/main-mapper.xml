@@ -19,6 +19,7 @@
 		<result column="ilink" property="ivo.iLink"/>
 	</resultMap>
 	
+	<!-- 주간 맛집 Top30 -->
 	<select id="weeklyTop30" resultMap="mainMap">	
 		<!-- SELECT rNO,rName,rScore,rAddr2,rTel
 		FROM mainInfo
@@ -59,6 +60,7 @@
 		ORDER BY rNO ASC
 	</select> -->
 	
+	<!-- 인기 맛집 Top3 -->
 	<select id="popularTop3" resultMap="mainMap">
 		SELECT rno,rname,rscore,raddr2,rtel,iname,ilink
 		FROM (SELECT maininfo.rno,rscore,rgood,rhit,rname,raddr2,rtel,iname,ilink
@@ -67,6 +69,5 @@
 		ORDER BY rhit DESC, rgood DESC, rscore DESC)
 		WHERE rownum&lt;=3
 	</select>
-	
 	
 </mapper>

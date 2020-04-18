@@ -15,7 +15,7 @@
     <script src="${pageContext.request.contextPath }/js/bootstrap.min.js"></script>
 
 
-<!--  테마 맛집 페이지 CSS -->
+<!--  테마   맛집 페이지 CSS -->
 <link rel="stylesheet" href="${pageContext.request.contextPath }/css/themalist.css">
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script> 
 
@@ -25,7 +25,6 @@ $(function(){
 
 	let activeTab=$('.thematabmenu').attr('data-tab'); //bigTab1.jsp 로 쓸 예정!
 	let bigTabId=$('.thematabmenu').attr('#id');  
-	
 	
 	
 	$.ajax({
@@ -58,7 +57,7 @@ $(function(){
 		
 		},
 		function(){
-		
+			
 			$(this).css('cursor','none');
 		
 		}
@@ -70,7 +69,7 @@ $(function(){
 	//big3 메뉴 선택시 => small 테마들 ajax로 출력 예정!
 	$('.thematabmenu').click(function(){
 	
-		let no=$(this).attr("value"); 
+		let no=$(this).attr("value");
 		
 		$.ajax({
 		
@@ -123,7 +122,7 @@ $(function(){
 				<!--=============================BIG 3 THEME  =============================-->
   
   
-    <section class="main-block" id="theme">
+    <section class="main-block themablock" id="theme">
         <div class="container themacontainer">
         
             <div class="row justify-content-center">
@@ -137,7 +136,7 @@ $(function(){
              </div>
             
 		
-                 <c:forEach var="i" begin="1" end="3"> 
+                 <c:forEach var="i" begin="1" end="3" varStatus="s"> 
                     <div data-tab="bigTab1" class="themarow thematabmenu find-img-align" id="defaultThemamenu" value="${i }">
                         <div class="col-md-12">
                        	 	<a href="#">
@@ -148,7 +147,7 @@ $(function(){
 	                                        title="${data[i-1] }"/>
 	                                        <figcaption>
 	                                            <h5 class="bysituation" style="color:white;">${data[i-1] }</h5>
-	                                            <p>1,204개</p>
+	                                            <p>${clist[s.index].themaCount }</p>
 	                                        </figcaption>
 	                                    </figure>
 	                                </div>
@@ -157,6 +156,31 @@ $(function(){
                         </div>
                     </div>
                 </c:forEach>
+
+			
+			 <c:forEach var="i" items="${clist }" varStatus="s"> 
+                    <div data-tab="bigTab1" class="themarow thematabmenu find-img-align" id="defaultThemamenu" value="${i }">
+                        <div class="col-md-12">
+                       	 	<a href="#">
+	                            <div class="find-place-img_wrap">
+	                                <div class="grid">
+	                                    <figure class="effect-ruby">
+	                                        <img src="${pageContext.request.contextPath }/images/themacate${i }.png" value="${i}" class="img-fluid" alt="img13"
+	                                        title="${data[i-1] }"/>
+	                                        <figcaption>
+	                                            <h5 class="bysituation" style="color:white;">${data[i-1] }</h5>
+	                                            <p>${clist.themaCount }</p>
+	                                        </figcaption>
+	                                    </figure>
+	                                </div>
+	                            </div>
+	                    	</a>
+                        </div>
+                    </div>
+                </c:forEach>
+			
+			
+
             <!--                         BIG 3 THEMA END                                -->
     
 
@@ -189,7 +213,7 @@ $(function(){
 
 
 								
-			<!-- ================================가게 1개 =============================================-->
+			<!-- ===============================가게 1개 =============================================-->
                         <div class="featured-responsive" >
                             <div class="featured-place-wrap listthemawap" >
                                 <a href="main.jsp?mode=5">

@@ -17,9 +17,6 @@
 
 .grid figure img {
 	position: relative;
-	/*display: block;*/
-/*	min-height: 100%; */
-	/*width: 100%;*/
 	opacity: 0.8;
 }
 figure {
@@ -39,6 +36,14 @@ figure {
 	
 	padding:2px;
 	
+}
+
+
+.themacontainer{
+	
+	margin-right: auto;
+    margin-left: auto;
+	width: 100%;
 }
 
 
@@ -200,11 +205,13 @@ body {
   font-size: 18px;
 }
 
+
+/*  margin-right: -60px; */
 div .nearbyrow{
 	
 	background-color: white;
-	margin-right: -60px;
     margin-left: 0px;
+    margin-right: 0px;
 	
 }
 
@@ -221,6 +228,14 @@ div .category{
 	margin-top: 40px;
 	margin-bottom: 20px;
 }
+
+section .themablock{
+	
+	padding-top: 20px;
+	padding-down: 50px;
+	
+}
+
 
 div .contentRes{
 	
@@ -357,9 +372,9 @@ div .nearbysearchlist{
 	font-weight: 600;
 }	
 
-
+ /* width: auto; */
 .featured-place-wrap img {
-    /* width: auto; */
+   
 }
 
 .featured-title-box {
@@ -370,8 +385,8 @@ div .nearbysearchlist{
 div .themarow{
 	
 	display: inline-block;
-	margin-left: 15px;
-    margin-right: 10px;
+	margin-left: 39px;
+    margin-right: 28px;
 }
 
 

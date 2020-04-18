@@ -57,6 +57,8 @@ h5 {
   h5 {
     font-size: 22px;
   }
+  /* 크기 작은 디바이스에서 검색창 나오지 않게 조치  */
+  .search_wrap,.header_searchbox{display: none;}
 }
 
 h6 {

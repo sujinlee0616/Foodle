@@ -19,6 +19,7 @@
   	<!-- VO 등록 : 서비스 VO -->
   	<typeAlias type="com.sist.service.vo.MemberVO" alias="MemberVO"/>
   	<typeAlias type="com.sist.service.vo.ReplyBoardVO" alias="ReplyBoardVO"/>
+  	<typeAlias type="com.sist.service.vo.MyWishVO" alias="MyWishVO"/>
   </typeAliases>
   <environments default="development">
   	<environment id="development">
