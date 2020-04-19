@@ -17,6 +17,7 @@
   	<typeAlias type="com.sist.vo.ReserveInfoVO" alias="ReserveInfoVO"/>
   	<typeAlias type="com.sist.vo.SubinfoVO" alias="SubinfoVO"/>
   	<!-- VO 등록 : 서비스 VO -->
+  	<typeAlias type="com.sist.service.vo.CompMemberVO" alias="CompMemberVO"/>
   	<typeAlias type="com.sist.service.vo.MemberVO" alias="MemberVO"/>
   	<typeAlias type="com.sist.service.vo.ReplyBoardVO" alias="ReplyBoardVO"/>
   	<typeAlias type="com.sist.service.vo.MyWishVO" alias="MyWishVO"/>
