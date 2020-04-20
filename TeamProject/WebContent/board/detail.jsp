@@ -51,14 +51,16 @@
                 </td>
               </tr>
               <tr>
-                <td colspan="3">
+                <td colspan="2">
                   <a class="bdDtBtn" id="copyUrl" href="">url 복사</a>
                 </td>
-                <td class="bdDtBtnGp">
-                  <a class="bdDtBtn" href="../board/list.do">목록</a>
-                  <a class="bdDtBtn" href="../board/update.do?bno=${vo.bno }">수정</a>
-                  <a class="bdDtBtn" href="../board/delete.do?bno=${vo.bno }">삭제</a>
-                  <a class="bdDtBtn" href="../board/reply.do?bno=${vo.bno }">답글</a>
+                <td colspan="2">
+                  <div class="bdDtBtnGp">
+	                  <a class="bdDtBtn" href="../board/list.do">목록</a>
+	                  <a class="bdDtBtn" href="../board/update.do?bno=${vo.bno }">수정</a>
+	                  <a class="bdDtBtn" href="../board/delete.do?bno=${vo.bno }">삭제</a>
+	                  <a class="bdDtBtn" href="../board/reply.do?bno=${vo.bno }">답글</a>
+                  </div>
                 </td>
               </tr>
             </tbody>
@@ -121,7 +123,7 @@
 <!--============================= End of BOARD DETAIL =============================-->
 
 <!--============================= Start of BOARD LIST =============================-->
-<section class="board-block light-bg">
+    <section class="board-block light-bg">
         <div class="container">
 			<div class="row">
                 <div class="col-md-12">
@@ -146,7 +148,7 @@
 								<tr>
 									<td class="text-center">${vo.bno }</td>
 									<td>
-										<a href="detail.do?no=${vo.bno }">${vo.bsubject }</a>
+										<a href="detail.do?page=${curpage }&no=${vo.bno }">${vo.bsubject }</a>
 										<!-- 공지 글에는 공지 플래그 붙임 -->
 										<c:if test="${vo.notice=='y'}">
 											<span class="badge badge-gray ml-2" id="">공지</span>
@@ -190,7 +192,7 @@
 								</a>
 							</li>
 							<li class="page-item">
-								<a class="page-link" href="../board/list.do?page=${startpage }" aria-label="Previous"> 
+								<a class="page-link" href="../board/list.do?page=${startpage-10 }" aria-label="Previous"> 
 									<span aria-hidden="true">&lt;</span>
 								</a>
 							</li>
@@ -207,9 +209,9 @@
 								</li>
 							</c:if>
 						</c:forEach>
-						<c:if test="${endpage>10 && (totalpage-startpage)>9 }">
+						<c:if test="${totalpage>10 && (totalpage-startpage)>9 }">
 							<li class="page-item">
-								<a class="page-link" href="../board/list.do?page=${endpage }" aria-label="Next"> 
+								<a class="page-link" href="../board/list.do?page=${endpage+1 }" aria-label="Next"> 
 									<span aria-hidden="true">&gt;</span> 
 								</a>
 							</li>

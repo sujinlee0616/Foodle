@@ -54,7 +54,7 @@
         </div>
     </div>
 <!--//END BOOKING -->
-<!--============================= BOARD =============================-->
+<!--============================= BOARD LIST =============================-->
     <section class="board-block light-bg">
         <div class="container py-5">
 			<div class="row">
@@ -124,7 +124,7 @@
 								</a>
 							</li>
 							<li class="page-item">
-								<a class="page-link" href="../board/list.do?page=${startpage }" aria-label="Previous"> 
+								<a class="page-link" href="../board/list.do?page=${startpage-10 }" aria-label="Previous"> 
 									<span aria-hidden="true">&lt;</span>
 								</a>
 							</li>
@@ -141,9 +141,9 @@
 								</li>
 							</c:if>
 						</c:forEach>
-						<c:if test="${endpage>10 && (totalpage-startpage)>9 }">
+						<c:if test="${totalpage>10 && (totalpage-startpage)>9 }">
 							<li class="page-item">
-								<a class="page-link" href="../board/list.do?page=${endpage }" aria-label="Next"> 
+								<a class="page-link" href="../board/list.do?page=${endpage+1 }" aria-label="Next"> 
 									<span aria-hidden="true">&gt;</span> 
 								</a>
 							</li>

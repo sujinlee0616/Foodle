@@ -15,6 +15,15 @@ public class CompMemberVO {
 	private String rareadetail;
 	private String utype;
 	private String signupdate;
+	
+	private String msg;
+	
+	public String getMsg() {
+		return msg;
+	}
+	public void setMsg(String msg) {
+		this.msg = msg;
+	}
 	public String getRid() {
 		return rid;
 	}
