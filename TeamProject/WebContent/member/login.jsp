@@ -66,9 +66,9 @@ $(function(){
 	  <div class="container py-5">
 	    <div class="row justify-content-center">
 	      <div class="logo_parent col-md-5 mb-4">
-	        <h2>Foodle</h2>
+	        <!-- <h2>Foodle</h2> -->
 	        <!-- 로고 생기면 h2 제거 후 로고 넣기 -->
-	        <!-- <img class="logo" src=""> -->
+	        <img class="logo" src="../images/foodle_temp_logo.png">
 	      </div>
 	    </div>
 	    <!-- =============== Start of 로그인 form =============== -->

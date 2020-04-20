@@ -58,16 +58,19 @@ Modified Date: 2020.04.16 (Thu)
 	color: #ffffff;
 }
 
-/* 디바이스 크기 작을 경우 리스트에서 글 번호, 작성일, 조회수 정보 비노출,
-상세보기에서 bd_detail_dt 컬럼 비노출 */
+/* 디바이스 크기 작을 경우 리스트에서 글 제목만 노출,
+상세보기에서 bd_detail_dt 컬럼 비노출,
+리스트 상단 이미지 스와이프 비노출 */
 @media (max-width: 992px) {
-	.reply_list tr th:nth-child(1),.replyBoard tr th:nth-child(4),.replyBoard tr th:nth-child(5){
+	.reply_list tr th:nth-child(1),.replyBoard tr th:nth-child(3),.replyBoard tr th:nth-child(4),.replyBoard tr th:nth-child(5){
 		display: none;
 	}
-	.reply_list tr td:nth-child(1),.replyBoard tr td:nth-child(4),.replyBoard tr td:nth-child(5){
+	.reply_list tr td:nth-child(1),.replyBoard tr td:nth-child(3),.replyBoard tr td:nth-child(4),.replyBoard tr td:nth-child(5){
 		display: none;
 	}
 	.reply_detail thead tr:nth-child(2){display: none;}
+	.swiper-container{display: none;}
+	.board-block{padding-top:0;}
 }
 
 /* 목록 - 글쓰기 버튼 */

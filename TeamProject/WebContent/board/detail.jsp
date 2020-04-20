@@ -11,7 +11,7 @@
 </head>
 <body>
 <!--============================= Start of BOARD DETAIL =============================-->
-<section class="board-block light-bg">
+<section class="board-block pb-1 light-bg">
   <div class="container pt-5">
     <div class="py-3">
       <div class="table-responsive">
@@ -126,7 +126,7 @@
 			<div class="row">
                 <div class="col-md-12">
                     <h5>자유게시판</h5>
-                    <p class="board_count">총 <span class="countNum">###개</span></p>
+                    <p class="board_count">총 <span class="countNum">${contentsCnt }개</span></p>
                 </div>
             </div>
 			<div class="py-3">
@@ -183,29 +183,42 @@
 			<div>
 				<nav aria-label="...">
 					<ul class="pagination justify-content-center">
-						<li class="page-item">
-							<a class="page-link" href="#" aria-label="Previous"> 
-								<span aria-hidden="true">&laquo;</span>
-								<span class="sr-only">Previous</span>
-							</a>
-						</li>
-						<li class="page-item">
-							<a class="page-link" href="#">1</a>
-						</li>
-						<li class="page-item active">
-							<span class="page-link">2
-								<span class="sr-only">(current)</span>
-							</span>
-						</li>
-						<li class="page-item">
-							<a class="page-link" href="#">3</a>
-						</li>
-						<li class="page-item">
-							<a class="page-link" href="#" aria-label="Next"> 
-								<span aria-hidden="true">&raquo;</span> 
-								<span class="sr-only">Next</span>
-							</a>
-						</li>
+						<c:if test="${startpage>10 }">
+							<li class="page-item">
+								<a class="page-link" href="../board/list.do?page=1" aria-label="Previous"> 
+									<span aria-hidden="true">&laquo;</span>
+								</a>
+							</li>
+							<li class="page-item">
+								<a class="page-link" href="../board/list.do?page=${startpage }" aria-label="Previous"> 
+									<span aria-hidden="true">&lt;</span>
+								</a>
+							</li>
+						</c:if>
+						<c:forEach var="i" begin="${startpage }" end="${endpage }">
+							<c:if test="${i!=curpage }">
+								<li class="page-item">
+									<a class="page-link" href="../board/list.do?page=${i }">${i }</a>
+								</li>
+							</c:if>
+							<c:if test="${i==curpage }">
+								<li class="page-item active">
+									<a class="page-link" href="../board/list.do?page=${i }">${i }</a>
+								</li>
+							</c:if>
+						</c:forEach>
+						<c:if test="${endpage>10 && (totalpage-startpage)>9 }">
+							<li class="page-item">
+								<a class="page-link" href="../board/list.do?page=${endpage }" aria-label="Next"> 
+									<span aria-hidden="true">&gt;</span> 
+								</a>
+							</li>
+							<li class="page-item">
+								<a class="page-link" href="../board/list.do?page=${totalpage }" aria-label="Next"> 
+									<span aria-hidden="true">&raquo;</span> 
+								</a>
+							</li>
+						</c:if>
 					</ul>
 				</nav>
 			</div>			

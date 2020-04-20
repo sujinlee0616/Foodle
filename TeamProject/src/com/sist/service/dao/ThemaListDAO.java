@@ -45,36 +45,31 @@ public class ThemaListDAO {
 			return list;	
 		}
 		
-		//small 카테고리      count하기위함!
-		public static int smallThemaCount(String ff)
+	/*	
+		public static List<MainThemaVO> countBigThema()
 		{
-			SqlSession session =null;
-			int count=0;
+			SqlSession session=null;
+			List<MainThemaVO> list=new ArrayList<MainThemaVO>();
 			
 			try{
 				
 				session=ssf.openSession();
-				
-				Map map=new HashMap();
-				map.put("ff", ff);
-				
-				count=session.selectOne("smallThemaCount",ff);
-				
+				list=session.selectList("countBigThema");	
 				
 			}catch(Exception ex)
 			{
-				System.out.println("smallThemaCount(): "+ex.getMessage());
+				System.out.println("countBigThema(): "+ex.getMessage());
 				
 			}finally
 			{
 				if(session!=null)
 					session.close();
-				
 			}
-			return count;
-			
+			return list;	
 		}
 		
+		*/
+	/*	
 		
 		//작은 카테고 창 띄우기 위함!!
 		public static List<DetailThemaVO> showMoreCate()
@@ -99,11 +94,69 @@ public class ThemaListDAO {
 				
 			}
 			return blist;
-			
-			
-			
+	
 		}
 		
+		
+		*/
+		
+		
+		public static List<MainThemaVO> catefindData1(String fo)
+		{
+			SqlSession session=null;
+			List<MainThemaVO> list1=new ArrayList<MainThemaVO>();
+			
+			try{
+				session=ssf.openSession();
+				
+				Map map=new HashMap();
+				map.put("fo", fo);
+				
+				list1=session.selectList("catefindData1", map);
+				
+				
+			}catch(Exception ex)
+			{
+				System.out.println("catefindData1(): "+ex.getMessage());
+				
+			}finally
+			{
+				if(session!=null)
+					session.close();
+				
+			}
+			return list1;
+		}
+		
+		
+		
+
+		public static List<DetailThemaVO> catefindData2(String fo)
+		{
+			SqlSession session=null;
+			List<DetailThemaVO> list2=new ArrayList<DetailThemaVO>();
+			
+			try{
+				session=ssf.openSession();
+				
+				Map map=new HashMap();
+				map.put("fo", fo);
+				
+				list2=session.selectList("catefindData2", map);
+				
+				
+			}catch(Exception ex)
+			{
+				System.out.println("catefindData2(): "+ex.getMessage());
+				
+			}finally
+			{
+				if(session!=null)
+					session.close();
+				
+			}
+			return list2;
+		}
 		
 		
 		

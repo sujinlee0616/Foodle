@@ -27,7 +27,12 @@
 	</select>
 	
 	<select id="boardTotalPage" resultType="int">
-		SELECT CEIL (COUNT(*)/20.0) 
+		SELECT CEIL (COUNT(*)/15.0) 
+		FROM replyBoard
+	</select>
+	
+	<select id="boardContentsCount" resultType="int">
+		SELECT COUNT(*)
 		FROM replyBoard
 	</select>
 	

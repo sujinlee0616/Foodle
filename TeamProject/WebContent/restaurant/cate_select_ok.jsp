@@ -25,9 +25,10 @@
 
 <!-- small 테마 맛집 페이지 CSS -->
 <link rel="stylesheet" href="${pageContext.request.contextPath }/css/cate_select.css">
+<link rel="stylesheet" href="../shadow/css/shadowbox.css">
+<script type="text/javascript" src="../shadow/js/shadowbox.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script> 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-
-
 <style type="text/css">
 figure img {
 	
@@ -37,36 +38,36 @@ figure img {
 }
 </style>
 <script type="text/javascript">
+
+Shdowbox.init({
+	
+	player:['iframe']
+	
+});
+
+
+
 $(function(){
 
 	
-	let tName=$('.themarow').attr("value"); 
+	let tName=$('.themarow').attr("value");
 	
-	$.ajax({
+	$('#choosenthema').click(functon(){
 	
-		type:'post',
-		url:'../restaurant/cate_select_ok.do',
-		data:{"tName":tName},
-		success:function(res){
-			
-			
-			
-		},
-		error:function(request,status,error){
-			
-			alert("code = "+ request.status + " message = " + request.responseText + " error = " + error);
-		}
+		let data=$(this).attr("data");
 		
-
+			
+		Shadowbox.open({
+		
+			content:'../restaurant/catefind.do?t_DetailThema='+data,  //화면에 
+			title:' ',
+			player:'iframe',
+			width:500,
+			height:500
+			
+		})
 		
 	})
-	//ajax끝!!
-	
-	
-	
-	
-	
-	
 	
 })
 //스크립트 끝!!
@@ -75,21 +76,17 @@ $(function(){
 
 </head>
 <body>
-           	<div class="situation" >
-               	
-                <c:forEach var="vo" items="${list }">	
-                	
-                	<div class="themarow find-img-align" value="${vo.t_DetailThema }">
+		<form id="cateshadow" name="cateshadow" method="post">
+           <div class="situation" >
+                <c:forEach var="vo" items="${list }">	  	
+                	<div class="themarow find-img-align" value="${vo.t_DetailThema }" id="choosenthema" data="${vo.t_DetailThema }">
                         <div class="col-md-12">
 	                            <div class="find-place-img_wrap">
 	                                <div class="grid">
 	                                    <figure class="effect-ruby">
 	                                        <img src="${pageContext.request.contextPath }/images/situ3.png" id="smallthemaimg" class="img-fluid" alt="img13" />
 	                                        <figcaption>
-	                        
-	                           	
 	                                            <p>${count }<p>
-	                                             
 	                                        </figcaption>
 	                                    </figure>
 	                                </div>
@@ -97,9 +94,9 @@ $(function(){
                         	</div>
                         <div style="text-align: center" class="themafont"><span id="thematitle">${vo.t_DetailThema }</span></div>
                     </div>
-                   
+                   </a>
                   </c:forEach>  
-                    
              </div>
+         </form>
 </body>
 </html>

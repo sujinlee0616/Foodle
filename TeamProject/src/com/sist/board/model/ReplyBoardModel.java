@@ -26,21 +26,32 @@ public class ReplyBoardModel {
 		// VO에 start랑 end는 없으니까 map 사용 
 		Map map=new HashMap();
 		int rowSize=15;
-		int start = rowSize*(curpage-1)+1;
-		int end=rowSize*curpage;
+		int start = rowSize*(curpage-1)+1; // curpage의 첫 컨텐츠 번호 
+		int end=rowSize*curpage; // curpage의 마지막 컨텐츠번호 
 		map.put("start", start);
 		map.put("end", end);
-		
 		List<ReplyBoardVO> list=ReplyBoardDAO.boardListData(map); // 
 		int totalpage=ReplyBoardDAO.boardTotalPage();
-		
+		int contentsCnt=ReplyBoardDAO.boardContentsCount();
 		request.setAttribute("list", list);
 		request.setAttribute("curpage", curpage);
-		request.setAttribute("totalpage", totalpage);		
+		request.setAttribute("totalpage", totalpage);
+		request.setAttribute("contentsCnt", contentsCnt);
+		
+		// Pagination
+		int startpage=1;
+		int endpage=1;
+		int pageScope=10;
+		startpage=((int) Math.floor((curpage-1)/10))*pageScope+1;
+		endpage=((int) Math.floor((curpage-1)/10))*pageScope+pageScope;
+		if(endpage>totalpage)
+			endpage=totalpage;
+		System.out.println("curpage="+curpage+", totalpage="+totalpage+", startpage="+startpage+", endpage="+endpage);
+		request.setAttribute("startpage", startpage);
+		request.setAttribute("endpage", endpage);
 		
 		request.setAttribute("main_header", "../common/header_sub.jsp");
 		request.setAttribute("main_jsp", "../board/list.jsp");		
-		
 		return "../main/main.jsp";
 	}
 	
@@ -57,9 +68,6 @@ public class ReplyBoardModel {
 		
 		request.setAttribute("vo", vo);
 		
-		request.setAttribute("main_header", "../common/header_sub.jsp");
-		request.setAttribute("main_jsp", "../board/detail.jsp");
-		
 		// ======== 상세보기 하단 리스트 ========
 		String page=request.getParameter("page");
 		if(page==null)
@@ -72,14 +80,28 @@ public class ReplyBoardModel {
 		int end=rowSize*curpage;
 		map.put("start", start);
 		map.put("end", end);
-		
 		List<ReplyBoardVO> list=ReplyBoardDAO.boardListData(map); // 
 		int totalpage=ReplyBoardDAO.boardTotalPage();
-		
+		int contentsCnt=ReplyBoardDAO.boardContentsCount();
 		request.setAttribute("list", list);
 		request.setAttribute("curpage", curpage);
 		request.setAttribute("totalpage", totalpage);
+		request.setAttribute("contentsCnt", contentsCnt);
 		
+		// Pagination
+		int startpage=1;
+		int endpage=1;
+		int pageScope=10;
+		startpage=((int) Math.floor((curpage-1)/10))*pageScope+1;
+		endpage=((int) Math.floor((curpage-1)/10))*pageScope+pageScope;
+		if(endpage>totalpage)
+			endpage=totalpage;
+		System.out.println("curpage="+curpage+", totalpage="+totalpage+", startpage="+startpage+", endpage="+endpage);
+		request.setAttribute("startpage", startpage);
+		request.setAttribute("endpage", endpage);
+				
+		request.setAttribute("main_header", "../common/header_sub.jsp");
+		request.setAttribute("main_jsp", "../board/detail.jsp");
 		return "../main/main.jsp";
 	}
 	

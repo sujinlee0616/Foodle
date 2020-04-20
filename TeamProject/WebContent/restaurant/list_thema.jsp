@@ -136,7 +136,7 @@ $(function(){
              </div>
             
 		
-                 <c:forEach var="i" begin="1" end="3"> 
+                 <c:forEach var="i" begin="1" end="3" varStatus="s"> 
                     <div data-tab="bigTab1" class="themarow thematabmenu find-img-align" id="defaultThemamenu" value="${i }">
                         <div class="col-md-12">
                        	 	<a href="#">
@@ -147,7 +147,7 @@ $(function(){
 	                                        title="${data[i-1] }"/>
 	                                        <figcaption>
 	                                            <h5 class="bysituation" style="color:white;">${data[i-1] }</h5>
-	                                            <p>1,204개</p>
+	                                            <p>${clist[s.index].themaCount }</p>
 	                                        </figcaption>
 	                                    </figure>
 	                                </div>
@@ -156,6 +156,31 @@ $(function(){
                         </div>
                     </div>
                 </c:forEach>
+
+			
+			 <c:forEach var="i" items="${clist }" varStatus="s"> 
+                    <div data-tab="bigTab1" class="themarow thematabmenu find-img-align" id="defaultThemamenu" value="${i }">
+                        <div class="col-md-12">
+                       	 	<a href="#">
+	                            <div class="find-place-img_wrap">
+	                                <div class="grid">
+	                                    <figure class="effect-ruby">
+	                                        <img src="${pageContext.request.contextPath }/images/themacate${i }.png" value="${i}" class="img-fluid" alt="img13"
+	                                        title="${data[i-1] }"/>
+	                                        <figcaption>
+	                                            <h5 class="bysituation" style="color:white;">${data[i-1] }</h5>
+	                                            <p>${clist.themaCount }</p>
+	                                        </figcaption>
+	                                    </figure>
+	                                </div>
+	                            </div>
+	                    	</a>
+                        </div>
+                    </div>
+                </c:forEach>
+			
+			
+
             <!--                         BIG 3 THEMA END                                -->
     
 
