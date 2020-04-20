@@ -59,7 +59,7 @@
 	                  <a class="bdDtBtn" href="../board/list.do">목록</a>
 	                  <a class="bdDtBtn" href="../board/update.do?bno=${vo.bno }">수정</a>
 	                  <a class="bdDtBtn" href="../board/delete.do?bno=${vo.bno }">삭제</a>
-	                  <a class="bdDtBtn" href="../board/reply.do?bno=${vo.bno }">답글</a>
+	                  <a class="bdDtBtn" href="../board/reply.do?pno=${vo.bno }">답글</a>
                   </div>
                 </td>
               </tr>
@@ -148,7 +148,7 @@
 								<tr>
 									<td class="text-center">${vo.bno }</td>
 									<td>
-										<a href="detail.do?page=${curpage }&no=${vo.bno }">${vo.bsubject }</a>
+										<a href="detail.do?page=${curpage }&bno=${vo.bno }">${vo.bsubject }</a>
 										<!-- 공지 글에는 공지 플래그 붙임 -->
 										<c:if test="${vo.notice=='y'}">
 											<span class="badge badge-gray ml-2" id="">공지</span>

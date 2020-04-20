@@ -148,6 +148,52 @@ public class ReplyBoardDAO {
 		return vo;
 	}
 	
+	// [답글쓰기]
+	public static void boardReplyInsert(int pno,ReplyBoardVO vo)
+	{
+		SqlSession session=null;
+		
+		try
+		{
+			session=ssf.openSession();
+			
+			// 1. 엄마 글의 정보를 먼저 읽어 들어온다
+			ReplyBoardVO pvo=session.selectOne("getParentInfo",pno); // 상위 글의 데이터 모음(pvo) 가져옴  
+			System.out.println("1번 수행 완료");
+			
+			// 2. 같은 그룹 안에 있는 글들의 group_step 1씩 증가시킨다
+			session.update("boardGroupStepIncrement",pvo);
+			System.out.println("2번 수행 완료");
+			
+			// 3. 답글 insert함
+			vo.setGroup_id(pvo.getGroup_id());
+			vo.setGroup_step(pvo.getGroup_step()+1);
+			vo.setGroup_tab(pvo.getGroup_tab()+1);
+			vo.setRoot(pno);
+			session.insert("boardReplyInsert",vo);
+			System.out.println("3번 수행 완료");
+			
+			// 4.엄마글의 depth(자기 밑에 몇 개를 달고 있는지) 1개 증가시킴
+			session.update("parentDetphIncrement",pno);
+			System.out.println("4번 수행 완료");
+			
+			// 커밋 날림 - 1~4 다 정상수행하면 커밋하고 
+			session.commit();
+			
+		}catch(Exception ex)
+		{
+			System.out.println("boardReplyInsert: "+ex.getMessage());
+			session.rollback(); // 1~4 중 하나라도 정상수행 못한다면 롤백 
+		}
+		finally
+		{
+			if(session!=null)
+				session.close(); 
+		}
+	}
+
+	
+	
 	// [글 수정] - 비번체크
 	public static boolean boardCheckPwd(int bno,String user_input_pwd)
 	{

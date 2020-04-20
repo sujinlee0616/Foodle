@@ -60,11 +60,11 @@ public class ReplyBoardModel {
 	public String board_detail(HttpServletRequest request, HttpServletResponse response)
 	{
 		// 요청데이터
-		String no=request.getParameter("no");
+		String bno=request.getParameter("bno");
 		
 		// DAO 
-		ReplyBoardVO vo=ReplyBoardDAO.boardDetailData(Integer.parseInt(no));
-		vo=ReplyBoardDAO.hitIncrement(Integer.parseInt(no));
+		ReplyBoardVO vo=ReplyBoardDAO.boardDetailData(Integer.parseInt(bno));
+		vo=ReplyBoardDAO.hitIncrement(Integer.parseInt(bno));
 		
 		request.setAttribute("vo", vo);
 		
@@ -150,6 +150,55 @@ public class ReplyBoardModel {
 		return "redirect:../board/list.do";
 	}
 	
+	// [답글쓰기]
+	@RequestMapping("board/reply.do")
+	public String board_reply(HttpServletRequest request,HttpServletResponse response)
+	{
+		String pno=request.getParameter("pno");
+		
+		request.setAttribute("pno", pno);
+		request.setAttribute("main_header", "../common/header_sub.jsp");
+		request.setAttribute("main_jsp", "../board/reply.jsp");
+		
+		return "../main/main.jsp";
+	}
+	
+	// [답글쓰기] - 실제 처리 
+	@RequestMapping("board/reply_ok.do")
+	public String board_reply_ok(HttpServletRequest request,HttpServletResponse response)
+	{
+		try
+		{
+			request.setCharacterEncoding("UTF-8");
+		}catch(Exception ex){}
+		
+		String pno=request.getParameter("pno"); //엄마글 번호 
+		System.out.println("pno="+pno);
+		
+		// 클라이언트 입력 데이터 
+		String bname=request.getParameter("name");
+		String bsubject=request.getParameter("subject");
+		String bcontent=request.getParameter("content");
+		String bpwd=request.getParameter("pwd");
+
+		// 데이터 확인
+		System.out.println("bname="+bname+", bsubject="+bsubject+", bcontent="+bcontent+", bpwd="+bpwd);
+		
+		// 클라이언트가 입력해준 데이터 VO에 저장 
+		ReplyBoardVO vo = new ReplyBoardVO();
+		vo.setBname(bname);
+		vo.setBsubject(bsubject);
+		vo.setBcontent(bcontent);
+		vo.setBpwd(bpwd);
+		
+		// VO를 INSERT 하게 mapper에서 수행 
+		ReplyBoardDAO.boardReplyInsert(Integer.parseInt(pno), vo);
+				
+		return "redirect:../board/list.do";
+	}
+		
+	
+	
 	// [글 수정] - 기존 글의 데이터 가져옴
 	@RequestMapping("board/update.do")
 	public String board_update(HttpServletRequest request,HttpServletResponse response)
@@ -212,7 +261,7 @@ public class ReplyBoardModel {
 		// DAO 연동
 		ReplyBoardDAO.boardUpdateData(vo);
 		
-		return "redirect:../board/detail.do?no="+bno;
+		return "redirect:../board/detail.do?&bno="+bno;
 	}
 	
 	
