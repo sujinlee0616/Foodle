@@ -60,5 +60,33 @@ public class Manager {
 		System.out.println("create Reserveinfo table!");
 		rim.ReserveInfoData(am.AreacodeAllData());
 		System.out.println("Reserveinfo parsing done!!");
+		////////////////////menu///////////////////////////
+		MenuManager mm=new MenuManager();
+		MenuDAO md=new MenuDAO();
+		md.menuCreate();
+		System.out.println("CREATE TABLE menu!!");
+		
+		ArrayList<MenuVO> menulist = mm.MenuAllData(am.AreacodeAllData());
+		
+		int menu_k=1;
+		for(MenuVO vo:menulist) {
+			md.menuInsert(vo);
+			try {
+				Thread.sleep(100);
+			} catch(Exception ex) {
+				ex.printStackTrace();
+			}
+			System.out.println("Menu_k="+menu_k);
+			menu_k++;
+		}
+		System.out.println("MENU PARSING END!!");
+		/////////////////////IMAGE/////////////////////////
+		ImageManager im=new ImageManager();
+		ImageDAO id=new ImageDAO();
+		id.CreateImageTable();
+		System.out.println("CREATE image table!!");
+		im.ImageAllData(am.AreacodeAllData());
+		System.out.println("image table parsing done!");
+		
 	}
 }

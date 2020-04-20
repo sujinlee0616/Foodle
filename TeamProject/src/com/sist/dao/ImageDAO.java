@@ -50,9 +50,10 @@ public class ImageDAO {
 					+ "iname VARCHAR2(200) CONSTRAINT image_iname_nn NOT NULL, "
 					+ "ilink VARCHAR2(2000) CONSTRAINT image_ilink_nn NOT NULL, "
 					+ "CONSTRAINT image_rno_fk FOREIGN KEY(rno) "
-					+ "REFERENCES maininfo(rno));";
+					+ "REFERENCES maininfo(rno)"
+					+ ")";
 			ps=conn.prepareStatement(sql);
-			ps.executeQuery();
+			ps.executeUpdate();
 			
 		} catch (Exception e) {
 			e.printStackTrace();
