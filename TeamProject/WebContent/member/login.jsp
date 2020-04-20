@@ -35,13 +35,13 @@ $(function(){
 					$('#pwd').val("");
 					$('#id').focus();
 				}
-				else if(res.trim()=='NOPWD')
+				else if(res.trim()=='WrongPWD')
 				{
 					alert("비밀번호가 틀립니다");
 					$('#pwd').val("");
 					$('#pwd').focus();
 				}
-				else // res가 'OK'일 때
+				else // res가 'OK_general' 또는 'OK_comp'일 때
 				{
 					location.href="../main/main.do";
 					alert("로그인 성공!");
@@ -51,13 +51,16 @@ $(function(){
 				alert(e);
 			}
 		})
-		
-		
 	})
-	
-	
-})
 
+	// 비밀번호 입력 후 엔터치면 로그인 버튼 누르게 구현 ==> form이 submit되고 화면 넘어가지 않고 ajax도 정상 동작함. 
+	$("#pwd").keydown(function(key) {
+    	if (key.keyCode == 13) {
+        	$("#loginBtn").click();
+        }
+    });
+
+})
 </script>
 </head>
 <body>
@@ -66,9 +69,9 @@ $(function(){
 	  <div class="container py-5">
 	    <div class="row justify-content-center">
 	      <div class="logo_parent col-md-5 mb-4">
-	        <h2>Foodle</h2>
+	        <!-- <h2>Foodle</h2> -->
 	        <!-- 로고 생기면 h2 제거 후 로고 넣기 -->
-	        <!-- <img class="logo" src=""> -->
+	        <img class="logo" src="../images/foodle_temp_logo.png">
 	      </div>
 	    </div>
 	    <!-- =============== Start of 로그인 form =============== -->
@@ -79,7 +82,7 @@ $(function(){
 		          <ul class="login input">
 		            <!-- ID -->
 		            <li>
-		              <input type="text" name="user_id" id="id" autocapitalize="off" placeholder="아이디">
+		              <input type="text" name="user_id" id="id" autocapitalize="off" placeholder="아이디" autofocus>
 		            </li>
 		            <!-- PWD -->
 		            <li>
@@ -119,5 +122,11 @@ $(function(){
 	  </div>
 	</section>
 	<!--//END LOGIN  -->
+	
+<!-- jQuery, Bootstrap JS. -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="../js/jquery-3.2.1.min.js"></script>
+<script src="../js/popper.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
 </body>
 </html>

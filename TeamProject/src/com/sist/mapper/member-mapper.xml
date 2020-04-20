@@ -2,7 +2,25 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sist.mapper.member-mapper">
 	
-	<!-- [회원가입] -->
+	<!--[로그인] - ID/PWD 맞는지 확인 -->
+	<select id="idCount_general" resultType="int" parameterType="String">
+		SELECT COUNT(*) FROM member
+		WHERE userId=#{id}
+	</select>
+	<select id="getPwd_general" resultType="MemberVO" parameterType="String">
+		SELECT uPwd,uName,uType FROM member
+		WHERE userId=#{id} 
+	</select>
+	<select id="idCount_comp" resultType="int" parameterType="String">
+		SELECT COUNT(*) FROM compMember
+		WHERE rId=#{id}
+	</select>
+	<select id="getPwd_comp" resultType="CompMemberVO" parameterType="String">
+		SELECT rPwd,rName,uType FROM compMember
+		WHERE rId=#{id}
+	</select>
+	
+	<!-- [개인회원가입] -->
 	<!-- 들어가는 "순서" 맞춰줘야..
 	[member 테이블]
 	USERID  NOT NULL VARCHAR2(50)  
@@ -19,24 +37,43 @@
 	UTYPE   NOT NULL VARCHAR2(10)  
 	HINT    NOT NULL VARCHAR2(100) 
 	HINTANS NOT NULL VARCHAR2(100) 
+	SIGNUPDATE          VARCHAR2(50) 
 	 -->
 	<insert id="memberInsert">
-		INSERT INTO member VALUES(
+		INSERT INTO member (userid,upwd,uname,uemail,utel,uphone,upost,uaddr1,uaddr2,ugender,ubirth,utype,hint,hintans) 
+		VALUES(
 		#{userid},#{upwd},#{uname},#{uemail},#{utel},
 		#{uphone},#{upost},#{uaddr1},#{uaddr2},#{ugender},
 		#{ubirth},#{utype},#{hint},#{hintans}
 		)
 	</insert>
 	
+	<!-- [기업회원가입] -->
+	<!-- 들어가는 "순서" 맞춰줘야..
+	[member 테이블]
+	rId	VARCHAR2	50
+	rPwd	VARCHAR2	20
+	rNo	NUMBER	
+	rName	VARCHAR2	500
+	rTel	VARCHAR2	200
+	rPost	VARCHAR2	7
+	rAddr1	VARCHAR2	200
+	rAddr2	VARCHAR2	200
+	rType	VARCHAR2	200
+	rArea	VARCHAR2	50
+	rAreaDetail	VARCHAR2	50
+	uType	VARCHAR2	10
+	signupDate	VARCHAR2	50
+	 -->
+	<insert id="compMemberInsert">
+		INSERT INTO compMember(rid,rpwd,rno,rname,rtel,rpost,raddr1,raddr2,rtype,rarea,rareadetail,utype)
+		VALUES(
+		#{rid},#{rpwd},(SELECT NVL(MAX(rno)+1,1) FROM mainInfo),#{rname},#{rtel},
+		#{rpost},#{raddr1},#{raddr2},#{rtype},#{rarea},
+		#{rareadetail},#{utype}
+		)
+	</insert>
 	
-	<!--[로그인] - ID/PWD 맞는지 확인 -->
-	<select id="idCount" resultType="int" parameterType="String">
-		SELECT COUNT(*) FROM member
-		WHERE userId=#{id}
-	</select>
-	<select id="getPwd" resultType="MemberVO" parameterType="string">
-		SELECT uPwd,uName,uType FROM member
-		WHERE userId=#{id} 
-	</select>
+	
 	
 </mapper>

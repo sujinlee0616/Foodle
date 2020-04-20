@@ -1,14 +1,99 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%--2020 04 16 수정 완료!! --%>
+    
 <!DOCTYPE html>
 <html lang="ko">
 <head>
 
+    <!-- jQuery, Bootstrap JS. -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="${pageContext.request.contextPath }/js/jquery-3.2.1.min.js"></script>
+    <script src="${pageContext.request.contextPath }/js/popper.min.js"></script>
+    <script src="${pageContext.request.contextPath }/js/bootstrap.min.js"></script>
 
-<!--  테마 맛집 페이지 CSS -->
+
+<!--  테마   맛집 페이지 CSS -->
 <link rel="stylesheet" href="${pageContext.request.contextPath }/css/themalist.css">
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script> 
 
+
+<script type="text/javascript">
+$(function(){
+
+	let activeTab=$('.thematabmenu').attr('data-tab'); //bigTab1.jsp 로 쓸 예정!
+	let bigTabId=$('.thematabmenu').attr('#id');  
+	
+	
+	$.ajax({
+	
+		type:'post',
+		url:'../restaurant/cate_select_ok.do', //디폴트 페이지 & ajax
+		data:{"no":1,"activeTab":activeTab,"bigTabId":bigTabId},
+		success:function(res){
+			
+			$('#showsmallcate').html(res);
+			
+		},
+		error:function(request,status,error){
+			
+			alert("code = "+ request.status + " message = " + request.responseText + " error = " + error);
+		}
+		
+	})
+	//ajax끝
+	
+	
+	//효과 넣을 예정
+	//$('div').css('opacity','0.5'); //선택되지 않은 탭 배경 변경
+	//$(this).css('background-color','white');  //선택된 탭 배경 변경
+	//호버효과 시작
+	/*
+	$('.thematabmenu').hovor(function(){ 
+		
+			$(this).css('cursor','pointer');
+		
+		},
+		function(){
+			
+			$(this).css('cursor','none');
+		
+		}
+		
+	)//호버효과 끝!
+	*/
+	
+	
+	//big3 메뉴 선택시 => small 테마들 ajax로 출력 예정!
+	$('.thematabmenu').click(function(){
+	
+		let no=$(this).attr("value");
+		
+		$.ajax({
+		
+			type:'post',
+			url:'../restaurant/cate_select_ok.do', // ajax될 부분에 이 파일을 넣을 예정!
+			data:{"no":no,"activeTab":activeTab,"bigTabId":bigTabId},
+			success:function(res){
+				
+				$('#showsmallcate').html(res);
+				
+			},
+			error:function(request,status,error){
+				
+				alert("code = "+ request.status + " message = " + request.responseText + " error = " + error);
+			}
+			
+		})// ajax로 출력 끝
+		
+	})// 클릭 이벤트 끝!
+
+	
+	
+})//스크립트 끝
+</script>
 
 
 </head>
@@ -16,14 +101,14 @@
 <!--=============================THEMA LIST START =============================-->
  <section class="list-block">
     
-     	<!-- 주변맛집 전체화면 -->
+     <form name="themalist" action="../restaurant/cate_select_ok.do" method="post" id="themalist">
         <div class="container-fluid py-4 container py-5">
 			<div class="row nearbyrow">
 
-				<!-- ======================================주변맛집 페이지 왼쪽 화면============================================= -->
-				<div class="col-md-7 responsive-wrap nearbymd7">
+			
+				<div class="responsive-wrap nearbymd7">
 					<!-- ===================================검색 결과 타이틀 "~ 주변 검색 결과" ===================================-->
-					<h5>Various Thema List </h5>
+					<h5 class="styled-heading"> Various Thema List </h5>
 
 					<p>
 						총 <span>###개</span>
@@ -33,52 +118,93 @@
 					
 					<div class="mt-4">
 						<div class="filter_row area">
-							<div class="category">
-								<!-- <button onclick="searchNearby()">test</button> -->
-
+						
+				<!--=============================BIG 3 THEME  =============================-->
+  
+  
+    <section class="main-block themablock" id="theme">
+        <div class="container themacontainer">
+        
+            <div class="row justify-content-center">
+   <!-- 
+                <div class="col-md-5">
+                    <div class="styled-heading">
+                        <h3>테마별 맛집</h3>
+                    </div>
+                </div>
+   -->
+             </div>
+            
 		
-								<select id="test" title="음식선택" class="menuarrow select7" onchange="setFilter(this);" placeholder="음식종류" style="color: black;">
-									<option value="전체" class="lemonmenu">전체 </option>
-									<option value="한식" class="lemonmenu">한식</option>
-									<option value="일식" class="lemonmenu">일식</option>
-									<option value="중식" class="lemonmenu">중식</option>
-									<option value="카페" class="lemonmenu">카페</option>
-									<option value="베이커리" class="lemonmenu">베이커리</option>
-									<option value="패스트푸드" class="lemonmenu">패스트부드</option>
-									<option value="양식" class="lemonmenu">양식</option>
-									<option value="뷔페" class="lemonmenu">뷔페</option>
-									<option value="기타" class="lemonmenu">기타/세계</option>
-									<option value="plusicon" data-icon="..//images/plusicon.png">더보기</option>
+                 <c:forEach var="i" begin="1" end="3" varStatus="s"> 
+                    <div data-tab="bigTab1" class="themarow thematabmenu find-img-align" id="defaultThemamenu" value="${i }">
+                        <div class="col-md-12">
+                       	 	<a href="#">
+	                            <div class="find-place-img_wrap">
+	                                <div class="grid">
+	                                    <figure class="effect-ruby">
+	                                        <img src="${pageContext.request.contextPath }/images/themacate${i }.png" value="${i}" class="img-fluid" alt="img13"
+	                                        title="${data[i-1] }"/>
+	                                        <figcaption>
+	                                            <h5 class="bysituation" style="color:white;">${data[i-1] }</h5>
+	                                            <p>${clist[s.index].themaCount }</p>
+	                                        </figcaption>
+	                                    </figure>
+	                                </div>
+	                            </div>
+	                    	</a>
+                        </div>
+                    </div>
+                </c:forEach>
 
-								</select> 
-								
-								
+			
+			 <c:forEach var="i" items="${clist }" varStatus="s"> 
+                    <div data-tab="bigTab1" class="themarow thematabmenu find-img-align" id="defaultThemamenu" value="${i }">
+                        <div class="col-md-12">
+                       	 	<a href="#">
+	                            <div class="find-place-img_wrap">
+	                                <div class="grid">
+	                                    <figure class="effect-ruby">
+	                                        <img src="${pageContext.request.contextPath }/images/themacate${i }.png" value="${i}" class="img-fluid" alt="img13"
+	                                        title="${data[i-1] }"/>
+	                                        <figcaption>
+	                                            <h5 class="bysituation" style="color:white;">${data[i-1] }</h5>
+	                                            <p>${clist.themaCount }</p>
+	                                        </figcaption>
+	                                    </figure>
+	                                </div>
+	                            </div>
+	                    	</a>
+                        </div>
+                    </div>
+                </c:forEach>
+			
+			
 
-							</div>
+            <!--                         BIG 3 THEMA END                                -->
+    
 
 
-						<!--=============================THEMA LIST END=============================-->
+           
+                
+           <!--                              AJAX사용부분  small thema list start                         -->
+                
+                <div class="smallcatelist" id="showsmallcate"></div>
+                
+                
+            
+            
+        </div><!-- 카테고리 container 끝! -->
+    </section><!--  카테고리  section 끝! -->
+    
+    
+
+		<!--=============================  AJAX사용부분     THEMA LIST END    =============================-->
 							
 							
                             
                           
 
-
-
-							<!-- ==============================선택된 RESTAURANTS START! =============================================-->
-							<!--================================= 선택한 옵션 출력 Ajax 부분!!=========================================-->
-							<div class="selected_filter mt-2 displaymenu" id="test2">
-
-								<!-- 
-                        <a href="#" class="selected" data-filter-name="food_cat" data-filter-value="108602" data-nclick-code="rcc.reset"
-                            data-filter-action="nclick" title="양식">강남역<span class="del">X</span></a>
-                        <a href="#" class="selected" data-filter-name="food_cat" data-filter-value="108602" data-nclick-code="rcc.reset"
-                            data-filter-action="nclick" title="양식">양식<span class="del">X</span></a>
-                        <a href="javascript:deleteFilter(this);" class="selected" data-filter-name="food_cat" data-filter-value="108602" data-nclick-code="rcc.reset"
-                            data-filter-action="nclick" title="양식">카페/술집<span class="del">X</span></a>
-                             -->
-                             
-							</div>
 
 
 						
@@ -87,11 +213,11 @@
 
 
 								
-			<!-- ================================가게 1개 =============================================-->
-                        <div class=" featured-responsive" >
-                            <div class="featured-place-wrap" >
+			<!-- ===============================가게 1개 =============================================-->
+                        <div class="featured-responsive" >
+                            <div class="featured-place-wrap listthemawap" >
                                 <a href="main.jsp?mode=5">
-                   
+                   		<!-- 		 <a href="../restaurant/detail.do?no=${vo.rNo }">   -->
                    
                    <!--  =======================그림 부분 시작 ============================= -->
                                 	<div class="featured-title-box">
@@ -133,7 +259,7 @@
                         
                         
                         <div class=" featured-responsive">
-                            <div class="featured-place-wrap">
+                            <div class="featured-place-wrap listthemawap">
                                 <a href="main.jsp?mode=5">
                                 <div class="featured-title-box">
                                     <img src="${pageContext.request.contextPath }/images/featured2.jpg" class="img-fluid" alt="#">
@@ -164,7 +290,7 @@
 
 
                         <div class=" featured-responsive">
-                            <div class="featured-place-wrap">
+                            <div class="featured-place-wrap listthemawap">
                                 <a href="main.jsp?mode=5">
                                 <div class="featured-title-box">
                                     <img src="${pageContext.request.contextPath }/images/featured3.jpg" class="img-fluid" alt="#">
@@ -196,7 +322,7 @@
                         
                         
                         <div class=" featured-responsive">
-                            <div class="featured-place-wrap">
+                            <div class="featured-place-wrap listthemawap">
                                 <a href="main.jsp?mode=5">
                                 <div class="featured-title-box">
                                     <img src="${pageContext.request.contextPath }/images/featured4.jpg" class="img-fluid" alt="#">
@@ -224,8 +350,10 @@
                             </div>
                         </div>
                         
+                        
+                        
 							<div class=" featured-responsive">
-								<div class="featured-place-wrap">
+								<div class="featured-place-wrap listthemawap">
 									<a href="main.jsp?mode=5">
 										<div class="featured-title-box">
 											<img
@@ -276,34 +404,8 @@
     </section>
     <!--//END DETAIL -->
     
-    <!-- jQuery, Bootstrap JS. -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="${pageContext.request.contextPath }/js/jquery-3.2.1.min.js"></script>
-    <script src="${pageContext.request.contextPath }/js/popper.min.js"></script>
-    <script src="${pageContext.request.contextPath }/js/bootstrap.min.js"></script>
 
-    <!-- 이전에 남아있던 map 관련 소스 :  파악 중 -->
-    <script>
-        $(".map-icon").click(function() {
-            $(".map-fix").toggle();
-        });
-    </script>
+
    
-   <!-- Kakao Map Script -->
-   <script>
-        var container = document.getElementById('map');
-        var options = {
-            center: new kakao.maps.LatLng(33.450701, 126.570667),
-            level: 3
-        };
-
-        var map = new kakao.maps.Map(container, options);
-    </script>
-
-
-    
-   
-
-
 </body>
 </html>

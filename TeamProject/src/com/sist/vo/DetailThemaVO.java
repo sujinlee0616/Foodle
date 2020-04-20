@@ -6,7 +6,15 @@ public class DetailThemaVO {
 	//테마정보(ex.가족외식,상견례,돌잔치/회갑/생일,어른과함께라면)
 	private String t_Info;
 	
+	private int themaCount;
 	
+	
+	public int getThemaCount() {
+		return themaCount;
+	}
+	public void setThemaCount(int themaCount) {
+		this.themaCount = themaCount;
+	}
 	public String getT_DetailThema() {
 		return t_DetailThema;
 	}
@@ -20,3 +28,4 @@ public class DetailThemaVO {
 		this.t_Info = t_Info;
 	}
 }
+

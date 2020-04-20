@@ -1,4 +1,3 @@
-<%@page import="sun.misc.CEFormatException"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -41,7 +40,7 @@
   	<!-- COUPON CSS -->
   	<link rel="stylesheet" href="../css/coupon.css">
     <!-- Kakao Map Script -->
-    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=671fb4748c5025ba667a7fc5d41d217a"></script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=671fb4748c5025ba667a7fc5d41d217a&libraries=services"></script>
     <!-- jQuery Datepicker UI-->
   	<link rel="stylesheet" href="../js/jquery-ui-1.12.1/jquery-ui.min.css">
     <!-- Font -->

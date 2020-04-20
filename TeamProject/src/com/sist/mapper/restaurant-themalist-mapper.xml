@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sist.mapper.retaurant-themalist-mapper">
+<!-- t_MainThema= #{menuName} -->
+	<select id="cateSelectData" resultType="MainThemaVO" parameterType="java.util.Map">
+		SELECT t_MainThema, t_DetailThema, t_Info 
+		FROM mainThema
+		WHERE REGEXP_LIKE(t_MainThema,#{fd})
+</select>	
+
+<!-- 상황별 개수 알기! -->
+<select id="countBigThema" resultType="MainThemaVO">
+	SELECT t_MainThema, COUNT(*) as themaCount
+	FROM MainThema
+	GROUP BY t_MainThema
+</select>
+
+<select id="catefindData1" resultType="MainThemaVO" parameterType="java.util.Map">
+	SELECT t_DetailThema, t_Info
+	FROM mainThema
+	WHERE REGEXP_LIKE(t_DetailThema,#{fo})
+</select>
+
+<select id="catefindData2" resultType="DetailThemaVO" parameterType="java.util.Map">
+	SELECT t_DetailThema, t_Info
+	FROM detailThema 
+	WHERE REGEXP_LIKE(t_DetailThema,#{ft})
+</select>
+
+
+
+<!-- 모든 정보 가져오기! -->
+
+<select id="showMoreCate" resultType="DetailThemaVO" parameterType="java.util.Map">
+	SELECT t_DetailThema, t_Info
+	FROM detailThema 
+	WHERE REGEXP_LIKE(t_DetailThema,#{fa})
+</select>
+</mapper>

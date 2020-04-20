@@ -159,7 +159,6 @@ select::-ms-expand {
 
 .list-block h5 {
     color: #3e434b;
-    font-weight: 600;
     display: inline-block;
     margin: 0;
     font-size: 30px;
@@ -194,9 +193,11 @@ div .nearbysearchlist{
     width: 320px;
 }
 
+
 .featured-responsive:nth-child( 2n ) {
 	margin-left: 20px;
 }
+
 
 
 .nearbymapwrap{
@@ -204,15 +205,18 @@ div .nearbysearchlist{
     padding: 0; 
 
 }
-  
+
 .nearbymapfix {
-    position: fixed;
-    top: 33%;
-    right: 20.7%;
-    bottom: 0;
-    width: 33.7%; 
-    
+
+	position: fixed;
+    top: 28%;
+    right: 17%;
+    bottom: 13%;
+    width: 24%; 
+
 }
+    
+    
     @media (max-width: 992px) {
       .map-fix {
         display: none;

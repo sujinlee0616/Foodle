@@ -8,6 +8,14 @@ public class MainThemaVO {
 	// 상세테마 설명
 	private String t_Info;
 	
+	private int themaCount;
+	
+	public int getThemaCount() {
+		return themaCount;
+	}
+	public void setThemaCount(int themaCount) {
+		this.themaCount = themaCount;
+	}
 	public String getT_Info() {
 		return t_Info;
 	}

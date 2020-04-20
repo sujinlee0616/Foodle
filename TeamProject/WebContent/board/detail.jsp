@@ -1,33 +1,139 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>  <!-- 날짜 형식 변환 -->
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<jsp:useBean id="now" class="java.util.Date" />
+<fmt:formatDate var="today" value="${now}" pattern="yyyy-MM-dd" />
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
 </head>
 <body>
-    <!--============================= BOARD DETAIL =============================-->
-    <section class="board-block light-bg">
-        <div class="container py-5">
-			<div class="py-3">
-				
-				<div class="table-responsive">
-					<!-- ============================ 상세보기 내용 ============================ -->
-					<table class="table freeboard" style="background-color: #FFFFFF;">						
-							<tr>
-								<td class="">${vo.bsubject }</td>
-                            </tr>
-                            <tr>
-                                <!-- 본문 -->
-                                <td class="content">
-									${vo.bcontent }
-                                </td>
-                            </tr>
-                    </table>
+<!--============================= Start of BOARD DETAIL =============================-->
+<section class="board-block pb-1 light-bg">
+  <div class="container pt-5">
+    <div class="py-3">
+      <div class="table-responsive">
+        <!-- ============================ Start of 상세보기 ============================ -->
+        <table class="table replyBoard reply_detail">				
+	        <thead>
+	            <tr>
+	                <th class="subject px-3 py-3" colspan="4">${vo.bsubject }</td>
+	            </tr>
+	            <tr>
+	                <td>
+	                  <span class="bd_detail_dt">작성자: ${vo.bname } </span>
+	                </td>
+	                <td>
+	                  <span class="td_del">|</span>
+	                  <span class="bd_detail_dt px-2">
+					        작성일: <fmt:formatDate value="${vo.regdate }" pattern="yyyy.MM.dd hh:mm"/>
+					  </span>
+	                </td>
+	                <td>
+	                  <span class="td_del">|</span>
+	                  <span class="bd_detail_dt px-2">조회수: ${vo.hit } </span>
+	                </td>
 
-                     <!-- ============================ 하단 리스트 ============================ -->
-                     <table class="table freeboard" style="background-color: #FFFFFF;">						
+	                <td>
+	                  <span class="td_del">|</span>
+	                  <span class="bd_detail_dt px-2">답글 수: ${vo.depth }</span>
+	                </td>
+	            </tr>
+	        </thead>
+            <tbody>
+              <tr>
+                <!-- 본문 -->
+                <td class="content py-4 px-4" colspan="4">
+                  	<!-- 본문입니다 -->
+                  ${vo.bcontent }
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2">
+                  <a class="bdDtBtn" id="copyUrl" href="">url 복사</a>
+                </td>
+                <td colspan="2">
+                  <div class="bdDtBtnGp">
+	                  <a class="bdDtBtn" href="../board/list.do">목록</a>
+	                  <a class="bdDtBtn" href="../board/update.do?bno=${vo.bno }">수정</a>
+	                  <a class="bdDtBtn" href="../board/delete.do?bno=${vo.bno }">삭제</a>
+	                  <a class="bdDtBtn" href="../board/reply.do?bno=${vo.bno }">답글</a>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+        </table>
+        <!-- ============================ End of 상세보기 ============================ -->
+        <!-- ====================== Start of 댓글 영역 ======================  -->
+        <div class="replyBoard cmt_area">
+          <div>
+            <h6 class="cmt_num py-2 px-1">##개의 댓글</h6>
+          </div>
+          <hr class="cmt_line">
+          <!-- 댓글 작성 영역 -->
+          <div class="write_cmt">
+          	<!-- =============== 로그인 한 경우 =============== -->
+          	<c:if test="${sessionScope.id!=null }">
+	        	<div class="logged_in">
+	              <form action="../board/write_comment.do"></form>
+		              <div class="writer_info">
+		                <span class="writer_nm">${sessionScope.id}</span>
+		              </div>
+		              <textarea name="cmt" class="cmt_input" placeholder="건전한 댓글 문화를 위해, 타인에게 불쾌감을 주는 욕설 또는 특정 계층/민족, 종교 등을 비하하는 내용은 입력을 지양해주세요."></textarea>
+		              <button class="cmtBtn">등록</button>
+	              </form>
+	            </div>
+            </c:if>
+            <!-- =============== 로그인 안 한 경우 =============== -->
+			<c:if test="${sessionScope.id==null }">
+	            <div class="logged_in">
+	              <textarea name="cmt" class="cmt_input disabled" placeholder="회원만 댓글을 작성할 수 있습니다. 댓글을 작성하고 싶으시다면 로그인 해주세요." disabled></textarea>
+	              <button class="cmtBtn" disabled>등록</button>
+	            </div>
+          	</c:if>
+          </div>
+          <hr class="cmt_line">
+          <!-- 댓글 노출 영역 -->
+          <div class="cmt">
+            <div class="writer_info">
+              <span class="writer_nm">sjw****</span>
+              <span class="write_time pl-1">2020.01.01 15:33</span>
+            </div>
+            <div class="cmt_content pt-2">
+              병영이 교통이 좀 불편한 곳이라 아는 사람만 아는 곳인데. 세련되진 않았어도 만원이면 배불리 먹고 갈 수 있는 식당임. 확실히 식재료는 나쁜 것 쓰지 않는 것 같음. 시골 할머니들, 아줌마들이 운영하는 곳이라
+              깨끗하고 깔끔함. 강진은 해남 옆에 있는 동네.
+            </div>
+          </div>
+          <hr class="cmt_line">
+          <div class="cmt">
+            <div class="writer_info">
+              <span class="writer_nm">ahe4****</span>
+              <span class="write_time pl-1">2020.01.01 15:33</span>
+            </div>
+            <div class="cmt_content pt-2">
+              둘이서저걸다먹을수있니.남은음식들저거어쩌거니.재활용해도문제.그냥버려도문제.저렇게많이나오는집들은가는거아니다.
+            </div>
+          </div>
+        </div>
+    <!-- ============================= End of 댓글 영역  ============================= -->
+  </div>
+</section>
+<!--============================= End of BOARD DETAIL =============================-->
+
+<!--============================= Start of BOARD LIST =============================-->
+    <section class="board-block light-bg">
+        <div class="container">
+			<div class="row">
+                <div class="col-md-12">
+                    <h5>자유게시판</h5>
+                    <p class="board_count">총 <span class="countNum">${contentsCnt }개</span></p>
+                </div>
+            </div>
+			<div class="py-3">
+				<div class="table-responsive">
+					<table class="table replyBoard reply_list" style="background-color: #FFFFFF;">						
 						<thead class="thead-dark">
 							<tr style="background-color: #E0E0E0;">
 								<th scope="col" style="width:7%;" class="text-center">No.</th>
@@ -38,65 +144,90 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td class="text-center">-</td>
-								<td><a href="detail.do">공지글입니다.</a><span class="badge badge-danger mx-2">공지</span></td>
-								<td class="text-center">Otto</td>
-								<td class="text-center">20/02/04 01:00</td>
-								<td class="text-center">12</td>
-							</tr>
-							<tr>
-								<td class="text-center">10</td>
-								<td><a href="detail.do">오늘 등록된 글에는 NEW 뱃지를 드려요.</a><span class="badge badge-primary mx-2">NEW</span></td>
-								<td class="text-center">Otto</td>
-								<td class="text-center">20/01/19 20:31</td>
-								<td class="text-center">12</td>
-							</tr>
-							<tr>
-								<td class="text-center">9</td>
-								<td><a href="detail.do">테이블 데이터 연동시켜야함.... 아직 작업 전 </a></td>
-								<td class="text-center">Thornton</td>
-								<td class="text-center">20/01/16 07:39</td>
-								<td class="text-center">56</td>
-							</tr>
+							<c:forEach var="vo" items="${list }">
+								<tr>
+									<td class="text-center">${vo.bno }</td>
+									<td>
+										<a href="detail.do?page=${curpage }&no=${vo.bno }">${vo.bsubject }</a>
+										<!-- 공지 글에는 공지 플래그 붙임 -->
+										<c:if test="${vo.notice=='y'}">
+											<span class="badge badge-gray ml-2" id="">공지</span>
+										</c:if>
+										<!-- 오늘 올린글에는 new 플래그 붙임 -->
+										<div style="display:none;">
+											<fmt:formatDate var="reg_dt" value="${vo.regdate}" pattern="yyyy-MM-dd"/>
+										</div>
+										<c:if test="${today<=reg_dt}">
+											<span class="badge badge-lightgray ml-2" id="">NEW</span>
+										</c:if>
+									</td>
+									<td class="text-center">${vo.bname }</td>
+									<td class="text-center">
+										<fmt:formatDate value="${vo.regdate }" pattern="yyyy.MM.dd hh:mm"/>
+									</td>
+									<td class="text-center">${vo.hit }</td>
+								</tr>
+							</c:forEach>
 						</tbody>
 					</table>
-
 				</div>
 			</div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="inBtn pb-2">
+                        <a class="insertBtn" href="../board/insert.do">
+                            글쓰기
+                        </a>
+                    </div>
+                </div>
+            </div>
+	        <!-- ================ Pagination ================ -->
 			<div>
 				<nav aria-label="...">
 					<ul class="pagination justify-content-center">
-						<li class="page-item">
-							<a class="page-link" href="#" aria-label="Previous"> 
-								<span aria-hidden="true">&laquo;</span>
-								<span class="sr-only">Previous</span>
-							</a>
-						</li>
-						<li class="page-item">
-							<a class="page-link" href="#">1</a>
-						</li>
-						<li class="page-item active">
-							<span class="page-link">2
-								<span class="sr-only">(current)</span>
-							</span>
-						</li>
-						<li class="page-item">
-							<a class="page-link" href="#">3</a>
-						</li>
-						<li class="page-item">
-							<a class="page-link" href="#" aria-label="Next"> 
-								<span aria-hidden="true">&raquo;</span> 
-								<span class="sr-only">Next</span>
-							</a>
-						</li>
+						<c:if test="${startpage>10 }">
+							<li class="page-item">
+								<a class="page-link" href="../board/list.do?page=1" aria-label="Previous"> 
+									<span aria-hidden="true">&laquo;</span>
+								</a>
+							</li>
+							<li class="page-item">
+								<a class="page-link" href="../board/list.do?page=${startpage-10 }" aria-label="Previous"> 
+									<span aria-hidden="true">&lt;</span>
+								</a>
+							</li>
+						</c:if>
+						<c:forEach var="i" begin="${startpage }" end="${endpage }">
+							<c:if test="${i!=curpage }">
+								<li class="page-item">
+									<a class="page-link" href="../board/list.do?page=${i }">${i }</a>
+								</li>
+							</c:if>
+							<c:if test="${i==curpage }">
+								<li class="page-item active">
+									<a class="page-link" href="../board/list.do?page=${i }">${i }</a>
+								</li>
+							</c:if>
+						</c:forEach>
+						<c:if test="${totalpage>10 && (totalpage-startpage)>9 }">
+							<li class="page-item">
+								<a class="page-link" href="../board/list.do?page=${endpage+1 }" aria-label="Next"> 
+									<span aria-hidden="true">&gt;</span> 
+								</a>
+							</li>
+							<li class="page-item">
+								<a class="page-link" href="../board/list.do?page=${totalpage }" aria-label="Next"> 
+									<span aria-hidden="true">&raquo;</span> 
+								</a>
+							</li>
+						</c:if>
 					</ul>
 				</nav>
 			</div>			
 		</div>
     </section>
-    <!--//END BOARD -->
-  
-</body>
+<!--============================= End of BOARD LIST =============================-->
 
+
+</body>
 </html>

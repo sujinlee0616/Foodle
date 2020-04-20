@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+ <%--2020 04 16 수정 완료!! --%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -21,10 +21,7 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
  
- <!-- ShadowBox 
-<link rel="stylesheet" href="../shadow/css/shadowbox.css">
-<script type="text/javascript" src="../shadow/js/shadowbox.js"></script>
-<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script> -->
+
 
 <script type="text/javascript">
 
@@ -36,12 +33,12 @@
 		 );
  */
  
- function setFilter(c){ //선택한 카테고리 출력 기능
+ function setFilter(c){ //선택한 카테고리를 연속 출력 기능 // 클릭하므로써 아래 페이지가 변하니까 결국 클릭하지 않으면 저절로 디폴트 페이지가 되는것이다.
 		$('#test2').append("<a onClick=deleteFilter(this) href='#' id='"+c.value+"' class='selected nearbyselected' data-filter-name='food_cat' data-filter-value='108602' data-nclick-code='rcc.reset'"
 		         +"data-filter-action='nclick' title='"+c.value+"'>"+c.value+"<span class='del'>X</span></a>");
 		searchNearby();
 		
-	}	;
+	};
 	
 function deleteFilter(v){
 	var tihsId = "#"+v.id;
@@ -49,6 +46,7 @@ function deleteFilter(v){
 };
 
 function searchNearby(){ //선택한 카테고리를 아래에 ajax로 값을 뿌려주는 기능
+	
 	$.ajax({
 		
 		type:'post', //post방식(hide parameter)
@@ -95,7 +93,11 @@ function searchNearby(){ //선택한 카테고리를 아래에 ajax로 값을 �
 		$(".select7").select7()
 	</script>
 
+<style type="text/css">
 
+
+
+</style>
 
 
 </head>
@@ -110,7 +112,7 @@ function searchNearby(){ //선택한 카테고리를 아래에 ajax로 값을 �
 				<!-- ======================================주변맛집 페이지 왼쪽 화면============================================= -->
 				<div class="col-md-7 responsive-wrap nearbymd7">
 					<!-- ===================================검색 결과 타이틀 "~ 주변 검색 결과" ===================================-->
-					<h5>Best Places near 주변 맛집 ###</h5>
+					<h5 class="styled-heading">Best Places near 주변 맛집 ###</h5>
 
 					<p>
 						총 <span>###개</span>
@@ -160,42 +162,6 @@ function searchNearby(){ //선택한 카테고리를 아래에 ajax로 값을 �
 
 
 							</div>
-
-
-							<!-- 
-							
-							<div class="dropdown">
-								<button class="btn btn-default dropdown-toggle" type="button" 
-								data-toggle="dropdown">
-									Price 
-								</button>
-								<ul class="dropdown-menu">
-									<li><a href="#">$</a></li>
-									<li><a href="#">$$</a></li>
-									<li><a href="#">$$$</a></li>
-									<li class="divider"></li>
-									<li><a href="#">Save</a></li>
-								</ul>
-							</div>
-
-							<div class="dropdown">
-								<button class="btn btn-default dropdown-toggle" type="button"
-									data-toggle="dropdown">
-								  Distance 
-								</button>
-								<ul class="dropdown-menu">
-									<li><a href="#">1min</a></li>
-									<li><a href="#">5min</a></li>
-									<li><a href="#">15min</a></li>
-									<li><a href="#">30min</a></li>
-									<li class="divider"></li>
-									<li><a href="#">Save</a></li>
-								</ul>
-							</div>
-							
-							 -->
-
-
 
 							<!-- ========================================카테고리 끝 ============================================ -->
 							<!-- 

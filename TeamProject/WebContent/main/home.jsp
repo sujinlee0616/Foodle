@@ -181,12 +181,13 @@
                 </div>
             </div>
             <div class="row">
-            	<c:forEach var="vo" items="${realTimeTop3list }">
+            	<c:forEach var="vo" items="${popularTop3list }">
 	                <div class="col-md-4 featured-responsive">
 	                    <div class="featured-place-wrap">
 	                        <a href="../restaurant/detail.do?no=${vo.rNo }">
 	                            <img src="${vo.ivo.iLink}" class="img-fluid" alt="#">
 	                            <span class="featured-rating">${vo.rScore }</span>
+	                        </a>
 	                            <!-- <span class="featured-rating-orange">3.5</span> -->
 	                            <div class="featured-title-box">
 	                                <h6>${vo.rName }</h6>
@@ -204,10 +205,12 @@
 	                                <div class="bottom-icons">
 	                                    <!-- <div class="closed-now">CLOSED NOW</div> -->
 	                                    <div class="open-now">OPEN NOW</div>
-	                                    <span class="ti-heart"></span>
+	                                    <!-- <a href="#" class="mywish" id="mywish" style="text-align:right;font-size:17pt;">♡</a> -->
+	                                    <!-- <span class="ti-heart"></span> -->
+	                                    <span class="mywish" value="${vo.rNo }" style="text-align:right;font-size:17pt;">♡</span>
 	                                </div>
 	                            </div>
-	                        </a>
+	                        
 	                    </div>
 	                </div>
                 </c:forEach>
@@ -351,9 +354,9 @@
 
     <!-- jQuery, Bootstrap JS. -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="${pageContext.request.contextPath }/js/jquery-3.2.1.min.js"></script>
-    <script src="${pageContext.request.contextPath }/js/popper.min.js"></script>
-    <script src="${pageContext.request.contextPath }/js/bootstrap.min.js"></script>
+    <script src="../js/jquery-3.2.1.min.js"></script>
+    <script src="../js/popper.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
 
     <!-- GNB Fixed 되는 스크롤 시점 -->
     <script>
@@ -378,6 +381,7 @@
                 $(".sidenav").css("top", "785px");
             };
         });
+
     </script>    
     <!-- home의 검색창 -->
     <script type="text/javascript">
@@ -400,6 +404,50 @@
     		
     	})
     </script>
+
+    </script>  
+    
+    <!-- 찜 hover  -->
+    <!-- <script type="text/javascript">
+    	$('.mywish').mouseover(function() {
+    		$(this).text('♥');
+    		$(this).css("font-size","17pt");
+    		$(this).css("color","red");
+    	});
+    	$('.mywish').mouseout(function() {
+    		$(this).text('♡');
+    		$(this).css("font-size","17pt");
+    		$(this).css("color","black");
+    	})
+    </script>   -->
+    
+    <!-- <script type="text/javascript">
+    	$('.mywish').click(function() {
+    		let no=$(this).attr('value');
+    		//alert(no);
+    		$.ajax({
+    			type:'POST',
+    			url:'../main/mywish.do',
+    			data:{"rno":no},
+    			success:function(res){
+    				console.log(res);
+    				if(res.trim()=='NOLOGIN') {
+    					alert("로그인 후 이용해주세요.");
+    				}
+    				else { // MYWISH_INSERT
+    					if($('.mywish').attr('value')==no) {
+    						$(this).text('♥');
+        		    		$(this).css("font-size","17pt");
+        		    		$(this).css("color","red");
+    					}
+    				}
+    			},
+    			error:function(e){
+    				alert(e);
+    			}
+    		})
+    	})
+    </script> -->
 </body>
 
 </html>
