@@ -20,6 +20,7 @@ public class MemberDAO {
 		MemberVO vo=new MemberVO();  
 		SqlSession session=null;
 		
+		
 		try 
 		{
 			session=ssf.openSession(); 

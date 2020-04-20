@@ -10,6 +10,7 @@ import com.sist.service.dao.*;
 import com.sist.service.vo.CompMemberVO;
 import com.sist.service.vo.MemberVO;
 
+
 @Controller
 public class MemberModel {
 	
