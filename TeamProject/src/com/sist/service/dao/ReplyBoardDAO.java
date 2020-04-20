@@ -148,6 +148,39 @@ public class ReplyBoardDAO {
 		return vo;
 	}
 	
+	// [글 수정] - 비번체크
+	public static boolean boardCheckPwd(int bno,String user_input_pwd)
+	{
+		boolean checkPwd=false;
+		SqlSession session = null;
+		System.out.println("bno="+bno);
+		
+		try
+		{
+			session=ssf.openSession();
+			String db_pwd=session.selectOne("boardCheckPwd", bno);
+			System.out.println("db_pwd="+db_pwd);
+			
+			if(db_pwd.equals(user_input_pwd))
+				checkPwd=true;
+			else
+				checkPwd=false;
+			System.out.println("checkPwd="+checkPwd);
+		}
+		catch (Exception ex) 
+		{
+			System.out.println("boardCheckPwd: "+ex.getMessage());
+		}
+		finally
+		{
+			if(session!=null)
+				session.close();
+		}
+		
+		return checkPwd;
+	}
+	
+	
 	// [글 수정] - ★★★★★ 비밀번호 체크 로직 아직 안 만들었음 ★★★★★
 	public static ReplyBoardVO boardUpdateData(ReplyBoardVO vo)
 	{

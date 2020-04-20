@@ -7,6 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h3>recentpage</h3>
+		<p>비밀번호</p>
+		<input id="mypage_infoupdate_check_pwd" name=pwd type='password'></input>	
+		<input id="mypage_infoupdate_check_button" type='button' value="확인"></input>
 </body>
 </html>

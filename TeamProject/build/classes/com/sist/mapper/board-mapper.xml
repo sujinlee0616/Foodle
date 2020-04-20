@@ -75,14 +75,19 @@
 		)		
 	</insert>
 	
-	<!-- 삭제 -->
-	<update id="boardUpdateData" parameterType="int">
+	<!-- [글 수정] -비번체크 -->
+	<select id="boardCheckPwd" parameterType="int" resultType="String">
+		SELECT bpwd FROM replyBoard
+		WHERE bno=#{bno}
+	</select>
+	
+	<!-- [글 수정] -데이터 업데이트 -->
+	<update id="boardUpdateData" parameterType="ReplyBoardVO">
 		UPDATE replyBoard 
 		SET 
 			bname=#{bname},
 			bsubject=#{bsubject},
-			bcontent=#{bcontent},
-			bpwd=#{bpwd}
+			bcontent=#{bcontent}
 		WHERE bno=#{bno}
 	</update>
 	
