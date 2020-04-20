@@ -219,7 +219,7 @@ public class MypageModel {
 		//[{a,b,c,d}]
 		String json ="[";
 				
-		for(int i = 0 ; i < list.size() ; i++)
+		/*for(int i = 0 ; i < list.size() ; i++)
 		{
 			json +="{";
 			json +="rno:";
@@ -243,7 +243,7 @@ public class MypageModel {
 			json +="\"";
 			json +="}";
 			json +=",";	
-		}
+		}*/
 		json=json.substring(0,json.length()-1);
 		json +="]";
 		
