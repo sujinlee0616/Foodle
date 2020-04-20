@@ -14,11 +14,11 @@
 					<nav class="navbar navbar-expand-lg navbar-light">
 						<a class="navbar-brand" href="../main/main.do">Foodle</a>
 						<div class="search_wrap">
-							<form name="header_search" action="">
+							<form name="header_search" action="../search/searchpage.do" method="POST">
 								<div class="header_searchbox">
-									<img class="header_searchicon" src="../images/header_searchicon.png">
+									<input type="image" class="header_searchicon" src="../images/header_searchicon.png">
 									<label class="header_searchinputwrap">
-										<input type="text" class="header_searchinput" name="header_searchword" placeholder="검색어를 입력하세요." value=""
+										<input type="text" class="header_searchinput" name="header_searchword" placeholder="검색어를 입력하세요."
 										 autocomplete="off" maxlength="50">
 									</label>
 								</div>
@@ -82,5 +82,10 @@
 		</div>
 	</div>
     <!--//END HEADER -->
+    <!-- jQuery, Bootstrap JS. -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="${pageContext.request.contextPath }/js/jquery-3.2.1.min.js"></script>
+    <script src="${pageContext.request.contextPath }/js/popper.min.js"></script>
+    <script src="${pageContext.request.contextPath }/js/bootstrap.min.js"></script>
 </body>
 </html>

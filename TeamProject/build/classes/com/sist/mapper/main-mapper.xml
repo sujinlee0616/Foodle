@@ -15,11 +15,11 @@
 		<result column="rpwd" property="rPwd"/>
 		<result column="rarea" property="rArea"/>
 		<result column="rareadetail" property="rAreaDetail"/>
-		<result column="iname" property="ivo.i_Name"/>
-		<result column="ilink" property="ivo.i_Link"/>
+		<result column="iname" property="ivo.iName"/>
+		<result column="ilink" property="ivo.iLink"/>
 	</resultMap>
 	
-	<select id="weeklyTop30" resultMap="imageMap">	
+	<select id="weeklyTop30" resultMap="imageMap">
 		<!-- SELECT rNO,rName,rScore,rAddr2,rTel
 		FROM mainInfo
 		WHERE ROWNUM&lt;=10

@@ -23,11 +23,11 @@
                         </div>
                         <div class="row d-flex justify-content-center">
                             <div class="col-md-10">
-                                <form class="form-wrap mt-4" action="../search/searchpage.do">
+                                <form class="form-wrap mt-4" action="../search/searchpage.do" id="search_frm" method="post">
                                     <div class="btn-group" role="group" aria-label="Basic example">
-                                        <input type="text" placeholder="카테고리" class="btn-group1">
-                                        <input type="text" placeholder="지역" class="btn-group2">
-                                        <button type="submit" class="btn-form"><span class="icon-magnifier search-icon">
+                                        <input type="text" placeholder="카테고리" class="btn-group1" id="cate" name="cate">
+                                        <input type="text" placeholder="지역" class="btn-group2" id="area" name="area">
+                                        <button type="submit" class="btn-form" id="SearchBtn"><span class="icon-magnifier search-icon">
                                       		</span>검색<i class="pe-7s-angle-right"></i>
                                         </button>
                                     </div>
@@ -379,7 +379,27 @@
             };
         });
     </script>    
-    
+    <!-- home의 검색창 -->
+    <script type="text/javascript">
+    	$(function(){
+    		$('#SearchBtn').click(function(){
+    			let cate=$('#cate').val();
+    			let area=$('#area').val();
+    			if(cate.trim()=="" && area.trim()=="")
+    			{
+    				alert("검색어를 입력해주세요!")
+    				$('#cate').focus();
+    				return false;
+    			}
+    			else
+    			{
+    				$('#search_frm').submit;
+    				return true;
+    			}
+    		})
+    		
+    	})
+    </script>
 </body>
 
 </html>
