@@ -128,12 +128,11 @@
 		WHERE bno=#{pno}
 	</update>
 	
-	
+	<!-- 삭제 -->
 	<delete id="boardDeleteData" parameterType="int">
 		DELETE FROM replyBoard
 		WHERE bno=#{bno}
 	</delete>
-	
 	<update id="boardSubjectUpdate" parameterType="ReplyBoardVO">  
 		UPDATE replyBoard SET
 		bname=#{bname},
@@ -141,7 +140,6 @@
 		bcontent=#{bcontent}
 		WHERE bno=#{bno}
 	</update>
-	
 	<update id="parentDepthDecrement" parameterType="int">
 		UPDATE replyBoard SET
 		depth=depth-1

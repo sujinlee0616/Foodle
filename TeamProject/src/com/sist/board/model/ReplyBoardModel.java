@@ -58,15 +58,20 @@ public class ReplyBoardModel {
 	// [상세보기] 
 	@RequestMapping("board/detail.do")
 	public String board_detail(HttpServletRequest request, HttpServletResponse response)
-	{
+	{		
 		// 요청데이터
 		String bno=request.getParameter("bno");
 		
-		// DAO 
+		// 상세보기 ==> 글 내용 받아오고, 조회수 증가 
 		ReplyBoardVO vo=ReplyBoardDAO.boardDetailData(Integer.parseInt(bno));
 		vo=ReplyBoardDAO.hitIncrement(Integer.parseInt(bno));
-		
 		request.setAttribute("vo", vo);
+		
+		// ======== 댓글 리스트 ========
+		List<BoardCommentVO> cmt_list=BoardCommentDAO.commentList(Integer.parseInt(bno));
+		int commentCount=BoardCommentDAO.commentCount(Integer.parseInt(bno));
+		request.setAttribute("cmt_list", cmt_list);
+		request.setAttribute("commentCount", commentCount);
 		
 		// ======== 상세보기 하단 리스트 ========
 		String page=request.getParameter("page");
@@ -98,7 +103,7 @@ public class ReplyBoardModel {
 			endpage=totalpage;
 		//System.out.println("curpage="+curpage+", totalpage="+totalpage+", startpage="+startpage+", endpage="+endpage);
 		request.setAttribute("startpage", startpage);
-		request.setAttribute("endpage", endpage);
+		request.setAttribute("endpage", endpage);		
 				
 		request.setAttribute("main_header", "../common/header_sub.jsp");
 		request.setAttribute("main_jsp", "../board/detail.jsp");
@@ -288,6 +293,11 @@ public class ReplyBoardModel {
 		
 		return "redirect:../board/list.do";
 	}
+	
+
+	
+	
+	
 	
 	
 }

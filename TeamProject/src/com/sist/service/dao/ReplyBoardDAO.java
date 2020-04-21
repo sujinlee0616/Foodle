@@ -288,10 +288,8 @@ public class ReplyBoardDAO {
 		}
 		
 	}
-	
-	
-	
-	
+
+		
 	
 }
 

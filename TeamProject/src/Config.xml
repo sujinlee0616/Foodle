@@ -18,6 +18,7 @@
   	<typeAlias type="com.sist.vo.SubinfoVO" alias="SubinfoVO"/>
 
   	<!-- VO 등록 : 서비스 VO -->
+  	<typeAlias type="com.sist.service.vo.BoardCommentVO" alias="BoardCommentVO"/>
   	<typeAlias type="com.sist.service.vo.CompMemberVO" alias="CompMemberVO"/>
   	<typeAlias type="com.sist.service.vo.MemberVO" alias="MemberVO"/>
   	<typeAlias type="com.sist.service.vo.ReplyBoardVO" alias="ReplyBoardVO"/>
