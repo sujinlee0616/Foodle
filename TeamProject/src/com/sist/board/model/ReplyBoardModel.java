@@ -265,16 +265,16 @@ public class ReplyBoardModel {
 	}
 	
 	
-	// [글 삭제] - ★★★★★ 비밀번호 체크해서 맞아야만 삭제 가능하게 해야함 ★★★★★ - 비번 받는 JSP 만들어야함....ㅠ.... 
+	// [글 삭제] - 화면만 보여줌
 	@RequestMapping("board/delete.do")
 	public String boardDeleteData(HttpServletRequest request,HttpServletResponse response)
 	{
 		String bno=request.getParameter("bno");
 		
-		// DAO 연동
-		ReplyBoardDAO.boardDeleteData(Integer.parseInt(bno));
 		
-		return "redirect:../board/list.do";
+		request.setAttribute("main_header", "../common/header_sub.jsp");
+		request.setAttribute("main_jsp", "../board/delete.jsp"); 
+		return "../main/main.jsp";
 	}
 	
 	
