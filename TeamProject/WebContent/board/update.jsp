@@ -28,7 +28,7 @@ $(function(){
 		$.ajax({
 			type:'POST',
 			url:'../board/pwd_check.do',
-			data:{"pwd":user_input_pwd,"bno":bno}, // 요청과 함께 서버에 보내는 string 또는 json
+			data:{"pwd":user_input_pwd,"bno":bno}, 
 			success:function(result)
 			{
 				var pwdCheck=result.trim();

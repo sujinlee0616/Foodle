@@ -76,7 +76,7 @@
 		)		
 	</insert>
 	
-	<!-- [글 수정] -비번체크 -->
+	<!-- [글 수정], [글 삭제] -비번체크 -->
 	<select id="boardCheckPwd" parameterType="int" resultType="String">
 		SELECT bpwd FROM replyBoard
 		WHERE bno=#{bno}
@@ -126,6 +126,26 @@
 		UPDATE replyBoard SET 
 		depth=depth+1
 		WHERE bno=#{pno}
+	</update>
+	
+	
+	<delete id="boardDeleteData" parameterType="int">
+		DELETE FROM replyBoard
+		WHERE bno=#{bno}
+	</delete>
+	
+	<update id="boardSubjectUpdate" parameterType="ReplyBoardVO">  
+		UPDATE replyBoard SET
+		bname=#{bname},
+		bsubject=#{bsubject},
+		bcontent=#{bcontent}
+		WHERE bno=#{bno}
+	</update>
+	
+	<update id="parentDepthDecrement" parameterType="int">
+		UPDATE replyBoard SET
+		depth=depth-1
+		WHERE bno=#{bno}
 	</update>
 	
 </mapper>

@@ -194,7 +194,7 @@ public class ReplyBoardDAO {
 
 	
 	
-	// [글 수정] - 비번체크
+	// [글 수정],[글 삭제] - 비번체크
 	public static boolean boardCheckPwd(int bno,String user_input_pwd)
 	{
 		boolean checkPwd=false;
@@ -227,7 +227,7 @@ public class ReplyBoardDAO {
 	}
 	
 	
-	// [글 수정] - ★★★★★ 비밀번호 체크 로직 아직 안 만들었음 ★★★★★
+	// [글 수정] - 실제처리
 	public static ReplyBoardVO boardUpdateData(ReplyBoardVO vo)
 	{
 		
@@ -250,20 +250,36 @@ public class ReplyBoardDAO {
 		return vo;
 	}
 	
-	// [글 삭제] -  - ★★★★★ 비밀번호 체크 로직 아직 안 만들었음 ★★★★★
+	// [글 삭제] - 실제 처리
 	public static void boardDeleteData(int bno)
 	{
 		SqlSession session = null;
 		
 		try
 		{
-			session=ssf.openSession(true);
-			// 1. 비번 맞는지 체크해야 
-			session.delete("boardDeleteData",bno);
-			session.commit();
+			session=ssf.openSession();
+			
+			// 삭제 대상 글의 데이터를 가지고 와서 
+			ReplyBoardVO vo=session.selectOne("boardDetailData", bno);
+			
+			if(vo.getDepth()==0) { // 자식글 없으면 삭제시키고 엄마글의 depth 감소시킨다 
+				session.delete("boardDeleteData",bno);
+				session.update("parentDepthDecrement",vo.getRoot());
+			}
+			else { // 글은 냅두되 관리자가 삭제한 글이라고 바꾼다.
+				vo.setBname("-");
+				vo.setBsubject("관리자가 삭제한 게시물입니다");
+				vo.setBcontent("관리자가 삭제한 게시물입니다.");
+				vo.setBno(bno);
+				session.update("boardSubjectUpdate",vo);
+			}
+			
+			session.commit();			
+			
 		}catch (Exception ex) 
 		{
 			System.out.println("boardDeleteData: "+ex.getMessage());
+			session.rollback();
 		}
 		finally
 		{

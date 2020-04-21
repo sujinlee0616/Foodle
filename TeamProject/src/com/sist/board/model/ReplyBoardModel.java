@@ -217,18 +217,18 @@ public class ReplyBoardModel {
 		
 	}
 	
-	// [글 수정] - 비번체크 
+	// [글 수정], [글 삭제] - 비번체크 
 	@RequestMapping("board/pwd_check.do")
 	public String board_pwd_check(HttpServletRequest request,HttpServletResponse response) 
 	{
 		// 클라이언트가 보내준 데이터
 		String no=request.getParameter("bno");
 		String user_input_pwd=request.getParameter("pwd"); // 클라이언트가 입력한 데이터  
-		System.out.println("user_input_pwd="+user_input_pwd);
+		//System.out.println("user_input_pwd="+user_input_pwd);
 		
 		// 클라이언트가 입력한 비번과 DB의 실제비번이 같은지 확인
-		boolean result=ReplyBoardDAO.boardCheckPwd(Integer.parseInt(no),user_input_pwd); // 이게 수행이 안 됨 
-		System.out.println("result="+result);
+		boolean result=ReplyBoardDAO.boardCheckPwd(Integer.parseInt(no),user_input_pwd); 
+		//System.out.println("result="+result);
 		
 		request.setAttribute("result", result);
 		
@@ -267,17 +267,27 @@ public class ReplyBoardModel {
 	
 	// [글 삭제] - 화면만 보여줌
 	@RequestMapping("board/delete.do")
-	public String boardDeleteData(HttpServletRequest request,HttpServletResponse response)
+	public String board_delete(HttpServletRequest request,HttpServletResponse response)
 	{
 		String bno=request.getParameter("bno");
-		
+		request.setAttribute("bno", bno);	
 		
 		request.setAttribute("main_header", "../common/header_sub.jsp");
 		request.setAttribute("main_jsp", "../board/delete.jsp"); 
 		return "../main/main.jsp";
 	}
 	
-	
+	// [글 삭제] - 실제 삭제 
+	@RequestMapping("board/delete_ok.do")
+	public String board_delete_ok(HttpServletRequest request,HttpServletResponse response)
+	{
+		String bno=request.getParameter("bno");
+		String pwd=request.getParameter("pwd");
+		
+		ReplyBoardDAO.boardDeleteData(Integer.parseInt(bno));
+		
+		return "redirect:../board/list.do";
+	}
 	
 	
 }
