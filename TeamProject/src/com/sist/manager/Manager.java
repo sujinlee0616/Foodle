@@ -14,52 +14,52 @@ public class Manager {
 		AreacodeManager am=new AreacodeManager();
 		
 		
-		MainInfoManager ifm = new MainInfoManager();
-		SubinfoManager sm=new SubinfoManager();
-		
-		ArrayList<MainInfoVO> mainlist = new  ArrayList<MainInfoVO>();
-		
-		MainInfoDAO dao=MainInfoDAO.newInstance();
-		
-		
-		dao.mainInfoCreate();
-		System.out.println("create Main table!");
-		
-		mainlist = ifm.mainInfoAllData(am.AreacodeAllData());
-		
-		
-		
-		int k=1;
-		
-		for(MainInfoVO vo:mainlist)
-		{
-			dao.mainInfoInsert(vo);	
-			
-			System.out.println("MainInfo Count: "+k);
-			k++;
-			try{
-				
-				Thread.sleep(100);
-				
-			}catch(Exception ex) {}	
-			
-		}
-		System.out.println("Maininfo parsing done!!");
-		////////////////////////////subinfo////////////////////
-		SubinfoDAO sdao=new SubinfoDAO();
-		sdao.SubInfoCreate();
-		System.out.println("create Sub table!");
-		sm.InfoAllData(am.AreacodeAllData());
-		System.out.println("Subinfo parsing done!!");
-		
-		////////////////////reserveinfo////////////////////////
-		
-		ReserveInfoManager rim = new ReserveInfoManager();
-		ReserveInfoDAO rdao=new ReserveInfoDAO();
-		rdao.ReserveInfoCreate();
-		System.out.println("create Reserveinfo table!");
-		rim.ReserveInfoData(am.AreacodeAllData());
-		System.out.println("Reserveinfo parsing done!!");
+//		MainInfoManager ifm = new MainInfoManager();
+//		SubinfoManager sm=new SubinfoManager();
+//		
+//		ArrayList<MainInfoVO> mainlist = new  ArrayList<MainInfoVO>();
+//		
+//		MainInfoDAO dao=MainInfoDAO.newInstance();
+//		
+//		
+//		dao.mainInfoCreate();
+//		System.out.println("create Main table!");
+//		
+//		mainlist = ifm.mainInfoAllData(am.AreacodeAllData());
+//		
+//		
+//		
+//		int k=1;
+//		
+//		for(MainInfoVO vo:mainlist)
+//		{
+//			dao.mainInfoInsert(vo);	
+//			
+//			System.out.println("MainInfo Count: "+k);
+//			k++;
+//			try{
+//				
+//				Thread.sleep(100);
+//				
+//			}catch(Exception ex) {}	
+//			
+//		}
+//		System.out.println("Maininfo parsing done!!");
+//		////////////////////////////subinfo////////////////////
+//		SubinfoDAO sdao=new SubinfoDAO();
+//		sdao.SubInfoCreate();
+//		System.out.println("create Sub table!");
+//		sm.InfoAllData(am.AreacodeAllData());
+//		System.out.println("Subinfo parsing done!!");
+//		
+//		////////////////////reserveinfo////////////////////////
+//		
+//		ReserveInfoManager rim = new ReserveInfoManager();
+//		ReserveInfoDAO rdao=new ReserveInfoDAO();
+//		rdao.ReserveInfoCreate();
+//		System.out.println("create Reserveinfo table!");
+//		rim.ReserveInfoData(am.AreacodeAllData());
+//		System.out.println("Reserveinfo parsing done!!");
 		////////////////////menu///////////////////////////
 		MenuManager mm=new MenuManager();
 		MenuDAO md=new MenuDAO();

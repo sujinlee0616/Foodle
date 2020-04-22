@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.sist.mapper.search-mapper">
-  <!-- Maininfo와 Image Join / ReserveInfo도 추가 -->
-  <resultMap type="MaininfoVO" id="maininfoMap">
+<mapper namespace="com.sist.mapper.weekly-mapper">
+	<resultMap type="MaininfoVO" id="maininfoMap">
   	<result column="rno" property="rNo"/>
   	<result column="rname" property="rName"/>
   	<result column="rtype" property="rType"/>
@@ -17,33 +16,19 @@
   	<result column="rclosetime" property="rvo.rClosetime"/>
   </resultMap>
   
-  <select id="searchListData" resultMap="maininfoMap" parameterType="java.util.Map">
+  <select id="weeklyListData" resultMap="maininfoMap" parameterType="java.util.Map">
     SELECT rno,rname,rtype,rscore,rscorecount,rarea,raddr1,rtel,ilink,ropentime,rclosetime,num 
     FROM (SELECT rno,rname,rtype,rscore,rscorecount,rarea,raddr1,rtel,ilink,ropentime,rclosetime,rownum as num 
     FROM (SELECT maininfo.rno,rname,rtype,rscore,rscorecount,rarea,raddr1,rtel,ilink,ropentime,rclosetime 
     FROM maininfo,image,reserveinfo
     WHERE maininfo.rno=image.rno
     AND maininfo.rno=reserveinfo.rno
-    AND rname LIKE '%'||#{cate}||'%'
-    AND raddr1 LIKE '%'||#{area}||'%'
     AND image.iname LIKE 'Mainimage'
     ORDER BY maininfo.rno ASC))
     WHERE num BETWEEN #{start} AND #{end}
   </select>
   
-  <select id="searchTotalPage" resultType="int" parameterType="hashmap">
-  	SELECT CEIL(COUNT(*)/18.0) FROM maininfo,image
-  	WHERE maininfo.rno=image.rno
-  	AND rname LIKE '%'||#{cate}||'%'
-  	AND raddr1 LIKE '%'||#{area}||'%'
-  	AND image.iname LIKE 'Mainimage'
-  </select>
-  
-  <select id="searchTotalCount" resultType="int" parameterType="hashmap">
-    SELECT COUNT(*) FROM maininfo,image
-  	WHERE maininfo.rno=image.rno
-  	AND rname LIKE '%'||#{cate}||'%'
-  	AND raddr1 LIKE '%'||#{area}||'%'
-  	AND image.iname LIKE 'Mainimage'
+  <select id="weeklyTotalPage" resultType="int">
+  	SELECT CEIL(COUNT(*)/18.0) FROM maininfo
   </select>
 </mapper>
