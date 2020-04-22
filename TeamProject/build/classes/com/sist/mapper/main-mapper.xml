@@ -20,7 +20,7 @@
 	</resultMap>
 	
 	<!-- 주간 맛집 Top30 -->
-	<select id="weeklyTop30" resultMap="mainMap">
+	<select id="weeklyTop30" resultMap="mainMap">	
 		<!-- SELECT rNO,rName,rScore,rAddr2,rTel
 		FROM mainInfo
 		WHERE ROWNUM&lt;=10
@@ -68,6 +68,13 @@
 		WHERE maininfo.rno=subinfo.rno AND maininfo.rno=image.rno AND iname='Mainimage'
 		ORDER BY rhit DESC, rgood DESC, rscore DESC)
 		WHERE rownum&lt;=3
+	</select>
+	
+	
+	<select id="cookieData" resultMap="mainMap" parameterType="int">
+		SELECT maininfo.rno,rname,rscore,raddr1,rtel,iname,ilink
+		FROM maininfo,image
+		WHERE maininfo.rno=#{rno}
 	</select>
 	
 </mapper>

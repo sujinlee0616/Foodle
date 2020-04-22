@@ -310,7 +310,46 @@
 	</section>
     <!--//END CATEGORIES -->
     <!--============================= RECENT LIST =============================-->
-        <section class="main-block light-bg" id="recent">
+    	<section class="main-block light-bg" id="recent">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-5">
+                        <div class="styled-heading">
+                            <h3>최근 본 맛집</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-5">
+                	<c:forEach var="vo" items="${cookielist }">
+	                    <div class="card" style="width: 30%; margin: 0 15px;">
+	                        <a href="../restaurant/detail.do?no=${vo.rNo }">
+	                            <img src="${vo.ivo.iLink }" class="card-img-top" alt="...">
+	                            <div class="card-body">
+	                            	<h5 class="card-title">${vo.rName }</h5>
+	                                <ul class="detailed-info">
+	                                    <li><span class="icon-location-pin"></span>
+	                                        <p>${vo.rAddr1 }</p>
+	                                    </li>
+	                                    <li><span class="icon-screen-smartphone"></span>
+	                                        <p>${vo.rTel }</p>
+	                                    </li>
+	                             	</ul>
+	                            </div>
+	                        </a>
+	                    </div>
+                    </c:forEach>
+                </div>
+                <!-- <div class="row justify-content-center">
+                    <div class="col-md-4">
+                        <div class="featured-btn-wrap">
+                            <a href="#" class="btn btn-danger">+ 더 보기</a>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </section>
+        <!--//END FEATURED PLACES -->
+        <%-- <section class="main-block light-bg" id="recent">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-md-5">
@@ -350,7 +389,7 @@
                 </div> -->
             </div>
         </section>
-        <!--//END FEATURED PLACES -->
+        <!--//END FEATURED PLACES --> --%>
 
     <!-- jQuery, Bootstrap JS. -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

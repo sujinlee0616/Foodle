@@ -24,6 +24,7 @@ public class ReserveInfoVO {
 	private int rSeat;
 	private int rRoom;
 	private int rRoomcount;
+	private String rReservedate;
 	
 	public int getrNo() {
 		return rNo;
@@ -84,6 +85,12 @@ public class ReserveInfoVO {
 	}
 	public void setrRoomcount(int rRoomcount) {
 		this.rRoomcount = rRoomcount;
+	}
+	public String getrReservedate() {
+		return rReservedate;
+	}
+	public void setrReservedate(String rReservedate) {
+		this.rReservedate = rReservedate;
 	}
 	
 	

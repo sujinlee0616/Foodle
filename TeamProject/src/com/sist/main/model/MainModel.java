@@ -1,9 +1,11 @@
 package com.sist.main.model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -37,9 +39,26 @@ public class MainModel {
 			}
 		}
 		
+		// 쿠키 읽기
+		List<MainInfoVO> cookielist=new ArrayList<MainInfoVO>();
+		Cookie[] cookies=request.getCookies();
+		System.out.println("cookies.length : "+cookies.length);/////
+		System.out.println("cookies[i].getName()"+cookies[1].getName()); /////
+		for(int i=0;i<cookies.length;i++) {
+			if(cookies[i].getName().startsWith("restaurant")) {
+				System.out.println("aa");
+				String no=cookies[i].getValue();
+				MainInfoVO vo=MainDAO.cookieData(Integer.parseInt(no));
+				cookielist.add(vo);
+				System.out.println("no="+no);/////
+			}
+		}
+		
 		
 		request.setAttribute("weeklytop30list", weeklytop30list);
 		request.setAttribute("popularTop3list", popularTop3list);
+		request.setAttribute("cookielist", cookielist);
+		
 		request.setAttribute("main_header", "../common/header_main.jsp");
 		request.setAttribute("main_jsp", "../main/home.jsp");
 		
