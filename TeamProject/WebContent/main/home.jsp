@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -26,7 +27,7 @@
                                 <form class="form-wrap mt-4" action="../search/searchpage.do" id="search_frm" method="post">
                                     <div class="btn-group" role="group" aria-label="Basic example">
                                         <input type="text" placeholder="카테고리" class="btn-group1" id="cate" name="cate">
-                                        <input type="text" placeholder="지역" class="btn-group2" id="area" name="area">
+                                        <input type="text" placeholder="지역" class="btn-group2" id="area" name="area" autocomplete="off">
                                         <button type="submit" class="btn-form" id="SearchBtn"><span class="icon-magnifier search-icon">
                                       		</span>검색<i class="pe-7s-angle-right"></i>
                                         </button>
@@ -357,6 +358,8 @@
     <script src="../js/jquery-3.2.1.min.js"></script>
     <script src="../js/popper.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
     <!-- GNB Fixed 되는 스크롤 시점 -->
     <script>
@@ -402,10 +405,8 @@
     			}
     		})
     		
-    	})
+    	});
     </script>
-
-    </script>  
     
     <!-- 찜 hover  -->
     <!-- <script type="text/javascript">

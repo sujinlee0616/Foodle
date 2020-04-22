@@ -2,21 +2,30 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<jsp:useBean id="now" class="java.util.Date"></jsp:useBean>
+<fmt:formatDate var="td" value="${now}" pattern="yyyyMMddkkmm" />
+<c:set var="today" value="${fn:substring(td,8,10) }"></c:set>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+.mblock{
+  min-height: calc(100vh - 72px - 236px);
+}
+</style>
 </head>
 <body>
-<section class="main-block light-bg" id="popular">
+<section class="main-block light-bg mblock" id="popular">
   <div class="container">
     <c:if test="${totalCount==0 }">
     	<div class="row">
        		<div class="col-md-6">
           		<h5>"${area }&nbsp;${cate }"과(와) 일치하는 검색결과가 없습니다.</h5>
-          		<p>다른 검색어를 입력해봐</p>
+          		<p>다른 검색어를 입력해주세요 ^^;;</p>
        		</div>
     	</div>
     </c:if>
@@ -27,7 +36,7 @@
           		<p>총 <span>${totalCount }개의 맛집이 기다리고 있어요!!</span></p>
        		</div>
     	</div>
-		<div class="row">
+		<div class="row detail-options-wrap py-5">
 			<c:forEach var="vo" items="${list }">
 			  <div class="col-md-4 featured-responsive">
 			    <div class="featured-place-wrap">
@@ -71,8 +80,14 @@
 			            </li>
 			          </ul>
 			          <div class="bottom-icons">
-			            <div class="closed-now">CLOSED NOW</div>
-			            <!--<div class="open-now">OPEN NOW</div>-->
+			            <c:choose>
+			              <c:when test="${today>=vo.rvo.rOpentime && today<vo.rvo.rClosetime }">
+			                <div class="open-now">OPEN NOW</div>
+			              </c:when>
+			              <c:otherwise>
+			                <div class="closed-now">CLOSED NOW</div>
+			              </c:otherwise>
+			            </c:choose>
 			            <span class="ti-heart"></span>
 			          </div>
 			      </div>

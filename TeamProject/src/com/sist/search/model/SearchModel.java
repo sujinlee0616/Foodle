@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.sist.controller.Controller;
 import com.sist.controller.RequestMapping;
 import com.sist.service.dao.SearchDAO;
+import com.sist.service.dao.WeeklyDAO;
 import com.sist.vo.MainInfoVO;
 
 @Controller
@@ -25,6 +26,15 @@ public class SearchModel {
 		//텍스트 미입력시, 공백으로 넘어온다, null이 아님.
 		String cate=request.getParameter("cate");
 		String area=request.getParameter("area");
+		
+		if(cate==null)
+		{
+			cate="";
+		}
+		if(area==null)
+		{
+			area="";
+		}
 		System.out.println("카테고리와 지역 출력: "+cate+", "+area);
 		if(cate.equals(" "))
 			cate=cate.trim();

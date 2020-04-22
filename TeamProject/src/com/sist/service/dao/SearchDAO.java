@@ -65,4 +65,5 @@ public class SearchDAO {
 		
 		return total;
 	}
+	
 }

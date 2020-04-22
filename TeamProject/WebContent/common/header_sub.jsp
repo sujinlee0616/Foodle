@@ -18,7 +18,7 @@
 								<div class="header_searchbox">
 									<input type="image" class="header_searchicon" src="../images/header_searchicon.png">
 									<label class="header_searchinputwrap">
-										<input type="text" class="header_searchinput" name="header_searchword" placeholder="검색어를 입력하세요."
+										<input type="text" class="header_searchinput" name="cate" placeholder="검색어를 입력하세요."
 										 autocomplete="off" maxlength="50">
 									</label>
 								</div>
