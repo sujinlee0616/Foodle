@@ -70,4 +70,11 @@
 		WHERE rownum&lt;=3
 	</select>
 	
+	
+	<select id="cookieData" resultMap="mainMap" parameterType="int">
+		SELECT maininfo.rno,rname,rscore,raddr1,rtel,iname,ilink
+		FROM maininfo,image
+		WHERE maininfo.rno=#{rno}
+	</select>
+	
 </mapper>

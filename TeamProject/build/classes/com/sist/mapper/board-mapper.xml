@@ -63,6 +63,7 @@
 		DEPTH               NUMBER        
 		NOTICE              CHAR(1)
 	 -->
+	<!-- [글쓰기] -->
 	<insert id="boardInsertData" parameterType="ReplyBoardVO">
 		INSERT INTO replyBoard(bno,bname,bsubject,bcontent,bpwd,group_id)
 		VALUES(
@@ -75,7 +76,7 @@
 		)		
 	</insert>
 	
-	<!-- [글 수정] -비번체크 -->
+	<!-- [글 수정], [글 삭제] -비번체크 -->
 	<select id="boardCheckPwd" parameterType="int" resultType="String">
 		SELECT bpwd FROM replyBoard
 		WHERE bno=#{bno}
@@ -91,7 +92,59 @@
 		WHERE bno=#{bno}
 	</update>
 	
+	<!-- [답글달기] -->
+	<!-- 1. 엄마 글의 정보를 먼저 읽어 들어온다  ==> 여기서 읽은 정보 2.3.에서 사용 -->
+	<select id="getParentInfo" resultType="ReplyBoardVO" parameterType="int">
+		SELECT group_id,group_step,group_tab
+		FROM replyBoard
+		WHERE bno=#{pno}
+	</select>
+	<!-- 2. 같은 그룹 안에 있는 글들의 group_step 1씩 증가시킨다 -->
+	<update id="boardGroupStepIncrement" parameterType="ReplyBoardVO">
+		UPDATE replyBoard SET
+		group_step=group_step+1
+		WHERE group_id=#{group_id} AND group_step>#{group_step}
+	</update>
+	<!-- 3. 답글 insert함 -->
+	<insert id="boardReplyInsert" parameterType="ReplyBoardVO">		
+		INSERT INTO replyBoard(bno,bname,bsubject,bcontent,bpwd,group_id,group_step,group_tab,root)
+		VALUES(
+			rb_bNo_seq.nextval,
+			#{bname},
+			#{bsubject},
+			#{bcontent},
+			#{bpwd},
+			#{group_id},  <!-- group_id, group_step,group_tab,root는 DAO에서 1번으로부터 데이터를 받은 후 넘긴다. -->
+			#{group_step},
+			#{group_tab}, 
+			#{root} 
+			<!-- depth는 디폴트값 0으로 들어가니까 depth 따로 안 넣었음 -->
+		)
+	</insert>
+	<!-- 4.엄마글의 depth(자기 밑에 몇 개를 달고 있는지) 1개 증가시킴 -->
+	<update id="parentDetphIncrement" parameterType="int">
+		UPDATE replyBoard SET 
+		depth=depth+1
+		WHERE bno=#{pno}
+	</update>
 	
+	<!-- 삭제 -->
+	<delete id="boardDeleteData" parameterType="int">
+		DELETE FROM replyBoard
+		WHERE bno=#{bno}
+	</delete>
+	<update id="boardSubjectUpdate" parameterType="ReplyBoardVO">  
+		UPDATE replyBoard SET
+		bname=#{bname},
+		bsubject=#{bsubject},
+		bcontent=#{bcontent}
+		WHERE bno=#{bno}
+	</update>
+	<update id="parentDepthDecrement" parameterType="int">
+		UPDATE replyBoard SET
+		depth=depth-1
+		WHERE bno=#{bno}
+	</update>
 	
 </mapper>
 

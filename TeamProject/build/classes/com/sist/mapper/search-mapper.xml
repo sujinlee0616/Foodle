@@ -21,12 +21,26 @@
     FROM (SELECT maininfo.rno,rname,rtype,rscore,rscorecount,rarea,raddr1,rtel,ilink 
     FROM maininfo,image
     WHERE maininfo.rno=image.rno
+    AND rname LIKE '%'||#{cate}||'%'
+    AND raddr1 LIKE '%'||#{area}||'%'
     AND image.iname LIKE 'Mainimage'
-    ORDER BY maininfo.rno ASC)) 
+    ORDER BY maininfo.rno ASC))
     WHERE num BETWEEN #{start} AND #{end}
   </select>
   
-  <select id="searchTotalPage" resultType="int">
-  	SELECT CEIL(COUNT(*)/20.0) FROM maininfo
+  <select id="searchTotalPage" resultType="int" parameterType="hashmap">
+  	SELECT CEIL(COUNT(*)/18.0) FROM maininfo,image
+  	WHERE maininfo.rno=image.rno
+  	AND rname LIKE '%'||#{cate}||'%'
+  	AND raddr1 LIKE '%'||#{area}||'%'
+  	AND image.iname LIKE 'Mainimage'
+  </select>
+  
+  <select id="searchTotalCount" resultType="int" parameterType="hashmap">
+    SELECT COUNT(*) FROM maininfo,image
+  	WHERE maininfo.rno=image.rno
+  	AND rname LIKE '%'||#{cate}||'%'
+  	AND raddr1 LIKE '%'||#{area}||'%'
+  	AND image.iname LIKE 'Mainimage'
   </select>
 </mapper>
