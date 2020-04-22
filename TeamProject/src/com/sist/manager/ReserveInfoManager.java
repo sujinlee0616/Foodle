@@ -27,7 +27,7 @@ public class ReserveInfoManager {
 		int category = 25;
 		
 		Element rNo;
-		Element rPrice;	// r_Lowprice, r_Highprice 합친 것 
+		Element rPrice;	// r_Lowprice, r_Highprice 합친 것
 		Element r_Lowprice;
 		Element r_Highprice;
 		Element rBusinesstime; // r_Opentime, r_Closetime 합친 것 
@@ -80,7 +80,6 @@ public class ReserveInfoManager {
 										vo.setrHighprice(Integer.parseInt(r_Highprice.text().replace(",", "")));
 										//rPrice = doc2.select("p.price strong").get(1);
 										//vo.setrHighprice(Integer.parseInt(rPrice.text().replace(",", "")));
-										
 									}catch(Exception ex) {vo.setrHighprice(0);}	
 									
 									// 4. rOpentime 가게 오픈시간

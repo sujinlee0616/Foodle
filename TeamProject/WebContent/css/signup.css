@@ -121,11 +121,6 @@
     vertical-align: middle;
 }
 
-
-
-/* input 경고문구 control */
-.hidden{display: none !important;}
-  
   
 /* 필수입력란 */
 .signup span.essential, .signup-bottom span.essential {
@@ -167,48 +162,7 @@
     cursor: pointer !important;
 }
 
-/* ==============================================================
-   회원가입 UI 바꾸기 전 코딩 (HTML FILE: signup_old.html) 
-   ============================================================== */
-  
-/* .signup .signup-form p.info{
-    color: #1a1a1a;
-    font-size: 1em;
-} */
-  
-/* .signup .signup-form span.essential{
-    margin: 0 5px;
-    color: #ff3a6d; font-size: 0.8em;
-} */
-/*   
-.signup input, .signup select {
-    outline: 0;
-    border: solid 1px #E0E0E0 !important;
-    width: 100%;
-    border: 0;
-    margin: 0 0 15px;
-    padding: 15px;
-    box-sizing: border-box;
-    font-size: 14px;
-} */
-/*   
-.signup .birth .birth-input #yy{width: 95%;}
-.signup .birth .birth-input select{width: 95%;}
-@media (max-width: 576px){.signup .birth .birth-input #yy{width: 100%;}}
-@media (max-width: 576px){.signup .birth .birth-input select{width: 100%;}}
-   */
 
-  
-/* .signup.container:before, .container:after {
-    content: "";
-    display: block;
-    clear: both;
-} */
-  
-
-  /* End of signup*/
-
-
-
-
-
+/* 유효성 검사 */
+.hidden{display: none !important;}
+.guide_txt{background-color: yellow !important;} /* 테스트 코드 ==> 동작 안 함 ㅠㅠ */

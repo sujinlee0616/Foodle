@@ -16,21 +16,16 @@
   	<typeAlias type="com.sist.vo.MenuVO" alias="MenuVO"/>
   	<typeAlias type="com.sist.vo.ReserveInfoVO" alias="ReserveInfoVO"/>
   	<typeAlias type="com.sist.vo.SubinfoVO" alias="SubinfoVO"/>
-  	
-  	
 
   	<!-- VO 등록 : 서비스 VO -->
+  	<typeAlias type="com.sist.service.vo.BoardCommentVO" alias="BoardCommentVO"/>
+  	<typeAlias type="com.sist.service.vo.CompMemberVO" alias="CompMemberVO"/>
   	<typeAlias type="com.sist.service.vo.MemberVO" alias="MemberVO"/>
   	<typeAlias type="com.sist.service.vo.ReplyBoardVO" alias="ReplyBoardVO"/>
-<<<<<<< HEAD
   	<typeAlias type="com.sist.service.vo.ReservationVO" alias="ReservationVO"/>
   	<typeAlias type="com.sist.service.vo.CouponVO" alias="CouponVO"/>
 	<typeAlias type="com.sist.service.vo.ReviewVO" alias="ReviewVO"/>
 	<typeAlias type="com.sist.service.vo.MyWishVO" alias="MyWishVO"/>
-	
-=======
-  	<typeAlias type="com.sist.service.vo.MyWishVO" alias="MyWishVO"/>
->>>>>>> aa64159a4229e72ae2683828aa3f20f2c203670d
   </typeAliases>
   <environments default="development">
   	<environment id="development">
