@@ -58,15 +58,20 @@ public class ReplyBoardModel {
 	// [상세보기] 
 	@RequestMapping("board/detail.do")
 	public String board_detail(HttpServletRequest request, HttpServletResponse response)
-	{
+	{		
 		// 요청데이터
-		String no=request.getParameter("no");
+		String bno=request.getParameter("bno");
 		
-		// DAO 
-		ReplyBoardVO vo=ReplyBoardDAO.boardDetailData(Integer.parseInt(no));
-		vo=ReplyBoardDAO.hitIncrement(Integer.parseInt(no));
-		
+		// 상세보기 ==> 글 내용 받아오고, 조회수 증가 
+		ReplyBoardVO vo=ReplyBoardDAO.boardDetailData(Integer.parseInt(bno));
+		vo=ReplyBoardDAO.hitIncrement(Integer.parseInt(bno));
 		request.setAttribute("vo", vo);
+		
+		// ======== 댓글 리스트 ========
+		List<BoardCommentVO> cmt_list=BoardCommentDAO.commentList(Integer.parseInt(bno));
+		int commentCount=BoardCommentDAO.commentCount(Integer.parseInt(bno));
+		request.setAttribute("cmt_list", cmt_list);
+		request.setAttribute("commentCount", commentCount);
 		
 		// ======== 상세보기 하단 리스트 ========
 		String page=request.getParameter("page");
@@ -98,7 +103,7 @@ public class ReplyBoardModel {
 			endpage=totalpage;
 		//System.out.println("curpage="+curpage+", totalpage="+totalpage+", startpage="+startpage+", endpage="+endpage);
 		request.setAttribute("startpage", startpage);
-		request.setAttribute("endpage", endpage);
+		request.setAttribute("endpage", endpage);		
 				
 		request.setAttribute("main_header", "../common/header_sub.jsp");
 		request.setAttribute("main_jsp", "../board/detail.jsp");
@@ -150,6 +155,55 @@ public class ReplyBoardModel {
 		return "redirect:../board/list.do";
 	}
 	
+	// [답글쓰기]
+	@RequestMapping("board/reply.do")
+	public String board_reply(HttpServletRequest request,HttpServletResponse response)
+	{
+		String pno=request.getParameter("pno");
+		
+		request.setAttribute("pno", pno);
+		request.setAttribute("main_header", "../common/header_sub.jsp");
+		request.setAttribute("main_jsp", "../board/reply.jsp");
+		
+		return "../main/main.jsp";
+	}
+	
+	// [답글쓰기] - 실제 처리 
+	@RequestMapping("board/reply_ok.do")
+	public String board_reply_ok(HttpServletRequest request,HttpServletResponse response)
+	{
+		try
+		{
+			request.setCharacterEncoding("UTF-8");
+		}catch(Exception ex){}
+		
+		String pno=request.getParameter("pno"); //엄마글 번호 
+		System.out.println("pno="+pno);
+		
+		// 클라이언트 입력 데이터 
+		String bname=request.getParameter("name");
+		String bsubject=request.getParameter("subject");
+		String bcontent=request.getParameter("content");
+		String bpwd=request.getParameter("pwd");
+
+		// 데이터 확인
+		System.out.println("bname="+bname+", bsubject="+bsubject+", bcontent="+bcontent+", bpwd="+bpwd);
+		
+		// 클라이언트가 입력해준 데이터 VO에 저장 
+		ReplyBoardVO vo = new ReplyBoardVO();
+		vo.setBname(bname);
+		vo.setBsubject(bsubject);
+		vo.setBcontent(bcontent);
+		vo.setBpwd(bpwd);
+		
+		// VO를 INSERT 하게 mapper에서 수행 
+		ReplyBoardDAO.boardReplyInsert(Integer.parseInt(pno), vo);
+				
+		return "redirect:../board/list.do";
+	}
+		
+	
+	
 	// [글 수정] - 기존 글의 데이터 가져옴
 	@RequestMapping("board/update.do")
 	public String board_update(HttpServletRequest request,HttpServletResponse response)
@@ -168,18 +222,18 @@ public class ReplyBoardModel {
 		
 	}
 	
-	// [글 수정] - 비번체크 
+	// [글 수정], [글 삭제] - 비번체크 
 	@RequestMapping("board/pwd_check.do")
 	public String board_pwd_check(HttpServletRequest request,HttpServletResponse response) 
 	{
 		// 클라이언트가 보내준 데이터
 		String no=request.getParameter("bno");
 		String user_input_pwd=request.getParameter("pwd"); // 클라이언트가 입력한 데이터  
-		System.out.println("user_input_pwd="+user_input_pwd);
+		//System.out.println("user_input_pwd="+user_input_pwd);
 		
 		// 클라이언트가 입력한 비번과 DB의 실제비번이 같은지 확인
-		boolean result=ReplyBoardDAO.boardCheckPwd(Integer.parseInt(no),user_input_pwd); // 이게 수행이 안 됨 
-		System.out.println("result="+result);
+		boolean result=ReplyBoardDAO.boardCheckPwd(Integer.parseInt(no),user_input_pwd); 
+		//System.out.println("result="+result);
 		
 		request.setAttribute("result", result);
 		
@@ -212,21 +266,36 @@ public class ReplyBoardModel {
 		// DAO 연동
 		ReplyBoardDAO.boardUpdateData(vo);
 		
-		return "redirect:../board/detail.do?no="+bno;
+		return "redirect:../board/detail.do?&bno="+bno;
 	}
 	
 	
-	// [글 삭제] - ★★★★★ 비밀번호 체크해서 맞아야만 삭제 가능하게 해야함 ★★★★★ - 비번 받는 JSP 만들어야함....ㅠ.... 
+	// [글 삭제] - 화면만 보여줌
 	@RequestMapping("board/delete.do")
-	public String boardDeleteData(HttpServletRequest request,HttpServletResponse response)
+	public String board_delete(HttpServletRequest request,HttpServletResponse response)
 	{
 		String bno=request.getParameter("bno");
+		request.setAttribute("bno", bno);	
 		
-		// DAO 연동
+		request.setAttribute("main_header", "../common/header_sub.jsp");
+		request.setAttribute("main_jsp", "../board/delete.jsp"); 
+		return "../main/main.jsp";
+	}
+	
+	// [글 삭제] - 실제 삭제 
+	@RequestMapping("board/delete_ok.do")
+	public String board_delete_ok(HttpServletRequest request,HttpServletResponse response)
+	{
+		String bno=request.getParameter("bno");
+		String pwd=request.getParameter("pwd");
+		
 		ReplyBoardDAO.boardDeleteData(Integer.parseInt(bno));
 		
 		return "redirect:../board/list.do";
 	}
+	
+
+	
 	
 	
 	
