@@ -34,7 +34,7 @@ $(function(){
 		//디폴트 페이지 주기!
 		var detailThema=$('.resultThemaList').attr("data-detailThema"); // 가족모임
 		var infoThema=$('.resultThemaList').attr("data-tInfo");
-		var no=$('.resultThemaList').attr("value");
+		
 		
 		$.ajax({
 			
@@ -51,6 +51,12 @@ $(function(){
 
 		
 		$('resultThemaList').click(function(){
+			
+			//클릭했을 때 no의 현재 값을  가져와야 하므로 no를 위에서 전역으로 빼지 말고 클릭함수 안에서 var을 생성해야한다!!!
+			var no=$(this).attr("value");
+			var detailThema=$('.resultThemaList').attr("data-detailThema"); // 가족모임
+			var infoThema=$('.resultThemaList').attr("data-tInfo");
+				
 			
 			$.ajax({
 				
@@ -90,7 +96,7 @@ figure img {
 <body>
       <div class="situation" >
          <c:forEach var="vo" items="${list }" varStatus="status">
-              <div class="themarow find-img-align resultThemaList" value="${status.count }" data-detailThema="${vo.t_DetailThema }" data-tInfo="${vo.t_Info }">
+              <div class="themarow find-img-align resultThemaList" value="${status.index }" data-detailThema="${vo.t_DetailThema }" data-tInfo="${vo.t_Info }">
                    <div class="col-md-12">
 	                    <div class="find-place-img_wrap">
 	                          <div class="grid">

@@ -29,13 +29,13 @@
                    
                    <!--  =======================그림 부분 시작 ============================= -->
                                 	<div class="featured-title-box">
-                                   	 <img src="${vo.ivo.iLink }" class="img-fluid" alt="#">
+                                   	 <img src="${svo.ivo.iLink }" class="img-fluid" alt="#">
                                     </div>
                                     <span class="featured-rating">6.5</span>
                     <!--  =======================그림 부분  끝============================= -->
                     
                     
-                   <!--  =======================요약설명  시작============================= -->
+                   <!--  =======================요약 설명  시작============================= -->
                          
                                     <div class="featured-title-box">
                                         <h6>${svo.rName }</h6>

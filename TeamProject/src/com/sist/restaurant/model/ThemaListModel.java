@@ -88,16 +88,16 @@ public class ThemaListModel {
 		
 		
 		
-		//dao연결하러 고고!
+		//dao연결하러  고고!
 		List<MainInfoVO> slist=ThemaListDAO.searchThema(detailThema_col);
-		System.out.println("(result_thema_list.do) "+slist);
+		System.out.println("(result_thema_list.do)"+slist);
 		
 		for(MainInfoVO vo:slist){
 			
 			String addr=vo.getrAddr2();
-			if(addr.length()> 24){
+			if(addr.length()> 20){
 				
-				addr=addr.substring(0,24).concat("...");
+				addr=addr.substring(0,20).concat("...");
 				vo.setrAddr2(addr);
 				
 			}

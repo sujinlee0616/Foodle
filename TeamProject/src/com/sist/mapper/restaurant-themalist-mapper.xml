@@ -2,11 +2,30 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sist.mapper.retaurant-themalist-mapper">
 <!-- t_MainThema= #{menuName} -->
+	<resultMap type="MainInfoVO" id="mainInforMap">
+		<result column="rno" property="rNo"/>
+		<result column="rname" property="rName"/>
+		<result column="rtype" property="rType"/>
+		<result column="rtel" property="rTel"/>
+		<result column="rscore" property="rScore"/>
+		<result column="rscorecount" property="rScoreCount"/>
+		<result column="raddr1" property="rAddr1"/>
+		<result column="raddr2" property="rAddr2"/>
+		<result column="rpwd" property="rPwd"/>
+		<result column="rarea" property="rArea"/>
+		<result column="rareadetail" property="rAreaDetail"/>
+		<result column="iname" property="ivo.iName"/>
+		<result column="ilink" property="ivo.iLink"/>
+	</resultMap>
+	
+	
+
+
 	<select id="cateSelectData" resultType="MainThemaVO" parameterType="java.util.Map">
 		SELECT t_MainThema, t_DetailThema, t_Info 
 		FROM mainThema
 		WHERE REGEXP_LIKE(t_MainThema,#{fd})
-</select>	
+	</select>	
 
 <!-- 상황별 개수 알기! -->
 <select id="countBigThema" resultType="MainThemaVO">
@@ -21,7 +40,7 @@
 	WHERE REGEXP_LIKE(t_DetailThema,#{fo})
 </select>
 
-<select id="searchThema" resultType="MainInfoVO" parameterType="java.util.Map">
+<select id="searchThema" resultMap="mainInforMap" parameterType="java.util.Map">
 	
 	 SELECT mai.rno,
             mai.rname,
@@ -39,7 +58,7 @@
     	AND detail.t_detailThema=#{fd}
     	AND mai.rno=img.rno
 		AND img.iname='Mainimage'    	
-    	AND mai.rno <![CDATA[ <  ]]> 10
+    	AND mai.rno <![CDATA[ <  ]]> 100
 </select>
 
 

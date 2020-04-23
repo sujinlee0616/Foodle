@@ -261,7 +261,7 @@ function takeoutButChgCL(){
 	}else{
 				$('#takeoutBut').removeClass("openButtAfter");
 		$('#takeoutBut').addClass("openButtBefore");
-		//선택해제하면 값을 null처리
+		//선택해제하면 값을 null 처리
 		takeoutInfo = '';
 	}
 	searchNearby(); 
