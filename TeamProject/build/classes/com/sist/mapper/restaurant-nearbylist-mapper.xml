@@ -3,7 +3,7 @@
 <mapper namespace="com.sist.mapper.restaurant-nearbylist-mapper">
 
 
-	<!-- parameterType이 Map인 이유는    선택된 카테고리의 옵션들의 정보를 각각 reqeust로 다양하게 받기 때문에 model에서 -->
+	<!-- parameterType이 Map인 이유는 선택된 카테고리의 옵션들의 정보를 각각 reqeust로 다양하게 받기 때문에 model에서 -->
 	 	<!--  <if test="type_name != null and   type_name != '' ">
  		 and B.TYPE_NAME = #{type_name} 
  	 </if> -->
