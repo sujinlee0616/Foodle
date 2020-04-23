@@ -69,19 +69,28 @@ public class ReplyBoardModel {
 		vo=ReplyBoardDAO.hitIncrement(Integer.parseInt(bno));
 		request.setAttribute("vo", vo);
 		
-		// ======== 댓글 리스트 ========
-		List<BoardCommentVO> cmt_list=BoardCommentDAO.commentList(Integer.parseInt(bno));
-		int commentCount=BoardCommentDAO.commentCount(Integer.parseInt(bno));
-		request.setAttribute("cmt_list", cmt_list);
-		request.setAttribute("commentCount", commentCount);
+		// ================ 댓글 ================
 		
-		// ======== 상세보기 하단 리스트 ========
+		// [총 댓글 수] 
+		Map map=new HashMap();
+		map.put("pNo", Integer.parseInt(bno)); 		
+		int commentCount=BoardCommentDAO.commentCount(map);
+		request.setAttribute("commentCount", commentCount);
+			
+		// [댓글목록]
+		map=new HashMap();
+		map.put("pNo", Integer.parseInt(bno)); 		
+		List<BoardCommentVO> cmt_list=BoardCommentDAO.cmtList(map);
+		request.setAttribute("cmt_list", cmt_list);
+
+		
+		// ================ 상세보기 하단 리스트 ================
 		String page=request.getParameter("page");
 		if(page==null)
 			page="1";
 		int curpage=Integer.parseInt(page);
 		// VO에 start랑 end는 없으니까 map 사용 
-		Map map=new HashMap();
+		map=new HashMap();
 		int rowSize=15;
 		int start = rowSize*(curpage-1)+1;
 		int end=rowSize*curpage;

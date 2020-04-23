@@ -41,6 +41,7 @@
   	</environment>
   </environments>
   <mappers> <!-- XML 파일 등록 -->
+  	<mapper resource="com/sist/mapper/board-comment-mapper.xml"></mapper>
   	<mapper resource="com/sist/mapper/main-mapper.xml"></mapper>
   	<mapper resource="com/sist/mapper/board-mapper.xml"></mapper>
   	<mapper resource="com/sist/mapper/member-mapper.xml"></mapper>
