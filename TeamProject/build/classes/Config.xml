@@ -33,8 +33,10 @@
   		<transactionManager type="JDBC"></transactionManager> 
   		<dataSource type="POOLED"> 
 			<property name="driver" value="oracle.jdbc.driver.OracleDriver"/>
-			<!-- <property name="url" value="jdbc:oracle:thin:@localhost:1521:XE"/> --> <!-- 개인 local test용 -->
-			<property name="url" value="jdbc:oracle:thin:@211.238.142.207:1521:XE"/><!-- 서버 IP  -->
+			<!-- 개인 local test용 -->
+			<!-- <property name="url" value="jdbc:oracle:thin:@localhost:1521:XE"/> -->    
+			<!-- 서버 IP  -->
+			 <property name="url" value="jdbc:oracle:thin:@211.238.142.207:1521:XE"/>
 			<property name="username" value="hr"/>
 			<property name="password" value="happy"/>
   		</dataSource>

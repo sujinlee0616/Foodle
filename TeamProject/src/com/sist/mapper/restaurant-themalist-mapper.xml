@@ -15,25 +15,35 @@
 	GROUP BY t_MainThema
 </select>
 
-<select id="catefindData1" resultType="MainThemaVO" parameterType="java.util.Map">
-	SELECT t_DetailThema, t_Info
+<select id="resultThemaList" resultType="MainInfoVO" parameterType="java.util.Map">
+	SELECT 
 	FROM mainThema
 	WHERE REGEXP_LIKE(t_DetailThema,#{fo})
 </select>
 
-<select id="catefindData2" resultType="DetailThemaVO" parameterType="java.util.Map">
-	SELECT t_DetailThema, t_Info
-	FROM detailThema 
-	WHERE REGEXP_LIKE(t_DetailThema,#{ft})
+<select id="searchThema" resultType="MainInfoVO" parameterType="java.util.Map">
+	
+	 SELECT mai.rno,
+            mai.rname,
+            mai.rtype,
+            mai.rtel,
+            mai.raddr2,
+            img.iName,
+            img.iLink
+     FROM maininfo mai,
+          infothema info,
+          detailthema detail,
+          image img
+        where mai.rno=info.rno 
+    	AND info.rthema=detail.t_info
+    	AND detail.t_detailThema=#{fd}
+    	AND mai.rno=img.rno
+		AND img.iname='Mainimage'    	
+    	AND mai.rno <![CDATA[ <  ]]> 10
 </select>
 
 
 
-<!-- 모든 정보 가져오기! -->
 
-<select id="showMoreCate" resultType="DetailThemaVO" parameterType="java.util.Map">
-	SELECT t_DetailThema, t_Info
-	FROM detailThema 
-	WHERE REGEXP_LIKE(t_DetailThema,#{fa})
-</select>
+
 </mapper>

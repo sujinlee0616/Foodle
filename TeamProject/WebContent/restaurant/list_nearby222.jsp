@@ -15,12 +15,28 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 <script type="text/javascript">
+//$( document ).ready(function() {
+	
+ 	//$('#openBut').on( "click",function() { //=> 특정 태그에 이벤트 작성시 document.ready(function()을 정의한 곳 안에서 정의해야한다. or INSIDE any FUNCTION.
+		//$('#openBut').removeClass("openButtBefore");
+	//	$('#openBut').addClass("openButtAfter");
+//	}); 
+//});
 
-var sortInfo =''; 		//정렬순 선택 
+
+
+
+/* 
+ $('.del').onClick(
+			function(){
+				alert(1);
+			}		 
+		 );
+*/
+ var sortInfo =''; 		//정렬순 선택 
  var restOpen =''; 		//가게 오픈 여부
  var takeoutInfo =''; 	//테이브아웃 여부
  var lowPrice='';      //낮은 가격순
- //var foodList = $('#foodTypeOp').val();
  //*******append기능 없애고 미리 만들어놓은 자리<p></p>에 해당 카테고리 값이 들어가게 변경함!
  // 두 가지의 선택시 이벤트 기능 
  // 첫번째 setFilter() => 카테고리에서 선택시 중복 선택x, 카테고리중 한개의 옵션만 아래  해당 카테고리<p>자리에 출력됨
@@ -28,8 +44,8 @@ var sortInfo =''; 		//정렬순 선택
 
 
  $(document).ready(function(){
-	 searchNearby();
-	/* 
+
+	 
 	 $.ajax({
 			
 			type:'post',
@@ -38,12 +54,10 @@ var sortInfo =''; 		//정렬순 선택
 			success:function(res){
 			
 				$('#nearbyList').html(res);
-				
-				
+			
 			}
 			
 		})
-		*/
 
 	});
  
@@ -56,186 +70,145 @@ var sortInfo =''; 		//정렬순 선택
 	 	var selectVal = c.value; //onchange된 옵션의 value값을 읽는다 => 값을 읽어 selectOp에서 
 	 	var selectOp = '#'+op;   //각각의 카테고리에 parameter값과 아래 출력되는 곳<p id"#~">의 id을 동일하게 주어 네임이 일치하는 경우 선택된 옵션이 아래 <p>의 해당 카테보리 자리에 출력되게 하기위함!! 
 	 	
-	 	//살려
-		//$(selectOp).html("<a onClick=deleteFilter(this,'"+op+"') href='#' id='"+c.value+"' class='selected nearbyselected' data-filter-name='food_cat' data-filter-value='108602' data-nclick-code='rcc.reset'"
-		//         +"data-filter-action='nclick' title='"+c.value+"'>"+c.value+"<span class='del'>X</span></a>");
-	 	
 	 	//if 1: 업종카테고리를 선택 시 '전체'이면 ''로 foodTypeOp에 출력되지 않음!,아니면 foodTypeOp에 선택된 값이 들어감
-	 	//이게 원래사용하던거
-		/* if( op == 'foodType')
+		if( op == 'foodType')
 		{ 
+
 			//전체일때는 null값을 보내야 전체리스트가 나오니까
 			if(selectVal == '업종전체'){      //전체를 누르면 null로 처리되어(아래서 커테고리당 한개만 on)  foodTypeOp에 어떤 것도 담기지 않음 => 결과적으로 매퍼에서 null이 되므로 
 				$('#foodTypeOp').val('');  //null값을 foodTypeOp 자리에 넣어				
-				$(selectOp).html('');
+				
 				
 			}else{
 				$('#foodTypeOp').val(c.value); //c는 onchange되어 바뀐 값 => c.value=> 바뀐 tag의 value속성 값을 가져옴 => "전체", "한식" , "일식", "양식" ..을 foodTypeOp에 넣어
-			}
-		
-		}
-	 	
-	 	 */
-	 	 
-	 	
-	if( op == 'foodType'){
-		if(selectVal == '업종전체'){ 
 			
-			$('#foodTypeOp').val('');  //null값을 foodTypeOp 자리에 넣어				
-			$(selectOp).html('');
-		
-		}else{
-			
-			$(selectOp).append("<a onClick=deleteFilter(this,'"+op+"') href='#' id='"+c.value+"' class='selected nearbyselected' data-filter-name='food_cat' data-filter-value='108602' data-nclick-code='rcc.reset'"
-			         +"data-filter-action='nclick' title='"+c.value+"'>"+c.value+"<span class='del'>X</span></a>");
-			
-			var foodTypeOpVal = $('#foodTypeOp').val();
-			
-			if(foodTypeOpVal ==""){
-				
-				$('#foodTypeOp').val(c.value+',');
-			
-			}else{
-				
-			    $('#foodTypeOp').val(foodTypeOpVal+c.value+',');
-			}
-		}
 
-	}else{
-		$(selectOp).html("<a onClick=deleteFilter(this,'"+op+"') href='#' id='"+c.value+"' class='selected nearbyselected' data-filter-name='food_cat' data-filter-value='108602' data-nclick-code='rcc.reset'"
-		         +"data-filter-action='nclick' title='"+c.value+"'>"+c.value+"<span class='del'>X</span></a>");
-	}
- 	
-		/* 			if( op == 'foodType'){
-		//foodType일때만 여러개가 들어오게 append 함수처리
- 		$(selectOp).append("<a onClick=deleteFilter(this) href='#' id='"+c.value+"' class='selected nearbyselected' data-filter-name='food_cat' data-filter-value='108602' data-nclick-code='rcc.reset'"
-		         +"data-filter-action='nclick' title='"+c.value+"'>"+c.value+"<span class='del'>X</span></a>");
-		var foodTypeOpVal = $('#foodTypeOp').val();
-		if(foodTypeOpVal ==""){
-			$('#foodTypeOp').val(c.value);
-		}else{
-			$('#foodTypeOp').val(foodTypeOpVal+","+c.value);
-		}
+				$(selectOp).html("<a onClick=deleteFilter(this) href='#' id='"+c.value+"' class='selected nearbyselected' data-filter-name='food_cat' data-filter-value='108602' data-nclick-code='rcc.reset'"
+				         +"data-filter-action='nclick' title='"+c.value+"'>"+c.value+"<span class='del'>X</span></a>");
+			
+			
+			}
+			
 		
-	}else{
-		//foodType이 아닌 다른애들은 하나씩만 나오게해야하니까 엎어치는 html함수처리
- 		$(selectOp).html("<a onClick=deleteFilter(this) href='#' id='"+c.value+"' class='selected nearbyselected' data-filter-name='food_cat' data-filter-value='108602' data-nclick-code='rcc.reset'"
-		         +"data-filter-action='nclick' title='"+c.value+"'>"+c.value+"<span class='del'>X</span></a>");
-	} */
-	 	
-		if(op == 'sortby')
+		
+		}
+		else if(op == 'sortby')
 		{ //if 2: parameter로 받은 값이 sortyby
 			//랭킹 카테고리 선택할때 어떤값으로 order by 하기위해서
 			//컬럼을 선택해야함
-				   lowPrice='';
-					sortInfo='';
+			
 				if(selectVal == '랭킹순'){
 					
 					sortInfo ='rest_rno';
 					
+					
 				}else if(selectVal == '조회순'){
+					
 					sortInfo ='rest_open';
 					
 				}else if(selectVal == '평점순'){
 					
+				
 					sortInfo ='rest_grade';
 					
 				}else if(selectVal == '낮은가격순'){
-					 lowPrice='low_price';
+					
+					 lowPrice='menu_price';
 					
 				}else if(selectVal == '높은가격순'){
-					sortInfo='high_price';
+					
+					sortInfo='menu_price';
 					
 				}
+				
+				$(selectOp).html("<a onClick=deleteFilter(this) href='#' id='"+c.value+"' class='selected nearbyselected' data-filter-name='food_cat' data-filter-value='108602' data-nclick-code='rcc.reset'"
+				         +"data-filter-action='nclick' title='"+c.value+"'>"+c.value+"<span class='del'>X</span></a>");
+			
 		
-				if(selectVal == '정렬안함'){ 
-					sortInfo =''; //null값을 foodTypeOp 자리에 넣어	
-					lowPrice ='';
-					$(selectOp).html('');
-				}
 		}
+		else{
+/* 			if( op == 'foodType'){
+				//foodType일때만 여러개가 들어오게 append 함수처리
+		 		$(selectOp).append("<a onClick=deleteFilter(this) href='#' id='"+c.value+"' class='selected nearbyselected' data-filter-name='food_cat' data-filter-value='108602' data-nclick-code='rcc.reset'"
+				         +"data-filter-action='nclick' title='"+c.value+"'>"+c.value+"<span class='del'>X</span></a>");
+				var foodTypeOpVal = $('#foodTypeOp').val();
+				if(foodTypeOpVal ==""){
+					$('#foodTypeOp').val(c.value);
+				}else{
+					$('#foodTypeOp').val(foodTypeOpVal+","+c.value);
+				}
+				
+			}else{
+				//foodType이 아닌 다른애들은 하나씩만 나오게해야하니까 엎어치는 html함수처리
+		 		$(selectOp).html("<a onClick=deleteFilter(this) href='#' id='"+c.value+"' class='selected nearbyselected' data-filter-name='food_cat' data-filter-value='108602' data-nclick-code='rcc.reset'"
+				         +"data-filter-action='nclick' title='"+c.value+"'>"+c.value+"<span class='del'>X</span></a>");
+			} */
+			
 			//선택된 옵션들을 위에서 이미 selectOp에 
-	
+			$(selectOp).html("<a onClick=deleteFilter(this) href='#' id='"+c.value+"' class='selected nearbyselected' data-filter-name='food_cat' data-filter-value='108602' data-nclick-code='rcc.reset'"
+			         +"data-filter-action='nclick' title='"+c.value+"'>"+c.value+"<span class='del'>X</span></a>");
+		
+		
+	 	}
 		searchNearby();
 };
 	
 
 
 // 선택된 버튼 없애기
-function deleteFilter(v , op){
-	
-	console.log(op);
+function deleteFilter(v){
 	var tihsId = "#"+v.id;
-	
-	//업종 데이터 삭제
-	if(op =="foodType")
-	{
-		
-		var tempStr=$('#foodTypeOp').val();
-		
-		if(tempStr != '')
-		{
-			
-			var chgStr = v.id+',';
-			tempStr.replace(chgStr,'');
-			$('#foodTypeOp').val(tempStr);
-		}
-		
-		if(tempStr == '')
-		{
-			$("#foodSelect").val("업종전체").attr("selected", "selected");
-		}
-		
-	}
-	
-	//랭킹 데이터 삭제
-	if(op == 'sortby')
-	{ 
-		sortInfo = '';
-		lowPrice='';	
-	}
-	
 	$(tihsId).remove();
 	
-	searchNearby();
+	
+	
+	
 };
+
+
+
+
 
 
 //선택한 카테고리의 정보가 담긴 foodTypeOp을 통해 아래에 ajax로 값을 뿌려주는 FUNCTION!
 function searchNearby(){ 
 	//type_name = 양식 or 중식 or 일식 중 한개 값 넘어감
-	var foodList = $('#foodTypeOp').val();
-	
+		var foodList = $('#foodTypeOp').val();
+	//alert('restOpen > '+restOpen);
 	
 	$.ajax({
 	
 		type:'post', //post방식(hide parameter)
 		url:'/TeamProject/restaurant/list_nearby_result.do', //이 주소를 찾아서 실행해 , 서버주소 파일의 경로가 아닌 프로젝트의 풀 주소
 		data:{"type_name":foodList,"rest_open":restOpen,"sortby_col":sortInfo,"lowPrice_col":lowPrice,"takeout_col":takeoutInfo}, //위 url 주소로 보낼 건데, 데이터는 key와 value로 보내고, 위 url(~.do)에서 value를  
-		success:function(res){
+		success:function(res){//0또는 1의 값을 가지는 res => db연동후 디폴트 기능 구현 필요
 			
-			
+			//console.log(res);
 			$('#nearbyList').html(res);
 		}
 	})
 };
 
 
+
+
 function openButChgCL(){
 	
-	
+	//var cateThisId = "#"+n.id;
 	
 	var nowClass = $('#openBut').attr("class");//현재버튼의 클래스상태(css)
+	//var nowClass = $(cateThisId).attr("class");//현재버튼의 클래스상태(css)
+	//alert(nowClass);
 	
 	if(nowClass=="openButtBefore"){//선택전클래스
 		//그럼 선택전css를 없애고 선택후 css를 class에 준다
 		$('#openBut').removeClass("openButtBefore");
 		$('#openBut').addClass("openButtAfter");
-		//선택을하면 open됐다는 것을 밸류값줌 => 매서에서 사용예정!
+		//선택을하면 open됐다는 걸 밸류값줌
 		restOpen = 'Y';
 	}else{
-		//선택후 상태
-		//선택후css를 없애고 선택전 css를 class에 준다
+		//선택후 상태임
+		//그럼 선택후css를 없애고 선택전 css를 class에 준다
 		$('#openBut').removeClass("openButtAfter");
 		$('#openBut').addClass("openButtBefore");
 		//선택해제하면 값을 null처리
@@ -243,32 +216,47 @@ function openButChgCL(){
 	}
 	
 	searchNearby();
-	//css변경 및 오픈체크 변수 설정을 하고 리스트 검색하는 ajax를 콜!
+	//css변경 및 오픈체크 변수 설정을 다하고 리스트 검색하는 ajax를 콜함
 }
+
+
 
 
 
 function takeoutButChgCL(){
 	
-	var nowClass = $('#takeoutBut').attr("class");
+	//var cateThisId = "#"+n.id;
 	
-	if(nowClass=="openButtBefore"){
-		
+	var nowClass = $('#takeoutBut').attr("class");//현재버튼의 클래스상태(css)
+	//var nowClass = $(cateThisId).attr("class");//현재버튼의 클래스상태(css)
+	//alert(nowClass);
+	
+	if(nowClass=="openButtBefore"){//선택전클래스
+		//그럼 선택전css를 없애고 선택후 css를 class에 준다
 		$('#takeoutBut').removeClass("openButtBefore");
 		$('#takeoutBut').addClass("openButtAfter");
 		//선택을하면 open됐다는 걸 밸류값줌
 		takeoutInfo = 'Y';
 	}else{
-				$('#takeoutBut').removeClass("openButtAfter");
+		//선택후 상태임
+		//그럼 선택후css를 없애고 선택전 css를 class에 준다
+		$('#takeoutBut').removeClass("openButtAfter");
 		$('#takeoutBut').addClass("openButtBefore");
 		//선택해제하면 값을 null처리
 		takeoutInfo = '';
 	}
 	searchNearby(); 
-	
+	//css변경 및 오픈체크 변수 설정을 다하고 리스트 검색하는 ajax를 콜함
 }
 
+/* 
+$('#openBut').on( "click",function() {
+	  alert( "클릭" );
+	}); */
+
 </script>
+   
+
 </head>
 <body>
     <!--============================= LIST =============================-->
@@ -301,7 +289,7 @@ function takeoutButChgCL(){
 
 
 								<!-- 업종선택 버튼 - setFilter() 사용! -->
-								<select  id="foodSelect" class="menuarrow" onchange="setFilter(this ,'foodType' ) ;" style="color: black;">
+								<select  class="menuarrow" onchange="setFilter(this ,'foodType' ),searchNearby() ;" style="color: black;">
 									<option value="업종전체" class="lemonmenu">업종전체</option>
 									<option value="한식" class="lemonmenu">한식</option>
 									<option value="일식" class="lemonmenu">일식</option>
@@ -311,7 +299,7 @@ function takeoutButChgCL(){
 									<option value="패스트푸드" class="lemonmenu">패스트푸드</option>
 									<option value="양식" class="lemonmenu">양식</option>
 									<option value="뷔페" class="lemonmenu">뷔페</option>
-									<option value="기 타" class="lemonmenu">기타/세계</option>
+									<option value="기타" class="lemonmenu">기타/세계</option>
 								</select> 
 								
 								
