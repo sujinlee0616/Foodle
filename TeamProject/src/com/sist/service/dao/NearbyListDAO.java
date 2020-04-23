@@ -1,6 +1,7 @@
 package com.sist.service.dao;
 
 import java.util.ArrayList;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,7 +11,8 @@ import org.apache.ibatis.session.SqlSessionFactory;
 
 import com.sist.vo.DetailThemaVO;
 import com.sist.vo.MainThemaVO;
-import com.sist.vo.TestVO;
+import com.sist.vo.NearbyVO;
+
 
 public class NearbyListDAO {
 	
@@ -23,11 +25,11 @@ public class NearbyListDAO {
 	}
 
 	
-		public static List<TestVO> nearbyDefault(){ // map으로 받는 이유는 사용자가 선택한 option들을 모두 받아야하기 때문=> 다양하게 맏아
+		public static List<NearbyVO> nearbyDefault(){ // map으로 받는 이유는 사용자가 선택한 option들을 모두 받아야하기 때문=> 다양하게 맏아
 		
 		SqlSession session=null;
 		
-		List<TestVO> defaultList=new ArrayList<TestVO>();
+		List<NearbyVO> defaultList=new ArrayList<NearbyVO>();
 		
 		try{
 			session=ssf.openSession();
@@ -79,11 +81,11 @@ public class NearbyListDAO {
 	
 	
 	//주변맛집의 카테고리 선택시 선택한 값들을 가져와 ajax로 데이터 뿌려주는 기능!
-	public static List<TestVO> nearbyResult(Map fo){ // map으로 받는 이유는 사용자가 선택한 option들을 모두 받아야하기 때문=> 다양하게 맏아
+	public static List<NearbyVO> nearbyResult(Map fo){ // map으로 받는 이유는 사용자가 선택한 option들을 모두 받아야하기 때문=> 다양하게 맏아
 		
 		SqlSession session=null;
 		
-		List<TestVO> resultList=new ArrayList<TestVO>();
+		List<NearbyVO> resultList=new ArrayList<NearbyVO>();
 		
 		try{
 			session=ssf.openSession();

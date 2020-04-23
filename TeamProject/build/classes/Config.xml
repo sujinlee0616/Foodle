@@ -16,7 +16,8 @@
   	<typeAlias type="com.sist.vo.MenuVO" alias="MenuVO"/>
   	<typeAlias type="com.sist.vo.ReserveInfoVO" alias="ReserveInfoVO"/>
   	<typeAlias type="com.sist.vo.SubinfoVO" alias="SubinfoVO"/>
-
+	<typeAlias type="com.sist.vo.NearbyVO" alias="NearbyVO"/>
+	
   	<!-- VO 등록 : 서비스 VO -->
   	<typeAlias type="com.sist.service.vo.BoardCommentVO" alias="BoardCommentVO"/>
   	<typeAlias type="com.sist.service.vo.CompMemberVO" alias="CompMemberVO"/>
@@ -27,6 +28,7 @@
 	<typeAlias type="com.sist.service.vo.ReviewVO" alias="ReviewVO"/>
 	<typeAlias type="com.sist.service.vo.MyWishVO" alias="MyWishVO"/>
 	<typeAlias type="com.sist.service.vo.ReserveDateVO" alias="ReserveDateVO"/>
+	
   </typeAliases>
   <environments default="development">
   	<environment id="development">

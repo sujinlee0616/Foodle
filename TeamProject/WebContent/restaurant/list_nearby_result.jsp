@@ -45,16 +45,16 @@ test value: ${result} --%>
                     
       			
 				   			 <div class="featured-title-box">
-                                     <h6>rno: ${i.rest_rno} AJAX</h6>
-                                     <p>${i.type_name} </p> <span>• </span>
-                                     <p>테이크아웃- ${i.takeout_col }</p> <span> • </span>
-                                     <p><span id="priceInfo" data-price="${i.high_price }">${i.high_price }</span>\</p>
+                                     <h6>rno: ${i.rNo} AJAX</h6>
+                                     <p>${i.rType} </p> <span>• </span>
+                                     <p>테이크아웃- ${i.rTakeout }</p> <span> • </span>
+                                     <p><span id="priceInfo" data-price="${i.rHighprice }">${i.rHighprice }</span>\</p>
                                      <ul>
                                          <li><span class="icon-location-pin"></span>
-                                             <p>${i.rest_adress }</p>
+                                             <p>${i.rAddr1 }</p>
                                          </li>
                                          <li><span class="icon-screen-smartphone"></span>
-                                             <p>평점순 - ${i.rest_grade }</p>
+                                             <p>평점순 - ${i.rScore }</p>
                                          </li>
                                      </ul>
                                      <div class="bottom-icons">

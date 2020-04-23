@@ -66,6 +66,8 @@ $(function(){
 	
 		let no=$(this).attr("value");
 		
+		
+		
 		console.log("no: "+ no);
 		$.ajax({
 		

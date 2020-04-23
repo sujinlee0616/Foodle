@@ -28,7 +28,6 @@ var sortInfo =''; 		//정렬순 선택
 
 
  $(document).ready(function(){
-	 searchNearby();
 	/* 
 	 $.ajax({
 			
@@ -131,20 +130,20 @@ var sortInfo =''; 		//정렬순 선택
 					sortInfo='';
 				if(selectVal == '랭킹순'){
 					
-					sortInfo ='rest_rno';
+					sortInfo ='rscore';
 					
 				}else if(selectVal == '조회순'){
-					sortInfo ='rest_open';
+					sortInfo ='rhit';
 					
 				}else if(selectVal == '평점순'){
 					
-					sortInfo ='rest_grade';
+					sortInfo ='rscorecount';
 					
 				}else if(selectVal == '낮은가격순'){
-					 lowPrice='low_price';
+					 lowPrice='rhighprice';
 					
 				}else if(selectVal == '높은가격순'){
-					sortInfo='high_price';
+					sortInfo='rhighprice';
 					
 				}
 		
@@ -164,24 +163,32 @@ var sortInfo =''; 		//정렬순 선택
 // 선택된 버튼 없애기
 function deleteFilter(v , op){
 	
+	//지랄같은거 죽임
+	event.preventDefault();
 	console.log(op);
 	var tihsId = "#"+v.id;
+	
+	//console.log(op+"//"+v.id);
 	
 	//업종 데이터 삭제
 	if(op =="foodType")
 	{
 		
-		var tempStr=$('#foodTypeOp').val();
-		
+		var tempStr=String($('#foodTypeOp').val());
+		var lastStr ="";
+		//console.log("tempStr//"+tempStr);
 		if(tempStr != '')
 		{
 			
 			var chgStr = v.id+',';
-			tempStr.replace(chgStr,'');
-			$('#foodTypeOp').val(tempStr);
+			tempStr= $('#foodTypeOp').val();
+			lastStr = tempStr.replace( String(chgStr),"");
+			//console.log("사라짐1?>"+lastStr);
+			$('#foodTypeOp').val(lastStr);
+			
 		}
-		
-		if(tempStr == '')
+		//없앨애들을 다 지우고 나서 남은 네모칸(input) 남아있는값이 널이면 전체로 바꾼다
+		if(lastStr == '')
 		{
 			$("#foodSelect").val("업종전체").attr("selected", "selected");
 		}
@@ -192,7 +199,8 @@ function deleteFilter(v , op){
 	if(op == 'sortby')
 	{ 
 		sortInfo = '';
-		lowPrice='';	
+		lowPrice='';
+		$("#sortSelect").val("정렬안함").attr("selected", "selected");
 	}
 	
 	$(tihsId).remove();
@@ -203,13 +211,14 @@ function deleteFilter(v , op){
 
 //선택한 카테고리의 정보가 담긴 foodTypeOp을 통해 아래에 ajax로 값을 뿌려주는 FUNCTION!
 function searchNearby(){ 
+	event.preventDefault();
 	//type_name = 양식 or 중식 or 일식 중 한개 값 넘어감
 	var foodList = $('#foodTypeOp').val();
 	
 	
 	$.ajax({
 	
-		type:'post', //post방식(hide parameter)
+		type:'get', //post방식(hide parameter)
 		url:'/TeamProject/restaurant/list_nearby_result.do', //이 주소를 찾아서 실행해 , 서버주소 파일의 경로가 아닌 프로젝트의 풀 주소
 		data:{"type_name":foodList,"rest_open":restOpen,"sortby_col":sortInfo,"lowPrice_col":lowPrice,"takeout_col":takeoutInfo}, //위 url 주소로 보낼 건데, 데이터는 key와 value로 보내고, 위 url(~.do)에서 value를  
 		success:function(res){
@@ -270,7 +279,7 @@ function takeoutButChgCL(){
 
 </script>
 </head>
-<body>
+<body onload=" searchNearby();">
     <!--============================= LIST =============================-->
     <form action="">
     <section class="list-block">
@@ -316,8 +325,8 @@ function takeoutButChgCL(){
 								
 								
 								<!-- 정렬선택 버튼 - setFilter() 사용! -->
-								<select class="menuarrow" onchange="setFilter(this,'sortby' ),searchNearby();">
-									<option value="정렬안함" class="lemonmenu">정렬순</option>
+								<select id="sortSelect" class="menuarrow" onchange="setFilter(this,'sortby' )">
+									<option value="정렬안함" class="lemonmenu">정렬순서</option>
 									<option value="랭킹순" class="lemonmenu">랭킹순</option>
 									<option value="평점순" class="lemonmenu">평점순</option>
 									<option value="조회순" class="lemonmenu">조회순</option>

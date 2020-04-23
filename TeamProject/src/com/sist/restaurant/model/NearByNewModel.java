@@ -1,6 +1,7 @@
 package com.sist.restaurant.model;
 
 import java.util.ArrayList;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,7 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.sist.controller.Controller;
 import com.sist.controller.RequestMapping;
 import com.sist.service.dao.NearbyListDAO;
-import com.sist.vo.TestVO;
+import com.sist.vo.NearbyVO;
+
 
 @Controller
 public class NearByNewModel {
@@ -21,9 +23,9 @@ public class NearByNewModel {
 	public String list_nearby(HttpServletRequest request, HttpServletResponse response)
 	{
 
-		List<TestVO> list=NearbyListDAO.nearbyDefault();
+		//List<TestVO> list=NearbyListDAO.nearbyDefault();
 		
-		request.setAttribute("defList", list);
+		//request.setAttribute("defList", list);
 		request.setAttribute("main_header", "../common/header_sub.jsp"); 
 		//값에 해당하는 부분 작성 법: 기준 : @RequestMapping("restaurant/list_nearby.do") 에서 list_nearby.do가 기준이 되어
 		//기준되는 파일이 해당 키("main_jsp")가 값("../restaurant/list_nearby.jsp")에 있는 페이지까지 가기위한 경로를 주는 것이다.
@@ -34,18 +36,18 @@ public class NearByNewModel {
 		
 	}
 	
-
+/*
 	@RequestMapping("restaurant/list_nearby_default.do")
 	public String list_nearby_default(HttpServletRequest request, HttpServletResponse response)
 	{
 
-		List<TestVO> dlist=NearbyListDAO.nearbyDefault();	
-		request.setAttribute("result", dlist);
+	//	List<TestVO> dlist=NearbyListDAO.nearbyDefault();	
+	//	request.setAttribute("result", dlist);
 			
 		return "/restaurant/list_nearby_result.jsp";
 	}
 	
-	
+*/	
 	
 	
 	
@@ -74,7 +76,7 @@ public class NearByNewModel {
 		
 		
 		//request들을 담은 Map 객체에 
-		List<TestVO> nearbyList = NearbyListDAO.nearbyResult(nearbyResultRequest);
+		List<NearbyVO> nearbyList = NearbyListDAO.nearbyResult(nearbyResultRequest);
 				
 		//Ajax로 결과 보냄!!
 		request.setAttribute("result", nearbyList);

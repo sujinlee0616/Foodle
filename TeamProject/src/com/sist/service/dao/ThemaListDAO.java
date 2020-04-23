@@ -149,7 +149,7 @@ public class ThemaListDAO {
 				System.out.println("map: "+map);
 				slist=session.selectList("searchThema",map);
 				
-				System.out.println("slist from DAO: "+slist);
+				System.out.println("slist from DAO: "+slist.toString());
 				
 			}
 			catch(Exception ex)

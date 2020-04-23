@@ -80,13 +80,6 @@ public class ThemaListModel {
 		String infoThema_col=request.getParameter("infoThema_col");  //어떤 가족 모임 장소를 찾고 계신가요?
 		System.out.println("infoThema_col=> "+infoThema_col);
 
-		Map map=new HashMap();
-		//맵이 필요한 경우는?
-		//map.put("no", no);
-		map.put("detailThema_col", request.getParameter("detailThema_col"));
-		
-		
-		
 		
 		//dao연결 하러      고고!
 		List<MainInfoVO> slist=ThemaListDAO.searchThema(detailThema_col);

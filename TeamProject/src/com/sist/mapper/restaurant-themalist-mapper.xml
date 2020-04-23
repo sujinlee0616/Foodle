@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sist.mapper.retaurant-themalist-mapper">
 <!-- t_MainThema= #{menuName} -->
-	<resultMap type="MainInfoVO" id="mainInforMap">
+	<resultMap type="com.sist.vo.MainInfoVO" id="mainInforMap">
 		<result column="rno" property="rNo"/>
 		<result column="rname" property="rName"/>
 		<result column="rtype" property="rType"/>
@@ -40,25 +40,32 @@
 	WHERE REGEXP_LIKE(t_DetailThema,#{fo})
 </select>
 
-<select id="searchThema" resultMap="mainInforMap" parameterType="java.util.Map">
+<select id="searchThema" parameterType="java.util.Map" resultMap="mainInforMap" >
+	 SELECT RNO, 
+	 	    RNAME,
+	 	    RTYPE,  RTEL,    RADDR2,      INAME,    ILINK
+	 FROM  (
+	     SELECT MAI.RNO,
+	            MAI.RNAME,
+	            MAI.RTYPE,
+	            MAI.RTEL,
+	            MAI.RADDR2,
+	            IMG.INAME,
+	            IMG.ILINK
+	     FROM MAININFO MAI,
+	          INFOTHEMA INFO,
+	          DETAILTHEMA DETAIL,
+	          IMAGE IMG
+	        WHERE MAI.RNO=INFO.RNO 
+	    	AND INFO.RTHEMA=DETAIL.T_INFO
+	    	AND DETAIL.T_DETAILTHEMA= #{fd}
+	    	AND MAI.RNO=IMG.RNO
+			AND IMG.INAME='Mainimage'    	
+	    	AND MAI.RNO <![CDATA[ <  ]]> 500
+	        )
+         GROUP BY RNO, RNAME, RTYPE,  RTEL,    RADDR2,      INAME,    ILINK
+         ORDER BY RNO ASC	
 	
-	 SELECT mai.rno,
-            mai.rname,
-            mai.rtype,
-            mai.rtel,
-            mai.raddr2,
-            img.iName,
-            img.iLink
-     FROM maininfo mai,
-          infothema info,
-          detailthema detail,
-          image img
-        where mai.rno=info.rno 
-    	AND info.rthema=detail.t_info
-    	AND detail.t_detailThema=#{fd}
-    	AND mai.rno=img.rno
-		AND img.iname='Mainimage'    	
-    	AND mai.rno <![CDATA[ <  ]]> 100
 </select>
 
 

@@ -38,7 +38,7 @@ $(function(){
 		
 		$.ajax({
 			
-			type:'post',
+			type:'get',
 			url:'../restaurant/result_thema_list.do',
 			data:{"no":1,"detailThema_col":detailThema,"infoThema_col":infoThema},
 			success:function(res){
@@ -50,14 +50,13 @@ $(function(){
 		//디폴트 ajax끝!
 
 		
-		$('resultThemaList').click(function(){
+		$('.resultThemaList').click(function(){
 			
 			//클릭했을 때 no의 현재 값을  가져와야 하므로    no를 위에서 전역으로 빼지 말고 클릭함수 안에서 var을 생성해야한다!!!
 			var no=$(this).attr("value");
-			var detailThema=$('.resultThemaList').attr("data-detailThema"); // 가족모임
-			var infoThema=$('.resultThemaList').attr("data-tInfo");
+			var detailThema=$(this).attr("data-detailThema"); // 가족모임
+			var infoThema=$(this).attr("data-tInfo");
 				
-			
 			$.ajax({
 				
 				type:'post',
