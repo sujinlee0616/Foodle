@@ -40,10 +40,10 @@ public class MainModel {
 		}
 		
 		// 쿠키 읽기
-		List<MainInfoVO> cookielist=new ArrayList<MainInfoVO>();
+		/*List<MainInfoVO> cookielist=new ArrayList<MainInfoVO>();
 		Cookie[] cookies=request.getCookies();
 		System.out.println("cookies.length : "+cookies.length);/////
-		System.out.println("cookies[i].getName()"+cookies[1].getName()); /////
+		//System.out.println("cookies[i].getName()"+cookies[0].getName()); /////
 		for(int i=0;i<cookies.length;i++) {
 			if(cookies[i].getName().startsWith("restaurant")) {
 				System.out.println("aa");
@@ -52,12 +52,12 @@ public class MainModel {
 				cookielist.add(vo);
 				System.out.println("no="+no);/////
 			}
-		}
+		}*/
 		
 		
 		request.setAttribute("weeklytop30list", weeklytop30list);
 		request.setAttribute("popularTop3list", popularTop3list);
-		request.setAttribute("cookielist", cookielist);
+		//request.setAttribute("cookielist", cookielist);
 		
 		request.setAttribute("main_header", "../common/header_main.jsp");
 		request.setAttribute("main_jsp", "../main/home.jsp");
