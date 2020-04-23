@@ -10,6 +10,7 @@ import com.sist.service.dao.*;
 import com.sist.service.vo.CompMemberVO;
 import com.sist.service.vo.MemberVO;
 
+
 @Controller
 public class MemberModel {
 	
@@ -28,21 +29,64 @@ public class MemberModel {
 	{
 		String id=request.getParameter("id");  
 		String pwd=request.getParameter("pwd");
-		
-		// DAO 연결
-		MemberVO vo=MemberDAO.memberLogin(id, pwd); 
+		String loginResult="";
+		System.out.println("id="+id);
+		System.out.println("pwd="+pwd);
 		
 		// 로그인 판정결과가 OK라면(ID/PWD 모두 일치) 세션에다가 id,name,admin값 저장 
-		if(vo.getMsg().equals("OK")) 
+
+		// [개인회원 체크] 
+		MemberVO mvo=MemberDAO.memberLoginGeneral(id, pwd); 		
+		if(mvo.getMsg().equals("OK_general")) // ID,PWD 다 맞음 
 		{
+			loginResult=mvo.getMsg();
+			System.out.println("1. loginResult="+loginResult);
 			HttpSession session=request.getSession();
 			session.setAttribute("id", id);
-			session.setAttribute("name", vo.getUname());
-			session.setAttribute("usertype", vo.getUtype());			
+			session.setAttribute("name", mvo.getUname());
+			session.setAttribute("usertype", mvo.getUtype());			
+		}
+		else if(mvo.getMsg().equals("WrongPWD")) // ID맞지만 PWD 틀림
+		{
+			loginResult=mvo.getMsg();
+			System.out.println("2. loginResult="+loginResult);
+		}
+		else
+		{
+			System.out.println("개인회원 아님");
+		}
+		
+		// [기업회원 체크] 
+		CompMemberVO cmvo=MemberDAO.memberLoginComp(id, pwd);
+		if(cmvo.getMsg().equals("OK_comp")) // ID,PWD 다 맞음
+		{
+			loginResult=cmvo.getMsg();
+			System.out.println("3. loginResult="+loginResult);
+			HttpSession session=request.getSession();
+			session.setAttribute("id", id);
+			session.setAttribute("name", cmvo.getRname());
+			session.setAttribute("usertype", cmvo.getUtype());			
+		}
+		else if(cmvo.getMsg().equals("WrongPWD")) // ID맞지만 PWD 틀림
+		{
+			loginResult=cmvo.getMsg();
+			System.out.println("4. loginResult="+loginResult);
+		}
+		else
+		{
+			System.out.println("기업회원 아님");
+		}
+		
+		
+		if(mvo.getMsg().equals("NOID") && cmvo.getMsg().equals("NOID"))
+		{
+			loginResult="NOID";
+			System.out.println("5. loginResult="+loginResult);
 		}
 
 		// 로그인 판정 결과(ID/PWD 맞는지 검사 후 판정결과를 세가지(OK/NOPWD/NOID)로 구분해서 msg에 값 String으로 넣음
-		request.setAttribute("msg", vo.getMsg());
+		request.setAttribute("msg", loginResult);
+		System.out.println("msg="+loginResult);
 		
 		return "../member/login_result.jsp";
 	}

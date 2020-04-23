@@ -35,13 +35,13 @@ $(function(){
 					$('#pwd').val("");
 					$('#id').focus();
 				}
-				else if(res.trim()=='NOPWD')
+				else if(res.trim()=='WrongPWD')
 				{
 					alert("비밀번호가 틀립니다");
 					$('#pwd').val("");
 					$('#pwd').focus();
 				}
-				else // res가 'OK'일 때
+				else // res가 'OK_general' 또는 'OK_comp'일 때
 				{
 					location.href="../main/main.do";
 					alert("로그인 성공!");

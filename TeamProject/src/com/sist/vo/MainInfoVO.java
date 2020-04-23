@@ -27,7 +27,7 @@ public class MainInfoVO {
 	// 가게 세부지역(ex.가로수길,강남역...)
 	private String rAreaDetail;
 	
-	// image 조인
+	// image 테이블 maininfo테이블과  조인
 	private ImageVO ivo=new ImageVO();
 	
 	public ImageVO getIvo() {
@@ -36,7 +36,15 @@ public class MainInfoVO {
 	public void setIvo(ImageVO ivo) {
 		this.ivo = ivo;
 	}
+	// reserveinfo테이블  maininfo테이블과  조인
+	private ReserveInfoVO rvo=new ReserveInfoVO();
 	
+	public ReserveInfoVO getRvo() {
+		return rvo;
+	}
+	public void setRvo(ReserveInfoVO rvo) {
+		this.rvo = rvo;
+	}
 	
 	public int getrNo() {
 		return rNo;

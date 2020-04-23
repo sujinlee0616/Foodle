@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -130,55 +131,60 @@
                                     <p>사용자 총 평점</p>
                                     <div class="star_avg">
                                         <div class="stars-outer"> <!-- grey star -->
-                                            <div class="stars-inner" style="width: 86%;"></div>  <!-- yellow star -->
+                                            <div class="stars-inner" style="width: ${reviewScoreAvg*20}%;"></div>  <!-- yellow star -->
                                         </div>
                                     </div>
-                                    <p><span>4.5 / 5</span></p>
+                                    <p><span>${reviewScoreAvg } / 5</span></p>
                                 </div>
                                 <div class="area_reviewNo col-md-4">
                                     <p>전체 리뷰 수</p>
                                     <img src="../images/dialog.png">
-                                    <p><span>34</span></p>
+                                    <p><span>${reviewTotalCount }</span></p>
                                 </div>
                             </div>
                             <hr>
-                            <div class="customer-review_wrap">
-                                <div class="customer-img">
-                                    <img src="../images/customer-img0.png" class="img-fluid" alt="#">
-                                    <p>산호다</p>
-                                    <span>35 Reviews</span>
-                                </div>
-                                <div class="customer-content-wrap">
-                                    <div class="customer-content">
-                                        <div class="customer-review">
-                                            <h6>만족</h6>
-                                            <!-- (old) 별점 이미지-->
-                                            <!-- <span></span>
-                                            <span></span>
-                                            <span></span>
-                                            <span></span>
-                                            <span class="round-icon-blank"></span> -->
-                                            <!-- (new) 별점 이미지 -->
-                                            <div class="stars-outer"> <!-- grey star -->
-                                                <div class="stars-inner" style="width: 86%;"></div>  <!-- yellow star -->
-                                            </div>
-                                            <p>2015/09/22</p>
-                                        </div>
-                                        <div class="customer-rating">4.3</div> <!-- 점수 -->
-    
-                                    </div>
-                                    <p class="customer-text">남자친구랑 신사동 놀러갔다가 들린곳인데~ 피자가 고소하고 쫄깃쫄깃 너무 맛있었어요~
-                                    </p>
-                                    <ul>
-                                        <li><img src="../images/review-img1.jpg" class="img-fluid" alt="#"></li>
-                                        <li><img src="../images/review-img2.jpg" class="img-fluid" alt="#"></li>
-                                        <li><img src="../images/review-img3.jpg" class="img-fluid" alt="#"></li>
-                                    </ul>
-                                    <span>28명이 이 리뷰가 도움이 되었다고 응답했습니다.</span>
-                                    <a href="#"><span class="icon-like"></span>도움이 됐어요</a>
-                                </div>
-                            </div>
-                            <hr>
+                            <c:forEach var="vo" items="${reviewList }">
+	                            <div class="customer-review_wrap">
+	                                <div class="customer-img">
+	                                    <img src="../images/customer-img0.png" class="img-fluid" alt="#">
+	                                    <p>${vo.userid }</p>
+	                                    <span>35 Reviews</span>
+	                                </div>
+	                                <div class="customer-content-wrap">
+	                                    <div class="customer-content">
+	                                        <div class="customer-review">
+	                                            <h6>만족</h6>
+	                                            <!-- (old) 별점 이미지-->
+	                                            <!-- <span></span>
+	                                            <span></span>
+	                                            <span></span>
+	                                            <span></span>
+	                                            <span class="round-icon-blank"></span> -->
+	                                            <!-- (new) 별점 이미지 -->
+	                                            <div class="stars-outer"> <!-- grey star -->
+	                                                <div class="stars-inner" style="width: ${vo.revscore*20}%;"></div>  <!-- yellow star -->
+	                                            </div>
+	                                            <p>
+	                                            	<fmt:formatDate value="${vo.revdate }" pattern="yyyy/MM/dd"/>
+	                                            </p>
+	                                        </div>
+	                                        <div class="customer-rating">4.3</div> <!-- 점수 -->
+	    
+	                                    </div>
+	                                    <p class="customer-text">${vo.revcontent }</p>
+	                                    <!-- <ul>
+	                                        <li><img src="../images/review-img1.jpg" class="img-fluid" alt="#"></li>
+	                                        <li><img src="../images/review-img2.jpg" class="img-fluid" alt="#"></li>
+	                                        <li><img src="../images/review-img3.jpg" class="img-fluid" alt="#"></li>
+	                                    </ul> -->
+	                                    <span>${vo.revgood }명이 이 리뷰가 도움이 되었다고 응답했습니다.</span>
+	                                    <a href="#"><span class="icon-like"></span>도움이 됐어요</a>
+	                                </div>
+	                            </div>
+	                            <hr>
+                            </c:forEach>
+                            
+                            <!-- /////////////////////////////////////// -->
                             <div class="customer-review_wrap">
                                 <div class="customer-img">
                                     <img src="../images/customer-img0.png" class="img-fluid" alt="#">
@@ -189,13 +195,13 @@
                                     <div class="customer-content">
                                         <div class="customer-review">
                                             <h6>화덕피자 좋아하시는 분들에게 추천!!</h6>
-                                             <!-- (old) 별점 이미지-->
-                                            <!-- <span></span>
+                                             <!-- (old) 별점 이미지
                                             <span></span>
                                             <span></span>
                                             <span></span>
-                                            <span class="round-icon-blank"></span> -->
-                                            <!-- (new) 별점 이미지 -->
+                                            <span></span>
+                                            <span class="round-icon-blank"></span>
+                                            (new) 별점 이미지 -->
                                             <div class="stars-outer"> <!-- grey star -->
                                                 <div class="stars-inner" style="width: 80%;"></div>  <!-- yellow star -->
                                             </div>
@@ -209,106 +215,49 @@
                                 </div>
                             </div>
                             <hr>
-                            <div class="customer-review_wrap">
-                                <div class="customer-img">
-                                    <img src="../images/customer-img0.png" class="img-fluid" alt="#">
-                                    <p>어흥흥흥</p>
-                                    <span>17 Reviews</span>
-                                </div>
-                                <div class="customer-content-wrap">
-                                    <div class="customer-content">
-                                        <div class="customer-review">
-                                            <h6>화덕피자 좋아하시는 분들에게 추천!!</h6>
-                                             <!-- (old) 별점 이미지-->
-                                            <!-- <span></span>
-                                            <span></span>
-                                            <span></span>
-                                            <span></span>
-                                            <span class="round-icon-blank"></span> -->
-                                            <!-- (new) 별점 이미지 -->
-                                            <div class="stars-outer"> <!-- grey star -->
-                                                <div class="stars-inner" style="width: 80%;"></div>  <!-- yellow star -->
-                                            </div>
-                                            <p>2015/09/10</p>
-                                        </div>
-                                        <div class="customer-rating customer-rating-red">4.0</div>
-                                    </div>
-                                    <p class="customer-text">화덕피자 진짜 좋아하는뎅~>< 여기 너무 맛있어요! 화덕향도 나고 치즈도 듬뿍올라가서 좋아요~!</p>
-                                    <span>10명이 이 리뷰가 도움이 되었다고 응답했습니다.</span>
-                                    <a href="#"><span class="icon-like"></span>도움이 됐어요</a>
-                                </div>
-                            </div>
+                            
+                            <!-- /////////////////////////////////////////////////////// -->
                             <hr>
-                            <div class="customer-review_wrap">
-                                <div class="customer-img">
-                                    <img src="../images/customer-img0.png" class="img-fluid" alt="#">
-                                    <p>어흥흥흥</p>
-                                    <span>17 Reviews</span>
-                                </div>
-                                <div class="customer-content-wrap">
-                                    <div class="customer-content">
-                                        <div class="customer-review">
-                                            <h6>화덕피자 좋아하시는 분들에게 추천!!</h6>
-                                             <!-- (old) 별점 이미지-->
-                                            <!-- <span></span>
-                                            <span></span>
-                                            <span></span>
-                                            <span></span>
-                                            <span class="round-icon-blank"></span> -->
-                                            <!-- (new) 별점 이미지 -->
-                                            <div class="stars-outer"> <!-- grey star -->
-                                                <div class="stars-inner" style="width: 80%;"></div>  <!-- yellow star -->
-                                            </div>
-                                            <p>2015/09/10</p>
-                                        </div>
-                                        <div class="customer-rating customer-rating-red">4.0</div>
-                                    </div>
-                                    <p class="customer-text">화덕피자 진짜 좋아하는뎅~>< 여기 너무 맛있어요! 화덕향도 나고 치즈도 듬뿍올라가서 좋아요~!</p>
-                                    <span>10명이 이 리뷰가 도움이 되었다고 응답했습니다.</span>
-                                    <a href="#"><span class="icon-like"></span>도움이 됐어요</a>
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="customer-review_wrap">
-                                <div class="customer-img">
-                                    <img src="../images/customer-img0.png" class="img-fluid" alt="#">
-                                    <p>어흥흥흥</p>
-                                    <span>17 Reviews</span>
-                                </div>
-                                <div class="customer-content-wrap">
-                                    <div class="customer-content">
-                                        <div class="customer-review">
-                                            <h6>화덕피자 좋아하시는 분들에게 추천!!</h6>
-                                             <!-- (old) 별점 이미지-->
-                                            <!-- <span></span>
-                                            <span></span>
-                                            <span></span>
-                                            <span></span>
-                                            <span class="round-icon-blank"></span> -->
-                                            <!-- (new) 별점 이미지 -->
-                                            <div class="stars-outer"> <!-- grey star -->
-                                                <div class="stars-inner" style="width: 80%;"></div>  <!-- yellow star -->
-                                            </div>
-                                            <p>2015/09/10</p>
-                                        </div>
-                                        <div class="customer-rating customer-rating-red">4.0</div>
-                                    </div>
-                                    <p class="customer-text">화덕피자 진짜 좋아하는뎅~>< 여기 너무 맛있어요! 화덕향도 나고 치즈도 듬뿍올라가서 좋아요~!</p>
-                                    <span>10명이 이 리뷰가 도움이 되었다고 응답했습니다.</span>
-                                    <a href="#"><span class="icon-like"></span>도움이 됐어요</a>
-                                </div>
-                            </div>
-                            <hr>
+                            
+                            <%-- <div>
+                            	<a href="../restaurant/detail.do?no=${mvo.rNo }&page=${curpage>1?curpage-1:curpage }" class="btn btn-sm btn-primary">이전</a>
+  									${curpage } page / ${totalpage } pages
+  								<a href="../restaurant/detail.do?no=${mvo.rNo }&page=${curpage<totalpage?curpage+1:curpage }" class="btn btn-sm btn-primary">다음</a>
+                            </div> --%>
+                            
                             <div class="page">
                             <nav aria-label="...">
                                 <ul class="pagination justify-content-center">
-                                    <li class="page-item">
-                                        <a class="page-link" href="#" aria-label="Previous"> 
-                                            <span aria-hidden="true">&laquo;</span>
-                                            <span class="sr-only">Previous</span>
-                                        </a>
-                                    </li>
-                                    <li class="page-item">
+                                	<c:if test="${startPage>1 }">
+	                                    <li class="page-item">
+	                                        <a class="page-link" href="../restaurant/detail.do?no=${mvo.rNo }&page=${curpage>1?curpage-1:curpage }" aria-label="Previous"> 
+	                                            <span aria-hidden="true">&laquo;</span>
+	                                            <span class="sr-only">Previous</span>
+	                                        </a>
+	                                    </li>
+                                    </c:if>
+                                    <c:set var="type" value=""/>
+						    	    <c:forEach var="i" begin="${startPage }" end="${endPage }">
+						    	  	<c:if test="${curpage==i }">
+						    	  		<c:set var="type" value="class=\"page-item active\""/> <%-- 현재페이지 파란색 --%>
+						    	  	</c:if>
+						    	  	<c:if test="${curpage!=i }">
+						    	  	    <c:set var="type" value="class=page-item"/>
+						    	  	</c:if>
+						    	  		<li ${type }>
+						    	  			<a class="page-link" href="../restaurant/detail.do?no=${mvo.rNo }&page=${i }">${i }</a>
+						    	  		</li>
+						    	  	</c:forEach>
+						    	  	<c:if test="${endPage<allPage }">
+    	    							<li class="page-item">
+	                                        <a class="page-link" href="../restaurant/detail.do?no=${mvo.rNo }&page=${endPage+1 }" aria-label="Next"> 
+	                                            <span aria-hidden="true">&raquo;</span> 
+	                                            <span class="sr-only">Next</span>
+	                                        </a>
+                                   	    </li>
+    	  							</c:if>
+						    	  	
+                                    <%-- <li class="page-item">
                                         <a class="page-link" href="#">1</a>
                                     </li>
                                     <li class="page-item active">
@@ -320,11 +269,11 @@
                                         <a class="page-link" href="#">3</a>
                                     </li>
                                     <li class="page-item">
-                                        <a class="page-link" href="#" aria-label="Next"> 
+                                        <a class="page-link" href="../restaurant/detail.do?no=${mvo.rNo }&page=${curpage<totalpage?curpage+1:curpage }" aria-label="Next"> 
                                             <span aria-hidden="true">&raquo;</span> 
                                             <span class="sr-only">Next</span>
                                         </a>
-                                    </li>
+                                    </li> --%>
                                 </ul>
                             </nav>
                         </div>
@@ -333,26 +282,73 @@
                 </div>
                 <div class="col-md-4 responsive-wrap"> 
                     <!-- 예약 -->
-                    <div class="reservation">
+                    <div class="reservation" data-date="${rvo.rReservedate }">
                         <div class="area_title">
                             <h5>예약</h5>
                         </div>
                         <div class="reserve_wrap">
                             <ul>
+                            	<!-- ######################  메뉴  ####################### -->
                                 <li class="menu">
                                     <label for="menu" class="reserve_tit">메뉴 선택</label>
-                                    <select id="menu" class="custom-select" name=""> 
-                                    	<option value="">메뉴를 선택하세요.</option>
+                                    <select id="menu" class="custom-select" name="" > 
+                                    	<option selected disabled hidden>======= 메뉴를 선택하세요. =======</option>
                                     	<c:forEach var="vo" items="${menuList }">
-                                    		 <option value="">${vo.mName }</option>
+                                    		 <option>
+                                    		 	${vo.mName }&nbsp;<span>(\</span>${vo.mPrice })
+                                    		 </option>
                                     	</c:forEach>
-                                      </select>
+                                    </select>
                                 </li>
-                                <li class="reserve_date">
-                                    <label for="menu" class="reserve_tit">예약일</label>
+								<div id="row">
+									<table id="menu-selected"></table>
+								</div>
+								<!-- ##################### 예약일 ######################## -->
+                                <li class="reserve_date" style="display: none;">
+                                    <!-- <label for="menu" class="reserve_tit">예약일</label>
                                     <input type="text" class="form-control" name="" id="reservation_date" title="" maxlength="8"
-                                     autocapitalize="off" placeholder="예약일자" autocomplete="off">
+                                     autocapitalize="off" placeholder="예약일자" autocomplete="off"> -->
+                                	
                                 </li>
+                                <!-- ##################### 시간선택 ######################## -->
+                                <li class="reserve_time" style="display: none;"></li>
+                                <!-- ##################### 인원선택 ######################## -->
+                                <li class="reserve_inwon" style="display: none;"></li>
+                                
+                                
+                                <div class="row">
+                                	<table class="table">
+                                		<tr>
+											<td rowspan="1">
+												<b id="restaurant-name">${mvo.rName }</b>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<span style="color: #999">메뉴</span>
+												<span id="restaurant-menu"></span>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<span style="color: #999">예약일</span>
+												<span id="restaurant-date"></span>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<span style="color: #999">예약시간</span>
+												<span id="restaurant-time"></span>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<span style="color: #999">인원</span>
+												<span id="restaurant-inwon"></span>
+											</td>
+										</tr>
+                                	</table>
+                                </div>
                                 <a href="#" class="btn btn-outline-danger btn-reserve">예약하기</a>
                             </ul>
                         </div>
@@ -553,7 +549,62 @@
     		})
     	})
     </script>
-
+    
+    <!-- 메뉴 선택 -->
+    <script>
+ /*    var index=1;
+    $('#menu').change(function(){
+    	//alert($(this).val());
+    	//alert(menu.options[menu.selectedIndex].text);
+    	var menu=document.getElementById("menu");
+        $('#menu-selected').append(
+        	'<tr id="m'+(index)+'">'
+        	+'<td>'
+        	+menu.options[menu.selectedIndex].text
+        	+'</td>'
+        	+'<td>'
+        	+'<input type="button" value="x" hiddenno="m'+(index)+'" class="btn btn-sm btn-danger cancel">'
+        	+'</td>'
+        	+'</tr>'
+        )
+        console.log("index="+index);
+        console.log($('.cancel').attr('hiddenno'));
+        index++;
+    });
+    
+    $('.cancel').click(function() {
+    	//var mnum=$(this).attr('hiddenno');
+    	//console.log(mnum);
+    	//$('#'+mnum).remove();
+    	$(this).parent('tr').remove();
+    }) */
+    
+    </script>
+	
+	<!-- 메뉴선택 -->
+	<script>
+	$('#menu').change(function(){
+		var menu=$(this).val();
+		if(menu!=0) {
+			$('.reserve_date').css("display","block");
+			$('#restaurant-menu').append(menu+",")
+		}
+	});
+	</script>
+	
+	
+	<script>
+	var rdate=$('.reservation').attr('data-date');
+	$.ajax({
+		type:'post',
+		url:'../restaurant/detail_reservedate.do',
+		data:{"rdate":rdate},
+		success:function(res) {
+			$('.reserve_date').html(res);
+		}
+	})
+	</script>
+	
 </body>
 
 </html>

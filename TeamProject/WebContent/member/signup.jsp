@@ -3,6 +3,50 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript">
+$(function(){
+
+	// 아이디 체크1. 기본 입력요청
+	$('#id').click(function(){
+		var length=$('#id').val().trim().length;
+		if(length==0)
+		{
+			//$('#idCheckMsg').html('<span style="color:#707070; font-size:15px; display:inline-block; margin-top: 10px;">6글자 이상 입력해주세요.</span>');
+			$('#idCheckMsg').html('<span>6글자 이상 입력해주세요.</span>');
+			return;
+		}
+	});
+
+	// 아이디 체크2. 글자길이 체크 
+	$('#id').keyup(function(){
+		var length=$('#id').val().trim().length;
+		if(length==0)
+			//$('#idCheckMsg').html('<span style="color:#ff3a6d; font-size:15px; display:inline-block; margin-top: 10px;">필수정보입니다.</span>');
+			$('#idCheckMsg').html('<span>필수정보입니다.</span>');
+		else if(length<6)
+			//$('#idCheckMsg').html('<span style="color:#ff3a6d; font-size:15px; display:inline-block; margin-top: 10px;">너무 짧아요. 6글자 이상 입력해주세요.</span>');
+			$('#idCheckMsg').html('<span>너무 짧아요. 6글자 이상 입력해주세요.</span>');
+		else
+			$('#idCheckMsg').addClass('hidden'); // 잘 입력했으면 메시지 없애기
+		return;
+	});
+
+	// 아이디 체크3. ID중복검사 
+	$('#id').blur(function(){
+		var id=$('#id').val();
+		
+		$.ajax({
+			type:'POST',
+			url:''
+		})
+		
+		
+	})
+
+	
+})
+</script>
 </head>
 <body>
   <!--============================= SINGUP =============================-->
@@ -43,36 +87,34 @@
               <!-- ID (N-N) -->
               <li class="item must">
                 <label for="user_id" class="tit_inp"><span class="essential">*</span>ID</label>
-                <input type="text" name="id" id="user_id" autocapitalize="off" autocomplete="off"
+                <input type="text" name="id" id="id" autocapitalize="off" autocomplete="off"
                   placeholder="아이디" maxlength="50">
-                <p class="alert_column warning_txt hidden" id="user_id_msg" name="user_id_msg">필수정보 입니다.</p>
+                <div class="guide_txt" id="idCheckMsg"></div>
               </li>
               <!-- Password (N-N) -->
               <li class="item must">
                 <label for="user_pwd" class="tit_inp"><span class="essential">*</span>비밀번호</label>
-                <input type="password" name="pwd" id="user_pwd" autocapitalize="off"
+                <input type="password" name="pwd" id="pwd" autocapitalize="off"
                   placeholder="비밀번호" maxlength="20">
                 <p class="alert_column warning_txt hidden" id="user_pwd_msg" name="user_pwd_msg">필수정보 입니다.</p>
               </li>
               <!-- 이름 (N-N)-->
               <li class="item must">
                 <label for="user_nm" class="tit_inp"><span class="essential">*</span>이름</label>
-                <input type="text" name="name" id="user_name" autocapitalize="off" autocomplete="off"
-                  placeholder="" maxlength="30">
-                <p class="alert_column warning_txt hidden" id="user_name_msg" name="user_nm_msg">필수정보 입니다.</p>
+                <input type="text" name="name" id="name" autocapitalize="off" autocomplete="off"
+                  placeholder="이름" maxlength="30">
               </li>
               <!-- 성별 (NN) -->
               <li class="item must">
                 <label for="user_gender" class="tit_inp"><span class="essential">*</span>성별</label>
                 <label for="user_gender_male"><input type="radio" name="gender" id="user_gender_male" value="male" checked="checked">남성</label>
                 <label for="user_gender_female"><input type="radio" name="gender" id="user_gender_female" value="female">여성</label>
-                <p class="alert_column warning_txt hidden" id="msg_sex">&nbsp;</p>
               </li>
               <!-- 생년월일 (N-N ) -->
               <li class="item must">
                 <div class="select_align_row">
                   <label for="birth_date" class="tit_inp"><span class="essential">*</span>생년월일</label>
-                  <input type="text" name="birth" id="user_birth" title="사용자 출생년도" maxlength="8"
+                  <input type="text" name="birth" id="birth" title="사용자 출생년도" maxlength="8"
                     autocapitalize="off" placeholder="YYYYMMDD" class="che" autocomplete="off">
                 </div>
                 <p class="alert_column warning_txt hidden" id="user_birth_msg" name="cyr_msg">&nbsp;</p>
@@ -81,7 +123,7 @@
               <li class="email_column item must">
                 <div class="select_align_row input item">
                   <label for="email_id" class="tit_inp"><span class="essential">*</span>이메일</label>
-                  <input type="text" name="email" id="user_email" style="ime-mode:inactive" placeholder="" autocomplete="off" maxlength="40">
+                  <input type="text" name="email" id="email" style="ime-mode:inactive" placeholder="예시) abc@naver.com" autocomplete="off" maxlength="40">
                 </div>
                 <!-- Start of 자동리스트 영역 : 아직 구현 안 했음  -->
                 <ul class="auto_list_area email_list" style="display:none;">
@@ -109,7 +151,7 @@
               <!-- 비밀번호 힌트 질문 -->
               <li class="item must">
                 <label for="user_hint" class="tit_inp"><span class="essential">*</span>비밀번호 힌트 질문</label>
-                <select  name="pwd_hint" id="user_pwd_hint" class="custom-select">
+                <select  name="pwd_hint" id="pwd_hint" class="custom-select">
                   <option value="">질문을 선택하세요.</option>
                   <option value="place">기억에 남는 추억의 장소는?</option>
                   <option value="motto">자신의 인생 좌우명은?</option>
@@ -123,7 +165,7 @@
               <!-- 비밀번호 힌트 질문 답 -->
               <li class="item must">
                 <label for="user_hintAns" class="tit_inp"><span class="essential">*</span>비밀번호 힌트 질문 답</label>
-                <input type="text" name="pwd_hintAns" id="user_pwd_hintAns" autocapitalize="off"
+                <input type="text" name="hintAns" id="hintAns" autocapitalize="off"
                   placeholder="">
                 <p class="alert_column warning_txt hidden" id="user_hintAns_msg" name="user_hintAns_msg">필수정보 입니다.</p>
               </li>
@@ -177,7 +219,7 @@
       <div class="row justify-content-center">
         <div class="col-md-6 pt-4">
           <div class="signup-btn-wrap">
-        	<input type="submit" value="회원가입" class="btn btn-danger" id="sendBtn">
+        	<input type="button" value="회원가입" class="btn btn-danger" id="sendBtn">
           </div>
         </div>
       </div>
@@ -270,6 +312,8 @@
         }).open();
     }
 </script>
+
+
 
 </body>
 

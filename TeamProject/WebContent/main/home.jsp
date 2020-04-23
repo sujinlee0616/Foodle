@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -23,11 +24,11 @@
                         </div>
                         <div class="row d-flex justify-content-center">
                             <div class="col-md-10">
-                                <form class="form-wrap mt-4" action="../search/searchpage.do">
+                                <form class="form-wrap mt-4" action="../search/searchpage.do" id="search_frm" method="post">
                                     <div class="btn-group" role="group" aria-label="Basic example">
-                                        <input type="text" placeholder="카테고리" class="btn-group1">
-                                        <input type="text" placeholder="지역" class="btn-group2">
-                                        <button type="submit" class="btn-form"><span class="icon-magnifier search-icon">
+                                        <input type="text" placeholder="카테고리" class="btn-group1" id="cate" name="cate">
+                                        <input type="text" placeholder="지역" class="btn-group2" id="area" name="area" autocomplete="off">
+                                        <button type="submit" class="btn-form" id="SearchBtn"><span class="icon-magnifier search-icon">
                                       		</span>검색<i class="pe-7s-angle-right"></i>
                                         </button>
                                     </div>
@@ -310,7 +311,46 @@
 	</section>
     <!--//END CATEGORIES -->
     <!--============================= RECENT LIST =============================-->
-        <section class="main-block light-bg" id="recent">
+    	<section class="main-block light-bg" id="recent">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-5">
+                        <div class="styled-heading">
+                            <h3>최근 본 맛집</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-5">
+                	<c:forEach var="vo" items="${cookielist }">
+	                    <div class="card" style="width: 30%; margin: 0 15px;">
+	                        <a href="../restaurant/detail.do?no=${vo.rNo }">
+	                            <img src="${vo.ivo.iLink }" class="card-img-top" alt="...">
+	                            <div class="card-body">
+	                            	<h5 class="card-title">${vo.rName }</h5>
+	                                <ul class="detailed-info">
+	                                    <li><span class="icon-location-pin"></span>
+	                                        <p>${vo.rAddr1 }</p>
+	                                    </li>
+	                                    <li><span class="icon-screen-smartphone"></span>
+	                                        <p>${vo.rTel }</p>
+	                                    </li>
+	                             	</ul>
+	                            </div>
+	                        </a>
+	                    </div>
+                    </c:forEach>
+                </div>
+                <!-- <div class="row justify-content-center">
+                    <div class="col-md-4">
+                        <div class="featured-btn-wrap">
+                            <a href="#" class="btn btn-danger">+ 더 보기</a>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </section>
+        <!--//END FEATURED PLACES -->
+        <%-- <section class="main-block light-bg" id="recent">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-md-5">
@@ -350,13 +390,15 @@
                 </div> -->
             </div>
         </section>
-        <!--//END FEATURED PLACES -->
+        <!--//END FEATURED PLACES --> --%>
 
     <!-- jQuery, Bootstrap JS. -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="../js/jquery-3.2.1.min.js"></script>
     <script src="../js/popper.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
     <!-- GNB Fixed 되는 스크롤 시점 -->
     <script>
@@ -381,7 +423,29 @@
                 $(".sidenav").css("top", "785px");
             };
         });
-    </script>  
+
+    </script>    
+    <!-- home의 검색창 -->
+    <script type="text/javascript">
+    	$(function(){
+    		$('#SearchBtn').click(function(){
+    			let cate=$('#cate').val();
+    			let area=$('#area').val();
+    			if(cate.trim()=="" && area.trim()=="")
+    			{
+    				alert("검색어를 입력해주세요!")
+    				$('#cate').focus();
+    				return false;
+    			}
+    			else
+    			{
+    				$('#search_frm').submit;
+    				return true;
+    			}
+    		})
+    		
+    	});
+    </script>
     
     <!-- 찜 hover  -->
     <!-- <script type="text/javascript">
@@ -424,9 +488,6 @@
     		})
     	})
     </script> -->
-    
-  
-    
 </body>
 
 </html>

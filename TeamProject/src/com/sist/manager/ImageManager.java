@@ -18,7 +18,7 @@ public class ImageManager {
 		ImageVO vo;
 		
 		ArrayList<AreacodeVO> ac = areacode;
-		int page = 30;
+		int page = 20;
 		int kategorie = 25;
 		
 		Element image;
@@ -45,7 +45,6 @@ public class ImageManager {
 						int count=0;
 						while (true) {
 							try {
-								System.out.println("총 이미지 개수: "+count);
 								vo = new ImageVO();
 								System.out.println("========vo.no 시작========");
 								//가게No넣는부분인데 겹치지 않게 하기 위해서
@@ -63,12 +62,16 @@ public class ImageManager {
 								System.out.println("=======이미지 이름 시작=========");
 								image_Name = doc2.select("img#restphoto_img_"+count).get(0);
 								vo.setiName(image_Name.attr("title"));
+								if(count==0)
+								{
+									vo.setiName("Mainimage");
+								}
 								System.out.println(vo.getiName());
 								System.out.println("=======이미지 이름 끝=========");
 								
 								dao.InsertImageData(vo);
 								count++;
-								Thread.sleep(1000);
+								Thread.sleep(100);
 							} catch (Exception ex) 
 							{
 								ex.printStackTrace();

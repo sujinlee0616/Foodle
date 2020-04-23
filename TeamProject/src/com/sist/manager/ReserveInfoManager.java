@@ -27,7 +27,9 @@ public class ReserveInfoManager {
 		int category = 25;
 		
 		Element rNo;
-		Element rPrice;	// r_Lowprice, r_Highprice 합친 것 
+		Element rPrice;	// r_Lowprice, r_Highprice 합친 것
+		Element r_Lowprice;
+		Element r_Highprice;
 		Element rBusinesstime; // r_Opentime, r_Closetime 합친 것 
 		Element rReserve;
 		Element rHoliday;
@@ -65,16 +67,19 @@ public class ReserveInfoManager {
 
 									// 2. rLowprice 추천가격대(높음)						
 									try {
-										rPrice = doc2.select("p.price strong").get(0);
-										vo.setrLowprice(Integer.parseInt(rPrice.text().replace(",", "")));
+										r_Lowprice = doc2.select("p.price strong").get(0);
+										vo.setrLowprice(Integer.parseInt(r_Lowprice.text().replace(",", "")));
+										//rPrice = doc2.select("p.price strong").get(0);
+										//vo.setrLowprice(Integer.parseInt(rPrice.text().replace(",", "")));		
+										
 									}catch(Exception ex) {vo.setrLowprice(0);}
 									
 									// 3. rHighprice 추천가격대(낮음)
 									try {
-										rPrice = doc2.select("p.price strong").get(1);
-										// String temp1=rPrice.text().replace(",", "");
-										// System.out.println("temp1="+temp1);
-										vo.setrHighprice(Integer.parseInt(rPrice.text().replace(",", "")));								
+										r_Highprice = doc2.select("p.price strong").get(1);
+										vo.setrHighprice(Integer.parseInt(r_Highprice.text().replace(",", "")));
+										//rPrice = doc2.select("p.price strong").get(1);
+										//vo.setrHighprice(Integer.parseInt(rPrice.text().replace(",", "")));
 									}catch(Exception ex) {vo.setrHighprice(0);}	
 									
 									// 4. rOpentime 가게 오픈시간
@@ -162,18 +167,18 @@ public class ReserveInfoManager {
 									}	
 											
 									// Data Check 
-//									System.out.println("현재 카테고리 번호:"+ (z+1)  + ", 현재페이지번호:" + (j+1) +", 현재지역번호:"+(i+1));
-//									System.out.println("rNo="+vo.getrNo()
-//														+", rLowprice="+vo.getrLowprice()
-//														+", rHighprice="+vo.getrHighprice()
-//														+", rOpentime="+vo.getrOpentime()
-//														+", rClosetime="+vo.getrClosetime()
-//														+", rReserve="+vo.getrReserve()
-//														+", rHoliday="+vo.getrHoliday()
-//														+", rSeat="+vo.getrSeat()
-//														+", rRoom="+vo.getrRoom()
-//														+", rRoomcount="+vo.getrRoomcount());
-//									
+									/*System.out.println("현재 카테고리 번호:"+ (z+1)  + ", 현재페이지번호:" + (j+1) +", 현재지역번호:"+(i+1));
+									System.out.println("rNo="+vo.getrNo()
+														+", rLowprice="+vo.getrLowprice()
+														+", rHighprice="+vo.getrHighprice()
+														+", rOpentime="+vo.getrOpentime()
+														+", rClosetime="+vo.getrClosetime()
+														+", rReserve="+vo.getrReserve()
+														+", rHoliday="+vo.getrHoliday()
+														+", rSeat="+vo.getrSeat()
+														+", rRoom="+vo.getrRoom()
+														+", rRoomcount="+vo.getrRoomcount());*/
+									
 									// 넣는 부분								
 									dao.ReserveInfoInsert(vo);
 									Thread.sleep(100);
