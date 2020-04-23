@@ -7,27 +7,42 @@
 <script type="text/javascript">
 $(function(){
 
+	// 아이디 체크1. 기본 입력요청
 	$('#id').click(function(){
 		var length=$('#id').val().trim().length;
 		if(length==0)
 		{
-			$('#idCheckMsg').html('<span style="color:#707070; font-size:15px; display:inline-block; margin-top: 10px;">6글자 이상 입력해주세요.</span>');
+			//$('#idCheckMsg').html('<span style="color:#707070; font-size:15px; display:inline-block; margin-top: 10px;">6글자 이상 입력해주세요.</span>');
+			$('#idCheckMsg').html('<span>6글자 이상 입력해주세요.</span>');
 			return;
 		}
 	});
 
+	// 아이디 체크2. 글자길이 체크 
 	$('#id').keyup(function(){
 		var length=$('#id').val().trim().length;
 		if(length==0)
-			$('#idCheckMsg').html('<span style="color:#ff3a6d; font-size:15px; display:inline-block; margin-top: 10px;">필수정보입니다.</span>');
+			//$('#idCheckMsg').html('<span style="color:#ff3a6d; font-size:15px; display:inline-block; margin-top: 10px;">필수정보입니다.</span>');
+			$('#idCheckMsg').html('<span>필수정보입니다.</span>');
 		else if(length<6)
-			$('#idCheckMsg').html('<span style="color:#ff3a6d; font-size:15px; display:inline-block; margin-top: 10px;">너무 짧아요</span>');
+			//$('#idCheckMsg').html('<span style="color:#ff3a6d; font-size:15px; display:inline-block; margin-top: 10px;">너무 짧아요. 6글자 이상 입력해주세요.</span>');
+			$('#idCheckMsg').html('<span>너무 짧아요. 6글자 이상 입력해주세요.</span>');
 		else
 			$('#idCheckMsg').addClass('hidden'); // 잘 입력했으면 메시지 없애기
 		return;
 	});
 
-
+	// 아이디 체크3. ID중복검사 
+	$('#id').blur(function(){
+		var id=$('#id').val();
+		
+		$.ajax({
+			type:'POST',
+			url:''
+		})
+		
+		
+	})
 
 	
 })

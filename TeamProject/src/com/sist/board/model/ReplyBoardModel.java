@@ -3,6 +3,8 @@ package com.sist.board.model;
 import java.util.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import com.sist.controller.Controller;
 import com.sist.controller.RequestMapping;
 import com.sist.dao.*;
@@ -135,7 +137,9 @@ public class ReplyBoardModel {
 		String bsubject=request.getParameter("subject");
 		String bcontent=request.getParameter("content");
 		String bpwd=request.getParameter("pwd");
-		// id 어떻게 받아올 것인가....
+		// id 어떻게 받아올 것인가? - 아래와 같이 받아오면 됨 - 아래 두 줄.
+		//HttpSession session=request.getSession();
+		//String id=(String)session.getAttribute("id");
 		
 		// 데이터 확인
 		// System.out.println("bname="+bname+", bsubject="+bsubject+", bcontent="+bcontent+", bpwd="+bpwd);
@@ -294,6 +298,21 @@ public class ReplyBoardModel {
 		return "redirect:../board/list.do";
 	}
 	
+	// [댓글 작성] - ================== 하는 중 ================== 
+	@RequestMapping("board/comment_insert.do")
+	public String comment_insert(HttpServletRequest request,HttpServletResponse response)
+	{
+		try
+		{
+			request.setCharacterEncoding("UTF-8");
+		}catch(Exception ex){}
+		
+		String bno=request.getParameter("name");
+		String userid=request.getParameter("userid"); // JSP에서 세션에서 받아서 form으로 보내자  
+		String content=request.getParameter("content");
+		
+		return "";  // 리턴을 어디로 줘야하지?????????????  redirect도 이상한데?? 내가 보던거에 그대로 달려야하는데??? 
+	}
 
 	
 	
