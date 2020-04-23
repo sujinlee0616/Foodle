@@ -106,5 +106,14 @@ public class MainInfoVO {
 	}
 	
 	
+	@Override
+	public String toString() {
+		return "MainInfoVO [rNo=" + rNo + ", rName=" + rName + ", rType=" + rType + ", rTel=" + rTel + ", rScore="
+				+ rScore + ", rScoreCount=" + rScoreCount + ", rAddr1=" + rAddr1 + ", rAddr2=" + rAddr2 + ", rPwd="
+				+ rPwd + ", rArea=" + rArea + ", rAreaDetail=" + rAreaDetail + ", ivo=" + ivo + "]";
+	}
+	
+	
+	
 	
 }

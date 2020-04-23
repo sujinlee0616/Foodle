@@ -1,32 +1,3 @@
-/*   
-div#select_box {
-    position: relative;
-    width: 130px;
-    height: 35px;
-    background: url(../images/arrow.jpg) 90px center no-repeat; 화살표 이미지
-    border: 1px solid #E9DDDD;
-   
-}
-div#select_box label {
-    position: absolute;
-    font-size: 14px;
-    color: #a97228;
-    top: 13px;
-    left: 12px;
-    letter-spacing: 1px;
-}
-div#select_box select#color {
-    width: 100%;
-    height: 40px;
-    min-height: 40px;
-    line-height: 40px;
-    padding: 0 10px;
-    opacity: 0;
-    filter: alpha(opacity=0); IE 8
-}
- */
-
-
 body {
 
   font-size: 18px;
@@ -165,6 +136,7 @@ select::-ms-expand {
     letter-spacing: 2px;
 }
 
+/* padding-left: 1rem!important; */
 div .nearbysearchlist{
 	
 	padding-left: 1rem!important;
@@ -194,16 +166,14 @@ div .nearbysearchlist{
 }
 
 
-.featured-responsive{
-
+.featured-responsive:nth-child( 2n ) {
 	margin-left: 20px;
-
-}
+}glzg
 
 
 .nearbymapwrap{
 	
-    padding: 0; 
+    padding: 0px; 
 
 }
 

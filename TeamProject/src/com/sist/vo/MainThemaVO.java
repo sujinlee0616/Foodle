@@ -36,4 +36,11 @@ public class MainThemaVO {
 	}
 	
 	
+	@Override
+	public String toString() {
+		return "MainThemaVO [t_MainThema=" + t_MainThema + ", t_DetailThema=" + t_DetailThema + ", t_Info=" + t_Info
+				+ ", themaCount=" + themaCount + "]";
+	}
+	
+	
 }
