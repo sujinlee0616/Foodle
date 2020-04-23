@@ -16,7 +16,7 @@ $(function(){
 		$(this).css("cursor","none");
 	})
 	
-	$('#year').change(function(){
+	/* $('#year').change(function(){
 		var year=$(this).val();
 		var month=$('#month').val();
 		$.ajax({
@@ -39,7 +39,7 @@ $(function(){
 				$('.reserve_date').html(res);
 			}
 		})
-	})
+	}) */
 	
 	$('.rdate').click(function(){
 		var year=$('.y-m-date').attr('y-date');
@@ -48,11 +48,10 @@ $(function(){
 		
 		var rday=year+"년 "+month+"월 "+day+"일";
 		$('#restaurant-date').text(rday);
-		$('#rdate').val(rday); // reserve의 hidden
 		
 		$.ajax({
 			type:'post',
-			url:'time.do',
+			url:'../restaurant/detail_reservetime.do',
 			data:{"tno":day},
 			success:function(res){
 				$('#movie-time').html(res);

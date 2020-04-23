@@ -85,5 +85,12 @@
 		WHERE rno=#{rno}
 	</select>
 	
+	<!-- #################################### 예약  ################################### -->
+	
+	<!-- 해당 날짜의 예약 가능 시간 -->
+	<select id="reserveTimeData" resultType="String" parameterType="int">
+		SELECT time FROM reservedate
+		WHERE tno=#{tno}
+	</select>
 	
 </mapper>

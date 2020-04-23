@@ -203,4 +203,12 @@ public class DetailModel {
 		return "../restaurant/detail_reservedate.jsp";
 	}
 	
+	@RequestMapping("restaurant/detail_reservetime.do") 
+	public String restaurant_detail_reservetime(HttpServletRequest request, HttpServletResponse response) {
+		
+		String tno=request.getParameter("tno"); // day
+		
+		
+		return "../restaurant/detail_reservetime.jsp";
+	}
 }

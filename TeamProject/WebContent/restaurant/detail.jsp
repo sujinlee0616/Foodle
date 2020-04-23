@@ -298,7 +298,7 @@
                                     		 	${vo.mName }&nbsp;<span>(\</span>${vo.mPrice })
                                     		 </option>
                                     	</c:forEach>
-                                      </select>
+                                    </select>
                                 </li>
 								<div id="row">
 									<table id="menu-selected"></table>
@@ -587,11 +587,11 @@
 		var menu=$(this).val();
 		if(menu!=0) {
 			$('.reserve_date').css("display","block");
+			$('#restaurant-menu').append(menu+",")
 		}
 	});
-	
-    
 	</script>
+	
 	
 	<script>
 	var rdate=$('.reservation').attr('data-date');
