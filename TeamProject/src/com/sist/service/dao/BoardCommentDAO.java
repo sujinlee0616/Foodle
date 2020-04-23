@@ -63,6 +63,7 @@ public class BoardCommentDAO {
 			session=ssf.openSession();
 			session.update("cmtList",map);
 			list=(ArrayList<BoardCommentVO>)map.get("cResult");
+			//System.out.println("DAO list="+list);
 		} 
 		catch (Exception ex) 
 		{
