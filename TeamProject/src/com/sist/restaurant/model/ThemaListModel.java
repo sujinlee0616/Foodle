@@ -88,7 +88,7 @@ public class ThemaListModel {
 		
 		
 		
-		//dao연결하러  고고!
+		//dao연결 하러      고고!
 		List<MainInfoVO> slist=ThemaListDAO.searchThema(detailThema_col);
 		System.out.println("(result_thema_list.do)"+slist);
 		

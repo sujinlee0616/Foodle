@@ -121,7 +121,7 @@ $(function(){
    <!-- 
                 <div class="col-md-5">
                     <div class="styled-heading">
-                        <h3>테마별 맛집</h3>
+                        <h3>테마별   맛집</h3>
                     </div>
                 </div>
    -->

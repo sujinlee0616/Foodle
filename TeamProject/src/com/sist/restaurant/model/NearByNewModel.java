@@ -16,7 +16,7 @@ import com.sist.vo.TestVO;
 @Controller
 public class NearByNewModel {
 	
-	//주변맛집 인클루드 and (디폴트 페이지 처리해야하는 곳!)
+	//주변맛집 인클루드 and (디폴트  페이지     처리해야하는 곳!)
 	@RequestMapping("restaurant/list_nearby.do")
 	public String list_nearby(HttpServletRequest request, HttpServletResponse response)
 	{
@@ -30,7 +30,7 @@ public class NearByNewModel {
 		request.setAttribute("main_jsp", "../restaurant/list_nearby.jsp");
 
 		
-		return "../main/main.jsp"; //값에 해당하는 페이지가 인클루드 되어있는 부모 페이지로 가기위한 경로 
+		return "../main/main.jsp"; //값에    해당하는 페이지가 인클루드 되어있는 부모 페이지로 가기위한 경로 
 		
 	}
 	
