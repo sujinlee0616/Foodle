@@ -27,7 +27,7 @@
 		WHERE REGEXP_LIKE(t_MainThema,#{fd})
 	</select>	
 
-<!-- 상황별 개수 알기! -->
+<!-- 상황별     개수 알 기! -->
 <select id="countBigThema" resultType="MainThemaVO">
 	SELECT t_MainThema, COUNT(*) as themaCount
 	FROM MainThema

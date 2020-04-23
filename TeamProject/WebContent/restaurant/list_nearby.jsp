@@ -225,7 +225,7 @@ function openButChgCL(){
 	
 	
 	
-	var nowClass = $('#openBut').attr("class");//현재버튼의 클래스상태(css)
+	var nowClass = $('#openBut').attr("class");//현재버튼의   클래스상태(css)
 	
 	if(nowClass=="openButtBefore"){//선택전클래스
 		//그럼 선택전css를 없애고 선택후 css를 class에 준다
