@@ -12,14 +12,14 @@
 <body>
 <!--============================= Start of BOARD DETAIL =============================-->
 <section class="board-block pb-1 light-bg">
-  <div class="container pt-5">
+  <div class="container">
     <div class="py-3">
       <div class="table-responsive">
         <!-- ============================ Start of 상세보기 ============================ -->
         <table class="table replyBoard reply_detail">				
 	        <thead>
 	            <tr>
-	                <th class="subject px-3 py-3" colspan="4">${vo.bsubject }</td>
+	                <th class="subject px-3" colspan="4">${vo.bsubject }</td>
 	            </tr>
 	            <tr>
 	                <td>
@@ -47,7 +47,7 @@
                 <!-- 본문 -->
                 <td class="content py-4 px-4" colspan="4">
                   	<!-- 본문입니다 -->
-                  ${vo.bcontent }
+                  	<pre>${vo.bcontent }</pre>
                 </td>
               </tr>
               <tr>
@@ -77,11 +77,12 @@
           	<!-- =============== 로그인 한 경우 =============== -->
           	<c:if test="${sessionScope.id!=null }">
 	        	<div class="logged_in">
-	              <form action="../board/comment.do"></form>
+	              <form action="../board/comment_insert.do"></form>
 		              <div class="writer_info">
+		              	<input type="hidden" name="bno" value="${vo.bno }">
 		                <span class="writer_nm">${sessionScope.id}</span>
 		              </div>
-		              <textarea name="cmt" class="cmt_input" placeholder="건전한 댓글 문화를 위해, 타인에게 불쾌감을 주는 욕설 또는 특정 계층/민족, 종교 등을 비하하는 내용은 입력을 지양해주세요."></textarea>
+		              <textarea name="cmtContent" class="cmt_input" placeholder="건전한 댓글 문화를 위해, 타인에게 불쾌감을 주는 욕설 또는 특정 계층/민족, 종교 등을 비하하는 내용은 입력을 지양해주세요."></textarea>
 		              <button class="cmtBtn">등록</button>
 	              </form>
 	            </div>
@@ -103,19 +104,10 @@
 	              <span class="writer_nm">${cvo.userid }</span>
 	              <span class="write_time pl-1">${cvo.regdate }</span>
 	            </div>
-	            <div class="cmt_content pt-2">${cvo.content }</div>
+	            <div class="cmt_content pt-2 pl-1">${cvo.content }</div>
+	            <%-- <div class="cmt_content pt-2 pl-1"><pre>${cvo.content }</pre></div> --%>
 	          </div>
           </c:forEach>
-          <!-- 데이터 연동 X  -->
-          <!-- <div class="cmt">
-            <div class="writer_info">
-              <span class="writer_nm">ahe4****</span>
-              <span class="write_time pl-1">2020.01.01 15:33</span>
-            </div>
-            <div class="cmt_content pt-2">
-              둘이서저걸다먹을수있니.남은음식들저거어쩌거니.재활용해도문제.그냥버려도문제.저렇게많이나오는집들은가는거아니다.
-            </div>
-          </div> -->
         </div>
     <!-- ============================= End of 댓글 영역  ============================= -->
   </div>
@@ -124,7 +116,7 @@
 
 <!--============================= Start of BOARD LIST =============================-->
     <section class="board-block light-bg">
-        <div class="container">
+        <div class="container py-5">
 			<div class="row">
                 <div class="col-md-12">
                     <h5>자유게시판</h5>
@@ -148,7 +140,15 @@
 								<tr>
 									<td class="text-center">${vo.bno }</td>
 									<td>
-										<a href="detail.do?page=${curpage }&bno=${vo.bno }">${vo.bsubject }</a>
+										<!-- ============= Start of 제목  ============= -->
+										<!-- 답글이면 아이콘 붙임 -->
+										<c:if test="${vo.group_tab>0 }">
+						  					<c:forEach var="i" begin="1" end="${vo.group_tab }" step="1">
+						  						&nbsp;&nbsp;
+						  					</c:forEach>
+						  					<img src="../images/icon_reply.gif">
+						  				</c:if>
+										<a href="detail.do?page=${curpage }&bno=${vo.bno }">${vo.bsubject }<span class="cmtListCount">&nbsp;(${vo.cmtCount })</span></a>
 										<!-- 공지 글에는 공지 플래그 붙임 -->
 										<c:if test="${vo.notice=='y'}">
 											<span class="badge badge-gray ml-2" id="">공지</span>
@@ -160,6 +160,7 @@
 										<c:if test="${today<=reg_dt}">
 											<span class="badge badge-lightgray ml-2" id="">NEW</span>
 										</c:if>
+										<!-- ============= End of 제목  ============= -->
 									</td>
 									<td class="text-center">${vo.bname }</td>
 									<td class="text-center">

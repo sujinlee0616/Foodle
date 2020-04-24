@@ -290,12 +290,12 @@
                             <ul>
                             	<!-- ######################  메뉴  ####################### -->
                                 <li class="menu">
-                                    <label for="menu" class="reserve_tit">메뉴 선택</label>
+                                    <label for="menu" class="reserve_tit" style="color: #ff7474">메뉴 선택</label>
                                     <select id="menu" class="custom-select" name="" > 
                                     	<option selected disabled hidden>======= 메뉴를 선택하세요. =======</option>
                                     	<c:forEach var="vo" items="${menuList }">
                                     		 <option>
-                                    		 	${vo.mName }&nbsp;<span>(\</span>${vo.mPrice })
+                                    		 	${vo.mName }<%-- &nbsp;<span>(\</span>${vo.mPrice }) --%>
                                     		 </option>
                                     	</c:forEach>
                                     </select>
@@ -303,6 +303,7 @@
 								<div id="row">
 									<table id="menu-selected"></table>
 								</div>
+								<div style="height: 20px;"></div>
 								<!-- ##################### 예약일 ######################## -->
                                 <li class="reserve_date" style="display: none;">
                                     <!-- <label for="menu" class="reserve_tit">예약일</label>
@@ -310,15 +311,17 @@
                                      autocapitalize="off" placeholder="예약일자" autocomplete="off"> -->
                                 	
                                 </li>
+                                <div style="height: 20px;"></div>
                                 <!-- ##################### 시간선택 ######################## -->
                                 <li class="reserve_time" style="display: none;"></li>
+                                <div style="height: 20px;"></div>
                                 <!-- ##################### 인원선택 ######################## -->
                                 <li class="reserve_inwon" style="display: none;"></li>
-                                
+                                <div style="height: 20px;"></div>
                                 
                                 <div class="row">
                                 	<table class="table">
-                                		<tr>
+                                		<%-- <tr>
 											<td rowspan="1">
 												<b id="restaurant-name">${mvo.rName }</b>
 											</td>
@@ -346,10 +349,68 @@
 												<span style="color: #999">인원</span>
 												<span id="restaurant-inwon"></span>
 											</td>
+										</tr> --%>
+										<tr>
+											<td colspan="2">
+												<b id="restaurant-name">${mvo.rName }</b>
+											</td>
+										</tr>
+										<tr>
+											<td width="25%"> 
+												<span style="color: #999">메뉴</span>
+											</td>
+											<td width="75%">
+												<span id="restaurant-menu"></span>
+											</td>
+										</tr>
+										<tr>
+											<td width="25%"> 
+												<span style="color: #999">예약일</span>
+											<td width="75%">
+												<span id="restaurant-date"></span>
+											</td>
+											</td>
+										</tr>
+										<tr>
+											<td width="25%"> 
+												<span style="color: #999">예약시간</span>
+											</td>
+											<td width="75%">
+												<span id="restaurant-time"></span>
+											</td>
+										</tr>
+										<tr>
+											<td width="25%"> 
+												<span style="color: #999">인원</span>
+											</td>
+											<td width="75%">
+												<span id="restaurant-inwon"></span>
+											</td>
 										</tr>
                                 	</table>
                                 </div>
-                                <a href="#" class="btn btn-outline-danger btn-reserve">예약하기</a>
+                                
+                                <form method="post" action="../restaurant/detail_reserveok.do">
+                                	<!-- 
+                                		private int resno; -> 자동증가
+										private int rno;   
+										private String userid; -> session
+										private Date regdate; -> default sysdate
+										private int respeople;
+										private String resdate;
+										private String restime;
+										private String resmenu;
+                                	 -->
+                                	<input type="hidden" name="rno" value="${mvo.rNo }" id="rno">
+	                                <input type="hidden" name="respeople" value="" id="respeople"/>
+	                                <input type="hidden" name="resdate" value="" id="resdate"/>
+	                                <input type="hidden" name="restime" value="" id="restime"/>
+	                                <input type="hidden" name="resmenu" value="" id="resmenu"/>
+	                                
+	                                <input type="submit" class="btn btn-outline-danger btn-reserve" value="예약하기" 
+	                                	style="margin: 0px auto; width: 320px" disabled>
+	                                <!-- <a href="#" class="btn btn-outline-danger btn-reserve">예약하기</a> -->
+                                </form>
                             </ul>
                         </div>
                     </div>
@@ -587,8 +648,11 @@
 		var menu=$(this).val();
 		if(menu!=0) {
 			$('.reserve_date').css("display","block");
-			$('#restaurant-menu').append(menu+",")
+			$('#restaurant-menu').append(menu+",<br>");
 		}
+		
+		var resmenu=$('#restaurant-menu').text();
+		$('#resmenu').val(resmenu);
 	});
 	</script>
 	

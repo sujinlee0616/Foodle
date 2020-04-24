@@ -171,8 +171,8 @@ function deleteFilter(v , op){
 	var tihsId = "#"+v.id;
 	
 	//console.log(op+"//"+v.id);
-	
-	//업종 데이터 삭제
+
+	//  업종 데이터 삭제
 	if(op =="foodType")
 	{
 		var tempStr=String($('#foodTypeOp').val());

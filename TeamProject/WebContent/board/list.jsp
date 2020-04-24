@@ -88,7 +88,7 @@
 						  					</c:forEach>
 						  					<img src="../images/icon_reply.gif">
 						  				</c:if>
-										<a href="detail.do?page=${curpage }&bno=${vo.bno }">${vo.bsubject }</a>
+										<a href="detail.do?page=${curpage }&bno=${vo.bno }">${vo.bsubject }<span class="cmtListCount">&nbsp;(${vo.cmtCount })</span></a>
 										<!-- 공지 글에는 공지 플래그 붙임 -->
 										<c:if test="${vo.notice=='y'}">
 											<span class="badge badge-gray ml-2" id="">공지</span>

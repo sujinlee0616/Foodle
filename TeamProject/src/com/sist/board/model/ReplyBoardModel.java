@@ -40,6 +40,12 @@ public class ReplyBoardModel {
 		request.setAttribute("totalpage", totalpage);
 		request.setAttribute("contentsCnt", contentsCnt);
 		
+		// 댓글 개수 ★
+		for(ReplyBoardVO vo:list)
+		{
+			vo.setCmtCount(ReplyBoardDAO.listCmtCount(vo.getBno()));
+		}
+		
 		// Pagination
 		int startpage=1;
 		int endpage=1;
@@ -103,6 +109,12 @@ public class ReplyBoardModel {
 		request.setAttribute("curpage", curpage);
 		request.setAttribute("totalpage", totalpage);
 		request.setAttribute("contentsCnt", contentsCnt);
+		
+		// 댓글 개수 ★
+		for(ReplyBoardVO cmtvo:list)
+		{
+			cmtvo.setCmtCount(ReplyBoardDAO.listCmtCount(cmtvo.getBno()));
+		}
 		
 		// Pagination
 		int startpage=1;
@@ -200,7 +212,7 @@ public class ReplyBoardModel {
 		String bpwd=request.getParameter("pwd");
 
 		// 데이터 확인
-		System.out.println("bname="+bname+", bsubject="+bsubject+", bcontent="+bcontent+", bpwd="+bpwd);
+		//System.out.println("bname="+bname+", bsubject="+bsubject+", bcontent="+bcontent+", bpwd="+bpwd);
 		
 		// 클라이언트가 입력해준 데이터 VO에 저장 
 		ReplyBoardVO vo = new ReplyBoardVO();
@@ -316,11 +328,14 @@ public class ReplyBoardModel {
 			request.setCharacterEncoding("UTF-8");
 		}catch(Exception ex){}
 		
-		String bno=request.getParameter("name");
-		String userid=request.getParameter("userid"); // JSP에서 세션에서 받아서 form으로 보내자  
-		String content=request.getParameter("content");
+		String bno=request.getParameter("bno"); 
+		HttpSession session=request.getSession();
+		String userid=(String)session.getAttribute("id");		
+		String content=request.getParameter("cmtContent");
 		
-		return "";  // 리턴을 어디로 줘야하지?????????????  redirect도 이상한데?? 내가 보던거에 그대로 달려야하는데??? 
+		BoardCommentDAO.commentInsert(Integer.parseInt(bno));		
+		
+		return "redirect:../board/detail.do?&bno="+bno;
 	}
 
 	
