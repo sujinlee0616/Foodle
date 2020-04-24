@@ -16,14 +16,14 @@
 
 <script type="text/javascript">
 
-var sortInfo =''; 		//정렬순 선택 
+var sortInfo =''; 		//정렬순 선택  desc
  var restOpen =''; 		//가게 오픈 여부
  var takeoutInfo =''; 	//테이브아웃 여부
- var lowPrice='';      //낮은 가격순
- //var foodList = $('#foodTypeOp').val();
- //*******append기능 없애고 미리 만들어놓은 자리<p></p>에 해당 카테고리 값이 들어가게 변경함!
- // 두 가지의 선택시 이벤트 기능 
- // 첫번째 setFilter() => 카테고리에서 선택시 중복 선택x, 카테고리중 한개의 옵션만 아래  해당 카테고리<p>자리에 출력됨
+ var lowPrice='';      //낮은 가격순 asc
+ 
+ 
+ // <이벤트 기능> 
+ // 첫번째 setFilter() => 카테고리에서 선택시 중복 , 카테고리중 한개의 옵션만 아래  해당 카테고리<p>자리에 출력됨
  // 두번째 openButChgCL() => 옵션의 유무가 2개여서 버튼 형식으로 변경, 버튼을 누르면 색의 유무로 사용자가 선택유무 알수있음,따로 아래 출력 되지 않음!
 
 
@@ -35,27 +35,25 @@ var sortInfo =''; 		//정렬순 선택
 			url:'/TeamProject/restaurant/list_nearby_default.do', //이 주소를 찾아서 실행해 , 서버주소 파일의 경로가 아닌 프로젝트의 풀 주소
 			//디폴트 페이지 띄우는 것이기 때문에 data는 보낼 것이 없다!  
 			success:function(res){
+				
+				$('#nearbyList').html(res);			
 			
-				$('#nearbyList').html(res);
-				
-				
 			}
-			
 		})
 		*/
-
 	});
  
  
  
- function setFilter(c ,op){ //선택한 카테고리를 아래 출력 기능, 클릭하므로써 아래 페이지가 변하니까 결국 클릭하지 않으면 저절로 디폴트 페이지가 되는것이다.구현필요)
+ function setFilter(c ,op){ 
+	 
 	 console.log("===========");
-	 console.log(op);  //op=> <select> onChange 매개변수 => foodType
+	 console.log(op);  // op=> <select> onChange 매개변수 => foodType(업종) or sortby(정렬) 
 	 	
-	 	var selectVal = c.value; //onchange된 옵션의 value값을 읽는다 => 값을 읽어 selectOp에서 
-	 	var selectOp = '#'+op;   //각각의 카테고리에 parameter값과 아래 출력되는 곳<p id"#~">의 id을 동일하게 주어 네임이 일치하는 경우 선택된 옵션이 아래 <p>의 해당 카테보리 자리에 출력되게 하기위함!! 
+	 	var selectVal = c.value; //onchange된 옵션의 value값을 읽는다 => 한식, 중식.. 
+	 	var selectOp = '#'+op;   // #foodType, #sortby <p></p>에서 사용,  
 	 	
-	 	//살려
+	 	
 		//$(selectOp).html("<a onClick=deleteFilter(this,'"+op+"') href='#' id='"+c.value+"' class='selected nearbyselected' data-filter-name='food_cat' data-filter-value='108602' data-nclick-code='rcc.reset'"
 		//         +"data-filter-action='nclick' title='"+c.value+"'>"+c.value+"<span class='del'>X</span></a>");
 	 	
@@ -76,16 +74,18 @@ var sortInfo =''; 		//정렬순 선택
 	 	
 	 	 */
 	 	 
-	 	
+	 //업종을 선택했다면!
 	if( op == 'foodType'){
+		
 		if(selectVal == '업종전체'){ 
 			
 			$('#foodTypeOp').val('');  //null값을 foodTypeOp 자리에 넣어				
-			$(selectOp).html('');
+			$(selectOp).html(''); //p자리에 null
 		
 		}else{
 			
-			$(selectOp).append("<a onClick=deleteFilter(this,'"+op+"') href='#' id='"+c.value+"' class='selected nearbyselected' data-filter-name='food_cat' data-filter-value='108602' data-nclick-code='rcc.reset'"
+			//'업종 전체' 아닌 경우=> 버튼 추가
+			$(selectOp).append("<a onClick=deleteFilter(this,'"+op+"') id='"+c.value+"' class='selected nearbyselected' data-filter-name='food_cat' data-filter-value='108602' data-nclick-code='rcc.reset'"
 			         +"data-filter-action='nclick' title='"+c.value+"'>"+c.value+"<span class='del'>X</span></a>");
 			
 			var foodTypeOpVal = $('#foodTypeOp').val();
@@ -97,10 +97,12 @@ var sortInfo =''; 		//정렬순 선택
 			}else{
 				
 			    $('#foodTypeOp').val(foodTypeOpVal+c.value+',');
+			    
 			}
 		}
 
 	}else{
+		
 		$(selectOp).html("<a onClick=deleteFilter(this,'"+op+"') href='#' id='"+c.value+"' class='selected nearbyselected' data-filter-name='food_cat' data-filter-value='108602' data-nclick-code='rcc.reset'"
 		         +"data-filter-action='nclick' title='"+c.value+"'>"+c.value+"<span class='del'>X</span></a>");
 	}
@@ -169,13 +171,12 @@ function deleteFilter(v , op){
 	var tihsId = "#"+v.id;
 	
 	//console.log(op+"//"+v.id);
-	
-	//업종 데이터 삭제
+
+	//  업종 데이터 삭제
 	if(op =="foodType")
 	{
-		
 		var tempStr=String($('#foodTypeOp').val());
-		var lastStr ="";
+		var lastStr = "";
 		//console.log("tempStr//"+tempStr);
 		if(tempStr != '')
 		{
@@ -296,18 +297,13 @@ function takeoutButChgCL(){
 					<p>
 						총 <span>###개</span>
 					</p>
-					<!-- ============================================카테고리!!============================================= -->
+	<!-- ============================================카테고리!!============================================= -->
 
-<!-- <span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" class="icon_svg">
-												<path d="M8 10.5a1 1 0 0 1-.7-.29l-3.06-3a1 1 0 1 1 1.41-1.42L8 8.1l2.35-2.31a1 1 0 0 1 1.41 1.42l-3.06 3a1 1 0 0 1-.7.29z"></path></svg></span> -->
-
-					<div class="mt-4">
-					
+					<div class="mt-4">				
 						<div class="filter_row area">
 							<div class="category">
 							
 								<!-- <button onclick="searchNearby()">test</button> -->
-
 
 								<!-- 업종선택 버튼 - setFilter() 사용! -->
 								<select  id="foodSelect" class="menuarrow" onchange="setFilter(this ,'foodType' ) ;" style="color: black;">

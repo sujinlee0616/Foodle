@@ -27,8 +27,8 @@ public class InfoThemaManager {
 		
 		
 		ArrayList<AreacodeVO> ac = areacode;
-		int page = 2;
-		int category = 3;
+		int page = 20;
+		int category = 25;
 		
 		Element image;
 		Element image_Name;
@@ -36,7 +36,7 @@ public class InfoThemaManager {
 		
 //		System.out.println("현재 카테고리 번호 : "+ (z+1)  + ",현재페이지번호 : " + (j+1) +",현재지역번호 : "+(i+1));
 		//ac.size()으로 바꿀것
-		for(int i=0; i<2; i++)
+		for(int i=0; i<ac.size(); i++)
 		{
 			for(int j=0; j<page; j++)
 			{
@@ -69,7 +69,7 @@ public class InfoThemaManager {
 								System.out.println("rNo="+vo.getrNo()+", rThema="+vo.getrThema());
 								
 								dao.resThemeInsert(vo);
-								Thread.sleep(1000);
+								Thread.sleep(500);
 								count++;
 								
 								

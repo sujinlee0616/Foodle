@@ -48,13 +48,15 @@ $(function(){
 		
 		var rday=year+"년 "+month+"월 "+day+"일";
 		$('#restaurant-date').text(rday);
+		$('#resdate').val(rday); // detail의 hidden
+		$('.reserve_time').css("display","block");
 		
 		$.ajax({
 			type:'post',
 			url:'../restaurant/detail_reservetime.do',
 			data:{"tno":day},
 			success:function(res){
-				$('#movie-time').html(res);
+				$('.reserve_time').html(res);
 			}
 		})
 	})
@@ -63,7 +65,7 @@ $(function(){
 </script>
 </head>
 <body>
-	<label for="menu" class="reserve_tit">예약일</label>
+	<label for="menu" class="reserve_tit" style="color: #ff7474">예약일</label>
 	<div class="row" style="margin: 0px auto; width: 300px;">
 		<h6 class="text-center y-m-date" y-date="${year }" m-date="${month }">${year }년 ${month }월</h6>
 		<%-- <table class="table">
@@ -109,7 +111,7 @@ $(function(){
 				</c:if>
 				
 				<c:if test="${i==days[i-1] }">
-					<td class="text-center success rdate" style="background-color: #ff9999;">${i }</td>
+					<td class="text-center success rdate" style="background-color: #eee;">${i }</td>
 				</c:if>
 				<c:if test="${i!=days[i-1] }">
 					<td class="text-center">${i }</td>
