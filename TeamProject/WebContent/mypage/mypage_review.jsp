@@ -9,29 +9,61 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<table style="background-color: #FFFFFF;">
-		<tr style="background-color: #E0E0E0;">
-			<th style="width: 40%;" class="text-center">가게이름</th>
-			<th style="width: 20%;" class="text-center">좋아요</th>
-			<th style="width: 10%;" class="text-center">싫어요</th>
-			<th style="width: 15%;" class="text-center">작성날짜</th>
-			<th style="width: 15%;" class="text-center">내용</th>
-			<th style="width: 15%;" class="text-center">평점</th>
-		</tr>
-
-		<c:forEach var="vo" items="${list }">
-		
-			<tr>
-				<td class="text-center">${vo.rno }</td>
-				<td class="text-center">${vo.revgood }개</td>
-				<td class="text-center">${vo.revbad }개</td>
-				<td class="text-center">
-				<fmt:formatDate value="${vo.revdate }" pattern="yyyy-MM-dd"/>
-				</td>
-				<td class="text-center">${vo.revcontent }</td>
-				<td class="text-center">${vo.revscore }점</td>								
-			</tr>
-		</c:forEach> 
-	</table>
+	<div class="py-3">
+		<div class="table-responsive">
+			<table class="table replyBoard reply_list" style="background-color: #FFFFFF;">						
+				<thead class="thead-dark">
+					<tr style="background-color: #E0E0E0;">
+						<th scope="col" style="width:30%;" class="text-center">가게명</th>
+						<th scope="col" style="width:20%;" class="text-center">작성일</th>
+						<th scope="col" style="width:20%;" class="text-center">내용</th>
+						<th scope="col" style="width:10%;" class="text-center">좋아요</th>
+						<th scope="col" style="width:10%;" class="text-center">싫어요</th>
+						<th scope="col" style="width:10%;" class="text-center">평점</th>
+					</tr>
+				</thead>	
+				<tbody>		
+					<c:forEach var="vo" items="${list }">
+						<tr>
+							<td class="text-center">
+					  			<a href="../restaurant/detail.do?no=${vo.mvo.rNo }">${vo.mvo.rName}</a>
+					  		</td>	
+					  		<td class="text-center">
+								<fmt:formatDate value="${vo.revDate }" pattern="yyyy-MM-dd"/>
+							</td>
+							<td class="text-center">${vo.revContent }</td>
+							<td class="text-center">${vo.revGood }개</td>
+					  		<td class="text-center">${vo.revBad }개</td>
+							<td class="text-center">${vo.revScore }점</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</div>
+	</div>
 </body>
 </html>
+		
+				
+				
+				
+				
+	<!--
+				
+	
+			<tr>
+				
+				
+				
+				
+				
+					
+			</tr>
+				
+	 -->
+	
+
+
+
+			
+					

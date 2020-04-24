@@ -1,6 +1,7 @@
 package com.sist.service.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -44,16 +45,18 @@ public class MypageDAO {
 		
 		return list;
 	}
-	public static List<CouponVO> mypageCouponList(String userid)
+	public static List<CouponVO> mypageCouponList(Map map)
 	{
 		List<CouponVO> list = new ArrayList<CouponVO>();
-		SqlSession session=null;
-		
+		SqlSession session=null;		
 		try 
 		{
 			session=ssf.openSession();
-			if(userid!=null)
-				list = session.selectList("mypageCouponList",userid);
+				
+			if(map.get("userid")!=null)
+				list = session.selectList("mypageCouponList",map);
+			
+			
 		} 
 		catch (Exception ex) {
 			System.out.println("memberLogin: "+ex.getMessage());
@@ -65,28 +68,80 @@ public class MypageDAO {
 		
 		return list;
 	}
-	public static List<ReviewVO> mypageReviewList(String userid)
+	public static List<CouponVO> mypageCouponSearch(Map map)
+	{
+		List<CouponVO> list = new ArrayList<CouponVO>();
+		SqlSession session=null;		
+		try 
+		{
+			session=ssf.openSession();
+				
+			if(map.get("userid")!=null)
+				list = session.selectList("mypageCouponSearch",map);
+			
+		} 
+		catch (Exception ex) {
+			System.out.println("memberLogin: "+ex.getMessage());
+		}
+		finally {
+			if(session!=null)
+				session.close(); 
+		}
+		
+		return list;
+	}
+	public static List<CouponVO> mypageCouponSearchList(Map map)
+	{
+		List<CouponVO> list = new ArrayList<CouponVO>();
+		SqlSession session=null;		
+		try 
+		{
+			session=ssf.openSession();
+				
+			if(map.get("userid")!=null)
+				list = session.selectList("mypageCouponSearchList",map);
+			
+		} 
+		catch (Exception ex) {
+			System.out.println("memberLogin: "+ex.getMessage());
+		}
+		finally {
+			if(session!=null)
+				session.close(); 
+		}
+		
+		return list;
+	}
+	public static int mypageCouponTotalPage() {
+		int total=0;
+		SqlSession session=null;
+		try {
+			session=ssf.openSession();
+			total=session.selectOne("mypageCouponTotalPage");
+		} catch(Exception ex) {
+			System.out.println("replyTotalPage(): "+ex.getMessage());
+		} finally {
+			if(session!=null)
+				session.close();
+		}
+		return total;
+	}
+	
+	public static List<ReviewVO> mypageReviewList(Map map)
 	{
 		List<ReviewVO> list = new ArrayList<ReviewVO>();
 		SqlSession session=null;
 		
+	
+	
+		
 		try 
 		{
 			session=ssf.openSession();
-			if(userid!=null)
-			{
-
-				list = session.selectList("mypageReviewList",userid);
+			if(map.get("userid")!=null)
+				list = session.selectList("mypageReviewList",map);
 				
-				for(int i = 0 ; i < list.size() ; i++)
-				{
-					String temp = list.get(i).getRevcontent();
-					if(temp.length() > 10)
-						temp = temp.substring(0,10) + "...";
-					
-					list.get(i).setRevcontent(temp);
-				}
-			}
+			
 		} 
 		catch (Exception ex) {
 			System.out.println("memberLogin: "+ex.getMessage());
@@ -152,7 +207,7 @@ public class MypageDAO {
 		}
 	}
 	
-	public static List<MyWishVO> mypageMyWishList(String userid)
+	public static List<MyWishVO> mypageMyWishList(Map map)
 	{
 		List<MyWishVO> list = new ArrayList<MyWishVO>();
 		SqlSession session=null;
@@ -160,10 +215,21 @@ public class MypageDAO {
 		try 
 		{
 			session=ssf.openSession();
-			if(userid!=null)
-			{
-				list = session.selectList("mypageMyWishList",userid);
+			if(map.get("userid")!=null)
+			{			
+				list = session.selectList("mypageMyWishList",map);		
 			}
+			
+			/*
+			System.out.println("1:+"+list.get(0).getRegdate());
+			System.out.println("2:+"+list.get(0).getRNo());
+			System.out.println("3:+"+list.get(0).getMvo().getrScore());
+			System.out.println("4:+"+list.get(0).getMvo().getrTel());
+			System.out.println("5:+"+list.get(0).getMvo().getrAddr1());
+			System.out.println("6:+"+list.get(0).getMvo().getrName());
+			System.out.println("7:+"+list.get(0).getMvo().getIvo().getiLink());
+			*/
+			
 		} 
 		catch (Exception ex) {
 			System.out.println("memberLogin: "+ex.getMessage());

@@ -3,7 +3,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- 무조건 입력하게 하는 속성값을 쓰려면 5.0버전으로 만들어줘야함 기본 4.0으로 되어있음 -->
+<meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
@@ -49,7 +50,7 @@
               <li class="item must">
                 <label for="user_pwd" class="tit_inp"><span class="essential">*</span>비밀번호</label>
                 <input type="password" name="pwd" id="user_pwd" autocapitalize="off"
-                  placeholder="비밀번호">
+                  placeholder="비밀번호" required>
               </li>
               <!-- 이름 (N-N)-->
               <li class="item must">
@@ -74,7 +75,7 @@
               <li class="email_column item must">
                 <div class="select_align_row input item">
                   <label for="email_id" class="tit_inp"><span class="essential">*</span>이메일</label>
-                  <input type="text" name="email" id="user_email" style="ime-mode:inactive" placeholder="" autocomplete="off" value="${vo.uemail }">
+                  <input type="text" name="email" id="user_email" style="ime-mode:inactive" placeholder="" autocomplete="off" value="${vo.uemail }" required>
 
                 </div>
                 <!-- Start of 자동리스트 영역 : 아직 구현 안 했음  -->
@@ -103,7 +104,7 @@
               <!-- 비밀번호 힌트 질문 -->
               <li class="item must">
                 <label for="user_hint" class="tit_inp"><span class="essential">*</span>비밀번호 힌트 질문</label>
-                <select  name="pwd_hint" id="user_pwd_hint" class="custom-select">
+                <select  name="pwd_hint" id="user_pwd_hint" class="custom-select" required>
                   <option value="">질문을 선택하세요.</option>
                   <option value="place">기억에 남는 추억의 장소는?</option>
                   <option value="motto">자신의 인생 좌우명은?</option>
@@ -118,7 +119,7 @@
               <li class="item must">
                 <label for="user_hintAns" class="tit_inp"><span class="essential">*</span>비밀번호 힌트 질문 답</label>
                 <input type="text" name="pwd_hintAns" id="user_pwd_hintAns" autocapitalize="off"
-                  placeholder="">
+                  placeholder="" required>
                 <p class="alert_column warning_txt hidden" id="user_hintAns_msg" name="user_hintAns_msg">필수정보 입니다.</p>
               </li>
             </ul>
