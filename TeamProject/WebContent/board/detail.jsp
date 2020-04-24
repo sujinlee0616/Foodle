@@ -11,7 +11,7 @@
 </head>
 <body>
 <!--============================= Start of BOARD DETAIL =============================-->
-<section class="board-block light-bg">
+<section class="board-block pb-1 light-bg">
   <div class="container pt-5">
     <div class="py-3">
       <div class="table-responsive">
@@ -51,14 +51,16 @@
                 </td>
               </tr>
               <tr>
-                <td colspan="3">
+                <td colspan="2">
                   <a class="bdDtBtn" id="copyUrl" href="">url 복사</a>
                 </td>
-                <td class="bdDtBtnGp">
-                  <a class="bdDtBtn" href="../board/list.do">목록</a>
-                  <a class="bdDtBtn" href="../board/update.do?bno=${vo.bno }">수정</a>
-                  <a class="bdDtBtn" href="../board/delete.do?bno=${vo.bno }">삭제</a>
-                  <a class="bdDtBtn" href="../board/reply.do?bno=${vo.bno }">답글</a>
+                <td colspan="2">
+                  <div class="bdDtBtnGp">
+	                  <a class="bdDtBtn" href="../board/list.do">목록</a>
+	                  <a class="bdDtBtn" href="../board/update.do?bno=${vo.bno }">수정</a>
+	                  <a class="bdDtBtn" href="../board/delete.do?bno=${vo.bno }">삭제</a>
+	                  <a class="bdDtBtn" href="../board/reply.do?pno=${vo.bno }">답글</a>
+                  </div>
                 </td>
               </tr>
             </tbody>
@@ -67,15 +69,15 @@
         <!-- ====================== Start of 댓글 영역 ======================  -->
         <div class="replyBoard cmt_area">
           <div>
-            <h6 class="cmt_num py-2 px-1">##개의 댓글</h6>
+            <h6 class="cmt_num py-2 px-1">${commentCount }개의 댓글</h6>
           </div>
           <hr class="cmt_line">
-          <!-- 댓글 작성 영역 -->
+          <!-- ====================== 댓글 작성 영역 ====================== -->
           <div class="write_cmt">
           	<!-- =============== 로그인 한 경우 =============== -->
           	<c:if test="${sessionScope.id!=null }">
 	        	<div class="logged_in">
-	              <form action="../board/write_comment.do"></form>
+	              <form action="../board/comment.do"></form>
 		              <div class="writer_info">
 		                <span class="writer_nm">${sessionScope.id}</span>
 		              </div>
@@ -92,20 +94,20 @@
 	            </div>
           	</c:if>
           </div>
-          <hr class="cmt_line">
-          <!-- 댓글 노출 영역 -->
-          <div class="cmt">
-            <div class="writer_info">
-              <span class="writer_nm">sjw****</span>
-              <span class="write_time pl-1">2020.01.01 15:33</span>
-            </div>
-            <div class="cmt_content pt-2">
-              병영이 교통이 좀 불편한 곳이라 아는 사람만 아는 곳인데. 세련되진 않았어도 만원이면 배불리 먹고 갈 수 있는 식당임. 확실히 식재료는 나쁜 것 쓰지 않는 것 같음. 시골 할머니들, 아줌마들이 운영하는 곳이라
-              깨끗하고 깔끔함. 강진은 해남 옆에 있는 동네.
-            </div>
-          </div>
-          <hr class="cmt_line">
-          <div class="cmt">
+          <!-- ====================== 댓글 노출 영역 ====================== -->
+          <!-- 데이터 연동 O  -->
+          <c:forEach var="cvo" items="${cmt_list }" >
+           	<hr class="cmt_line">
+	          <div class="cmt">
+	            <div class="writer_info">
+	              <span class="writer_nm">${cvo.userid }</span>
+	              <span class="write_time pl-1">${cvo.regdate }</span>
+	            </div>
+	            <div class="cmt_content pt-2">${cvo.content }</div>
+	          </div>
+          </c:forEach>
+          <!-- 데이터 연동 X  -->
+          <!-- <div class="cmt">
             <div class="writer_info">
               <span class="writer_nm">ahe4****</span>
               <span class="write_time pl-1">2020.01.01 15:33</span>
@@ -113,7 +115,7 @@
             <div class="cmt_content pt-2">
               둘이서저걸다먹을수있니.남은음식들저거어쩌거니.재활용해도문제.그냥버려도문제.저렇게많이나오는집들은가는거아니다.
             </div>
-          </div>
+          </div> -->
         </div>
     <!-- ============================= End of 댓글 영역  ============================= -->
   </div>
@@ -121,12 +123,12 @@
 <!--============================= End of BOARD DETAIL =============================-->
 
 <!--============================= Start of BOARD LIST =============================-->
-<section class="board-block light-bg">
+    <section class="board-block light-bg">
         <div class="container">
 			<div class="row">
                 <div class="col-md-12">
                     <h5>자유게시판</h5>
-                    <p class="board_count">총 <span class="countNum">###개</span></p>
+                    <p class="board_count">총 <span class="countNum">${contentsCnt }개</span></p>
                 </div>
             </div>
 			<div class="py-3">
@@ -146,7 +148,7 @@
 								<tr>
 									<td class="text-center">${vo.bno }</td>
 									<td>
-										<a href="detail.do?no=${vo.bno }">${vo.bsubject }</a>
+										<a href="detail.do?page=${curpage }&bno=${vo.bno }">${vo.bsubject }</a>
 										<!-- 공지 글에는 공지 플래그 붙임 -->
 										<c:if test="${vo.notice=='y'}">
 											<span class="badge badge-gray ml-2" id="">공지</span>
@@ -183,29 +185,42 @@
 			<div>
 				<nav aria-label="...">
 					<ul class="pagination justify-content-center">
-						<li class="page-item">
-							<a class="page-link" href="#" aria-label="Previous"> 
-								<span aria-hidden="true">&laquo;</span>
-								<span class="sr-only">Previous</span>
-							</a>
-						</li>
-						<li class="page-item">
-							<a class="page-link" href="#">1</a>
-						</li>
-						<li class="page-item active">
-							<span class="page-link">2
-								<span class="sr-only">(current)</span>
-							</span>
-						</li>
-						<li class="page-item">
-							<a class="page-link" href="#">3</a>
-						</li>
-						<li class="page-item">
-							<a class="page-link" href="#" aria-label="Next"> 
-								<span aria-hidden="true">&raquo;</span> 
-								<span class="sr-only">Next</span>
-							</a>
-						</li>
+						<c:if test="${startpage>10 }">
+							<li class="page-item">
+								<a class="page-link" href="../board/list.do?page=1" aria-label="Previous"> 
+									<span aria-hidden="true">&laquo;</span>
+								</a>
+							</li>
+							<li class="page-item">
+								<a class="page-link" href="../board/list.do?page=${startpage-10 }" aria-label="Previous"> 
+									<span aria-hidden="true">&lt;</span>
+								</a>
+							</li>
+						</c:if>
+						<c:forEach var="i" begin="${startpage }" end="${endpage }">
+							<c:if test="${i!=curpage }">
+								<li class="page-item">
+									<a class="page-link" href="../board/list.do?page=${i }">${i }</a>
+								</li>
+							</c:if>
+							<c:if test="${i==curpage }">
+								<li class="page-item active">
+									<a class="page-link" href="../board/list.do?page=${i }">${i }</a>
+								</li>
+							</c:if>
+						</c:forEach>
+						<c:if test="${totalpage>10 && (totalpage-startpage)>9 }">
+							<li class="page-item">
+								<a class="page-link" href="../board/list.do?page=${endpage+1 }" aria-label="Next"> 
+									<span aria-hidden="true">&gt;</span> 
+								</a>
+							</li>
+							<li class="page-item">
+								<a class="page-link" href="../board/list.do?page=${totalpage }" aria-label="Next"> 
+									<span aria-hidden="true">&raquo;</span> 
+								</a>
+							</li>
+						</c:if>
 					</ul>
 				</nav>
 			</div>			

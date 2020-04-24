@@ -3,6 +3,8 @@ package com.sist.board.model;
 import java.util.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import com.sist.controller.Controller;
 import com.sist.controller.RequestMapping;
 import com.sist.dao.*;
@@ -26,60 +28,96 @@ public class ReplyBoardModel {
 		// VO에 start랑 end는 없으니까 map 사용 
 		Map map=new HashMap();
 		int rowSize=15;
-		int start = rowSize*(curpage-1)+1;
-		int end=rowSize*curpage;
+		int start = rowSize*(curpage-1)+1; // curpage의 첫 컨텐츠 번호 
+		int end=rowSize*curpage; // curpage의 마지막 컨텐츠번호 
 		map.put("start", start);
 		map.put("end", end);
-		
 		List<ReplyBoardVO> list=ReplyBoardDAO.boardListData(map); // 
 		int totalpage=ReplyBoardDAO.boardTotalPage();
-		
+		int contentsCnt=ReplyBoardDAO.boardContentsCount();
 		request.setAttribute("list", list);
 		request.setAttribute("curpage", curpage);
-		request.setAttribute("totalpage", totalpage);		
+		request.setAttribute("totalpage", totalpage);
+		request.setAttribute("contentsCnt", contentsCnt);
+		
+		// Pagination
+		int startpage=1;
+		int endpage=1;
+		int pageScope=10;
+		startpage=((int) Math.floor((curpage-1)/10))*pageScope+1;
+		endpage=((int) Math.floor((curpage-1)/10))*pageScope+pageScope;
+		if(endpage>totalpage)
+			endpage=totalpage;
+		//System.out.println("curpage="+curpage+", totalpage="+totalpage+", startpage="+startpage+", endpage="+endpage);
+		request.setAttribute("startpage", startpage);
+		request.setAttribute("endpage", endpage);
 		
 		request.setAttribute("main_header", "../common/header_sub.jsp");
 		request.setAttribute("main_jsp", "../board/list.jsp");		
-		
 		return "../main/main.jsp";
 	}
 	
 	// [상세보기] 
 	@RequestMapping("board/detail.do")
 	public String board_detail(HttpServletRequest request, HttpServletResponse response)
-	{
+	{		
 		// 요청데이터
-		String no=request.getParameter("no");
+		String bno=request.getParameter("bno");
 		
-		// DAO 
-		ReplyBoardVO vo=ReplyBoardDAO.boardDetailData(Integer.parseInt(no));
-		vo=ReplyBoardDAO.hitIncrement(Integer.parseInt(no));
-		
+		// 상세보기 ==> 글 내용 받아오고, 조회수 증가 
+		ReplyBoardVO vo=ReplyBoardDAO.boardDetailData(Integer.parseInt(bno));
+		vo=ReplyBoardDAO.hitIncrement(Integer.parseInt(bno));
 		request.setAttribute("vo", vo);
 		
-		request.setAttribute("main_header", "../common/header_sub.jsp");
-		request.setAttribute("main_jsp", "../board/detail.jsp");
+		// ================ 댓글 ================
 		
-		// ======== 상세보기 하단 리스트 ========
+		// [총 댓글 수] 
+		Map map=new HashMap();
+		map.put("pNo", Integer.parseInt(bno)); 		
+		int commentCount=BoardCommentDAO.commentCount(map);
+		request.setAttribute("commentCount", commentCount);
+			
+		// [댓글목록]
+		map=new HashMap();
+		map.put("pNo", Integer.parseInt(bno)); 		
+		List<BoardCommentVO> cmt_list=BoardCommentDAO.cmtList(map);
+		request.setAttribute("cmt_list", cmt_list);
+
+		
+		// ================ 상세보기 하단 리스트 ================
 		String page=request.getParameter("page");
 		if(page==null)
 			page="1";
 		int curpage=Integer.parseInt(page);
 		// VO에 start랑 end는 없으니까 map 사용 
-		Map map=new HashMap();
+		map=new HashMap();
 		int rowSize=15;
 		int start = rowSize*(curpage-1)+1;
 		int end=rowSize*curpage;
 		map.put("start", start);
 		map.put("end", end);
-		
 		List<ReplyBoardVO> list=ReplyBoardDAO.boardListData(map); // 
 		int totalpage=ReplyBoardDAO.boardTotalPage();
-		
+		int contentsCnt=ReplyBoardDAO.boardContentsCount();
 		request.setAttribute("list", list);
 		request.setAttribute("curpage", curpage);
 		request.setAttribute("totalpage", totalpage);
+		request.setAttribute("contentsCnt", contentsCnt);
 		
+		// Pagination
+		int startpage=1;
+		int endpage=1;
+		int pageScope=10;
+		startpage=((int) Math.floor((curpage-1)/10))*pageScope+1;
+		endpage=((int) Math.floor((curpage-1)/10))*pageScope+pageScope;
+		if(endpage>totalpage)
+			endpage=totalpage;
+		//System.out.println("curpage="+curpage+", totalpage="+totalpage+", startpage="+startpage+", endpage="+endpage);
+		request.setAttribute("startpage", startpage);
+		request.setAttribute("endpage", endpage);		
+				
+		request.setAttribute("main_header", "../common/header_sub.jsp");
+		request.setAttribute("main_jsp", "../board/detail.jsp");
 		return "../main/main.jsp";
 	}
 	
@@ -108,7 +146,9 @@ public class ReplyBoardModel {
 		String bsubject=request.getParameter("subject");
 		String bcontent=request.getParameter("content");
 		String bpwd=request.getParameter("pwd");
-		// id 어떻게 받아올 것인가....
+		// id 어떻게 받아올 것인가? - 아래와 같이 받아오면 됨 - 아래 두 줄.
+		//HttpSession session=request.getSession();
+		//String id=(String)session.getAttribute("id");
 		
 		// 데이터 확인
 		// System.out.println("bname="+bname+", bsubject="+bsubject+", bcontent="+bcontent+", bpwd="+bpwd);
@@ -128,6 +168,55 @@ public class ReplyBoardModel {
 		return "redirect:../board/list.do";
 	}
 	
+	// [답글쓰기]
+	@RequestMapping("board/reply.do")
+	public String board_reply(HttpServletRequest request,HttpServletResponse response)
+	{
+		String pno=request.getParameter("pno");
+		
+		request.setAttribute("pno", pno);
+		request.setAttribute("main_header", "../common/header_sub.jsp");
+		request.setAttribute("main_jsp", "../board/reply.jsp");
+		
+		return "../main/main.jsp";
+	}
+	
+	// [답글쓰기] - 실제 처리 
+	@RequestMapping("board/reply_ok.do")
+	public String board_reply_ok(HttpServletRequest request,HttpServletResponse response)
+	{
+		try
+		{
+			request.setCharacterEncoding("UTF-8");
+		}catch(Exception ex){}
+		
+		String pno=request.getParameter("pno"); //엄마글 번호 
+		System.out.println("pno="+pno);
+		
+		// 클라이언트 입력 데이터 
+		String bname=request.getParameter("name");
+		String bsubject=request.getParameter("subject");
+		String bcontent=request.getParameter("content");
+		String bpwd=request.getParameter("pwd");
+
+		// 데이터 확인
+		System.out.println("bname="+bname+", bsubject="+bsubject+", bcontent="+bcontent+", bpwd="+bpwd);
+		
+		// 클라이언트가 입력해준 데이터 VO에 저장 
+		ReplyBoardVO vo = new ReplyBoardVO();
+		vo.setBname(bname);
+		vo.setBsubject(bsubject);
+		vo.setBcontent(bcontent);
+		vo.setBpwd(bpwd);
+		
+		// VO를 INSERT 하게 mapper에서 수행 
+		ReplyBoardDAO.boardReplyInsert(Integer.parseInt(pno), vo);
+				
+		return "redirect:../board/list.do";
+	}
+		
+	
+	
 	// [글 수정] - 기존 글의 데이터 가져옴
 	@RequestMapping("board/update.do")
 	public String board_update(HttpServletRequest request,HttpServletResponse response)
@@ -146,7 +235,26 @@ public class ReplyBoardModel {
 		
 	}
 	
-	// [글 수정] - 실제 수정, 데이터 update  - ★★★★★ 비밀번호 체크 로직 아직 안 만들었음 ★★★★★
+	// [글 수정], [글 삭제] - 비번체크 
+	@RequestMapping("board/pwd_check.do")
+	public String board_pwd_check(HttpServletRequest request,HttpServletResponse response) 
+	{
+		// 클라이언트가 보내준 데이터
+		String no=request.getParameter("bno");
+		String user_input_pwd=request.getParameter("pwd"); // 클라이언트가 입력한 데이터  
+		//System.out.println("user_input_pwd="+user_input_pwd);
+		
+		// 클라이언트가 입력한 비번과 DB의 실제비번이 같은지 확인
+		boolean result=ReplyBoardDAO.boardCheckPwd(Integer.parseInt(no),user_input_pwd); 
+		//System.out.println("result="+result);
+		
+		request.setAttribute("result", result);
+		
+		return "../board/pwd_check.jsp";
+	}
+
+	
+	// [글 수정] - 실제 수정, 데이터 update
 	@RequestMapping("board/update_ok.do")
 	public String board_update_ok(HttpServletRequest request,HttpServletResponse response)
 	{
@@ -160,7 +268,6 @@ public class ReplyBoardModel {
 		String bname=request.getParameter("name");
 		String bsubject=request.getParameter("subject");
 		String bcontent=request.getParameter("content");
-		String bpwd=request.getParameter("pwd");
 		
 		// 이 데이터들을 VO에 담아서...
 		ReplyBoardVO vo=new ReplyBoardVO();
@@ -168,26 +275,55 @@ public class ReplyBoardModel {
 		vo.setBname(bname);
 		vo.setBsubject(bsubject);
 		vo.setBcontent(bcontent);
-		vo.setBpwd(bpwd);
 		
 		// DAO 연동
 		ReplyBoardDAO.boardUpdateData(vo);
 		
-		return "redirect:../board/detail.do?no="+bno;
+		return "redirect:../board/detail.do?&bno="+bno;
 	}
 	
 	
-	// [글 삭제] - 잠시만... 비번을 어디서 입력받지...? JSP에서..  - ★★★★★ 비밀번호 체크해서 맞아야만 삭제 가능하게 해야함 ★★★★★
+	// [글 삭제] - 화면만 보여줌
 	@RequestMapping("board/delete.do")
-	public String boardDeleteData(HttpServletRequest request,HttpServletResponse response)
+	public String board_delete(HttpServletRequest request,HttpServletResponse response)
 	{
 		String bno=request.getParameter("bno");
+		request.setAttribute("bno", bno);	
 		
-		// DAO 연동
+		request.setAttribute("main_header", "../common/header_sub.jsp");
+		request.setAttribute("main_jsp", "../board/delete.jsp"); 
+		return "../main/main.jsp";
+	}
+	
+	// [글 삭제] - 실제 삭제 
+	@RequestMapping("board/delete_ok.do")
+	public String board_delete_ok(HttpServletRequest request,HttpServletResponse response)
+	{
+		String bno=request.getParameter("bno");
+		String pwd=request.getParameter("pwd");
+		
 		ReplyBoardDAO.boardDeleteData(Integer.parseInt(bno));
 		
 		return "redirect:../board/list.do";
 	}
+	
+	// [댓글 작성] - ================== 하는 중 ================== 
+	@RequestMapping("board/comment_insert.do")
+	public String comment_insert(HttpServletRequest request,HttpServletResponse response)
+	{
+		try
+		{
+			request.setCharacterEncoding("UTF-8");
+		}catch(Exception ex){}
+		
+		String bno=request.getParameter("name");
+		String userid=request.getParameter("userid"); // JSP에서 세션에서 받아서 form으로 보내자  
+		String content=request.getParameter("content");
+		
+		return "";  // 리턴을 어디로 줘야하지?????????????  redirect도 이상한데?? 내가 보던거에 그대로 달려야하는데??? 
+	}
+
+	
 	
 	
 	

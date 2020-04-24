@@ -8,6 +8,10 @@ public class InfoThemeDAO {
 	
 	private Connection conn;
 	private PreparedStatement ps;
+<<<<<<< HEAD
+=======
+	//private final String URL="jdbc:oracle:thin:@localhost:1521:XE";
+>>>>>>> 0ef0a40aecbdebe0163e5713b75e75504167eca2
 	private final String URL="jdbc:oracle:thin:@211.238.142.207:1521:XE";
 	
 	// 1. 드라이버 등록

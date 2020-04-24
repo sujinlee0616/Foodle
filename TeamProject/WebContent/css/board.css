@@ -58,27 +58,31 @@ Modified Date: 2020.04.16 (Thu)
 	color: #ffffff;
 }
 
-/* 디바이스 크기 작을 경우 리스트에서 글 번호, 작성일, 조회수 정보 비노출,
-상세보기에서 bd_detail_dt 컬럼 비노출 */
+/* 디바이스 크기 작을 경우 리스트에서 글 제목만 노출,
+상세보기에서 bd_detail_dt 컬럼 비노출,
+리스트 상단 이미지 스와이프 비노출 */
 @media (max-width: 992px) {
-	.reply_list tr th:nth-child(1),.replyBoard tr th:nth-child(4),.replyBoard tr th:nth-child(5){
+	.reply_list tr th:nth-child(1),.replyBoard tr th:nth-child(3),.replyBoard tr th:nth-child(4),.replyBoard tr th:nth-child(5){
 		display: none;
 	}
-	.reply_list tr td:nth-child(1),.replyBoard tr td:nth-child(4),.replyBoard tr td:nth-child(5){
+	.reply_list tr td:nth-child(1),.replyBoard tr td:nth-child(3),.replyBoard tr td:nth-child(4),.replyBoard tr td:nth-child(5){
 		display: none;
 	}
 	.reply_detail thead tr:nth-child(2){display: none;}
+	.swiper-container{display: none;}
+	.board-block{padding-top:0;}
 }
 
-/* 목록 - 글쓰기 버튼 */
-.inBtn,.bdDtBtnGp{display: inline-block; float:right;}
-.insertBtn,.bdDtBtn{
+/* 목록,상세보기에서의 버튼 */
+.inBtn,.bdDtBtnGp,.udtBtn{display: inline-block; float:right;}
+.insertBtn,.bdDtBtn,.updateBtn{
 	width: 100%; height: 100%; background-color: #ffffff; 
 	padding: 5px 10px;
 	border: 1px solid #cccccc;
 	text-decoration: none !important;
 }
-.insertBtn:hover,.bdDtBtn:hover{
+.updateBtn{margin-left: 10px;}
+.insertBtn:hover,.bdDtBtn:hover,.updateBtn:hover{
 	background-color: #ff3a6d;
 	color: #ffffff;
 	border: 1px solid #ffffff;
@@ -133,39 +137,43 @@ Modified Date: 2020.04.16 (Thu)
 
 /* 글쓰기 */
 .insert_ct,.update_ct{
-	width: 100%; height: 200px;
+	width: 100%; height: 300px;
 	vertical-align: top;
 	margin-top: 10px; padding: 10px;
 	resize: none;
 }
 
-
-.board-btn-wrap {text-align: center; }
+/* 글 수정화면 > 버튼 */
+.board-btn-wrap {text-align: center; display: inline-block; width:100%;}
 .board-btn-wrap .btn-danger {
-    width:100%;
+    width:48%;
     background: #ff3a6d;
      padding: 16px 50px;
     -webkit-transition: 0.3s;
     -o-transition: 0.3s;
     transition: 0.3s;
-    border: 0; 
+	border: 0; 
+	display: inline-block;
+	margin-left: 3%;
 }
 .board-btn-wrap .btn-cancle {
-    width:100%;
+    width:48%;
     background: #ffffff;
      padding: 16px 50px;
     -webkit-transition: 0.3s;
     -o-transition: 0.3s;
     transition: 0.3s;
-    border: 0; 
+	border: 1px solid #cccccc; 
+	display: inline-block;
 }
+.btn-cancle:hover{cursor: pointer;}
 .board-btn-wrap .btn-danger:hover {
     background-color: #f34e79;
     outline: none;
     -webkit-box-shadow: none;
     box-shadow: none; 
 }
-.board-btn-wrap a{font-size: 1.2rem;}
+.board-btn-wrap a{font-size: 1.2rem;} 
 
 /* 글쓰기 화면에서의 tr,th */
 .reply_insert th{
@@ -175,6 +183,10 @@ Modified Date: 2020.04.16 (Thu)
 	width: 100%;
 }
 
-
+/* 삭제하기에서 min-height 주자 */
+.board-block{
+  min-height: calc(100vh - 72px - 236px);
+}
+.deleteArea{width: 60%; margin: 0 auto;}
 
 

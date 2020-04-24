@@ -23,6 +23,7 @@ public class RestaurantDetailDAO {
 		} catch(Exception ex) {
 			System.out.println("resDetailMaininfo(): "+ex.getMessage());
 		} finally {
+			
 			if(session!=null)
 				session.close();
 		}
@@ -151,5 +152,86 @@ public class RestaurantDetailDAO {
 		}
 		return list;
 	}*/
+	
+	// 리뷰
+	public static List<ReviewVO> reviewData(Map map) {
+		List<ReviewVO> list=new ArrayList<ReviewVO>();
+		SqlSession session=null;
+		try {
+			session=ssf.openSession();
+			list=session.selectList("reviewData", map);
+		} catch(Exception ex) {
+			System.out.println("reviewData(): "+ex.getMessage());
+		} finally {
+			if(session!=null) {
+				session.close();
+			}
+		}
+		return list;
+	}
+		
+	// 리뷰 개수
+	public static int reviewTotalCount(int rno) {
+		int count=0;
+		SqlSession session=null;
+		try {
+			session=ssf.openSession();
+			count=session.selectOne("reviewTotalCount", rno);
+		} catch(Exception ex) {
+			System.out.println("reviewTotalCount(): "+ex.getMessage());
+		} finally {
+			if(session!=null)
+				session.close();
+		}
+		return count;
+	}
+		
+	// 리뷰 총 페이지
+	public static int reviewTotalPage(int rno) {
+		int totalpage=0;
+		SqlSession session=null;
+		try {
+			session=ssf.openSession();
+			totalpage=session.selectOne("reviewTotalPage", rno);
+		} catch(Exception ex) {
+			System.out.println("reviewTotalPage(): "+ex.getMessage());
+		} finally {
+			if(session!=null)
+				session.close();
+		}
+		return totalpage;
+	}
+	
+	// 리뷰 평점 평균 
+	public static double reviewScoreAvg(int rno) {
+		double scoreAvg=0.0;
+		SqlSession session=null;
+		try {
+			session=ssf.openSession();
+			scoreAvg=session.selectOne("reviewScoreAvg", rno);
+		} catch(Exception ex) {
+			System.out.println("reviewScoreAvg(): "+ex.getMessage());
+		} finally {
+			if(session!=null)
+				session.close();
+		}
+		return scoreAvg;
+	}
+	
+	// 해당 날짜의 예약 가능 시간
+	public static String reserveTimeData(int tno) {
+		String times="";
+		SqlSession session=null;
+		try {
+			session=ssf.openSession();
+			times=session.selectOne("reserveTimeData", tno);
+		} catch(Exception ex) {
+			System.out.println("reserveTimeData(): "+ex.getMessage());
+		} finally {
+			if(session!=null)
+				session.close();
+		}
+		return times;
+	}
 	
 }

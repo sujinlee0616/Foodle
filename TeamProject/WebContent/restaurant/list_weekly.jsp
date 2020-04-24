@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<jsp:useBean id="now" class="java.util.Date"></jsp:useBean>
+<fmt:formatDate var="td" value="${now}" pattern="yyyyMMddkkmm" />
+<c:set var="today" value="${fn:substring(td,8,10) }"></c:set>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -162,164 +169,98 @@
             </div>
             <div class="row detail-options-wrap py-5">
                 <!-- ============================= RESTAURANTS ============================= -->
-                <div class="col-md-4 featured-responsive">
-                    <div class="featured-place-wrap">
-                        <a href="main.jsp?mode=5">
-                            <img src="../images/featured1.jpg" class="img-fluid" alt="#">
-                            <span class="featured-rating">6.5</span>
-                            <div class="featured-title-box">
-                                <h6>브루클린더버거조인트</h6>
-                                <p>양식(수제버거) </p> <span>• </span>
-                                <p>리뷰 12개</p> <span> • </span>
-                                <p><span>\\\\</span>\</p>
-                                <ul>
-                                    <li><span class="icon-location-pin"></span>
-                                        <p>서울 서초구 서래로2길 27</p>
-                                    </li>
-                                    <li><span class="icon-screen-smartphone"></span>
-                                        <p>(02) 533-7180</p>
-                                    </li>
-                                </ul>
-                                <div class="bottom-icons">
-                                    <div class="closed-now">CLOSED NOW</div>
-                                    <span class="ti-heart"></span>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-md-4 featured-responsive">
-                    <div class="featured-place-wrap">
-                        <a href="main.jsp?mode=5">
-                            <img src="../images/featured2.jpg" class="img-fluid" alt="#">
-                            <span class="featured-rating">9.5</span>
-                            <div class="featured-title-box">
-                                <h6>사모님돈까스</h6>
-                                <p>한식 </p> <span>• </span>
-                                <p>리뷰 3개</p> <span> • </span>
-                                <p><span>\\</span>\\\</p>
-                                <ul>
-                                    <li><span class="icon-location-pin"></span>
-                                        <p>서울 마포구 와우산로 39-13</p>
-                                    </li>
-                                    <li><span class="icon-screen-smartphone"></span>
-                                        <p>(02) 337-2207</p>
-                                    </li>
-                                </ul>
-                                <div class="bottom-icons">
-                                    <div class="open-now">OPEN NOW</div>
-                                    <span class="ti-heart"></span>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-md-4 featured-responsive">
-                    <div class="featured-place-wrap">
-                        <a href="main.jsp?mode=5">
-                            <img src="../images/featured3.jpg" class="img-fluid" alt="#">
-                            <span class="featured-rating">3.2</span>
-                            <div class="featured-title-box">
-                                <h6>스트릿(strEAT) 여의도점</h6>
-                                <p>기타/세계-퓨전푸드 </p> <span>• </span>
-                                <p>리뷰 3개</p> <span> • </span>
-                                <p><span>\\\</span>\\</p>
-                                <ul>
-                                    <li><span class="icon-location-pin"></span>
-                                        <p>서울 영등포구 여의대로 66 KTB 투...</p>
-                                    </li>
-                                    <li><span class="icon-screen-smartphone"></span>
-                                        <p>(02) 761-7672</p>
-                                    </li>
-                                </ul>
-                                <div class="bottom-icons">
-                                    <div class="closed-now">CLOSED NOW</div>
-                                    <span class="ti-heart"></span>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-md-4 featured-responsive">
-                    <div class="featured-place-wrap">
-                        <a href="main.jsp?mode=5">
-                            <img src="../images/featured1.jpg" class="img-fluid" alt="#">
-                            <span class="featured-rating">6.5</span>
-                            <div class="featured-title-box">
-                                <h6>브루클린더버거조인트</h6>
-                                <p>양식(수제버거) </p> <span>• </span>
-                                <p>리뷰 12개</p> <span> • </span>
-                                <p><span>\\\\</span>\</p>
-                                <ul>
-                                    <li><span class="icon-location-pin"></span>
-                                        <p>서울 서초구 서래로2길 27</p>
-                                    </li>
-                                    <li><span class="icon-screen-smartphone"></span>
-                                        <p>(02) 533-7180</p>
-                                    </li>
-                                </ul>
-                                <div class="bottom-icons">
-                                    <div class="closed-now">CLOSED NOW</div>
-                                    <span class="ti-heart"></span>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-md-4 featured-responsive">
-                    <div class="featured-place-wrap">
-                        <a href="main.jsp?mode=5">
-                            <img src="../images/featured2.jpg" class="img-fluid" alt="#">
-                            <span class="featured-rating">9.5</span>
-                            <div class="featured-title-box">
-                                <h6>사모님돈까스</h6>
-                                <p>한식 </p> <span>• </span>
-                                <p>리뷰 3개</p> <span> • </span>
-                                <p><span>\\</span>\\\</p>
-                                <ul>
-                                    <li><span class="icon-location-pin"></span>
-                                        <p>서울 마포구 와우산로 39-13</p>
-                                    </li>
-                                    <li><span class="icon-screen-smartphone"></span>
-                                        <p>(02) 337-2207</p>
-                                    </li>
-                                </ul>
-                                <div class="bottom-icons">
-                                    <div class="open-now">OPEN NOW</div>
-                                    <span class="ti-heart"></span>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-md-4 featured-responsive">
-                    <div class="featured-place-wrap">
-                        <a href="main.jsp?mode=5">
-                            <img src="../images/featured3.jpg" class="img-fluid" alt="#">
-                            <span class="featured-rating">3.2</span>
-                            <div class="featured-title-box">
-                                <h6>스트릿(strEAT) 여의도점</h6>
-                                <p>기타/세계-퓨전푸드 </p> <span>• </span>
-                                <p>리뷰 3개</p> <span> • </span>
-                                <p><span>\\\</span>\\</p>
-                                <ul>
-                                    <li><span class="icon-location-pin"></span>
-                                        <p>서울 영등포구 여의대로 66 KTB 투...</p>
-                                    </li>
-                                    <li><span class="icon-screen-smartphone"></span>
-                                        <p>(02) 761-7672</p>
-                                    </li>
-                                </ul>
-                                <div class="bottom-icons">
-                                    <div class="closed-now">CLOSED NOW</div>
-                                    <span class="ti-heart"></span>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
+	            <c:forEach var="vo" items="${list }">
+				  <div class="col-md-4 featured-responsive">
+				    <div class="featured-place-wrap">
+				      <a href="../restaurant/detail.do?no=${vo.rNo }">
+				        <img src="${vo.ivo.iLink }" class="img-fluid" alt="#">
+				        <span class="featured-rating">${vo.rScore }</span>
+				      </a>
+				      <div class="featured-title-box">
+				          <a href="../restaurant/detail.do?no=${vo.rNo }">
+				            <h6>${vo.rName }</h6>
+				          </a>
+				          <p>${vo.rType }</p> <span>• </span>
+				          <p>리뷰 ${vo.rScoreCount }</p> <span> • </span>
+				          <fmt:parseNumber var="sre" value="${vo.rScore }" integerOnly="true"/>
+				          <c:choose>
+				            <c:when test="${sre=='5' }">
+				              <p><span>★★★★★</span></p>
+				            </c:when>
+				            <c:when test="${sre=='4' }">
+				              <p><span>★★★★</span>★</p>
+				            </c:when>
+				            <c:when test="${sre=='3' }">
+				              <p><span>★★★</span>★★</p>
+				            </c:when>
+				            <c:when test="${sre=='2' }">
+				              <p><span>★★</span>★★★</p>
+				            </c:when>
+				            <c:when test="${sre=='1' }">
+				              <p><span>★</span>★★★★</p>
+				            </c:when>
+				            <c:otherwise>
+				              <p><span></span>★★★★★</p>
+				            </c:otherwise>
+				          </c:choose>
+				          <ul>
+				            <li><span class="icon-location-pin"></span>
+				              <p>${vo.rAddr1 }</p>
+				            </li>
+				            <li><span class="icon-screen-smartphone"></span>
+				              <p>${vo.rTel }</p>
+				            </li>
+				          </ul>
+				          <div class="bottom-icons">
+				            <c:choose>
+				              <c:when test="${today>=vo.rvo.rOpentime && today<vo.rvo.rClosetime }">
+				                <div class="open-now">OPEN NOW</div>
+				              </c:when>
+				              <c:otherwise>
+				                <div class="closed-now">CLOSED NOW</div>
+				              </c:otherwise>
+				            </c:choose>
+				            <span class="ti-heart"></span>
+				          </div>
+				      </div>
+				    </div>
+				  </div>
+				</c:forEach>
             </div>
-            
+            <div class="mt-3">
+			  <nav aria-label="...">
+				<ul class="pagination justify-content-center">
+					<c:if test="${startPage>1 }">
+					    <li class="page-item">
+					      <a class="page-link" aria-label="Previous" href="../restaurant/list_weekly.do?page=${startPage-1 }">
+					        <span aria-hidden="true">&laquo;</span>
+					        <span class="sr-only">Previous</span>
+					      </a>
+					    </li>
+					</c:if>
+					<c:set var="type" value=""/>
+					<c:forEach var="i" begin="${startPage }" end="${endPage }">
+					  <c:if test="${curPage==i }">
+					    <c:set var="type" value="class=\"page-item active\""/>
+					  </c:if>
+					  <c:if test="${curPage!=i }">
+					    <c:set var="type" value="class=page-item"/>
+					  </c:if>
+					  <li ${type }>
+					    <a class="page-link" href="../restaurant/list_weekly.do?page=${i }">${i }</a>
+					  </li>
+					</c:forEach>
+					<c:if test="${endPage<allPage }">
+					  <li class="page-item">
+						<a class="page-link" href="../restaurant/list_weekly.do?page=${endPage+1 }" aria-label="Next"> 
+						  <span aria-hidden="true">&raquo;</span> 
+						  <span class="sr-only">Next</span>
+						</a>
+					  </li>
+					</c:if>
+				</ul>
+			  </nav>
+    		</div>
         </div>
     </section>
     <!--//END DETAIL -->

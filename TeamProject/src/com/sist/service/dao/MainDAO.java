@@ -52,4 +52,21 @@ public class MainDAO {
 		return list;
 	}
 	
+	// 쿠키 (최근본)
+	public static MainInfoVO cookieData(int rno) {
+		MainInfoVO vo=new MainInfoVO();
+		SqlSession session=null;
+		try {
+			session=ssf.openSession();
+			vo=session.selectOne("cookieData", rno);
+		} catch(Exception ex) {
+			System.out.println("cookieData(): "+ex.getMessage());
+		} finally {
+			if(session!=null)
+				session.close();
+		}
+		return vo;
+	}
+
+	
 }
