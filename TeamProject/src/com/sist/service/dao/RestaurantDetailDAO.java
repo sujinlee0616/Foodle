@@ -23,6 +23,7 @@ public class RestaurantDetailDAO {
 		} catch(Exception ex) {
 			System.out.println("resDetailMaininfo(): "+ex.getMessage());
 		} finally {
+			
 			if(session!=null)
 				session.close();
 		}
