@@ -364,18 +364,55 @@ public class ReplyBoardModel {
 	@RequestMapping("board/comment_update.do")
 	public String comment_update(HttpServletRequest request,HttpServletResponse response)
 	{
+		try
+		{
+			request.setCharacterEncoding("UTF-8");
+		}catch(Exception ex){}
+		
 		String bno=request.getParameter("bno"); // 리다이렉트 할 때만 필요함
 		String cno=request.getParameter("cno");
+		String content=request.getParameter("cmtContent");
 		//System.out.println("bno="+bno);
 		//System.out.println("cno="+cno);
+		//System.out.println("content="+content);
 		
 		Map map=new HashMap();
 		map.put("pCno", Integer.parseInt(cno));
+		map.put("pContent", content);
 		BoardCommentDAO.commentUpdate(map);	
 		
 		return "redirect:../board/detail.do?&bno="+bno;
 	}
 	
+	// [대댓글 쓰기]
+	@RequestMapping("board/comment_reply.do")
+	public String comment_reply(HttpServletRequest request,HttpServletResponse response)
+	{
+		try
+		{
+			request.setCharacterEncoding("UTF-8");
+		}catch(Exception ex){}
+		
+		String bno=request.getParameter("bno"); // 리다이렉트 할 때만 필요함
+		String parentCno=request.getParameter("parentCno");
+		String content=request.getParameter("cmtContent");
+		
+		Map map=new HashMap();
+		map.put("pParentCno", Integer.parseInt(parentCno));
+		map.put("pBno", Integer.parseInt(bno));
+		HttpSession session=request.getSession();
+		String id=(String)session.getAttribute("id");
+		map.put("pUserid",id);
+		map.put("pContent", content);
+		BoardCommentDAO.commentReply(map);	
+		
+		System.out.println("bno="+bno);
+		System.out.println("parentCno="+parentCno);
+		System.out.println("content="+content);
+		System.out.println("id="+id);
+		
+		return "redirect:../board/detail.do?&bno="+bno;
+	}
 	
 	
 }

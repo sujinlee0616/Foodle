@@ -122,7 +122,8 @@ Modified Date: 2020.04.16 (Thu)
 .write_time {font-size: 12px; color: #9E9E9E;}
 .cmtActions{float: right; font-size: 14px;}
 .cmtActionBtn:hover{color:#f34e79; text-decoration:none;}
-.cmtUpdtBtn:hover{cursor:pointer;}
+.cmtUpdtBtn:hover, .cmtReplyBtn:hover{cursor:pointer;}
+
 .cmt_line{margin: 7px 0;}
 .cmt_input{
 	width: 92%; height: 80px;

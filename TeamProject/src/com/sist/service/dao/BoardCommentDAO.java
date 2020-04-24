@@ -126,6 +126,22 @@ public class BoardCommentDAO {
 		}
 	}
 	
+	// [대댓글 달기]
+	public static void commentReply(Map map)
+	{
+		SqlSession session=null;
+		try {
+			session=ssf.openSession(); 
+			session.update("commentReply",map); 
+		} 
+		catch (Exception ex) {
+			System.out.println("commentReply: "+ex.getMessage());
+		} 
+		finally {
+			if(session!=null)
+				session.close();
+		}
+	}
 	
 }
 

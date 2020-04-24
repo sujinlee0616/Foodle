@@ -10,11 +10,10 @@
 <script src="../js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript">
 var u=0;
+var i=0;
 $(function(){
 	$('.cmtUpdtBtn').click(function(){
-		//$('').hide();
 		var update_cno=$(this).attr('update_cno');
-		console.log('update_cno='+update_cno);
 		$('.cmtUpdateArea').hide();
 		
 		if(u==0){
@@ -27,7 +26,19 @@ $(function(){
 			$('#try_to_update_cno'+update_cno).hide();
 			u=0;
 		}
-	})
+	});
+	
+	$('.cmtReplyBtn').click(function(){
+		var reply_cno=$(this).attr('reply_cno');
+		if(i==0){
+			$('#try_to_reply_cno'+reply_cno).show(); // 왜 동작 안 하지?? 
+			i=1;
+		}
+		else{
+			$('#try_to_reply_cno'+reply_cno).hide();
+			i=0;
+		}
+	});
 	
 })
 </script>
@@ -111,7 +122,7 @@ $(function(){
             </c:if>
             <!-- =============== 로그인 안 한 경우 =============== -->
 			<c:if test="${sessionScope.id==null }">
-	            <div class="logged_in">
+	            <div class="not_logged_in">
 	              <textarea name="cmt" class="cmt_input disabled" placeholder="회원만 댓글을 작성할 수 있습니다. 댓글을 작성하고 싶으시다면 로그인 해주세요." disabled></textarea>
 	              <button class="cmtBtn" disabled>등록</button>
 	            </div>
@@ -127,7 +138,7 @@ $(function(){
 	              <span class="writer_nm">${cvo.userid }</span>
 	              <span class="write_time pl-1">${cvo.regdate }</span>
 	              <div class="cmtActions">
-		              <span class="cmtActionBtn pl-1" data-no="${cvo.bno }">답글</span>
+		              <span class="cmtActionBtn cmtReplyBtn pl-1" reply_cno="${cvo.cno }">답글</span>
 			          <c:if test="${sessionScope.id==cvo.userid }">
 			          	  <span class="cmtActionBtn cmtUpdtBtn pl-1" update_cno="${cvo.cno }">수정</span>
 			              <a class="cmtActionBtn" href="../board/comment_delete.do?bno=${cvo.bno }&cno=${cvo.cno }">삭제</a>
@@ -144,10 +155,42 @@ $(function(){
 	            			<input type="hidden" name="bno" value="${cvo.bno }">
 	            			<input type="hidden" name="cno" value="${cvo.cno }">
 		            		<textarea name="cmtContent" class="cmt_input" placeholder="건전한 댓글 문화를 위해, 타인에게 불쾌감을 주는 욕설 또는 특정 계층/민족, 종교 등을 비하하는 내용은 입력을 지양해주세요.">${cvo.content }</textarea>
-			            	<input type="submit" class="cmtBtn" value="등록">
+			            	<button type="submit" class="cmtBtn">수정<br>완료</button>
 		            	</div>
 	            	</form>
 	            </div>
+	            
+	            <!-- [대댓글 작성 버튼 클릭 시] -->
+	          	<!-- =============== 로그인 한 경우 =============== -->
+	          	<c:if test="${sessionScope.id!=null }">
+		        	<div class="logged_in">
+		              <form method="post" action="../board/comment_reply.do">
+		              	<div class="cmtReplyArea" id="try_to_reply_cno${cvo.cno }" style="display:none;">
+		              	  <input type="hidden" name="bno" value="${cvo.bno }">
+		              	  <input type="hidden" name="parentCno" value="${cvo.cno }">
+		              	  <hr>
+			              <div class="writer_info ml-5">
+			                <span class="writer_nm">${sessionScope.id}</span>
+			              </div>
+			              <textarea name="cmtContent" class="cmt_input" 
+			              style="margin-left: 50px; width: calc(92% - 50px);"
+			              placeholder="건전한 댓글 문화를 위해, 타인에게 불쾌감을 주는 욕설 또는 특정 계층/민족, 종교 등을 비하하는 내용은 입력을 지양해주세요."></textarea>
+			              <button type="submit" class="cmtBtn">답글<br>등록</button>
+			          	</div>
+		              </form>
+		            </div>
+	            </c:if>
+	            <!-- =============== 로그인 안 한 경우 =============== -->
+				<c:if test="${sessionScope.id==null }">
+					<hr>
+		            <div class="logged_in">
+		              <textarea name="cmt" class="cmt_input disabled" 
+		              style="margin-left: 50px; width: calc(92% - 50px);"
+		              placeholder="회원만 댓글을 작성할 수 있습니다. 댓글을 작성하고 싶으시다면 로그인 해주세요." disabled></textarea>
+		              <button class="cmtBtn" disabled>등록</button>
+		            </div>
+	          	</c:if>
+	            
 	          </div>
           </c:forEach>
         </div>
