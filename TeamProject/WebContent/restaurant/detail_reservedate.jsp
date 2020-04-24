@@ -61,13 +61,66 @@ $(function(){
 		})
 	})
 	
+	$('.preMonth').click(function(){
+		var year=Number($('.y-m-date').attr('y-date'));
+		var month=Number($('.y-m-date').attr('m-date'));
+		var rdate=$('.reservation').attr('data-date');
+		var todayYear=$('.preMonth').attr('todayYear');
+		var todayMonth=$('.preMonth').attr('todayMonth');
+		
+		if(todayYear==year && todayMonth==month) {
+			return;			
+		}
+		
+		month=month-1;
+		if(month<1) {
+			year=year-1;
+			month=12;
+		}
+		
+		$.ajax({
+			type:'post',
+			url:'../restaurant/detail_reservedate.do',
+			data:{"year":year,"month":month,"rdate":rdate},
+			success:function(res) {
+				$('.reserve_date').html(res);
+			}
+		})
+		
+	})
+	
+	$('.nextMonth').click(function(){
+		var year=Number($('.y-m-date').attr('y-date'));
+		var month=Number($('.y-m-date').attr('m-date'));
+		var rdate=$('.reservation').attr('data-date');
+		
+		month=month+1;
+		if(month>12) {
+			year=year+1;
+			month=1;
+		}
+		
+		$.ajax({
+			type:'post',
+			url:'../restaurant/detail_reservedate.do',
+			data:{"year":year,"month":month,"rdate":rdate},
+			success:function(res) {
+				$('.reserve_date').html(res);
+			}
+		})
+	})
+	
 });
 </script>
 </head>
 <body>
 	<label for="menu" class="reserve_tit" style="color: #ff7474">예약일</label>
 	<div class="row" style="margin: 0px auto; width: 300px;">
-		<h6 class="text-center y-m-date" y-date="${year }" m-date="${month }">${year }년 ${month }월</h6>
+		<div style="margin: 0px auto; ">
+			<span class="preMonth" todayYear="${todayYear }" todayMonth="${todayMonth }" style="display: inline;"><b>&lt;</b></span>&nbsp;&nbsp;
+			<h6 class="y-m-date" y-date="${year }" m-date="${month }" style="display: inline;">${year }년 ${month }월</h6>&nbsp;&nbsp;
+			<span class="nextMonth" style="display: inline;"><b>&gt;</b></span>
+		</div>
 		<%-- <table class="table">
 			<tr>
 				<td>
@@ -109,6 +162,7 @@ $(function(){
 							<td>&nbsp;</td>
 						</c:forEach>
 				</c:if>
+				
 				
 				<c:if test="${i==days[i-1] }">
 					<td class="text-center success rdate" style="background-color: #eee;">${i }</td>

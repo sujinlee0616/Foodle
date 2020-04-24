@@ -99,4 +99,35 @@
 		WHERE tno=#{tno}
 	</select>
 	
+	
+	<!-- 
+		RESNO     NOT NULL NUMBER         
+		RNO       NOT NULL NUMBER         
+		USERID    NOT NULL VARCHAR2(50)   
+		REGDATE            DATE           
+		RESDATE   NOT NULL VARCHAR2(20)   
+		RESTIME   NOT NULL VARCHAR2(20)   
+		RESMENU            VARCHAR2(2000) 
+		RESPEOPLE          VARCHAR2(200) 
+		
+		map.put("rno", Integer.parseInt(rno));
+		map.put("userid", userid);
+		map.put("respeople", respeople);
+		map.put("resdate", resdate);
+		map.put("restime", restime);
+		map.put("resmenu", resmenu);
+	 -->
+	<insert id="reserveInsert" parameterType="hashmap">
+		INSERT INTO reservation VALUES(
+			(SELECT NVL(MAX(resno)+1,1) FROM reservation),
+			#{rno},
+			#{userid},
+			SYSDATE,
+			#{resdate},
+			#{restime},
+			#{resmenu},
+			#{respeople}
+		)
+	</insert>
+	
 </mapper>

@@ -407,9 +407,16 @@
 	                                <input type="hidden" name="restime" value="" id="restime"/>
 	                                <input type="hidden" name="resmenu" value="" id="resmenu"/>
 	                                
-	                                <input type="submit" class="btn btn-outline-danger btn-reserve" value="예약하기" 
-	                                	style="margin: 0px auto; width: 320px" disabled>
-	                                <!-- <a href="#" class="btn btn-outline-danger btn-reserve">예약하기</a> -->
+	                                <c:if test="${sessionScope.id!=null }">
+		                                <input type="submit" class="btn btn-outline-danger btn-reserve" value="예약하기" 
+		                                	style="margin: 0px auto; width: 320px" disabled>
+	                                </c:if>
+	                                <c:if test="${sessionScope.id==null }">
+	                                	<span class="btn btn-outline-danger btn-reserve2" 
+	                                		style="margin: 0px auto; width: 320px; height: 57px; line-height: 40px;">
+	                                		예약하기
+	                                	</span>
+	                                </c:if>
                                 </form>
                             </ul>
                         </div>
@@ -669,6 +676,14 @@
 	})
 	</script>
 	
+	<script>
+	$('.btn-reserve2').click(function(){
+		if(sessionStorage.getItem("id")==null) {
+			alert("로그인 후 이용해주세요.");
+			return;
+		}
+	})
+	</script>
 </body>
 
 </html>

@@ -191,8 +191,13 @@ public class DetailModel {
 			StringTokenizer st1=new StringTokenizer(reserve_date,",");
 			while(st1.hasMoreTokens()) {
 				int p=Integer.parseInt(st1.nextToken());
-				if(p>=day)
+				if(Integer.parseInt(sy)==year && Integer.parseInt(sm)==month) {
+					if(p>=day)
+						days[p-1]=p;
+				}
+				else {
 					days[p-1]=p;
+				}
 			}
 		}
 		
@@ -203,6 +208,8 @@ public class DetailModel {
 		request.setAttribute("week", week);  // 무슨요일부터 출력할건지
 		request.setAttribute("lastday", lastDay[month-1]); // 1~며칠까지 출력할건지
 		request.setAttribute("days", days);
+		request.setAttribute("todayYear", sy);
+		request.setAttribute("todayMonth", sm);
 		
 		return "../restaurant/detail_reservedate.jsp";
 	}
@@ -233,6 +240,7 @@ public class DetailModel {
 		return "../restaurant/detail_reserveinwon.jsp";
 	}
 	
+	// 예약 insert
 	@RequestMapping("restaurant/detail_reserveok.do")
 	public String restaurant_detail_reserveok(HttpServletRequest request, HttpServletResponse response) {
 		
@@ -246,6 +254,16 @@ public class DetailModel {
             <input type="hidden" name="resdate" value="" id="resdate"/>
             <input type="hidden" name="restime" value="" id="restime"/>
             <input type="hidden" name="resmenu" value="" id="resmenu"/>
+		 */
+		/*
+		 *  RESNO     NOT NULL NUMBER         
+			RNO       NOT NULL NUMBER         
+			USERID    NOT NULL VARCHAR2(50)   
+			REGDATE            DATE           
+			RESDATE   NOT NULL VARCHAR2(20)   
+			RESTIME   NOT NULL VARCHAR2(20)   
+			RESMENU            VARCHAR2(2000) 
+			RESPEOPLE          VARCHAR2(200)
 		 * 
 		 */
 		String rno=request.getParameter("rno");
@@ -253,16 +271,36 @@ public class DetailModel {
 		String resdate=request.getParameter("resdate");
 		String restime=request.getParameter("restime");
 		String resmenu=request.getParameter("resmenu");
-	
-		System.out.println("rno="+rno);
+		resmenu=resmenu.substring(0, resmenu.lastIndexOf(","));
+		
+		HttpSession session=request.getSession();
+		String userid=(String)session.getAttribute("id");
+		
+		Map<String,Object> map=new HashMap<String, Object>();
+		map.put("rno", Integer.parseInt(rno));
+		map.put("userid", userid);
+		map.put("respeople", respeople);
+		map.put("resdate", resdate);
+		map.put("restime", restime);
+		map.put("resmenu", resmenu);
+		
+		System.out.println(map.get("rno"));
+		System.out.println(map.get("userid"));
+		System.out.println(map.get("respeople"));
+		System.out.println(map.get("resdate"));
+		System.out.println(map.get("restime"));
+		System.out.println(map.get("resmenu"));
+		
+		RestaurantDetailDAO.reserveInsert(map);
+		
+		/*System.out.println("rno="+rno);
 		System.out.println("respeople="+respeople);
 		System.out.println("resdate="+resdate);
 		System.out.println("restime="+restime);
 		System.out.println("resmenu="+resmenu);
+		System.out.println("id="+userid);*/
 		
-		
-		
-		return ""; // 마이페이지로!
+		return "redirect:../mypage/mypage.do";
 	}
 	
 }

@@ -41,6 +41,9 @@
 			 <property name="url" value="jdbc:oracle:thin:@211.238.142.207:1521:XE"/>
 			<property name="username" value="hr"/>
 			<property name="password" value="happy"/>
+			<property name="poolMaximumActiveConnections" value="40"/>
+         	<property name="poolMaximumIdleConnections" value="20"/>
+         	<property name="poolMaximumCheckoutTime" value="-1"/>
   		</dataSource>
   	</environment>
   </environments>

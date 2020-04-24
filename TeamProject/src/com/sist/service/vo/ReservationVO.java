@@ -6,17 +6,17 @@ import java.util.Date;
 	RNO       NOT NULL NUMBER         
 	USERID    NOT NULL VARCHAR2(50)   
 	REGDATE            DATE           
-	RESPEOPLE NOT NULL NUMBER(3)      
 	RESDATE   NOT NULL VARCHAR2(20)   
 	RESTIME   NOT NULL VARCHAR2(20)   
 	RESMENU            VARCHAR2(2000) 
+	RESPEOPLE          VARCHAR2(200)
  */
 public class ReservationVO {
 	private int resno;
 	private int rno;
 	private String userid;
 	private Date regdate;
-	private int respeople;
+	private String respeople;
 	private String resdate;
 	private String restime;
 	private String resmenu;
@@ -45,10 +45,10 @@ public class ReservationVO {
 	public void setRegdate(Date regdate) {
 		this.regdate = regdate;
 	}
-	public int getRespeople() {
+	public String getRespeople() {
 		return respeople;
 	}
-	public void setRespeople(int respeople) {
+	public void setRespeople(String respeople) {
 		this.respeople = respeople;
 	}
 	public String getResdate() {
