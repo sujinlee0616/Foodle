@@ -216,4 +216,36 @@ public class RestaurantDetailDAO {
 		}
 		return scoreAvg;
 	}
+	
+	// 해당 날짜의 예약 가능 시간(번호) (ex. 1,3,4,5,8,9,...)
+	public static String reserveTimeData(int tno) {
+		String result="";
+		SqlSession session=null;
+		try {
+			session=ssf.openSession();
+			result=session.selectOne("reserveTimeData", tno);
+		} catch(Exception ex) {
+			System.out.println("reserveTimeData(): "+ex.getMessage());
+		} finally {
+			if(session!=null)
+				session.close();
+		}
+		return result;
+	}
+	
+	// 해당 번호의 시간  (ex. 1=>08:00)
+	public static String reserveTimeData2(int tno) {
+		String result="";
+		SqlSession session=null;
+		try {
+			session=ssf.openSession();
+			result=session.selectOne("reserveTimeData2", tno);
+		} catch(Exception ex) {
+			System.out.println("reserveTimeData2(): "+ex.getMessage());
+		} finally {
+			if(session!=null)
+				session.close();
+		}
+		return result;
+	}
 }

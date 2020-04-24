@@ -135,6 +135,10 @@ public class DetailModel {
 		return "../restaurant/mywish_result.jsp";
 	}
 	
+	
+	// =========================================== 예약 ===================================================
+
+	// 예약일
 	@RequestMapping("restaurant/detail_reservedate.do")
 	public String restaurant_detail_reservedate(HttpServletRequest request, HttpServletResponse response) {
 		
@@ -201,6 +205,64 @@ public class DetailModel {
 		request.setAttribute("days", days);
 		
 		return "../restaurant/detail_reservedate.jsp";
+	}
+	
+	// 예약 시간 선택
+	@RequestMapping("restaurant/detail_reservetime.do") 
+	public String restaurant_detail_reservetime(HttpServletRequest request, HttpServletResponse response) {
+		
+		String tno=request.getParameter("tno"); // day
+		
+		String times=RestaurantDetailDAO.reserveTimeData(Integer.parseInt(tno));
+		StringTokenizer st=new StringTokenizer(times,",");
+		List<String> tlist=new ArrayList<String>();
+		while(st.hasMoreTokens()) {
+			String time=RestaurantDetailDAO.reserveTimeData2(Integer.parseInt(st.nextToken()));
+			tlist.add(time);
+		}
+
+		request.setAttribute("tlist", tlist);
+		
+		return "../restaurant/detail_reservetime.jsp";
+	}
+	
+	// 예약 인원 선택
+	@RequestMapping("restaurant/detail_reserveinwon.do")
+	public String restaurant_detail_reserveinwon(HttpServletRequest request, HttpServletResponse response) {
+		
+		return "../restaurant/detail_reserveinwon.jsp";
+	}
+	
+	@RequestMapping("restaurant/detail_reserveok.do")
+	public String restaurant_detail_reserveok(HttpServletRequest request, HttpServletResponse response) {
+		
+		try {
+			request.setCharacterEncoding("UTF-8");
+		} catch(Exception ex) {}
+		
+		/*
+		 * <input type="hidden" name="rno" value="${mvo.rNo }" id="rno">
+            <input type="hidden" name="respeople" value="" id="respeople"/>
+            <input type="hidden" name="resdate" value="" id="resdate"/>
+            <input type="hidden" name="restime" value="" id="restime"/>
+            <input type="hidden" name="resmenu" value="" id="resmenu"/>
+		 * 
+		 */
+		String rno=request.getParameter("rno");
+		String respeople=request.getParameter("respeople");
+		String resdate=request.getParameter("resdate");
+		String restime=request.getParameter("restime");
+		String resmenu=request.getParameter("resmenu");
+	
+		System.out.println("rno="+rno);
+		System.out.println("respeople="+respeople);
+		System.out.println("resdate="+resdate);
+		System.out.println("restime="+restime);
+		System.out.println("resmenu="+resmenu);
+		
+		
+		
+		return ""; // 마이페이지로!
 	}
 	
 }

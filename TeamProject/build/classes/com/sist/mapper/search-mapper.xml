@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sist.mapper.search-mapper">
-  <!-- Maininfo와 Image Join -->
+  <!-- Maininfo와 Image Join / ReserveInfo도 추가 -->
   <resultMap type="MaininfoVO" id="maininfoMap">
   	<result column="rno" property="rNo"/>
   	<result column="rname" property="rName"/>
@@ -13,14 +13,17 @@
   	<result column="rtel" property="rTel"/>
   	<result column="iname" property="ivo.iName"/>
   	<result column="ilink" property="ivo.iLink"/>
+  	<result column="ropentime" property="rvo.rOpentime"/>
+  	<result column="rclosetime" property="rvo.rClosetime"/>
   </resultMap>
   
   <select id="searchListData" resultMap="maininfoMap" parameterType="java.util.Map">
-    SELECT rno,rname,rtype,rscore,rscorecount,rarea,raddr1,rtel,ilink,num 
-    FROM (SELECT rno,rname,rtype,rscore,rscorecount,rarea,raddr1,rtel,ilink,rownum as num 
-    FROM (SELECT maininfo.rno,rname,rtype,rscore,rscorecount,rarea,raddr1,rtel,ilink 
-    FROM maininfo,image
+    SELECT rno,rname,rtype,rscore,rscorecount,rarea,raddr1,rtel,ilink,ropentime,rclosetime,num 
+    FROM (SELECT rno,rname,rtype,rscore,rscorecount,rarea,raddr1,rtel,ilink,ropentime,rclosetime,rownum as num 
+    FROM (SELECT maininfo.rno,rname,rtype,rscore,rscorecount,rarea,raddr1,rtel,ilink,ropentime,rclosetime 
+    FROM maininfo,image,reserveinfo
     WHERE maininfo.rno=image.rno
+    AND maininfo.rno=reserveinfo.rno
     AND rname LIKE '%'||#{cate}||'%'
     AND raddr1 LIKE '%'||#{area}||'%'
     AND image.iname LIKE 'Mainimage'

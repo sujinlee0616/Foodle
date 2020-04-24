@@ -1,11 +1,18 @@
 package com.sist.vo;
 
-import com.sist.vo.ImageVO;
-
-public class MainInfoVO {
-	
-	// 가게 고유번호
+//3개의 
+public class NearbyVO {
 	private int rNo;
+	private int rLowprice;
+	private int rHighprice;
+	private int rOpentime;
+	private int rClosetime;
+    
+	// 이미지 이름
+	private String iName;
+	// 이미지 링크
+	private String iLink;
+	
 	// 가게 이름
 	private String rName;
 	// 가게 업종
@@ -27,7 +34,9 @@ public class MainInfoVO {
 	// 가게 세부지역(ex.가로수길,강남역...)
 	private String rAreaDetail;
 	
-	// image 테이블 maininfo테이블과  조인
+	private int rHit;
+	private String rTakeout;
+	
 	private ImageVO ivo=new ImageVO();
 	
 	public ImageVO getIvo() {
@@ -36,21 +45,49 @@ public class MainInfoVO {
 	public void setIvo(ImageVO ivo) {
 		this.ivo = ivo;
 	}
-	// reserveinfo테이블  maininfo테이블과  조인
-	private ReserveInfoVO rvo=new ReserveInfoVO();
 	
-	public ReserveInfoVO getRvo() {
-		return rvo;
-	}
-	public void setRvo(ReserveInfoVO rvo) {
-		this.rvo = rvo;
-	}
 	
 	public int getrNo() {
 		return rNo;
 	}
 	public void setrNo(int rNo) {
 		this.rNo = rNo;
+	}
+	public int getrLowprice() {
+		return rLowprice;
+	}
+	public void setrLowprice(int rLowprice) {
+		this.rLowprice = rLowprice;
+	}
+	public int getrHighprice() {
+		return rHighprice;
+	}
+	public void setrHighprice(int rHighprice) {
+		this.rHighprice = rHighprice;
+	}
+	public int getrOpentime() {
+		return rOpentime;
+	}
+	public void setrOpentime(int rOpentime) {
+		this.rOpentime = rOpentime;
+	}
+	public int getrClosetime() {
+		return rClosetime;
+	}
+	public void setrClosetime(int rClosetime) {
+		this.rClosetime = rClosetime;
+	}
+	public String getiName() {
+		return iName;
+	}
+	public void setiName(String iName) {
+		this.iName = iName;
+	}
+	public String getiLink() {
+		return iLink;
+	}
+	public void setiLink(String iLink) {
+		this.iLink = iLink;
 	}
 	public String getrName() {
 		return rName;
@@ -112,15 +149,26 @@ public class MainInfoVO {
 	public void setrAreaDetail(String rAreaDetail) {
 		this.rAreaDetail = rAreaDetail;
 	}
-	
-	
+	public int getrHit() {
+		return rHit;
+	}
+	public void setrHit(int rHit) {
+		this.rHit = rHit;
+	}
+	public String getrTakeout() {
+		return rTakeout;
+	}
+	public void setrTakeout(String rTakeout) {
+		this.rTakeout = rTakeout;
+	}
 	@Override
 	public String toString() {
-		return "MainInfoVO [rNo=" + rNo + ", rName=" + rName + ", rType=" + rType + ", rTel=" + rTel + ", rScore="
-				+ rScore + ", rScoreCount=" + rScoreCount + ", rAddr1=" + rAddr1 + ", rAddr2=" + rAddr2 + ", rPwd="
-				+ rPwd + ", rArea=" + rArea + ", rAreaDetail=" + rAreaDetail + ", ivo=" + ivo + "]";
+		return "NearbyVO [rNo=" + rNo + ", rLowprice=" + rLowprice + ", rHighprice=" + rHighprice + ", rOpentime="
+				+ rOpentime + ", rClosetime=" + rClosetime + ", iName=" + iName + ", iLink=" + iLink + ", rName="
+				+ rName + ", rType=" + rType + ", rTel=" + rTel + ", rScore=" + rScore + ", rScoreCount=" + rScoreCount
+				+ ", rAddr1=" + rAddr1 + ", rAddr2=" + rAddr2 + ", rPwd=" + rPwd + ", rArea=" + rArea + ", rAreaDetail="
+				+ rAreaDetail + ", rHit=" + rHit + ", rTakeout=" + rTakeout + "]";
 	}
-	
 	
 	
 	

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sist.mapper.board-comment-mapper">
+	
+	<!-- [댓글 총 개수] -->
+	<!-- CREATE OR REPLACE PROCEDURE commentCount(
+	    pNo NUMBER,
+	    total OUT NUMBER
+	) -->
+	<parameterMap type="hashmap" id="commentCountMap">
+		<parameter property="pNo" javaType="java.lang.Integer"  jdbcType="INTEGER" mode="IN"/>	
+		<parameter property="total" javaType="java.lang.Integer" jdbcType="INTEGER" mode="OUT"/>
+	</parameterMap>
+	<select id="commentCount" parameterMap="commentCountMap" statementType="CALLABLE">
+		{CALL commentCount(?,?)}
+	</select>
+
+
+	<!-- [댓글 출력] -->
+	<!-- CURSOR 설정 -->	
+	<resultMap type="BoardCommentVO" id="cmtBoardMap">
+		<result property="cno" column="cno"/>
+		<result property="bno" column="bno"/>
+		<result property="userid" column="userid"/>
+		<result property="content" column="content"/>
+		<result property="regdate" column="regdate"/>
+		<result property="group_id" column="group_id"/>
+		<result property="group_step" column="group_step"/>
+		<result property="group_tab" column="group_tab"/>
+		<result property="root" column="root"/>
+		<result property="depth" column="depth"/>
+	</resultMap>
+	<!-- CREATE OR REPLACE PROCEDURE commentList(
+	    pNo boardComment.bNo%TYPE,
+	    cResult OUT SYS_REFCURSOR
+	)-->
+	<parameterMap type="hashmap" id="cmtListMap">
+		<parameter property="pNo" javaType="java.lang.Integer" jdbcType="INTEGER" mode="IN"/>
+		<parameter property="cResult" jdbcType="CURSOR" mode="OUT" resultMap="cmtBoardMap"/>
+	</parameterMap>
+	<select id="cmtList" parameterMap="cmtListMap" statementType="CALLABLE">
+		{CALL commentList(?,?)}
+	</select>
+
+
+</mapper>
+
+
+
+
+
+
+

@@ -3,31 +3,44 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<link rel="stylesheet" href="../css/signup.css">
 <script type="text/javascript">
 $(function(){
 
+	// 아이디 체크1. 기본 입력요청
 	$('#id').click(function(){
+		$('#idCheckMsg').removeClass('hidden');
 		var length=$('#id').val().trim().length;
 		if(length==0)
 		{
-			$('#idCheckMsg').html('<span style="color:#707070; font-size:15px; display:inline-block; margin-top: 10px;">6글자 이상 입력해주세요.</span>');
+			$('#idCheckMsg').html('<span style="color:#707070; font-size:15px;">6글자 이상 입력해주세요.</span>');
 			return;
 		}
 	});
 
+	// 아이디 체크2. 글자길이 체크 
 	$('#id').keyup(function(){
 		var length=$('#id').val().trim().length;
 		if(length==0)
-			$('#idCheckMsg').html('<span style="color:#ff3a6d; font-size:15px; display:inline-block; margin-top: 10px;">필수정보입니다.</span>');
+			$('#idCheckMsg').html('<span style="color:#707070; font-size:15px;">필수정보입니다.</span>');
 		else if(length<6)
-			$('#idCheckMsg').html('<span style="color:#ff3a6d; font-size:15px; display:inline-block; margin-top: 10px;">너무 짧아요</span>');
+			$('#idCheckMsg').html('<span style="color:#ff3a6d; font-size:15px;">너무 짧아요. 6글자 이상 입력해주세요.</span>');
 		else
-			$('#idCheckMsg').addClass('hidden'); // 잘 입력했으면 메시지 없애기
+			$('#idCheckMsg').addClass('hidden'); // 잘 입력했으면 메시지 제거
 		return;
 	});
 
-
+	// 아이디 체크3. ID중복검사 
+	$('#id').blur(function(){
+		var id=$('#id').val();
+		
+		$.ajax({
+			type:'POST',
+			url:''
+		})
+		
+		
+	})
 
 	
 })
@@ -74,7 +87,7 @@ $(function(){
                 <label for="user_id" class="tit_inp"><span class="essential">*</span>ID</label>
                 <input type="text" name="id" id="id" autocapitalize="off" autocomplete="off"
                   placeholder="아이디" maxlength="50">
-                <div class="guide_txt" id="idCheckMsg"></div>
+                <div class="guide_txt mt-1 pl-2 hidden" id="idCheckMsg" style="display:inline-block;"></div>
               </li>
               <!-- Password (N-N) -->
               <li class="item must">

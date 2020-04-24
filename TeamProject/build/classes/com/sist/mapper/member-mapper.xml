@@ -74,6 +74,12 @@
 		)
 	</insert>
 	
+	<resultMap type="hashMap" id="selectMap"></resultMap>
+	<select id="getSubArea" resultMap="selectMap" parameterType="String">
+		SELECT r_areadetail FROM areaCode
+		WHERE r_areacode=#{selected}
+	</select>
+	
 	
 	
 </mapper>

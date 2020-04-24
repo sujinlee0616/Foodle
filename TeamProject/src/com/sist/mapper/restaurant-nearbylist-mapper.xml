@@ -1,7 +1,148 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sist.mapper.restaurant-nearbylist-mapper">
-	<select id=""></select>
+	<resultMap type="com.sist.vo.NearbyVO" id="nearbyMap">
+		<result column="rno"      		property="rNo"/>
+		<result column="rname"          property="rName"/> 
+		<result column="rtype"          property="rType"/> 
+		<result column="rtel"           property="rTel"/> 
+		<result column="rscore"         property="rScore"/> 
+		<result column="rscorecount"    property="rScoreCount"/> 
+		<result column="raddr1"         property="rAddr1"/> 
+		<result column="raddr2"         property="rAddr2"/> 
+		<result column="rpwd"           property="rPwd"/> 
+		<result column="rarea"          property="rArea"/> 
+		<result column="rareadetail"    property="rAreaDetail"/> 
+		<result column="rhit"           property="rHit"/> 
+		<result column="rtakeout"       property="rTakeout"/> 
+		<result column="rhighprice"     property="rHighprice"/> 
+		<result column="ropentime"      property="rOpentime"/> 
+		<result column="rclosetime"     property="rClosetime"/> 
+		<result column="iname" 			property="ivo.iName"/>
+		<result column="ilink" 			property="ivo.iLink"/>
+	</resultMap>
 
 
+
+
+	<!-- parameterType이 Map인 이유는 선택된 카테고리의 옵션들의 정보를 각각 reqeust로 다양하게 받기 때문에 model에서 -->
+	 	<!--  <if test="type_name != null and   type_name != '' ">
+ 		 and B.TYPE_NAME = #{type_name} 
+ 	 </if> -->
+	<select id="nearbyResult_old" parameterType="Map" resultType="com.sist.vo.NearbyVO">
+	 SELECT A.REST_RNO
+	      , A.REST_NAME 
+	      , A.REST_TYPE 
+	      , A.REST_ADRESS
+	      , A.REST_GRADE
+	      , B.TYPE_NAME 
+	      , A.LOW_PRICE
+	      , A.HIGH_PRICE
+	      , A.TAKEOUT_COL
+	      , to_char(sysdate,'YYYYMMDD') NOW_DATE
+	       FROM FOODELTEST A ,FOODELTEST_TYPE B
+ 	  	   WHERE A.REST_TYPE=B.REST_TYPE     	
+ 	 <if test="type_name != null and type_name != '' ">
+ 	 	 and b.type_name in
+ 	 	 <foreach collection="type_name" item="type" open="(" close=")" separator=",">
+ 	 	 	#{type}
+ 	 	 </foreach>
+ 	  </if>
+ 	 <if test="rest_open == 'Y'.toString()  "> 
+		 and a.rest_open   <![CDATA[ <  ]]>  to_char(sysdate,'HH24')
+	 </if>
+	<if test="takeout_col == 'Y'.toString()  "> 
+		 and a.takeout_col  = 'Y'
+	</if>
+	<choose >
+		<when test="sortby_col != null and sortby_col != '' ">
+		   order by ${sortby_col} desc
+		</when>
+		<when test="lowPrice_col != null and lowPrice_col != '' ">
+			 order by ${lowPrice_col} asc
+		</when>
+	</choose>
+	</select>
+	
+	
+	<select id="nearbyResult" parameterType="Map" resultMap="nearbyMap">
+		select ma.RNO      
+			,ma.RNAME       
+			,ma.RTYPE       
+			,ma.RTEL        
+			,nvl(ma.RSCORE,4.2) RSCORE       
+			,ma.RSCORECOUNT 
+			,ma.RADDR1      
+			,ma.RADDR2      
+			,ma.RPWD        
+			,ma.RAREA       
+			,ma.RAREADETAIL
+			,sub.rhit
+			,sub.rtakeout
+			,res.rhighprice
+			,res.ropentime
+			,res.rclosetime
+			,img.iName
+            ,img.iLink
+		 from  maininfo ma , subinfo sub ,reserveinfo res , image img
+		 where ma.rno = sub.rno
+		 and ma.rno = res.rno
+		   AND ma.rno=img.rno
+		  AND img.iname='Mainimage'    	
+		  and ma.rno <![CDATA[<]]>100
+		 <if test="type_name != null and type_name != '' ">
+	 	 	 and ma.RTYPE  in
+	 	 	 <foreach collection="type_name" item="type" open="(" close=")" separator=",">
+	 	 	 	#{type}
+	 	 	 </foreach>
+	 	  </if>
+	 	 <if test="rest_open == 'Y'.toString()  "> 
+			 and res.ropentime  <![CDATA[ <  ]]>  to_char(sysdate,'HH24')
+			  and res.rclosetime  <![CDATA[ >  ]]>  to_char(sysdate,'HH24')
+		 </if>
+		<if test="takeout_col == 'Y'.toString()  "> 
+			 and sub.rtakeout = '가능'
+		</if>
+		<choose >
+			<when test="sortby_col != null and sortby_col != '' ">
+			   order by ${sortby_col} desc
+			</when>
+			<when test="lowPrice_col != null and lowPrice_col != '' ">
+				 order by ${lowPrice_col} asc
+			</when>
+		</choose>
+	</select>
+	
+	
+	
+	<select id="nearbyTotalPage" resultType="int">
+		SELECT CEIL(COUNT(*)/20.0) FROM FROM FOODELTEST A,FOODELTEST_TYPE B, foodeltest_price C
+	</select>
+
+
+	<select id="nearbyDefault" resultType="com.sist.vo.NearbyVO">
+	SELECT A.REST_RNO
+	      , A.REST_NAME 
+	      , A.REST_TYPE 
+	      , A.REST_ADRESS
+	      , A.REST_GRADE
+	      , B.TYPE_NAME 
+	      , C.MENU_PRICE
+	      , C.TAKEOUT_COL
+	      , C.REST_RNO
+	      , to_char(sysdate,'YYYYMMDD') NOW_DATE
+	       FROM FOODELTEST A ,FOODELTEST_TYPE B, foodeltest_price C
+ 	  	   WHERE A.REST_TYPE=B.REST_TYPE AND A.REST_RNO=C.REST_RNO	  
+ 	  	   GROUP BY A.REST_RNO
+	      , A.REST_NAME 
+	      , A.REST_TYPE 
+	      , A.REST_ADRESS
+	      , A.REST_GRADE
+	      , B.TYPE_NAME 
+	      , C.MENU_PRICE
+	      , C.TAKEOUT_COL
+	      , C.REST_RNO
+	      , to_char(sysdate,'YYYYMMDD')   
+ 	</select>
+ 	
 </mapper>

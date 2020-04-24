@@ -3,6 +3,8 @@ package com.sist.board.model;
 import java.util.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import com.sist.controller.Controller;
 import com.sist.controller.RequestMapping;
 import com.sist.dao.*;
@@ -38,6 +40,12 @@ public class ReplyBoardModel {
 		request.setAttribute("totalpage", totalpage);
 		request.setAttribute("contentsCnt", contentsCnt);
 		
+		// 댓글 개수 ★
+		for(ReplyBoardVO vo:list)
+		{
+			vo.setCmtCount(ReplyBoardDAO.listCmtCount(vo.getBno()));
+		}
+		
 		// Pagination
 		int startpage=1;
 		int endpage=1;
@@ -67,19 +75,28 @@ public class ReplyBoardModel {
 		vo=ReplyBoardDAO.hitIncrement(Integer.parseInt(bno));
 		request.setAttribute("vo", vo);
 		
-		// ======== 댓글 리스트 ========
-		List<BoardCommentVO> cmt_list=BoardCommentDAO.commentList(Integer.parseInt(bno));
-		int commentCount=BoardCommentDAO.commentCount(Integer.parseInt(bno));
-		request.setAttribute("cmt_list", cmt_list);
-		request.setAttribute("commentCount", commentCount);
+		// ================ 댓글 ================
 		
-		// ======== 상세보기 하단 리스트 ========
+		// [총 댓글 수] 
+		Map map=new HashMap();
+		map.put("pNo", Integer.parseInt(bno)); 		
+		int commentCount=BoardCommentDAO.commentCount(map);
+		request.setAttribute("commentCount", commentCount);
+			
+		// [댓글목록]
+		map=new HashMap();
+		map.put("pNo", Integer.parseInt(bno)); 		
+		List<BoardCommentVO> cmt_list=BoardCommentDAO.cmtList(map);
+		request.setAttribute("cmt_list", cmt_list);
+
+		
+		// ================ 상세보기 하단 리스트 ================
 		String page=request.getParameter("page");
 		if(page==null)
 			page="1";
 		int curpage=Integer.parseInt(page);
 		// VO에 start랑 end는 없으니까 map 사용 
-		Map map=new HashMap();
+		map=new HashMap();
 		int rowSize=15;
 		int start = rowSize*(curpage-1)+1;
 		int end=rowSize*curpage;
@@ -92,6 +109,12 @@ public class ReplyBoardModel {
 		request.setAttribute("curpage", curpage);
 		request.setAttribute("totalpage", totalpage);
 		request.setAttribute("contentsCnt", contentsCnt);
+		
+		// 댓글 개수 ★
+		for(ReplyBoardVO cmtvo:list)
+		{
+			cmtvo.setCmtCount(ReplyBoardDAO.listCmtCount(cmtvo.getBno()));
+		}
 		
 		// Pagination
 		int startpage=1;
@@ -135,7 +158,9 @@ public class ReplyBoardModel {
 		String bsubject=request.getParameter("subject");
 		String bcontent=request.getParameter("content");
 		String bpwd=request.getParameter("pwd");
-		// id 어떻게 받아올 것인가....
+		// id 어떻게 받아올 것인가? - 아래와 같이 받아오면 됨 - 아래 두 줄.
+		//HttpSession session=request.getSession();
+		//String id=(String)session.getAttribute("id");
 		
 		// 데이터 확인
 		// System.out.println("bname="+bname+", bsubject="+bsubject+", bcontent="+bcontent+", bpwd="+bpwd);
@@ -294,6 +319,21 @@ public class ReplyBoardModel {
 		return "redirect:../board/list.do";
 	}
 	
+	// [댓글 작성] - ================== 하는 중 ================== 
+	@RequestMapping("board/comment_insert.do")
+	public String comment_insert(HttpServletRequest request,HttpServletResponse response)
+	{
+		try
+		{
+			request.setCharacterEncoding("UTF-8");
+		}catch(Exception ex){}
+		
+		String bno=request.getParameter("name");
+		String userid=request.getParameter("userid"); // JSP에서 세션에서 받아서 form으로 보내자  
+		String content=request.getParameter("content");
+		
+		return "";  // 리턴을 어디로 줘야하지?????????????  redirect도 이상한데?? 내가 보던거에 그대로 달려야하는데??? 
+	}
 
 	
 	
