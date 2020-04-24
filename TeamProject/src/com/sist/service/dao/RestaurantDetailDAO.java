@@ -248,4 +248,18 @@ public class RestaurantDetailDAO {
 		}
 		return result;
 	}
+	
+	// 예약 insert
+	public static void reserveInsert(Map map) {
+		SqlSession session=null;
+		try {
+			session=ssf.openSession(true);
+			session.insert("reserveInsert", map);
+		} catch(Exception ex) {
+			System.out.println("reserveInsert(): "+ex.getMessage());
+		} finally {
+			if(session!=null)
+				session.close();
+		}
+	}
 }

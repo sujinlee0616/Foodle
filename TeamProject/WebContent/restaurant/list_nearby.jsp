@@ -282,7 +282,7 @@ function takeoutButChgCL(){
 </head>
 <body onload=" searchNearby();">
     <!--============================= LIST =============================-->
-    <form action="">
+   
     <section class="list-block">
     
      	<!-- ============================================주변맛집 전체화면============================================ -->
@@ -309,14 +309,11 @@ function takeoutButChgCL(){
 								<select  id="foodSelect" class="menuarrow" onchange="setFilter(this ,'foodType' ) ;" style="color: black;">
 									<option value="업종전체" class="lemonmenu">업종전체</option>
 									<option value="한식" class="lemonmenu">한식</option>
+									<option value="양식" class="lemonmenu">양식</option>
 									<option value="일식" class="lemonmenu">일식</option>
 									<option value="중식" class="lemonmenu">중식</option>
-									<option value="카페" class="lemonmenu">카페</option>
-									<option value="베이커리" class="lemonmenu">베이커리</option>
-									<option value="패스트푸드" class="lemonmenu">패스트푸드</option>
-									<option value="양식" class="lemonmenu">양식</option>
-									<option value="뷔페" class="lemonmenu">뷔페</option>
-									<option value="기 타" class="lemonmenu">기타/세계</option>
+									<option value="카페/주점" class="lemonmenu">카페</option>
+
 								</select> 
 								
 								
@@ -449,7 +446,7 @@ function takeoutButChgCL(){
 		</div>
         </div>
     </section>
-   </form> 
+
     
     <!--//END DETAIL -->
     
@@ -458,6 +455,12 @@ function takeoutButChgCL(){
     <script src="${pageContext.request.contextPath }/js/jquery-3.2.1.min.js"></script>
     <script src="${pageContext.request.contextPath }/js/popper.min.js"></script>
     <script src="${pageContext.request.contextPath }/js/bootstrap.min.js"></script>
+
+
+	<!-- KAKAO MAP-->
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=LIBRARY"></script>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=services,clusterer,drawing"></script>
+	
 
     <!-- 이전에 남아있던 map 관련 소스 :  파악 중 -->
     <script>
@@ -468,13 +471,47 @@ function takeoutButChgCL(){
    
    <!-- Kakao Map Script -->
    <script>
-        var container = document.getElementById('map');
-        var options = {
+        var mapContainer = document.getElementById('map');
+        var  mapOption = {
             center: new kakao.maps.LatLng(33.450701, 126.570667),
             level: 3
         };
+		
+        //지도를 생성합니다.
+        var map = new kakao.maps.Map(mapContainer, mapOption);
+        
+     	//주소-좌표 변환 객체를 생성합니다.
+        var geocoder = new kakao.maps.services.Geocoder();
+        
+     // 주소로 좌표를 검색합니다
+        geocoder.addressSearch('제주특별자치도 제주시 첨단로 242', function(result, status) {
 
-        var map = new kakao.maps.Map(container, options);
+            // 정상적으로 검색이 완료됐으면 
+             if (status === kakao.maps.services.Status.OK) {
+
+                var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+                // 결과값으로 받은 위치를 마커로 표시합니다
+                var marker = new kakao.maps.Marker({
+                    map: map,
+                    position: coords
+                });
+
+                // 인포윈도우로 장소에 대한 설명을 표시합니다
+                var infowindow = new kakao.maps.InfoWindow({
+                    content: '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>'
+                });
+                infowindow.open(map, marker);
+
+                // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+                map.setCenter(coords);
+            } 
+        });    
+     	
+     	
+     	
+     	
+        
     </script>
 </body>
 </html>
