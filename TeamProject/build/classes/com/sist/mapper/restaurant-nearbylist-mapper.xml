@@ -16,13 +16,11 @@
 		<result column="rhit"           property="rHit"/> 
 		<result column="rtakeout"       property="rTakeout"/> 
 		<result column="rhighprice"     property="rHighprice"/> 
-		<result column="ropentime"      property="rOpentime"/> 
-		<result column="rclosetime"     property="rClosetime"/> 
+		<result column="ropentime" 		property="rvo.rOpentime"/>
+  		<result column="rclosetime" 	property="rvo.rClosetime"/> 
 		<result column="iname" 			property="ivo.iName"/>
 		<result column="ilink" 			property="ivo.iLink"/>
 	</resultMap>
-
-
 
 
 	<!-- parameterType이 Map인 이유는 선택된 카테고리의 옵션들의 정보를 각각 reqeust로 다양하게 받기 때문에 model에서 -->
@@ -89,7 +87,7 @@
 		 and ma.rno = res.rno
 		   AND ma.rno=img.rno
 		  AND img.iname='Mainimage'    	
-		  and ma.rno <![CDATA[<]]>100
+		  and ma.rno <![CDATA[<]]>350
 		 <if test="type_name != null and type_name != '' ">
 	 	 	 and ma.RTYPE  in
 	 	 	 <foreach collection="type_name" item="type" open="(" close=")" separator=",">
@@ -113,8 +111,7 @@
 		</choose>
 	</select>
 	
-	
-	
+		
 	<select id="nearbyTotalPage" resultType="int">
 		SELECT CEIL(COUNT(*)/20.0) FROM FROM FOODELTEST A,FOODELTEST_TYPE B, foodeltest_price C
 	</select>

@@ -144,17 +144,14 @@ $(function(){
 	                                    </figure>
 	                                </div>
 	                            </div>
-                        </div>
-                    </div>
-                </c:forEach>
+                        	</div>
+                    	</div>
+               	 </c:forEach>
 
 						
 
             <!--                         BIG 3 THEMA END                                -->
-    
-
-
-           
+          
                 
            <!--                              AJAX사용부분  small thema list start                         -->
                 

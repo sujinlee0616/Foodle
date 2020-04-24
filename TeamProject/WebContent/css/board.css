@@ -59,6 +59,8 @@ Modified Date: 2020.04.16 (Thu)
 }
 
 .reply_list .cmtListCount{color: #ff7474; font-size: 15px;}
+.reply_detail pre{white-space: pre-wrap; font-family: "Nanum Gothic";}
+/* .cmt_content pre{white-space: pre-wrap; font-family: "Nanum Gothic";} */
 
 /* 디바이스 크기 작을 경우 리스트에서 글 제목만 노출,
 상세보기에서 bd_detail_dt 컬럼 비노출,

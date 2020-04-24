@@ -299,7 +299,7 @@ public class ReplyBoardDAO {
 		{
 			session=ssf.openSession();
 			cmtCount=session.selectOne("listCmtCount",bno);
-			System.out.println(cmtCount);
+			//System.out.println("cmtCount="+cmtCount);
 			
 		}catch (Exception ex) 
 		{

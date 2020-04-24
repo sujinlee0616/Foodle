@@ -36,6 +36,9 @@ public class NearByNewModel {
 		
 	}
 	
+	
+	
+	
 /*
 	@RequestMapping("restaurant/list_nearby_default.do")
 	public String list_nearby_default(HttpServletRequest request, HttpServletResponse response)

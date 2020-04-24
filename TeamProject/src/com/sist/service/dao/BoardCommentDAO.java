@@ -40,7 +40,7 @@ public class BoardCommentDAO {
 			session=ssf.openSession();
 			session.update("commentCount",map);
 			commentCount=(int)map.get("total");
-			System.out.println("DAO commentCount="+commentCount);
+			//System.out.println("DAO commentCount="+commentCount);
 		} 
 		catch (Exception ex) {
 			System.out.println("commentCount: "+ex.getMessage());
@@ -75,6 +75,23 @@ public class BoardCommentDAO {
 		}
 		return list;
 	}
+	
+	// [댓글 작성]
+	public static void commentInsert(int bno)
+	{
+		SqlSession session=null;
+		try {
+			session=ssf.openSession(); // 프로시저에서 커밋해주니까 내가 따로 오토커밋 설정 안 해줘도 됨 
+			session.update("commentInsert",bno); // 프로시저 호풀할 땐 항상 update로
+			System.out.println("bno="+bno);
+		} catch (Exception ex) {
+			System.out.println("commentInsert: "+ex.getMessage());
+		} finally {
+			if(session!=null)
+				session.close();
+		}
+	}
+	
 	
 }
 
