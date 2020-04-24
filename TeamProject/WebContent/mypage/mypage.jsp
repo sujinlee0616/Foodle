@@ -4,9 +4,19 @@
 <html lang="ko">
 <head>
 </head>
-<body>
+<body >
+
+
 	<!--============================= MY PAGE =============================-->
 	<section class="board-block light-bg">
+	<div class="sidenav" id="floatMenu" style="position: fixed; top: 40%;box-sizing: content-box; z-index:10;background-color: #fff; height:300px; width:190px">		
+	        
+	  
+    </div>
+	
+	
+	
+	
 		<div class="container py-5">
 			<div class="row">
 				<div class="col-md-6 pb-5">
@@ -143,7 +153,7 @@
 									data-old_color="#ff3a6d" fill="#ff3a6d" />
               </g>
             </g></g> </svg>
-							<h6 class="categoryName">내 리뷰/글</h6>
+							<h6 class="categoryName">내 리뷰</h6>
 						</div>
 					</span>
 				</div>

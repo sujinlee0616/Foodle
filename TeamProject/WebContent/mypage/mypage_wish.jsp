@@ -9,21 +9,91 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<table style="background-color: #FFFFFF;">
-		<tr style="background-color: #E0E0E0;">
-			<th style="width: 40%;" class="text-center">가게이름</th>
-			<th style="width: 20%;" class="text-center">찜한날짜</th>
+
+
+		<p></p>
+		<p>${vo.mvo.rTel }</p>
+		<p></p>
+		<p></p>
 		
-		</tr>
+		<p></p>
+		<p></p>			
 
-
-		<c:forEach var="i" begin="0" end="5">
-			<tr>
-				<td class="text-center">"${rlist.get(+"${i}"+).rName }"</td>
+<div class="row justify-content-center d-flex" style="background: #E6E6E6;">
+	<div class="col-lg-12 post-list"  style="margin-top:25px">				
+		<c:forEach var="vo" items="${list}">
+						<!-- Start of a content -->
+			<div class="single-post d-flex flex-row">
+				<div class="thumb">
+					<a href="../restaurant/detail.do?no=${vo.RNo }">
+						<%-- <img src="${pageContext.request.contextPath }/images/featured1.jpg" alt=""> --%>
+							<img src="${vo.mvo.ivo.iLink }" style="width: 300px; height: 200px;">
+					</a>
+				</div>
+				<div class="details">
+					<div class="title d-flex flex-row justify-content-between">
+						<div class="res_title pt-2">
+							<a href="../restaurant/detail.do?no=${vo.RNo }"><h4>${vo.mvo.rName }<span class="rating">${vo.mvo.rScore }</span></h4></a>
+						</div>
+						
+					</div>
 				
-			<tr/>
+					<ul class="detailed-info">
+					<li><span class="icon-location-pin"></span>
+						<p>${vo.mvo.rAddr1 }</p>
+					</li>
+					<li><span class="icon-screen-smartphone"></span>
+						<p>${vo.mvo.rTel }</p>
+					</li>
+					</ul>
+				</div>
+			</div>
+						<!-- End of a content -->
 		</c:forEach>
-
-	</table>
+	</div>
+</div>
 </body>
 </html>
+	
+
+
+<%--
+
+<div class="row justify-content-center d-flex">
+	<div class="col-lg-12 post-list">				
+		<c:forEach var="vo" items="${list}">
+						<!-- Start of a content -->
+			<div class="single-post d-flex flex-row">
+				<div class="thumb">
+					<a href="../restaurant/detail.do?no=${vo.rno }">
+						
+							<img src="${vo.ivo.iLink }" style="width: 300px; height: 200px;">
+					</a>
+				</div>
+				<div class="details">
+					<div class="title d-flex flex-row justify-content-between">
+						<div class="res_title pt-2">
+							<a href="../restaurant/detail.do?no=${vo.rno }"><h4>${vo.mvo.rName }<span class="rating">${vo.mvo.rScore }</span></h4></a>
+						</div>
+						<ul class="btns px-0">
+							<li><a href="#"><span class="ti-heart"></span></a></li>
+							<li><a href="#">예약하기</a></li>
+						</ul>
+					</div>
+				
+					<ul class="detailed-info">
+					<li><span class="icon-location-pin"></span>
+						<p>${vo.mvo.rAddr1 }</p>
+					</li>
+					<li><span class="icon-screen-smartphone"></span>
+						<p>${vo.mvo.rTel }</p>
+					</li>
+					</ul>
+				</div>
+			</div>
+						<!-- End of a content -->
+		</c:forEach>
+	</div>
+</div> 
+ --%>
+
