@@ -217,8 +217,8 @@ public class DetailModel {
 		StringTokenizer st=new StringTokenizer(times,",");
 		List<String> tlist=new ArrayList<String>();
 		while(st.hasMoreTokens()) {
-			//String time=RestaurantDetailDAO.reserveTimeData2(Integer.parseInt(st.nextToken()));
-			//tlist.add(time);
+			String time=RestaurantDetailDAO.reserveTimeData2(Integer.parseInt(st.nextToken()));
+			tlist.add(time);
 		}
 
 		request.setAttribute("tlist", tlist);
