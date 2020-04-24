@@ -42,7 +42,7 @@ public class MypageModel {
 		map.put("end", end);
 		map.put("userid", userid);
 		
-		list = MypageDAO.mypageMyWishList(map); 
+		/*list = MypageDAO.mypageMyWishList(map); */
 		
 		System.out.println(list.size());
 		request.setAttribute("list", list);
@@ -95,18 +95,18 @@ public class MypageModel {
 		map.put("end", end);
 		map.put("userid", (String) session.getAttribute("id"));
 	
-		list = MypageDAO.mypageReviewList(map);
+		/*list = MypageDAO.mypageReviewList(map);*/
 	
 		
 		
-		for(int i = 0 ; i < list.size() ; i++)
+		/*for(int i = 0 ; i < list.size() ; i++)
 		{
 			String temp = list.get(i).getRevContent();
 			if(temp.length() > 10)
 				temp = temp.substring(0,10) + "...";
 			
 			list.get(i).setRevContent(temp);
-		}
+		}*/
 		
 		request.setAttribute("list", list);
 		
@@ -133,7 +133,7 @@ public class MypageModel {
 		int rowSize=6;
 		int start=(rowSize*curpage)-(rowSize-1);
 		int end=rowSize*curpage;
-		int total = MypageDAO.mypageCouponTotalPage();
+		/*int total = MypageDAO.mypageCouponTotalPage();*/
 		
 		Map map=new HashMap();
 		map.put("start", start);
@@ -142,12 +142,12 @@ public class MypageModel {
 		
 		
 		
-		list = MypageDAO.mypageCouponList(map);
+		/*list = MypageDAO.mypageCouponList(map);*/
 		
 		request.setAttribute("page", curpage);
-		request.setAttribute("total", total);
+		/*request.setAttribute("total", total);*/
 		request.setAttribute("list", list);
-		System.out.println(total);
+		/*System.out.println(total);*/
 		
 		return "../mypage/mypage_coupon.jsp";
 	}
@@ -177,7 +177,7 @@ public class MypageModel {
 		
 		
 		
-		list = MypageDAO.mypageCouponSearch(map);
+		/*list = MypageDAO.mypageCouponSearch(map);*/
 		
 		request.setAttribute("list", list);
 		
@@ -206,9 +206,9 @@ public class MypageModel {
 		map.put("end", end);
 		map.put("rname", rname);
 		
-		list = MypageDAO.mypageCouponSearchList(map);
+		/*list = MypageDAO.mypageCouponSearchList(map);*/
 		
-		for(int i = 0 ; i < list.size() ; i++)
+		/*for(int i = 0 ; i < list.size() ; i++)
 		{
 			if(list.get(0).getMvo().getrName().length()>5)
 			{
@@ -219,7 +219,7 @@ public class MypageModel {
 				list.get(i).getMvo().setrName(temp);
 		
 			}
-		}
+		}*/
 		
 		
 		
