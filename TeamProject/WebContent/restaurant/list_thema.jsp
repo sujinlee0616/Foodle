@@ -151,10 +151,7 @@ $(function(){
 						
 
             <!--                         BIG 3 THEMA END                                -->
-    
-
-
-           
+          
                 
            <!--                              AJAX사용부분  small thema list start                         -->
                 

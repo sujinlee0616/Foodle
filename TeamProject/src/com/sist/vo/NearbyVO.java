@@ -171,6 +171,10 @@ public class NearbyVO {
 		this.rvo = rvo;
 	}
 	
+	
+	
+	
+	
 	@Override
 	public String toString() {
 		return "NearbyVO [rNo=" + rNo + ", rLowprice=" + rLowprice + ", rHighprice=" + rHighprice + ", rOpentime="
