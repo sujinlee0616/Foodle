@@ -5,19 +5,19 @@
 	<!--[로그인] - ID/PWD 맞는지 확인 -->
 	<select id="idCount_general" resultType="int" parameterType="String">
 		SELECT COUNT(*) FROM member
-		WHERE userId=#{id,jdbcType=VARCHAR}
+		WHERE userId=#{id}
 	</select>
-	<select id="getPwd_general" resultType="MemberVO" parameterType="string">
+	<select id="getPwd_general" resultType="MemberVO" parameterType="String">
 		SELECT uPwd,uName,uType FROM member
-		WHERE userId=#{id,jdbcType=VARCHAR} 
+		WHERE userId=#{id} 
 	</select>
 	<select id="idCount_comp" resultType="int" parameterType="String">
 		SELECT COUNT(*) FROM compMember
-		WHERE rId=#{id,jdbcType=VARCHAR}
+		WHERE rId=#{id}
 	</select>
-	<select id="getPwd_comp" resultType="CompMemberVO" parameterType="string">
+	<select id="getPwd_comp" resultType="CompMemberVO" parameterType="String">
 		SELECT rPwd,rName,uType FROM compMember
-		WHERE rId=#{id,jdbcType=VARCHAR} 
+		WHERE rId=#{id}
 	</select>
 	
 	<!-- [개인회원가입] -->
@@ -73,6 +73,12 @@
 		#{rareadetail},#{utype}
 		)
 	</insert>
+	
+	<resultMap type="hashMap" id="selectMap"></resultMap>
+	<select id="getSubArea" resultMap="selectMap" parameterType="String">
+		SELECT r_areadetail FROM areaCode
+		WHERE r_areacode=#{selected}
+	</select>
 	
 	
 	

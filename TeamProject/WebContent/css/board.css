@@ -58,6 +58,8 @@ Modified Date: 2020.04.16 (Thu)
 	color: #ffffff;
 }
 
+.reply_list .cmtListCount{color: #ff7474; font-size: 15px;}
+
 /* 디바이스 크기 작을 경우 리스트에서 글 제목만 노출,
 상세보기에서 bd_detail_dt 컬럼 비노출,
 리스트 상단 이미지 스와이프 비노출 */
@@ -183,5 +185,10 @@ Modified Date: 2020.04.16 (Thu)
 	width: 100%;
 }
 
+/* 삭제하기에서 min-height 주자 */
+.board-block{
+  min-height: calc(100vh - 72px - 236px);
+}
+.deleteArea{width: 60%; margin: 0 auto;}
 
 

@@ -1,9 +1,9 @@
 package com.sist.member.model;
 
+import java.util.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import com.sist.controller.Controller;
 import com.sist.controller.RequestMapping;
 import com.sist.service.dao.*;
@@ -30,13 +30,13 @@ public class MemberModel {
 		String id=request.getParameter("id");  
 		String pwd=request.getParameter("pwd");
 		String loginResult="";
-		
-		// DAO 연결
-		MemberVO mvo=MemberDAO.memberLoginGeneral(id, pwd); 
-		CompMemberVO cmvo=MemberDAO.memberLoginComp(id, pwd);
+		System.out.println("id="+id);
+		System.out.println("pwd="+pwd);
 		
 		// 로그인 판정결과가 OK라면(ID/PWD 모두 일치) 세션에다가 id,name,admin값 저장 
-		// 개인회원인지 체크 
+
+		// [개인회원 체크] 
+		MemberVO mvo=MemberDAO.memberLoginGeneral(id, pwd); 		
 		if(mvo.getMsg().equals("OK_general")) // ID,PWD 다 맞음 
 		{
 			loginResult=mvo.getMsg();
@@ -46,12 +46,18 @@ public class MemberModel {
 			session.setAttribute("name", mvo.getUname());
 			session.setAttribute("usertype", mvo.getUtype());			
 		}
-		else if(mvo.getMsg().equals("NOPWD")) // ID맞지만 PWD 틀림
+		else if(mvo.getMsg().equals("WrongPWD")) // ID맞지만 PWD 틀림
 		{
 			loginResult=mvo.getMsg();
 			System.out.println("2. loginResult="+loginResult);
 		}
-		// 기업회원인지 체크 
+		else
+		{
+			System.out.println("개인회원 아님");
+		}
+		
+		// [기업회원 체크] 
+		CompMemberVO cmvo=MemberDAO.memberLoginComp(id, pwd);
 		if(cmvo.getMsg().equals("OK_comp")) // ID,PWD 다 맞음
 		{
 			loginResult=cmvo.getMsg();
@@ -61,11 +67,16 @@ public class MemberModel {
 			session.setAttribute("name", cmvo.getRname());
 			session.setAttribute("usertype", cmvo.getUtype());			
 		}
-		else if(cmvo.getMsg().equals("NOPWD")) // ID맞지만 PWD 틀림
+		else if(cmvo.getMsg().equals("WrongPWD")) // ID맞지만 PWD 틀림
 		{
 			loginResult=cmvo.getMsg();
 			System.out.println("4. loginResult="+loginResult);
 		}
+		else
+		{
+			System.out.println("기업회원 아님");
+		}
+		
 		
 		if(mvo.getMsg().equals("NOID") && cmvo.getMsg().equals("NOID"))
 		{
@@ -81,13 +92,13 @@ public class MemberModel {
 	}
 	
 	// [로그아웃]
-		@RequestMapping("member/logout.do")
-		public String member_logout(HttpServletRequest request,HttpServletResponse response)
-		{
-			HttpSession session=request.getSession();
-			session.invalidate();
-			return "redirect:../main/main.do";
-		}
+	@RequestMapping("member/logout.do")
+	public String member_logout(HttpServletRequest request,HttpServletResponse response)
+	{
+		HttpSession session=request.getSession();
+		session.invalidate();
+		return "redirect:../main/main.do";
+	}
 	
 	// [개인회원가입] 
 	@RequestMapping("member/signup.do")
@@ -213,6 +224,20 @@ public class MemberModel {
 		
 		return "redirect:../member/welcome.do";
 		
+	}
+	
+	// [기업회원 - 지역확인]
+	@RequestMapping("member/signup_comp_area.do")
+	public String signup_comp_area(HttpServletRequest request,HttpServletResponse response)
+	{
+		String selected=request.getParameter("selected");  
+		System.out.println("selected="+selected);
+
+		List<String> list=MemberDAO.getSubArea(selected);
+		System.out.println("Model list="+list);
+		request.setAttribute("list", list);
+		
+		return "../member/signup_comp_area.jsp";
 	}
 	
 	// [웰컴페이지] 

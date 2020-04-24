@@ -1,29 +1,31 @@
 package com.sist.service.vo;
 
 import java.util.Date;
-
 import com.sist.vo.MainInfoVO;
+/*
+	RESNO     NOT NULL NUMBER         
+	RNO       NOT NULL NUMBER         
+	USERID    NOT NULL VARCHAR2(50)   
+	REGDATE            DATE           
+	RESPEOPLE NOT NULL NUMBER(3)      
+	RESDATE   NOT NULL VARCHAR2(20)   
+	RESTIME   NOT NULL VARCHAR2(20)   
+	RESMENU            VARCHAR2(2000) 
+ */
 
 public class ReservationVO {
 	private int resNo;
 	private int rNo;
 	private String userId;
 	private Date regdate;
-	private int resTotalPrice;
-	private String resPhone;
-	private int resPeople;
-	private String resDate;
-	private String resTime;
+	private int respeople;
+	private String resdate;
+	private String restime;
+	private String resmenu;
 	
 	// join
 	private MainInfoVO mvo;
-	public MainInfoVO getMvo() {
-		return mvo;
-	}
-	public void setMvo(MainInfoVO mvo) {
-		this.mvo = mvo;
-	} 
-	
+
 	public int getResNo() {
 		return resNo;
 	}
@@ -56,43 +58,47 @@ public class ReservationVO {
 		this.regdate = regdate;
 	}
 
-	public int getResTotalPrice() {
-		return resTotalPrice;
+	public int getRespeople() {
+		return respeople;
 	}
 
-	public void setResTotalPrice(int resTotalPrice) {
-		this.resTotalPrice = resTotalPrice;
+	public void setRespeople(int respeople) {
+		this.respeople = respeople;
 	}
 
-	public String getResPhone() {
-		return resPhone;
+	public String getResdate() {
+		return resdate;
 	}
 
-	public void setResPhone(String resPhone) {
-		this.resPhone = resPhone;
+	public void setResdate(String resdate) {
+		this.resdate = resdate;
 	}
 
-	public int getResPeople() {
-		return resPeople;
+	public String getRestime() {
+		return restime;
 	}
 
-	public void setResPeople(int resPeople) {
-		this.resPeople = resPeople;
+	public void setRestime(String restime) {
+		this.restime = restime;
 	}
 
-	public String getResDate() {
-		return resDate;
+	public String getResmenu() {
+		return resmenu;
 	}
 
-	public void setResDate(String resDate) {
-		this.resDate = resDate;
+	public void setResmenu(String resmenu) {
+		this.resmenu = resmenu;
 	}
 
-	public String getResTime() {
-		return resTime;
+	public MainInfoVO getMvo() {
+		return mvo;
 	}
 
-	public void setResTime(String resTime) {
-		this.resTime = resTime;
+	public void setMvo(MainInfoVO mvo) {
+		this.mvo = mvo;
 	}
+	
+
+	
+	
 }

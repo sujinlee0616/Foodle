@@ -33,6 +33,8 @@ public class ReplyBoardVO {
 	private int root;
 	private int depth;
 	private String notice;
+	private int cmtCount; // 댓글 개수  
+	
 	public int getBno() {
 		return bno;
 	}
@@ -116,6 +118,12 @@ public class ReplyBoardVO {
 	}
 	public void setNotice(String notice) {
 		this.notice = notice;
+	}
+	public int getCmtCount() {
+		return cmtCount;
+	}
+	public void setCmtCount(int cmtCount) {
+		this.cmtCount = cmtCount;
 	}
 	
 	

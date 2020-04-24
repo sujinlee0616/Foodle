@@ -30,14 +30,14 @@ public class SearchDAO {
 		return list;
 	}
 	
-	public static int searchTotalPage()
+	public static int searchTotalPage(Map map)
 	{
 		SqlSession session=null;
 		int total=0;
 		
 		try {
 			session=ssf.openSession();
-			total=session.selectOne("searchTotalPage"); // 얘는 mapper의 id명칭이다 메소드명이 아님!!
+			total=session.selectOne("searchTotalPage",map); // 얘는 mapper의 id명칭이다 메소드명이 아님!!
 		} catch (Exception e) {
 			System.out.println("searchTotalPage: "+e.getMessage());
 		} finally {
@@ -47,4 +47,23 @@ public class SearchDAO {
 		
 		return total;
 	}
+	
+	public static int searchTotalCount(Map map)
+	{
+		SqlSession session=null;
+		int total=0;
+		
+		try {
+			session=ssf.openSession();
+			total=session.selectOne("searchTotalCount",map);
+		} catch (Exception e) {
+			System.out.println("searchTotalCount: "+e.getMessage());
+		} finally {
+			if(session!=null)
+				session.close();
+		}
+		
+		return total;
+	}
+	
 }
