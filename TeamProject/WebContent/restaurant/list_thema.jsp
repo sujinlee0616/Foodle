@@ -144,9 +144,9 @@ $(function(){
 	                                    </figure>
 	                                </div>
 	                            </div>
-                        </div>
-                    </div>
-                </c:forEach>
+                        	</div>
+                    	</div>
+               	 </c:forEach>
 
 						
 

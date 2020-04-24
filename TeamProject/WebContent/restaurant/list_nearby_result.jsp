@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -31,13 +34,13 @@ test value: ${result} --%>
                     
                         <div class=" featured-responsive" >
                             <div class="featured-place-wrap" >
-                                <a href="main.jsp?mode=5">
+                           <a href="../restaurant/detail.do?no=${i.rNo }">  
                    
               <!--  =======================그림 부분 시작 ============================= -->
                                 	<div class="featured-title-box">
-                                   	 <img src="${pageContext.request.contextPath }/images/featured1.jpg" class="img-fluid" alt="#">
+                                   	 <img src="${i.ivo.iLink }" class="img-fluid" alt="#">
                                     </div>
-                                    <span class="featured-rating">6.5</span>
+                                    <span class="featured-rating">${i.rScore }</span>
                 <!--  =======================그림 부분  끝============================= -->
                     
                     
@@ -45,27 +48,34 @@ test value: ${result} --%>
                     
       			
 				   			 <div class="featured-title-box">
-                                     <h6>rno: ${i.rNo} AJAX</h6>
+                                     <h6>${i.rName} </h6>
                                      <p>${i.rType} </p> <span>• </span>
-                                     <p>테이크아웃- ${i.rTakeout }</p> <span> • </span>
-                                     <p><span id="priceInfo" data-price="${i.rHighprice }">${i.rHighprice }</span>\</p>
+                                     <p>리뷰 ${i.rScoreCount }</p> <span> • </span>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                     
                                      <ul>
                                          <li><span class="icon-location-pin"></span>
                                              <p>${i.rAddr1 }</p>
                                          </li>
                                          <li><span class="icon-screen-smartphone"></span>
-                                             <p>평점순 - ${i.rScore }</p>
+                                             <p>${i.rTel }</p>
                                          </li>
                                      </ul>
                                      <div class="bottom-icons">
-                                         <div class="closed-now">CLOSED NOW</div>
+                                     
+              
+              
+              
+              
                                          <span class="ti-heart"></span>
                                      </div>
                                  </div>
-            	
-                    
-                   <!--  =======================요약설명  끝 ============================= -->                  
-                                    
+            	    
+                   <!--  =======================요약설명  끝 ============================= -->                                 
                   </a>
               </div>
           </div>
@@ -74,6 +84,7 @@ test value: ${result} --%>
 	</c:if>                
 
 				<!-- ===============================가게 한개 끝!=================================== -->
+                       
                         
                         
                         <div class=" featured-responsive">
