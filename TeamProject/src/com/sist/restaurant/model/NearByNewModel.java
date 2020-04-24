@@ -80,8 +80,24 @@ public class NearByNewModel {
 		
 		//request들을 담은 Map 객체에 
 		List<NearbyVO> nearbyList = NearbyListDAO.nearbyResult(nearbyResultRequest);
-				
+		List<String> addrlist = new ArrayList<String>();
+		
+		for(NearbyVO vo:nearbyList)
+		{
+			String addr=vo.getrAddr2();
+			 addrlist.add(addr);
+			if(addr.length() >17)
+			{
+				addr=addr.substring(0,17).concat("..");
+				vo.setrAddr1(addr);
+			}
+		}
+		
+		
+		
+		
 		//Ajax로 결과 보냄!!
+		request.setAttribute("addrlist", addrlist);
 		request.setAttribute("result", nearbyList);
 		
 		System.out.println("list>>>>>>>>>>>");

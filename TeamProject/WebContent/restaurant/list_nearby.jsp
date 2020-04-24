@@ -9,12 +9,115 @@
 
 <!--  주변 맛집 페이지 CSS -->
 <link rel="stylesheet" href="${pageContext.request.contextPath }/css/nearby.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/css/nearbyArea.css">
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 <script type="text/javascript">
+
+
+$(".areaNarea .areaNinput").click(function(e) {
+
+	   $("label[type='checkbox']", this)
+	   var pX = e.pageX,
+	      pY = e.pageY,
+	      oX = parseInt($(this).offset().left),
+	      oY = parseInt($(this).offset().top);
+
+	   $(this).addClass('active');
+
+	   if ($(this).hasClass('active')) {
+	      $(this).removeClass('active')
+	      if ($(this).hasClass('active-2')) {
+	         if ($("input", this).attr("type") == "checkbox") {
+	            if ($("span", this).hasClass('click-efect')) {
+	               $(".click-efect").css({
+	                  "margin-left": (pX - oX) + "px",
+	                  "margin-top": (pY - oY) + "px"
+	               })
+	               $(".click-efect", this).animate({
+	                  "width": "0",
+	                  "height": "0",
+	                  "top": "0",
+	                  "left": "0"
+	               }, 400, function() {
+	                  $(this).remove();
+	               });
+	            } else {
+	               $(this).append('<span class="click-efect x-' + oX + ' y-' + oY + '" style="margin-left:' + (pX - oX) + 'px;margin-top:' + (pY - oY) + 'px;"></span>')
+	               $('.x-' + oX + '.y-' + oY + '').animate({
+	                  "width": "500px",
+	                  "height": "500px",
+	                  "top": "-250px",
+	                  "left": "-250px",
+	               }, 600);
+	            }
+	         }
+
+	         if ($("input", this).attr("type") == "radio") {
+
+	            $(".areaNarea .areaNinput input[type='radio']").parent().removeClass('active-radio').addClass('no-active-radio');
+	            $(this).addClass('active-radio').removeClass('no-active-radio');
+
+	            $(".areaNarea .areaNinput.no-active-radio").each(function() {
+	               $(".click-efect", this).animate({
+	                  "width": "0",
+	                  "height": "0",
+	                  "top": "0",
+	                  "left": "0"
+	               }, 400, function() {
+	                  $(this).remove();
+	               });
+	            });
+
+	            if (!$("span", this).hasClass('click-efect')) {
+	               $(this).append('<span class="click-efect x-' + oX + ' y-' + oY + '" style="margin-left:' + (pX - oX) + 'px;margin-top:' + (pY - oY) + 'px;"></span>')
+	               $('.x-' + oX + '.y-' + oY + '').animate({
+	                  "width": "500px",
+	                  "height": "500px",
+	                  "top": "-250px",
+	                  "left": "-250px",
+	               }, 600);
+	            }
+
+	         }
+	      }
+	      if ($(this).hasClass('active-2')) {
+	         $(this).removeClass('active-2')
+	      } else {
+	         $(this).addClass('active-2');
+	      }
+	   }
+
+	});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
 
 var sortInfo =''; 		//정렬순 선택  desc
  var restOpen =''; 		//가게 오픈 여부
@@ -279,6 +382,7 @@ function takeoutButChgCL(){
 }
 
 </script>
+
 </head>
 <body onload=" searchNearby();">
     <!--============================= LIST =============================-->
@@ -297,11 +401,82 @@ function takeoutButChgCL(){
 					<p>
 						총 <span>###개</span>
 					</p>
-	<!-- ============================================카테고리!!============================================= -->
+	<!-- ============================================카테고리 시작!!============================================= -->
 
 					<div class="mt-4">				
 						<div class="filter_row area">
 							<div class="category">
+							
+	<!-- ============================================지역 카테고리!!============================================= -->
+	
+	<div class="areaNcontainer">
+  		<div class="areaNinputs">
+	
+         <div class="areaNrow">
+            <div class="areaNcol-3">
+               <span class="areaNinput">
+							<label for="checkbox-1">CheckBox - 1</label>
+							<input type="checkbox" name="checkbox" id="checkbox-1">
+				</span>
+            </div>
+            <div class="areaNcol-3">
+               <span class="areaNinput">
+							<label for="checkbox-2">CheckBox - 2</label>
+							<input type="checkbox" name="checkbox" id="checkbox-2">
+				</span>
+            </div>
+            <div class="areaNcol-3">
+               <span class="areaNinput">
+							<label for="checkbox-3">CheckBox - 3</label>
+							<input type="checkbox" name="checkbox" id="checkbox-3">
+				</span>
+            </div>
+            <div class="areaNcol-3">
+               <span class="areaNinput">
+							<label for="checkbox-4">CheckBox - 4</label>
+							<input type="checkbox" name="checkbox" id="checkbox-4">
+				</span>
+            </div>
+         </div>
+      </div>
+
+      <div class="areaNarea">
+         <div class="areaNrow">
+            <div class="areaNcol-3">
+               <span class="areaNinput">
+							<label for="radio-1">RadioButton - 1</label>
+							<input type="radio" name="radio" id="radio-1">
+						</span>
+            </div>
+            <div class="areaNcol-3">
+               <span class="areaNinput">
+							<label for="radio-2">RadioButton - 2</label>
+							<input type="radio" name="radio" id="radio-2">
+						</span>
+            </div>
+            <div class="areaNcol-3">
+               <span class="areaNinput">
+							<label for="radio-3">RadioButton - 3</label>
+							<input type="radio" name="radio" id="radio-3">
+						</span>
+            </div>
+            <div class="areaNcol-3">
+               <span class="areaNinput">
+							<label for="radio-4">RadioButton - 4</label>
+							<input type="radio" name="radio" id="radio-4">
+			 </span>
+            </div>
+         </div>
+		</div>
+	</div>	
+	
+	
+	
+	<!-- ============================================지역 카테고리 끝!============================================= -->						
+							
+				
+							
+	<!-- ============================================옵션 카테고리 시작!!============================================= -->													
 							
 								<!-- <button onclick="searchNearby()">test</button> -->
 
@@ -313,7 +488,6 @@ function takeoutButChgCL(){
 									<option value="일식" class="lemonmenu">일식</option>
 									<option value="중식" class="lemonmenu">중식</option>
 									<option value="카페/주점" class="lemonmenu">카페</option>
-
 								</select> 
 								
 								
@@ -432,12 +606,18 @@ function takeoutButChgCL(){
 				
 						</div>
 					</div>
-					<!--============================= KAKAO MAP ============================= -->
+			
+		<!-- 	
+			
+					============================ KAKAO MAP ===========================
 					<div class="col-md-5 responsive-wrap map-wrap nearbymapwrap">
 						<div class="map-fix nearbymapfix">
 							<div id="map" data-lat="40.674" data-lon="-73.945" data-zoom="14"></div>
 						</div>
 					</div>
+					
+	 -->				
+	 				
 				</div>
 
 			</div>
@@ -457,11 +637,6 @@ function takeoutButChgCL(){
     <script src="${pageContext.request.contextPath }/js/bootstrap.min.js"></script>
 
 
-	<!-- KAKAO MAP-->
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=LIBRARY"></script>
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=services,clusterer,drawing"></script>
-	
-
     <!-- 이전에 남아있던 map 관련 소스 :  파악 중 -->
     <script>
         $(".map-icon").click(function() {
@@ -469,8 +644,21 @@ function takeoutButChgCL(){
         });
     </script>
    
+   
+   
    <!-- Kakao Map Script -->
+  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=671fb4748c5025ba667a7fc5d41d217a"></script>
+  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=services,clusterer,drawing"></script>
    <script>
+   
+		// 마커를 클릭했을 때 해당 장소의 상세정보를 보여줄 커스텀오버레이입니다
+   		var placeOverlay = new kakao.maps.CustomOverlay({zIndex:1}), 
+       contentNode = document.createElement('div'), // 커스텀 오버레이의 컨텐츠 엘리먼트 입니다 
+       markers = [], // 마커를 담을 배열입니다
+       currCategory = ''; // 현재 선택된 카테고리를 가지고 있을 변수입니다
+   
+   
+   
         var mapContainer = document.getElementById('map');
         var  mapOption = {
             center: new kakao.maps.LatLng(33.450701, 126.570667),
@@ -480,38 +668,60 @@ function takeoutButChgCL(){
         //지도를 생성합니다.
         var map = new kakao.maps.Map(mapContainer, mapOption);
         
-     	//주소-좌표 변환 객체를 생성합니다.
-        var geocoder = new kakao.maps.services.Geocoder();
+
+    
         
-     // 주소로 좌표를 검색합니다
-        geocoder.addressSearch('제주특별자치도 제주시 첨단로 242', function(result, status) {
-
-            // 정상적으로 검색이 완료됐으면 
-             if (status === kakao.maps.services.Status.OK) {
-
-                var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-
-                // 결과값으로 받은 위치를 마커로 표시합니다
-                var marker = new kakao.maps.Marker({
-                    map: map,
-                    position: coords
-                });
-
-                // 인포윈도우로 장소에 대한 설명을 표시합니다
-                var infowindow = new kakao.maps.InfoWindow({
-                    content: '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>'
-                });
-                infowindow.open(map, marker);
-
-                // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-                map.setCenter(coords);
-            } 
-        });    
-     	
-     	
-     	
-     	
+        ////////////////////////////////////////////////////////////////////
         
+if (navigator.geolocation) {
+    
+    // GeoLocation을 이용해서 접속 위치를 얻어옵니다
+    navigator.geolocation.getCurrentPosition(function(position) {
+        
+        var lat = position.coords.latitude, // 위도
+            lon = position.coords.longitude; // 경도
+        
+        var locPosition = new kakao.maps.LatLng(lat, lon), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
+            message = '<div style="padding:5px;">내 위치</div>'; // 인포윈도우에 표시될 내용입니다
+        
+        // 마커와 인포윈도우를 표시합니다
+        displayMarker(locPosition, message);
+            
+      });
+    
+	} else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
+    
+   		 var locPosition = new kakao.maps.LatLng(33.450701, 126.570667),    
+      	  message = 'geolocation을 사용할수 없어요..'
+        
+    displayMarker(locPosition, message);
+	}
+
+// 지도에 마커와 인포윈도우를 표시하는 함수입니다
+function displayMarker(locPosition, message) {
+
+    // 마커를 생성합니다
+    var marker = new kakao.maps.Marker({  
+        map: map, 
+        position: locPosition
+    }); 
+    
+    var iwContent = message, // 인포윈도우에 표시할 내용
+        iwRemoveable = true;
+
+    // 인포윈도우를 생성합니다
+    var infowindow = new kakao.maps.InfoWindow({
+        content : iwContent,
+        removable : iwRemoveable
+    });
+    
+    // 인포윈도우를 마커위에 표시합니다 
+    infowindow.open(map, marker);
+    
+    // 지도 중심좌표를 접속위치로 변경합니다
+    map.setCenter(locPosition);      
+}    
+
     </script>
 </body>
 </html>

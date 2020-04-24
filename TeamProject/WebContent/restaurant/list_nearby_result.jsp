@@ -14,8 +14,8 @@
 <body>
 <%-- 
 list_nearby_reulst started!
-test value: ${result} --%>
-  ${result}
+test value: ${result}
+  ${result} --%>
   
 		  <!-- =========================Ajax 데이터 연동부분============================= -->	
 	
