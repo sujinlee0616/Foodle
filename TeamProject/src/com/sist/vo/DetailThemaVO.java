@@ -27,5 +27,15 @@ public class DetailThemaVO {
 	public void setT_Info(String t_Info) {
 		this.t_Info = t_Info;
 	}
+	
+	@Override
+	public String toString() {
+		return "DetailThemaVO [t_DetailThema=" + t_DetailThema + ", t_Info=" + t_Info + ", themaCount=" + themaCount
+				+ "]";
+	}
+	
+	
+	
+	
 }
 

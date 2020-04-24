@@ -5,6 +5,31 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('#res_area').click(function(e){
+		var selected=$(this).val();
+		console.log(selected);
+		
+		$.ajax({
+			type:'POST',
+			url:'../member/signup_comp_area.do',
+			data:{"selected":selected},
+			success:function(res)
+			{	
+				$('#res_area_dt').html(res);	
+			},
+			error:function(e){
+				alert(e);
+			}
+		})
+	});
+	
+})
+
+
+</script>
 </head>
 <body>
 <!--============================= SINGUP =============================-->
@@ -114,16 +139,16 @@
                 <select name="rArea" id="res_area" class="custom-select ml-3">
                   <option value="">가게 지역을 선택하세요.</option>
                   <!-- areaCode 테이블의 r_AreaDetail 값 가져온다. -->
-                  <option value="한식">서울 강남</option>
-                  <option value="양식">서울 강북</option>
-                  <option value="일식">경기 남부</option>
-                  <option value="중식">경기 북부</option>
-                  <option value="뷔페">인천</option>
-                  <option value="패스트푸드">부산</option>
-                  <option value="분식">대구</option>
-                  <option value="베이커리">광주</option>
-                  <option value="카페/주점">대전</option>
-                  <option value="기타/세계">울산</option>
+                  <option value="서울 강남">서울 강남</option>
+                  <option value="서울 강북">서울 강북</option>
+                  <option value="경기 남부">경기 남부</option>
+                  <option value="경기 북부">경기 북부</option>
+                  <option value="인천">인천</option>
+                  <option value="부산">부산</option>
+                  <option value="대구">대구</option>
+                  <option value="광주">광주</option>
+                  <option value="대전">대전</option>
+                  <option value="울산">울산</option>
                 </select>
               </li>
               <!-- 가게 세부 지역 (NULL) -->
@@ -132,7 +157,7 @@
                 <select name="rAreaDetail" id="res_area_dt" class="custom-select ml-3">
                   <option value="">세부 지역을 선택하세요.</option>
                   <!-- 위에서 선택한 rArea값을 바탕으로 areaCode 테이블의 a_AreaCode 값 가져온다. -->
-                  <option value="한식">가로수길</option>
+                  <!-- <option value="한식">가로수길</option> -->
                 </select>
               </li>
             </ul>

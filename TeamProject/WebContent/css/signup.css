@@ -165,10 +165,6 @@
 
 /* 유효성 검사 */
 .hidden{display: none !important;}
-.guide_txt{display:inline-block;} 
-.guide_txt .default{color:#707070; font-size:15px; display:inline-block; margin-top: 10px;}
-.guide_txt .warning{color:#ff3a6d; font-size:15px; display:inline-block; margin-top: 10px;}
-
 
 
 
