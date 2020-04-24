@@ -21,30 +21,12 @@ public class DetailModel {
 	public String restaurant_detail(HttpServletRequest request, HttpServletResponse response) {
 		String no=request.getParameter("no");
 		
-		// 리뷰 페이지
-		String page=request.getParameter("page");
-		if(page==null)
-			page="1";
-		int curpage=Integer.parseInt(page);
-
-		int rowSize=10;
-		int start=(rowSize*curpage)-(rowSize-1);
-		int end=rowSize*curpage;
-		Map reviewmap=new HashMap();
-		reviewmap.put("start", start);
-		reviewmap.put("end", end);
-		reviewmap.put("rno", Integer.parseInt(no));		
-		
 		// DAO
 		MainInfoVO mvo=RestaurantDetailDAO.resDetailMaininfo(Integer.parseInt(no));
 		SubinfoVO svo=RestaurantDetailDAO.resDetailSubinfo(Integer.parseInt(no));
 		ReserveInfoVO rvo=RestaurantDetailDAO.resDetailReserveinfo(Integer.parseInt(no));
 		List<MenuVO> menuList=RestaurantDetailDAO.resDetailMenu(Integer.parseInt(no));
 		List<ImageVO> imageList=RestaurantDetailDAO.resDetailImage(Integer.parseInt(no));
-		List<ReviewVO> reviewList=RestaurantDetailDAO.reviewData(reviewmap);
-		int reviewTotalCount= RestaurantDetailDAO.reviewTotalCount(Integer.parseInt(no));
-		int totalpage=RestaurantDetailDAO.reviewTotalPage(Integer.parseInt(no));
-		double reviewScoreAvg =RestaurantDetailDAO.reviewScoreAvg(Integer.parseInt(no));
 		
 		// Detail 위쪽에 짧은 설명
 		String strContent=svo.getrContent().substring(0, svo.getrContent().indexOf("다.")+2);
@@ -71,14 +53,7 @@ public class DetailModel {
 			}
 		}
 		
-		// 리뷰 페이지 블록 나누기
-		final int BLOCK=5;
-		int startPage=((curpage-1)/BLOCK*BLOCK)+1;
-		int endPage=((curpage-1)/BLOCK*BLOCK)+BLOCK;
 		
-		int allPage=totalpage;
-		if(endPage>allPage)
-			endPage=allPage;
 		
 		
 		// 쿠키 
@@ -94,15 +69,6 @@ public class DetailModel {
 		request.setAttribute("imageList", imageList);
 		request.setAttribute("strContent", strContent);
 		request.setAttribute("myWish", myWish);
-		request.setAttribute("reviewList", reviewList);
-		request.setAttribute("curpage", curpage);
-		request.setAttribute("totalpage", totalpage);
-		request.setAttribute("BLOCK", BLOCK);
-		request.setAttribute("startPage", startPage);
-		request.setAttribute("endPage", endPage);
-		request.setAttribute("allPage", allPage);
-		request.setAttribute("reviewTotalCount", reviewTotalCount);
-		request.setAttribute("reviewScoreAvg", reviewScoreAvg);
 		
 		request.setAttribute("main_header", "../common/header_sub.jsp");
 		request.setAttribute("main_jsp", "../restaurant/detail.jsp");
@@ -301,6 +267,54 @@ public class DetailModel {
 		System.out.println("id="+userid);*/
 		
 		return "redirect:../mypage/mypage.do";
+	}
+	
+	// =========================================== 리뷰 ===================================================
+	
+	@RequestMapping("restaurant/detail_review.do")
+	public String retaurant_detail_review(HttpServletRequest request, HttpServletResponse response) {
+		
+		
+		String no=request.getParameter("no");
+		String page=request.getParameter("page");
+		if(page==null)
+			page="1";
+		int curpage=Integer.parseInt(page);
+
+		int rowSize=5;
+		int start=(rowSize*curpage)-(rowSize-1);
+		int end=rowSize*curpage;
+		Map reviewmap=new HashMap();
+		reviewmap.put("start", start);
+		reviewmap.put("end", end);
+		reviewmap.put("rno", Integer.parseInt(no));	
+		
+		List<ReviewVO> reviewList=RestaurantDetailDAO.reviewData(reviewmap);
+		int reviewTotalCount= RestaurantDetailDAO.reviewTotalCount(Integer.parseInt(no));
+		int totalpage=RestaurantDetailDAO.reviewTotalPage(Integer.parseInt(no));
+		double reviewScoreAvg =RestaurantDetailDAO.reviewScoreAvg(Integer.parseInt(no));
+		
+		
+		// 리뷰 페이지 블록 나누기
+		final int BLOCK=5;
+		int startPage=((curpage-1)/BLOCK*BLOCK)+1;
+		int endPage=((curpage-1)/BLOCK*BLOCK)+BLOCK;
+		
+		int allPage=totalpage;
+		if(endPage>allPage)
+			endPage=allPage;
+		
+		request.setAttribute("reviewList", reviewList);
+		request.setAttribute("curpage", curpage);
+		request.setAttribute("totalpage", totalpage);
+		request.setAttribute("BLOCK", BLOCK);
+		request.setAttribute("startPage", startPage);
+		request.setAttribute("endPage", endPage);
+		request.setAttribute("allPage", allPage);
+		request.setAttribute("reviewTotalCount", reviewTotalCount);
+		request.setAttribute("reviewScoreAvg", reviewScoreAvg);
+		
+		return "../restaurant/detail_review.jsp";
 	}
 	
 }

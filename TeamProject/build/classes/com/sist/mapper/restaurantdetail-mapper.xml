@@ -59,30 +59,30 @@
 	<!-- #################################### 리뷰 ################################### -->
 	<!-- 리뷰 데이터 -->
 	<select id="reviewData" resultType="ReviewVO" parameterType="hashMap">
-		SELECT revno,userid,rno,revscore,revcontent,revdate,revgood,revbad,num
-		FROM (SELECT revno,userid,rno,revscore,revcontent,revdate,revgood,revbad,rownum as num
-		FROM (SELECT revno,userid,rno,revscore,revcontent,revdate,revgood,revbad 
-		FROM review WHERE rno=#{rno} ORDER BY revdate DESC))
+		SELECT revNo,userId,rNo,revScore,revContent,revDate,revGood,revBad,num
+		FROM (SELECT revNo,userId,rNo,revScore,revContent,revDate,revGood,revBad,rownum as num
+		FROM (SELECT revNo,userId,rNo,revScore,revContent,revDate,revGood,revBad
+		FROM review WHERE rNo=#{rno} ORDER BY revDate DESC))
 		WHERE num BETWEEN #{start} AND #{end}
 	</select>
 	
 	<!-- 리뷰 개수 -->
 	<select id="reviewTotalCount" resultType="int" parameterType="int">
 		SELECT COUNT(*) FROM review
-		WHERE rno=#{rno}
+		WHERE rNo=#{rno}
 	</select>
 	
 	<!-- 리뷰 총 페이지 -->
 	<select id="reviewTotalPage" resultType="int" parameterType="int">
-		SELECT CEIL(COUNT(*)/10.0)
+		SELECT CEIL(COUNT(*)/5.0)
 		FROM review
-		WHERE rno=#{rno}
+		WHERE rNo=#{rno}
 	</select>
 	
 	<!-- 리뷰 평점 평균 -->
 	<select id="reviewScoreAvg" resultType="double" parameterType="int">
-		SELECT TRUNC(AVG(revscore),1) FROM review
-		WHERE rno=#{rno}
+		SELECT TRUNC(AVG(revScore),1) FROM review
+		WHERE rNo=#{rno}
 	</select>
 	
 	<!-- #################################### 예약  ################################### -->
