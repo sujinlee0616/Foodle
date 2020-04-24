@@ -12,14 +12,14 @@
 <body>
 <!--============================= Start of BOARD DETAIL =============================-->
 <section class="board-block pb-1 light-bg">
-  <div class="container pt-5">
+  <div class="container">
     <div class="py-3">
       <div class="table-responsive">
         <!-- ============================ Start of 상세보기 ============================ -->
         <table class="table replyBoard reply_detail">				
 	        <thead>
 	            <tr>
-	                <th class="subject px-3 py-3" colspan="4">${vo.bsubject }</td>
+	                <th class="subject px-3" colspan="4">${vo.bsubject }</td>
 	            </tr>
 	            <tr>
 	                <td>
@@ -124,7 +124,7 @@
 
 <!--============================= Start of BOARD LIST =============================-->
     <section class="board-block light-bg">
-        <div class="container">
+        <div class="container py-5">
 			<div class="row">
                 <div class="col-md-12">
                     <h5>자유게시판</h5>
@@ -148,7 +148,15 @@
 								<tr>
 									<td class="text-center">${vo.bno }</td>
 									<td>
-										<a href="detail.do?page=${curpage }&bno=${vo.bno }">${vo.bsubject }</a>
+										<!-- ============= Start of 제목  ============= -->
+										<!-- 답글이면 아이콘 붙임 -->
+										<c:if test="${vo.group_tab>0 }">
+						  					<c:forEach var="i" begin="1" end="${vo.group_tab }" step="1">
+						  						&nbsp;&nbsp;
+						  					</c:forEach>
+						  					<img src="../images/icon_reply.gif">
+						  				</c:if>
+										<a href="detail.do?page=${curpage }&bno=${vo.bno }">${vo.bsubject }<span class="cmtListCount">&nbsp;(${vo.cmtCount })</span></a>
 										<!-- 공지 글에는 공지 플래그 붙임 -->
 										<c:if test="${vo.notice=='y'}">
 											<span class="badge badge-gray ml-2" id="">공지</span>
@@ -160,6 +168,7 @@
 										<c:if test="${today<=reg_dt}">
 											<span class="badge badge-lightgray ml-2" id="">NEW</span>
 										</c:if>
+										<!-- ============= End of 제목  ============= -->
 									</td>
 									<td class="text-center">${vo.bname }</td>
 									<td class="text-center">

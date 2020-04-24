@@ -40,6 +40,12 @@ public class ReplyBoardModel {
 		request.setAttribute("totalpage", totalpage);
 		request.setAttribute("contentsCnt", contentsCnt);
 		
+		// 댓글 개수 ★
+		for(ReplyBoardVO vo:list)
+		{
+			vo.setCmtCount(ReplyBoardDAO.listCmtCount(vo.getBno()));
+		}
+		
 		// Pagination
 		int startpage=1;
 		int endpage=1;
@@ -103,6 +109,12 @@ public class ReplyBoardModel {
 		request.setAttribute("curpage", curpage);
 		request.setAttribute("totalpage", totalpage);
 		request.setAttribute("contentsCnt", contentsCnt);
+		
+		// 댓글 개수 ★
+		for(ReplyBoardVO cmtvo:list)
+		{
+			cmtvo.setCmtCount(ReplyBoardDAO.listCmtCount(cmtvo.getBno()));
+		}
 		
 		// Pagination
 		int startpage=1;
