@@ -57,6 +57,18 @@
 	<select id="commentInsert" parameterMap="commentInsertMap" statementType="CALLABLE">
 		{CALL commentInsert(?,?,?)}
 	</select>
+	
+	<!-- 댓글 삭제 -->
+	<parameterMap type="hashmap" id="commentDeleteMap">
+		<parameter property="pCno" javaType="java.lang.Integer" jdbcType="INTEGER" mode="IN"/>
+	</parameterMap>
+	<select id="commentDelete" parameterMap="commentDeleteMap">
+		{CALL commentDelete(?)}
+	</select>
+	
+	<!-- 댓글 수정 -->
+	
+	
 
 </mapper>
 

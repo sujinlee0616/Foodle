@@ -319,7 +319,7 @@ public class ReplyBoardModel {
 		return "redirect:../board/list.do";
 	}
 	
-	// [댓글 작성] - ================== 하는 중 ================== 
+	// [댓글 작성]  
 	@RequestMapping("board/comment_insert.do")
 	public String comment_insert(HttpServletRequest request,HttpServletResponse response)
 	{
@@ -332,14 +332,49 @@ public class ReplyBoardModel {
 		HttpSession session=request.getSession();
 		String userid=(String)session.getAttribute("id");		
 		String content=request.getParameter("cmtContent");
+		System.out.println("bno="+bno);
+		System.out.println("userid="+userid);
 		
-		BoardCommentDAO.commentInsert(Integer.parseInt(bno));		
+		Map map=new HashMap();
+		map.put("pBno", Integer.parseInt(bno));
+		map.put("pUserId", userid);
+		map.put("pContent", content);
+		BoardCommentDAO.commentInsert(map);		
 		
 		return "redirect:../board/detail.do?&bno="+bno;
 	}
 
+	// [댓글 삭제] 
+	@RequestMapping("board/comment_delete.do")
+	public String comment_delete(HttpServletRequest request,HttpServletResponse response)
+	{
+		String bno=request.getParameter("bno"); // 리다이렉트 할 때만 필요함 
+		String cno=request.getParameter("cno");// 데이터 처리할 땐 사실 cno만 있으면 됨
+		//System.out.println("bno="+bno);
+		//System.out.println("cno="+cno);
+		
+		Map map=new HashMap();
+		map.put("pCno", Integer.parseInt(cno));
+		BoardCommentDAO.commentDelete(map);		
+		
+		return "redirect:../board/detail.do?&bno="+bno;
+	}
 	
-	
+	// [댓글 수정] 
+	@RequestMapping("board/comment_update.do")
+	public String comment_update(HttpServletRequest request,HttpServletResponse response)
+	{
+		String bno=request.getParameter("bno"); // 리다이렉트 할 때만 필요함
+		String cno=request.getParameter("cno");
+		//System.out.println("bno="+bno);
+		//System.out.println("cno="+cno);
+		
+		Map map=new HashMap();
+		map.put("pCno", Integer.parseInt(cno));
+		BoardCommentDAO.commentUpdate(map);	
+		
+		return "redirect:../board/detail.do?&bno="+bno;
+	}
 	
 	
 	

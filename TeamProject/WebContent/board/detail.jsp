@@ -4,10 +4,33 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <jsp:useBean id="now" class="java.util.Date" />
 <fmt:formatDate var="today" value="${now}" pattern="yyyy-MM-dd" />
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+<script src="../js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+var u=0;
+$(function(){
+	$('.cmtUpdtBtn').click(function(){
+		//$('').hide();
+		var update_cno=$(this).attr('update_cno');
+		console.log('update_cno='+update_cno);
+		$('.cmtUpdateArea').hide();
+		
+		if(u==0){
+			$('#before_update_cno'+update_cno).hide();
+			$('#try_to_update_cno'+update_cno).show();
+			u=1;
+		}
+		else{
+			$('#before_update_cno'+update_cno).show();
+			$('#try_to_update_cno'+update_cno).hide();
+			u=0;
+		}
+	})
+	
+})
+</script>
 </head>
 <body>
 <!--============================= Start of BOARD DETAIL =============================-->
@@ -35,7 +58,6 @@
 	                  <span class="td_del">|</span>
 	                  <span class="bd_detail_dt px-2">조회수: ${vo.hit } </span>
 	                </td>
-
 	                <td>
 	                  <span class="td_del">|</span>
 	                  <span class="bd_detail_dt px-2">답글 수: ${vo.depth }</span>
@@ -77,13 +99,13 @@
           	<!-- =============== 로그인 한 경우 =============== -->
           	<c:if test="${sessionScope.id!=null }">
 	        	<div class="logged_in">
-	              <form action="../board/comment_insert.do"></form>
+	              <form method="post" action="../board/comment_insert.do">
 		              <div class="writer_info">
 		              	<input type="hidden" name="bno" value="${vo.bno }">
 		                <span class="writer_nm">${sessionScope.id}</span>
 		              </div>
 		              <textarea name="cmtContent" class="cmt_input" placeholder="건전한 댓글 문화를 위해, 타인에게 불쾌감을 주는 욕설 또는 특정 계층/민족, 종교 등을 비하하는 내용은 입력을 지양해주세요."></textarea>
-		              <button class="cmtBtn">등록</button>
+		              <input type="submit" class="cmtBtn" value="등록">
 	              </form>
 	            </div>
             </c:if>
@@ -100,12 +122,32 @@
           <c:forEach var="cvo" items="${cmt_list }" >
            	<hr class="cmt_line">
 	          <div class="cmt">
+	          	<!-- 1. ID,작성일, 댓글에 대한 액션 버튼 영역 -->
 	            <div class="writer_info">
 	              <span class="writer_nm">${cvo.userid }</span>
 	              <span class="write_time pl-1">${cvo.regdate }</span>
+	              <div class="cmtActions">
+		              <span class="cmtActionBtn pl-1" data-no="${cvo.bno }">답글</span>
+			          <c:if test="${sessionScope.id==cvo.userid }">
+			          	  <span class="cmtActionBtn cmtUpdtBtn pl-1" update_cno="${cvo.cno }">수정</span>
+			              <a class="cmtActionBtn" href="../board/comment_delete.do?bno=${cvo.bno }&cno=${cvo.cno }">삭제</a>
+		              </c:if>
+	              </div>
 	            </div>
-	            <div class="cmt_content pt-2 pl-1">${cvo.content }</div>
-	            <%-- <div class="cmt_content pt-2 pl-1"><pre>${cvo.content }</pre></div> --%>
+	            <!-- 2. 댓글 내용 영역 -->
+	            <div class="cmt_content pt-2 pl-1">
+	            	<pre class="mb-0" id="before_update_cno${cvo.cno }"
+	            	 style="font-size: 14px; white-space: pre-wrap; font-family: Nanum Gothic;">${cvo.content }</pre>
+	            	<!-- 수정하기 버튼 클릭 시 -->
+	            	<form method="POST" action="../board/comment_update.do">
+	            		<div class="cmtUpdateArea" id="try_to_update_cno${cvo.cno }" style="display:none;" >
+	            			<input type="hidden" name="bno" value="${cvo.bno }">
+	            			<input type="hidden" name="cno" value="${cvo.cno }">
+		            		<textarea name="cmtContent" class="cmt_input" placeholder="건전한 댓글 문화를 위해, 타인에게 불쾌감을 주는 욕설 또는 특정 계층/민족, 종교 등을 비하하는 내용은 입력을 지양해주세요.">${cvo.content }</textarea>
+			            	<input type="submit" class="cmtBtn" value="등록">
+		            	</div>
+	            	</form>
+	            </div>
 	          </div>
           </c:forEach>
         </div>

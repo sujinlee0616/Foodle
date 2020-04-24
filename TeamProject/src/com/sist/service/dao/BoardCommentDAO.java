@@ -77,16 +77,50 @@ public class BoardCommentDAO {
 	}
 	
 	// [댓글 작성]
-	public static void commentInsert(int bno)
+	public static void commentInsert(Map map)
 	{
 		SqlSession session=null;
 		try {
 			session=ssf.openSession(); // 프로시저에서 커밋해주니까 내가 따로 오토커밋 설정 안 해줘도 됨 
-			session.update("commentInsert",bno); // 프로시저 호풀할 땐 항상 update로
-			System.out.println("bno="+bno);
-		} catch (Exception ex) {
+			session.update("commentInsert",map); // 프로시저 호풀할 땐 항상 update로
+		} 
+		catch (Exception ex) {
 			System.out.println("commentInsert: "+ex.getMessage());
-		} finally {
+		} 
+		finally {
+			if(session!=null)
+				session.close();
+		}
+	}
+	// [댓글 삭제]
+	public static void commentDelete(Map map)
+	{
+		SqlSession session=null;
+		try {
+			session=ssf.openSession(); // 프로시저에서 커밋해주니까 내가 따로 오토커밋 설정 안 해줘도 됨 
+			session.update("commentDelete",map); // 프로시저 호풀할 땐 항상 update로
+		} 
+		catch (Exception ex) {
+			System.out.println("commentDelete: "+ex.getMessage());
+		} 
+		finally {
+			if(session!=null)
+				session.close();
+		}
+	}
+	
+	// [댓글 수정]
+	public static void commentUpdate(Map map)
+	{
+		SqlSession session=null;
+		try {
+			session=ssf.openSession(); // 프로시저에서 커밋해주니까 내가 따로 오토커밋 설정 안 해줘도 됨 
+			session.update("commentUpdate",map); // 프로시저 호풀할 땐 항상 update로
+		} 
+		catch (Exception ex) {
+			System.out.println("commentUpdate: "+ex.getMessage());
+		} 
+		finally {
 			if(session!=null)
 				session.close();
 		}
