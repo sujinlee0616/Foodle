@@ -2,27 +2,111 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sist.mapper.mypage-mapper">
 
-	<select id="mypageRerveList" resultType="ReservationVO"
-		parameterType="string">
-		SELECT
-		rno,userid,restotalprice,respeople,resdate,restime FROM reservation
-		WHERE userid=#{userid}
-		ORDER BY resno DESC
-	</select>
-	<select id="mypageCouponList" resultType="CouponVO"
-		parameterType="string">
-		SELECT * FROM coupon
-		WHERE userid=#{userid}
-		ORDER BY
-		cenddate
-	</select>
-	<select id="mypageReviewList" resultType="ReviewVO"
-		parameterType="string">
+	<resultMap type="MyWishVO" id="mywishMap">
+	
+		<result column="regdate" property="regdate"/>
+		<result column="rNo" property="rNo"/>
+		
+		<result column="rScore" property="mvo.rScore"/>
+		<result column="rTel" property="mvo.rTel"/>
+ 		<result column="rAddr1" property="mvo.rAddr1"/>
+ 		<result column="rName" property="mvo.rName"/>
+ 		
+		<result column="iLink" property="mvo.ivo.iLink"/>
+	</resultMap>
 
-		SELECT * FROM review
-		WHERE userid=#{userid}
-		ORDER BY
-		revdate DESC
+	<resultMap type="ReservationVO" id="reservationMap">
+		<result column="resno" property="resNo"/>
+		<result column="rno" property="rNo"/>
+		<result column="userid" property="userId"/>
+		<result column="regdate" property="regdate"/>
+		<result column="resTotalPrice" property="resTotalPrice"/>
+		<result column="resPhone" property="resPhone"/>
+ 		<result column="resPeople" property="resPeople"/>
+		<result column="resDate" property="resDate"/>
+		<result column="resTime" property="resTime"/>
+ 
+ 		<result column="rNo" property="mvo.rNo"/>
+		<result column="rName" property="mvo.rName"/>
+	</resultMap>
+	
+	
+	<resultMap type="ReviewVO" id="reviewMap">
+		
+		<result column="revno" property="revNo"/>
+		<result column="userid" property="userId"/>
+		
+		<result column="revScore" property="revScore"/>
+		<result column="revContent" property="revContent"/>
+		<result column="revDate" property="revDate"/>
+ 		<result column="revGood" property="revGood"/>
+		<result column="revBad" property="revBad"/>
+ 
+ 		<result column="rNo" property="mvo.rNo"/>
+		<result column="rName" property="mvo.rName"/>
+	</resultMap>
+
+
+
+	<resultMap type="CouponVO" id="couponMap">
+		<result column="cNo" property="cNo"/>
+		<result column="rNo" property="rNo"/>
+		<result column="cPrice" property="cPrice"/>
+		<result column="cStartdate" property="cStartdate"/>
+		<result column="cEnddate" property="cEnddate"/>
+		<result column="cName" property="cName"/> 		
+ 		
+		<result column="rName" property="mvo.rName"/>
+	</resultMap>
+
+	<select id="mypageRerveList" resultMap="reservationMap"
+		parameterType="string">
+		SELECT reservation.*,maininfo.rno,maininfo.rname 
+		FROM reservation,maininfo
+		WHERE reservation.userid=#{userid}
+		AND maininfo.rno=reservation.rno
+		ORDER BY resDate DESC
+	</select>
+	<select id="mypageCouponList" resultMap="couponMap"
+		parameterType="hashmap">
+	
+		SELECT  rno,rno1,cno,cprice,cstartdate,cenddate,cname,rname,userid, num 
+	    FROM(SELECT  rno,rno1,cno,cprice,cstartdate,cenddate,cname,rname,userid, rownum as num 
+	    FROM ( SELECT coupon.rno as rno, maininfo.rno as rno1,cno,cprice,cstartdate,cenddate,cname,rname,userid
+	    FROM coupon,maininfo WHERE maininfo.rno=coupon.rno AND userid=#{userid}))
+	    WHERE num BETWEEN #{start} AND #{end}
+		
+	</select>
+	<select id="mypageCouponSearch" resultMap="couponMap" parameterType="hashmap">
+		SELECT  rno,rno1,cno,cprice,cstartdate,cenddate,cname,rname,userid, num 
+	    FROM(SELECT  rno,rno1,cno,cprice,cstartdate,cenddate,cname,rname,userid, rownum as num 
+	    FROM ( SELECT coupon.rno as rno, maininfo.rno as rno1,cno,cprice,cstartdate,cenddate,cname,rname,userid
+	    FROM coupon,maininfo WHERE maininfo.rno=coupon.rno AND userid=#{userid} AND rname LIKE '%' || #{rname}||'%'))
+	    WHERE num BETWEEN #{start} AND #{end}
+	
+	</select>
+	
+	<select id="mypageCouponSearchList" resultMap="couponMap" parameterType="hashmap">
+		SELECT  DISTINCT rname
+		FROM(SELECT  rno,rno1,cno,cprice,cstartdate,cenddate,cname,rname,userid, rownum as num 
+		FROM ( SELECT coupon.rno as rno, maininfo.rno as rno1,cno,cprice,cstartdate,cenddate,cname,rname,userid
+		FROM coupon,maininfo WHERE maininfo.rno=coupon.rno AND userid=#{userid} AND rname LIKE '%' || #{rname}||'%' ))
+		WHERE num BETWEEN #{start} AND #{end} 
+	</select>
+	
+	<select id="mypageCouponTotalPage" resultType="int">
+		SELECT CEIL(COUNT(*)/6.0) FROM coupon
+	</select>
+
+	
+ 	<select id="mypageReviewList" resultMap="reviewMap" parameterType="hashmap">
+
+		SELECT  rno,rno1,revno,userid,revscore,revcontent,revdate,revgood,revbad,rname, num 
+	    FROM(SELECT  rno,rno1,revno,userid,revscore,revcontent,revdate,revgood,revbad,rname, rownum as num 
+	    FROM ( SELECT review.rno as rno,maininfo.rno as rno1,revno,userid,revscore,revcontent,revdate,revgood,revbad,rname
+	    FROM review,maininfo WHERE maininfo.rno=review.rno AND userid=#{userid}))
+	    WHERE num BETWEEN #{start} AND #{end}
+
 	</select>
 
 	<select id="mypageInfoupdateDetail" resultType="MemberVO"
@@ -52,10 +136,14 @@
 		 
 		WHERE userid=#{userid} 
 	</update>
-	<select id="mypageMyWishList" resultType="MyWishVO"
-		parameterType="String">
-		SELECT * FROM mywish
-		WHERE userid=#{userid}
+	<select id="mypageMyWishList" resultMap="mywishMap"	parameterType="map">
+
+	   SELECT rno,rname,rscore,rtel,raddr1,iname,ilink,userid,regdate, num
+        FROM(SELECT rno,rno2,rname,rscore,rtel,raddr1,iname,ilink,userid,regdate, rownum as num
+        FROM(SELECT mywish.rno as rno,maininfo.rno as rno1,image.rno as rno2,rname,rscore,rtel,raddr1,iname,ilink,userid,regdate
+	    FROM mywish,maininfo,image WHERE maininfo.rno=mywish.rno AND mywish.rno=image.rno AND userid=#{userid} AND iname='Mainimage'))
+        WHERE num BETWEEN #{start} AND #{end}
 	</select>
+	
 	
 </mapper>
