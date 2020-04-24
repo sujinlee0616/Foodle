@@ -13,8 +13,8 @@
 		<div class="wrap_mylst">
 			<div class="cards_wrap">
 				<div class="card_row">
-				<input type="hidden" id="couponCurpage" value=${page }>
-				<input type="hidden" id="couponTotal" value=${total }>
+				<input type="hidden" id="couponCurHidden" value=${page }>
+				<input type="hidden" id="couponTotalHidden" value=${total }>
 					<c:forEach var="vo" items="${list }">
 						<div class="card even used"
 							style="float: left; margin-left: 60px; margin-top: 20px">

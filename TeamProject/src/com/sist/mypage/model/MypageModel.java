@@ -31,21 +31,45 @@ public class MypageModel {
 	@RequestMapping("mypage/wish.do")
 	public String mypage_wish(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
-		
+	
 		List<MyWishVO> list = new ArrayList<MyWishVO>();
-		int start=1;
-		int end=10;
-		String userid=(String) session.getAttribute("id");
 		
-		Map map = new HashMap();
+		String page=request.getParameter("page");
+		String pageMove=request.getParameter("pageMove");
+		
+		if(page==null)
+			page="1";
+		int curpage=Integer.parseInt(page);
+		int rowSize=9;
+		int start=(rowSize*curpage)-(rowSize-1);
+		int end=rowSize*curpage;
+		int total = MypageDAO.mypageWishTotalPage();
+		
+		
+		Map map=new HashMap();
 		map.put("start", start);
 		map.put("end", end);
-		map.put("userid", userid);
+		map.put("userid", (String) session.getAttribute("id"));
+		
+			
+	
 		
 		list = MypageDAO.mypageMyWishList(map); 
 		
-		System.out.println(list.size());
+	
+		for(int i = 0 ; i < list.size() ; i++)
+		{
+			if(list.get(i).getMvo().getrAddr1().length()>20)
+			{
+				String temp= list.get(i).getMvo().getrAddr1().substring(0,20)+"...";
+				list.get(i).getMvo().setrAddr1(temp);
+			}	
+		}
+		
+		request.setAttribute("page", curpage);
+		request.setAttribute("total", total);
 		request.setAttribute("list", list);
+		
 				
 		
 		return "../mypage/mypage_wish.jsp";
@@ -83,12 +107,17 @@ public class MypageModel {
 		List<ReviewVO> list = new ArrayList<ReviewVO>();
 		
 		String page=request.getParameter("page");
+		String pageMove=request.getParameter("pageMove");
+		int total = MypageDAO.mypageReviewTotalPage();
+				
 		if(page==null)
 			page="1";
 		int curpage=Integer.parseInt(page);
-		int rowSize=15;
+		int rowSize=10;
 		int start=(rowSize*curpage)-(rowSize-1);
 		int end=rowSize*curpage;
+	
+		
 		
 		Map map=new HashMap();
 		map.put("start", start);
@@ -108,6 +137,9 @@ public class MypageModel {
 			list.get(i).setRevContent(temp);
 		}
 		
+		
+		request.setAttribute("page", curpage);
+		request.setAttribute("total", total);
 		request.setAttribute("list", list);
 		
 		
@@ -147,7 +179,7 @@ public class MypageModel {
 		request.setAttribute("page", curpage);
 		request.setAttribute("total", total);
 		request.setAttribute("list", list);
-		System.out.println(total);
+		
 		
 		return "../mypage/mypage_coupon.jsp";
 	}

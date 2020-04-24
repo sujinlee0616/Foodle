@@ -9,7 +9,7 @@
 
 	<!--============================= MY PAGE =============================-->
 	<section class="board-block light-bg">
-	<div class="sidenav" id="floatMenu" style="position: fixed; top: 40%;box-sizing: content-box; z-index:10;background-color: #fff; height:300px; width:190px">		
+	<div class="sidenav" id="floatMenu" style="position:absolute; top: 40%;box-sizing: content-box; z-index:10;background-color: #fff; height:300px; width:190px">		
 	        
 	  
     </div>

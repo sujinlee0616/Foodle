@@ -11,6 +11,9 @@
 <body>
 	<div class="py-3">
 		<div class="table-responsive">
+		
+			<input type="hidden" id="reviewCurHidden" value=${page }>
+			<input type="hidden" id="reviewTotalHidden" value=${total }>
 			<table class="table replyBoard reply_list" style="background-color: #FFFFFF;">						
 				<thead class="thead-dark">
 					<tr style="background-color: #E0E0E0;">

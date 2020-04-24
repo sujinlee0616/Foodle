@@ -14,7 +14,7 @@
  		
 		<result column="iLink" property="mvo.ivo.iLink"/>
 	</resultMap>
-
+<!-- 
 	<resultMap type="ReservationVO" id="reservationMap">
 		<result column="resno" property="resNo"/>
 		<result column="rno" property="rNo"/>
@@ -28,7 +28,7 @@
  
  		<result column="rNo" property="mvo.rNo"/>
 		<result column="rName" property="mvo.rName"/>
-	</resultMap>
+	</resultMap> -->
 	
 	
 	<resultMap type="ReviewVO" id="reviewMap">
@@ -109,6 +109,10 @@
 
 	</select>
 
+	<select id="mypageReviewTotalPage" resultType="int">
+		SELECT CEIL(COUNT(*)/10.0) FROM review
+	</select>
+
 	<select id="mypageInfoupdateDetail" resultType="MemberVO"
 		parameterType="String">
 		SELECT * FROM member
@@ -145,5 +149,8 @@
         WHERE num BETWEEN #{start} AND #{end}
 	</select>
 	
+	<select id="mypageWishTotalPage" resultType="int">
+		SELECT CEIL(COUNT(*)/9.0) FROM mywish
+	</select>
 	
 </mapper>
