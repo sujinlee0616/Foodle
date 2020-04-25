@@ -162,6 +162,32 @@ public class MemberDAO {
 		}
 		
 		return list;
-		
+	}
+	
+	// [개인회원가입 - 아이디 중복체크]
+	public static String idCheck_general(String user_entered_id)
+	{
+		String result="";
+		int id_count=0;
+		SqlSession session=null;
+		try
+		{
+			session=ssf.openSession(); 
+			id_count=session.selectOne("idCount_general",user_entered_id);
+			
+			if(id_count!=0)
+				result="already_exist";
+			else
+				result="not_exist";			
+			System.out.println("idCount_general="+result);	
+		}
+		catch (Exception ex) {
+			System.out.println("idCheck_general :"+ex.getMessage());
+		}
+		finally {
+			if(session!=null)
+				session.close();
+		}
+		return result;
 	}
 }

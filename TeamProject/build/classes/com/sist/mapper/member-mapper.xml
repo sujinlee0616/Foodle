@@ -74,6 +74,7 @@
 		)
 	</insert>
 	
+	<!-- 기업회원가입: 지역 선택 -->
 	<resultMap type="hashMap" id="selectMap"></resultMap>
 	<select id="getSubArea" resultMap="selectMap" parameterType="String">
 		SELECT r_areadetail FROM areaCode
