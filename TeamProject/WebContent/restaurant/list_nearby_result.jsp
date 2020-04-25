@@ -36,7 +36,7 @@ test value: ${result}
                             <div class="featured-place-wrap" >
                            <a href="../restaurant/detail.do?no=${i.rNo }">  
                    
-              <!--  =======================그림 부분 시작 ============================= -->
+              <!--  =======================그림   부분   시작 ============================= -->
                                 	<div class="featured-title-box">
                                    	 <img src="${i.ivo.iLink }" class="img-fluid" alt="#">
                                     </div>
