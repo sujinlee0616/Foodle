@@ -9,13 +9,21 @@
   	<init-param>
   		<param-name>contextConfigLocation</param-name>
   		<!--경로 무조건 맞춰야합니다!!!! -->
+<<<<<<< HEAD
   		<param-value>C:\Users\user\git\Foodle\TeamProject\WebContent\WEB-INF\app.xml</param-value>
+=======
+  		<param-value>C:\Users\sist\git\Foodle0413\Foodle\TeamProject\WebContent\WEB-INF\app.xml</param-value>
+>>>>>>> 1fca3f6fdeeebd5883971b2d7fa03f88eb9645b3
   	</init-param>
   	<!-- Controller.jar 를 사용하기 위해 defaultPath 설정 -->
   	<init-param>
   		<param-name>defaultPath</param-name>
   		<!--경로 무조건 맞춰야합니다!!!! -->
+<<<<<<< HEAD
   		<param-value>C:\Users\user\git\Foodle\TeamProject\src</param-value> <!-- defaultPath(src 폴더 위치) -->
+=======
+  		<param-value>C:\Users\sist\git\Foodle0413\Foodle\TeamProject\src</param-value> <!-- defaultPath(src 폴더 위치) -->
+>>>>>>> 1fca3f6fdeeebd5883971b2d7fa03f88eb9645b3
   	</init-param>
   </servlet>
   

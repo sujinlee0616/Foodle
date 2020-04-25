@@ -161,6 +161,20 @@ public class NearbyVO {
 	public void setrTakeout(String rTakeout) {
 		this.rTakeout = rTakeout;
 	}
+	
+	private ReserveInfoVO rvo=new ReserveInfoVO();
+	
+	public ReserveInfoVO getRvo() {
+		return rvo;
+	}
+	public void setRvo(ReserveInfoVO rvo) {
+		this.rvo = rvo;
+	}
+	
+	
+	
+	
+	
 	@Override
 	public String toString() {
 		return "NearbyVO [rNo=" + rNo + ", rLowprice=" + rLowprice + ", rHighprice=" + rHighprice + ", rOpentime="
