@@ -12,6 +12,7 @@ import com.sist.vo.*;
 import com.sist.dao.*;
 import com.sist.service.dao.*;
 
+
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -53,11 +54,9 @@ public class DetailModel {
 			}
 		}
 		
-		
-		
-		
 		// 쿠키 
-		Cookie cookie=new Cookie("restaurant"+no, no); // 쿠키생성
+		Cookie cookie=new Cookie("res"+no, no); // 쿠키생성
+		cookie.setPath("/");
 		cookie.setMaxAge(60*60*24); // 기간설정(하루)
 		response.addCookie(cookie);
 		

@@ -15,6 +15,7 @@ import com.sist.controller.RequestMapping;
 import com.sist.service.dao.*;
 import com.sist.service.vo.MyWishVO;
 import com.sist.vo.*;
+import com.sun.org.apache.xerces.internal.impl.dv.xs.DoubleDV;
 
 @Controller
 public class MainModel {
@@ -39,25 +40,9 @@ public class MainModel {
 			}
 		}
 		
-		// 쿠키 읽기
-		/*List<MainInfoVO> cookielist=new ArrayList<MainInfoVO>();
-		Cookie[] cookies=request.getCookies();
-		System.out.println("cookies.length : "+cookies.length);/////
-		//System.out.println("cookies[i].getName()"+cookies[0].getName()); /////
-		for(int i=0;i<cookies.length;i++) {
-			if(cookies[i].getName().startsWith("restaurant")) {
-				System.out.println("aa");
-				String no=cookies[i].getValue();
-				MainInfoVO vo=MainDAO.cookieData(Integer.parseInt(no));
-				cookielist.add(vo);
-				System.out.println("no="+no);/////
-			}
-		}*/
-		
-		
+	
 		request.setAttribute("weeklytop30list", weeklytop30list);
 		request.setAttribute("popularTop3list", popularTop3list);
-		//request.setAttribute("cookielist", cookielist);
 		
 		request.setAttribute("main_header", "../common/header_main.jsp");
 		request.setAttribute("main_jsp", "../main/home.jsp");
@@ -65,4 +50,49 @@ public class MainModel {
 		return "../main/main.jsp";
 	}
 	
+	@RequestMapping("main/home_recent.do")
+	public String main_home_resent(HttpServletRequest request, HttpServletResponse response) {
+		
+		// 쿠키 페이지
+		String page=request.getParameter("page");
+		if(page==null)
+			page="1";
+		int curpage=Integer.parseInt(page);
+		
+		int rowSize=3;
+		int start=(rowSize*curpage)-(rowSize);
+		int end=rowSize*curpage-1;
+		
+		
+		// 쿠키 읽기
+		List<MainInfoVO> cookielist=new ArrayList<MainInfoVO>();
+		Cookie[] cookies=request.getCookies();
+		
+		int count=0;
+		int totalpage=0;
+		for(int i=cookies.length-1;i>=0;i--) {
+			if(cookies[i].getName().startsWith("res")) {
+				String no=cookies[i].getValue();
+				MainInfoVO vo=MainDAO.cookieData(Integer.parseInt(no));
+				if(vo.getrAddr1().length()>22) {
+					vo.setrAddr1(vo.getrAddr1().substring(0,22).concat("..."));
+				}
+				
+				if(count>=start && count<=end)
+					cookielist.add(vo);
+				
+				count++;
+				totalpage=(int)Math.ceil((double)count/3.0);
+			}
+		}
+		
+//		System.out.println("curpage="+curpage);
+//		System.out.println("totalpage="+totalpage);
+		
+		request.setAttribute("curpage", curpage);
+		request.setAttribute("totalpage", totalpage);
+		request.setAttribute("cookielist", cookielist);
+		
+		return "../main/home_recent.jsp";
+	}
 }

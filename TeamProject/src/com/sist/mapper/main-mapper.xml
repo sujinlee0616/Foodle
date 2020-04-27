@@ -40,6 +40,13 @@
 		ORDER BY rGood DESC, rScore DESC, rHit DESC)
 		WHERE rownum&lt;=10 <!-- ★★★★★★일단 test로 10개 - 나중에 바꿔야함!!!!★★★★★★ -->
 		
+		<!-- SELECT rno,rname,rscore,raddr2,rtel,iname,ilink
+		FROM (SELECT maininfo.rno,rname,rscore,raddr2,rtel,iname,ilink
+		FROM maininfo,image
+		WHERE maininfo.rno=image.rno AND iname='Mainimage'
+		ORDER BY rno ASC)
+		WHERE rownum&lt;=30 -->
+		
 	</select>
 	
 		<!-- RNO            NUMBER         
@@ -74,7 +81,7 @@
 	<select id="cookieData" resultMap="mainMap" parameterType="int">
 		SELECT maininfo.rno,rname,rscore,raddr1,rtel,iname,ilink
 		FROM maininfo,image
-		WHERE maininfo.rno=#{rno}
+		WHERE maininfo.rno=image.rno AND maininfo.rno=#{rno} AND iname='Mainimage'
 	</select>
 	
 </mapper>
