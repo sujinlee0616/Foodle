@@ -170,6 +170,8 @@ $(function(){
           
                 
            <!--                              AJAX사용부분  small thema list start                         -->
+    
+    			<div class="themaBar" style=""> </div>
                 
                 <div class="smallcatelist" id="showsmallcate"></div>
                 
