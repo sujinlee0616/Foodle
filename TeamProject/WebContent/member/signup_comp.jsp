@@ -5,34 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
-<script type="text/javascript">
-$(function(){
-	$('#res_area').click(function(e){
-		var selected=$(this).val();
-		console.log(selected);
-		if(selected=="")
-			return;
-		
-		$.ajax({
-			type:'POST',
-			url:'../member/signup_comp_area.do',
-			data:{"selected":selected},
-			success:function(res)
-			{	
-				console.log(res);
-				$('#res_area_dt').append(res);	
-			},
-			error:function(e){
-				alert(e);
-			}
-		})
-	});
-	
-})
-
-
-</script>
 </head>
 <body>
 <!--============================= SINGUP =============================-->
@@ -73,28 +45,29 @@ $(function(){
               <!-- ID (N-N) -->
               <li class="item must">
                 <label for="res_id" class="tit_inp"><span class="essential">*</span>ID</label>
-                <input type="text" name="rId" id="res_id" autocapitalize="off" autocomplete="off" placeholder="아이디" maxlength="50">
-                <p class="alert_column warning_txt hidden" id="res_id_msg" name="res_id_msg">필수정보 입니다.</p>
+                <input type="text" name="rId" id="id" autocapitalize="off" autocomplete="off" placeholder="아이디" maxlength="50">
+                <div class="guide_txt mt-1 pl-2 hidden" id="idCheckMsg" style="display:inline-block;"></div>
               </li>
               <!-- Password (N-N) -->
               <li class="item must">
                 <label for="res_pwd" class="tit_inp"><span class="essential">*</span>비밀번호</label>
-                <input type="password" name="rPwd" id="res_pwd" autocapitalize="off" placeholder="비밀번호" maxlength="20">
-                <p class="alert_column warning_txt hidden" id="res_pwd_msg" name="res_pwd_msg">필수정보 입니다.</p>
+                <input type="password" name="rPwd" id="pwd" autocapitalize="off" placeholder="비밀번호" maxlength="20">
+                <div class="guide_txt mt-1 pl-2 hidden" id="pwdCheckMsg" style="display:inline-block;"></div>
               </li>
               <!-- 가게 이름 (N-N)-->
               <li class="item must">
                 <label for="res_name" class="tit_inp"><span class="essential">*</span>가게명</label>
-                <input type="text" name="rName" id="res_name" autocapitalize="off" autocomplete="off" placeholder="">
-                <p class="alert_column warning_txt hidden" id="res_name_msg" name="res_name_msg">필수정보 입니다.</p>
+                <input type="text" name="rName" id="name" autocapitalize="off" autocomplete="off" placeholder="">
+                <div class="guide_txt mt-1 pl-2 hidden" id="nameCheckMsg" style="display:inline-block;"></div>
               </li>
               <!-- 가게 전화번호 (N-N) -->
               <li class="item must">
                 <div class="input_collect item">
                   <label for="res_tel" class="tit_inp"><span class="essential">*</span>전화번호</label>
                   <!-- 입력시 on class 삭제 -->
-                  <input type="text" name="rTel" id="res_tel" placeholder="'-' 없이 입력" maxlength="11">
+                  <input type="text" name="rTel" id="tel" placeholder="'-' 없이 입력" maxlength="11">
                 </div>
+                <div class="guide_txt mt-1 pl-2 hidden" id="telCheckMsg" style="display:inline-block;"></div>
               </li>
               <!-- 주소(우편번호) (N-N) -->
               <li class="adress_column item">
@@ -104,18 +77,19 @@ $(function(){
                   <!-- hidden으로 우편번호 받는다 -->
                   <input type="hidden" name="postcode" id="postcode">
                 </div>
-                <p class="alert_column warning_txt hidden" id="msg_addr">&nbsp;</p>
+                <div class="guide_txt mt-1 pl-2 hidden" id="addr1CheckMsg" style="display:inline-block;"></div>
               </li>
               <!-- 주소 (상세주소) (N-N) -->
               <li class="item">
                 <label for="address_detail" class="tit_inp"><span class="essential">*</span>상세 주소</label>
                 <input type="text" name="address_detail" id="address_detail" class="" maxlength="50" placeholder="상세 주소">
                 <input type="hidden" name="address_extra" value="" id="address_extra">
+                <div class="guide_txt mt-1 pl-2 hidden" id="addr2CheckMsg" style="display:inline-block;"></div>
               </li>
               <!-- 업종 (N-N)-->
               <li class="item must">
                 <label for="rType" class="tit_inp"><span class="essential">*</span>업종</label>
-                <select name="rType" id="res_type" class="custom-select ml-3">
+                <select name="rType" id="category" class="custom-select ml-3">
                   <option value="">업종을 선택하세요.</option>
                   <option value="한식">한식</option>
                   <option value="양식">양식</option>
@@ -128,7 +102,7 @@ $(function(){
                   <option value="카페/주점">카페/주점</option>
                   <option value="기타/세계">기타/세계</option>
                 </select>
-                <p class="alert_column warning_txt hidden" name="res_type_msg" id="res_type_msg">필수정보 입니다.</p>
+                <div class="guide_txt mt-1 pl-2 hidden" id="cateCheckMsg" style="display:inline-block;"></div>
               </li>
             </ul>
           </div>
@@ -174,7 +148,7 @@ $(function(){
       <div class="row justify-content-center">
         <div class="col-md-6 pt-4">
           <div class="signup-btn-wrap">
-            <input type="submit" value="회원가입" class="btn btn-danger" id="sendBtn">
+            <input type="button" value="회원가입" class="btn btn-danger" id="sendBtn">
           </div>
         </div>
       </div>
@@ -202,8 +176,6 @@ $(function(){
 <script src="../js/jquery-3.2.1.min.js"></script>
 <script src="../js/popper.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
-
-
 <!-- Kakao zipcode -->
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
@@ -251,9 +223,200 @@ $(function(){
         document.getElementById("address_main").value = addr;
         // 커서를 상세주소 필드로 이동한다.
         document.getElementById("address_detail").focus();
+
+        // 유효성 검사
+		addr1_result=true;	
+  		console.log("addr1_result="+addr1_result);
       }
     }).open();
   }
 </script>
+<script type="text/javascript">
+$(function(){
+
+	// 세부지역 처리  
+	$('#res_area').click(function(e){
+		var selected=$(this).val();
+		console.log(selected);
+		if(selected=="")
+			return;
+		$.ajax({
+			type:'POST',
+			url:'../member/signup_comp_area.do',
+			data:{"selected":selected},
+			success:function(res)
+			{	
+				console.log(res);
+				$('#res_area_dt').append(res);	
+			},
+			error:function(e){
+				alert(e);
+			}
+		})
+	});
+	
+	// [유효성 검사]
+  	// 필수 입력 요건들이 제대로 입력되었는지 여부 확인 - 얘네가 다 true일때만 회원가입 버튼 활성화 시켜주자 
+  	var id_result=false;
+  	var pwd_result=false;
+  	var name_result=false;
+  	var tel_result=false;
+  	var addr1_result=false;
+  	var addr2_result=false;
+  	var cate_result=false;
+
+ // 1.아이디 - 1)기본 입력요청
+	$('#id').click(function(){
+		var length=$('#id').val().trim().length;
+		if(length==0)
+			$('#idCheckMsg').removeClass('hidden').html('<span style="color:#707070; font-size:14px;">6글자 이상 입력해주세요.</span>');	
+	});
+	// 1.아이디 - 2)글자길이 체크 
+	$('#id').keyup(function(){
+		var length=$('#id').val().trim().length;
+		if(length==0){
+			$('#idCheckMsg').removeClass('hidden').html('<span style="color:#ff3a6d; font-size:14px;">필수정보입니다.</span>');
+			id_result=false;
+		}
+		else if(length<6){
+			$('#idCheckMsg').removeClass('hidden').html('<span style="color:#ff3a6d; font-size:14px;">너무 짧아요. 6글자 이상 입력해주세요.</span>');
+			id_result=false;
+		}
+		else{
+			$('#idCheckMsg').addClass('hidden'); // 잘 입력했으면 메시지 제거
+			// 1.아이디 - 3)ID중복검사
+			var user_entered_id=$('#id').val();
+			console.log(user_entered_id);
+			$.ajax({
+				type:'POST',
+				url:'../member/id_check_comp.do',
+				data:{"user_entered_id":user_entered_id}, 
+				success:function(result)
+				{
+					var idCheck=result.trim();
+					console.log('idCheck='+idCheck);
+					if(idCheck=="already_exist"){
+						$('#idCheckMsg').removeClass('hidden').html('<span style="color:#ff3a6d; font-size:14px;">이미 존재하는 ID입니다. 다른 ID를 입력하세요.</span>');
+						id_result=false;
+					}
+					else{ //idCheck=="not_exist"
+						$('#idCheckMsg').removeClass('hidden').html('<span style="color:#2196F3; font-size:14px;">사용할 수 있는 ID입니다.</span>');
+						id_result=true;
+					}
+				},
+				error:function(e){
+					alert(e);
+				}
+			});
+		}	
+		console.log("id_result="+id_result);			
+	});
+
+	// 2.비번 - 1)기본 입력요청
+	$('#pwd').click(function(){
+		var length=$('#pwd').val().trim().length;
+		if(length==0)
+			$('#pwdCheckMsg').removeClass('hidden').html('<span style="color:#707070; font-size:14px;">6글자 이상 입력해주세요.</span>');
+	});
+	// 2.비번 - 2)글자길이 체크 
+	$('#pwd').keyup(function(){
+		var length=$('#pwd').val().trim().length;
+		if(length==0){
+			$('#pwdCheckMsg').removeClass('hidden').html('<span style="color:#ff3a6d; font-size:14px;">필수정보입니다.</span>');
+			pwd_result=false;
+		}
+		else if(length<6){
+			$('#pwdCheckMsg').removeClass('hidden').html('<span style="color:#ff3a6d; font-size:14px;">너무 짧아요. 6글자 이상 입력해주세요.</span>');
+			pwd_result=false;
+		}
+		else{
+			$('#pwdCheckMsg').addClass('hidden'); // 잘 입력했으면 메시지 제거
+			pwd_result=true;
+		}
+		console.log("pwd_result="+pwd_result);
+	});
+	// 3.가게이름 - null값 체크 
+	$('#name').keyup(function(){
+		var length=$('#name').val().trim().length;
+		if(length==0){
+			$('#nameCheckMsg').removeClass('hidden').html('<span style="color:#ff3a6d; font-size:14px;">필수정보입니다.</span>');
+			name_result=false;
+		}	
+		else{
+			$('#nameCheckMsg').addClass('hidden'); // 잘 입력했으면 메시지 제거
+			name_result=true;
+		}		
+		console.log("name_result="+name_result);		
+	});
+	// 4.전화번호 - null값 체크 
+	$('#tel').keyup(function(){
+		var length=$('#tel').val().trim().length;
+		if(length==0){
+			$('#telCheckMsg').removeClass('hidden').html('<span style="color:#ff3a6d; font-size:14px;">필수정보입니다.</span>');
+			tel_result=false;
+		}	
+		else{
+			$('#telCheckMsg').addClass('hidden'); // 잘 입력했으면 메시지 제거
+			tel_result=true;
+		}		
+		console.log("tel_result="+tel_result);		
+	});
+	// 5.주소 - null값 체크 - 하단 카카오맵 소스에서 처리했음
+	// 6.상세주소 - null값 체크 
+	$('#address_detail').keyup(function(){
+		var length=$('#address_detail').val().trim().length;
+		if(length==0){
+			$('#addr2CheckMsg').removeClass('hidden').html('<span style="color:#ff3a6d; font-size:14px;">필수정보입니다.</span>');
+			addr2_result=false;
+		}	
+		else{
+			$('#addr2CheckMsg').addClass('hidden'); // 잘 입력했으면 메시지 제거
+			addr2_result=true;
+		}		
+		console.log("addr2_result="+addr2_result);		
+	});
+	// 7.업종 - null값 체크 
+	$('#category').click(function(){
+		var length=$('#category').val().trim().length;
+		if(length==0){
+			$('#cateCheckMsg').removeClass('hidden').html('<span style="color:#ff3a6d; font-size:14px;">필수정보입니다.</span>');
+			cate_result=false;
+		}	
+		else{
+			$('#cateCheckMsg').addClass('hidden'); // 잘 입력했으면 메시지 제거
+			cate_result=true;
+		}		
+		console.log("cate_result="+cate_result);		
+	});
+	// 회원가입 버튼 클릭 시 유효성 체크 
+	$('#sendBtn').click(function(){
+		var length=$('#address_main').val().trim().length;
+		if(length==0)
+			addr1_result=false;
+		else
+			addr1_result=true;
+		if((id_result && pwd_result && name_result && tel_result && addr1_result && addr2_result && cate_result)==false)
+		{
+			console.log("id_result="+id_result);
+			console.log("pwd_result="+pwd_result);
+			console.log("name_result="+name_result);
+			console.log("tel_result="+tel_result);
+			console.log("addr1_result="+addr1_result);
+			console.log("addr2_result="+addr2_result);
+			console.log("cate_result="+cate_result);
+			
+			alert('입력정보를 다시 확인해주세요!');
+		}
+		else{
+			$('#signup_frm').submit();
+		}
+	});
+
+	
+	
+})
+</script>
+
+
 </body>
 </html>
