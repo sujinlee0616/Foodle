@@ -133,10 +133,10 @@ public class MemberModel {
 		String address_detail=request.getParameter("address_detail");
 		
 		// 데이터 확인 
-		//System.out.println("user_type="+utype+", id="+id+", pwd="+pwd+ ", name="+name+", gender="+gender);
-		//System.out.println("birth="+birth+", email="+email+", pwd_hint="+pwd_hint+", pwd_hintAns="+pwd_hintAns);
-		//System.out.println("cellnum="+cellnum+", telnum="+telnum);
-		//System.out.println("address_main="+address_main+", postcode="+postcode+", address_detail="+address_detail);
+		System.out.println("user_type="+utype+", id="+id+", pwd="+pwd+ ", name="+name+", gender="+gender);
+		System.out.println("birth="+birth+", email="+email+", pwd_hint="+pwd_hint+", pwd_hintAns="+pwd_hintAns);
+		System.out.println("cellnum="+cellnum+", telnum="+telnum);
+		System.out.println("address_main="+address_main+", postcode="+postcode+", address_detail="+address_detail);
 		
 		MemberVO vo = new MemberVO();
 		vo.setUtype(utype);

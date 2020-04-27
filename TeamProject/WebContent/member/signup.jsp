@@ -125,7 +125,7 @@
               <!-- 비밀번호 힌트 질문 답 -->
               <li class="item must">
                 <label for="user_hintAns" class="tit_inp"><span class="essential">*</span>비밀번호 힌트 질문 답</label>
-                <input type="text" name="hintAns" id="hintAns" autocapitalize="off"
+                <input type="text" name="pwd_hintAns" id="hintAns" autocapitalize="off"
                   placeholder="" required>
                 <div class="guide_txt mt-1 pl-2 hidden" id="hintAnsCheckMsg" style="display:inline-block;"></div>
               </li>
@@ -179,7 +179,7 @@
       <div class="row justify-content-center">
         <div class="col-md-6 pt-4">
           <div class="signup-btn-wrap">
-        	<input type="button" value="회원가입" class="btn btn-danger" id="sendBtn" disabled="disabled">
+        	<input type="button" value="회원가입" class="btn btn-danger" id="sendBtn">
           </div>
         </div>
       </div>
@@ -381,11 +381,11 @@
 			var length=$('#email').val();
 			if(length==0){
 				$('#emailCheckMsg').removeClass('hidden').html('<span style="color:#ff3a6d; font-size:14px;">필수정보입니다.</span>');
-				pwdHint_result=false;
+				email_result=false;
 			}	
 			else{
 				$('#emailCheckMsg').addClass('hidden'); // 잘 입력했으면 메시지 제거
-				pwdHint_result=true;
+				email_result=true;
 			}	
 			console.log("emailCheckMsg="+emailCheckMsg);
 		});
@@ -415,14 +415,26 @@
 			}	
 			console.log("hintAns_result="+hintAns_result);
 		});
-		// 회원가입 버튼 활성화 
-		// 이게 onload 되었을때 한 번 실행되가지고... 실행이 안되나봄... 얘를 어떻게 실행시킬 수 있을까? 
-		//  ==================================== 확인필요 ====================================
-		if(id_result && pwd_result && name_result && birth_result && email_result && pwdHint_result && hintAns_result)
-		{
-			$('#sendBtn').attr('disabled', false);
-			alert('모두 완료!!!');
-		}
+		// 회원가입 버튼 클릭 시 유효성 체크 
+		$('#sendBtn').click(function(){
+			if((id_result && pwd_result && name_result && birth_result && email_result && pwdHint_result && hintAns_result)==false)
+			{
+				console.log("id_result="+id_result);
+				console.log("pwd_result="+pwd_result);
+				console.log("name_result="+name_result);
+				console.log("birth_result="+birth_result);
+				console.log("email_result="+email_result);
+				console.log("pwdHint_result="+pwdHint_result);
+				console.log("hintAns_result="+hintAns_result);
+				
+				alert('입력정보를 다시 확인해주세요!');
+			}
+			else{
+				$('#signup_frm').submit();
+			}
+		})
+		
+		
 	});
   </script>
 
