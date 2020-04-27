@@ -8,11 +8,8 @@
 <head>
 
 <!--  주변 맛집 페이지 CSS -->
-<link rel="stylesheet" href="${pageContext.request.contextPath }/css/nearby.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath }/css/nearbyArea.css">
+<link rel="stylesheet" href="../css/nearby.css">
 
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 <script type="text/javascript">
 
@@ -130,24 +127,6 @@ var sortInfo =''; 		//정렬순 선택  desc
  // 두번째 openButChgCL() => 옵션의 유무가 2개여서 버튼 형식으로 변경, 버튼을 누르면 색의 유무로 사용자가 선택유무 알수있음,따로 아래 출력 되지 않음!
 
 
- $(document).ready(function(){
-	/* 
-	 $.ajax({
-			
-			type:'post',
-			url:'/TeamProject/restaurant/list_nearby_default.do', //이 주소를 찾아서 실행해 , 서버주소 파일의 경로가 아닌 프로젝트의 풀 주소
-			//디폴트 페이지 띄우는 것이기 때문에 data는 보낼 것이 없다!  
-			success:function(res){
-				
-				$('#nearbyList').html(res);			
-			
-			}
-		})
-		*/
-	});
- 
- 
- 
  function setFilter(c ,op){ 
 	 
 	 console.log("===========");
@@ -188,7 +167,7 @@ var sortInfo =''; 		//정렬순 선택  desc
 		}else{
 			
 			//'업종 전체' 아닌 경우=> 버튼 추가
-			$(selectOp).append("<a onClick=deleteFilter(this,'"+op+"') id='"+c.value+"' class='selected nearbyselected' data-filter-name='food_cat' data-filter-value='108602' data-nclick-code='rcc.reset'"
+			$(selectOp).append("<a onClick=deleteFilter(this,'"+op+"')  href='#' id='"+c.value+"' class='selected nearbyselected' data-filter-name='food_cat' data-filter-value='108602' data-nclick-code='rcc.reset'"
 			         +"data-filter-action='nclick' title='"+c.value+"'>"+c.value+"<span class='del'>X</span></a>");
 			
 			var foodTypeOpVal = $('#foodTypeOp').val();
@@ -244,10 +223,10 @@ var sortInfo =''; 		//정렬순 선택  desc
 					
 					sortInfo ='rscorecount';
 					
-				}else if(selectVal == '낮은가격순'){
+				}else if(selectVal == '가격순 ↓'){
 					 lowPrice='rhighprice';
 					
-				}else if(selectVal == '높은가격순'){
+				}else if(selectVal == '가격순 ↑'){
 					sortInfo='rhighprice';
 					
 				}
@@ -268,7 +247,7 @@ var sortInfo =''; 		//정렬순 선택  desc
 // 선택된 버튼 없애기
 function deleteFilter(v , op){
 	
-	//지랄같은거 죽임
+
 	event.preventDefault();
 	console.log(op);
 	var tihsId = "#"+v.id;
@@ -385,18 +364,19 @@ function takeoutButChgCL(){
 
 </head>
 <body onload=" searchNearby();">
+
     <!--============================= LIST =============================-->
-   
+
     <section class="list-block">
     
      	<!-- ============================================주변맛집 전체화면============================================ -->
-        <div class="container-fluid py-4 container py-5">
-			<div class="row nearbyrow">
+        <div class="container-fluid container py-5">
+			<div class="nearbyrow">
 
 				<!-- ======================================주변맛집 페이지 왼쪽 화면============================================= -->
 				<div class="col-md-7 responsive-wrap nearbymd7">
 					<!-- ===================================검색 결과 타이틀 "~ 주변 검색 결과" ===================================-->
-					<h5 class="styled-heading">Best Places near 주변 맛집 ###</h5>
+					<h5 class="styled-heading">주변 맛집</h5>
 					
 					<p>
 						총 <span>###개</span>
@@ -481,13 +461,14 @@ function takeoutButChgCL(){
 								<!-- <button onclick="searchNearby()">test</button> -->
 
 								<!-- 업종선택 버튼 - setFilter() 사용! -->
-								<select  id="foodSelect" class="menuarrow" onchange="setFilter(this ,'foodType' ) ;" style="color: black;">
-									<option value="업종전체" class="lemonmenu">업종전체</option>
-									<option value="한식" class="lemonmenu">한식</option>
-									<option value="양식" class="lemonmenu">양식</option>
+
+								<select  id="foodSelect" class="menuarrow " onchange="setFilter(this ,'foodType' ) ;" style="color: black;">
+									<option value="업종전체" class="lemonmenu">업종전체<ul><span class="icon-arrow-down"></span></ul></option>
+									<option value="한식" class="lemonmenu">한식<ul><span class="icon-arrow-down"></span></ul></option>
 									<option value="일식" class="lemonmenu">일식</option>
 									<option value="중식" class="lemonmenu">중식</option>
-									<option value="카페/주점" class="lemonmenu">카페</option>
+									<option value="양식" class="lemonmenu">양식</option>
+									<option value="카페" class="lemonmenu">카페</option>
 								</select> 
 								
 								
@@ -497,8 +478,8 @@ function takeoutButChgCL(){
 									<option value="랭킹순" class="lemonmenu">랭킹순</option>
 									<option value="평점순" class="lemonmenu">평점순</option>
 									<option value="조회순" class="lemonmenu">조회순</option>
-									<option value="낮은가격순" class="lemonmenu">낮은가격순</option>
-									<option value="높은가격순" class="lemonmenu">높은가격순</option>
+									<option value="가격순 ↓" class="lemonmenu">가격순 ↓</option>
+									<option value="가격순 ↑" class="lemonmenu">가격순 ↑</option>
 								</select> 
 
 			
@@ -553,7 +534,7 @@ function takeoutButChgCL(){
 						<!-- ================================가게 1개 =============================================-->  
 
         
-                   <div class="row light-bg detail-options-wrap pt-3 nearbysearchlist" id="nearbyList"></div>
+                   <div class="detail-options-wrap nearbysearchlist" id="nearbyList"></div>
                
     	<%--			
     	          <c:if test="${defList != ''}">
@@ -606,10 +587,9 @@ function takeoutButChgCL(){
 				
 						</div>
 					</div>
-			
-		<!-- 	
-			
-					============================ KAKAO MAP ===========================
+					
+					<!--============================= KAKAO MAP ============================= 
+
 					<div class="col-md-5 responsive-wrap map-wrap nearbymapwrap">
 						<div class="map-fix nearbymapfix">
 							<div id="map" data-lat="40.674" data-lon="-73.945" data-zoom="14"></div>
@@ -617,12 +597,9 @@ function takeoutButChgCL(){
 					</div>
 					
 	 -->				
-	 				
+
 				</div>
-
 			</div>
-
-
 		</div>
         </div>
     </section>
@@ -630,11 +607,17 @@ function takeoutButChgCL(){
     
     <!--//END DETAIL -->
     
+    
+    
+    
+    
     <!-- jQuery, Bootstrap JS. -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="${pageContext.request.contextPath }/js/jquery-3.2.1.min.js"></script>
-    <script src="${pageContext.request.contextPath }/js/popper.min.js"></script>
-    <script src="${pageContext.request.contextPath }/js/bootstrap.min.js"></script>
+    
+
+	<script src="../js/jquery-3.2.1.min.js"></script>
+    <script src="../js/popper.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>   
 
 
     <!-- 이전에 남아있던 map 관련 소스 :  파악 중 -->
@@ -723,5 +706,14 @@ function displayMarker(locPosition, message) {
 }    
 
     </script>
+    
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    
+    
 </body>
 </html>

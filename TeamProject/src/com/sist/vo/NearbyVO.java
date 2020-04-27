@@ -1,6 +1,4 @@
 package com.sist.vo;
-
-//3개의 
 public class NearbyVO {
 	private int rNo;
 	private int rLowprice;
