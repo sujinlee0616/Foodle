@@ -193,7 +193,7 @@ Modified Date: 2020.04.16 (Thu)
 
 /* 삭제하기에서 min-height 주자 */
 .board-block{
-  min-height: calc(100vh - 72px - 236px);
+  min-height: calc(100vh - 72px - 209px);
 }
 .deleteArea{width: 60%; margin: 0 auto;}
 
