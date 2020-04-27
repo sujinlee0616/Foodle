@@ -43,6 +43,55 @@
 	</select>
 
 
+	<!-- [댓글 작성] -->
+	<!-- CREATE OR REPLACE PROCEDURE commentInsert(
+		    pBno boardComment.bNo%TYPE,    
+		    pUserId boardComment.userId%TYPE,
+		    pContent boardComment.content%TYPE
+		) -->
+	<parameterMap type="hashmap" id="commentInsertMap">
+		<parameter property="pBno" javaType="java.lang.Integer" jdbcType="INTEGER" mode="IN"/>
+		<parameter property="pUserId" javaType="java.lang.String" jdbcType="VARCHAR" mode="IN"/>
+		<parameter property="pContent" javaType="java.lang.String" jdbcType="CLOB" mode="IN"/>
+	</parameterMap>
+	<select id="commentInsert" parameterMap="commentInsertMap" statementType="CALLABLE">
+		{CALL commentInsert(?,?,?)}
+	</select>
+	
+	<!-- 댓글 삭제 -->
+	<parameterMap type="hashmap" id="commentDeleteMap">
+		<parameter property="pCno" javaType="java.lang.Integer" jdbcType="INTEGER" mode="IN"/>
+	</parameterMap>
+	<select id="commentDelete" parameterMap="commentDeleteMap" statementType="CALLABLE">
+		{CALL commentDelete(?)}
+	</select>
+	
+	<!-- 댓글 수정 -->
+	<parameterMap type="hashmap" id="commentUpdateMap">
+		<parameter property="pCno" javaType="java.lang.Integer" jdbcType="INTEGER" mode="IN"/>
+		<parameter property="pContent" javaType="java.lang.String" jdbcType="CLOB" mode="IN"/>
+	</parameterMap>
+	<select id="commentUpdate" parameterMap="commentUpdateMap" statementType="CALLABLE">
+		{CALL commentUpdate(?,?)}
+	</select>
+	
+	<!-- 대댓글 작성 -->
+	<!-- CREATE OR REPLACE PROCEDURE commentReply(
+		    pParentCno boardComment.cno%TYPE,
+		    pBno boardComment.bno%TYPE,
+		    pUserid boardComment.userid%TYPE,
+		    pContent boardComment.content%TYPE
+		)  -->
+	<parameterMap type="hashmap" id="commentReplyMap">
+		<parameter property="pParentCno" javaType="java.lang.Integer" jdbcType="INTEGER" mode="IN"/>
+		<parameter property="pBno" javaType="java.lang.Integer" jdbcType="INTEGER" mode="IN"/>
+		<parameter property="pUserid" javaType="java.lang.String" jdbcType="VARCHAR" mode="IN"/>
+		<parameter property="pContent" javaType="java.lang.String" jdbcType="CLOB" mode="IN"/>
+	</parameterMap>
+	<select id="commentReply" parameterMap="commentReplyMap" statementType="CALLABLE">
+		{CALL commentReply(?,?,?,?)}
+	</select>
+
 </mapper>
 
 

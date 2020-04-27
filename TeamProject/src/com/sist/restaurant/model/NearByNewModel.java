@@ -1,5 +1,4 @@
 package com.sist.restaurant.model;
-
 import java.util.ArrayList;
 
 import java.util.HashMap;
@@ -12,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.sist.controller.Controller;
 import com.sist.controller.RequestMapping;
 import com.sist.service.dao.NearbyListDAO;
+import com.sist.service.dao.WeeklyDAO;
+import com.sist.vo.MainInfoVO;
 import com.sist.vo.NearbyVO;
 
 
@@ -36,6 +37,9 @@ public class NearByNewModel {
 		
 	}
 	
+	
+	
+	
 /*
 	@RequestMapping("restaurant/list_nearby_default.do")
 	public String list_nearby_default(HttpServletRequest request, HttpServletResponse response)
@@ -54,6 +58,25 @@ public class NearByNewModel {
 	@RequestMapping("restaurant/list_nearby_result.do" )
 	public  String list_nearby_restruant(HttpServletRequest request, HttpServletResponse response)
 	{
+		
+		String page=request.getParameter("page");
+		
+		if(page==null)
+			page="1";
+		
+		int curPage=Integer.parseInt(page);
+		
+		int rowSize=15;
+		int start=(rowSize*curPage)-(rowSize-1);
+		int end=(rowSize*curPage);
+		
+		Map map=new HashMap();
+		map.put("start", start);
+		map.put("end", end);
+		
+		
+		
+		
 		
 		//사용자로 받은 값 console창에 나타내봄
 		request.getParameter("type_name");
@@ -77,8 +100,67 @@ public class NearByNewModel {
 		
 		//request들을 담은 Map 객체에 
 		List<NearbyVO> nearbyList = NearbyListDAO.nearbyResult(nearbyResultRequest);
+
+		for(NearbyVO vo:nearbyList){
+			
+				String addr=vo.getrAddr2();
+				if(addr.length()> 20){
 				
-		//Ajax로 결과 보냄!!
+				addr=addr.substring(0,20).concat("...");
+				vo.setrAddr2(addr);
+				
+				}	
+				
+				
+				String name=vo.getrName();
+				if(name.length()> 20){
+					
+					name=name.substring(0,20).concat("...");
+					vo.setrName(name);
+				}
+				
+			
+				String content=vo.getrContent();
+				if(content.length()> 54){
+					
+					content=content.substring(0,54).concat("...");
+					vo.setrContent(content);
+				}
+				
+				
+				
+				try{
+				
+					String address=vo.getrAddr2();
+					if(address.equals(0))
+					{
+						address="서울 영등포구 영등포로 195";
+						vo.setrAddr2(address);		
+					}
+
+				}catch(Exception ex) {}
+				
+		}
+		
+		
+		
+		int totalPage=NearbyListDAO.nearbyTotalPage();
+		
+		// 1~10, 11~20
+		final int BLOCK=10;
+		int startPage=((curPage-1)/BLOCK*BLOCK)+1;
+		int endPage=((curPage-1)/BLOCK*BLOCK)+BLOCK;
+		
+		int allPage=totalPage;
+		if(endPage>allPage)
+			endPage=allPage;
+		
+		request.setAttribute("startPage", startPage);
+		request.setAttribute("endPage", endPage);
+		request.setAttribute("allPage", allPage);
+		request.setAttribute("curPage", curPage);
+		request.setAttribute("totalPage", totalPage);
+		request.setAttribute("BLOCK", BLOCK);
 		request.setAttribute("result", nearbyList);
 		
 		System.out.println("list>>>>>>>>>>>");

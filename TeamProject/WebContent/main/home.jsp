@@ -85,7 +85,7 @@
 	                    <div class="find-place-img_wrap">
 	                        <div class="grid">
 	                            <figure class="effect-ruby">
-	                                <img src="${pageContext.request.contextPath }/images/find1.jpg" class="img-fluid" alt="img13" />
+	                                <img src="../images/find1.jpg" class="img-fluid" alt="img13" />
 	                                <figcaption>
 	                                    <h5>특별한 날엔 </h5>
 	                                    <p>1,848개</p>
@@ -98,11 +98,11 @@
                 <div class="col-md-4">
                     <div class="row find-img-align">
                         <div class="col-md-12">
-                       	 	<a href="main.jsp?mode=1">
+                       	 	<a href="../restaurant/list_thema.do?detailThema_col=테마카페">
 	                            <div class="find-place-img_wrap">
 	                                <div class="grid">
 	                                    <figure class="effect-ruby">
-	                                        <img src="${pageContext.request.contextPath }/images/find-place2.jpg" class="img-fluid" alt="img13" />
+	                                        <img src="../images/find-place2.jpg" class="img-fluid" alt="img13" />
 	                                        <figcaption>
 	                                            <h5>브런치</h5>
 	                                            <p>1,204개</p>
@@ -115,11 +115,11 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                        	<a href="main.jsp?mode=1">
+                        	<a href="../restaurant/list_thema.do?detailThema_col=치맥&피맥">
 	                            <div class="find-place-img_wrap">
 	                                <div class="grid">
 	                                    <figure class="effect-ruby">
-	                                        <img src="${pageContext.request.contextPath }/images/find3.jpg" class="img-fluid" alt="img13" />
+	                                        <img src="../images/find3.jpg" class="img-fluid" alt="img13" />
 	                                        <figcaption>
 	                                            <h5>치맥(치킨&맥주)</h5>
 	                                            <p>199개</p>
@@ -134,11 +134,11 @@
                 <div class="col-md-4">
                     <div class="row find-img-align">
                         <div class="col-md-12">
-                      		<a href="main.jsp?mode=1">
+                      		<a href="../restaurant/list_thema.do?detailThema_col=가족모임">
 	                            <div class="find-place-img_wrap">
 	                                <div class="grid">
 	                                    <figure class="effect-ruby">
-	                                        <img src="${pageContext.request.contextPath }/images/find4.jpg" class="img-fluid" alt="img13" />
+	                                        <img src="../images/find4.jpg" class="img-fluid" alt="img13" />
 	                                        <figcaption>
 	                                            <h5>아이와 함께라면</h5>
 	                                            <p>3,824개</p>
@@ -151,11 +151,11 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                        	<a href="main.jsp?mode=1">
+                        	<a href="../restaurant/list_thema.do?detailThema_col=술">
 	                            <div class="find-place-img_wrap">
 	                                <div class="grid">
 	                                    <figure class="effect-ruby">
-	                                        <img src="${pageContext.request.contextPath }/images/find5.jpg" class="img-fluid" alt="img13" />
+	                                        <img src="../images/find5.jpg" class="img-fluid" alt="img13" />
 	                                        <figcaption>
 	                                            <h5>술 마시는 친구와 함께</h5>
 	                                            <p>4,427개</p>

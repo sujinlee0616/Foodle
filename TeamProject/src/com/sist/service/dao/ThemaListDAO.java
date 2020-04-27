@@ -134,11 +134,11 @@ public class ThemaListDAO {
 		
 		
 
-		public static List<MainInfoVO> searchThema(String fd){
+		public static List<NearbyVO> searchThema(String fd){
 			
 			SqlSession session=null;
 			
-			List<MainInfoVO> slist=new ArrayList<MainInfoVO>();
+			List<NearbyVO> slist=new ArrayList<NearbyVO>();
 			
 			try{
 				

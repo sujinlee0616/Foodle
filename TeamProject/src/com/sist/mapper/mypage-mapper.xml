@@ -20,12 +20,12 @@
 		<result column="rno" property="rNo"/>
 		<result column="userid" property="userId"/>
 		<result column="regdate" property="regdate"/>
-		<result column="resTotalPrice" property="resTotalPrice"/>
+
+<!-- 	<result column="resTotalPrice" property="resTotalPrice"/>
 		<result column="resPhone" property="resPhone"/>
  		<result column="resPeople" property="resPeople"/>
 		<result column="resDate" property="resDate"/>
-		<result column="resTime" property="resTime"/>
- 
+		<result column="resTime" property="resTime"/> -->
  		<result column="rNo" property="mvo.rNo"/>
 		<result column="rName" property="mvo.rName"/>
 	</resultMap>

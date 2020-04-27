@@ -24,8 +24,6 @@
                             <a href="https://github.com/sujinlee0616/Foodle"> 이 곳</a>를 클릭하세요.
                         </p>
                         <p><span>Tech Spec:</span> JSP, JAVA, HTML, CSS, Bootstrap, JavaScript, jQuery </p>
-                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                        <p><span>Bootstrap Template:</span> Copyright © 2018 Listing. All rights reserved | This template is made with <i class="ti-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a></p>
                     </div>
                 </div>
             </div>

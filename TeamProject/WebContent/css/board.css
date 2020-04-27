@@ -59,6 +59,8 @@ Modified Date: 2020.04.16 (Thu)
 }
 
 .reply_list .cmtListCount{color: #ff7474; font-size: 15px;}
+.reply_detail pre{white-space: pre-wrap; font-family: "Nanum Gothic";}
+.reply_detail .cmtpre{white-space: pre-wrap; font-family: "Nanum Gothic";}
 
 /* 디바이스 크기 작을 경우 리스트에서 글 제목만 노출,
 상세보기에서 bd_detail_dt 컬럼 비노출,
@@ -118,6 +120,10 @@ Modified Date: 2020.04.16 (Thu)
 .cmt th{background-color: #FFFFFF; font-weight: 300; }
 .writer_nm{font-weight: 600; padding-left: 5px;}
 .write_time {font-size: 12px; color: #9E9E9E;}
+.cmtActions{float: right; font-size: 14px;}
+.cmtActionBtn:hover{color:#f34e79; text-decoration:none;}
+.cmtUpdtBtn:hover, .cmtReplyBtn:hover{cursor:pointer;}
+
 .cmt_line{margin: 7px 0;}
 .cmt_input{
 	width: 92%; height: 80px;
@@ -187,7 +193,7 @@ Modified Date: 2020.04.16 (Thu)
 
 /* 삭제하기에서 min-height 주자 */
 .board-block{
-  min-height: calc(100vh - 72px - 236px);
+  min-height: calc(100vh - 72px - 209px);
 }
 .deleteArea{width: 60%; margin: 0 auto;}
 
