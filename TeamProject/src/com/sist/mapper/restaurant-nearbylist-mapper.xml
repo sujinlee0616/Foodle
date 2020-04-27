@@ -16,8 +16,9 @@
 		<result column="rhit"           property="rHit"/> 
 		<result column="rtakeout"       property="rTakeout"/> 
 		<result column="rhighprice"     property="rHighprice"/> 
-		<result column="ropentime" 		property="rvo.rOpentime"/>
-  		<result column="rclosetime" 	property="rvo.rClosetime"/> 
+  		<result column="ropentime" 		property="rvo.rOpentime"/>
+  		<result column="rclosetime" 	property="rvo.rClosetime"/>
+  		<result column="rContent" 		property="rContent"/>
 		<result column="iname" 			property="ivo.iName"/>
 		<result column="ilink" 			property="ivo.iLink"/>
 	</resultMap>
@@ -63,11 +64,11 @@
 	</select>
 	
 	
-	<select id="nearbyResult" parameterType="Map" resultMap="nearbyMap">
+	<select id="nearbyResult" parameterType="java.util.Map" resultMap="nearbyMap">
 		select ma.RNO      
 			,ma.RNAME       
 			,ma.RTYPE       
-			,ma.RTEL        
+			,ma.RTEL       
 			,nvl(ma.RSCORE,4.2) RSCORE       
 			,ma.RSCORECOUNT 
 			,ma.RADDR1      
@@ -77,6 +78,7 @@
 			,ma.RAREADETAIL
 			,sub.rhit
 			,sub.rtakeout
+			,sub.rContent
 			,res.rhighprice
 			,res.ropentime
 			,res.rclosetime
@@ -86,8 +88,8 @@
 		 where ma.rno = sub.rno
 		 and ma.rno = res.rno
 		   AND ma.rno=img.rno
-		  AND img.iname='Mainimage'    	
-		  and ma.rno <![CDATA[<]]>350
+		  AND img.iname='Mainimage'   	
+		  and ma.rno <![CDATA[<]]> 120
 		 <if test="type_name != null and type_name != '' ">
 	 	 	 and ma.RTYPE  in
 	 	 	 <foreach collection="type_name" item="type" open="(" close=")" separator=",">
@@ -113,7 +115,7 @@
 	
 		
 	<select id="nearbyTotalPage" resultType="int">
-		SELECT CEIL(COUNT(*)/20.0) FROM FROM FOODELTEST A,FOODELTEST_TYPE B, foodeltest_price C
+		SELECT CEIL(COUNT(*)/15.0) FROM maininfo
 	</select>
 
 

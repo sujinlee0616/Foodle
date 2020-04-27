@@ -1,13 +1,17 @@
 package com.sist.vo;
-
-//3개의 
 public class NearbyVO {
 	private int rNo;
 	private int rLowprice;
 	private int rHighprice;
-	private int rOpentime;
-	private int rClosetime;
-    
+	private String rContent;
+	
+	public String getrContent() {
+		return rContent;
+	}
+	public void setrContent(String rContent) {
+		this.rContent = rContent;
+	}
+
 	// 이미지 이름
 	private String iName;
 	// 이미지 링크
@@ -65,18 +69,7 @@ public class NearbyVO {
 	public void setrHighprice(int rHighprice) {
 		this.rHighprice = rHighprice;
 	}
-	public int getrOpentime() {
-		return rOpentime;
-	}
-	public void setrOpentime(int rOpentime) {
-		this.rOpentime = rOpentime;
-	}
-	public int getrClosetime() {
-		return rClosetime;
-	}
-	public void setrClosetime(int rClosetime) {
-		this.rClosetime = rClosetime;
-	}
+
 	public String getiName() {
 		return iName;
 	}
@@ -162,7 +155,7 @@ public class NearbyVO {
 		this.rTakeout = rTakeout;
 	}
 	
-	private ReserveInfoVO rvo=new ReserveInfoVO();
+private ReserveInfoVO rvo=new ReserveInfoVO();
 	
 	public ReserveInfoVO getRvo() {
 		return rvo;
@@ -170,18 +163,16 @@ public class NearbyVO {
 	public void setRvo(ReserveInfoVO rvo) {
 		this.rvo = rvo;
 	}
-	
-	
-	
+
 	
 	
 	@Override
 	public String toString() {
-		return "NearbyVO [rNo=" + rNo + ", rLowprice=" + rLowprice + ", rHighprice=" + rHighprice + ", rOpentime="
-				+ rOpentime + ", rClosetime=" + rClosetime + ", iName=" + iName + ", iLink=" + iLink + ", rName="
-				+ rName + ", rType=" + rType + ", rTel=" + rTel + ", rScore=" + rScore + ", rScoreCount=" + rScoreCount
-				+ ", rAddr1=" + rAddr1 + ", rAddr2=" + rAddr2 + ", rPwd=" + rPwd + ", rArea=" + rArea + ", rAreaDetail="
-				+ rAreaDetail + ", rHit=" + rHit + ", rTakeout=" + rTakeout + "]";
+		return "NearbyVO [rNo=" + rNo + ", rLowprice=" + rLowprice + ", rHighprice=" + rHighprice + ", iName=" + iName
+				+ ", iLink=" + iLink + ", rName=" + rName + ", rType=" + rType + ", rTel=" + rTel + ", rScore=" + rScore
+				+ ", rScoreCount=" + rScoreCount + ", rAddr1=" + rAddr1 + ", rAddr2=" + rAddr2 + ", rPwd=" + rPwd
+				+ ", rArea=" + rArea + ", rAreaDetail=" + rAreaDetail + ", rHit=" + rHit + ", rTakeout=" + rTakeout
+				+ ", ivo=" + ivo + ", rvo=" + rvo + "]";
 	}
 	
 	

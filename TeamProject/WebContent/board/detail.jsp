@@ -31,7 +31,7 @@ $(function(){
 	$('.cmtReplyBtn').click(function(){
 		var reply_cno=$(this).attr('reply_cno');
 		if(i==0){
-			$('#try_to_reply_cno'+reply_cno).show(); // 왜 동작 안 하지?? 
+			$('#try_to_reply_cno'+reply_cno).show();  
 			i=1;
 		}
 		else{
@@ -135,8 +135,15 @@ $(function(){
 	          <div class="cmt">
 	          	<!-- 1. ID,작성일, 댓글에 대한 액션 버튼 영역 -->
 	            <div class="writer_info">
-	              <span class="writer_nm">${cvo.userid }</span>
-	              <span class="write_time pl-1">${cvo.regdate }</span>
+	              <c:if test="${cvo.group_tab==0 }">
+		              <span class="writer_nm">${cvo.userid }</span>
+		              <span class="write_time pl-1">${cvo.regdate }</span>
+	              </c:if>
+	              <c:if test="${cvo.group_tab>0 }">
+		              <span class="writer_nm" style="margin-left:30px;">
+		              <img src="../images/icon_reply.gif" class="mr-2">${cvo.userid }</span>
+		              <span class="write_time pl-1">${cvo.regdate }</span>
+	              </c:if>
 	              <div class="cmtActions">
 		              <span class="cmtActionBtn cmtReplyBtn pl-1" reply_cno="${cvo.cno }">답글</span>
 			          <c:if test="${sessionScope.id==cvo.userid }">
@@ -147,8 +154,15 @@ $(function(){
 	            </div>
 	            <!-- 2. 댓글 내용 영역 -->
 	            <div class="cmt_content pt-2 pl-1">
-	            	<pre class="mb-0" id="before_update_cno${cvo.cno }"
-	            	 style="font-size: 14px; white-space: pre-wrap; font-family: Nanum Gothic;">${cvo.content }</pre>
+	            	<!-- 댓글내용 -->
+	            	<c:if test="${cvo.group_tab==0 }">
+		            	<pre class="mb-0" id="before_update_cno${cvo.cno }"
+			            	 style="font-size: 14px; white-space: pre-wrap; font-family: Nanum Gothic;">${cvo.content }</pre>
+	            	</c:if>
+	            	<c:if test="${cvo.group_tab>0 }">
+		            	<pre class="mb-0" id="before_update_cno${cvo.cno }"
+		            	 style="font-size: 14px; white-space: pre-wrap; font-family: Nanum Gothic; margin-left: 50px; width: calc(92% - 50px);">${cvo.content }</pre>
+	            	 </c:if>
 	            	<!-- 수정하기 버튼 클릭 시 -->
 	            	<form method="POST" action="../board/comment_update.do">
 	            		<div class="cmtUpdateArea" id="try_to_update_cno${cvo.cno }" style="display:none;" >
@@ -182,12 +196,14 @@ $(function(){
 	            </c:if>
 	            <!-- =============== 로그인 안 한 경우 =============== -->
 				<c:if test="${sessionScope.id==null }">
-					<hr>
 		            <div class="logged_in">
-		              <textarea name="cmt" class="cmt_input disabled" 
-		              style="margin-left: 50px; width: calc(92% - 50px);"
-		              placeholder="회원만 댓글을 작성할 수 있습니다. 댓글을 작성하고 싶으시다면 로그인 해주세요." disabled></textarea>
-		              <button class="cmtBtn" disabled>등록</button>
+		              <div class="cmtReplyArea" id="try_to_reply_cno${cvo.cno }" style="display:none;">
+		              	  <hr>
+			              <textarea name="cmt" class="cmt_input disabled" 
+			              style="margin-left: 50px; width: calc(92% - 50px);"
+			              placeholder="회원만 댓글을 작성할 수 있습니다. 댓글을 작성하고 싶으시다면 로그인 해주세요." disabled></textarea>
+			              <button class="cmtBtn" disabled>등록</button>
+		              </div>
 		            </div>
 	          	</c:if>
 	            
