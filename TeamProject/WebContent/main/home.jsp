@@ -98,7 +98,7 @@
                 <div class="col-md-4">
                     <div class="row find-img-align">
                         <div class="col-md-12">
-                       	 	<a href="main.jsp?mode=1">
+                       	 	<a href="../restaurant/list_thema.do?detailThema_col=테마카페">
 	                            <div class="find-place-img_wrap">
 	                                <div class="grid">
 	                                    <figure class="effect-ruby">
@@ -115,7 +115,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                        	<a href="main.jsp?mode=1">
+                        	<a href="../restaurant/list_thema.do?detailThema_col=치맥&피맥">
 	                            <div class="find-place-img_wrap">
 	                                <div class="grid">
 	                                    <figure class="effect-ruby">
@@ -134,7 +134,7 @@
                 <div class="col-md-4">
                     <div class="row find-img-align">
                         <div class="col-md-12">
-                      		<a href="main.jsp?mode=1">
+                      		<a href="../restaurant/list_thema.do?detailThema_col=가족모임">
 	                            <div class="find-place-img_wrap">
 	                                <div class="grid">
 	                                    <figure class="effect-ruby">
@@ -151,7 +151,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                        	<a href="main.jsp?mode=1">
+                        	<a href="../restaurant/list_thema.do?detailThema_col=술">
 	                            <div class="find-place-img_wrap">
 	                                <div class="grid">
 	                                    <figure class="effect-ruby">

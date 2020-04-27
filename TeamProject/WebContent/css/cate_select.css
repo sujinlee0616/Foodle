@@ -228,6 +228,7 @@ div .nearbysearchlist{
 .bysituation{
 	
 	color:white;
+	
 }
 
 .nearbysearchlist p5{
@@ -235,6 +236,8 @@ div .nearbysearchlist{
 	color: #96999cfa;
 	
 }	
+
+
 
 .nearbysearchlist h6{
 
@@ -251,11 +254,9 @@ div .nearbysearchlist{
     width: 320px;
 }
 
-div .themarow{
+div .caterow{
 	
-	display: inline-block;
-	margin-left: 15px;
-    margin-right: 10px;
+	padding-left: 1px;
 }
 
 

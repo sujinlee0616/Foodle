@@ -40,7 +40,11 @@ Author: Sujin  Lee
   .filter{border: 1px solid #bbb; border-radius: 3px;}
   .filter_row{background-color: #FFFFFF; }
   .filter_row a{text-decoration: none; color: #3e434b; }
-  .filter_row a:hover {color: #ff3a6d; }
+  .filter_row a:hover {
+  
+  color: #ff3a6d; 
+  
+  }
   
   .filter_head{
     display: inline-block;
@@ -64,20 +68,34 @@ Author: Sujin  Lee
   }
   
   a.selected{
+  
       position: relative;
+       width: auto;
+	  text-align:center;
+ 	 padding: .4em .6em;
       display: inline-block;
-      height: 35px;
+      height: 50px;
       line-height: 35px;
-      font-size: 17px;
-      margin: 10px 5px;
-      padding: 0 15px;
-      background-color: #ff3a6d;
+      font-size: 23px;
+      margin-left: 20PX;
+      font-weight: 650px;
+      background-color: #ff7474;
       color: #fff;
-      letter-spacing: -0.5px;
+      border-radius: 22px;
+       font-weight: 650px;
+       letter-spacing: 2px;
       text-decoration: none;
+      margin-bottom: 18px;
+   
   }
   
-  a.selected span.del{padding-left: 5px;}
+  a.selected span.del{
+  
+  padding-left: 20px;
+  
+  color: white;
+  
+  }
   
 
   .map-wrap {

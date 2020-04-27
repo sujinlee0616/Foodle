@@ -687,6 +687,14 @@ a.dropdown-item:hover{
   margin: 0;
 }
 
+.nearbysearchlist p span{
+
+	color: #ff7474;
+    
+}
+
+
+
 .bottom-icons {
   padding: 15px 0 0;
   line-height: 1;

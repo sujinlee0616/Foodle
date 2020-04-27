@@ -1,3 +1,30 @@
+
+@font-face {
+  font-family: 'simple-line-icons';
+  src: url('../fonts/Simple-Line-Icons.eot?v=2.4.0');
+  src: url('../fonts/Simple-Line-Icons.eot?v=2.4.0#iefix') format('embedded-opentype'), url('../fonts/Simple-Line-Icons.woff2?v=2.4.0') format('woff2'), url('../fonts/Simple-Line-Icons.ttf?v=2.4.0') format('truetype'), url('../fonts/Simple-Line-Icons.woff?v=2.4.0') format('woff'), url('../fonts/Simple-Line-Icons.svg?v=2.4.0#simple-line-icons') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.icon-arrow-down {
+  font-family: 'simple-line-icons';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-arrow-down:before {
+  content: "\e604";
+}
+
+
 body {
 
   font-size: 18px;
@@ -9,7 +36,7 @@ body {
 div .nearbyrow{
 	
 	background-color: white;
-	margin-right: -60px;
+	margin-right: -780px;
     margin-left: 0px;
 	
 }
@@ -35,33 +62,33 @@ div .contentRes{
 	padding-left: 20px;
 	padding-right: 20px;
 }
+
+/*background: url(../images/arrow.jpg) no-repeat 95% 50%;*/
 select {
-  width: 120px;
-  padding: .2em .8em;
+  width: auto;
+  text-align:center;
+  padding-left: 20px;
+  padding-right: 45px;
   font-family: inherit;
-  background: url(../images/arrow.jpg) no-repeat 95% 50%;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  border: 2px solid #ff7474;
-   border-radius : 15px;
-   margin-left: 5px;
+  border: 2px solid #e8e8e8;
+   border-radius : 22px;
+   margin-left: 20px;
    margin-bottom: 5px;
-   height : 40px;
+   height : 55px;
    color: black;
-   font-size: 17px;
+   font-size: 23px;
    background-color: white;
+    font-weight: 650px;
 }
 
-a .nearbyselected {
-	
-	letter-spacing: normal;
-	border-radius: 15px;
-}
+
 
 .filter_row a {
 	
-	border-radius: 15px; 
+	border-radius: 22px; 
 
 }
 
@@ -136,7 +163,7 @@ select::-ms-expand {
 .list-block h5 {
     color: #3e434b;
     display: inline-block;
-    margin: 0;
+    margin-left: 22px;
     font-size: 30px;
     letter-spacing: 2px;
 }
@@ -149,31 +176,133 @@ div .nearbysearchlist{
     
 }
 
+
+
+.closed-now {
+    color: #ff3a6d;
+    font-size: 20px;
+    display: block;
+     font-weight: bold;
+    display: inline-block;
+        margin-left: 20px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.open-now {
+  	color: #46cd38;
+    font-size: 20px;
+    display: block;
+    font-weight: 400;
+    display: inline-block;
+    margin-left: 30px;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+
+.nearbyCon{
+	
+	margin-top: 20px;
+    font-size: 20px;
+    word-spacing: 1px;
+    letter-spacing: 1px;
+	
+	
+}
+
 .nearbysearchlist p{
 
 	color: #96999cfa;
+	margin-bottom: 5px;
+	font-size: 23px;
 	
 }	
 
+
 .nearbysearchlist h6{
 
-	font-weight: 600;
+	font-weight: 600px;
+    font-size: 34px;
 }	
 
 
 .featured-place-wrap img {
-     width: auto; 
+     width: auto;
+	border-radius: 15px;
+}
+
+
+.featured-place-wrap a {
+    display: flex;
+    
+}
+
+
+
+/*
+position: absolute;
+*/
+
+.featured-rate {
+	
+	width: 80px;
+    height: 80px;
+    text-align: center;
+    margin-left: 55px;
+    margin-top: 20px;
+    margin-bottom: 110px;
+    background: #ff7474;
+    color: #fff;
+    padding: 15px 12px;
+    border-radius: 50%;
+    display: block;
+    font-size: 35px
+	
 }
 
 .featured-title-box {
+    padding: 30px 35px;
+    width: 300px;
+        display: inline-block;
+    
+}
+  
+
+.featured-title-boxSecond {
+	
     padding: 22px 20px;
-    width: 320px;
+    width: 580px;
+    display: inline-block;
+    align-self: center;
+    padding-left: unset;
+    padding-top: unset;
+    padding-right: unset;
+	
+}
+
+.bottom-icons {
+    padding: 22px 0 0;
+    line-height: 1;
 }
 
 
-.featured-responsive:nth-child( 2n ) {
-	margin-left: 20px;
-}glzg
+.ti-heart {
+	    margin-top: 60px;
+    margin-left: 60px;
+    display: block;
+    margin-bottom: 40px;
+    line-height: 10px;
+	
+}
+
+
+.featured-place-wrap {
+	
+	border: 3px solid #e9ecefd4;
+	margin-top: 25px;
+	border-radius: 18px;
+}
 
 
 .nearbymapwrap{
@@ -191,6 +320,8 @@ div .nearbysearchlist{
     width: 24%; 
 
 }
+     
+   
     
     
     @media (max-width: 992px) {

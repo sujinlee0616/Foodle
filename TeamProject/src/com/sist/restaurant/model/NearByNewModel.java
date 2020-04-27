@@ -1,5 +1,4 @@
 package com.sist.restaurant.model;
-
 import java.util.ArrayList;
 
 import java.util.HashMap;
