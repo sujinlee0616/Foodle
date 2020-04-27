@@ -46,43 +46,43 @@
                          
                                     <div class="featured-title-box">
                                         <h6>${svo.rName }</h6>
-                                        <p>${svo.rType } </p> 
+                                        <p style="font-size: 21px; margin-top: 8px;">${svo.rType } </p> 
                                         <span>• </span>
-                                        <p>리뷰${svo.rScoreCount }  </p> 
+                                        <p style="font-size: 21px; margin-top: 8px;">리뷰${svo.rScoreCount }  </p> 
                                         <span> • </span>
                                       
                                         <fmt:parseNumber var="sre" value="${svo.rScore }" integerOnly="true"/>
 				         				 <c:choose>
 				           					 <c:when test="${sre=='5' }">
-				             				 <p><span>★★★★★</span></p>
+				             				 <p style="font-size: xx-large"><span>★★★★★</span></p>
 				            				</c:when>
 				         			     	 <c:when test="${sre=='4' }">
-				            				  <p><span>★★★★</span>★</p>
+				            				  <p style="font-size: xx-large"><span>★★★★</span>★</p>
 				           					 </c:when>
 				          			 		 <c:when test="${sre=='3' }">
-				            				  <p><span>★★★</span>★★</p>
+				            				  <p style="font-size: xx-large"><span>★★★</span>★★</p>
 				            		 		</c:when>
 				           					 <c:when test="${sre=='2' }">
-				            				  <p><span>★★</span>★★★</p>
+				            				  <p style="font-size: xx-large"><span>★★</span>★★★</p>
 				      				    	  </c:when>
 				       				    	 <c:when test="${sre=='1' }">
-				            				  <p><span>★</span>★★★★</p>
+				            				  <p style="font-size: xx-large"><span>★</span>★★★★</p>
 				           					 </c:when>
 				          					  <c:otherwise>
-				          				     <p><span></span>★★★★★</p>
+				          				     <p style="font-size: xx-large"><span></span>★★★★★</p>
 				        				    </c:otherwise>
 				         					 </c:choose>
                                         <ul>
                                             <li><span class="icon-location-pin"></span>
-                                                <p>${svo.rAddr2}</p>
+                                                <p style="font-size: 18px;">${svo.rAddr2}</p>
                                             </li>
                                             <li><span class="icon-screen-smartphone"></span>
-                                                <p>${svo.rTel}</p>
+                                                <p style="font-size: 18px;">${svo.rTel}</p>
                                             </li>
                                         </ul>
                                          <div class="bottom-icons">
 				            <c:choose>
-				              <c:when test="${today>=i.rvo.rOpentime && today<i.rvo.rClosetime }">
+				              <c:when test="${today>=svo.rvo.rOpentime && today<svo.rvo.rClosetime }">
 				                <div class="open-now">OPEN&nbsp;NOW</div>
 				              </c:when>
 				              <c:otherwise>
