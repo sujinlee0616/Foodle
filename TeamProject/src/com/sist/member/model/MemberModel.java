@@ -133,10 +133,10 @@ public class MemberModel {
 		String address_detail=request.getParameter("address_detail");
 		
 		// 데이터 확인 
-		//System.out.println("user_type="+utype+", id="+id+", pwd="+pwd+ ", name="+name+", gender="+gender);
-		//System.out.println("birth="+birth+", email="+email+", pwd_hint="+pwd_hint+", pwd_hintAns="+pwd_hintAns);
-		//System.out.println("cellnum="+cellnum+", telnum="+telnum);
-		//System.out.println("address_main="+address_main+", postcode="+postcode+", address_detail="+address_detail);
+		System.out.println("user_type="+utype+", id="+id+", pwd="+pwd+ ", name="+name+", gender="+gender);
+		System.out.println("birth="+birth+", email="+email+", pwd_hint="+pwd_hint+", pwd_hintAns="+pwd_hintAns);
+		System.out.println("cellnum="+cellnum+", telnum="+telnum);
+		System.out.println("address_main="+address_main+", postcode="+postcode+", address_detail="+address_detail);
 		
 		MemberVO vo = new MemberVO();
 		vo.setUtype(utype);
@@ -247,5 +247,18 @@ public class MemberModel {
 		request.setAttribute("main_header", "../common/header_sub.jsp");
 		request.setAttribute("main_jsp", "../member/welcome.jsp");
 		return "../main/main.jsp";
+	}
+	
+	// [개인회원가입 - 아이디 중복체크]
+	@RequestMapping("member/id_check.do")
+	public String member_id_check(HttpServletRequest request, HttpServletResponse response)
+	{
+		String user_entered_id=request.getParameter("user_entered_id");
+		System.out.println("user_entered_id="+user_entered_id);
+		String result=MemberDAO.idCheck_general(user_entered_id);
+		
+		request.setAttribute("result", result);
+		
+		return "../member/id_check.jsp";
 	}
 }

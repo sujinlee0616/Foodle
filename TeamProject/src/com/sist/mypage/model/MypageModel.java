@@ -1,6 +1,8 @@
+
 package com.sist.mypage.model;
 
 import javax.servlet.http.HttpServletRequest;
+
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -76,6 +78,7 @@ public class MypageModel {
 		return "../mypage/mypage_reserve.jsp";
 	}
 	
+	
 	@RequestMapping("mypage/review.do")
 	public String mypage_review(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
@@ -98,21 +101,27 @@ public class MypageModel {
 		/*list = MypageDAO.mypageReviewList(map);*/
 	
 		
-		
-		/*for(int i = 0 ; i < list.size() ; i++)
+		/*
+		for(int i = 0 ; i < list.size() ; i++)
+
 		{
 			String temp = list.get(i).getRevContent();
 			if(temp.length() > 10)
 				temp = temp.substring(0,10) + "...";
 			
 			list.get(i).setRevContent(temp);
-		}*/
-		
+		}
+		*/
 		request.setAttribute("list", list);
 		
 		
 		return "../mypage/mypage_review.jsp";
+		
+		
 	}
+
+	
+	
 	
 	@RequestMapping("mypage/coupon.do")
 	public String mypage_coupon(HttpServletRequest request, HttpServletResponse response) {
@@ -221,19 +230,24 @@ public class MypageModel {
 			}
 		}*/
 		
-		
+			
 		
 		request.setAttribute("list", list);
 		
 		return "../mypage/mypage_coupon_search_list.jsp";
 	}
 
+
+	
 	@RequestMapping("mypage/infoupdate_check.do")
 	public String mypage_infoupdate_check(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
 
 		return "../mypage/mypage_infoupdate_check.jsp";
 	}
+
+
+
 
 	@RequestMapping("mypage/infoupdate_check_ok.do")
 	public String mypage_infoupdate_check_ok(HttpServletRequest request, HttpServletResponse response) {
@@ -294,6 +308,10 @@ public class MypageModel {
 			vo.setUaddr2(address_detail);
 			vo.setUtype(utype);
 	
+	
+	
+	
+	
 	/*
 	 * 데이터 확인	
 			System.out.println("1:"+vo.getUserid());
@@ -324,3 +342,5 @@ public class MypageModel {
 		return "redirect:mypage.do";
 	}
 }
+
+

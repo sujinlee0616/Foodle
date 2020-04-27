@@ -11,6 +11,7 @@ import com.sist.controller.Controller;
 import com.sist.controller.RequestMapping;
 import com.sist.service.dao.ThemaListDAO;
 import com.sist.vo.MainThemaVO;
+import com.sist.vo.NearbyVO;
 import com.sist.vo.DetailThemaVO;
 import com.sist.vo.InfoThemaVO;
 import com.sist.vo.MainInfoVO;
@@ -52,8 +53,10 @@ public class ThemaListModel {
 			//String res=request.getParameter("activeTab");
 			System.out.println("MODEL-NO:"+no);
 			List<MainThemaVO> list=ThemaListDAO.cateSelectData(data[Integer.parseInt(no)-1]);
-			System.out.println("(cate_select_ok.do): "+list);
+		
 			
+			
+			System.out.println("(cate_select_ok.do): "+list);
 			
 			request.setAttribute("list", list);
 			request.setAttribute("data", data);
@@ -78,17 +81,17 @@ public class ThemaListModel {
 		//cate_select_ok로 부터 디폴트 페이지 정보/ 
 		String no=request.getParameter("no"); // 현재로선 1 or other number
 		System.out.println("no => "+no);
-		String detailThema_col=	request.getParameter("detailThema_col"); // 상황별
+		String detailThema_col=	request.getParameter("detailThema_col"); // 가족모임
 		System.out.println("detailThema_col=> "+detailThema_col);
 		String infoThema_col=request.getParameter("infoThema_col");  //어떤 가족 모임 장소를 찾고 계신가요?
 		System.out.println("infoThema_col=> "+infoThema_col);
 
 		
 		//dao연결 하러      고고!
-		List<MainInfoVO> slist=ThemaListDAO.searchThema(detailThema_col);
-		System.out.println("(result_thema_list.do)"+slist);
+		List<NearbyVO> slist=ThemaListDAO.searchThema(detailThema_col);
+		System.out.println("result_thema_list.do: "+slist);
 		
-		for(MainInfoVO vo:slist){
+		for(NearbyVO vo:slist){
 			
 			String addr=vo.getrAddr2();
 			if(addr.length()> 20){
@@ -97,12 +100,14 @@ public class ThemaListModel {
 				vo.setrAddr2(addr);
 				
 			}
+
 			
 		}
 		
 		
 		request.setAttribute("slist", slist);
 		request.setAttribute("infoThema_col",infoThema_col); //~~~테마 설명문!
+		request.setAttribute("detailThema_col", detailThema_col);
 		
 		return "../restaurant/result_thema_list.jsp";
 	}
