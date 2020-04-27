@@ -230,12 +230,27 @@ public class MemberModel {
 	@RequestMapping("member/signup_comp_area.do")
 	public String signup_comp_area(HttpServletRequest request,HttpServletResponse response)
 	{
+		try {
+			request.setCharacterEncoding("UTF-8");
+		} catch (Exception ex) {}
+		
 		String selected=request.getParameter("selected");  
 		System.out.println("selected="+selected);
-
+		
 		List<String> list=MemberDAO.getSubArea(selected);
 		System.out.println("Model list="+list);
+		
+		/*List<String> sList=new ArrayList<String>();
+		for(String s:list)
+		{
+			s=s.substring(s.lastIndexOf("=")+1);
+			System.out.println("s="+s);
+			sList.add(s);
+		}*/
+
 		request.setAttribute("list", list);
+		//request.setAttribute("list", list);
+		System.out.println(list);
 		
 		return "../member/signup_comp_area.jsp";
 	}
