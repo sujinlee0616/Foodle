@@ -33,7 +33,7 @@
                             <span>${mvo.rScore }</span>
                         </div>
                         <div class="review-btn">
-                            <a href="#" class="btn btn-outline-danger">리뷰 쓰기</a>
+                            <a href="../restaurant/review_insert.do?no=${mvo.rNo }" class="btn btn-outline-danger">리뷰 쓰기</a>
                         </div>
                         <div class="reserve-btn">
                             <div class="featured-btn-wrap">
@@ -542,6 +542,13 @@
 			alert("로그인 후 이용해주세요.");
 			return;
 		}
+	})
+	</script>
+	
+	<!-- 찜 hover 시 마우스 변경 -->
+	<script type="text/javascript">
+	$('.mywish').hover(function(){
+		$(this).css('cursor','pointer');
 	})
 	</script>
 </body>
