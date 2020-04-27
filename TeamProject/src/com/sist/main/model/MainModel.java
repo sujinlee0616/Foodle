@@ -74,8 +74,8 @@ public class MainModel {
 			if(cookies[i].getName().startsWith("res")) {
 				String no=cookies[i].getValue();
 				MainInfoVO vo=MainDAO.cookieData(Integer.parseInt(no));
-				if(vo.getrAddr1().length()>22) {
-					vo.setrAddr1(vo.getrAddr1().substring(0,22).concat("..."));
+				if(vo.getrAddr1().length()>20) {
+					vo.setrAddr1(vo.getrAddr1().substring(0,20).concat("..."));
 				}
 				
 				if(count>=start && count<=end)
