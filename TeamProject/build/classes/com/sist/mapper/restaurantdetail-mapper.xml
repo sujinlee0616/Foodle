@@ -130,4 +130,24 @@
 		)
 	</insert>
 	
+	<!-- REVNO      NOT NULL NUMBER       
+		USERID     NOT NULL VARCHAR2(50) 
+		RNO        NOT NULL NUMBER       
+		REVSCORE   NOT NULL NUMBER       
+		REVCONTENT NOT NULL CLOB         
+		REVDATE             DATE         
+		REVGOOD             NUMBER       
+		REVBAD              NUMBER  -->
+	<!-- 리뷰 작성 -->
+	<insert id="reviewInsertData" parameterType="ReviewVO">
+		INSERT INTO review(revNO,userId,rNo,revScore,revContent)
+		VALUES(
+			(SELECT NVL(MAX(revNO)+1,1) FROM review),
+			#{userId},
+			#{rNo},
+			#{revScore},
+			#{revContent}
+		)
+	</insert>
+	
 </mapper>
