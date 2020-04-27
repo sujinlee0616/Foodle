@@ -11,6 +11,8 @@ $(function(){
 	$('#res_area').click(function(e){
 		var selected=$(this).val();
 		console.log(selected);
+		if(selected=="")
+			return;
 		
 		$.ajax({
 			type:'POST',
@@ -18,7 +20,8 @@ $(function(){
 			data:{"selected":selected},
 			success:function(res)
 			{	
-				$('#res_area_dt').html(res);	
+				console.log(res);
+				$('#res_area_dt').append(res);	
 			},
 			error:function(e){
 				alert(e);
