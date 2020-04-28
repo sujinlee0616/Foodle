@@ -82,14 +82,8 @@ public class MainModel {
 			vo.setMyWish(myWish);
 		}
 		
-		
 		request.setAttribute("weeklytop30list", weeklytop30list);
 		request.setAttribute("popularTop3list", popularTop3list);
-		
-		// ================================================ 
-		
-		
-		// ================================================ 
 		
 		request.setAttribute("main_header", "../common/header_main.jsp");
 		request.setAttribute("main_jsp", "../main/home.jsp");
@@ -117,6 +111,11 @@ public class MainModel {
 		
 		int count=0;
 		int totalpage=0;
+		
+		// 찜 기능을 위한 세션
+		HttpSession session=request.getSession();
+		String id=(String)session.getAttribute("id");
+		
 		for(int i=cookies.length-1;i>=0;i--) {
 			if(cookies[i].getName().startsWith("res")) {
 				String no=cookies[i].getValue();
@@ -130,6 +129,26 @@ public class MainModel {
 				
 				count++;
 				totalpage=(int)Math.ceil((double)count/3.0);
+				
+				// 찜 
+				String myWish="";
+				if(id==null) { // 로그인 X
+					myWish="♡";
+				}
+				else { // 로그인 O
+					Map map=new HashMap();
+					map.put("id", id);
+					map.put("rno",vo.getrNo());
+					int myWishCount=RestaurantDetailDAO.myWishCheck(map);
+					// System.out.println("count="+count);
+					if(myWishCount>0) { // 이미 찜이 되어있으면
+						myWish="♥";
+					}
+					else {
+						myWish="♡";
+					}
+				}
+				vo.setMyWish(myWish);
 			}
 		}
 		
