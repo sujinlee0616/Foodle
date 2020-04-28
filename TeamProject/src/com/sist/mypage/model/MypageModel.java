@@ -11,6 +11,7 @@ import com.sist.service.dao.*;
 import com.sist.service.vo.*;
 import com.sist.vo.ImageVO;
 import com.sist.vo.MainInfoVO;
+import com.sun.java.accessibility.util.java.awt.TextComponentTranslator;
 
 import lombok.RequiredArgsConstructor;
 
@@ -36,7 +37,9 @@ public class MypageModel {
 		
 		String page=request.getParameter("page");
 		String pageMove=request.getParameter("pageMove");
+	
 		
+
 		if(page==null)
 			page="1";
 		int curpage=Integer.parseInt(page);
@@ -66,6 +69,7 @@ public class MypageModel {
 			}	
 		}
 		
+	
 		request.setAttribute("page", curpage);
 		request.setAttribute("total", total);
 		request.setAttribute("list", list);
@@ -102,31 +106,104 @@ public class MypageModel {
 	
 	@RequestMapping("mypage/review.do")
 	public String mypage_review(HttpServletRequest request, HttpServletResponse response) {
+		
 		HttpSession session = request.getSession();
 
 		List<ReviewVO> list = new ArrayList<ReviewVO>();
+
 		
 		String page=request.getParameter("page");
 		String pageMove=request.getParameter("pageMove");
+		String reviewRangeList=request.getParameter("reviewRangeList");
+		
+		if(reviewRangeList!=null)
+			reviewRangeList=reviewRangeList.substring(0,reviewRangeList.length()-1);
+		
+		
+		System.out.println(reviewRangeList);
+		String[] reviewRangeTemp;
+		if(reviewRangeList!=null)
+			reviewRangeTemp = reviewRangeList.split(",");
+		else
+			reviewRangeTemp = new String[0];
+		
+		String[] reviewRange = new String[4];
+
+
+		
+		for(int i = 0 ; i < reviewRangeTemp.length-1 ; i++)
+		{	
+																		
+			String keyWord = reviewRangeList.substring(reviewRangeList.lastIndexOf(",")+1,reviewRangeList.lastIndexOf(":"));
+		
+			if(reviewRangeTemp[i].indexOf(keyWord)!=-1)
+			{
+				reviewRangeTemp[i]="";
+			}
+		}
+
+		if(reviewRangeTemp.length==1)
+			reviewRange[0]=reviewRangeTemp[0];
+		
+		for(int i = 0 ; i < reviewRangeTemp.length ; i++)
+		{
+			if(i==reviewRangeTemp.length-1 && reviewRangeTemp[i] =="")
+				continue;
+			
+			if(reviewRangeTemp[i] =="")
+			{
+				reviewRange[i] = reviewRangeTemp[i+1];
+				reviewRangeTemp[i+1] ="";
+			}
+			else
+			{
+				reviewRange[i]=reviewRangeTemp[i];
+			}
+		}
+	
+		reviewRangeList="";
+		for(int i = reviewRange.length-1 ; i >= 0 ; i--)
+		{
+			if(reviewRange[i]!=null)
+				reviewRangeList+=reviewRange[i]+",";
+		}
+		
+		
 		int total = MypageDAO.mypageReviewTotalPage();
-				
+		
 		if(page==null)
 			page="1";
 		int curpage=Integer.parseInt(page);
 		int rowSize=10;
 		int start=(rowSize*curpage)-(rowSize-1);
 		int end=rowSize*curpage;
-	
-		
+
 		
 		Map map=new HashMap();
 		map.put("start", start);
 		map.put("end", end);
 		map.put("userid", (String) session.getAttribute("id"));
+		
+		if(reviewRangeList!="")
+			map.put("range", reviewRangeList.replace(":", " ").substring(0,reviewRangeList.length()-1));
+			
 	
-		list = MypageDAO.mypageReviewList(map);
+				
 	
 		
+		
+		if(map.get("range")!=null)
+		{
+			//DAO 정렬
+			System.out.println(map.get("start")+":start");
+			System.out.println(map.get("end")+":end");
+			System.out.println(map.get("userid")+":userid");
+			System.out.println(map.get("range")+":range");
+			
+			list = MypageDAO.mypageReviewRangeList(map);
+		}
+		else
+			list = MypageDAO.mypageReviewList(map);
 		
 		for(int i = 0 ; i < list.size() ; i++)
 		{
@@ -136,12 +213,11 @@ public class MypageModel {
 			
 			list.get(i).setRevContent(temp);
 		}
-		
-		
+	
 		request.setAttribute("page", curpage);
 		request.setAttribute("total", total);
 		request.setAttribute("list", list);
-		
+		request.setAttribute("reviewRangeList", reviewRangeList);
 		
 		return "../mypage/mypage_review.jsp";
 	}

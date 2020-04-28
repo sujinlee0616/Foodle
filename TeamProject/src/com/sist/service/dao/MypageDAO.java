@@ -132,14 +132,34 @@ public class MypageDAO {
 		List<ReviewVO> list = new ArrayList<ReviewVO>();
 		SqlSession session=null;
 		
-	
-	
-		
 		try 
 		{
 			session=ssf.openSession();
 			if(map.get("userid")!=null)
 				list = session.selectList("mypageReviewList",map);
+				
+			
+		} 
+		catch (Exception ex) {
+			System.out.println("memberLogin: "+ex.getMessage());
+		}
+		finally {
+			if(session!=null)
+				session.close(); 
+		}
+		
+		return list;
+	}
+	public static List<ReviewVO> mypageReviewRangeList(Map map)
+	{
+		List<ReviewVO> list = new ArrayList<ReviewVO>();
+		SqlSession session=null;
+		
+		try 
+		{
+			session=ssf.openSession();
+			if(map.get("userid")!=null)
+				list = session.selectList("mypageReviewRangeList",map);
 				
 			
 		} 

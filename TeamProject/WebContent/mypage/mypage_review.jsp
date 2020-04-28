@@ -14,6 +14,7 @@
 		
 			<input type="hidden" id="reviewCurHidden" value=${page }>
 			<input type="hidden" id="reviewTotalHidden" value=${total }>
+			<input type="hidden" id="reviewRangeList" value=${reviewRangeList }>
 			<table class="table replyBoard reply_list" style="background-color: #FFFFFF;">						
 				<thead class="thead-dark">
 					<tr style="background-color: #E0E0E0;">

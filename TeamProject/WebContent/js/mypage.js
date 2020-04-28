@@ -55,7 +55,7 @@ $(function() {
 						+'          </svg>'
 						+'      </a>'
 						+'  </li>'
-						+'	<label style="font-size:13px">페이지 번호를 입력하세요</label>'
+						+'	<label style="font-size:13px display: block;" >페이지 번호를 입력하세요</label>'
 						+'  <input type="text" id="wishInputPage" style="width:50px; float:left; text-align:center">'
 						+'  <button id="wishInputPageSearch"><img src="../images/header_searchicon.png" style="width:32px; height:32px; left:30px"></button>'		             
 						+'	<button type="button" id="wishCurPage" class="btn btn-success">page</button>'
@@ -200,22 +200,240 @@ $(function() {
 						+'          </svg>'
 						+'      </a>'
 						+'  </li>'
-						+'	<label style="font-size:13px">페이지 번호를 입력하세요</label>'
-						+'  <input type="text" id="reviewInputPage" style="width:50px; float:left; text-align:center">'
+						+'	<label style="font-size:13px; display: block;" >페이지 번호를 입력하세요</label>'
+						+'  <input type="text" id="reviewInputPage" style="width:45px; float:left; text-align:center">'
 						+'  <button id="reviewInputPageSearch"><img src="../images/header_searchicon.png" style="width:32px; height:32px; left:30px"></button>'		             
 						+'	<button type="button" id="reviewCurPage" class="btn btn-success">page</button>'
 						+'	<button type="button" id="reviewTotalPage" class="btn btn-success">tal</button>'
 						
-						+'</ul>'
+						+'	<button type="button" id="reviewRevDate" class="btn btn-success">작성일</button>'
+						+'	<button type="button" id="reviewRevGood" class="btn btn-success">좋아요</button>'
+						+'	<button type="button" id="reviewRevBad" class="btn btn-success">싫어요</button>'
+						+'	<button type="button" id="reviewRevScore" class="btn btn-success">평점</button>'
+						+'	</ul>'	    
 				);
-				
+		
+								
 				//////////////
 				//page 초기값
 				$('#reviewCurPage').text($('#reviewCurHidden').val());
 				$('#reviewTotalPage').text($('#reviewTotalHidden').val());
 				///////////////////////////////////////
+
+		
+				     
+				
+				
+				$('#reviewRevDate').click(function(){
+	
+
+					var reviewRangeList ="";
+					
+					
+					if($('#reviewRangeList').val()!=undefined)
+					{
+						reviewRangeList=$('#reviewRangeList').val();
+					}
+					var reviewCurAscRange="";
+					var reviewCurDescRange="";
+					
+				
+					
+					if($(this).text()=="작성일▲")
+						{
+							$(this).text("작성일▼");
+							reviewCurAscRange = "revdate:asc,";
+							
+						}
+					else if($(this).text()=="작성일▼")
+						{
+							$(this).text("작성일▲");
+							
+							reviewCurDescRange = "revdate:desc,";
+						}
+					else
+					{
+						$(this).text("작성일▲");
+						reviewCurDescRange = "revdate:desc,";
+					}
+					reviewRangeList = reviewRangeList+reviewCurAscRange+reviewCurDescRange;
+					$('#reviewRangeList').val(reviewRangeList);
+					
+					
+					$.ajax({
+						type : 'POST',
+						url : '../mypage/review.do',
+						data :{"reviewRangeList":reviewRangeList},
+						success : function(res) {
+
+							$('#myContents').html(res);
+						},
+						error : function(e) {
+							alert(e);
+						}
+					});
+					
+					
+				})
+				$('#reviewRevGood').click(function(){
+					
+					var reviewRangeList ="";
+					
+					if($('#reviewRangeList').val()!=undefined)
+					{
+						reviewRangeList=$('#reviewRangeList').val();
+					}
+					var reviewCurAscRange="";
+					var reviewCurDescRange="";
+					
+		
+					if($(this).text()=="좋아요▲")
+						{
+							$(this).text("좋아요▼");							
+							reviewCurAscRange = "revgood:asc,";
+						}
+					else if($(this).text()=="좋아요▼")
+						{
+							$(this).text("좋아요▲");						
+							reviewCurDescRange = "revgood:desc,";
+						}
+						
+					else
+					{
+						$(this).text("좋아요▲");						
+						reviewCurDescRange = "revgood:desc,";
+					}
+					
+					reviewRangeList = reviewRangeList+reviewCurAscRange+reviewCurDescRange;
+					$('#reviewRangeList').val(reviewRangeList);
+				
+					
+					$.ajax({
+						type : 'POST',
+						url : '../mypage/review.do',
+						data :{"reviewRangeList":reviewRangeList},
+						success : function(res) {
+
+							$('#myContents').html(res);
+						},
+						error : function(e) {
+							alert(e);
+						}
+					});
+				})
+				$('#reviewRevBad').click(function(){
+			
+					var reviewRangeList ="";
+					
+					if($('#reviewRangeList').val()!=undefined)
+					{
+						reviewRangeList=$('#reviewRangeList').val();
+					}
+					var reviewCurAscRange="";
+					var reviewCurDescRange="";
+					
+					if($(this).text()=="싫어요▲")
+					{
+						$(this).text("싫어요▼");
+				
+						reviewCurAscRange = "revbad:asc,";
+						
+					}
+						
+					else if($(this).text()=="싫어요▼")
+					{
+						$(this).text("싫어요▲");
+						reviewCurDescRange = "revbad:desc,";
+					
+					}
+					else
+					{
+						$(this).text("싫어요▲");
+						reviewCurDescRange = "revbad:desc,";	
+						
+					}
+					
+					reviewRangeList = reviewRangeList+reviewCurAscRange+reviewCurDescRange;
+					$('#reviewRangeList').val(reviewRangeList);
+			
+
+					$.ajax({
+						type : 'POST',
+						url : '../mypage/review.do',
+						data :{"reviewRangeList":reviewRangeList},
+						success : function(res) {
+
+							$('#myContents').html(res);
+						},
+						error : function(e) {
+							alert(e);
+						}
+					});
+				})
+				$('#reviewRevScore').click(function(){
+					
+
+					var reviewRangeList ="";
+					
+					if($('#reviewRangeList').val()!=undefined)
+					{
+						reviewRangeList=$('#reviewRangeList').val();
+					}
+					
+					var reviewCurAscRange="";
+					var reviewCurDescRange="";
+					
+					if($(this).text()=="평점▲")
+					{
+						$(this).text("평점▼");
+						
+						reviewCurAscRange = "revscore:asc,";
+							
+					}
+					else if($(this).text()=="평점▼")
+					{
+						$(this).text("평점▲");
+						
+						
+						reviewCurDescRange = "revscore:desc,";
+						
+					}
+					else
+					{
+						$(this).text("평점▲");
+						reviewCurDescRange = "revscore:desc,";	
+					
+					}
+					
+					reviewRangeList = reviewRangeList+reviewCurAscRange+reviewCurDescRange;
+					$('#reviewRangeList').val(reviewRangeList);
+					
+					
+					$.ajax({
+						type : 'POST',
+						url : '../mypage/review.do',
+						data :{"reviewRangeList":reviewRangeList},
+						success : function(res) {
+
+							$('#myContents').html(res);
+						},
+						error : function(e) {
+							alert(e);
+						}
+					});
+				})
+				
+
+				
+				
 				
 				$('#reviewBeforePage').click(function(){
+					
+					
+					if($('#reviewRangeList').val()!=undefined)
+					{
+						reviewRangeList=$('#reviewRangeList').val();
+					}
 					var curpage = $('#reviewCurHidden').val();
 				
 					if(curpage <= 1 || curpage == undefined)
@@ -228,7 +446,7 @@ $(function() {
 					$.ajax({
 						type : 'POST',
 						url : '../mypage/review.do',
-						data : {"pageMove":"before","page":curpage},
+						data : {"pageMove":"before","page":curpage,"reviewRangeList":reviewRangeList},
 						success : function(res) 
 						{						
 							
@@ -238,6 +456,11 @@ $(function() {
 				});
 				
 				$('#reviewNextPage').click(function(){
+					
+					if($('#reviewRangeList').val()!=undefined)
+					{
+						reviewRangeList=$('#reviewRangeList').val();
+					}
 					var curpage = $('#reviewCurHidden').val();
 					
 					console.log($('#reviewTotalHidden').val());
@@ -252,7 +475,7 @@ $(function() {
 					$.ajax({
 						type : 'POST',
 						url : '../mypage/review.do',
-						data : {"pageMove":"next","page":curpage},
+						data : {"pageMove":"next","page":curpage,"reviewRangeList":reviewRangeList},
 
 						success : function(res) 
 						{						
@@ -263,6 +486,11 @@ $(function() {
 				});
 			
 				$('#reviewInputPageSearch').click(function(){
+					
+					if($('#reviewRangeList').val()!=undefined)
+					{
+						reviewRangeList=$('#reviewRangeList').val();
+					}
 					var inputPage = $('#reviewInputPage').val();
 					
 					if(isNaN(inputPage)==false && inputPage>0 && inputPage<=Number($('#reviewTotalPage').text()))
@@ -280,7 +508,7 @@ $(function() {
 						$.ajax({
 							type : 'POST',
 							url : '../mypage/review.do',
-							data : {"pageMove":"before","page":curpage},
+							data : {"pageMove":"before","page":curpage,"reviewRangeList":reviewRangeList},
 							success : function(res) 
 							{						
 								
@@ -335,12 +563,12 @@ $(function() {
 					+'          </svg>'
 					+'      </a>'
 					+'  </li>'
-					+'	<label style="font-size:13px">페이지 번호를 입력하세요</label>'
+					+'	<label style="font-size:13px display: block;">페이지 번호를 입력하세요</label>'
 					+'  <input type="text" id="couponInputPage" style="width:50px; float:left; text-align:center">'
 					+'  <button id="couponInputPageSearch"><img src="../images/header_searchicon.png" style="width:32px; height:32px; left:30px"></button>'		             
 					+'	<button type="button" id="couponCurPage" class="btn btn-success">page</button>'
 					+'	<button type="button" id="couponTotalPage" class="btn btn-success">tal</button>'
-					+'	<label style="font-size:13px">가게 이름을 입력하세요</label>'
+					+'	<label style="font-size:13px display: block;">가게 이름을 입력하세요</label>'
 					+'	<input type="text" id="couponSearchText" style="width:90px; margin-top:0px;">'
 					+'  <button id="couponSearch"><img src="../images/header_searchicon.png" style="width:32px; height:32px; left:30px"></button>'
 					+'	<div id="couponSearchList" style="color:black;"></div>'
