@@ -120,8 +120,8 @@ $(function(){
 					<!-- ===================================검색 결과 타이틀 "~ 주변 검색 결과" ===================================-->
 					<h5 class="styled-heading"> 테마 맛집 </h5>
 
-					<p>
-						총 <span>###개</span>
+					<p style="font-size: 20px;">
+						 ／ 총  <span>10,579</span>개
 					</p>
 					<!-- ============================================카테고리!!============================================= -->
 						<div class="themaTitleLine"></div>
@@ -171,23 +171,19 @@ $(function(){
                 
            <!--                              AJAX사용부분  small thema list start                         -->
     
-    			<div class="themaBar" style=""> </div>
+    			
                 
                 <div class="smallcatelist" id="showsmallcate"></div>
                 
-                
+                <div class="themaBar" style="border:thick;"> </div>
             
             
         </div><!-- 카테고리 container 끝! -->
     </section><!--  카테고리  section 끝! -->
     
-    
-
-		<!--=============================  AJAX사용부분   MIDDLE  THEMA LIST END    =============================-->
-							
-
+   
 						
-		<!-- ================================모든 리스트 감싸는 곳! =============================================-->
+		<!-- ================================모든 리스트 감싸는 곳! AJAX 결과 출력 공간 =============================================-->
 			<div class="row light-bg detail-options-wrap pt-3 nearbysearchlist" id="result_thema_list">
 
 

@@ -78,6 +78,24 @@ public class ThemaListModel {
 	@RequestMapping("restaurant/result_thema_list.do")
 	public String result_thema_list(HttpServletRequest request, HttpServletResponse response)
 	{
+		try{
+			
+			request.setCharacterEncoding("UTF-8"); 
+			
+			
+		}catch(Exception ex){}
+
+		
+		String page=request.getParameter("page");
+		System.out.println(page);
+		if(page==null)
+			page="1";
+		
+		int curPage=Integer.parseInt(page);
+		
+		int rowSize=20;
+		int start=(rowSize*curPage)-(rowSize-1);
+		int end=(rowSize*curPage);	
 		
 		//cate_select_ok로 부터 디폴트 페이지 정보/ 
 		String no=request.getParameter("no"); // 현재로선 1 or other number
@@ -88,16 +106,24 @@ public class ThemaListModel {
 		System.out.println("infoThema_col=> "+infoThema_col);
 
 		
+		Map themaResultRequest = new HashMap();
+		
+		themaResultRequest.put("no", request.getParameter("no"));
+		themaResultRequest.put("detailThema_col", request.getParameter("detailThema_col"));
+		themaResultRequest.put("infoThema_col", request.getParameter("infoThema_col"));
+		
+		
+		
 		//dao연결 하러      고고!
-		List<NearbyVO> slist=ThemaListDAO.searchThema(detailThema_col);
+		List<NearbyVO> slist=ThemaListDAO.searchThema(themaResultRequest);
 		System.out.println("result_thema_list.do: "+slist);
 		
 		for(NearbyVO vo:slist){
 			
 			String addr=vo.getrAddr2();
-			if(addr.length()> 20){
+			if(addr.length()> 17){
 				
-				addr=addr.substring(0,20).concat("...");
+				addr=addr.substring(0,17).concat("...");
 				vo.setrAddr2(addr);
 				
 			}

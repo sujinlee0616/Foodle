@@ -134,7 +134,7 @@ public class ThemaListDAO {
 		
 		
 
-		public static List<NearbyVO> searchThema(String fd){
+		public static List<NearbyVO> searchThema(Map ft){
 			
 			SqlSession session=null;
 			
@@ -144,10 +144,10 @@ public class ThemaListDAO {
 				
 				session=ssf.openSession(); //getConnect!
 				
-				Map map=new HashMap();
-				map.put("fd",fd);
-				System.out.println("map: "+map);
-				slist=session.selectList("searchThema",map);
+				//Map map=new HashMap();
+				//map.put("ft",ft);
+				//System.out.println("map: "+map);
+				slist=session.selectList("searchThema",ft);
 				
 				System.out.println("slist from DAO: "+slist.toString());
 				

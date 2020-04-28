@@ -74,27 +74,30 @@ figure {
 
 
 .closed-now {
+	
     color: #ff3a6d;
     font-size: 20px;
     display: block;
      font-weight: bold;
     display: inline-block;
-        margin-left: 20px;
+     margin-left: 180px;
     font-weight: bold;
     margin-top: 10px;
+    
 }
 
 .open-now {
+	
   	color: #46cd38;
     font-size: 20px;
     display: block;
     font-weight: 400;
     display: inline-block;
-    margin-left: 30px;
+    margin-left: 200px;
     font-weight: bold;
     margin-top: 15px;
+    
 }
-
 
 
 .grid figure figcaption h4 {
@@ -221,6 +224,30 @@ figure.effect-ruby h2 {
     background: white;
 }
 
+.themaTileBorder2 {
+	
+	border: 3px solid #ff3a6d; 
+	width: 600px;  
+    margin-top: 50px;
+    margin-bottom: 60px;
+    margin-left: 320px; 
+	
+}
+
+
+
+.themaTileBorder1 {
+	
+	border: 1px solid #e7e8ea; 
+	width: -webkit-fill-available; 
+    margin-bottom: 50px;
+
+ 
+	
+}
+
+
+
 .featured-rating, .featured-rating-orange, .featured-rating-green {
     position: absolute;
     right: 10px;
@@ -236,7 +263,12 @@ figure.effect-ruby h2 {
     border-radius: 50%;
 } 
  
- 
+
+
+.bottom-icons {
+   
+    line-height: 1;
+}
  
 
 .featured-place-wrap img {
@@ -317,7 +349,7 @@ div .category{
 section .themablock{
 	
 	padding-top: 20px;
-	padding-down: 50px;
+
 	
 }
 

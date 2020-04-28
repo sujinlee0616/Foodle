@@ -60,41 +60,36 @@ public class NearByNewModel {
 	{
 		
 		String page=request.getParameter("page");
-		
+		System.out.println(page);
 		if(page==null)
 			page="1";
 		
 		int curPage=Integer.parseInt(page);
 		
-		int rowSize=15;
+		int rowSize=20;
 		int start=(rowSize*curPage)-(rowSize-1);
 		int end=(rowSize*curPage);
-		
-		Map map=new HashMap();
-		map.put("start", start);
-		map.put("end", end);
-		
-		
-		
-		
 		
 		//사용자로 받은 값 console창에 나타내봄
 		request.getParameter("type_name");
 		String aa =request.getParameter("takeout_col");
 		//request.setAttribute("result", aa);
 		
-		//System.out.println(">  >"+aa+"<"); // 한식 
+		System.out.println(start+">  >"+end+"<"); // 한식 
 		
 		
 		//사용자로 부터 받은 값이 여러개이기 때문에 Map으로 받아서 DAO로 넣을 예정!
 		//request들을 넣을 Map 객체 생성!
-		Map<String, String> nearbyResultRequest = new HashMap<String, String>();
+		Map nearbyResultRequest = new HashMap();
 		// "menu_priceAsc":sortbyLprice
 		nearbyResultRequest.put("lowPrice_col",request.getParameter("lowPrice_col"));
 		nearbyResultRequest.put("type_name", request.getParameter("type_name"));     // 업종선택시 받은값
 		nearbyResultRequest.put("rest_open", request.getParameter("rest_open"));     // 가게 오픈 여부 받은 값
 		nearbyResultRequest.put("sortby_col", request.getParameter("sortby_col"));   // 정렬순 정보 받은 값
 		nearbyResultRequest.put("takeout_col", request.getParameter("takeout_col"));  // 테이브아웃 정보 받은 값
+		nearbyResultRequest.put("areasortInfo", request.getParameter("areasortInfo"));  // 지역선택 정보 받은 값
+		//nearbyResultRequest.put("start", start);
+		//nearbyResultRequest.put("end", end);
 		//map의 Key로 Mapper랑 맵핑되고 거기에 들어가는 값은 map의 밸류
 		
 		
@@ -126,8 +121,7 @@ public class NearByNewModel {
 					content=content.substring(0,54).concat("...");
 					vo.setrContent(content);
 				}
-				
-				
+
 				
 				try{
 				
@@ -143,11 +137,11 @@ public class NearByNewModel {
 		}
 		
 		
-		
+		/*
 		int totalPage=NearbyListDAO.nearbyTotalPage();
 		
 		// 1~10, 11~20
-		final int BLOCK=10;
+		final int BLOCK=20;
 		int startPage=((curPage-1)/BLOCK*BLOCK)+1;
 		int endPage=((curPage-1)/BLOCK*BLOCK)+BLOCK;
 		
@@ -160,7 +154,7 @@ public class NearByNewModel {
 		request.setAttribute("allPage", allPage);
 		request.setAttribute("curPage", curPage);
 		request.setAttribute("totalPage", totalPage);
-		request.setAttribute("BLOCK", BLOCK);
+		request.setAttribute("BLOCK", BLOCK);*/
 		request.setAttribute("result", nearbyList);
 		
 		System.out.println("list>>>>>>>>>>>");

@@ -325,3 +325,41 @@ div .nearbysearchlist{
    font-size: 23px;
    background-color: #ff7474;
 }
+
+
+
+ 
+ .openButtBeforeArea {
+  width: 163px;
+  font-family: inherit;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+   border: 2px solid #e8e8e8;
+   border-radius : 22px;
+   margin-left: 20px;
+   margin-bottom: 5px;
+   height : 55px;
+   color: black;
+   font-size: 23px;
+   background-color: white;
+   font-weight: 650px;
+}
+
+.openButtAfterArea {
+  width: 163px;
+  font-family: inherit;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: 2px solid #ff7474;
+   border-radius :22px;
+   margin-left: 20px;
+   margin-bottom: 5px;
+   height : 55px;
+   color: white;
+   font-size: 23px;
+   background-color: #ff7474;
+}
+
+
