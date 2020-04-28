@@ -31,9 +31,6 @@
 						<div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
 							<ul class="navbar-nav">
 								<li class="nav-item active">
-									<a class="nav-link" href="../restaurant/list_realtime.do">실시간 맛집</a>
-								</li>
-								<li class="nav-item active">
 									<a class="nav-link" href="../restaurant/list_weekly.do">주간 맛집</a>
 								</li>
 								<li class="nav-item active">
