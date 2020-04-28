@@ -141,11 +141,11 @@
                             	<!-- ######################  메뉴  ####################### -->
                                 <li class="menu">
                                     <label for="menu" class="reserve_tit" style="color: #ff7474">메뉴 선택</label>
-                                    <select id="menu" class="custom-select" name="" > 
-                                    	<option selected disabled hidden>======= 메뉴를 선택하세요. =======</option>
+                                    <select id="menu" class="custom-select" name=""> 
+                                    	<option selected disabled hidden>메뉴를 선택하세요.</option>
                                     	<c:forEach var="vo" items="${menuList }">
                                     		 <option>
-                                    		 	${vo.mName }<%-- &nbsp;<span>(\</span>${vo.mPrice }) --%>
+                                    		 	${vo.mName }&nbsp;<span>(\</span>${vo.mPrice })
                                     		 </option>
                                     	</c:forEach>
                                     </select>
@@ -171,35 +171,6 @@
                                 
                                 <div class="row">
                                 	<table class="table">
-                                		<%-- <tr>
-											<td rowspan="1">
-												<b id="restaurant-name">${mvo.rName }</b>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<span style="color: #999">메뉴</span>
-												<span id="restaurant-menu"></span>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<span style="color: #999">예약일</span>
-												<span id="restaurant-date"></span>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<span style="color: #999">예약시간</span>
-												<span id="restaurant-time"></span>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<span style="color: #999">인원</span>
-												<span id="restaurant-inwon"></span>
-											</td>
-										</tr> --%>
 										<tr>
 											<td colspan="2">
 												<b id="restaurant-name">${mvo.rName }</b>
@@ -237,6 +208,32 @@
 												<span id="restaurant-inwon"></span>
 											</td>
 										</tr>
+										<tr>
+											<td width="25%"> 
+												<span style="color: #999">쿠폰선택</span>
+											</td>
+											<td width="75%">
+												<span>
+													<select class="custom-select restaurant-coupon" id="coupon" disabled>
+														<option selected disabled hidden>쿠폰을 선택하세요.</option>
+														<c:if test="${cList[0]==null }">
+															<option selected disabled hidden>사용가능한 쿠폰이 없습니다.</option>
+														</c:if>
+														<c:forEach var="vo" items="${cList }">
+															<option>${vo.CName }&nbsp;*<span>\</span>${vo.CPrice }&nbsp;(~<fmt:formatDate value="${vo.CEnddate }" pattern="yy/MM/dd"/>)</option>
+														</c:forEach>
+													</select>
+												</span>
+											</td>
+										</tr>
+										<tr>
+											<td width="25%"> 
+												<span style="color: #999">금액</span>
+											</td>
+											<td width="75%">
+												<span id="restaurant-price"></span>
+											</td>
+										</tr>
                                 	</table>
                                 </div>
                                 
@@ -256,6 +253,8 @@
 	                                <input type="hidden" name="resdate" value="" id="resdate"/>
 	                                <input type="hidden" name="restime" value="" id="restime"/>
 	                                <input type="hidden" name="resmenu" value="" id="resmenu"/>
+	                                <input type="hidden" name="resprice" value="" id="resprice"/>
+	                                <input type="hidden" name="rescoupon" value="" id="rescoupon"/>
 	                                
 	                                <c:if test="${sessionScope.id!=null }">
 		                                <input type="submit" class="btn btn-outline-danger btn-reserve" value="예약하기" 
@@ -499,20 +498,47 @@
     
     </script>
 	
-	<!-- 메뉴선택 -->
+	
 	<script>
+	// 메뉴선택
 	$('#menu').change(function(){
 		var menu=$(this).val();
+		var mName=menu.substring(0,menu.lastIndexOf("(")-1);
+		var mPrice=Number(menu.substring(menu.lastIndexOf("(")+2,menu.lastIndexOf(")")));
+		var mSum=Number($('#restaurant-price').text().substring(0,$('#restaurant-price').text().indexOf("원")));
+		//alert(mSum)
+		
 		if(menu!=0) {
+			$('.restaurant-coupon').attr('disabled', false);
+			$("#coupon option:eq(0)").prop("selected", true); // 쿠폰 선택 초기화
 			$('.reserve_date').css("display","block");
-			$('#restaurant-menu').append(menu+",<br>");
+			$('#restaurant-menu').append(mName+",<br>");
+			mSum=mSum+mPrice;
+			$('#restaurant-price').text(mSum+"원");
 		}
 		
 		var resmenu=$('#restaurant-menu').text();
 		$('#resmenu').val(resmenu);
+		$('#resprice').val(mSum+"원");
+		$('#rescoupon').val(0);
 	});
-	</script>
+		
+		
+	// 쿠폰 선택
+	$('#coupon').change(function(){
+		var coupon=$(this).val();
+		var cPrice=coupon.substring(coupon.indexOf("*")+2,coupon.indexOf("(")-1);
+		var mPrice=$('#restaurant-price').text().substring(0,$('#restaurant-price').text().indexOf("원")+1);
+		
+		var mPrice2=Number(mPrice.substring(0,mPrice.indexOf("원")));
+		var cPrice2=Number(cPrice);
+		
+		$('#restaurant-price').text(mPrice+" (-"+cPrice+"원)");
+		$('#rescoupon').val(coupon);
+		$('#resprice').val(mPrice2-cPrice2+"원");
+	});
 	
+	</script>
 	
 	<script>
 	var rdate=$('.reservation').attr('data-date');
