@@ -32,7 +32,7 @@
   </select>
   
   <select id="searchTotalPage" resultType="int" parameterType="hashmap">
-  	SELECT CEIL(COUNT(*)/18.0) FROM maininfo,image
+  	SELECT CEIL(COUNT(*)/15.0) FROM maininfo,image
   	WHERE maininfo.rno=image.rno
   	AND rname LIKE '%'||#{cate}||'%'
   	AND raddr1 LIKE '%'||#{area}||'%'
