@@ -17,64 +17,46 @@
 		<result column="rareadetail" property="rAreaDetail"/>
 		<result column="iname" property="ivo.iName"/>
 		<result column="ilink" property="ivo.iLink"/>
+		<result column="ropentime" property="rvo.rOpentime"/>
+  		<result column="rclosetime" property="rvo.rClosetime"/>
 	</resultMap>
 	
 	<!-- 주간 맛집 Top30 -->
 	<select id="weeklyTop30" resultMap="mainMap">	
-		<!-- SELECT rNO,rName,rScore,rAddr2,rTel
-		FROM mainInfo
-		WHERE ROWNUM&lt;=10
-		ORDER BY rNO ASC -->
-		
-		<!-- SELECT rno,rname,rscore,raddr2,rtel,iname,ilink,rownum
-		FROM (SELECT maininfo.rno,rname,rscore,raddr2,rtel,iname,ilink 
-		FROM mainInfo,image
-		WHERE mainInfo.rno=image.rno AND iname='Mainimage'
-		ORDER BY mainInfo.rno ASC)
-		WHERE rownum&lt;=10 -->
-		
-		SELECT rno,rname,rscore,raddr2,rtel,iname,ilink
+		<!-- SELECT rno,rname,rscore,raddr2,rtel,iname,ilink
 		FROM (SELECT maininfo.rno,rscore,rgood,rhit,rname,raddr2,rtel,iname,ilink
 		FROM maininfo,subinfo,image
 		WHERE maininfo.rno=subinfo.rno AND maininfo.rno=image.rno AND iname='Mainimage'
 		ORDER BY rGood DESC, rScore DESC, rHit DESC)
-		WHERE rownum&lt;=10 <!-- ★★★★★★일단 test로 10개 - 나중에 바꿔야함!!!!★★★★★★ -->
+		WHERE rownum&lt;=10 --> 
+		
+		SELECT rno,rname,rscore,raddr2,rtel,iname,ilink
+		FROM (SELECT maininfo.rno,rname,rscore,raddr2,rtel,iname,ilink
+		FROM maininfo,image
+		WHERE maininfo.rno=image.rno AND iname='Mainimage'
+		ORDER BY rno ASC)
+		WHERE rownum&lt;=10
 		
 	</select>
 	
-		<!-- RNO            NUMBER         
-			RNAME          VARCHAR2(1000) 
-			RTYPE          VARCHAR2(1000) 
-			RTEL           VARCHAR2(1000) 
-			RSCORE         NUMBER         
-			RSCORECOUNT    NUMBER         
-			RADDR1         VARCHAR2(1000) 
-			RADDR2         VARCHAR2(1000) 
-			RPWD           VARCHAR2(1000) 
-			RAREA          VARCHAR2(1000) 
-			RAREADETAIL    VARCHAR2(1000)  -->
-	<!-- <select id="weeklyTop30img" resultType="ImageVO">
-		SELECT no,link
-		FROM image
-		WHERE ROWNUM&lt;=10
-		ORDER BY rNO ASC
-	</select> -->
-	
 	<!-- 인기 맛집 Top3 -->
 	<select id="popularTop3" resultMap="mainMap">
-		SELECT rno,rname,rscore,raddr2,rtel,iname,ilink
-		FROM (SELECT maininfo.rno,rscore,rgood,rhit,rname,raddr2,rtel,iname,ilink
-		FROM maininfo,subinfo,image
-		WHERE maininfo.rno=subinfo.rno AND maininfo.rno=image.rno AND iname='Mainimage'
+		SELECT rno,rname,rscore,raddr2,rtel,iname,ilink,ropentime,rclosetime
+		FROM (SELECT maininfo.rno,rscore,rgood,rhit,rname,raddr2,rtel,iname,ilink,ropentime,rclosetime
+		FROM maininfo,subinfo,image,reserveinfo
+		WHERE maininfo.rno=subinfo.rno AND maininfo.rno=image.rno AND maininfo.rno=reserveinfo.rno AND iname='Mainimage'
 		ORDER BY rhit DESC, rgood DESC, rscore DESC)
 		WHERE rownum&lt;=3
 	</select>
 	
-	
+	<!-- cookie data -->
 	<select id="cookieData" resultMap="mainMap" parameterType="int">
-		SELECT maininfo.rno,rname,rscore,raddr1,rtel,iname,ilink
-		FROM maininfo,image
-		WHERE maininfo.rno=#{rno}
+		SELECT maininfo.rno,rname,rscore,raddr1,rtel,iname,ilink,ropentime,rclosetime
+		FROM maininfo,image,reserveinfo
+		WHERE maininfo.rno=image.rno 
+			AND maininfo.rno=reserveinfo.rno 
+			AND maininfo.rno=#{rno} 
+			AND iname='Mainimage'
 	</select>
 	
 </mapper>

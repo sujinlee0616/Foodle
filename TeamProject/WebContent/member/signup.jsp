@@ -312,7 +312,7 @@
 			}
 			else{
 				$('#idCheckMsg').addClass('hidden'); // 잘 입력했으면 메시지 제거
-				// 1.아이디 - 3)ID중복검사 ★★★★★ ==================================== 확인필요 ====================================
+				// 1.아이디 - 3)ID중복검사 
 				var user_entered_id=$('#id').val();
 				console.log(user_entered_id);
 				$.ajax({
@@ -432,7 +432,7 @@
 			else{
 				$('#signup_frm').submit();
 			}
-		})
+		});
 		
 		
 	});

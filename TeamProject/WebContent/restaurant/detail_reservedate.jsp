@@ -48,8 +48,11 @@ $(function(){
 		
 		var rday=year+"년 "+month+"월 "+day+"일";
 		$('#restaurant-date').text(rday);
+		$('#restaurant-time').text("");
 		$('#resdate').val(rday); // detail의 hidden
 		$('.reserve_time').css("display","block");
+		$('.rdate').css("background-color","#eee");
+		$(this).css("background-color","#bbb");
 		
 		$.ajax({
 			type:'post',

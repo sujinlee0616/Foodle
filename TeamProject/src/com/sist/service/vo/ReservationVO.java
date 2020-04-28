@@ -11,6 +11,8 @@ import com.sist.vo.MainInfoVO;
 	RESTIME   NOT NULL VARCHAR2(20)   
 	RESMENU            VARCHAR2(2000) 
 	RESPEOPLE          VARCHAR2(200)
+	RESPRICE           VARCHAR2(200)  
+	RESCOUPON          VARCHAR2(200)
  */
 
 public class ReservationVO {
@@ -22,6 +24,8 @@ public class ReservationVO {
 	private String resdate;
 	private String restime;
 	private String resmenu;
+	private String resprice;
+	private String rescoupon;
 	
 	// join
 	private MainInfoVO mvo;
@@ -94,6 +98,22 @@ public class ReservationVO {
 
 	public void setMvo(MainInfoVO mvo) {
 		this.mvo = mvo;
+	}
+
+	public String getResprice() {
+		return resprice;
+	}
+
+	public void setResprice(String resprice) {
+		this.resprice = resprice;
+	}
+
+	public String getRescoupon() {
+		return rescoupon;
+	}
+
+	public void setRescoupon(String rescoupon) {
+		this.rescoupon = rescoupon;
 	}
 	
 
