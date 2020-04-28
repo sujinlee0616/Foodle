@@ -91,10 +91,4 @@
       AND rDelivery LIKE #{filter4}
     </if>
   </select>
-  
-  <select id="weeklyFilterPage" resultType="int" parameterType="String">
-  	SELECT CEIL(COUNT(*)/15.0) FROM maininfo
-  	AND rtype LIKE '%'||#{filt}||'%'
-  </select>
-  
 </mapper>
