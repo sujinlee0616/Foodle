@@ -25,6 +25,20 @@
 
 
 $(function() {
+	
+	// 최근 본 
+	$('#mypage_recent').click(function(){
+		$.ajax({
+	   		type:'post',
+	       	url:'../main/home_recent.do',
+	       	success:function(res){
+	       		$('#myContents').html('<div class="row my-5 recent-div">'+res+'</div>');
+	       	}
+	   	})
+		
+	})
+	
+	
 	$("#floatMenu").hide();
 	$('#mypage_wish').click(function() {
 		$("#floatMenu").show();
