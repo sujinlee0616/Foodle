@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<jsp:useBean id="now" class="java.util.Date"></jsp:useBean>
+<fmt:formatDate var="td" value="${now}" pattern="yyyyMMddkkmm" />
+<c:set var="today" value="${fn:substring(td,8,10) }"></c:set>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -105,8 +110,14 @@ $(function(){
                     </li>
                 </ul>
                 <div class="bottom-icons">
-                    <!-- <div class="closed-now">CLOSED NOW</div> -->
-                    <div class="open-now">OPEN NOW</div>
+                    <c:choose>
+		              <c:when test="${today>=vo.rvo.rOpentime && today<vo.rvo.rClosetime }">
+		                <div class="open-now">OPEN NOW</div>
+		              </c:when>
+		              <c:otherwise>
+		                <div class="closed-now">CLOSED NOW</div>
+		              </c:otherwise>
+		            </c:choose>
                     <span class="mywish px-1" value="${vo.rNo }" id="mywish_${vo.rNo }" style="text-align:right; color:red; font-size:20px;">${vo.myWish }</span>
                 </div>
             </div>
