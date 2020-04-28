@@ -9,11 +9,11 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
 $(function() {
-	$('.times').hover(function(){
+	/* $('.times').hover(function(){
 		$(this).css("background-color","#eee");
 	},function(){
 		$(this).css("background-color","#fff");
-	})
+	}) */
 	
 	$('.times').click(function(){
 		var time=$(this).text();
@@ -24,6 +24,8 @@ $(function() {
 		$('#restaurant-time').text(t);
 		$('.reserve_inwon').css("display","block");
 		$('#restime').val(t); // detail의 hidden
+		$('.times').css("background-color","#fff");
+		$(this).css("background-color","#eee");
 		
 		$.ajax({
 			type:'post',
