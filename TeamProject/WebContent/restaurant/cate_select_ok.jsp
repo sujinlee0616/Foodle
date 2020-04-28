@@ -80,7 +80,11 @@ $(function(){
 		})
 		//선택함수 끝!
 		
-		
+		// small 메뉴 선택 (글자 눌렀을 때)
+		$('.themafont').click(function(){
+			$('.themafont').css("color","#999");
+			$(this).css("color","#ff7474");
+		})
 		
 })
 //스트립트 끝!!

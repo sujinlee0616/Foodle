@@ -94,11 +94,29 @@
 	    	AND DETAIL.T_DETAILTHEMA=#{detailThema_col}
 	    	AND MAI.RNO=IMG.RNO
 			AND IMG.INAME='Mainimage'
-			 AND MAI.RNO <![CDATA[ <  ]]> 120
+			 AND MAI.RNO <![CDATA[ <  ]]> 1000
 	        )            
          GROUP BY RNO, RNAME, RTYPE,  RTEL, RSCORE, RScoreCount,     RADDR2,      INAME,    ILINK, ROPENTIME, RCLOSETIME
          ORDER BY RNO ASC	
-         ) where num between 1 and 200
+         ) where num between #{start} and #{end}
+</select>
+
+<select id="searchThemaTotalPage" resultType="int" parameterType="String">
+	SELECT CEIL(COUNT(count)/12.0)
+	FROM (SELECT COUNT(*) as count
+	FROM MAININFO MAI,
+		 INFOTHEMA INFO,
+		 DETAILTHEMA DETAIL,
+		 IMAGE IMG,
+		 RESERVEINFO RES
+	WHERE MAI.RNO=INFO.RNO 
+	      AND  MAI.RNO=RES.RNO 
+		  AND INFO.RTHEMA=DETAIL.T_INFO
+		  AND DETAIL.T_DETAILTHEMA=#{detailThema_col}
+		  AND MAI.RNO=IMG.RNO
+		  AND IMG.INAME='Mainimage'
+		  AND MAI.RNO <![CDATA[ <  ]]> 1000
+	GROUP BY MAI.RNO,RNAME,RTYPE,RTEL,RSCORE,RScoreCount,RADDR2,INAME,ILINK,ROPENTIME,RCLOSETIME)
 </select>
 <!--    -->
 </mapper>
