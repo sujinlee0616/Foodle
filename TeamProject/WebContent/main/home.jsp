@@ -401,7 +401,8 @@
     			success:function(res){
     				console.log(res);    				
     				if(res.trim()=='NOLOGIN') {
-    					alert("로그인 후 이용해주세요.");
+    					alert('로그인 후 이용해주세요.');
+    					return false;
     				}
     				else if(res.trim()=='myWishInsert'){ 
     					$('#mywish_'+no).text('♥');
