@@ -7,7 +7,11 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+<!-- jQuery, Bootstrap JS. -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="../js/jquery-3.2.1.min.js"></script>
+<script src="../js/popper.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
 <script type="text/javascript">
 var u=0;
 var i=0;
