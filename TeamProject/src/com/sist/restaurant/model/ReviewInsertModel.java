@@ -83,12 +83,10 @@ public class ReviewInsertModel {
 		// 클라이언트가 입력해준 데이터 VO에 저장 
 		ReviewVO vo=new ReviewVO();
 		
-		// ============================================ ★★★ ============================================
-		// 주석 풀고 set 하면 insert됨. 근데 lombok이 작동 안해서인지 리뷰 insert는 되는데 리뷰 리스트가 안 보임. 학원가서 해볼것. 
-		//vo.setUserId(id);
-		//vo.setrNo(Integer.parseInt(rNo));
-		//vo.setRevScore(Double.parseDouble(rating));
-		//vo.setRevContent(content);
+		vo.setUserId(id);
+		vo.setRNo(Integer.parseInt(rNo));
+		vo.setRevScore(Double.parseDouble(rating));
+		vo.setRevContent(content);
 		System.out.println("vo="+vo);
 		
 		// DAO 

@@ -22,7 +22,6 @@ public class ReviewInsertDAO {
 		{
 			session=ssf.openSession(true);
 			session.insert("reviewInsertData",vo);
-			System.out.println("=== DAO: mapper의 쿼리수행 완료 === ");
 		}catch (Exception ex) 
 		{
 			System.out.println("reviewInsertData: "+ex.getMessage());
