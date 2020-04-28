@@ -5,6 +5,10 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+<style>
+#auto_compl li:hover{background-color: #ff3a6d; color:#fff;}
+#auto_compl_area li:hover{background-color: #ff3a6d; color:#fff;}
+</style>
 </head>
 <body>
 	<!-- SLIDER -->
@@ -32,11 +36,12 @@
                                       		</span>검색<i class="pe-7s-angle-right"></i>
                                         </button>
                                     </div>
-                                    <!-- 자동완성 -->
-                                    <div class="col-md-5 pl-0">
-                                    	<ul id="auto_compl" style="background-color:#fff; text-align:left; padding: 0 10px; border: 1px solid #aaa;"></ul>
-                                    </div>
                                 </form>
+                            </div>
+                            <!-- 자동완성 -->
+                            <div class="col-md-10" style="display:inline-block; float:left;">
+                                <ul id="auto_compl" style="display:inline; float:left; width:40%; padding:0; background-color:#fff; text-align:left; border: 1px solid #aaa;"></ul>
+                                <ul id="auto_compl_area" style="display:inline; float:left; width:33%; padding:0; background-color:#fff; text-align:left; border: 1px solid #aaa;"></ul>
                             </div>
                         </div>
                     </div>
@@ -411,30 +416,64 @@
 	<!-- 검색어 자동완성 -->
 	<script type="text/javascript">
 	$(function() {
-
 	    var autocomplete = new Array();	   
-	    
 	    $('#resName').keyup(function(){
-	    	var resName=$('#resName').val();
-	    	console.log(resName);
-	    	
-	    	$.ajax({
-    			type:'POST',
-    			url:'../main/search_autocomplete.do',
-    			data:{"resName":resName},
-    			success:function(res){
-    				//console.log(res);    				
-    				//availableTags=res;
-    				autocomplete=res;
-    				console.log('autocomplete='+autocomplete);
-    				$('#auto_compl').html(res);
-    			},
-    			error:function(e){
-    				alert(e);
-    			}
-    		});
-	    	
+	    	var length=$('#resName').val().trim().length;
+	    	console.log("length="+length);
+	    	if(length!=0){
+	    		var resName=$('#resName').val();
+		    	console.log(resName);
+		    	
+		    	$.ajax({
+	    			type:'POST',
+	    			url:'../main/search_autocomplete.do',
+	    			data:{"resName":resName},
+	    			success:function(res){
+	    				//console.log(res);    				
+	    				//availableTags=res;
+	    				autocomplete=res;
+	    				console.log('autocomplete='+autocomplete);
+	    				$('#auto_compl').html(res);
+	    			},
+	    			error:function(e){
+	    				alert(e);
+	    			}
+	    		});
+	    	}
+	    	else{
+	    		$('#auto_compl').html('');
+	    	}
 	    });
+	    
+	    
+	    $('#resArea').keyup(function(){
+	    	var length=$('#resArea').val().trim().length;
+	    	console.log("length="+length);
+	    	if(length!=0){
+	    		var resArea=$('#resArea').val();
+		    	console.log(resArea);
+		    	
+		    	$.ajax({
+	    			type:'POST',
+	    			url:'../main/search_autocomplete_area.do',
+	    			data:{"resArea":resArea},
+	    			success:function(res){
+	    				//console.log(res);    				
+	    				//availableTags=res;
+	    				autocomplete=res;
+	    				console.log('autocomplete='+autocomplete);
+	    				$('#auto_compl_area').html(res);
+	    			},
+	    			error:function(e){
+	    				alert(e);
+	    			}
+	    		});
+	    	}
+	    	else{
+	    		$('#auto_compl_area').html('');
+	    	}
+	    });
+	    
 	    
 	})
 	

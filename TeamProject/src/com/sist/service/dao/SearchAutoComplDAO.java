@@ -34,4 +34,26 @@ public class SearchAutoComplDAO {
 		
 		return list;
 	}
+	
+	public static List<String> resAreaAutocomplete(String resArea)
+	{
+		SqlSession session=null;
+		List<String> list=new ArrayList<String>();
+		
+		try
+		{
+			session=ssf.openSession(); 			
+			list=session.selectList("getResAreaList",resArea);
+			System.out.println("DAO list="+list);	
+		}
+		catch (Exception ex) {
+			System.out.println("getResNameList :"+ex.getMessage());
+		}
+		finally {
+			if(session!=null)
+				session.close();
+		}
+		
+		return list;
+	}
 }
