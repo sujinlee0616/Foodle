@@ -17,7 +17,7 @@ public class CreateSQLSessionFactory {
 			Reader reader = Resources.getResourceAsReader("Config.xml");
 			ssf=new SqlSessionFactoryBuilder().build(reader);
 		}catch (Exception ex) {
-			ex.getMessage();
+			ex.printStackTrace();
 		}
 	}
 
