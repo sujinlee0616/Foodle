@@ -2,9 +2,18 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<jsp:useBean id="now" class="java.util.Date"></jsp:useBean>
+<fmt:formatDate var="td" value="${now}" pattern="yyyyMMddkkmm" />
+<c:set var="today" value="${fn:substring(td,8,10) }"></c:set>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+<style>
+#auto_compl li:hover{background-color: #ff3a6d; color:#fff;}
+#auto_compl_area li:hover{background-color: #ff3a6d; color:#fff;}
+</style>
 </head>
 <body>
 	<!-- SLIDER -->
@@ -25,14 +34,19 @@
                         <div class="row d-flex justify-content-center">
                             <div class="col-md-10">
                                 <form class="form-wrap mt-4" action="../search/searchpage.do" id="search_frm" method="post">
-                                    <div class="btn-group" role="group" aria-label="Basic example">
-                                        <input type="text" placeholder="카테고리" class="btn-group1" id="cate" name="cate">
-                                        <input type="text" placeholder="지역" class="btn-group2" id="area" name="area" autocomplete="off">
+                                    <div class="btn-group ui-widget" role="group" aria-label="Basic example">
+                                        <input type="text" placeholder="가게 이름" class="btn-group1" id="resName" name="cate" autocomplete="off">
+                                        <input type="text" placeholder="지역" class="btn-group2" id="resArea" name="area" autocomplete="off">
                                         <button type="submit" class="btn-form" id="SearchBtn"><span class="icon-magnifier search-icon">
                                       		</span>검색<i class="pe-7s-angle-right"></i>
                                         </button>
                                     </div>
                                 </form>
+                            </div>
+                            <!-- 자동완성 -->
+                            <div class="col-md-10" style="display:inline-block; float:left;">
+                                <ul id="auto_compl" style="display:inline; float:left; width:40%; padding:0; background-color:#fff; text-align:left; border: 1px solid #aaa;"></ul>
+                                <ul id="auto_compl_area" style="display:inline; float:left; width:33%; padding:0; background-color:#fff; text-align:left; border: 1px solid #aaa;"></ul>
                             </div>
                         </div>
                     </div>
@@ -85,7 +99,7 @@
 	                    <div class="find-place-img_wrap">
 	                        <div class="grid">
 	                            <figure class="effect-ruby">
-	                                <img src="${pageContext.request.contextPath }/images/find1.jpg" class="img-fluid" alt="img13" />
+	                                <img src="../images/find1.jpg" class="img-fluid" alt="img13" />
 	                                <figcaption>
 	                                    <h5>특별한 날엔 </h5>
 	                                    <p>1,848개</p>
@@ -98,11 +112,11 @@
                 <div class="col-md-4">
                     <div class="row find-img-align">
                         <div class="col-md-12">
-                       	 	<a href="main.jsp?mode=1">
+                       	 	<a href="../restaurant/list_thema.do?detailThema_col=테마카페">
 	                            <div class="find-place-img_wrap">
 	                                <div class="grid">
 	                                    <figure class="effect-ruby">
-	                                        <img src="${pageContext.request.contextPath }/images/find-place2.jpg" class="img-fluid" alt="img13" />
+	                                        <img src="../images/find-place2.jpg" class="img-fluid" alt="img13" />
 	                                        <figcaption>
 	                                            <h5>브런치</h5>
 	                                            <p>1,204개</p>
@@ -115,11 +129,11 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                        	<a href="main.jsp?mode=1">
+                        	<a href="../restaurant/list_thema.do?detailThema_col=치맥&피맥">
 	                            <div class="find-place-img_wrap">
 	                                <div class="grid">
 	                                    <figure class="effect-ruby">
-	                                        <img src="${pageContext.request.contextPath }/images/find3.jpg" class="img-fluid" alt="img13" />
+	                                        <img src="../images/find3.jpg" class="img-fluid" alt="img13" />
 	                                        <figcaption>
 	                                            <h5>치맥(치킨&맥주)</h5>
 	                                            <p>199개</p>
@@ -134,11 +148,11 @@
                 <div class="col-md-4">
                     <div class="row find-img-align">
                         <div class="col-md-12">
-                      		<a href="main.jsp?mode=1">
+                      		<a href="../restaurant/list_thema.do?detailThema_col=가족모임">
 	                            <div class="find-place-img_wrap">
 	                                <div class="grid">
 	                                    <figure class="effect-ruby">
-	                                        <img src="${pageContext.request.contextPath }/images/find4.jpg" class="img-fluid" alt="img13" />
+	                                        <img src="../images/find4.jpg" class="img-fluid" alt="img13" />
 	                                        <figcaption>
 	                                            <h5>아이와 함께라면</h5>
 	                                            <p>3,824개</p>
@@ -151,11 +165,11 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                        	<a href="main.jsp?mode=1">
+                        	<a href="../restaurant/list_thema.do?detailThema_col=술">
 	                            <div class="find-place-img_wrap">
 	                                <div class="grid">
 	                                    <figure class="effect-ruby">
-	                                        <img src="${pageContext.request.contextPath }/images/find5.jpg" class="img-fluid" alt="img13" />
+	                                        <img src="../images/find5.jpg" class="img-fluid" alt="img13" />
 	                                        <figcaption>
 	                                            <h5>술 마시는 친구와 함께</h5>
 	                                            <p>4,427개</p>
@@ -191,7 +205,9 @@
 	                        </a>
 	                            <!-- <span class="featured-rating-orange">3.5</span> -->
 	                            <div class="featured-title-box">
-	                                <h6>${vo.rName }</h6>
+	                            	<a href="../restaurant/detail.do?no=${vo.rNo }">
+	                                	<h6>${vo.rName }</h6>
+	                                </a>
 	                               <!--  <p>양식(수제버거)</p><span>•</span>
 	                                <p>리뷰 12개</p><span>•</span>
 	                                <p><span>\\\\</span>\</p> -->
@@ -204,11 +220,17 @@
 	                                    </li>
 	                                </ul>
 	                                <div class="bottom-icons">
-	                                    <!-- <div class="closed-now">CLOSED NOW</div> -->
-	                                    <div class="open-now">OPEN NOW</div>
+	                                	<c:choose>
+							              <c:when test="${today>=vo.rvo.rOpentime && today<vo.rvo.rClosetime }">
+							                <div class="open-now">OPEN NOW</div>
+							              </c:when>
+							              <c:otherwise>
+							                <div class="closed-now">CLOSED NOW</div>
+							              </c:otherwise>
+							            </c:choose>
 	                                    <!-- <a href="#" class="mywish" id="mywish" style="text-align:right;font-size:17pt;">♡</a> -->
 	                                    <!-- <span class="ti-heart"></span> -->
-	                                    <span class="mywish" value="${vo.rNo }" style="text-align:right;font-size:17pt;">♡</span>
+	                                    <span class="mywish" value="${vo.rNo }" id="mywish_${vo.rNo }" style="text-align:right;font-size:17pt; color: red;">${vo.myWish }</span>
 	                                </div>
 	                            </div>
 	                        
@@ -220,8 +242,6 @@
     </section>
     <!--//END FEATURED PLACES -->
     <!--============================= CURRENT POPULAR TOP 30 =============================-->
-    <!-- 2020.04.06(월) 작업: 이미지랑 가게설명은 아직 못 함. main-mapper.xml에서 rNO 기준으로 조인해야 함. 테이블 만들어진 이후 가능할 듯. -->
-    <!-- 데이터 들어가는 부분 임시로 주석처리 해놨어요. Config.xml에서 server로 IP 변경하고 주석해제하면 데이터 나올거에요. -->
     <!-- Start of new  -->  
 	<section class="main-block" id="current">
 		<div class="container">
@@ -235,7 +255,6 @@
 			
 			<div class="row justify-content-center d-flex">
 				<div class="col-lg-12 post-list">
-					<!-- ============================== 데이터 연동 O ==============================  -->
 					<c:forEach var="vo" items="${weeklytop30list }">
 						<!-- Start of a content -->
 						<div class="single-post d-flex flex-row">
@@ -251,8 +270,8 @@
 										<a href="../restaurant/detail.do?no=${vo.rNo }"><h4>${vo.rName }<span class="rating">${vo.rScore }</span></h4></a>
 									</div>
 									<ul class="btns px-0">
-										<li><a href="#"><span class="ti-heart"></span></a></li>
-										<li><a href="#">예약하기</a></li>
+										<li class="px-0 py-1"><span class="mywish px-1 mx-2" value="${vo.rNo }" id="mywish_${vo.rNo }" style="color:red; font-size:20px;">${vo.myWish }</span></li>
+										<li class="px-0 py-2"><a href="../restaurant/detail.do?no=${vo.rNo }" class="px-1 mx-2">예약하기</a></li>
 									</ul>
 								</div>
 								<!-- <p>20석도 채 안되는 작은 규모이지만 실속있는 수제버거 전문점이다. 외국인들이 많이 찾을 정도로 오리지널 수제버거의 맛을 재현하고 있다. -->
@@ -268,42 +287,12 @@
 						</div>
 						<!-- End of a content -->
 					</c:forEach>
-					
-					<!-- ============================== 데이터 연동 X. ==============================  -->
-					<%-- <div class="single-post d-flex flex-row">
-							<div class="thumb">
-								<a href="main.jsp?mode=5">
-									<img src="${pageContext.request.contextPath }/images/featured1.jpg" alt="">
-								</a>
-							</div>
-							<div class="details">
-								<div class="title d-flex flex-row justify-content-between">
-									<div class="res_title pt-2">
-										<a href="main.jsp?mode=5"><h4>${vo.rName }<span class="rating">${vo.rScore }</span></h4></a>
-									</div>
-									<ul class="btns px-0">
-										<li><a href="#"><span class="ti-heart"></span></a></li>
-										<li><a href="#">예약하기</a></li>
-									</ul>
-								</div>
-								<p>20석도 채 안되는 작은 규모이지만 실속있는 수제버거 전문점이다. 외국인들이 많이 찾을 정도로 오리지널 수제버거의 맛을 재현하고 있다.
-								 <ul class="detailed-info">
-	                                    <li><span class="icon-location-pin"></span>
-	                                        <p>${vo.rAddr2 }</p>
-	                                    </li>
-	                                    <li><span class="icon-screen-smartphone"></span>
-	                                        <p>${vo.rTel }</p>
-	                                    </li>
-	                             </ul>
-							</div>
-						</div> --%>
-					
 				</div>
 			</div>
 			<div class="row justify-content-center">
                 <div class="col-md-4">
                     <div class="featured-btn-wrap">
-                        <a href="main.jsp?mode=1" class="btn btn-danger">+ 더 보기</a>
+                        <a href="../restaurant/list_weekly.do" class="btn btn-danger">+ 더 보기</a>
                     </div>
                 </div>
             </div>
@@ -320,25 +309,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="row mb-5">
-                	<c:forEach var="vo" items="${cookielist }">
-	                    <div class="card" style="width: 30%; margin: 0 15px;">
-	                        <a href="../restaurant/detail.do?no=${vo.rNo }">
-	                            <img src="${vo.ivo.iLink }" class="card-img-top" alt="...">
-	                            <div class="card-body">
-	                            	<h5 class="card-title">${vo.rName }</h5>
-	                                <ul class="detailed-info">
-	                                    <li><span class="icon-location-pin"></span>
-	                                        <p>${vo.rAddr1 }</p>
-	                                    </li>
-	                                    <li><span class="icon-screen-smartphone"></span>
-	                                        <p>${vo.rTel }</p>
-	                                    </li>
-	                             	</ul>
-	                            </div>
-	                        </a>
-	                    </div>
-                    </c:forEach>
+                <div class="row mb-5 recent-div">
+                	
                 </div>
                 <!-- <div class="row justify-content-center">
                     <div class="col-md-4">
@@ -350,47 +322,6 @@
             </div>
         </section>
         <!--//END FEATURED PLACES -->
-        <%-- <section class="main-block light-bg" id="recent">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-md-5">
-                        <div class="styled-heading">
-                            <h3>최근 본 맛집</h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="row mb-5">
-                    <div class="card" style="width: 30%; margin: 0 15px;">
-                        <a href="main.jsp?mode=5">
-                            <img src="${pageContext.request.contextPath }/images/featured1.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-                                        content.</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="card" style="width: 30%; margin: 0 15px;">
-                        <a href="main.jsp?mode=5">
-                            <img src="${pageContext.request.contextPath }/images/featured2.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-                                    content.</p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <!-- <div class="row justify-content-center">
-                    <div class="col-md-4">
-                        <div class="featured-btn-wrap">
-                            <a href="#" class="btn btn-danger">+ 더 보기</a>
-                        </div>
-                    </div>
-                </div> -->
-            </div>
-        </section>
-        <!--//END FEATURED PLACES --> --%>
 
     <!-- jQuery, Bootstrap JS. -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -446,48 +377,118 @@
     		
     	});
     </script>
+   	
+   	<script type="text/javascript">
+
+    $.ajax({
+   		type:'post',
+       	url:'../main/home_recent.do',
+       	success:function(res){
+       		$('.recent-div').html(res);
+       	}
+   	})
+   	</script> 
     
-    <!-- 찜 hover  -->
-    <!-- <script type="text/javascript">
-    	$('.mywish').mouseover(function() {
-    		$(this).text('♥');
-    		$(this).css("font-size","17pt");
-    		$(this).css("color","red");
-    	});
-    	$('.mywish').mouseout(function() {
-    		$(this).text('♡');
-    		$(this).css("font-size","17pt");
-    		$(this).css("color","black");
-    	})
-    </script>   -->
-    
-    <!-- <script type="text/javascript">
+    <!-- 찜 -->
+    <script type="text/javascript">
     	$('.mywish').click(function() {
     		let no=$(this).attr('value');
     		//alert(no);
     		$.ajax({
     			type:'POST',
-    			url:'../main/mywish.do',
+    			url:'../restaurant/mywish.do',
     			data:{"rno":no},
     			success:function(res){
-    				console.log(res);
+    				console.log(res);    				
     				if(res.trim()=='NOLOGIN') {
     					alert("로그인 후 이용해주세요.");
     				}
-    				else { // MYWISH_INSERT
-    					if($('.mywish').attr('value')==no) {
-    						$(this).text('♥');
-        		    		$(this).css("font-size","17pt");
-        		    		$(this).css("color","red");
-    					}
+    				else if(res.trim()=='myWishInsert'){ 
+    					$('#mywish_'+no).text('♥');
+    				}
+    				else { // myWishDelete
+    					$('#mywish_'+no).text('♡');
     				}
     			},
     			error:function(e){
     				alert(e);
     			}
-    		})
-    	})
-    </script> -->
+    		});
+    	});
+    </script>
+    
+    <!-- 찜 hover 시 마우스 변경 -->
+	<script type="text/javascript">
+	$('.mywish').hover(function(){
+		$(this).css('cursor','pointer');
+	})
+	</script>
+	
+	<!-- 검색어 자동완성 -->
+	<script type="text/javascript">
+	$(function() {
+	    var autocomplete = new Array();	   
+	    $('#resName').keyup(function(){
+	    	var length=$('#resName').val().trim().length;
+	    	console.log("length="+length);
+	    	if(length!=0){
+	    		var resName=$('#resName').val();
+		    	console.log(resName);
+		    	
+		    	$.ajax({
+	    			type:'POST',
+	    			url:'../main/search_autocomplete.do',
+	    			data:{"resName":resName},
+	    			success:function(res){
+	    				//console.log(res);    				
+	    				//availableTags=res;
+	    				autocomplete=res;
+	    				console.log('autocomplete='+autocomplete);
+	    				$('#auto_compl').html(res);
+	    			},
+	    			error:function(e){
+	    				alert(e);
+	    			}
+	    		});
+	    	}
+	    	else{
+	    		$('#auto_compl').html('');
+	    	}
+	    });
+	    
+	    
+	    $('#resArea').keyup(function(){
+	    	var length=$('#resArea').val().trim().length;
+	    	console.log("length="+length);
+	    	if(length!=0){
+	    		var resArea=$('#resArea').val();
+		    	console.log(resArea);
+		    	
+		    	$.ajax({
+	    			type:'POST',
+	    			url:'../main/search_autocomplete_area.do',
+	    			data:{"resArea":resArea},
+	    			success:function(res){
+	    				//console.log(res);    				
+	    				//availableTags=res;
+	    				autocomplete=res;
+	    				console.log('autocomplete='+autocomplete);
+	    				$('#auto_compl_area').html(res);
+	    			},
+	    			error:function(e){
+	    				alert(e);
+	    			}
+	    		});
+	    	}
+	    	else{
+	    		$('#auto_compl_area').html('');
+	    	}
+	    });
+	    
+	    
+	})
+	
+	</script>
 </body>
 
 </html>

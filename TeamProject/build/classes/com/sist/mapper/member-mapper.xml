@@ -42,9 +42,9 @@
 	<insert id="memberInsert">
 		INSERT INTO member (userid,upwd,uname,uemail,utel,uphone,upost,uaddr1,uaddr2,ugender,ubirth,utype,hint,hintans) 
 		VALUES(
-		#{userid},#{upwd},#{uname},#{uemail},#{utel},
-		#{uphone},#{upost},#{uaddr1},#{uaddr2},#{ugender},
-		#{ubirth},#{utype},#{hint},#{hintans}
+		#{userid,jdbcType=VARCHAR},#{upwd,jdbcType=VARCHAR},#{uname,jdbcType=VARCHAR},#{uemail,jdbcType=VARCHAR},#{utel,jdbcType=VARCHAR},
+		#{uphone,jdbcType=VARCHAR},#{upost,jdbcType=VARCHAR},#{uaddr1,jdbcType=VARCHAR},#{uaddr2,jdbcType=VARCHAR},#{ugender,jdbcType=VARCHAR},
+		#{ubirth,jdbcType=VARCHAR},#{utype,jdbcType=VARCHAR},#{hint,jdbcType=VARCHAR},#{hintans,jdbcType=VARCHAR}
 		)
 	</insert>
 	
@@ -74,8 +74,8 @@
 		)
 	</insert>
 	
-	<resultMap type="hashMap" id="selectMap"></resultMap>
-	<select id="getSubArea" resultMap="selectMap" parameterType="String">
+	<!-- 기업회원가입: 지역 선택 -->
+	<select id="getSubArea" resultType="String" parameterType="String">
 		SELECT r_areadetail FROM areaCode
 		WHERE r_areacode=#{selected}
 	</select>

@@ -1,6 +1,8 @@
+
 package com.sist.mypage.model;
 
 import javax.servlet.http.HttpServletRequest;
+
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -57,7 +59,7 @@ public class MypageModel {
 			
 	
 		
-		list = MypageDAO.mypageMyWishList(map); 
+		/*list = MypageDAO.mypageMyWishList(map); */
 		
 	
 		for(int i = 0 ; i < list.size() ; i++)
@@ -103,6 +105,7 @@ public class MypageModel {
 
 		return "../mypage/mypage_reserve.jsp";
 	}
+	
 	
 	@RequestMapping("mypage/review.do")
 	public String mypage_review(HttpServletRequest request, HttpServletResponse response) {
@@ -188,6 +191,7 @@ public class MypageModel {
 			map.put("range", reviewRangeList.replace(":", " ").substring(0,reviewRangeList.length()-1));
 			
 	
+
 				
 	
 		
@@ -205,7 +209,14 @@ public class MypageModel {
 		else
 			list = MypageDAO.mypageReviewList(map);
 		
+
+		list = MypageDAO.mypageReviewList(map);
+	
+		
+
+
 		for(int i = 0 ; i < list.size() ; i++)
+
 		{
 			String temp = list.get(i).getRevContent();
 			if(temp.length() > 10)
@@ -213,14 +224,23 @@ public class MypageModel {
 			
 			list.get(i).setRevContent(temp);
 		}
+
 	
 		request.setAttribute("page", curpage);
 		request.setAttribute("total", total);
+
+
+
 		request.setAttribute("list", list);
 		request.setAttribute("reviewRangeList", reviewRangeList);
 		
 		return "../mypage/mypage_review.jsp";
+		
+		
 	}
+
+	
+	
 	
 	@RequestMapping("mypage/coupon.do")
 	public String mypage_coupon(HttpServletRequest request, HttpServletResponse response) {
@@ -255,7 +275,7 @@ public class MypageModel {
 		request.setAttribute("page", curpage);
 		request.setAttribute("total", total);
 		request.setAttribute("list", list);
-		
+
 		
 		return "../mypage/mypage_coupon.jsp";
 	}
@@ -285,7 +305,7 @@ public class MypageModel {
 		
 		
 		
-		list = MypageDAO.mypageCouponSearch(map);
+		/*list = MypageDAO.mypageCouponSearch(map);*/
 		
 		request.setAttribute("list", list);
 		
@@ -314,9 +334,9 @@ public class MypageModel {
 		map.put("end", end);
 		map.put("rname", rname);
 		
-		list = MypageDAO.mypageCouponSearchList(map);
+		/*list = MypageDAO.mypageCouponSearchList(map);*/
 		
-		for(int i = 0 ; i < list.size() ; i++)
+		/*for(int i = 0 ; i < list.size() ; i++)
 		{
 			if(list.get(0).getMvo().getrName().length()>5)
 			{
@@ -327,21 +347,26 @@ public class MypageModel {
 				list.get(i).getMvo().setrName(temp);
 		
 			}
-		}
+		}*/
 		
-		
+			
 		
 		request.setAttribute("list", list);
 		
 		return "../mypage/mypage_coupon_search_list.jsp";
 	}
 
+
+	
 	@RequestMapping("mypage/infoupdate_check.do")
 	public String mypage_infoupdate_check(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
 
 		return "../mypage/mypage_infoupdate_check.jsp";
 	}
+
+
+
 
 	@RequestMapping("mypage/infoupdate_check_ok.do")
 	public String mypage_infoupdate_check_ok(HttpServletRequest request, HttpServletResponse response) {
@@ -402,6 +427,10 @@ public class MypageModel {
 			vo.setUaddr2(address_detail);
 			vo.setUtype(utype);
 	
+	
+	
+	
+	
 	/*
 	 * 데이터 확인	
 			System.out.println("1:"+vo.getUserid());
@@ -432,3 +461,5 @@ public class MypageModel {
 		return "redirect:mypage.do";
 	}
 }
+
+

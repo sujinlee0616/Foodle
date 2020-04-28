@@ -146,6 +146,11 @@
 		WHERE bno=#{bno}
 	</update>
 	
+	<select id="listCmtCount" resultType="int" parameterType="int">
+		SELECT COUNT(*) FROM boardComment
+		WHERE bno=#{bno}	
+	</select>
+	
 </mapper>
 
 

@@ -2,22 +2,24 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sist.mapper.retaurant-themalist-mapper">
 <!-- t_MainThema= #{menuName} -->
-	<resultMap type="com.sist.vo.MainInfoVO" id="mainInforMap">
-		<result column="rno" property="rNo"/>
-		<result column="rname" property="rName"/>
-		<result column="rtype" property="rType"/>
-		<result column="rtel" property="rTel"/>
-		<result column="rscore" property="rScore"/>
-		<result column="rscorecount" property="rScoreCount"/>
-		<result column="raddr1" property="rAddr1"/>
-		<result column="raddr2" property="rAddr2"/>
-		<result column="rpwd" property="rPwd"/>
-		<result column="rarea" property="rArea"/>
-		<result column="rareadetail" property="rAreaDetail"/>
-		<result column="iname" property="ivo.iName"/>
-		<result column="ilink" property="ivo.iLink"/>
+	<resultMap type="com.sist.vo.NearbyVO" id="mainInforMap">
+		<result column="rno" 			property="rNo"/>
+		<result column="rname" 			property="rName"/>
+		<result column="rtype" 			property="rType"/>
+		<result column="rtel" 			property="rTel"/>
+		<result column="rscore"		 	property="rScore"/>
+		<result column="rscorecount" 	property="rScoreCount"/>
+		<result column="raddr1" 		property="rAddr1"/>
+		<result column="raddr2" 		property="rAddr2"/>
+		<result column="rpwd" 			property="rPwd"/>
+		<result column="rarea" 			property="rArea"/>
+		<result column="rareadetail" 	property="rAreaDetail"/>
+		<result column="rhit"           property="rHit"/> 
+		<result column="rtakeout"       property="rTakeout"/> 
+		<result column="rhighprice"     property="rHighprice"/> 
+		<result column="iname" 			property="ivo.iName"/>
+		<result column="ilink" 			property="ivo.iLink"/>
 	</resultMap>
-	
 	
 
 
@@ -43,12 +45,20 @@
 <select id="searchThema" parameterType="java.util.Map" resultMap="mainInforMap" >
 	 SELECT RNO, 
 	 	    RNAME,
-	 	    RTYPE,  RTEL,    RADDR2,      INAME,    ILINK
+	 	    RTYPE,  
+	 	    RTEL,
+	 	    rScore,
+	 	    rScoreCount,   
+	 	    RADDR2,      
+	 	    INAME,    
+	 	    ILINK
 	 FROM  (
 	     SELECT MAI.RNO,
 	            MAI.RNAME,
 	            MAI.RTYPE,
 	            MAI.RTEL,
+	            NVL(mai.RSCORE,4.2) RSCORE,
+	            MAI.rScoreCount,     
 	            MAI.RADDR2,
 	            IMG.INAME,
 	            IMG.ILINK
@@ -61,15 +71,10 @@
 	    	AND DETAIL.T_DETAILTHEMA= #{fd}
 	    	AND MAI.RNO=IMG.RNO
 			AND IMG.INAME='Mainimage'    	
-	    	AND MAI.RNO <![CDATA[ <  ]]> 500
+	    	AND MAI.RNO <![CDATA[ <  ]]> 300
 	        )
-         GROUP BY RNO, RNAME, RTYPE,  RTEL,    RADDR2,      INAME,    ILINK
+         GROUP BY RNO, RNAME, RTYPE,  RTEL, RSCORE, RScoreCount,     RADDR2,      INAME,    ILINK
          ORDER BY RNO ASC	
-	
 </select>
-
-
-
-
 
 </mapper>

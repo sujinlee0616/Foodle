@@ -18,13 +18,13 @@
 
     <!-- jQuery, Bootstrap JS. -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="${pageContext.request.contextPath }/js/jquery-3.2.1.min.js"></script>
-    <script src="${pageContext.request.contextPath }/js/popper.min.js"></script>
-    <script src="${pageContext.request.contextPath }/js/bootstrap.min.js"></script>
+    <script src="../js/jquery-3.2.1.min.js"></script>
+    <script src="../js/popper.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
 
 
 <!-- small 테마 맛집 페이지 CSS -->
-<link rel="stylesheet" href="${pageContext.request.contextPath }/css/cate_select.css">
+<link rel="stylesheet" href="/css/cate_select.css">
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
 //중간테마 눌렀을때 ajax로 모든 리스트 출력 예정!!
@@ -35,6 +35,8 @@ $(function(){
 		var detailThema=$('.resultThemaList').attr("data-detailThema"); // 가족모임
 		var infoThema=$('.resultThemaList').attr("data-tInfo");
 		
+		console.log("detailThema: "+ detailThema);
+		console.log("infoThema: "+ infoThema);
 		
 		$.ajax({
 			
@@ -57,9 +59,14 @@ $(function(){
 			var detailThema=$(this).attr("data-detailThema"); // 가족모임
 			var infoThema=$(this).attr("data-tInfo");
 				
+			console.log("ajax-no: "+ no);
+			console.log("ajax-detailThema: "+ detailThema);
+			console.log("ajax-infoThema: "+ infoThema);
+			
+			
 			$.ajax({
 				
-				type:'post',
+				type:'get',
 				url:'../restaurant/result_thema_list.do',
 				data:{"no":no,"detailThema_col":detailThema,"infoThema_col":infoThema},
 				success:function(res){
@@ -95,12 +102,12 @@ figure img {
 <body>
       <div class="situation" >
          <c:forEach var="vo" items="${list }" varStatus="status">
-              <div class="themarow find-img-align resultThemaList" value="${status.index }" data-detailThema="${vo.t_DetailThema }" data-tInfo="${vo.t_Info }">
+              <div class="caterow find-img-align resultThemaList" value="${status.index }" data-detailThema="${vo.t_DetailThema }" data-tInfo="${vo.t_Info }">
                    <div class="col-md-12">
 	                    <div class="find-place-img_wrap">
 	                          <div class="grid">
 	                               <figure class="effect-ruby">
-	                                   <img src="${pageContext.request.contextPath }/images/situ3.png" class="img-fluid" alt="img13" />
+	                                   <img src="../images_thema/${vo.t_DetailThema }.png" class="img-fluid" alt="img13" />
 	                                      <figcaption>
 	                                      <p><p>
 	                                      </figcaption>

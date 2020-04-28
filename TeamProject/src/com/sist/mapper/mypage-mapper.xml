@@ -21,14 +21,12 @@
 		<result column="resno" property="resNo"/>
 		<result column="rno" property="rNo"/>
 		<result column="userid" property="userId"/>
-		<result column="regdate" property="regdate"/>
-		
+		<result column="regdate" property="regdate"/>		
  		<result column="resPeople" property="respeople"/>
 		<result column="resDate" property="resdate"/>
 		<result column="resTime" property="restime"/>
 		<result column="resMenu" property="resmenu"/>
-		
- 		
+		 		
 		<result column="rName" property="mvo.rName"/>
 	</resultMap>
 	

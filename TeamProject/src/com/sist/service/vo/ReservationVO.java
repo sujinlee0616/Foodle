@@ -7,10 +7,12 @@ import com.sist.vo.MainInfoVO;
 	RNO       NOT NULL NUMBER         
 	USERID    NOT NULL VARCHAR2(50)   
 	REGDATE            DATE           
-	RESPEOPLE NOT NULL NUMBER(3)      
 	RESDATE   NOT NULL VARCHAR2(20)   
 	RESTIME   NOT NULL VARCHAR2(20)   
 	RESMENU            VARCHAR2(2000) 
+	RESPEOPLE          VARCHAR2(200)
+	RESPRICE           VARCHAR2(200)  
+	RESCOUPON          VARCHAR2(200)
  */
 
 public class ReservationVO {
@@ -18,10 +20,12 @@ public class ReservationVO {
 	private int rNo;
 	private String userId;
 	private Date regdate;
-	private int respeople;
+	private String respeople;
 	private String resdate;
 	private String restime;
 	private String resmenu;
+	private String resprice;
+	private String rescoupon;
 	
 	// join
 	private MainInfoVO mvo;
@@ -57,12 +61,10 @@ public class ReservationVO {
 	public void setRegdate(Date regdate) {
 		this.regdate = regdate;
 	}
-
-	public int getRespeople() {
+	public String getRespeople() {
 		return respeople;
 	}
-
-	public void setRespeople(int respeople) {
+	public void setRespeople(String respeople) {
 		this.respeople = respeople;
 	}
 
@@ -96,6 +98,22 @@ public class ReservationVO {
 
 	public void setMvo(MainInfoVO mvo) {
 		this.mvo = mvo;
+	}
+
+	public String getResprice() {
+		return resprice;
+	}
+
+	public void setResprice(String resprice) {
+		this.resprice = resprice;
+	}
+
+	public String getRescoupon() {
+		return rescoupon;
+	}
+
+	public void setRescoupon(String rescoupon) {
+		this.rescoupon = rescoupon;
 	}
 	
 

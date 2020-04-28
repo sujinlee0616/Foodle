@@ -133,10 +133,10 @@ public class MemberModel {
 		String address_detail=request.getParameter("address_detail");
 		
 		// 데이터 확인 
-		//System.out.println("user_type="+utype+", id="+id+", pwd="+pwd+ ", name="+name+", gender="+gender);
-		//System.out.println("birth="+birth+", email="+email+", pwd_hint="+pwd_hint+", pwd_hintAns="+pwd_hintAns);
-		//System.out.println("cellnum="+cellnum+", telnum="+telnum);
-		//System.out.println("address_main="+address_main+", postcode="+postcode+", address_detail="+address_detail);
+		System.out.println("user_type="+utype+", id="+id+", pwd="+pwd+ ", name="+name+", gender="+gender);
+		System.out.println("birth="+birth+", email="+email+", pwd_hint="+pwd_hint+", pwd_hintAns="+pwd_hintAns);
+		System.out.println("cellnum="+cellnum+", telnum="+telnum);
+		System.out.println("address_main="+address_main+", postcode="+postcode+", address_detail="+address_detail);
 		
 		MemberVO vo = new MemberVO();
 		vo.setUtype(utype);
@@ -230,12 +230,27 @@ public class MemberModel {
 	@RequestMapping("member/signup_comp_area.do")
 	public String signup_comp_area(HttpServletRequest request,HttpServletResponse response)
 	{
+		try {
+			request.setCharacterEncoding("UTF-8");
+		} catch (Exception ex) {}
+		
 		String selected=request.getParameter("selected");  
 		System.out.println("selected="+selected);
-
+		
 		List<String> list=MemberDAO.getSubArea(selected);
 		System.out.println("Model list="+list);
+		
+		/*List<String> sList=new ArrayList<String>();
+		for(String s:list)
+		{
+			s=s.substring(s.lastIndexOf("=")+1);
+			System.out.println("s="+s);
+			sList.add(s);
+		}*/
+
 		request.setAttribute("list", list);
+		//request.setAttribute("list", list);
+		System.out.println(list);
 		
 		return "../member/signup_comp_area.jsp";
 	}
@@ -248,4 +263,31 @@ public class MemberModel {
 		request.setAttribute("main_jsp", "../member/welcome.jsp");
 		return "../main/main.jsp";
 	}
+	
+	// [개인회원가입 - 아이디 중복체크]
+	@RequestMapping("member/id_check.do")
+	public String member_id_check(HttpServletRequest request, HttpServletResponse response)
+	{
+		String user_entered_id=request.getParameter("user_entered_id");
+		System.out.println("user_entered_id="+user_entered_id);
+		String result=MemberDAO.idCheck_general(user_entered_id);
+		
+		request.setAttribute("result", result);
+		
+		return "../member/id_check.jsp";
+	}
+	
+	// [기업회원가입 - 아이디 중복체크]
+	@RequestMapping("member/id_check_comp.do")
+	public String member_id_check_comp(HttpServletRequest request, HttpServletResponse response)
+	{
+		String user_entered_id=request.getParameter("user_entered_id");
+		System.out.println("user_entered_id="+user_entered_id);
+		String result=MemberDAO.idCheck_comp(user_entered_id);
+		
+		request.setAttribute("result", result);
+		
+		return "../member/id_check_comp.jsp";
+	}
+	
 }
