@@ -262,4 +262,34 @@ public class RestaurantDetailDAO {
 				session.close();
 		}
 	}
+	
+	// 예약 - 사용가능한 쿠폰 
+	public static List<CouponVO> reserveCouponData(Map map) {
+		List<CouponVO> list=new ArrayList<CouponVO>();
+		SqlSession session=null;
+		try {
+			session=ssf.openSession();
+			list=session.selectList("reserveCouponData", map);
+		} catch(Exception ex) {
+			System.out.println("reserveCouponData(): "+ex.getMessage());
+		} finally {
+			if(session!=null)
+				session.close();
+		}
+		return list;
+	}
+	
+	// 사용한 쿠폰 삭제
+	public static void reserveCouponDelete(Map map) {
+		SqlSession session=null;
+		try {
+			session=ssf.openSession(true);
+			session.delete("reserveCouponDelete", map);
+		} catch(Exception ex) {
+			System.out.println("reserveCouponDelete(): "+ex.getMessage());
+		} finally {
+			if(session!=null)
+				session.close();
+		}
+	}
 }

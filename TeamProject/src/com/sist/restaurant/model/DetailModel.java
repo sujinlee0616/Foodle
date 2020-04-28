@@ -60,6 +60,16 @@ public class DetailModel {
 		cookie.setMaxAge(60*60*24); // 기간설정(하루)
 		response.addCookie(cookie);
 		
+		// 쿠폰
+		if(id!=null) {
+			Map map=new HashMap();
+			map.put("rno",Integer.parseInt(no));
+			map.put("userid", id);
+			List<CouponVO> cList=RestaurantDetailDAO.reserveCouponData(map);
+			
+			request.setAttribute("cList", cList);
+		}
+		
 		
 		request.setAttribute("mvo", mvo);
 		request.setAttribute("svo", svo);
@@ -68,6 +78,7 @@ public class DetailModel {
 		request.setAttribute("imageList", imageList);
 		request.setAttribute("strContent", strContent);
 		request.setAttribute("myWish", myWish);
+		
 		
 		request.setAttribute("main_header", "../common/header_sub.jsp");
 		request.setAttribute("main_jsp", "../restaurant/detail.jsp");
@@ -219,6 +230,8 @@ public class DetailModel {
             <input type="hidden" name="resdate" value="" id="resdate"/>
             <input type="hidden" name="restime" value="" id="restime"/>
             <input type="hidden" name="resmenu" value="" id="resmenu"/>
+            <input type="hidden" name="resprice" value="" id="resprice"/>
+	        <input type="hidden" name="rescoupon" value="" id="rescoupon"/>
 		 */
 		/*
 		 *  RESNO     NOT NULL NUMBER         
@@ -228,7 +241,9 @@ public class DetailModel {
 			RESDATE   NOT NULL VARCHAR2(20)   
 			RESTIME   NOT NULL VARCHAR2(20)   
 			RESMENU            VARCHAR2(2000) 
-			RESPEOPLE          VARCHAR2(200)
+			RESPEOPLE          VARCHAR2(200)  
+			RESPRICE           VARCHAR2(200)  
+			RESCOUPON          VARCHAR2(200)
 		 * 
 		 */
 		String rno=request.getParameter("rno");
@@ -236,6 +251,9 @@ public class DetailModel {
 		String resdate=request.getParameter("resdate");
 		String restime=request.getParameter("restime");
 		String resmenu=request.getParameter("resmenu");
+		String resprice=request.getParameter("resprice");
+		String rescoupon=request.getParameter("rescoupon");
+		
 		resmenu=resmenu.substring(0, resmenu.lastIndexOf(","));
 		
 		HttpSession session=request.getSession();
@@ -248,6 +266,8 @@ public class DetailModel {
 		map.put("resdate", resdate);
 		map.put("restime", restime);
 		map.put("resmenu", resmenu);
+		map.put("resprice", resprice);
+		map.put("rescoupon", rescoupon);
 		
 		System.out.println(map.get("rno"));
 		System.out.println(map.get("userid"));
@@ -255,15 +275,30 @@ public class DetailModel {
 		System.out.println(map.get("resdate"));
 		System.out.println(map.get("restime"));
 		System.out.println(map.get("resmenu"));
+		System.out.println(map.get("resprice"));
+		System.out.println(map.get("rescoupon"));
 		
 		RestaurantDetailDAO.reserveInsert(map);
 		
-		/*System.out.println("rno="+rno);
-		System.out.println("respeople="+respeople);
-		System.out.println("resdate="+resdate);
-		System.out.println("restime="+restime);
-		System.out.println("resmenu="+resmenu);
-		System.out.println("id="+userid);*/
+		// 사용한 쿠폰 삭제
+		if(rescoupon!="0") {
+			String cprice=rescoupon.substring(rescoupon.indexOf("*")+2,rescoupon.indexOf("(")-1);
+			String cname=rescoupon.substring(0,rescoupon.indexOf("*")-1);
+			String cenddate=rescoupon.substring(rescoupon.indexOf("~")+1,rescoupon.indexOf(")"));
+			
+			/*System.out.println("cprice:"+cprice);
+			System.out.println("cname:"+cname);
+			System.out.println("cenddate:"+cenddate);
+			System.out.println("userid:"+userid);*/
+			
+			map=new HashMap<String, Object>();
+			map.put("cprice", cprice);
+			map.put("cname", cname);
+			map.put("cenddate", cenddate);
+			map.put("userid", userid);
+			
+			RestaurantDetailDAO.reserveCouponDelete(map);
+		}
 		
 		return "redirect:../mypage/mypage.do";
 	}
