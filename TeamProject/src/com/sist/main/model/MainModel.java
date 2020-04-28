@@ -162,7 +162,23 @@ public class MainModel {
 		return "../main/home_recent.jsp";
 	}
 	
-	
-	
+	// 검색어 자동완성 
+	@RequestMapping("main/search_autocomplete.do")
+	public String main_search_autocomplete(HttpServletRequest request, HttpServletResponse response) {
+		
+		try {
+			request.setCharacterEncoding("UTF-8");
+		} catch (Exception ex) {}
+		
+		String resName=request.getParameter("resName");
+		System.out.println("resName="+resName);
+		
+		List<String> list=SearchAutoComplDAO.resNameAutocomplete(resName);
+		System.out.println("search_autocomplete list="+list);
+		
+		request.setAttribute("list", list);
+		
+		return "../main/search_autocomplete.jsp";
+	}
 	
 }

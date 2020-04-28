@@ -25,12 +25,16 @@
                         <div class="row d-flex justify-content-center">
                             <div class="col-md-10">
                                 <form class="form-wrap mt-4" action="../search/searchpage.do" id="search_frm" method="post">
-                                    <div class="btn-group" role="group" aria-label="Basic example">
-                                        <input type="text" placeholder="카테고리" class="btn-group1" id="cate" name="cate">
-                                        <input type="text" placeholder="지역" class="btn-group2" id="area" name="area" autocomplete="off">
+                                    <div class="btn-group ui-widget" role="group" aria-label="Basic example">
+                                        <input type="text" placeholder="가게 이름" class="btn-group1" id="resName" name="cate" autocomplete="off">
+                                        <input type="text" placeholder="지역" class="btn-group2" id="resArea" name="area" autocomplete="off">
                                         <button type="submit" class="btn-form" id="SearchBtn"><span class="icon-magnifier search-icon">
                                       		</span>검색<i class="pe-7s-angle-right"></i>
                                         </button>
+                                    </div>
+                                    <!-- 자동완성 -->
+                                    <div class="col-md-5 pl-0">
+                                    	<ul id="auto_compl" style="background-color:#fff; text-align:left; padding: 0 10px; border: 1px solid #aaa;"></ul>
                                     </div>
                                 </form>
                             </div>
@@ -402,6 +406,38 @@
 	$('.mywish').hover(function(){
 		$(this).css('cursor','pointer');
 	})
+	</script>
+	
+	<!-- 검색어 자동완성 -->
+	<script type="text/javascript">
+	$(function() {
+
+	    var autocomplete = new Array();	   
+	    
+	    $('#resName').keyup(function(){
+	    	var resName=$('#resName').val();
+	    	console.log(resName);
+	    	
+	    	$.ajax({
+    			type:'POST',
+    			url:'../main/search_autocomplete.do',
+    			data:{"resName":resName},
+    			success:function(res){
+    				//console.log(res);    				
+    				//availableTags=res;
+    				autocomplete=res;
+    				console.log('autocomplete='+autocomplete);
+    				$('#auto_compl').html(res);
+    			},
+    			error:function(e){
+    				alert(e);
+    			}
+    		});
+	    	
+	    });
+	    
+	})
+	
 	</script>
 </body>
 
