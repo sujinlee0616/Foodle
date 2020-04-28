@@ -35,7 +35,7 @@
 
 
 <%--
-
+이 폼 쓰는게 더  좋아보임
 <div class="row justify-content-center d-flex" style="background: #E6E6E6;">
 	<div class="col-lg-12 post-list"  style="margin-top:25px">				
 		<c:forEach var="vo" items="${list}">

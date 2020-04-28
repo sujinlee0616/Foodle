@@ -132,9 +132,6 @@ public class MypageDAO {
 		List<ReviewVO> list = new ArrayList<ReviewVO>();
 		SqlSession session=null;
 		
-	
-	
-		
 		try 
 		{
 			session=ssf.openSession();
@@ -153,6 +150,46 @@ public class MypageDAO {
 		
 		return list;
 	}
+	public static List<ReviewVO> mypageReviewRangeList(Map map)
+	{
+		List<ReviewVO> list = new ArrayList<ReviewVO>();
+		SqlSession session=null;
+		
+		try 
+		{
+			session=ssf.openSession();
+			if(map.get("userid")!=null)
+				list = session.selectList("mypageReviewRangeList",map);
+				
+			
+		} 
+		catch (Exception ex) {
+			System.out.println("memberLogin: "+ex.getMessage());
+		}
+		finally {
+			if(session!=null)
+				session.close(); 
+		}
+		
+		return list;
+	}
+	
+	
+	public static int mypageReviewTotalPage() {
+		int total=0;
+		SqlSession session=null;
+		try {
+			session=ssf.openSession();
+			total=session.selectOne("mypageReviewTotalPage");
+		} catch(Exception ex) {
+			System.out.println("replyTotalPage(): "+ex.getMessage());
+		} finally {
+			if(session!=null)
+				session.close();
+		}
+		return total;
+	}
+	
 	public static MemberVO mypage_infoupdate_check(String pwd,String id)
 	{
 		MemberVO vo = new MemberVO();
@@ -230,6 +267,7 @@ public class MypageDAO {
 			System.out.println("7:+"+list.get(0).getMvo().getIvo().getiLink());
 			*/
 			
+			
 		} 
 		catch (Exception ex) {
 			System.out.println("memberLogin: "+ex.getMessage());
@@ -241,6 +279,21 @@ public class MypageDAO {
 		
 		return list;
 	}	
+	public static int mypageWishTotalPage() {
+		int total=0;
+		SqlSession session=null;
+		try {
+			session=ssf.openSession();
+			total=session.selectOne("mypageWishTotalPage");
+		} catch(Exception ex) {
+			System.out.println("replyTotalPage(): "+ex.getMessage());
+		} finally {
+			if(session!=null)
+				session.close();
+		}
+		return total;
+	}
+	
 }
 
 
