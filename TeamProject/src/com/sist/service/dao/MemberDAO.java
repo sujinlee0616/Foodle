@@ -192,4 +192,31 @@ public class MemberDAO {
 		}
 		return result;
 	}
+	
+	// [기업회원가입 - 아이디 중복체크]
+	public static String idCheck_comp(String user_entered_id)
+	{
+		String result="";
+		int id_count=0;
+		SqlSession session=null;
+		try
+		{
+			session=ssf.openSession(); 
+			id_count=session.selectOne("idCount_comp",user_entered_id);
+			
+			if(id_count!=0)
+				result="already_exist";
+			else
+				result="not_exist";			
+			System.out.println("idCheck_comp="+result);	
+		}
+		catch (Exception ex) {
+			System.out.println("idCheck_comp :"+ex.getMessage());
+		}
+		finally {
+			if(session!=null)
+				session.close();
+		}
+		return result;
+	}
 }

@@ -30,6 +30,17 @@ public class MainInfoVO {
 	// image 테이블 maininfo테이블과  조인
 	private ImageVO ivo=new ImageVO();
 	
+	// 찜
+	private String myWish;
+	
+	
+	
+	public String getMyWish() {
+		return myWish;
+	}
+	public void setMyWish(String myWish) {
+		this.myWish = myWish;
+	}
 	public ImageVO getIvo() {
 		return ivo;
 	}
