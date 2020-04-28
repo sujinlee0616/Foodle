@@ -7,8 +7,11 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import com.sist.controller.Controller;
 import com.sist.controller.RequestMapping;
+import com.sist.service.dao.RestaurantDetailDAO;
 import com.sist.service.dao.SearchDAO;
 import com.sist.service.dao.WeeklyDAO;
 import com.sist.vo.MainInfoVO;
@@ -40,6 +43,9 @@ public class WeeklyModel {
 		int start=(rowSize*curPage)-(rowSize-1);
 		int end=(rowSize*curPage);
 		
+		// 찜 
+		HttpSession session=request.getSession();
+		String id=(String)session.getAttribute("id");
 		
 		Map map=new HashMap();
 		map.put("start", start);
@@ -60,6 +66,25 @@ public class WeeklyModel {
 				addr=addr.substring(0,20).concat("...");
 				vo.setrAddr1(addr);
 			}
+			// 찜 - 찜 되어 있는지 아닌지 노출만. 
+			String myWish="";
+			if(id==null) { // 로그인 X
+				myWish="♡";
+			}
+			else { // 로그인 O
+				Map map2=new HashMap();
+				map2.put("id", id);
+				map2.put("rno",vo.getrNo());
+				int count=RestaurantDetailDAO.myWishCheck(map2);
+				// System.out.println("count="+count);
+				if(count>0) { // 이미 찜이 되어있으면
+					myWish="♥";
+				}
+				else {
+					myWish="♡";
+				}
+			}
+			vo.setMyWish(myWish);
 		}
 		
 		int totalPage=WeeklyDAO.weeklyTotalPage(map);
@@ -123,6 +148,9 @@ public class WeeklyModel {
 		map.put("filter4", filter4);
 		
 		List<MainInfoVO> list=WeeklyDAO.weeklyListData(map);
+		// 찜 
+		HttpSession session=request.getSession();
+		String id=(String)session.getAttribute("id");
 		
 		for(MainInfoVO vo:list)
 		{
@@ -132,6 +160,26 @@ public class WeeklyModel {
 				addr=addr.substring(0,20).concat("...");
 				vo.setrAddr1(addr);
 			}
+			// 찜 - 찜 되어 있는지 아닌지 노출만. 
+			String myWish="";
+			if(id==null) { // 로그인 X
+				myWish="♡";
+			}
+			else { // 로그인 O
+				Map map2=new HashMap();
+				map2.put("id", id);
+				map2.put("rno",vo.getrNo());
+				int count=RestaurantDetailDAO.myWishCheck(map2);
+				// System.out.println("count="+count);
+				if(count>0) { // 이미 찜이 되어있으면
+					myWish="♥";
+				}
+				else {
+					myWish="♡";
+				}
+			}
+			vo.setMyWish(myWish);
+			
 		}
 		
 		int totalPage=WeeklyDAO.weeklyTotalPage(map);
