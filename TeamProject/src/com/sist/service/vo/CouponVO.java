@@ -2,52 +2,23 @@ package com.sist.service.vo;
 
 import java.util.Date;
 
+import com.sist.vo.MainInfoVO;
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class CouponVO {
 
-	private int cno;
-	private int rno;
-	private int cprice;
-	private Date cstartdate;
-	private Date cenddate;
-	private String cname;
+	private int cNo;
+	private int rNo;
+	private int cPrice;
+	private Date cStartdate;
+	private Date cEnddate;
+	private String cName;
 	
-	public int getCno() {
-		return cno;
-	}
-	public void setCno(int cno) {
-		this.cno = cno;
-	}
-	public int getRno() {
-		return rno;
-	}
-	public void setRno(int rno) {
-		this.rno = rno;
-	}
-	public int getCprice() {
-		return cprice;
-	}
-	public void setCprice(int cprice) {
-		this.cprice = cprice;
-	}
-	public Date getCstartdate() {
-		return cstartdate;
-	}
-	public void setCstartdate(Date cstartdate) {
-		this.cstartdate = cstartdate;
-	}
-	public Date getCenddate() {
-		return cenddate;
-	}
-	public void setCenddate(Date cenddate) {
-		this.cenddate = cenddate;
-	}
-	public String getCname() {
-		return cname;
-	}
-	public void setCname(String cname) {
-		this.cname = cname;
-	}
-
+	private MainInfoVO mvo;
 }
 
  

@@ -46,4 +46,25 @@
   	AND raddr1 LIKE '%'||#{area}||'%'
   	AND image.iname LIKE 'Mainimage'
   </select>
+  
+  
+  <!-- 자동완성 검색어: 가게이름 : row개수 10개 제한-->
+  <select id="getResNameList" resultType="String" parameterType="String">
+    SELECT rname,num 
+    FROM (SELECT rname,rownum as num 
+    FROM (SELECT rname 
+    FROM maininfo WHERE rname LIKE '%'||#{resName}||'%'))
+    WHERE num BETWEEN 1 AND 5
+  </select>
+
+  <select id="getResAreaList" resultType="String" parameterType="String">
+    SELECT raddr1,num 
+    FROM (SELECT raddr1,rownum as num 
+    FROM (SELECT raddr1 
+    FROM maininfo WHERE raddr1 LIKE '%'||#{resArea}||'%'))
+    WHERE num BETWEEN 1 AND 5
+  </select>
+ 	
+  
+  
 </mapper>

@@ -289,6 +289,29 @@ public class ReplyBoardDAO {
 		
 	}
 
+	// [글 목록에 댓글개수 표기]
+	public static int listCmtCount(int bno)
+	{
+		int cmtCount=0;
+		SqlSession session = null;
+		
+		try
+		{
+			session=ssf.openSession();
+			cmtCount=session.selectOne("listCmtCount",bno);
+			//System.out.println("cmtCount="+cmtCount);
+			
+		}catch (Exception ex) 
+		{
+			System.out.println("listCmtCount: "+ex.getMessage());
+		}
+		finally
+		{
+			if(session!=null)
+				session.close();
+		}
+		return cmtCount;
+	}
 		
 	
 }

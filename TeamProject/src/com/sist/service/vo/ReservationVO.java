@@ -1,71 +1,122 @@
 package com.sist.service.vo;
 
 import java.util.Date;
+import com.sist.vo.MainInfoVO;
+/*
+	RESNO     NOT NULL NUMBER         
+	RNO       NOT NULL NUMBER         
+	USERID    NOT NULL VARCHAR2(50)   
+	REGDATE            DATE           
+	RESDATE   NOT NULL VARCHAR2(20)   
+	RESTIME   NOT NULL VARCHAR2(20)   
+	RESMENU            VARCHAR2(2000) 
+	RESPEOPLE          VARCHAR2(200)
+	RESPRICE           VARCHAR2(200)  
+	RESCOUPON          VARCHAR2(200)
+ */
 
 public class ReservationVO {
-	private int resno;
-	private int rno;
-	private String userid;
+	private int resNo;
+	private int rNo;
+	private String userId;
 	private Date regdate;
-	private int restotalprice;
-	private String resphone;
-	private int respeople;
+	private String respeople;
 	private String resdate;
 	private String restime;
+	private String resmenu;
+	private String resprice;
+	private String rescoupon;
 	
-	
-	public int getResno() {
-		return resno;
+	// join
+	private MainInfoVO mvo;
+
+	public int getResNo() {
+		return resNo;
 	}
-	public void setResno(int resno) {
-		this.resno = resno;
+
+	public void setResNo(int resNo) {
+		this.resNo = resNo;
 	}
-	public int getRno() {
-		return rno;
+
+	public int getrNo() {
+		return rNo;
 	}
-	public void setRno(int rno) {
-		this.rno = rno;
+
+	public void setrNo(int rNo) {
+		this.rNo = rNo;
 	}
-	public String getUserid() {
-		return userid;
+
+	public String getUserId() {
+		return userId;
 	}
-	public void setUserid(String userid) {
-		this.userid = userid;
+
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
+
 	public Date getRegdate() {
 		return regdate;
 	}
+
 	public void setRegdate(Date regdate) {
 		this.regdate = regdate;
 	}
-	public int getRestotalprice() {
-		return restotalprice;
-	}
-	public void setRestotalprice(int restotalprice) {
-		this.restotalprice = restotalprice;
-	}
-	public String getResphone() {
-		return resphone;
-	}
-	public void setResphone(String resphone) {
-		this.resphone = resphone;
-	}
-	public int getRespeople() {
+	public String getRespeople() {
 		return respeople;
 	}
-	public void setRespeople(int respeople) {
+	public void setRespeople(String respeople) {
 		this.respeople = respeople;
 	}
+
 	public String getResdate() {
 		return resdate;
 	}
+
 	public void setResdate(String resdate) {
 		this.resdate = resdate;
 	}
+
 	public String getRestime() {
 		return restime;
 	}
+
 	public void setRestime(String restime) {
 		this.restime = restime;
 	}
+
+	public String getResmenu() {
+		return resmenu;
+	}
+
+	public void setResmenu(String resmenu) {
+		this.resmenu = resmenu;
+	}
+
+	public MainInfoVO getMvo() {
+		return mvo;
+	}
+
+	public void setMvo(MainInfoVO mvo) {
+		this.mvo = mvo;
+	}
+
+	public String getResprice() {
+		return resprice;
+	}
+
+	public void setResprice(String resprice) {
+		this.resprice = resprice;
+	}
+
+	public String getRescoupon() {
+		return rescoupon;
+	}
+
+	public void setRescoupon(String rescoupon) {
+		this.rescoupon = rescoupon;
+	}
+	
+
+	
+	
 }

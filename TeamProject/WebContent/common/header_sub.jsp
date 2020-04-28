@@ -31,9 +31,6 @@
 						<div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
 							<ul class="navbar-nav">
 								<li class="nav-item active">
-									<a class="nav-link" href="../restaurant/list_realtime.do">실시간 맛집</a>
-								</li>
-								<li class="nav-item active">
 									<a class="nav-link" href="../restaurant/list_weekly.do">주간 맛집</a>
 								</li>
 								<li class="nav-item active">
@@ -82,10 +79,5 @@
 		</div>
 	</div>
     <!--//END HEADER -->
-    <!-- jQuery, Bootstrap JS. -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="${pageContext.request.contextPath }/js/jquery-3.2.1.min.js"></script>
-    <script src="${pageContext.request.contextPath }/js/popper.min.js"></script>
-    <script src="${pageContext.request.contextPath }/js/bootstrap.min.js"></script>
 </body>
 </html>

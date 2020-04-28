@@ -1,8 +1,6 @@
 @CHARSET "UTF-8";
 
 
-
-
 /* Common style */
 .grid figure {
 	position: relative;
@@ -64,9 +62,49 @@ figure {
 
 }
 
-.grid figure figcaption h5 {
+
+
+.finallydone{
+	
+	margin-left: 70px;
+	
+	
+}
+
+
+
+.closed-now {
+	
+    color: #ff3a6d;
+    font-size: 20px;
+    display: block;
+     font-weight: bold;
+    display: inline-block;
+     margin-left: 180px;
+    font-weight: bold;
+    margin-top: 10px;
+    
+}
+
+.open-now {
+	
+  	color: #46cd38;
+    font-size: 20px;
+    display: block;
+    font-weight: 400;
+    display: inline-block;
+    margin-left: 200px;
+    font-weight: bold;
+    margin-top: 15px;
+    
+}
+
+
+.grid figure figcaption h4 {
 	font-weight: 400;
 	text-align: left;
+	margin-bottom: 40px;
+    margin-left: 60px;
 }
 
 /* 992 */
@@ -128,7 +166,7 @@ figure {
 /*---------------*/
 
 figure.effect-ruby {
-	background-color: #000;
+	background-color: white;
 }
 
 .smallcatelist figure.effect-ruby {
@@ -170,11 +208,90 @@ figure.effect-ruby h2 {
 	border: 1px #ff3a6d;
 
  }
+ 
+
+.featured-responsive{
+	
+	border-radius: 15px;
+    background-color: white;
+	border: 1px solid #80808033;
+	margin-right: 31px;
+    margin-bottom: 40px;
+}
+
+
+.light-bg {
+    background: white;
+}
+
+.themaTileBorder2 {
+	
+	border: 3px solid #ff3a6d; 
+	width: 600px;  
+    margin-top: 50px;
+    margin-bottom: 60px;
+    margin-left: 320px; 
+	
+}
+
+
+
+.themaTileBorder1 {
+	
+	border: 1px solid #e7e8ea; 
+	width: -webkit-fill-available; 
+    margin-bottom: 50px;
+
+ 
+	
+}
+
+
+
+.featured-rating, .featured-rating-orange, .featured-rating-green {
+    position: absolute;
+    right: 10px;
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    margin-top: -50px;
+    margin-right: -10px;
+    font-size: 23px;
+    background: #ff7474;
+    color: #fff;
+    padding: 14px;
+    border-radius: 50%;
+} 
+ 
+
+
+.bottom-icons {
+   
+    line-height: 1;
+}
+ 
+
+.featured-place-wrap img {
+     width: auto;
+	border-radius: 15px;
+}
+ 
+ 
+ 
+
+.themaTitleLine{
+	
+    border-bottom-style: solid;
+    margin-top: 20px;
+    border: #ff3a6d 1px;
+}
+
 
 .themafont{
 	
 	padding-left: 20px;
 	color: #8c8e90;
+	font-size:20px;
 	
 }
 /*figure.effect-ruby p {
@@ -232,7 +349,7 @@ div .category{
 section .themablock{
 	
 	padding-top: 20px;
-	padding-down: 50px;
+
 	
 }
 
@@ -351,14 +468,19 @@ select::-ms-expand {
 
 div .nearbysearchlist{
 	
-	padding-left: 1rem!important;
-    padding-right: 1rem!important;
+
     
 }
 
 .bysituation{
 	
 	color:white;
+}
+
+.situation {
+	
+	
+	
 }
 
 .nearbysearchlist p5{
@@ -378,9 +500,22 @@ div .nearbysearchlist{
 }
 
 .featured-title-box {
-    padding: 22px 20px;
+    padding-top: 5px;
+    padding-bottom: 20px;
+    padding-right: 2px;
+    padding-left: 2px;
     width: 320px;
 }
+
+
+div .caterow{
+	
+	display: inline-block;
+    margin-left: 40px;
+    margin-right: 10px;
+
+}
+
 
 div .themarow{
 	

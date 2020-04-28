@@ -2,251 +2,436 @@
     pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
- <%--2020 04 16 수정 완료!! --%>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
 
 <!--  주변 맛집 페이지 CSS -->
-<link rel="stylesheet" href="${pageContext.request.contextPath }/css/nearby.css">
-
-
-<!-- SELECT7 OPTION  안먹히는 상태 -->
-<link rel="stylesheet" href="../js/jquery-select-7/jquery-select7.css">
-<script src="../js/jquery-select-7/jquery-select7.js"></script>
-
-<!--  -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
- 
+<link rel="stylesheet" href="../css/nearby.css">
 
 
 <script type="text/javascript">
 
-/* 
- $('.del').onClick(
-			function(){
-				alert(1);
-			}		 
-		 );
- */
- 
- function setFilter(c){ //선택한 카테고리를 연속 출력 기능 // 클릭하므로써 아래 페이지가 변하니까 결국 클릭하지 않으면 저절로 디폴트 페이지가 되는것이다.
-		$('#test2').append("<a onClick=deleteFilter(this) href='#' id='"+c.value+"' class='selected nearbyselected' data-filter-name='food_cat' data-filter-value='108602' data-nclick-code='rcc.reset'"
-		         +"data-filter-action='nclick' title='"+c.value+"'>"+c.value+"<span class='del'>X</span></a>");
-		searchNearby();
-		
-	};
-	
-function deleteFilter(v){
-	var tihsId = "#"+v.id;
-	$(tihsId).remove();
-};
 
-function searchNearby(){ //선택한 카테고리를 아래에 ajax로 값을 뿌려주는 기능
-	
-	$.ajax({
+
+ var page = 1;
+ var sortInfo =''; 		//정렬순 선택  desc
+ var restOpen =''; 		//가게 오픈 여부
+ var takeoutInfo =''; 	//테이브아웃 여부
+ var lowPrice='';       //낮은 가격순 asc
+ var areasortInfo='';   //지역선택
+ 
+ 
+ // <이벤트 기능> 
+ // 첫번째 setFilter() => 카테고리에서 선택시 중복 , 카테고리중 한개의 옵션만 아래  해당 카테고리<p>자리에 출력됨
+ // 두번째 openButChgCL() => 옵션의 유무가 2개여서 버튼 형식으로 변경, 버튼을 누르면 색의 유무로 사용자가 선택유무 알수있음,따로 아래 출력 되지 않음!
+
+
+ function setFilter(c ,op){ 
+	 
+	 console.log("===========");
+	 console.log(op);  // op=> <select> onChange 매개변수 => foodType(업종) or sortby(정렬) 
+	 	
+	 	var selectVal = c.value; //onchange된 옵션의 value값을 읽는다 => 한식, 중식.. 
+	 	var selectOp = '#'+op;   // #foodType, #sortby <p></p>에서 사용,  
+	 	
+	 	
+		//$(selectOp).html("<a onClick=deleteFilter(this,'"+op+"') href='#' id='"+c.value+"' class='selected nearbyselected' data-filter-name='food_cat' data-filter-value='108602' data-nclick-code='rcc.reset'"
+		//         +"data-filter-action='nclick' title='"+c.value+"'>"+c.value+"<span class='del'>X</span></a>");
+	 	
+	 	//if 1: 업종카테고리를 선택 시 '전체'이면 ''로 foodTypeOp에 출력되지 않음!,아니면 foodTypeOp에 선택된 값이 들어감
+	 	//이게 원래사용하던거
+		/* if( op == 'foodType')
+		{ 
+			//전체일때는 null값을 보내야 전체리스트가 나오니까
+			if(selectVal == '업종전체'){      //전체를 누르면 null로 처리되어(아래서 커테고리당 한개만 on)  foodTypeOp에 어떤 것도 담기지 않음 => 결과적으로 매퍼에서 null이 되므로 
+				$('#foodTypeOp').val('');  //null값을 foodTypeOp 자리에 넣어				
+				$(selectOp).html('');
+				
+			}else{
+				$('#foodTypeOp').val(c.value); //c는 onchange되어 바뀐 값 => c.value=> 바뀐 tag의 value속성 값을 가져옴 => "전체", "한식" , "일식", "양식" ..을 foodTypeOp에 넣어
+			}
 		
-		type:'post', //post방식(hide parameter)
-		//url:'/TeamProject/restaurant/list_nearby_result.do', //이 주소를 찾아서 실행해
-		url:'../restaurant/list_nearby_result.do', //이 주소를 찾아서 실행해
-		data:{"pwd":"123","no":"555"}, //위 url 주소로 보낼 건데, 데이터는 key와 value로 보내고, 위 url(~.do)에서 value를  
-		success:function(res){//0또는 1의 값을 가지는 res/
-			//@RequestMapping("reply/password_check.do") 여기서 res받음 
-			console.log(res);
-			$('#nearbyList').html(res);
+		}
+	 	
+	 	 */
+	 	 
+	 //업종을 선택했다면!
+	if( op == 'foodType')
+	{
+		
+		
+		//
+		if(selectVal == '업종전체')
+		{ 
+			
+			$('#foodTypeOp').val('');  //null값을 foodTypeOp 자리에 넣어				
+			$(selectOp).html(''); //p자리에 null
+		
+		}
+		else
+		{
+			
+				var foodTypeOpVal = $('#foodTypeOp').val();
+			
+				if(foodTypeOpVal.indexOf(c.value)!=-1)
+				{
+
+					//있는경우.
+					//끝내
+					return;
+				
+				}
+				else
+				{
+				
+				
+				//'업종 전체' 아닌 경우=> 버튼 추가
+				$(selectOp).append("<a onClick=deleteFilter(this,'"+op+"')  href='#' id='"+c.value+"' class='selected nearbyselected' data-filter-name='food_cat' data-filter-value='108602' data-nclick-code='rcc.reset'"
+				         +"data-filter-action='nclick' title='"+c.value+"'>"+c.value+"<span class='del'>X</span></a>");
+				
+				
+				
+							if(foodTypeOpVal ==""){
+					
+							$('#foodTypeOp').val(c.value+',');
+				
+							}else{
+					
+				    		$('#foodTypeOp').val(foodTypeOpVal+c.value+',');
+				    
+							}
+				
+				}
+			
+			
 		}
 		
-	})
+		
+		
+		
 
+	}
+	else
+	{
+		
+		//foodtype선택이 아니라면
+		$(selectOp).html("<a onClick=deleteFilter(this,'"+op+"') href='#' id='"+c.value+"' class='selected nearbyselected' data-filter-name='food_cat' data-filter-value='108602' data-nclick-code='rcc.reset'"
+		         +"data-filter-action='nclick' title='"+c.value+"'>"+c.value+"<span class='del'>X</span></a>");
+	
+ 	
+	
+		if(op == 'sortby')
+		{ //if 2: parameter로 받은 값이 sortyby
+			//랭킹 카테고리 선택할때 어떤값으로 order by 하기위해서
+			//컬럼을 선택해야함
+				   lowPrice='';
+				   sortInfo='';
+				if(selectVal == '평점순'){
+					
+					sortInfo ='rscore';
+					
+				}else if(selectVal == '조회순'){
+					sortInfo ='rhit';
+					
+				}else if(selectVal == '좋아요순'){
+					
+					sortInfo ='rgood';
+					
+				}else if(selectVal == '가격순 ↓'){
+					 lowPrice='rhighprice';
+					
+				}else if(selectVal == '가격순 ↑'){
+					sortInfo='rhighprice';
+					
+				}
+		
+				if(selectVal == '정렬안함'){ 
+					sortInfo =''; //null값을 foodTypeOp 자리에 넣어	
+					lowPrice ='';
+					$(selectOp).html('');
+				}
+		}
+			//선택된 옵션들을 위에서 이미 selectOp에 
+			
+			
+		if(op == 'areasortby')
+		{ 
+			 console.log("지역값"+c.value);
+				areasortInfo='';
+
+				if(selectVal == '지역선택')
+				{
+					
+					areasortInfo=''; //null값을 foodTypeOp 자리에 넣어	
+					
+					$(selectOp).html('');
+					
+				}
+				else
+				{ 
+				
+					areasortInfo = selectVal;
+					
+				}
+		
+				
+		}
+			//선택된 옵션들을 위에서 이미 selectOp에 
+ 			
+	}
+	 	 
+		searchNearby();
+};
+	
+
+
+// 선택된 버튼 없애기
+function deleteFilter(v , op){
+	
+
+	event.preventDefault();
+	console.log(op);
+	var tihsId = "#"+v.id;
+	
+	//console.log(op+"//"+v.id);
+
+	//  업종 데이터 삭제
+	if(op =="foodType")
+	{
+		var tempStr=String($('#foodTypeOp').val());
+		var lastStr = "";
+		//console.log("tempStr//"+tempStr);
+		if(tempStr != '')
+		{
+			
+			var chgStr = v.id+',';
+			tempStr= $('#foodTypeOp').val();
+			lastStr = tempStr.replace( String(chgStr),"");
+			//console.log("사라짐1?>"+lastStr);
+			$('#foodTypeOp').val(lastStr);
+			
+		}
+		//없앨애들을 다 지우고 나서 남은 네모칸(input) 남아있는값이 널이면 전체로 바꾼다
+		if(lastStr == '')
+		{
+			$("#foodSelect").val("업종전체").attr("selected", "selected");
+		}
+		
+	}
+	
+	//랭킹 데이터 삭제
+	if(op == 'sortby')
+	{ 
+		sortInfo = '';
+		lowPrice='';
+		$("#sortSelect").val("정렬안함").attr("selected", "selected");
+	}
+	
+	//지역 데이터 삭제
+	if(op == 'areasortby')
+	{ 
+		areasortInfo = '';
+		$("#areaSelect").val("지역선택").attr("selected", "selected");
+	}
+	
+	$(tihsId).remove();
+	
+	searchNearby();
+};
+
+
+//선택한 카테고리의 정보가 담긴 foodTypeOp을 통해 아래에 ajax로 값을 뿌려주는 FUNCTION!
+function searchNearby(){ 
+	
+	event.preventDefault();
+	//type_name = 양식 or 중식 or 일식 중 한개 값 넘어감
+	var foodList = $('#foodTypeOp').val();
+	
+//	alert(page);
+	
+	$.ajax({
+	
+		type:'post', //post방식(hide parameter)
+		url:'/TeamProject/restaurant/list_nearby_result.do', //이 주소를 찾아서 실행해 , 서버주소 파일의 경로가 아닌 프로젝트의 풀 주소
+		data:{"page":page,"type_name":foodList,"rest_open":restOpen,"sortby_col":sortInfo,"lowPrice_col":lowPrice,"takeout_col":takeoutInfo,"areasortInfo":areasortInfo}, //위 url 주소로 보낼 건데, 데이터는 key와 value로 보내고, 위 url(~.do)에서 value를  
+		success:function(res){
+			
+		//	if(searchVal == 'scroll'){
+			
+		//		$('#nearbyList').append(res);
+			
+		//	}else{
+				
+			$('#nearbyList').html(res);
+			
+			//}
+
+		}
+	})
+};
+
+
+function openButChgCL(){
+	
+	var nowClass = $('#openBut').attr("class");//현재버튼의   클래스상태(css)
+	
+	if(nowClass=="openButtBefore"){//선택전클래스
+		//그럼 선택전css를 없애고 선택후 css를 class에 준다
+		$('#openBut').removeClass("openButtBefore");
+		$('#openBut').addClass("openButtAfter");
+		//선택을하면 open됐다는 것을 밸류값줌 => 매서에서 사용예정!
+		restOpen = 'Y';
+	}else{
+		//선택후 상태
+		//선택후css를 없애고 선택전 css를 class에 준다
+		$('#openBut').removeClass("openButtAfter");
+		$('#openBut').addClass("openButtBefore");
+		//선택해제하면 값을 null처리
+		restOpen = '';
+	}
+	
+	searchNearby();
+	//css변경 및 오픈체크 변수 설정을 하고 리스트 검색하는 ajax를 콜!
 }
 
 
+function takeoutButChgCL(){
+	
+	var nowClass = $('#takeoutBut').attr("class");
+	
+	if(nowClass=="openButtBefore"){
+		
+		$('#takeoutBut').removeClass("openButtBefore");
+		$('#takeoutBut').addClass("openButtAfter");
+		//선택을하면 open됐다는 걸 밸류값줌
+		takeoutInfo = 'Y';
+		
+	}else{
+		
+		$('#takeoutBut').removeClass("openButtAfter");
+		$('#takeoutBut').addClass("openButtBefore");
+		//선택해제하면 값을 null 처리
+		takeoutInfo = '';
+	}
+	
+	searchNearby(); 
+	
+}
+
 </script>
-   
-   
-   
-   
-<!-- 아래 안먹히는 script! -->
-<script>
-		function example_select7_template_option(option) {
-			r = "<i>" + option.title + "</i>"
-			if (option.someOptionText) r += " <b>" + option.someOptionText + "</b>"
-			return r
-		}
-		function example_select7_template_optgroup(optgroup) {
-			r = "<i>" + optgroup.title + "</i>"
-			if (optgroup.someOptgroupText) r += " <b>" + optgroup.someOptgroupText + "</b>"
-			return r
-		}
-		function example_select7_template_current(option) {
-			r = "<i>" + option.title + "</i>"
-			if (option.someCurrentText) r += " <b>" + option.someCurrentText + "</b>"
-			return r
-		}
-	</script>
-
-
-	<script>
-		$(".select7").select7()
-	</script>
-
-<style type="text/css">
-
-
-
-</style>
-
 
 </head>
-<body>
+<body onload=" searchNearby();">
+
     <!--============================= LIST =============================-->
+
     <section class="list-block">
     
-     	<!-- 주변맛집 전체화면 -->
-        <div class="container-fluid py-4 container py-5">
-			<div class="row nearbyrow">
+     	<!-- ============================================주변맛집 전체화면============================================ -->
+        <div class="container-fluid container py-5">
+			<div class="nearbyrow">
 
 				<!-- ======================================주변맛집 페이지 왼쪽 화면============================================= -->
 				<div class="col-md-7 responsive-wrap nearbymd7">
 					<!-- ===================================검색 결과 타이틀 "~ 주변 검색 결과" ===================================-->
-					<h5 class="styled-heading">Best Places near 주변 맛집 ###</h5>
-
-					<p>
-						총 <span>###개</span>
+					<h5 class="styled-heading">주변 맛집</h5>
+					
+					<p style="font-size: 20px;">
+						 ／ 총  <span>10,579</span>개
 					</p>
-					<!-- ============================================카테고리!!============================================= -->
+	<!-- ============================================카테고리 시작!!============================================= -->
 
-<!-- <span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" class="icon_svg">
-												<path d="M8 10.5a1 1 0 0 1-.7-.29l-3.06-3a1 1 0 1 1 1.41-1.42L8 8.1l2.35-2.31a1 1 0 0 1 1.41 1.42l-3.06 3a1 1 0 0 1-.7.29z"></path></svg></span> -->
-
-					<div class="mt-4">
+					<div class="mt-4">				
 						<div class="filter_row area">
 							<div class="category">
+							
+	<!-- ============================================지역 카테고리!!============================================= -->
+		
+							
 								<!-- <button onclick="searchNearby()">test</button> -->
 
-								<select id="test" title="음식선택" class="menuarrow select7" onchange="setFilter(this);" placeholder="음식종류" style="color: black;">
-									<option value="전체" class="lemonmenu">전체 </option>
-									<option value="한식" class="lemonmenu">한식</option>
-									<option value="일식" class="lemonmenu">일식</option>
-									<option value="중식" class="lemonmenu">중식</option>
-									<option value="카페" class="lemonmenu">카페</option>
-									<option value="베이커리" class="lemonmenu">베이커리</option>
-									<option value="패스트푸드" class="lemonmenu">패스트부드</option>
-									<option value="양식" class="lemonmenu">양식</option>
-									<option value="뷔페" class="lemonmenu">뷔페</option>
-									<option value="기타" class="lemonmenu">기타/세계</option>
-									<option value="plusicon" data-icon="..//images/plusicon.png">더보기</option>
+								<!-- 업종선택 버튼 - setFilter() 사용! -->
 
-								</select> 
-								
-								<select id="test" title="정렬" class="menuarrow select7" onchange="setFilter(this);">
-									<option value="랭킹순" class="lemonmenu">랭킹순</option>
-									<option value="조회순" class="lemonmenu">평점순</option>
-									<option value="조회순" class="lemonmenu">조회순</option>
-								</select> <select id="test" title="가격순" class="menuarrow select7" onchange="setFilter(this);">
-									<option value="낮은가격순" class="lemonmenu">낮은 가격순</option>
-									<option value="높은가격순" class="lemonmenu">높은 가격순</option>
-								</select> 
-								
-								<select id="test" title="현재오픈" class="menuarrow select7" onchange="setFilter(this);">
-									<option value="현재오픈" class="lemonmenu">현재오픈</option>
-								</select> 
-								
-								<select id="test" title="TakeOut" class="menuarrow select7" onchange="setFilter(this);">
-									<option value="테이크아웃" style="display: none;">테이크아웃</option>
+								<select id="areaSelect" class="menuarrow " style="color: black;" onchange="setFilter(this , 'areasortby' );">
+									<option value="지역선택" class="menuarrow "  > 지역선택 </option>
+									<option value="강남구" class="menuarrow "  > 강남구 </option>
+									<option value="서초구" class="menuarrow " > 서초구  </option>
+									<option value="송파구" class="menuarrow " > 송파구 </option>
+									<option value="용산구" class="menuarrow " > 용산구  </option>
+									<option value="영등포구" class="menuarrow "> 영등포구 </option>
+									<option value="마포구" class="menuarrow " > 마포구  </option>
+									<option value="종로구" class="menuarrow " > 종로구  </option>
+									<option value="중구" 	class="menuarrow "  > 중구 </option>
+									<option value="동대문" class="menuarrow " > 동대문  </option>
+									<option value="광진구" class="menuarrow " > 광진구  </option>
+									<option value="서대문구" class="menuarrow ">  서대문구</option>
+									<option value="강북구" class="menuarrow " >  강북구 </option>
+									<option value="노원구" class="menuarrow " >  노원구 </option>
+									<option value="성동구" class="menuarrow ">  성동구 </option>
+									<option value="성북구" class="menuarrow ">  성북구 </option>
 								</select>
 
 
+								<select  id="foodSelect" class="menuarrow " onchange="setFilter(this ,'foodType' ) ;" style="color: black;">
+									<option value="업종전체" class="lemonmenu">업종전체<ul><span class="icon-arrow-down"></span></ul></option>
+									<option value="한식" class="lemonmenu">한식<ul><span class="icon-arrow-down"></span></ul></option>
+									<option value="일식" class="lemonmenu">일식</option>
+									<option value="중식" class="lemonmenu">중식</option>
+									<option value="양식" class="lemonmenu">양식</option>
+									<option value="카페" class="lemonmenu">카페</option>
+								</select> 
+								
+								
+								<!-- 정렬선택 버튼 - setFilter() 사용! -->
+								<select id="sortSelect" class="menuarrow" onchange="setFilter(this,'sortby' )">
+									<option value="정렬안함" class="lemonmenu">정렬순서</option>
+									<option value="평점순" class="lemonmenu">평점순</option>
+									<option value="조회순" class="lemonmenu">조회순</option>
+									<option value="좋아요순" class="lemonmenu">좋아요순</option>
+									<option value="가격순 ↓" class="lemonmenu">가격순 ↓</option>
+									<option value="가격순 ↑" class="lemonmenu">가격순 ↑</option>
+								</select> 
 
-							</div>
+			
+								<%--    
+								<!-- 가격순선택 버튼 - setFilter() 사용!-->
+								<select class="menuarrow" onchange="setFilter(this, 'price');">
+									<option value="가격전체" class="lemonmenu">가격순</option>
+																</select> 
+								--%>
+					
+								<!--  아래 button type으로 변경!
+								<select  title="현재오픈" class="menuarrow select7" onchange="setFilter(this);">
+									<option value="현재오픈" class="lemonmenu">현재오픈</option>
+								</select>  -->
+								
+								<!-- 가게오픈 유무 버튼 - openButChgCL()사용  -->
+								<button id="openBut" class="openButtBefore" onclick="openButChgCL();">현재오픈</button>
+								
+								<!--아래 button type으로 변경! 
+								<select title="TakeOut" class="menuarrow" onchange="setFilter(this);">
+									<option value="테이크아웃" style="display: none;">테이크아웃</option>
+								</select> -->
+								<button id="takeoutBut" class="openButtBefore" onclick="takeoutButChgCL();">테이크아웃</button>
 
-							<!-- ========================================카테고리 끝 ============================================ -->
-							<!-- 
-                        <div class="filter_row food_cat">
-                            <div class="filter_head">
-                                <h6>업종</h6>
-                            </div>
-                            <div class="scrollbar_content">
-                                <div class="filter_data">
-                                    <ul class="finder_list">
-                                        <li class="">
-                                            <a href="#" data-filter-name="cat_id" data-filter-value="50000003" title="한식">
-                                                <span class="text_over">
-                                                    한식<span class="num _category_count" style="display: none">2,209,887</span>
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li class="">
-                                            <a href="#" data-filter-name="cat_id" data-filter-value="50000008" title="양식">
-                                                <span class="text_over">
-                                                    양식<span class="num _category_count" style="display: none">12,364</span>
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li class="">
-                                            <a href="#" data-filter-name="cat_id" data-filter-value="50000008" title="일식">
-                                                <span class="text_over">
-                                                    일식<span class="num _category_count" style="display: none">12,364</span>
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li class="">
-                                            <a href="#" data-filter-name="cat_id" data-filter-value="50000008" title="중식">
-                                                <span class="text_over">
-                                                    중식<span class="num _category_count" style="display: none">12,364</span>
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li class="">
-                                            <a href="#" data-filter-name="cat_id" data-filter-value="50000008" title="패스트푸드">
-                                                <span class="text_over">
-                                                    패스트푸드<span class="num _category_count" style="display: none">12,364</span>
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li class="">
-                                            <a href="#" data-filter-name="cat_id" data-filter-value="50000008" title="베이커리">
-                                                <span class="text_over">
-                                                    베이커리<span class="num _category_count" style="display: none">12,364</span>
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li class="">
-                                            <a href="#" data-filter-name="cat_id" data-filter-value="50000008" title="퓨전음식">
-                                                <span class="text_over">
-                                                    퓨전음식<span class="num _category_count" style="display: none">12,364</span>
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li class="">
-                                            <a href="#" data-filter-name="cat_id" data-filter-value="50000008" title="뷔페">
-                                                <span class="text_over">
-                                                    뷔페<span class="num _category_count" style="display: none">12,364</span>
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li class="">
-                                            <a href="#" data-filter-name="cat_id" data-filter-value="50000008" title="카페/술집">
-                                                <span class="text_over">
-                                                    카페/술집<span class="num _category_count" style="display: none">12,364</span>
-                                                </span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div> 
-                            
-                            -->
+							</div><!-- div category 끝!! -->
 
-
-
-
-							<!--================================= 선택한 옵션 출력 Ajax 부분!!=========================================-->
+							<!-- ========================================카테고리 끝 =============================================== -->
+					
+							<!--================================= 선택한 옵션 출력 부분!!=========================================-->
+							<!--  각 카테고리마다 각각의 정의된 자리에 출력되기! -->
 							<div class="selected_filter mt-2 displaymenu" id="test2">
+							<p id="foodType"></p>
+							<p id="sortby"></p>
+							<p id="areasortby"></p>
 
+							
+							<!-- #foodTypeOp를 읽어들여 선택된값들을 model로 보내기 위함! -->
+							<!-- <input type='hidden' id='areaTypeOp' value='' />    -->
+							<input type='hidden' id='foodTypeOp' value='' /> <!--  hidden="" 추가하기 -->
+							
 								<!-- 
                         <a href="#" class="selected" data-filter-name="food_cat" data-filter-value="108602" data-nclick-code="rcc.reset"
                             data-filter-action="nclick" title="양식">강남역<span class="del">X</span></a>
@@ -259,13 +444,16 @@ function searchNearby(){ //선택한 카테고리를 아래에 ajax로 값을 �
 							</div>
 
 
-							<!-- ==============================선택된 RESTAURANTS 리스트 출력! =============================================-->
+						<!-- ================================가게 1개 =============================================-->  
 
-					<div class="row light-bg detail-options-wrap pt-3 nearbysearchlist" id="nearbyList">
-
-
-								<!-- ================================가게 1개 =============================================-->
-								  <!-- ================================가게 1개 =============================================-->
+        
+                   <div class="detail-options-wrap nearbysearchlist" id="nearbyList"></div>
+               
+    	<%--			
+    	          <c:if test="${defList != ''}">
+					 <c:forEach var="i" items="${defList }" >  
+    
+								
                         <div class=" featured-responsive" >
                             <div class="featured-place-wrap" >
                                 <a href="main.jsp?mode=5">
@@ -282,16 +470,16 @@ function searchNearby(){ //선택한 카테고리를 아래에 ajax로 값을 �
                    <!--  =======================요약설명  시작============================= -->
                          
                                     <div class="featured-title-box">
-                                        <h6>브루클린더버거조인트 AJAX</h6>
-                                        <p>양식 </p> <span>• </span>
-                                        <p>리뷰 12개</p> <span> • </span>
-                                        <p><span>\\\\</span>\</p>
+                                        <h6> rno: ${i.rest_rno } DEFAULT</h6>
+                                        <p>${i.type_name} </p> <span>• </span>
+                                        <p>테이크아웃- ${i.takeout_col }</p> <span> • </span>
+                                        <p><span>${i.menu_price }</span>\</p>
                                         <ul>
                                             <li><span class="icon-location-pin"></span>
-                                                <p>서울 서초구 서래로2길 27</p>
+                                                <p>${i.rest_adress }</p>
                                             </li>
                                             <li><span class="icon-screen-smartphone"></span>
-                                                <p>(02) 533-7180</p>
+                                                <p>평점순 - ${i.rest_grade }</p>
                                             </li>
                                         </ul>
                                         <div class="bottom-icons">
@@ -305,162 +493,62 @@ function searchNearby(){ //선택한 카테고리를 아래에 ajax로 값을 �
                             </div>
                         </div>
                         
-                        
-
-<!-- ===============================가게 한개 끝!=================================== -->
-                        
-                        
-                        <div class=" featured-responsive">
-                            <div class="featured-place-wrap">
-                                <a href="main.jsp?mode=5">
-                                <div class="featured-title-box">
-                                    <img src="${pageContext.request.contextPath }/images/featured2.jpg" class="img-fluid" alt="#">
-                                    </div>
-                                    <span class="featured-rating">9.5</span>
-                                    <div class="featured-title-box">
-                                        <h6>사모님돈까스</h6>
-                                        <p>한식 </p> <span>• </span>
-                                        <p>리뷰 3개</p> <span> • </span>
-                                        <p><span>\\</span>\\\</p>
-                                        <ul>
-                                            <li><span class="icon-location-pin"></span>
-                                                <p>서울 마포구 와우산로 39-13</p>
-                                            </li>
-                                            <li><span class="icon-screen-smartphone"></span>
-                                                <p>(02) 337-2207</p>
-                                            </li>
-                                        </ul>
-                                        <div class="bottom-icons">
-                                            <div class="open-now">OPEN NOW</div>
-                                            <span class="ti-heart"></span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-
-
-
-                        <div class=" featured-responsive">
-                            <div class="featured-place-wrap">
-                                <a href="main.jsp?mode=5">
-                                <div class="featured-title-box">
-                                    <img src="${pageContext.request.contextPath }/images/featured3.jpg" class="img-fluid" alt="#">
-                                    </div>
-                                    <span class="featured-rating">3.2</span>
-                                    <div class="featured-title-box">
-                                        <h6>스트릿(strEAT) 여의도점</h6>
-                                        <p>기타/세계 </p> <span>• </span>
-                                        <p>리뷰 3개</p> <span> • </span>
-                                        <p><span>\\\</span>\\</p>
-                                        <ul>
-                                            <li><span class="icon-location-pin"></span>
-                                                <p>서울 영등포구 여의대로 66 KTB 투...</p>
-                                            </li>
-                                            <li><span class="icon-screen-smartphone"></span>
-                                                <p>(02) 761-7672</p>
-                                            </li>
-                                        </ul>
-                                        <div class="bottom-icons">
-                                            <div class="closed-now">CLOSED NOW</div>
-                                            <span class="ti-heart"></span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        
-                        
-                        
-                        
-                        
-                        
-                        <div class=" featured-responsive">
-                            <div class="featured-place-wrap">
-                                <a href="main.jsp?mode=5">
-                                <div class="featured-title-box">
-                                    <img src="${pageContext.request.contextPath }/images/featured4.jpg" class="img-fluid" alt="#">
-                                    </div>
-                                    <span class="featured-rating">9.5</span>
-                                    <div class="featured-title-box">
-                                        <h6>피자디나 폴리(Pizza di Napoli)</h6>
-                                        <p>양 식 </p> <span>• </span>
-                                        <p>리뷰 3개</p> <span> • </span>
-                                        <p><span>\\\</span>\\</p>
-                                        <ul>
-                                            <li><span class="icon-location-pin"></span>
-                                                <p>서울 강남구 압구정로4길 13-17 2층</p>
-                                            </li>
-                                            <li><span class="icon-screen-smartphone"></span>
-                                                <p>(02) 512-3109</p>
-                                            </li>
-                                        </ul>
-                                        <div class="bottom-icons">
-                                            <div class="closed-now">CLOSED NOW</div>
-                                            <span class="ti-heart"></span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        
-							<div class=" featured-responsive">
-								<div class="featured-place-wrap">
-									<a href="main.jsp?mode=5">
-										<div class="featured-title-box">
-											<img
-												src="${pageContext.request.contextPath }/images/featured4.jpg"
-												class="img-fluid" alt="#">
-										</div> <span class="featured-rating">9.5</span>
-										<div class="featured-title-box">
-											<h6>피자디나폴리(Pizza di Napoli)</h6>
-											<p>양식</p>
-											<span>• </span>
-											<p>리뷰 3개</p>
-											<span> • </span>
-											<p>
-												<span>\\\</span>\\
-											</p>
-											<ul>
-												<li><span class="icon-location-pin"></span>
-													<p>서울 강남구 압구정로4길 13-17 2층</p></li>
-												<li><span class="icon-screen-smartphone"></span>
-													<p>(02) 512-3109</p></li>
-											</ul>
-											<div class="bottom-icons">
-												<div class="closed-now">CLOSED NOW</div>
-												<span class="ti-heart"></span>
-											</div>
-										</div>
-									</a>
-								</div>
-							</div>
-
-						<!--  =============================요약 끝! =======================================-->
-
+                	</c:forEach>
+                </c:if>	     
+             --%>
+					<!-- ===============================가게 한개 끝!=================================== -->
+				
 						</div>
 					</div>
-					<!--============================= KAKAO MAP ============================= -->
+					
+					<!--============================= KAKAO MAP ============================= 
+
 					<div class="col-md-5 responsive-wrap map-wrap nearbymapwrap">
 						<div class="map-fix nearbymapfix">
 							<div id="map" data-lat="40.674" data-lon="-73.945" data-zoom="14"></div>
 						</div>
 					</div>
+					
+	 -->				
+
+
+<!-- ============================================지역 카테고리 끝!============================================= -->						
+					<div class="col-md-5 responsive-wrap map-wrap nearbymapwrap">		
+
+				
+				
+				
+					
+					
+					</div>
+							
+	<!-- ============================================옵션 카테고리 시작!!============================================= -->													
+	
+
+
+
+
 				</div>
-
 			</div>
-
-
 		</div>
         </div>
     </section>
+
+    
     <!--//END DETAIL -->
+    
+    
+    
+    
     
     <!-- jQuery, Bootstrap JS. -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="${pageContext.request.contextPath }/js/jquery-3.2.1.min.js"></script>
-    <script src="${pageContext.request.contextPath }/js/popper.min.js"></script>
-    <script src="${pageContext.request.contextPath }/js/bootstrap.min.js"></script>
+    
+
+	<script src="../js/jquery-3.2.1.min.js"></script>
+    <script src="../js/popper.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>   
+
 
     <!-- 이전에 남아있던 map 관련 소스 :  파악 중 -->
     <script>
@@ -469,17 +557,94 @@ function searchNearby(){ //선택한 카테고리를 아래에 ajax로 값을 �
         });
     </script>
    
-   <!-- Kakao Map Script -->
+   
+   
+   <!-- Kakao Map Script 
+  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=671fb4748c5025ba667a7fc5d41d217a"></script>
+  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=services,clusterer,drawing"></script>
+ -->
    <script>
-        var container = document.getElementById('map');
-        var options = {
+   /*
+		// 마커를 클릭했을 때 해당 장소의 상세정보를 보여줄 커스텀오버레이입니다
+   		var placeOverlay = new kakao.maps.CustomOverlay({zIndex:1}), 
+       contentNode = document.createElement('div'), // 커스텀 오버레이의 컨텐츠 엘리먼트 입니다 
+       markers = [], // 마커를 담을 배열입니다
+       currCategory = ''; // 현재 선택된 카테고리를 가지고 있을 변수입니다
+   
+   
+   
+        var mapContainer = document.getElementById('map');
+        var  mapOption = {
             center: new kakao.maps.LatLng(33.450701, 126.570667),
             level: 3
         };
+		
+        //지도를 생성합니다.
+        var map = new kakao.maps.Map(mapContainer, mapOption);
+        
 
-        var map = new kakao.maps.Map(container, options);
+    
+        
+        ////////////////////////////////////////////////////////////////////
+        
+if (navigator.geolocation) {
+    
+    // GeoLocation을 이용해서 접속 위치를 얻어옵니다
+    navigator.geolocation.getCurrentPosition(function(position) {
+        
+        var lat = position.coords.latitude, // 위도
+            lon = position.coords.longitude; // 경도
+        
+        var locPosition = new kakao.maps.LatLng(lat, lon), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
+            message = '<div style="padding:5px;">내 위치</div>'; // 인포윈도우에 표시될 내용입니다
+        
+        // 마커와 인포윈도우를 표시합니다
+        displayMarker(locPosition, message);
+            
+      });
+    
+	} else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
+    
+   		 var locPosition = new kakao.maps.LatLng(33.450701, 126.570667),    
+      	  message = 'geolocation을 사용할수 없어요..'
+        
+    displayMarker(locPosition, message);
+	}
+
+// 지도에 마커와 인포윈도우를 표시하는 함수입니다
+function displayMarker(locPosition, message) {
+
+    // 마커를 생성합니다
+    var marker = new kakao.maps.Marker({  
+        map: map, 
+        position: locPosition
+    }); 
+    
+    var iwContent = message, // 인포윈도우에 표시할 내용
+        iwRemoveable = true;
+
+    // 인포윈도우를 생성합니다
+    var infowindow = new kakao.maps.InfoWindow({
+        content : iwContent,
+        removable : iwRemoveable
+    });
+    
+    // 인포윈도우를 마커위에 표시합니다 
+    infowindow.open(map, marker);
+    
+    // 지도 중심좌표를 접속위치로 변경합니다
+    map.setCenter(locPosition);      
+}    
+*/
     </script>
+    
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
-   
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    
+    
 </body>
 </html>

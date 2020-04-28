@@ -40,6 +40,12 @@ public class ReplyBoardModel {
 		request.setAttribute("totalpage", totalpage);
 		request.setAttribute("contentsCnt", contentsCnt);
 		
+		// 댓글 개수 ★
+		for(ReplyBoardVO vo:list)
+		{
+			vo.setCmtCount(ReplyBoardDAO.listCmtCount(vo.getBno()));
+		}
+		
 		// Pagination
 		int startpage=1;
 		int endpage=1;
@@ -69,19 +75,28 @@ public class ReplyBoardModel {
 		vo=ReplyBoardDAO.hitIncrement(Integer.parseInt(bno));
 		request.setAttribute("vo", vo);
 		
-		// ======== 댓글 리스트 ========
-		List<BoardCommentVO> cmt_list=BoardCommentDAO.commentList(Integer.parseInt(bno));
-		int commentCount=BoardCommentDAO.commentCount(Integer.parseInt(bno));
-		request.setAttribute("cmt_list", cmt_list);
-		request.setAttribute("commentCount", commentCount);
+		// ================ 댓글 ================
 		
-		// ======== 상세보기 하단 리스트 ========
+		// [총 댓글 수] 
+		Map map=new HashMap();
+		map.put("pNo", Integer.parseInt(bno)); 		
+		int commentCount=BoardCommentDAO.commentCount(map);
+		request.setAttribute("commentCount", commentCount);
+			
+		// [댓글목록]
+		map=new HashMap();
+		map.put("pNo", Integer.parseInt(bno)); 		
+		List<BoardCommentVO> cmt_list=BoardCommentDAO.cmtList(map);
+		request.setAttribute("cmt_list", cmt_list);
+
+		
+		// ================ 상세보기 하단 리스트 ================
 		String page=request.getParameter("page");
 		if(page==null)
 			page="1";
 		int curpage=Integer.parseInt(page);
 		// VO에 start랑 end는 없으니까 map 사용 
-		Map map=new HashMap();
+		map=new HashMap();
 		int rowSize=15;
 		int start = rowSize*(curpage-1)+1;
 		int end=rowSize*curpage;
@@ -94,6 +109,12 @@ public class ReplyBoardModel {
 		request.setAttribute("curpage", curpage);
 		request.setAttribute("totalpage", totalpage);
 		request.setAttribute("contentsCnt", contentsCnt);
+		
+		// 댓글 개수 ★
+		for(ReplyBoardVO cmtvo:list)
+		{
+			cmtvo.setCmtCount(ReplyBoardDAO.listCmtCount(cmtvo.getBno()));
+		}
 		
 		// Pagination
 		int startpage=1;
@@ -191,7 +212,7 @@ public class ReplyBoardModel {
 		String bpwd=request.getParameter("pwd");
 
 		// 데이터 확인
-		System.out.println("bname="+bname+", bsubject="+bsubject+", bcontent="+bcontent+", bpwd="+bpwd);
+		//System.out.println("bname="+bname+", bsubject="+bsubject+", bcontent="+bcontent+", bpwd="+bpwd);
 		
 		// 클라이언트가 입력해준 데이터 VO에 저장 
 		ReplyBoardVO vo = new ReplyBoardVO();
@@ -298,7 +319,7 @@ public class ReplyBoardModel {
 		return "redirect:../board/list.do";
 	}
 	
-	// [댓글 작성] - ================== 하는 중 ================== 
+	// [댓글 작성]  
 	@RequestMapping("board/comment_insert.do")
 	public String comment_insert(HttpServletRequest request,HttpServletResponse response)
 	{
@@ -307,16 +328,91 @@ public class ReplyBoardModel {
 			request.setCharacterEncoding("UTF-8");
 		}catch(Exception ex){}
 		
-		String bno=request.getParameter("name");
-		String userid=request.getParameter("userid"); // JSP에서 세션에서 받아서 form으로 보내자  
-		String content=request.getParameter("content");
+		String bno=request.getParameter("bno"); 
+		HttpSession session=request.getSession();
+		String userid=(String)session.getAttribute("id");		
+		String content=request.getParameter("cmtContent");
+		System.out.println("bno="+bno);
+		System.out.println("userid="+userid);
 		
-		return "";  // 리턴을 어디로 줘야하지?????????????  redirect도 이상한데?? 내가 보던거에 그대로 달려야하는데??? 
+		Map map=new HashMap();
+		map.put("pBno", Integer.parseInt(bno));
+		map.put("pUserId", userid);
+		map.put("pContent", content);
+		BoardCommentDAO.commentInsert(map);		
+		
+		return "redirect:../board/detail.do?&bno="+bno;
 	}
 
+	// [댓글 삭제] 
+	@RequestMapping("board/comment_delete.do")
+	public String comment_delete(HttpServletRequest request,HttpServletResponse response)
+	{
+		String bno=request.getParameter("bno"); // 리다이렉트 할 때만 필요함 
+		String cno=request.getParameter("cno");// 데이터 처리할 땐 사실 cno만 있으면 됨
+		//System.out.println("bno="+bno);
+		//System.out.println("cno="+cno);
+		
+		Map map=new HashMap();
+		map.put("pCno", Integer.parseInt(cno));
+		BoardCommentDAO.commentDelete(map);		
+		
+		return "redirect:../board/detail.do?&bno="+bno;
+	}
 	
+	// [댓글 수정] 
+	@RequestMapping("board/comment_update.do")
+	public String comment_update(HttpServletRequest request,HttpServletResponse response)
+	{
+		try
+		{
+			request.setCharacterEncoding("UTF-8");
+		}catch(Exception ex){}
+		
+		String bno=request.getParameter("bno"); // 리다이렉트 할 때만 필요함
+		String cno=request.getParameter("cno");
+		String content=request.getParameter("cmtContent");
+		//System.out.println("bno="+bno);
+		//System.out.println("cno="+cno);
+		//System.out.println("content="+content);
+		
+		Map map=new HashMap();
+		map.put("pCno", Integer.parseInt(cno));
+		map.put("pContent", content);
+		BoardCommentDAO.commentUpdate(map);	
+		
+		return "redirect:../board/detail.do?&bno="+bno;
+	}
 	
-	
+	// [대댓글 쓰기]
+	@RequestMapping("board/comment_reply.do")
+	public String comment_reply(HttpServletRequest request,HttpServletResponse response)
+	{
+		try
+		{
+			request.setCharacterEncoding("UTF-8");
+		}catch(Exception ex){}
+		
+		String bno=request.getParameter("bno"); // 리다이렉트 할 때만 필요함
+		String parentCno=request.getParameter("parentCno");
+		String content=request.getParameter("cmtContent");
+		
+		Map map=new HashMap();
+		map.put("pParentCno", Integer.parseInt(parentCno));
+		map.put("pBno", Integer.parseInt(bno));
+		HttpSession session=request.getSession();
+		String id=(String)session.getAttribute("id");
+		map.put("pUserid",id);
+		map.put("pContent", content);
+		BoardCommentDAO.commentReply(map);	
+		
+		System.out.println("bno="+bno);
+		System.out.println("parentCno="+parentCno);
+		System.out.println("content="+content);
+		System.out.println("id="+id);
+		
+		return "redirect:../board/detail.do?&bno="+bno;
+	}
 	
 	
 }

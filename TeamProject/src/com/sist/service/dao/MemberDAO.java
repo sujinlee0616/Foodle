@@ -1,5 +1,6 @@
 package com.sist.service.dao;
 
+import java.util.*;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import com.sist.service.vo.CompMemberVO;
@@ -139,5 +140,83 @@ public class MemberDAO {
 		}
 	}
 	
-
+	// [기업회원 - 지역확인] 
+	public static List<String> getSubArea(String selected)
+	{
+		SqlSession session=null;
+		List<String> list=new ArrayList<String>();
+		
+		try
+		{
+			session=ssf.openSession(); 			
+			list=session.selectList("getSubArea",selected);
+			System.out.println("DAO list="+list);	
+			
+			// [{R_AREADETAIL=광진/건대입구}, {R_AREADETAIL=광화문/시청}, {R_AREADETAIL=노원/도봉/미아}, {R_AREADETAIL=대학로}, {R_AREADETAIL=동대문}, {R_AREADETAIL=마포}, {R_AREADETAIL=명동}, {R_AREADETAIL=삼청동}, {R_AREADETAIL=성동/성수}, {R_AREADETAIL=성북}, {R_AREADETAIL=신촌/이대}, {R_AREADETAIL=이태원/한남동}, {R_AREADETAIL=종로/인사동}, {R_AREADETAIL=충무로/신당동}, {R_AREADETAIL=홍대/상수/합정}, {R_AREADETAIL=안암/고대}, {R_AREADETAIL=숙대/서울역}, {R_AREADETAIL=부암동/평창동}, {R_AREADETAIL=서촌/경복궁}, {R_AREADETAIL=이촌동/용산}, {R_AREADETAIL=회기}, {R_AREADETAIL=연남동/연희동}, {R_AREADETAIL=상암}, {R_AREADETAIL=연신내/불광}]
+			// 얘를 넘겨서... JSP에 셀렉트박스로 어떻게 출력해야할까?
+		}
+		catch (Exception ex) {
+			System.out.println("getSubArea :"+ex.getMessage());
+		}
+		finally {
+			if(session!=null)
+				session.close();
+		}
+		
+		return list;
+	}
+	
+	// [개인회원가입 - 아이디 중복체크]
+	public static String idCheck_general(String user_entered_id)
+	{
+		String result="";
+		int id_count=0;
+		SqlSession session=null;
+		try
+		{
+			session=ssf.openSession(); 
+			id_count=session.selectOne("idCount_general",user_entered_id);
+			
+			if(id_count!=0)
+				result="already_exist";
+			else
+				result="not_exist";			
+			System.out.println("idCount_general="+result);	
+		}
+		catch (Exception ex) {
+			System.out.println("idCheck_general :"+ex.getMessage());
+		}
+		finally {
+			if(session!=null)
+				session.close();
+		}
+		return result;
+	}
+	
+	// [기업회원가입 - 아이디 중복체크]
+	public static String idCheck_comp(String user_entered_id)
+	{
+		String result="";
+		int id_count=0;
+		SqlSession session=null;
+		try
+		{
+			session=ssf.openSession(); 
+			id_count=session.selectOne("idCount_comp",user_entered_id);
+			
+			if(id_count!=0)
+				result="already_exist";
+			else
+				result="not_exist";			
+			System.out.println("idCheck_comp="+result);	
+		}
+		catch (Exception ex) {
+			System.out.println("idCheck_comp :"+ex.getMessage());
+		}
+		finally {
+			if(session!=null)
+				session.close();
+		}
+		return result;
+	}
 }

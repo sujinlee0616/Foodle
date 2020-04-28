@@ -2,6 +2,7 @@ package com.sist.service.dao;
 
 import java.util.*;
 
+
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
@@ -21,6 +22,7 @@ public class ThemaListDAO {
 		public static List<MainThemaVO> cateSelectData(String fd){
 			
 			SqlSession session=null;
+			
 			List<MainThemaVO> list=new ArrayList<MainThemaVO>();
 			
 			try{
@@ -100,7 +102,7 @@ public class ThemaListDAO {
 		
 		*/
 		
-		
+	/*	
 		public static List<MainThemaVO> catefindData1(String fo)
 		{
 			SqlSession session=null;
@@ -127,35 +129,39 @@ public class ThemaListDAO {
 			}
 			return list1;
 		}
+		*/
 		
 		
 		
 
-		public static List<DetailThemaVO> catefindData2(String fo)
-		{
+		public static List<NearbyVO> searchThema(Map ft){
+			
 			SqlSession session=null;
-			List<DetailThemaVO> list2=new ArrayList<DetailThemaVO>();
+			
+			List<NearbyVO> slist=new ArrayList<NearbyVO>();
 			
 			try{
-				session=ssf.openSession();
 				
-				Map map=new HashMap();
-				map.put("fo", fo);
+				session=ssf.openSession(); //getConnect!
 				
-				list2=session.selectList("catefindData2", map);
+				//Map map=new HashMap();
+				//map.put("ft",ft);
+				//System.out.println("map: "+map);
+				slist=session.selectList("searchThema",ft);
 				
-				
-			}catch(Exception ex)
-			{
-				System.out.println("catefindData2(): "+ex.getMessage());
-				
-			}finally
-			{
-				if(session!=null)
-					session.close();
+				System.out.println("slist from DAO: "+slist.toString());
 				
 			}
-			return list2;
+			catch(Exception ex)
+			{	
+				System.out.println("searchThema(): "+ex.getMessage());	
+			}
+			finally
+			{	
+				if(session!=null)
+					session.close();
+			}
+			return slist;	
 		}
 		
 		

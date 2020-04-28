@@ -1,9 +1,9 @@
 @charset "utf-8";
 
 .login-block{
-  min-height: calc(100vh - 72px - 236px);
+  min-height: calc(100vh - 72px - 209px);
 }
-/* Header높이: 72px, footer 높이: 236px */
+/* Header높이: 72px, footer 높이: 209px */
 
 /*  */
 .logo_parent{text-align: center; padding-top: 50px;}

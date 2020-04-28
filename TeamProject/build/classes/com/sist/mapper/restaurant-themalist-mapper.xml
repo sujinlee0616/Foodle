@@ -2,38 +2,103 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sist.mapper.retaurant-themalist-mapper">
 <!-- t_MainThema= #{menuName} -->
+	<resultMap type="com.sist.vo.NearbyVO" id="mainInforMap">
+		<result column="rno" 			property="rNo"/>
+		<result column="rname" 			property="rName"/>
+		<result column="rtype" 			property="rType"/>
+		<result column="rtel" 			property="rTel"/>
+		<result column="rscore"		 	property="rScore"/>
+		<result column="rscorecount" 	property="rScoreCount"/>
+		<result column="raddr1" 		property="rAddr1"/>
+		<result column="raddr2" 		property="rAddr2"/>
+		<result column="rpwd" 			property="rPwd"/>
+		<result column="rarea" 			property="rArea"/>
+		<result column="rareadetail" 	property="rAreaDetail"/>
+		<result column="rhit"           property="rHit"/> 
+		<result column="rtakeout"       property="rTakeout"/> 
+		<result column="rhighprice"     property="rHighprice"/>
+		<result column="ropentime" 		property="rvo.rOpentime"/>
+  		<result column="rclosetime" 	property="rvo.rClosetime"/>
+		<result column="iname" 			property="ivo.iName"/>
+		<result column="ilink" 			property="ivo.iLink"/>
+	</resultMap>
+	
+
+
 	<select id="cateSelectData" resultType="MainThemaVO" parameterType="java.util.Map">
 		SELECT t_MainThema, t_DetailThema, t_Info 
 		FROM mainThema
 		WHERE REGEXP_LIKE(t_MainThema,#{fd})
-</select>	
+	</select>	
 
-<!-- 상황별 개수 알기! -->
+<!-- 상황별     개수 알 기! -->
 <select id="countBigThema" resultType="MainThemaVO">
 	SELECT t_MainThema, COUNT(*) as themaCount
 	FROM MainThema
 	GROUP BY t_MainThema
 </select>
 
-<select id="catefindData1" resultType="MainThemaVO" parameterType="java.util.Map">
-	SELECT t_DetailThema, t_Info
+<select id="resultThemaList" resultType="MainInfoVO" parameterType="java.util.Map">
+	SELECT 
 	FROM mainThema
 	WHERE REGEXP_LIKE(t_DetailThema,#{fo})
 </select>
 
-<select id="catefindData2" resultType="DetailThemaVO" parameterType="java.util.Map">
-	SELECT t_DetailThema, t_Info
-	FROM detailThema 
-	WHERE REGEXP_LIKE(t_DetailThema,#{ft})
+<select id="searchThema" parameterType="java.util.Map" resultMap="mainInforMap" >
+      select NUM ,
+            RNO, 
+	 	    RNAME,
+	 	    RTYPE,  
+	 	    RTEL,
+	 	    rScore,
+	 	    rScoreCount,   
+	 	    RADDR2,      
+	 	    INAME,    
+	 	    ILINK,
+	 	    ROPENTIME,
+	 	    RCLOSETIME
+     from (
+     SELECT ROW_NUMBER() OVER( ORDER BY RNO) NUM ,
+            RNO, 
+	 	    RNAME,
+	 	    RTYPE,  
+	 	    RTEL,
+	 	    rScore,
+	 	    rScoreCount,   
+	 	    RADDR2,      
+	 	    INAME,    
+	 	    ILINK,
+	 	    ROPENTIME,
+	 	    RCLOSETIME
+	 FROM  (
+	     SELECT 
+                MAI.RNO,
+	            MAI.RNAME,
+	            MAI.RTYPE,
+	            MAI.RTEL,
+	            NVL(mai.RSCORE,4.2) RSCORE,
+	            MAI.rScoreCount,     
+	            MAI.RADDR2,
+	            IMG.INAME,
+	            IMG.ILINK,
+	            RES.ROPENTIME,
+	            RES.RCLOSETIME
+	     FROM MAININFO MAI,
+	          INFOTHEMA INFO,
+	          DETAILTHEMA DETAIL,
+	          IMAGE IMG,
+	          RESERVEINFO RES
+	        WHERE MAI.RNO=INFO.RNO 
+            and  MAI.RNO=RES.RNO 
+	    	AND INFO.RTHEMA=DETAIL.T_INFO
+	    	AND DETAIL.T_DETAILTHEMA=#{detailThema_col}
+	    	AND MAI.RNO=IMG.RNO
+			AND IMG.INAME='Mainimage'
+			 AND MAI.RNO <![CDATA[ <  ]]> 120
+	        )            
+         GROUP BY RNO, RNAME, RTYPE,  RTEL, RSCORE, RScoreCount,     RADDR2,      INAME,    ILINK, ROPENTIME, RCLOSETIME
+         ORDER BY RNO ASC	
+         ) where num between 1 and 200
 </select>
-
-
-
-<!-- 모든 정보 가져오기! -->
-
-<select id="showMoreCate" resultType="DetailThemaVO" parameterType="java.util.Map">
-	SELECT t_DetailThema, t_Info
-	FROM detailThema 
-	WHERE REGEXP_LIKE(t_DetailThema,#{fa})
-</select>
+<!--    -->
 </mapper>

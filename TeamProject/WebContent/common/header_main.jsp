@@ -23,9 +23,6 @@
 							<div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
                                 <ul class="navbar-nav">
                                     <li class="nav-item active">
-                                        <a class="nav-link" href="../restaurant/list_realtime.do">실시간 맛집</a>
-                                    </li>
-                                    <li class="nav-item active">
                                         <a class="nav-link" href="../restaurant/list_weekly.do">주간 맛집</a>
                                     </li>
                                     <li class="nav-item active">
@@ -36,11 +33,7 @@
                                     </li>
                                     <li class="nav-item active">
                                         <a class="nav-link" href="../board/list.do">자유게시판</a>
-                                    </li>
-                                    <li class="nav-item active">
-                                        <a class="nav-link" href="../mypage/mypage.do">임시(마이페이지)</a>
-                                    </li>
-                                    
+                                    </li>                                    
 									<!-- =============== 로그인 안 한 경우 =============== -->
 									<c:if test="${sessionScope.id==null }">
 										<li class="not_loggedin">

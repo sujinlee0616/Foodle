@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sist.mapper.board-comment-mapper">
+	
+	<!-- [댓글 총 개수] -->
+	<!-- CREATE OR REPLACE PROCEDURE commentCount(
+	    pNo NUMBER,
+	    total OUT NUMBER
+	) -->
+	<parameterMap type="hashmap" id="commentCountMap">
+		<parameter property="pNo" javaType="java.lang.Integer"  jdbcType="INTEGER" mode="IN"/>	
+		<parameter property="total" javaType="java.lang.Integer" jdbcType="INTEGER" mode="OUT"/>
+	</parameterMap>
+	<select id="commentCount" parameterMap="commentCountMap" statementType="CALLABLE">
+		{CALL commentCount(?,?)}
+	</select>
+
+
+	<!-- [댓글 출력] -->
+	<!-- CURSOR 설정 -->	
+	<resultMap type="BoardCommentVO" id="cmtBoardMap">
+		<result property="cno" column="cno"/>
+		<result property="bno" column="bno"/>
+		<result property="userid" column="userid"/>
+		<result property="content" column="content"/>
+		<result property="regdate" column="regdate"/>
+		<result property="group_id" column="group_id"/>
+		<result property="group_step" column="group_step"/>
+		<result property="group_tab" column="group_tab"/>
+		<result property="root" column="root"/>
+		<result property="depth" column="depth"/>
+	</resultMap>
+	<!-- CREATE OR REPLACE PROCEDURE commentList(
+	    pNo boardComment.bNo%TYPE,
+	    cResult OUT SYS_REFCURSOR
+	)-->
+	<parameterMap type="hashmap" id="cmtListMap">
+		<parameter property="pNo" javaType="java.lang.Integer" jdbcType="INTEGER" mode="IN"/>
+		<parameter property="cResult" jdbcType="CURSOR" mode="OUT" resultMap="cmtBoardMap"/>
+	</parameterMap>
+	<select id="cmtList" parameterMap="cmtListMap" statementType="CALLABLE">
+		{CALL commentList(?,?)}
+	</select>
+
+
+	<!-- [댓글 작성] -->
+	<!-- CREATE OR REPLACE PROCEDURE commentInsert(
+		    pBno boardComment.bNo%TYPE,    
+		    pUserId boardComment.userId%TYPE,
+		    pContent boardComment.content%TYPE
+		) -->
+	<parameterMap type="hashmap" id="commentInsertMap">
+		<parameter property="pBno" javaType="java.lang.Integer" jdbcType="INTEGER" mode="IN"/>
+		<parameter property="pUserId" javaType="java.lang.String" jdbcType="VARCHAR" mode="IN"/>
+		<parameter property="pContent" javaType="java.lang.String" jdbcType="CLOB" mode="IN"/>
+	</parameterMap>
+	<select id="commentInsert" parameterMap="commentInsertMap" statementType="CALLABLE">
+		{CALL commentInsert(?,?,?)}
+	</select>
+	
+	<!-- 댓글 삭제 -->
+	<parameterMap type="hashmap" id="commentDeleteMap">
+		<parameter property="pCno" javaType="java.lang.Integer" jdbcType="INTEGER" mode="IN"/>
+	</parameterMap>
+	<select id="commentDelete" parameterMap="commentDeleteMap" statementType="CALLABLE">
+		{CALL commentDelete(?)}
+	</select>
+	
+	<!-- 댓글 수정 -->
+	<parameterMap type="hashmap" id="commentUpdateMap">
+		<parameter property="pCno" javaType="java.lang.Integer" jdbcType="INTEGER" mode="IN"/>
+		<parameter property="pContent" javaType="java.lang.String" jdbcType="CLOB" mode="IN"/>
+	</parameterMap>
+	<select id="commentUpdate" parameterMap="commentUpdateMap" statementType="CALLABLE">
+		{CALL commentUpdate(?,?)}
+	</select>
+	
+	<!-- 대댓글 작성 -->
+	<!-- CREATE OR REPLACE PROCEDURE commentReply(
+		    pParentCno boardComment.cno%TYPE,
+		    pBno boardComment.bno%TYPE,
+		    pUserid boardComment.userid%TYPE,
+		    pContent boardComment.content%TYPE
+		)  -->
+	<parameterMap type="hashmap" id="commentReplyMap">
+		<parameter property="pParentCno" javaType="java.lang.Integer" jdbcType="INTEGER" mode="IN"/>
+		<parameter property="pBno" javaType="java.lang.Integer" jdbcType="INTEGER" mode="IN"/>
+		<parameter property="pUserid" javaType="java.lang.String" jdbcType="VARCHAR" mode="IN"/>
+		<parameter property="pContent" javaType="java.lang.String" jdbcType="CLOB" mode="IN"/>
+	</parameterMap>
+	<select id="commentReply" parameterMap="commentReplyMap" statementType="CALLABLE">
+		{CALL commentReply(?,?,?,?)}
+	</select>
+
+</mapper>
+
+
+
+
+
+
+

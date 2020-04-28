@@ -1,41 +1,41 @@
-/*   
-div#select_box {
-    position: relative;
-    width: 130px;
-    height: 35px;
-    background: url(../images/arrow.jpg) 90px center no-repeat; 화살표 이미지
-    border: 1px solid #E9DDDD;
-   
-}
-div#select_box label {
-    position: absolute;
-    font-size: 14px;
-    color: #a97228;
-    top: 13px;
-    left: 12px;
-    letter-spacing: 1px;
-}
-div#select_box select#color {
-    width: 100%;
-    height: 40px;
-    min-height: 40px;
-    line-height: 40px;
-    padding: 0 10px;
-    opacity: 0;
-    filter: alpha(opacity=0); IE 8
-}
- */
 
+
+
+@font-face {
+  font-family: 'simple-line-icons';
+  src: url('../fonts/Simple-Line-Icons.eot?v=2.4.0');
+  src: url('../fonts/Simple-Line-Icons.eot?v=2.4.0#iefix') format('embedded-opentype'), url('../fonts/Simple-Line-Icons.woff2?v=2.4.0') format('woff2'), url('../fonts/Simple-Line-Icons.ttf?v=2.4.0') format('truetype'), url('../fonts/Simple-Line-Icons.woff?v=2.4.0') format('woff'), url('../fonts/Simple-Line-Icons.svg?v=2.4.0#simple-line-icons') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.icon-arrow-down {
+  font-family: 'simple-line-icons';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-arrow-down:before {
+  content: "\e604";
+}
 
 body {
 
   font-size: 18px;
 }
 
+
 div .nearbyrow{
 	
 	background-color: white;
-	margin-right: -60px;
+	margin-right: -780px;
     margin-left: 0px;
 	
 }
@@ -59,35 +59,42 @@ div .contentRes{
 	padding-left: 20px;
 	padding-right: 20px;
 }
+
+
+
+/*background: url(../images/arrow_down_black.png) no-repeat 95% 50%;*/
+
+
 select {
-  width: 120px;
-  padding: .2em .8em;
+  width: auto;
+  background: url(../images/arrow_down_black.png) no-repeat 90% 50%;
+  text-align:center;
+  padding-left: 20px;
+  padding-right: 45px;
   font-family: inherit;
-  background: url(../images/arrow.jpg) no-repeat 95% 50%;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  border: 2px solid #ff7474;
-   border-radius : 15px;
-   margin-left: 5px;
+  border: 2px solid #e8e8e8;
+   border-radius : 22px;
+   margin-left: 20px;
    margin-bottom: 5px;
-   height : 40px;
+   height : 55px;
    color: black;
-   font-size: 17px;
+   font-size: 23px;
    background-color: white;
+   font-weight: 650px;
+    letter-spacing: 3px;
 }
 
-a .nearbyselected {
-	
-	letter-spacing: normal;
-	border-radius: 15px;
-}
+
 
 .filter_row a {
 	
 	border-radius: 15px; 
 
 }
+
 
 .filter_row a:hover {
 	
@@ -136,6 +143,7 @@ option {
 	padding-right: 16px!important;
 	padding-left: 16px!important;
 	display: block;
+	text-align: center;
 	
 }
 
@@ -160,7 +168,7 @@ select::-ms-expand {
 .list-block h5 {
     color: #3e434b;
     display: inline-block;
-    margin: 0;
+    margin-left: 22px;
     font-size: 30px;
     letter-spacing: 2px;
 }
@@ -169,18 +177,32 @@ div .nearbysearchlist{
 	
 	padding-left: 1rem!important;
     padding-right: 1rem!important;
+    padding-top: 30px;
     
 }
 
 .nearbysearchlist p{
 
 	color: #96999cfa;
+
+	font-size: 25px;
 	
 }	
 
+.closed-now {
+    color: #ff3a6d;
+    font-size: 25px;
+    display: block;
+    font-weight: 400;
+    display: inline-block;
+    
+}
+
 .nearbysearchlist h6{
 
-	font-weight: 600;
+	font-weight: 600px;
+
+    font-size: 34px;
 }	
 
 
@@ -191,18 +213,53 @@ div .nearbysearchlist{
 .featured-title-box {
     padding: 22px 20px;
     width: 320px;
+    display: inline-block;
 }
 
+
+.featured-place-wrap a {
+    display: flex;
+
+}
+
+
+
+.filter_row a:hover {
+  
+  color: #ff3a6d; 
+  
+  }
+
+
+.featured-title-boxSecond {
+	
+	padding: 22px 20px;
+    width: 550px;
+    display: inline-block;
+    align-self: center;
+	    padding-left: unset;
+	
+}
+
+.bottom-icons {
+    padding: 22px 0 0;
+    line-height: 1;
+}
+
+
+
+
+/*
 
 .featured-responsive:nth-child( 2n ) {
 	margin-left: 20px;
 }
-
+*/
 
 
 .nearbymapwrap{
 	
-    padding: 0; 
+    padding: 0px; 
 
 }
 
@@ -210,9 +267,9 @@ div .nearbysearchlist{
 
 	position: fixed;
     top: 28%;
-    right: 17%;
+    right: 10%;
     bottom: 13%;
-    width: 24%; 
+    width: 10%; 
 
 }
     
@@ -220,7 +277,7 @@ div .nearbysearchlist{
     @media (max-width: 992px) {
       .map-fix {
         display: none;
-        top: 17%;
+        top: 11%;
         left: 0;
         width: 100%; } }
     @media (max-width: 480px) {
@@ -234,3 +291,75 @@ div .nearbysearchlist{
     height: 100%;
     width: 100%; }
     
+    
+    
+ .openButtBefore {
+  width: 163px;
+  font-family: inherit;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+   border: 2px solid #e8e8e8;
+   border-radius : 22px;
+   margin-left: 20px;
+   margin-bottom: 5px;
+   height : 55px;
+   color: black;
+   font-size: 23px;
+   background-color: white;
+   font-weight: 650px;
+}
+
+.openButtAfter {
+  width: 163px;
+  font-family: inherit;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: 2px solid #ff7474;
+   border-radius :22px;
+   margin-left: 20px;
+   margin-bottom: 5px;
+   height : 55px;
+   color: white;
+   font-size: 23px;
+   background-color: #ff7474;
+}
+
+
+
+ 
+ .openButtBeforeArea {
+  width: 163px;
+  font-family: inherit;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+   border: 2px solid #e8e8e8;
+   border-radius : 22px;
+   margin-left: 20px;
+   margin-bottom: 5px;
+   height : 55px;
+   color: black;
+   font-size: 23px;
+   background-color: white;
+   font-weight: 650px;
+}
+
+.openButtAfterArea {
+  width: 163px;
+  font-family: inherit;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: 2px solid #ff7474;
+   border-radius :22px;
+   margin-left: 20px;
+   margin-bottom: 5px;
+   height : 55px;
+   color: white;
+   font-size: 23px;
+   background-color: #ff7474;
+}
+
+

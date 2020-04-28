@@ -59,38 +59,115 @@
 	<!-- #################################### 리뷰 ################################### -->
 	<!-- 리뷰 데이터 -->
 	<select id="reviewData" resultType="ReviewVO" parameterType="hashMap">
-		SELECT reviewno,userid,rno,revscore,revcontent,revdate,revgood,revbad,num
-		FROM (SELECT reviewno,userid,rno,revscore,revcontent,revdate,revgood,revbad,rownum as num
-		FROM (SELECT reviewno,userid,rno,revscore,revcontent,revdate,revgood,revbad 
-		FROM review WHERE rno=#{rno} ORDER BY revdate DESC))
+		SELECT revNo,userId,rNo,revScore,revContent,revDate,revGood,revBad,num
+		FROM (SELECT revNo,userId,rNo,revScore,revContent,revDate,revGood,revBad,rownum as num
+		FROM (SELECT revNo,userId,rNo,revScore,revContent,revDate,revGood,revBad
+		FROM review WHERE rNo=#{rno} ORDER BY revDate DESC))
 		WHERE num BETWEEN #{start} AND #{end}
 	</select>
 	
 	<!-- 리뷰 개수 -->
 	<select id="reviewTotalCount" resultType="int" parameterType="int">
 		SELECT COUNT(*) FROM review
-		WHERE rno=#{rno}
+		WHERE rNo=#{rno}
 	</select>
 	
 	<!-- 리뷰 총 페이지 -->
 	<select id="reviewTotalPage" resultType="int" parameterType="int">
-		SELECT CEIL(COUNT(*)/10.0)
+		SELECT CEIL(COUNT(*)/5.0)
 		FROM review
-		WHERE rno=#{rno}
+		WHERE rNo=#{rno}
 	</select>
 	
 	<!-- 리뷰 평점 평균 -->
 	<select id="reviewScoreAvg" resultType="double" parameterType="int">
-		SELECT TRUNC(AVG(revscore),1) FROM review
-		WHERE rno=#{rno}
+		SELECT TRUNC(AVG(revScore),1) FROM review
+		WHERE rNo=#{rno}
 	</select>
 	
 	<!-- #################################### 예약  ################################### -->
 	
-	<!-- 해당 날짜의 예약 가능 시간 -->
+	<!-- 해당 날짜의 예약 가능 시간(번호) (ex. 1,3,4,5,8,9,...)-->
 	<select id="reserveTimeData" resultType="String" parameterType="int">
 		SELECT time FROM reservedate
 		WHERE tno=#{tno}
 	</select>
+	
+	<!-- 해당 번호의 시간 (ex. 1=>08:00) -->
+	<select id="reserveTimeData2" resultType="String" parameterType="int">
+		SELECT time FROM reservetime
+		WHERE tno=#{tno}
+	</select>
+	
+	
+	<!-- 
+		RESNO     NOT NULL NUMBER         
+		RNO       NOT NULL NUMBER         
+		USERID    NOT NULL VARCHAR2(50)   
+		REGDATE            DATE           
+		RESDATE   NOT NULL VARCHAR2(20)   
+		RESTIME   NOT NULL VARCHAR2(20)   
+		RESMENU            VARCHAR2(2000) 
+		RESPEOPLE          VARCHAR2(200)  
+		RESPRICE           VARCHAR2(200)  
+		RESCOUPON          VARCHAR2(200)
+		
+		map.put("rno", Integer.parseInt(rno));
+		map.put("userid", userid);
+		map.put("respeople", respeople);
+		map.put("resdate", resdate);
+		map.put("restime", restime);
+		map.put("resmenu", resmenu);
+		map.put("resprice", resprice);
+		map.put("rescoupon", rescoupon);
+	 -->
+	<insert id="reserveInsert" parameterType="hashmap">
+		INSERT INTO reservation VALUES(
+			(SELECT NVL(MAX(resno)+1,1) FROM reservation),
+			#{rno},
+			#{userid},
+			SYSDATE,
+			#{resdate},
+			#{restime},
+			#{resmenu},
+			#{respeople},
+			#{resprice},
+			#{rescoupon}
+		)
+	</insert>
+	
+	<select id="reserveCouponData" resultType="CouponVO" parameterType="hashmap">
+		SELECT cNo,rNo,cPrice,cStartdate,cEnddate,cName FROM coupon
+		WHERE rno=#{rno} AND userid=#{userid}
+	</select>
+	
+	<delete id="reserveCouponDelete" parameterType="hashmap">
+		DELETE FROM coupon
+		WHERE cprice=#{cprice} 
+			AND cname=#{cname} 
+			AND TO_CHAR(cenddate,'yy/MM/dd')=#{cenddate}
+			AND userid=#{userid}
+			AND rownum=1
+	</delete>
+	
+	<!-- REVNO      NOT NULL NUMBER       
+		USERID     NOT NULL VARCHAR2(50) 
+		RNO        NOT NULL NUMBER       
+		REVSCORE   NOT NULL NUMBER       
+		REVCONTENT NOT NULL CLOB         
+		REVDATE             DATE         
+		REVGOOD             NUMBER       
+		REVBAD              NUMBER  -->
+	<!-- 리뷰 작성 -->
+	<insert id="reviewInsertData" parameterType="ReviewVO">
+		INSERT INTO review(revNO,userId,rNo,revScore,revContent)
+		VALUES(
+			(SELECT NVL(MAX(revNO)+1,1) FROM review),
+			#{userId},
+			#{rNo},
+			#{revScore},
+			#{revContent}
+		)
+	</insert>
 	
 </mapper>

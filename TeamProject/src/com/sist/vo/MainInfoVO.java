@@ -30,6 +30,17 @@ public class MainInfoVO {
 	// image 테이블 maininfo테이블과  조인
 	private ImageVO ivo=new ImageVO();
 	
+	// 찜
+	private String myWish;
+	
+	
+	
+	public String getMyWish() {
+		return myWish;
+	}
+	public void setMyWish(String myWish) {
+		this.myWish = myWish;
+	}
 	public ImageVO getIvo() {
 		return ivo;
 	}
@@ -112,6 +123,15 @@ public class MainInfoVO {
 	public void setrAreaDetail(String rAreaDetail) {
 		this.rAreaDetail = rAreaDetail;
 	}
+	
+	
+	@Override
+	public String toString() {
+		return "MainInfoVO [rNo=" + rNo + ", rName=" + rName + ", rType=" + rType + ", rTel=" + rTel + ", rScore="
+				+ rScore + ", rScoreCount=" + rScoreCount + ", rAddr1=" + rAddr1 + ", rAddr2=" + rAddr2 + ", rPwd="
+				+ rPwd + ", rArea=" + rArea + ", rAreaDetail=" + rAreaDetail + ", ivo=" + ivo + "]";
+	}
+	
 	
 	
 	

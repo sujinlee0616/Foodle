@@ -4,22 +4,60 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <jsp:useBean id="now" class="java.util.Date" />
 <fmt:formatDate var="today" value="${now}" pattern="yyyy-MM-dd" />
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+<!-- jQuery, Bootstrap JS. -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="../js/jquery-3.2.1.min.js"></script>
+<script src="../js/popper.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script type="text/javascript">
+var u=0;
+var i=0;
+$(function(){
+	$('.cmtUpdtBtn').click(function(){
+		var update_cno=$(this).attr('update_cno');
+		$('.cmtUpdateArea').hide();
+		
+		if(u==0){
+			$('#before_update_cno'+update_cno).hide();
+			$('#try_to_update_cno'+update_cno).show();
+			u=1;
+		}
+		else{
+			$('#before_update_cno'+update_cno).show();
+			$('#try_to_update_cno'+update_cno).hide();
+			u=0;
+		}
+	});
+	
+	$('.cmtReplyBtn').click(function(){
+		var reply_cno=$(this).attr('reply_cno');
+		if(i==0){
+			$('#try_to_reply_cno'+reply_cno).show();  
+			i=1;
+		}
+		else{
+			$('#try_to_reply_cno'+reply_cno).hide();
+			i=0;
+		}
+	});
+	
+})
+</script>
 </head>
 <body>
 <!--============================= Start of BOARD DETAIL =============================-->
 <section class="board-block pb-1 light-bg">
-  <div class="container pt-5">
+  <div class="container">
     <div class="py-3">
       <div class="table-responsive">
         <!-- ============================ Start of 상세보기 ============================ -->
         <table class="table replyBoard reply_detail">				
 	        <thead>
 	            <tr>
-	                <th class="subject px-3 py-3" colspan="4">${vo.bsubject }</td>
+	                <th class="subject px-3" colspan="4">${vo.bsubject }</td>
 	            </tr>
 	            <tr>
 	                <td>
@@ -35,7 +73,6 @@
 	                  <span class="td_del">|</span>
 	                  <span class="bd_detail_dt px-2">조회수: ${vo.hit } </span>
 	                </td>
-
 	                <td>
 	                  <span class="td_del">|</span>
 	                  <span class="bd_detail_dt px-2">답글 수: ${vo.depth }</span>
@@ -47,7 +84,7 @@
                 <!-- 본문 -->
                 <td class="content py-4 px-4" colspan="4">
                   	<!-- 본문입니다 -->
-                  ${vo.bcontent }
+                  	<pre>${vo.bcontent }</pre>
                 </td>
               </tr>
               <tr>
@@ -77,45 +114,105 @@
           	<!-- =============== 로그인 한 경우 =============== -->
           	<c:if test="${sessionScope.id!=null }">
 	        	<div class="logged_in">
-	              <form action="../board/comment.do"></form>
+	              <form method="post" action="../board/comment_insert.do">
 		              <div class="writer_info">
+		              	<input type="hidden" name="bno" value="${vo.bno }">
 		                <span class="writer_nm">${sessionScope.id}</span>
 		              </div>
-		              <textarea name="cmt" class="cmt_input" placeholder="건전한 댓글 문화를 위해, 타인에게 불쾌감을 주는 욕설 또는 특정 계층/민족, 종교 등을 비하하는 내용은 입력을 지양해주세요."></textarea>
-		              <button class="cmtBtn">등록</button>
+		              <textarea name="cmtContent" class="cmt_input" placeholder="건전한 댓글 문화를 위해, 타인에게 불쾌감을 주는 욕설 또는 특정 계층/민족, 종교 등을 비하하는 내용은 입력을 지양해주세요."></textarea>
+		              <input type="submit" class="cmtBtn" value="등록">
 	              </form>
 	            </div>
             </c:if>
             <!-- =============== 로그인 안 한 경우 =============== -->
 			<c:if test="${sessionScope.id==null }">
-	            <div class="logged_in">
+	            <div class="not_logged_in">
 	              <textarea name="cmt" class="cmt_input disabled" placeholder="회원만 댓글을 작성할 수 있습니다. 댓글을 작성하고 싶으시다면 로그인 해주세요." disabled></textarea>
 	              <button class="cmtBtn" disabled>등록</button>
 	            </div>
           	</c:if>
           </div>
           <!-- ====================== 댓글 노출 영역 ====================== -->
+          <!-- 데이터 연동 O  -->
           <c:forEach var="cvo" items="${cmt_list }" >
            	<hr class="cmt_line">
 	          <div class="cmt">
+	          	<!-- 1. ID,작성일, 댓글에 대한 액션 버튼 영역 -->
 	            <div class="writer_info">
-	              <span class="writer_nm">${cvo.userid }</span>
-	              <span class="write_time pl-1">${cvo.regdate }</span>
+	              <c:if test="${cvo.group_tab==0 }">
+		              <span class="writer_nm">${cvo.userid }</span>
+		              <span class="write_time pl-1">${cvo.regdate }</span>
+	              </c:if>
+	              <c:if test="${cvo.group_tab>0 }">
+		              <span class="writer_nm" style="margin-left:30px;">
+		              <img src="../images/icon_reply.gif" class="mr-2">${cvo.userid }</span>
+		              <span class="write_time pl-1">${cvo.regdate }</span>
+	              </c:if>
+	              <div class="cmtActions">
+		              <span class="cmtActionBtn cmtReplyBtn pl-1" reply_cno="${cvo.cno }">답글</span>
+			          <c:if test="${sessionScope.id==cvo.userid }">
+			          	  <span class="cmtActionBtn cmtUpdtBtn pl-1" update_cno="${cvo.cno }">수정</span>
+			              <a class="cmtActionBtn" href="../board/comment_delete.do?bno=${cvo.bno }&cno=${cvo.cno }">삭제</a>
+		              </c:if>
+	              </div>
 	            </div>
-	            <div class="cmt_content pt-2">${cvo.content }</div>
+	            <!-- 2. 댓글 내용 영역 -->
+	            <div class="cmt_content pt-2 pl-1">
+	            	<!-- 댓글내용 -->
+	            	<c:if test="${cvo.group_tab==0 }">
+		            	<pre class="mb-0" id="before_update_cno${cvo.cno }"
+			            	 style="font-size: 14px; white-space: pre-wrap; font-family: Nanum Gothic;">${cvo.content }</pre>
+	            	</c:if>
+	            	<c:if test="${cvo.group_tab>0 }">
+		            	<pre class="mb-0" id="before_update_cno${cvo.cno }"
+		            	 style="font-size: 14px; white-space: pre-wrap; font-family: Nanum Gothic; margin-left: 50px; width: calc(92% - 50px);">${cvo.content }</pre>
+	            	 </c:if>
+	            	<!-- 수정하기 버튼 클릭 시 -->
+	            	<form method="POST" action="../board/comment_update.do">
+	            		<div class="cmtUpdateArea" id="try_to_update_cno${cvo.cno }" style="display:none;" >
+	            			<input type="hidden" name="bno" value="${cvo.bno }">
+	            			<input type="hidden" name="cno" value="${cvo.cno }">
+		            		<textarea name="cmtContent" class="cmt_input" placeholder="건전한 댓글 문화를 위해, 타인에게 불쾌감을 주는 욕설 또는 특정 계층/민족, 종교 등을 비하하는 내용은 입력을 지양해주세요.">${cvo.content }</textarea>
+			            	<button type="submit" class="cmtBtn">수정<br>완료</button>
+		            	</div>
+	            	</form>
+	            </div>
+	            
+	            <!-- [대댓글 작성 버튼 클릭 시] -->
+	          	<!-- =============== 로그인 한 경우 =============== -->
+	          	<c:if test="${sessionScope.id!=null }">
+		        	<div class="logged_in">
+		              <form method="post" action="../board/comment_reply.do">
+		              	<div class="cmtReplyArea" id="try_to_reply_cno${cvo.cno }" style="display:none;">
+		              	  <input type="hidden" name="bno" value="${cvo.bno }">
+		              	  <input type="hidden" name="parentCno" value="${cvo.cno }">
+		              	  <hr>
+			              <div class="writer_info ml-5">
+			                <span class="writer_nm">${sessionScope.id}</span>
+			              </div>
+			              <textarea name="cmtContent" class="cmt_input" 
+			              style="margin-left: 50px; width: calc(92% - 50px);"
+			              placeholder="건전한 댓글 문화를 위해, 타인에게 불쾌감을 주는 욕설 또는 특정 계층/민족, 종교 등을 비하하는 내용은 입력을 지양해주세요."></textarea>
+			              <button type="submit" class="cmtBtn">답글<br>등록</button>
+			          	</div>
+		              </form>
+		            </div>
+	            </c:if>
+	            <!-- =============== 로그인 안 한 경우 =============== -->
+				<c:if test="${sessionScope.id==null }">
+		            <div class="logged_in">
+		              <div class="cmtReplyArea" id="try_to_reply_cno${cvo.cno }" style="display:none;">
+		              	  <hr>
+			              <textarea name="cmt" class="cmt_input disabled" 
+			              style="margin-left: 50px; width: calc(92% - 50px);"
+			              placeholder="회원만 댓글을 작성할 수 있습니다. 댓글을 작성하고 싶으시다면 로그인 해주세요." disabled></textarea>
+			              <button class="cmtBtn" disabled>등록</button>
+		              </div>
+		            </div>
+	          	</c:if>
+	            
 	          </div>
           </c:forEach>
-          <!-- 데이터 연동 X  -->
-          <!-- <div class="cmt">
-            <div class="writer_info">
-              <span class="writer_nm">ahe4****</span>
-              <span class="write_time pl-1">2020.01.01 15:33</span>
-            </div>
-            <div class="cmt_content pt-2">
-              둘이서저걸다먹을수있니.남은음식들저거어쩌거니.재활용해도문제.그냥버려도문제.저렇게많이나오는집들은가는거아니다.
-            </div>
-          </div> -->
-          
         </div>
     <!-- ============================= End of 댓글 영역  ============================= -->
   </div>
@@ -124,7 +221,7 @@
 
 <!--============================= Start of BOARD LIST =============================-->
     <section class="board-block light-bg">
-        <div class="container">
+        <div class="container py-5">
 			<div class="row">
                 <div class="col-md-12">
                     <h5>자유게시판</h5>
@@ -148,7 +245,15 @@
 								<tr>
 									<td class="text-center">${vo.bno }</td>
 									<td>
-										<a href="detail.do?page=${curpage }&bno=${vo.bno }">${vo.bsubject }</a>
+										<!-- ============= Start of 제목  ============= -->
+										<!-- 답글이면 아이콘 붙임 -->
+										<c:if test="${vo.group_tab>0 }">
+						  					<c:forEach var="i" begin="1" end="${vo.group_tab }" step="1">
+						  						&nbsp;&nbsp;
+						  					</c:forEach>
+						  					<img src="../images/icon_reply.gif">
+						  				</c:if>
+										<a href="detail.do?page=${curpage }&bno=${vo.bno }">${vo.bsubject }<span class="cmtListCount">&nbsp;(${vo.cmtCount })</span></a>
 										<!-- 공지 글에는 공지 플래그 붙임 -->
 										<c:if test="${vo.notice=='y'}">
 											<span class="badge badge-gray ml-2" id="">공지</span>
@@ -160,6 +265,7 @@
 										<c:if test="${today<=reg_dt}">
 											<span class="badge badge-lightgray ml-2" id="">NEW</span>
 										</c:if>
+										<!-- ============= End of 제목  ============= -->
 									</td>
 									<td class="text-center">${vo.bname }</td>
 									<td class="text-center">

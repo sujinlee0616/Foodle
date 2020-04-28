@@ -33,7 +33,7 @@
                             <span>${mvo.rScore }</span>
                         </div>
                         <div class="review-btn">
-                            <a href="#" class="btn btn-outline-danger">리뷰 쓰기</a>
+                            <a href="../restaurant/review_insert.do?no=${mvo.rNo }" data-thispage="../restaurant/detail.do?no=${mvo.rNo }" class="btn btn-outline-danger" id="reviewBtn">리뷰 쓰기</a>
                         </div>
                         <div class="reserve-btn">
                             <div class="featured-btn-wrap">
@@ -120,163 +120,13 @@
                             </tbody>
                           </table>
                     </div>
-                    <!-- 사용자 리뷰 -->
+                    <!-- #########################  사용자 리뷰  ######################## -->
                     <div class="user_review_wrap">
                         <div class="area_title">
                             <h5>리뷰</h5>
                         </div>
-                        <div class="review_wrap">
-                            <div class="customer-review-avg">
-                                <div class="area_grade col-md-4">
-                                    <p>사용자 총 평점</p>
-                                    <div class="star_avg">
-                                        <div class="stars-outer"> <!-- grey star -->
-                                            <div class="stars-inner" style="width: ${reviewScoreAvg*20}%;"></div>  <!-- yellow star -->
-                                        </div>
-                                    </div>
-                                    <p><span>${reviewScoreAvg } / 5</span></p>
-                                </div>
-                                <div class="area_reviewNo col-md-4">
-                                    <p>전체 리뷰 수</p>
-                                    <img src="../images/dialog.png">
-                                    <p><span>${reviewTotalCount }</span></p>
-                                </div>
-                            </div>
-                            <hr>
-                            <c:forEach var="vo" items="${reviewList }">
-	                            <div class="customer-review_wrap">
-	                                <div class="customer-img">
-	                                    <img src="../images/customer-img0.png" class="img-fluid" alt="#">
-	                                    <p>${vo.userid }</p>
-	                                    <span>35 Reviews</span>
-	                                </div>
-	                                <div class="customer-content-wrap">
-	                                    <div class="customer-content">
-	                                        <div class="customer-review">
-	                                            <h6>만족</h6>
-	                                            <!-- (old) 별점 이미지-->
-	                                            <!-- <span></span>
-	                                            <span></span>
-	                                            <span></span>
-	                                            <span></span>
-	                                            <span class="round-icon-blank"></span> -->
-	                                            <!-- (new) 별점 이미지 -->
-	                                            <div class="stars-outer"> <!-- grey star -->
-	                                                <div class="stars-inner" style="width: ${vo.revscore*20}%;"></div>  <!-- yellow star -->
-	                                            </div>
-	                                            <p>
-	                                            	<fmt:formatDate value="${vo.revdate }" pattern="yyyy/MM/dd"/>
-	                                            </p>
-	                                        </div>
-	                                        <div class="customer-rating">4.3</div> <!-- 점수 -->
-	    
-	                                    </div>
-	                                    <p class="customer-text">${vo.revcontent }</p>
-	                                    <!-- <ul>
-	                                        <li><img src="../images/review-img1.jpg" class="img-fluid" alt="#"></li>
-	                                        <li><img src="../images/review-img2.jpg" class="img-fluid" alt="#"></li>
-	                                        <li><img src="../images/review-img3.jpg" class="img-fluid" alt="#"></li>
-	                                    </ul> -->
-	                                    <span>${vo.revgood }명이 이 리뷰가 도움이 되었다고 응답했습니다.</span>
-	                                    <a href="#"><span class="icon-like"></span>도움이 됐어요</a>
-	                                </div>
-	                            </div>
-	                            <hr>
-                            </c:forEach>
+                        <div class="review_wrap" data-no="${mvo.rNo }">
                             
-                            <!-- /////////////////////////////////////// -->
-                            <div class="customer-review_wrap">
-                                <div class="customer-img">
-                                    <img src="../images/customer-img0.png" class="img-fluid" alt="#">
-                                    <p>어흥흥흥</p>
-                                    <span>17 Reviews</span>
-                                </div>
-                                <div class="customer-content-wrap">
-                                    <div class="customer-content">
-                                        <div class="customer-review">
-                                            <h6>화덕피자 좋아하시는 분들에게 추천!!</h6>
-                                             <!-- (old) 별점 이미지
-                                            <span></span>
-                                            <span></span>
-                                            <span></span>
-                                            <span></span>
-                                            <span class="round-icon-blank"></span>
-                                            (new) 별점 이미지 -->
-                                            <div class="stars-outer"> <!-- grey star -->
-                                                <div class="stars-inner" style="width: 80%;"></div>  <!-- yellow star -->
-                                            </div>
-                                            <p>2015/09/10</p>
-                                        </div>
-                                        <div class="customer-rating customer-rating-red">4.0</div>
-                                    </div>
-                                    <p class="customer-text">화덕피자 진짜 좋아하는뎅~>< 여기 너무 맛있어요! 화덕향도 나고 치즈도 듬뿍올라가서 좋아요~!</p>
-                                    <span>10명이 이 리뷰가 도움이 되었다고 응답했습니다.</span>
-                                    <a href="#"><span class="icon-like"></span>도움이 됐어요</a>
-                                </div>
-                            </div>
-                            <hr>
-                            
-                            <!-- /////////////////////////////////////////////////////// -->
-                            <hr>
-                            
-                            <%-- <div>
-                            	<a href="../restaurant/detail.do?no=${mvo.rNo }&page=${curpage>1?curpage-1:curpage }" class="btn btn-sm btn-primary">이전</a>
-  									${curpage } page / ${totalpage } pages
-  								<a href="../restaurant/detail.do?no=${mvo.rNo }&page=${curpage<totalpage?curpage+1:curpage }" class="btn btn-sm btn-primary">다음</a>
-                            </div> --%>
-                            
-                            <div class="page">
-                            <nav aria-label="...">
-                                <ul class="pagination justify-content-center">
-                                	<c:if test="${startPage>1 }">
-	                                    <li class="page-item">
-	                                        <a class="page-link" href="../restaurant/detail.do?no=${mvo.rNo }&page=${curpage>1?curpage-1:curpage }" aria-label="Previous"> 
-	                                            <span aria-hidden="true">&laquo;</span>
-	                                            <span class="sr-only">Previous</span>
-	                                        </a>
-	                                    </li>
-                                    </c:if>
-                                    <c:set var="type" value=""/>
-						    	    <c:forEach var="i" begin="${startPage }" end="${endPage }">
-						    	  	<c:if test="${curpage==i }">
-						    	  		<c:set var="type" value="class=\"page-item active\""/> <%-- 현재페이지 파란색 --%>
-						    	  	</c:if>
-						    	  	<c:if test="${curpage!=i }">
-						    	  	    <c:set var="type" value="class=page-item"/>
-						    	  	</c:if>
-						    	  		<li ${type }>
-						    	  			<a class="page-link" href="../restaurant/detail.do?no=${mvo.rNo }&page=${i }">${i }</a>
-						    	  		</li>
-						    	  	</c:forEach>
-						    	  	<c:if test="${endPage<allPage }">
-    	    							<li class="page-item">
-	                                        <a class="page-link" href="../restaurant/detail.do?no=${mvo.rNo }&page=${endPage+1 }" aria-label="Next"> 
-	                                            <span aria-hidden="true">&raquo;</span> 
-	                                            <span class="sr-only">Next</span>
-	                                        </a>
-                                   	    </li>
-    	  							</c:if>
-						    	  	
-                                    <%-- <li class="page-item">
-                                        <a class="page-link" href="#">1</a>
-                                    </li>
-                                    <li class="page-item active">
-                                        <span class="page-link">2
-                                            <span class="sr-only">(current)</span>
-                                        </span>
-                                    </li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#">3</a>
-                                    </li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="../restaurant/detail.do?no=${mvo.rNo }&page=${curpage<totalpage?curpage+1:curpage }" aria-label="Next"> 
-                                            <span aria-hidden="true">&raquo;</span> 
-                                            <span class="sr-only">Next</span>
-                                        </a>
-                                    </li> --%>
-                                </ul>
-                            </nav>
-                        </div>
                         </div>
                     </div>
                 </div>
@@ -290,9 +140,9 @@
                             <ul>
                             	<!-- ######################  메뉴  ####################### -->
                                 <li class="menu">
-                                    <label for="menu" class="reserve_tit">메뉴 선택</label>
-                                    <select id="menu" class="custom-select" name="" > 
-                                    	<option selected disabled hidden>======= 메뉴를 선택하세요. =======</option>
+                                    <label for="menu" class="reserve_tit" style="color: #ff7474">메뉴 선택</label>
+                                    <select id="menu" class="custom-select" name=""> 
+                                    	<option selected disabled hidden>메뉴를 선택하세요.</option>
                                     	<c:forEach var="vo" items="${menuList }">
                                     		 <option>
                                     		 	${vo.mName }&nbsp;<span>(\</span>${vo.mPrice })
@@ -303,6 +153,7 @@
 								<div id="row">
 									<table id="menu-selected"></table>
 								</div>
+								<div style="height: 20px;"></div>
 								<!-- ##################### 예약일 ######################## -->
                                 <li class="reserve_date" style="display: none;">
                                     <!-- <label for="menu" class="reserve_tit">예약일</label>
@@ -310,46 +161,112 @@
                                      autocapitalize="off" placeholder="예약일자" autocomplete="off"> -->
                                 	
                                 </li>
+                                <div style="height: 20px;"></div>
                                 <!-- ##################### 시간선택 ######################## -->
                                 <li class="reserve_time" style="display: none;"></li>
+                                <div style="height: 20px;"></div>
                                 <!-- ##################### 인원선택 ######################## -->
                                 <li class="reserve_inwon" style="display: none;"></li>
-                                
+                                <div style="height: 20px;"></div>
                                 
                                 <div class="row">
                                 	<table class="table">
-                                		<tr>
-											<td rowspan="1">
+										<tr>
+											<td colspan="2">
 												<b id="restaurant-name">${mvo.rName }</b>
 											</td>
 										</tr>
 										<tr>
-											<td>
+											<td width="25%"> 
 												<span style="color: #999">메뉴</span>
+											</td>
+											<td width="75%">
 												<span id="restaurant-menu"></span>
 											</td>
 										</tr>
 										<tr>
-											<td>
+											<td width="25%"> 
 												<span style="color: #999">예약일</span>
+											<td width="75%">
 												<span id="restaurant-date"></span>
+											</td>
 											</td>
 										</tr>
 										<tr>
-											<td>
+											<td width="25%"> 
 												<span style="color: #999">예약시간</span>
+											</td>
+											<td width="75%">
 												<span id="restaurant-time"></span>
 											</td>
 										</tr>
 										<tr>
-											<td>
+											<td width="25%"> 
 												<span style="color: #999">인원</span>
+											</td>
+											<td width="75%">
 												<span id="restaurant-inwon"></span>
+											</td>
+										</tr>
+										<tr>
+											<td width="25%"> 
+												<span style="color: #999">쿠폰선택</span>
+											</td>
+											<td width="75%">
+												<span>
+													<select class="custom-select restaurant-coupon" id="coupon" disabled>
+														<option selected disabled hidden>쿠폰을 선택하세요.</option>
+														<c:if test="${cList[0]==null }">
+															<option selected disabled hidden>사용가능한 쿠폰이 없습니다.</option>
+														</c:if>
+														<c:forEach var="vo" items="${cList }">
+															<option>${vo.CName }&nbsp;*<span>\</span>${vo.CPrice }&nbsp;(~<fmt:formatDate value="${vo.CEnddate }" pattern="yy/MM/dd"/>)</option>
+														</c:forEach>
+													</select>
+												</span>
+											</td>
+										</tr>
+										<tr>
+											<td width="25%"> 
+												<span style="color: #999">금액</span>
+											</td>
+											<td width="75%">
+												<span id="restaurant-price"></span>
 											</td>
 										</tr>
                                 	</table>
                                 </div>
-                                <a href="#" class="btn btn-outline-danger btn-reserve">예약하기</a>
+                                
+                                <form method="post" action="../restaurant/detail_reserveok.do">
+                                	<!-- 
+                                		private int resno; -> 자동증가
+										private int rno;   
+										private String userid; -> session
+										private Date regdate; -> default sysdate
+										private int respeople;
+										private String resdate;
+										private String restime;
+										private String resmenu;
+                                	 -->
+                                	<input type="hidden" name="rno" value="${mvo.rNo }" id="rno">
+	                                <input type="hidden" name="respeople" value="" id="respeople"/>
+	                                <input type="hidden" name="resdate" value="" id="resdate"/>
+	                                <input type="hidden" name="restime" value="" id="restime"/>
+	                                <input type="hidden" name="resmenu" value="" id="resmenu"/>
+	                                <input type="hidden" name="resprice" value="" id="resprice"/>
+	                                <input type="hidden" name="rescoupon" value="" id="rescoupon"/>
+	                                
+	                                <c:if test="${sessionScope.id!=null }">
+		                                <input type="submit" class="btn btn-outline-danger btn-reserve" value="예약하기" 
+		                                	style="margin: 0px auto; width: 320px" disabled>
+	                                </c:if>
+	                                <c:if test="${sessionScope.id==null }">
+	                                	<span class="btn btn-outline-danger btn-reserve2" 
+	                                		style="margin: 0px auto; width: 320px; height: 57px; line-height: 40px;">
+	                                		예약하기
+	                                	</span>
+	                                </c:if>
+                                </form>
                             </ul>
                         </div>
                     </div>
@@ -581,17 +498,47 @@
     
     </script>
 	
-	<!-- 메뉴선택 -->
+	
 	<script>
+	// 메뉴선택
 	$('#menu').change(function(){
 		var menu=$(this).val();
+		var mName=menu.substring(0,menu.lastIndexOf("(")-1);
+		var mPrice=Number(menu.substring(menu.lastIndexOf("(")+2,menu.lastIndexOf(")")));
+		var mSum=Number($('#restaurant-price').text().substring(0,$('#restaurant-price').text().indexOf("원")));
+		//alert(mSum)
+		
 		if(menu!=0) {
+			$('.restaurant-coupon').attr('disabled', false);
+			$("#coupon option:eq(0)").prop("selected", true); // 쿠폰 선택 초기화
 			$('.reserve_date').css("display","block");
-			$('#restaurant-menu').append(menu+",")
+			$('#restaurant-menu').append(mName+",<br>");
+			mSum=mSum+mPrice;
+			$('#restaurant-price').text(mSum+"원");
 		}
+		
+		var resmenu=$('#restaurant-menu').text();
+		$('#resmenu').val(resmenu);
+		$('#resprice').val(mSum+"원");
+		$('#rescoupon').val(0);
 	});
-	</script>
+		
+		
+	// 쿠폰 선택
+	$('#coupon').change(function(){
+		var coupon=$(this).val();
+		var cPrice=coupon.substring(coupon.indexOf("*")+2,coupon.indexOf("(")-1);
+		var mPrice=$('#restaurant-price').text().substring(0,$('#restaurant-price').text().indexOf("원")+1);
+		
+		var mPrice2=Number(mPrice.substring(0,mPrice.indexOf("원")));
+		var cPrice2=Number(cPrice);
+		
+		$('#restaurant-price').text(mPrice+" (-"+cPrice+"원)");
+		$('#rescoupon').val(coupon);
+		$('#resprice').val(mPrice2-cPrice2+"원");
+	});
 	
+	</script>
 	
 	<script>
 	var rdate=$('.reservation').attr('data-date');
@@ -603,8 +550,57 @@
 			$('.reserve_date').html(res);
 		}
 	})
+	
+	var no=$('.review_wrap').attr('data-no');
+	$.ajax({
+		type:'post',
+		url:'../restaurant/detail_review.do',
+		data:{"no":no},
+		success:function(res) {
+			$('.review_wrap').html(res);
+		}
+	})
 	</script>
 	
+	<script>
+	$('.btn-reserve2').click(function(){
+		if(sessionStorage.getItem("id")==null) {
+			alert("로그인 후 이용해주세요.");
+			return;
+		}
+	})
+	</script>
+	
+	<!-- 찜 hover 시 마우스 변경 -->
+	<script type="text/javascript">
+	$('.mywish').hover(function(){
+		$(this).css('cursor','pointer');
+	})
+	</script>
+	
+	<!-- 리뷰쓰기 버튼 클릭 시, 로그인 여부에 따라 다르게 처리 -->
+	<script type="text/javascript">
+	$('#reviewBtn').click(function(event){
+		var url=$(this).attr('data-thispage');
+		console.log(url);
+
+		$.ajax({
+			type:'POST',
+			url:'../restaurant/login_check.do',
+			success:function(res){
+				console.log(res);
+				if(res.trim()=='NotLoggedIn') {
+					alert("로그인 후 이용해주세요.");
+					window.location.href=url;
+				}
+			},
+			error:function(e){
+				alert(e);
+			}
+		});	
+	});
+
+	</script>
 </body>
 
 </html>

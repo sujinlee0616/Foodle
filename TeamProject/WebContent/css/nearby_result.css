@@ -1,0 +1,386 @@
+
+@font-face {
+  font-family: 'simple-line-icons';
+  src: url('../fonts/Simple-Line-Icons.eot?v=2.4.0');
+  src: url('../fonts/Simple-Line-Icons.eot?v=2.4.0#iefix') format('embedded-opentype'), url('../fonts/Simple-Line-Icons.woff2?v=2.4.0') format('woff2'), url('../fonts/Simple-Line-Icons.ttf?v=2.4.0') format('truetype'), url('../fonts/Simple-Line-Icons.woff?v=2.4.0') format('woff'), url('../fonts/Simple-Line-Icons.svg?v=2.4.0#simple-line-icons') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.icon-arrow-down {
+  font-family: 'simple-line-icons';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-arrow-down:before {
+  content: "\e604";
+}
+
+
+body {
+
+  font-size: 18px;
+}
+
+
+.specialRscore {
+	
+ font-size: 26px;
+ color: #ff7474;	
+	
+}
+
+
+div .nearbyrow{
+	
+	background-color: white;
+	margin-right: -780px;
+    margin-left: 0px;
+	
+}
+
+
+
+
+div .nearbymd7{
+	
+	padding-left: 0px;
+	
+}
+
+div .category{
+	
+	background-color: white;
+	margin-top: 40px;
+	margin-bottom: 20px;
+}
+
+div .contentRes{
+	
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+/*background: url(../images/arrow.jpg) no-repeat 95% 50%;*/
+select {
+  width: auto;
+  text-align:center;
+  padding-left: 20px;
+  padding-right: 45px;
+  font-family: inherit;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: 2px solid #e8e8e8;
+   border-radius : 22px;
+   margin-left: 20px;
+   margin-bottom: 5px;
+   height : 55px;
+   color: black;
+   font-size: 23px;
+   background-color: white;
+    font-weight: 650px;
+}
+
+
+
+.filter_row a {
+	
+	border-radius: 22px; 
+
+}
+
+.filter_row a:hover {
+	
+	background-color: white;
+	border: #ff3a6d;
+
+ }
+
+/*
+.displaymenu{
+	
+	margin-bottom: 10px;
+	margin-left: 5px;
+    margin-right: 5px;
+    
+}
+*/
+
+.displaymenu{
+
+    background-color: white;
+    margin-top: 0px;
+    margin-bottom: 20px;
+}
+
+
+.plusicon {
+	
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	padding: .2em .8em;
+	background: url(../images/plusicon.png) no-repeat 95% 50%;
+	margin-left: 5px;
+	margin-left: 5px;
+	margin-bottom: 5px;
+}
+
+option {
+	
+	border-radius: 4px;
+    background-color: #fff;
+    box-shadow: 0 0 18px rgba(0,0,0,.15);
+	border-color: #eeeeef;
+	padding-bottom: 16px!important;
+	padding-top: 16px!important;
+	padding-right: 16px!important;
+	padding-left: 16px!important;
+	display: block;
+	
+}
+
+.lemonmenu{
+
+	border-color: #eeeeef;
+	padding-bottom: 8px!important;
+	padding-top: 8px!important;
+	padding-right: 8px!important;
+	padding-left: 8px!important;
+	display: block;
+	cursor: pointer;
+	text-align: left;
+}
+}
+
+select::-ms-expand {
+  /* for IE 11 */
+  display: none;
+}
+
+.list-block h5 {
+    color: #3e434b;
+    display: inline-block;
+    margin-left: 22px;
+    font-size: 30px;
+    letter-spacing: 2px;
+}
+
+/* padding-left: 1rem!important; */
+div .nearbysearchlist{
+	
+	padding-left: 1rem!important;
+    padding-right: 1rem!important;
+    
+}
+
+
+
+.closed-now {
+    color: #ff3a6d;
+    font-size: 20px;
+    display: block;
+     font-weight: bold;
+    display: inline-block;
+        margin-left: 20px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.open-now {
+  	color: #46cd38;
+    font-size: 20px;
+    display: block;
+    font-weight: 400;
+    display: inline-block;
+    margin-left: 30px;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+
+.nearbyCon{
+	
+	margin-top: 20px;
+    font-size: 20px;
+    word-spacing: 1px;
+    letter-spacing: 1px;
+	
+	
+}
+
+.nearbysearchlist p{
+
+	color: #96999cfa;
+	margin-bottom: 5px;
+	font-size: 23px;
+	
+}	
+
+
+.nearbysearchlist h6{
+
+	font-weight: 600px;
+    font-size: 34px;
+}	
+
+
+.featured-place-wrap img {
+     width: auto;
+	border-radius: 15px;
+}
+
+
+.featured-place-wrap a {
+    display: flex;
+    
+}
+
+
+
+/*
+position: absolute;
+*/
+
+.featured-rate {
+	
+	width: 80px;
+    height: 80px;
+    text-align: center;
+    margin-left: 55px;
+    margin-top: 20px;
+    margin-bottom: 110px;
+    background: #ff7474;
+    color: #fff;
+    padding: 15px 12px;
+    border-radius: 50%;
+    display: block;
+    font-size: 35px
+	
+}
+
+.featured-title-box {
+    padding: 30px 35px;
+    width: 300px;
+        display: inline-block;
+    
+}
+  
+
+.featured-title-boxSecond {
+	
+    padding: 22px 20px;
+    width: 580px;
+    display: inline-block;
+    align-self: center;
+    padding-left: unset;
+    padding-top: unset;
+    padding-right: unset;
+	
+}
+
+.bottom-icons {
+    padding: 22px 0 0;
+    line-height: 1;
+}
+
+
+.ti-heart {
+	    margin-top: 60px;
+    margin-left: 60px;
+    display: block;
+    margin-bottom: 40px;
+    line-height: 10px;
+	
+}
+
+
+.featured-place-wrap {
+	
+	border: 3px solid #e9ecefd4;
+	margin-top: 25px;
+	border-radius: 18px;
+}
+
+
+
+   
+ .openButtBeforeArea {
+  width: 163px;
+  font-family: inherit;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+   border: 2px solid #e8e8e8;
+   border-radius : 22px;
+   margin-left: 20px;
+   margin-bottom: 5px;
+   height : 55px;
+   color: black;
+   font-size: 23px;
+   background-color: white;
+   font-weight: 650px;
+}
+
+.openButtAfterArea {
+  width: 163px;
+  font-family: inherit;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: 2px solid #ff7474;
+   border-radius :22px;
+   margin-left: 20px;
+   margin-bottom: 5px;
+   height : 55px;
+   color: white;
+   font-size: 23px;
+   background-color: #ff7474;
+}
+
+
+
+.nearbymapwrap{
+	
+    padding: 0px; 
+
+}
+
+.nearbymapfix {
+
+	position: fixed;
+    top: 28%;
+    right: 13%;
+    bottom: 13%;
+    width: 24%; 
+
+}
+     
+   
+    
+    
+    @media (max-width: 992px) {
+      .map-fix {
+        display: none;
+        top: 17%;
+        left: 0;
+        width: 100%; } }
+    @media (max-width: 480px) {
+      .map-fix {
+        top: 24%; } }
+    @media (max-width: 365px) {
+      .map-fix {
+        top: 29.3%; } }
+  
+  #map {
+    height: 100%;
+    width: 100%; }
+    

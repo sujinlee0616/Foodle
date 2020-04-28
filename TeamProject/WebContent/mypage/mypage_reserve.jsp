@@ -17,13 +17,16 @@
 			<th style="width: 15%;" class="text-center">예약 시간</th>
 		</tr>
 		
+		 	
 		<c:forEach var="vo" items="${list }">
 			<tr>
-				<td class="text-center">${vo.rno }</td>
-				<td class="text-center">${vo.restotalprice }원</td>
-				<td class="text-center">${vo.respeople }명</td>
-				<td class="text-center">${vo.resdate }</td>
-				<td class="text-center">${vo.restime }</td>
+				<td class="text-center">
+			  		<a href="../restaurant/detail.do?no=${vo.rNo }">${vo.mvo.rName}</a>
+			  	</td>
+				<td class="text-center">${vo.resTotalPrice }원</td>
+				<td class="text-center">${vo.resPeople }명</td>
+				<td class="text-center">${vo.resDate }</td>
+				<td class="text-center">${vo.resTime }</td>
 			</tr>
 		</c:forEach>
 	</table>
@@ -31,6 +34,40 @@
 </html>
 
 
-
-
+<%--
+이 폼 쓰는게 더  좋아보임
+<div class="row justify-content-center d-flex" style="background: #E6E6E6;">
+	<div class="col-lg-12 post-list"  style="margin-top:25px">				
+		<c:forEach var="vo" items="${list}">
+						<!-- Start of a content -->
+			<div class="single-post d-flex flex-row">
+				<div class="thumb">
+					<a href="../restaurant/detail.do?no=${vo.RNo }">
+						
+							<img src="${vo.mvo.ivo.iLink }" style="width: 300px; height: 200px;">
+					</a>
+				</div>
+				<div class="details">
+					<div class="title d-flex flex-row justify-content-between">
+						<div class="res_title pt-2">
+							<a href="../restaurant/detail.do?no=${vo.RNo }"><h4>${vo.mvo.rName }<span class="rating">${vo.mvo.rScore }</span></h4></a>
+						</div>
+						
+					</div>
+				
+					<ul class="detailed-info">
+					<li><span class="icon-location-pin"></span>
+						<p>${vo.mvo.rAddr1 }</p>
+					</li>
+					<li><span class="icon-screen-smartphone"></span>
+						<p>${vo.mvo.rTel }</p>
+					</li>
+					</ul>
+				</div>
+			</div>
+						<!-- End of a content -->
+		</c:forEach>
+	</div>
+</div> 
+ --%>
 
