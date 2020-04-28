@@ -24,6 +24,8 @@ public class MainModel {
 	{
 		List<MainInfoVO> weeklytop30list=MainDAO.weeklyTop30();
 		List<MainInfoVO> popularTop3list=MainDAO.popularTop3();
+		HttpSession session=request.getSession();
+		String id=(String)session.getAttribute("id");
 		
 		for(MainInfoVO vo:weeklytop30list) {
 			String addr=vo.getrAddr2();
@@ -31,18 +33,63 @@ public class MainModel {
 				addr=addr.substring(0,22).concat("...");
 				vo.setrAddr2(addr);
 			}
+			// 찜 - 찜 되어 있는지 아닌지 노출만. 
+			String myWish="";
+			if(id==null) { // 로그인 X
+				myWish="♡";
+			}
+			else { // 로그인 O
+				Map map=new HashMap();
+				map.put("id", id);
+				map.put("rno",vo.getrNo());
+				int count=RestaurantDetailDAO.myWishCheck(map);
+				// System.out.println("count="+count);
+				if(count>0) { // 이미 찜이 되어있으면
+					myWish="♥";
+				}
+				else {
+					myWish="♡";
+				}
+			}
+			vo.setMyWish(myWish);
 		}
+		
+		// popularTop3list
 		for(MainInfoVO vo:popularTop3list) {
 			String addr=vo.getrAddr2();
 			if(addr.length()>22) {
 				addr=addr.substring(0,22).concat("...");
 				vo.setrAddr2(addr);
 			}
+			// 찜 - 찜 되어 있는지 아닌지 노출만. 
+			String myWish="";
+			if(id==null) { // 로그인 X
+				myWish="♡";
+			}
+			else { // 로그인 O
+				Map map=new HashMap();
+				map.put("id", id);
+				map.put("rno",vo.getrNo());
+				int count=RestaurantDetailDAO.myWishCheck(map);
+				// System.out.println("count="+count);
+				if(count>0) { // 이미 찜이 되어있으면
+					myWish="♥";
+				}
+				else {
+					myWish="♡";
+				}
+			}
+			vo.setMyWish(myWish);
 		}
 		
-	
+		
 		request.setAttribute("weeklytop30list", weeklytop30list);
 		request.setAttribute("popularTop3list", popularTop3list);
+		
+		// ================================================ 
+		
+		
+		// ================================================ 
 		
 		request.setAttribute("main_header", "../common/header_main.jsp");
 		request.setAttribute("main_jsp", "../main/home.jsp");
@@ -95,4 +142,8 @@ public class MainModel {
 		
 		return "../main/home_recent.jsp";
 	}
+	
+	
+	
+	
 }
