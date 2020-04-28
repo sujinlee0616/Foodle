@@ -2,6 +2,11 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<jsp:useBean id="now" class="java.util.Date"></jsp:useBean>
+<fmt:formatDate var="td" value="${now}" pattern="yyyyMMddkkmm" />
+<c:set var="today" value="${fn:substring(td,8,10) }"></c:set>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -215,8 +220,14 @@
 	                                    </li>
 	                                </ul>
 	                                <div class="bottom-icons">
-	                                    <!-- <div class="closed-now">CLOSED NOW</div> -->
-	                                    <div class="open-now">OPEN NOW</div>
+	                                	<c:choose>
+							              <c:when test="${today>=vo.rvo.rOpentime && today<vo.rvo.rClosetime }">
+							                <div class="open-now">OPEN NOW</div>
+							              </c:when>
+							              <c:otherwise>
+							                <div class="closed-now">CLOSED NOW</div>
+							              </c:otherwise>
+							            </c:choose>
 	                                    <!-- <a href="#" class="mywish" id="mywish" style="text-align:right;font-size:17pt;">♡</a> -->
 	                                    <!-- <span class="ti-heart"></span> -->
 	                                    <span class="mywish" value="${vo.rNo }" id="mywish_${vo.rNo }" style="text-align:right;font-size:17pt; color: red;">${vo.myWish }</span>
