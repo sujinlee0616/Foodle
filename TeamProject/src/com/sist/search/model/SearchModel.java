@@ -45,7 +45,7 @@ public class SearchModel {
 		if(page==null)
 			page="1";
 		int curPage=Integer.parseInt(page);
-		int rowSize=18;
+		int rowSize=15;
 		int start=(rowSize*curPage)-(rowSize-1);
 		int end=(rowSize*curPage);
 		

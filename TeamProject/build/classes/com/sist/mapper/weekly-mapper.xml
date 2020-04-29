@@ -16,19 +16,96 @@
   	<result column="rclosetime" property="rvo.rClosetime"/>
   </resultMap>
   
-  <select id="weeklyListData" resultMap="maininfoMap" parameterType="java.util.Map">
+  <select id="weeklyListData" resultMap="maininfoMap" parameterType="hashmap">
     SELECT rno,rname,rtype,rscore,rscorecount,rarea,raddr1,rtel,ilink,ropentime,rclosetime,num 
     FROM (SELECT rno,rname,rtype,rscore,rscorecount,rarea,raddr1,rtel,ilink,ropentime,rclosetime,rownum as num 
     FROM (SELECT maininfo.rno,rname,rtype,rscore,rscorecount,rarea,raddr1,rtel,ilink,ropentime,rclosetime 
-    FROM maininfo,image,reserveinfo
+    FROM maininfo,image,reserveinfo,subinfo
     WHERE maininfo.rno=image.rno
     AND maininfo.rno=reserveinfo.rno
+    AND maininfo.rno=subinfo.rno
     AND image.iname LIKE 'Mainimage'
-    ORDER BY maininfo.rno ASC))
+    <if test="filter1 != null">
+      AND rtype LIKE '%'||#{filter1}||'%'
+    </if>
+    <if test="filter3 != null and filter3.equals('open')">
+      <![CDATA[
+      AND rOpentime <= #{today}
+      AND rClosetime > #{today}
+      ]]>
+    </if>
+    <if test="filter4 != null">
+      AND rDelivery LIKE #{filter4}
+    </if>
+    <if test="filter5 != null">
+      AND rAddr1 LIKE '%'||#{filter5}||'%'
+    </if>
+    <choose>
+      <when test="filter2 != null and filter2.equals('평점')">
+        ORDER BY rScore DESC
+      </when> 
+      <when test="filter2 != null and filter2.equals('좋아요')">
+        ORDER BY rGood DESC
+      </when>
+      <when test="filter2 != null and filter2.equals('조회수')">
+      	ORDER BY rHit DESC
+      </when>
+      <when test="filter2 != null and filter2.equals('높은가격')">
+      	ORDER BY rHighPrice DESC
+      </when>
+      <when test="filter2 != null and filter2.equals('낮은가격')">
+      	ORDER BY rLowPrice ASC
+      </when>
+    </choose>
+    ))
     WHERE num BETWEEN #{start} AND #{end}
   </select>
   
-  <select id="weeklyTotalPage" resultType="int">
-  	SELECT CEIL(COUNT(*)/18.0) FROM maininfo
+  <select id="weeklyTotalPage" resultType="int" parameterType="hashmap">
+  	SELECT CEIL(COUNT(*)/15.0) 
+  	FROM maininfo,image,reserveinfo,subinfo
+  	WHERE maininfo.rno=image.rno
+    AND maininfo.rno=reserveinfo.rno
+    AND maininfo.rno=subinfo.rno
+    AND image.iname LIKE 'Mainimage'
+  	<if test="filter1 != null">
+      AND rtype LIKE '%'||#{filter1}||'%'
+    </if>
+    <if test="filter3 != null and filter3.equals('open')">
+      <![CDATA[
+      AND rOpentime <= #{today}
+      AND rClosetime > #{today}
+      ]]>
+    </if>
+    <if test="filter4 != null">
+      AND rDelivery LIKE #{filter4}
+    </if>
+    <if test="filter5 != null">
+      AND rAddr1 LIKE '%'||#{filter5}||'%'
+    </if>
+  </select>
+  
+  <select id="weeklyCount" resultType="int" parameterType="hashmap">
+  	SELECT COUNT (*) 
+  	FROM maininfo,image,reserveinfo,subinfo
+  	WHERE maininfo.rno=image.rno
+    AND maininfo.rno=reserveinfo.rno
+    AND maininfo.rno=subinfo.rno
+    AND image.iname LIKE 'Mainimage'
+  	<if test="filter1 != null">
+      AND rtype LIKE '%'||#{filter1}||'%'
+    </if>
+    <if test="filter3 != null and filter3.equals('open')">
+      <![CDATA[
+      AND rOpentime <= #{today}
+      AND rClosetime > #{today}
+      ]]>
+    </if>
+    <if test="filter4 != null">
+      AND rDelivery LIKE #{filter4}
+    </if>
+    <if test="filter5 != null">
+      AND rAddr1 LIKE '%'||#{filter5}||'%'
+    </if>
   </select>
 </mapper>

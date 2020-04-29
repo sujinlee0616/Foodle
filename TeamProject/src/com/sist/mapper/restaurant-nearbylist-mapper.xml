@@ -19,6 +19,7 @@
   		<result column="ropentime" 		property="rvo.rOpentime"/>
   		<result column="rclosetime" 	property="rvo.rClosetime"/>
   		<result column="rContent" 		property="rContent"/>
+  		<result column="rGood" 			property="rGood"/>
 		<result column="iname" 			property="ivo.iName"/>
 		<result column="ilink" 			property="ivo.iLink"/>
 	</resultMap>
@@ -65,7 +66,30 @@
 	
 	
 	<select id="nearbyResult" parameterType="java.util.Map" resultMap="nearbyMap">
-		select ma.RNO      
+	select rnum 
+	,RNO      
+	,RNAME       
+	,RTYPE       
+	,RTEL       
+	,RSCORE       
+	,RSCORECOUNT 
+	,RADDR1      
+	,RADDR2      
+	,RPWD        
+	,RAREA       
+	,RAREADETAIL
+	, rhit
+	, rtakeout
+	, rContent
+	, rGood
+	, rhighprice
+	, ropentime
+	, rclosetime
+	, iName
+       , iLink
+	from (
+		select rownum rnum
+		    , ma.RNO      
 			,ma.RNAME       
 			,ma.RTYPE       
 			,ma.RTEL       
@@ -79,6 +103,7 @@
 			,sub.rhit
 			,sub.rtakeout
 			,sub.rContent
+			,sub.rGood
 			,res.rhighprice
 			,res.ropentime
 			,res.rclosetime
@@ -88,8 +113,10 @@
 		 where ma.rno = sub.rno
 		 and ma.rno = res.rno
 		   AND ma.rno=img.rno
-		  AND img.iname='Mainimage'   	
-		  and ma.rno <![CDATA[<]]> 120
+		  AND img.iname='Mainimage'  
+		  <if test="areasortInfo != null and areasortInfo != '' ">
+		  and ma.raddr2 like '서울%'|| #{areasortInfo} ||'%'
+		  </if>
 		 <if test="type_name != null and type_name != '' ">
 	 	 	 and ma.RTYPE  in
 	 	 	 <foreach collection="type_name" item="type" open="(" close=")" separator=",">
@@ -111,7 +138,11 @@
 				 order by ${lowPrice_col} asc
 			</when>
 		</choose>
+		) where rnum between 1 and 50
 	</select>
+	
+	
+	
 	
 		
 	<select id="nearbyTotalPage" resultType="int">

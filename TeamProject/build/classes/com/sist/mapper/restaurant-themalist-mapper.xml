@@ -16,7 +16,9 @@
 		<result column="rareadetail" 	property="rAreaDetail"/>
 		<result column="rhit"           property="rHit"/> 
 		<result column="rtakeout"       property="rTakeout"/> 
-		<result column="rhighprice"     property="rHighprice"/> 
+		<result column="rhighprice"     property="rHighprice"/>
+		<result column="ropentime" 		property="rvo.rOpentime"/>
+  		<result column="rclosetime" 	property="rvo.rClosetime"/>
 		<result column="iname" 			property="ivo.iName"/>
 		<result column="ilink" 			property="ivo.iLink"/>
 	</resultMap>
@@ -43,7 +45,8 @@
 </select>
 
 <select id="searchThema" parameterType="java.util.Map" resultMap="mainInforMap" >
-	 SELECT RNO, 
+      select NUM ,
+            RNO, 
 	 	    RNAME,
 	 	    RTYPE,  
 	 	    RTEL,
@@ -51,9 +54,25 @@
 	 	    rScoreCount,   
 	 	    RADDR2,      
 	 	    INAME,    
-	 	    ILINK
+	 	    ILINK,
+	 	    ROPENTIME,
+	 	    RCLOSETIME
+     from (
+     SELECT ROW_NUMBER() OVER( ORDER BY RNO) NUM ,
+            RNO, 
+	 	    RNAME,
+	 	    RTYPE,  
+	 	    RTEL,
+	 	    rScore,
+	 	    rScoreCount,   
+	 	    RADDR2,      
+	 	    INAME,    
+	 	    ILINK,
+	 	    ROPENTIME,
+	 	    RCLOSETIME
 	 FROM  (
-	     SELECT MAI.RNO,
+	     SELECT 
+                MAI.RNO,
 	            MAI.RNAME,
 	            MAI.RTYPE,
 	            MAI.RTEL,
@@ -61,20 +80,43 @@
 	            MAI.rScoreCount,     
 	            MAI.RADDR2,
 	            IMG.INAME,
-	            IMG.ILINK
+	            IMG.ILINK,
+	            RES.ROPENTIME,
+	            RES.RCLOSETIME
 	     FROM MAININFO MAI,
 	          INFOTHEMA INFO,
 	          DETAILTHEMA DETAIL,
-	          IMAGE IMG
+	          IMAGE IMG,
+	          RESERVEINFO RES
 	        WHERE MAI.RNO=INFO.RNO 
+            and  MAI.RNO=RES.RNO 
 	    	AND INFO.RTHEMA=DETAIL.T_INFO
-	    	AND DETAIL.T_DETAILTHEMA= #{fd}
+	    	AND DETAIL.T_DETAILTHEMA=#{detailThema_col}
 	    	AND MAI.RNO=IMG.RNO
-			AND IMG.INAME='Mainimage'    	
-	    	AND MAI.RNO <![CDATA[ <  ]]> 300
-	        )
-         GROUP BY RNO, RNAME, RTYPE,  RTEL, RSCORE, RScoreCount,     RADDR2,      INAME,    ILINK
+			AND IMG.INAME='Mainimage'
+			 AND MAI.RNO <![CDATA[ <  ]]> 1000
+	        )            
+         GROUP BY RNO, RNAME, RTYPE,  RTEL, RSCORE, RScoreCount,     RADDR2,      INAME,    ILINK, ROPENTIME, RCLOSETIME
          ORDER BY RNO ASC	
+         ) where num between #{start} and #{end}
 </select>
 
+<select id="searchThemaTotalPage" resultType="int" parameterType="String">
+	SELECT CEIL(COUNT(count)/12.0)
+	FROM (SELECT COUNT(*) as count
+	FROM MAININFO MAI,
+		 INFOTHEMA INFO,
+		 DETAILTHEMA DETAIL,
+		 IMAGE IMG,
+		 RESERVEINFO RES
+	WHERE MAI.RNO=INFO.RNO 
+	      AND  MAI.RNO=RES.RNO 
+		  AND INFO.RTHEMA=DETAIL.T_INFO
+		  AND DETAIL.T_DETAILTHEMA=#{detailThema_col}
+		  AND MAI.RNO=IMG.RNO
+		  AND IMG.INAME='Mainimage'
+		  AND MAI.RNO <![CDATA[ <  ]]> 1000
+	GROUP BY MAI.RNO,RNAME,RTYPE,RTEL,RSCORE,RScoreCount,RADDR2,INAME,ILINK,ROPENTIME,RCLOSETIME)
+</select>
+<!--    -->
 </mapper>

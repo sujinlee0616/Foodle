@@ -16,17 +16,20 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
 
-  var page = 1;
+ /*
 
   $(window).scroll(function() {
+	//var test =$(window).scrollTop() -700;
       if ($(window).scrollTop() == $(document).height() - $(window).height()) {
-        console.log(++page);
-        $("body").append('<div class="big-box"><h6>Page ' + page + '</h6></div>');
+    	  page++;
+        console.log(page);
+        searchNearby('scroll');
+        //$("body").append('<div class="big-box"><h6>Page ' + page + '</h6></div>');
 
       }
   });
 
-
+*/
 </script>
 
 <style type="text/css">
@@ -118,7 +121,7 @@ test value: ${result}
 				              <p style="font-size: xx-large"><span></span>★★★★★</p>
 				            </c:otherwise>
 				          </c:choose>
-				         <P> ${i.rScore }</P>
+				         <P  style="font-size: 25px; color: #ff7474;"> ${i.rScore }</P>
 
                                      <ul>
                                          <li><span class="icon-location-pin"></span>
@@ -130,11 +133,7 @@ test value: ${result}
                                      </ul>
                                      
                                 <div class="nearbyCon" white-space="pre-wrap">"${i.rContent }" </div> 
-                                
-                          
-                                
-                                
-                                     
+                   
                                     
                     </div>        
             	

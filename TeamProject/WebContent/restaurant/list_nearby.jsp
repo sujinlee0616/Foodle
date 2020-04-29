@@ -14,112 +14,13 @@
 <script type="text/javascript">
 
 
-$(".areaNarea .areaNinput").click(function(e) {
 
-	   $("label[type='checkbox']", this)
-	   var pX = e.pageX,
-	      pY = e.pageY,
-	      oX = parseInt($(this).offset().left),
-	      oY = parseInt($(this).offset().top);
-
-	   $(this).addClass('active');
-
-	   if ($(this).hasClass('active')) {
-	      $(this).removeClass('active')
-	      if ($(this).hasClass('active-2')) {
-	         if ($("input", this).attr("type") == "checkbox") {
-	            if ($("span", this).hasClass('click-efect')) {
-	               $(".click-efect").css({
-	                  "margin-left": (pX - oX) + "px",
-	                  "margin-top": (pY - oY) + "px"
-	               })
-	               $(".click-efect", this).animate({
-	                  "width": "0",
-	                  "height": "0",
-	                  "top": "0",
-	                  "left": "0"
-	               }, 400, function() {
-	                  $(this).remove();
-	               });
-	            } else {
-	               $(this).append('<span class="click-efect x-' + oX + ' y-' + oY + '" style="margin-left:' + (pX - oX) + 'px;margin-top:' + (pY - oY) + 'px;"></span>')
-	               $('.x-' + oX + '.y-' + oY + '').animate({
-	                  "width": "500px",
-	                  "height": "500px",
-	                  "top": "-250px",
-	                  "left": "-250px",
-	               }, 600);
-	            }
-	         }
-
-	         if ($("input", this).attr("type") == "radio") {
-
-	            $(".areaNarea .areaNinput input[type='radio']").parent().removeClass('active-radio').addClass('no-active-radio');
-	            $(this).addClass('active-radio').removeClass('no-active-radio');
-
-	            $(".areaNarea .areaNinput.no-active-radio").each(function() {
-	               $(".click-efect", this).animate({
-	                  "width": "0",
-	                  "height": "0",
-	                  "top": "0",
-	                  "left": "0"
-	               }, 400, function() {
-	                  $(this).remove();
-	               });
-	            });
-
-	            if (!$("span", this).hasClass('click-efect')) {
-	               $(this).append('<span class="click-efect x-' + oX + ' y-' + oY + '" style="margin-left:' + (pX - oX) + 'px;margin-top:' + (pY - oY) + 'px;"></span>')
-	               $('.x-' + oX + '.y-' + oY + '').animate({
-	                  "width": "500px",
-	                  "height": "500px",
-	                  "top": "-250px",
-	                  "left": "-250px",
-	               }, 600);
-	            }
-
-	         }
-	      }
-	      if ($(this).hasClass('active-2')) {
-	         $(this).removeClass('active-2')
-	      } else {
-	         $(this).addClass('active-2');
-	      }
-	   }
-
-	});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-
-
-
-
-
-
-
-
-
-var sortInfo =''; 		//정렬순 선택  desc
+ var page = 1;
+ var sortInfo =''; 		//정렬순 선택  desc
  var restOpen =''; 		//가게 오픈 여부
  var takeoutInfo =''; 	//테이브아웃 여부
- var lowPrice='';      //낮은 가격순 asc
+ var lowPrice='';       //낮은 가격순 asc
+ var areasortInfo='';   //지역선택
  
  
  // <이벤트 기능> 
@@ -157,71 +58,86 @@ var sortInfo =''; 		//정렬순 선택  desc
 	 	 */
 	 	 
 	 //업종을 선택했다면!
-	if( op == 'foodType'){
+	if( op == 'foodType')
+	{
 		
-		if(selectVal == '업종전체'){ 
+		
+		//
+		if(selectVal == '업종전체')
+		{ 
 			
 			$('#foodTypeOp').val('');  //null값을 foodTypeOp 자리에 넣어				
 			$(selectOp).html(''); //p자리에 null
 		
-		}else{
-			
-			//'업종 전체' 아닌 경우=> 버튼 추가
-			$(selectOp).append("<a onClick=deleteFilter(this,'"+op+"')  href='#' id='"+c.value+"' class='selected nearbyselected' data-filter-name='food_cat' data-filter-value='108602' data-nclick-code='rcc.reset'"
-			         +"data-filter-action='nclick' title='"+c.value+"'>"+c.value+"<span class='del'>X</span></a>");
-			
-			var foodTypeOpVal = $('#foodTypeOp').val();
-			
-			if(foodTypeOpVal ==""){
-				
-				$('#foodTypeOp').val(c.value+',');
-			
-			}else{
-				
-			    $('#foodTypeOp').val(foodTypeOpVal+c.value+',');
-			    
-			}
 		}
+		else
+		{
+			
+				var foodTypeOpVal = $('#foodTypeOp').val();
+			
+				if(foodTypeOpVal.indexOf(c.value)!=-1)
+				{
 
-	}else{
+					//있는경우.
+					//끝내
+					return;
+				
+				}
+				else
+				{
+				
+				
+				//'업종 전체' 아닌 경우=> 버튼 추가
+				$(selectOp).append("<a onClick=deleteFilter(this,'"+op+"')  href='#' id='"+c.value+"' class='selected nearbyselected' data-filter-name='food_cat' data-filter-value='108602' data-nclick-code='rcc.reset'"
+				         +"data-filter-action='nclick' title='"+c.value+"'>"+c.value+"<span class='del'>X</span></a>");
+				
+				
+				
+							if(foodTypeOpVal ==""){
+					
+							$('#foodTypeOp').val(c.value+',');
+				
+							}else{
+					
+				    		$('#foodTypeOp').val(foodTypeOpVal+c.value+',');
+				    
+							}
+				
+				}
+			
+			
+		}
 		
+		
+		
+		
+
+	}
+	else
+	{
+		
+		//foodtype선택이 아니라면
 		$(selectOp).html("<a onClick=deleteFilter(this,'"+op+"') href='#' id='"+c.value+"' class='selected nearbyselected' data-filter-name='food_cat' data-filter-value='108602' data-nclick-code='rcc.reset'"
 		         +"data-filter-action='nclick' title='"+c.value+"'>"+c.value+"<span class='del'>X</span></a>");
-	}
+	
  	
-		/* 			if( op == 'foodType'){
-		//foodType일때만 여러개가 들어오게 append 함수처리
- 		$(selectOp).append("<a onClick=deleteFilter(this) href='#' id='"+c.value+"' class='selected nearbyselected' data-filter-name='food_cat' data-filter-value='108602' data-nclick-code='rcc.reset'"
-		         +"data-filter-action='nclick' title='"+c.value+"'>"+c.value+"<span class='del'>X</span></a>");
-		var foodTypeOpVal = $('#foodTypeOp').val();
-		if(foodTypeOpVal ==""){
-			$('#foodTypeOp').val(c.value);
-		}else{
-			$('#foodTypeOp').val(foodTypeOpVal+","+c.value);
-		}
-		
-	}else{
-		//foodType이 아닌 다른애들은 하나씩만 나오게해야하니까 엎어치는 html함수처리
- 		$(selectOp).html("<a onClick=deleteFilter(this) href='#' id='"+c.value+"' class='selected nearbyselected' data-filter-name='food_cat' data-filter-value='108602' data-nclick-code='rcc.reset'"
-		         +"data-filter-action='nclick' title='"+c.value+"'>"+c.value+"<span class='del'>X</span></a>");
-	} */
-	 	
+	
 		if(op == 'sortby')
 		{ //if 2: parameter로 받은 값이 sortyby
 			//랭킹 카테고리 선택할때 어떤값으로 order by 하기위해서
 			//컬럼을 선택해야함
 				   lowPrice='';
-					sortInfo='';
-				if(selectVal == '랭킹순'){
+				   sortInfo='';
+				if(selectVal == '평점순'){
 					
 					sortInfo ='rscore';
 					
 				}else if(selectVal == '조회순'){
 					sortInfo ='rhit';
 					
-				}else if(selectVal == '평점순'){
+				}else if(selectVal == '좋아요순'){
 					
-					sortInfo ='rscorecount';
+					sortInfo ='rgood';
 					
 				}else if(selectVal == '가격순 ↓'){
 					 lowPrice='rhighprice';
@@ -238,7 +154,34 @@ var sortInfo =''; 		//정렬순 선택  desc
 				}
 		}
 			//선택된 옵션들을 위에서 이미 selectOp에 
-	
+			
+			
+		if(op == 'areasortby')
+		{ 
+			 console.log("지역값"+c.value);
+				areasortInfo='';
+
+				if(selectVal == '지역선택')
+				{
+					
+					areasortInfo=''; //null값을 foodTypeOp 자리에 넣어	
+					
+					$(selectOp).html('');
+					
+				}
+				else
+				{ 
+				
+					areasortInfo = selectVal;
+					
+				}
+		
+				
+		}
+			//선택된 옵션들을 위에서 이미 selectOp에 
+ 			
+	}
+	 	 
 		searchNearby();
 };
 	
@@ -286,6 +229,13 @@ function deleteFilter(v , op){
 		$("#sortSelect").val("정렬안함").attr("selected", "selected");
 	}
 	
+	//지역 데이터 삭제
+	if(op == 'areasortby')
+	{ 
+		areasortInfo = '';
+		$("#areaSelect").val("지역선택").attr("selected", "selected");
+	}
+	
 	$(tihsId).remove();
 	
 	searchNearby();
@@ -294,28 +244,36 @@ function deleteFilter(v , op){
 
 //선택한 카테고리의 정보가 담긴 foodTypeOp을 통해 아래에 ajax로 값을 뿌려주는 FUNCTION!
 function searchNearby(){ 
+	
 	event.preventDefault();
 	//type_name = 양식 or 중식 or 일식 중 한개 값 넘어감
 	var foodList = $('#foodTypeOp').val();
 	
+//	alert(page);
 	
 	$.ajax({
 	
-		type:'get', //post방식(hide parameter)
+		type:'post', //post방식(hide parameter)
 		url:'/TeamProject/restaurant/list_nearby_result.do', //이 주소를 찾아서 실행해 , 서버주소 파일의 경로가 아닌 프로젝트의 풀 주소
-		data:{"type_name":foodList,"rest_open":restOpen,"sortby_col":sortInfo,"lowPrice_col":lowPrice,"takeout_col":takeoutInfo}, //위 url 주소로 보낼 건데, 데이터는 key와 value로 보내고, 위 url(~.do)에서 value를  
+		data:{"page":page,"type_name":foodList,"rest_open":restOpen,"sortby_col":sortInfo,"lowPrice_col":lowPrice,"takeout_col":takeoutInfo,"areasortInfo":areasortInfo}, //위 url 주소로 보낼 건데, 데이터는 key와 value로 보내고, 위 url(~.do)에서 value를  
 		success:function(res){
 			
+		//	if(searchVal == 'scroll'){
 			
+		//		$('#nearbyList').append(res);
+			
+		//	}else{
+				
 			$('#nearbyList').html(res);
+			
+			//}
+
 		}
 	})
 };
 
 
 function openButChgCL(){
-	
-	
 	
 	var nowClass = $('#openBut').attr("class");//현재버튼의   클래스상태(css)
 	
@@ -339,7 +297,6 @@ function openButChgCL(){
 }
 
 
-
 function takeoutButChgCL(){
 	
 	var nowClass = $('#takeoutBut').attr("class");
@@ -350,12 +307,15 @@ function takeoutButChgCL(){
 		$('#takeoutBut').addClass("openButtAfter");
 		//선택을하면 open됐다는 걸 밸류값줌
 		takeoutInfo = 'Y';
+		
 	}else{
-				$('#takeoutBut').removeClass("openButtAfter");
+		
+		$('#takeoutBut').removeClass("openButtAfter");
 		$('#takeoutBut').addClass("openButtBefore");
 		//선택해제하면 값을 null 처리
 		takeoutInfo = '';
 	}
+	
 	searchNearby(); 
 	
 }
@@ -378,8 +338,8 @@ function takeoutButChgCL(){
 					<!-- ===================================검색 결과 타이틀 "~ 주변 검색 결과" ===================================-->
 					<h5 class="styled-heading">주변 맛집</h5>
 					
-					<p>
-						총 <span>###개</span>
+					<p style="font-size: 20px;">
+						 ／ 총  <span>10,579</span>개
 					</p>
 	<!-- ============================================카테고리 시작!!============================================= -->
 
@@ -388,79 +348,31 @@ function takeoutButChgCL(){
 							<div class="category">
 							
 	<!-- ============================================지역 카테고리!!============================================= -->
-	
-	<div class="areaNcontainer">
-  		<div class="areaNinputs">
-	
-         <div class="areaNrow">
-            <div class="areaNcol-3">
-               <span class="areaNinput">
-							<label for="checkbox-1">CheckBox - 1</label>
-							<input type="checkbox" name="checkbox" id="checkbox-1">
-				</span>
-            </div>
-            <div class="areaNcol-3">
-               <span class="areaNinput">
-							<label for="checkbox-2">CheckBox - 2</label>
-							<input type="checkbox" name="checkbox" id="checkbox-2">
-				</span>
-            </div>
-            <div class="areaNcol-3">
-               <span class="areaNinput">
-							<label for="checkbox-3">CheckBox - 3</label>
-							<input type="checkbox" name="checkbox" id="checkbox-3">
-				</span>
-            </div>
-            <div class="areaNcol-3">
-               <span class="areaNinput">
-							<label for="checkbox-4">CheckBox - 4</label>
-							<input type="checkbox" name="checkbox" id="checkbox-4">
-				</span>
-            </div>
-         </div>
-      </div>
-
-      <div class="areaNarea">
-         <div class="areaNrow">
-            <div class="areaNcol-3">
-               <span class="areaNinput">
-							<label for="radio-1">RadioButton - 1</label>
-							<input type="radio" name="radio" id="radio-1">
-						</span>
-            </div>
-            <div class="areaNcol-3">
-               <span class="areaNinput">
-							<label for="radio-2">RadioButton - 2</label>
-							<input type="radio" name="radio" id="radio-2">
-						</span>
-            </div>
-            <div class="areaNcol-3">
-               <span class="areaNinput">
-							<label for="radio-3">RadioButton - 3</label>
-							<input type="radio" name="radio" id="radio-3">
-						</span>
-            </div>
-            <div class="areaNcol-3">
-               <span class="areaNinput">
-							<label for="radio-4">RadioButton - 4</label>
-							<input type="radio" name="radio" id="radio-4">
-			 </span>
-            </div>
-         </div>
-		</div>
-	</div>	
-	
-	
-	
-	<!-- ============================================지역 카테고리 끝!============================================= -->						
-							
-				
-							
-	<!-- ============================================옵션 카테고리 시작!!============================================= -->													
+		
 							
 								<!-- <button onclick="searchNearby()">test</button> -->
 
 								<!-- 업종선택 버튼 - setFilter() 사용! -->
+
+								<select id="areaSelect" class="menuarrow " style="color: black;" onchange="setFilter(this , 'areasortby' );">
+									<option value="지역선택" class="menuarrow "  > 지역선택 </option>
+									<option value="강남구" class="menuarrow "  > 강남구 </option>
+									<option value="서초구" class="menuarrow " > 서초구  </option>
+									<option value="송파구" class="menuarrow " > 송파구 </option>
+									<option value="용산구" class="menuarrow " > 용산구  </option>
+									<option value="영등포구" class="menuarrow "> 영등포구 </option>
+									<option value="마포구" class="menuarrow " > 마포구  </option>
+									<option value="종로구" class="menuarrow " > 종로구  </option>
+									<option value="중구" 	class="menuarrow "  > 중구 </option>
+									<option value="동대문" class="menuarrow " > 동대문  </option>
+									<option value="광진구" class="menuarrow " > 광진구  </option>
+									<option value="서대문구" class="menuarrow ">  서대문구</option>
+									<option value="강북구" class="menuarrow " >  강북구 </option>
+									<option value="노원구" class="menuarrow " >  노원구 </option>
+									<option value="성동구" class="menuarrow ">  성동구 </option>
+									<option value="성북구" class="menuarrow ">  성북구 </option>
+								</select>
+
 
 								<select  id="foodSelect" class="menuarrow " onchange="setFilter(this ,'foodType' ) ;" style="color: black;">
 									<option value="업종전체" class="lemonmenu">업종전체<ul><span class="icon-arrow-down"></span></ul></option>
@@ -475,9 +387,9 @@ function takeoutButChgCL(){
 								<!-- 정렬선택 버튼 - setFilter() 사용! -->
 								<select id="sortSelect" class="menuarrow" onchange="setFilter(this,'sortby' )">
 									<option value="정렬안함" class="lemonmenu">정렬순서</option>
-									<option value="랭킹순" class="lemonmenu">랭킹순</option>
 									<option value="평점순" class="lemonmenu">평점순</option>
 									<option value="조회순" class="lemonmenu">조회순</option>
+									<option value="좋아요순" class="lemonmenu">좋아요순</option>
 									<option value="가격순 ↓" class="lemonmenu">가격순 ↓</option>
 									<option value="가격순 ↑" class="lemonmenu">가격순 ↑</option>
 								</select> 
@@ -513,11 +425,12 @@ function takeoutButChgCL(){
 							<div class="selected_filter mt-2 displaymenu" id="test2">
 							<p id="foodType"></p>
 							<p id="sortby"></p>
-							<p></p>
-							<p></p>
+							<p id="areasortby"></p>
+
 							
 							<!-- #foodTypeOp를 읽어들여 선택된값들을 model로 보내기 위함! -->
-							<input type='text' id='foodTypeOp' value='' /> <!--  hidden="" 추가하기 -->
+							<!-- <input type='hidden' id='areaTypeOp' value='' />    -->
+							<input type='hidden' id='foodTypeOp' value='' /> <!--  hidden="" 추가하기 -->
 							
 								<!-- 
                         <a href="#" class="selected" data-filter-name="food_cat" data-filter-value="108602" data-nclick-code="rcc.reset"
@@ -598,6 +511,23 @@ function takeoutButChgCL(){
 					
 	 -->				
 
+
+<!-- ============================================지역 카테고리 끝!============================================= -->						
+					<div class="col-md-5 responsive-wrap map-wrap nearbymapwrap">		
+
+				
+				
+				
+					
+					
+					</div>
+							
+	<!-- ============================================옵션 카테고리 시작!!============================================= -->													
+	
+
+
+
+
 				</div>
 			</div>
 		</div>
@@ -629,11 +559,12 @@ function takeoutButChgCL(){
    
    
    
-   <!-- Kakao Map Script -->
+   <!-- Kakao Map Script 
   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=671fb4748c5025ba667a7fc5d41d217a"></script>
   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=services,clusterer,drawing"></script>
+ -->
    <script>
-   
+   /*
 		// 마커를 클릭했을 때 해당 장소의 상세정보를 보여줄 커스텀오버레이입니다
    		var placeOverlay = new kakao.maps.CustomOverlay({zIndex:1}), 
        contentNode = document.createElement('div'), // 커스텀 오버레이의 컨텐츠 엘리먼트 입니다 
@@ -704,7 +635,7 @@ function displayMarker(locPosition, message) {
     // 지도 중심좌표를 접속위치로 변경합니다
     map.setCenter(locPosition);      
 }    
-
+*/
     </script>
     
     

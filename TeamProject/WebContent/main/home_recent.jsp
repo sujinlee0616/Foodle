@@ -47,11 +47,11 @@ $(function(){
    	   	})
     })
     // 찜 hover
-    $('.mywish').hover(function(){
+    $('.mywish2').hover(function(){
 		$(this).css('cursor','pointer');
 	})
 	// 찜 
-	$('.mywish').click(function() {
+	$('.mywish2').click(function() {
 		let no=$(this).attr('value');
 		//alert(no);
 		$.ajax({
@@ -64,12 +64,12 @@ $(function(){
 					alert("로그인 후 이용해주세요.");
 				}
 				else if(res.trim()=='myWishInsert'){ 
-					$('#mywish_'+no).text('♥');
-					location.reload();
+					$('#mywish2_'+no).text('♥');
+					//location.reload();
 				}
 				else { // myWishDelete
-					$('#mywish_'+no).text('♡');
-					location.reload();
+					$('#mywish2_'+no).text('♡');
+					//location.reload();
 				}
 			},
 			error:function(e){
@@ -118,7 +118,7 @@ $(function(){
 		                <div class="closed-now">CLOSED NOW</div>
 		              </c:otherwise>
 		            </c:choose>
-                    <span class="mywish px-1" value="${vo.rNo }" id="mywish_${vo.rNo }" style="text-align:right; color:red; font-size:20px;">${vo.myWish }</span>
+                    <span class="mywish2 px-1" value="${vo.rNo }" id="mywish2_${vo.rNo }" style="text-align:right; color:red; font-size:20px;">${vo.myWish }</span>
                 </div>
             </div>
      </div>

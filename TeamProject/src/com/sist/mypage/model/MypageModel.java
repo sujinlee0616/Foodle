@@ -62,7 +62,7 @@ public class MypageModel {
 		
 		list = MypageDAO.mypageMyWishList(map); 
 		
-	
+/*	
 		for(int i = 0 ; i < list.size() ; i++)
 		{
 			if(list.get(i).getMvo().getrAddr1().length()>20)
@@ -71,7 +71,7 @@ public class MypageModel {
 				list.get(i).getMvo().setrAddr1(temp);
 			}	
 		}
-		
+	*/	
 	
 		request.setAttribute("page", curpage);
 		request.setAttribute("total", total);
@@ -255,7 +255,7 @@ public class MypageModel {
 	
 		
 
-
+/*
 		for(int i = 0 ; i < list.size() ; i++)
 
 		{
@@ -265,7 +265,7 @@ public class MypageModel {
 			
 			list.get(i).setRevContent(temp);
 		}
-
+*/
 	
 		request.setAttribute("page", curpage);
 		request.setAttribute("total", total);

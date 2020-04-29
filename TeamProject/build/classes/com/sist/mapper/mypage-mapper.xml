@@ -15,18 +15,18 @@
 		<result column="iLink" property="mvo.ivo.iLink"/>
 	</resultMap>
 
+
+
 	<resultMap type="ReservationVO" id="reservationMap">
 		<result column="resno" property="resNo"/>
 		<result column="rno" property="rNo"/>
 		<result column="userid" property="userId"/>
-		<result column="regdate" property="regdate"/>
-
-<!-- 	<result column="resTotalPrice" property="resTotalPrice"/>
-		<result column="resPhone" property="resPhone"/>
- 		<result column="resPeople" property="resPeople"/>
-		<result column="resDate" property="resDate"/>
-		<result column="resTime" property="resTime"/> -->
- 		<result column="rNo" property="mvo.rNo"/>
+		<result column="regdate" property="regdate"/>		
+ 		<result column="resPeople" property="respeople"/>
+		<result column="resDate" property="resdate"/>
+		<result column="resTime" property="restime"/>
+		<result column="resMenu" property="resmenu"/>
+		 		
 		<result column="rName" property="mvo.rName"/>
 	</resultMap>
 	
@@ -106,7 +106,23 @@
 	    FROM ( SELECT review.rno as rno,maininfo.rno as rno1,revno,userid,revscore,revcontent,revdate,revgood,revbad,rname
 	    FROM review,maininfo WHERE maininfo.rno=review.rno AND userid=#{userid}))
 	    WHERE num BETWEEN #{start} AND #{end}
+	</select>
 
+ 	<select id="mypageReviewRangeList" resultMap="reviewMap" parameterType="hashmap">
+
+		SELECT  rno,rno1,revno,userid,revscore,revcontent,revdate,revgood,revbad,rname, num 
+	    FROM(SELECT  rno,rno1,revno,userid,revscore,revcontent,revdate,revgood,revbad,rname, rownum as num 
+	    FROM ( SELECT review.rno as rno,maininfo.rno as rno1,revno,userid,revscore,revcontent,revdate,revgood,revbad,rname
+	    FROM review,maininfo WHERE maininfo.rno=review.rno AND userid=#{userid}
+	    ORDER BY ${range}))
+	    
+	    WHERE num BETWEEN #{start} AND #{end}
+	    
+	</select>
+
+
+	<select id="mypageReviewTotalPage" resultType="int">
+		SELECT CEIL(COUNT(*)/10.0) FROM review
 	</select>
 
 	<select id="mypageInfoupdateDetail" resultType="MemberVO"
@@ -145,5 +161,8 @@
         WHERE num BETWEEN #{start} AND #{end}
 	</select>
 	
+	<select id="mypageWishTotalPage" resultType="int">
+		SELECT CEIL(COUNT(*)/9.0) FROM mywish
+	</select>
 	
 </mapper>

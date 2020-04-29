@@ -4,6 +4,17 @@ public class NearbyVO {
 	private int rLowprice;
 	private int rHighprice;
 	private String rContent;
+	private String rGood;
+	
+	
+	
+	public String getrGood() {
+		return rGood;
+	}
+	public void setrGood(String rGood) {
+		this.rGood = rGood;
+	}
+	
 	
 	public String getrContent() {
 		return rContent;

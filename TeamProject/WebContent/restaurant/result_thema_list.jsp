@@ -21,11 +21,67 @@
 <!--  테마   맛집 페이지 CSS -->
 <link rel="stylesheet" href="../css/themalist.css">
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script> 
+<style type="text/css">
+
+.thematile {
+
+
+
+}
+
+.themaDesctiption {
+
+
+}
+
+
+
+</style>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript">
+$(function() {
+	var detailThema_col=$('.themaTitle').text();
+	var infoThema_col=$('.themaDesctiption').text();
+	
+	$('.revpageBtn').click(function(){
+		var page=$(this).text();
+
+		$.ajax({
+			type:'post',
+			url:'../restaurant/result_thema_list.do',
+			data:{"detailThema_col":detailThema_col,"infoThema_col":infoThema_col,"page":page},
+			success:function(res) {
+				$('#result_thema_list').html(res);
+			}
+		})
+	})
+	
+	
+	$('.pageBtn').click(function() {
+		var page=$(this).attr('data-page');
+		
+		$.ajax({
+			type:'post',
+			url:'../restaurant/result_thema_list.do',
+			data:{"detailThema_col":detailThema_col,"infoThema_col":infoThema_col,"page":page},
+			success:function(res) {
+				$('#result_thema_list').html(res);
+			}
+		})
+	})
+}) 
+</script>
 
 </head>
 <body>
 
-
+  <div class="featured-title-box" style="display: block; width: -webkit-fill-available;">
+	<div  class="themaTileBorder1"></div>
+	<h3 class="themaTitle" style="text-align: center; margin-bottom: 30px;">${ detailThema_col}</h3>
+	<h3 class="themaDesctiption" style="text-align: center;">${infoThema_col }</h3>
+	<div  class="themaTileBorder2"></div>
+	</div>
 
 	<c:forEach var="svo" items="${slist }" varStatus="status">
 	<!-- ===============================가게 1개 =============================================-->
@@ -37,7 +93,7 @@
                            	<div class="featured-title-box">
                                	 <img src="${svo.ivo.iLink }" class="img-fluid" alt="#">
                                     </div>
-                                    <span class="featured-rating">${svo.rScore }</span>
+                                    <span class="featured-rating" >${svo.rScore }</span>
 
                     <!--  =======================그림 부분  끝============================= -->
                    
@@ -46,30 +102,30 @@
                          
                                     <div class="featured-title-box">
                                         <h6>${svo.rName }</h6>
-                                        <p style="font-size: 21px; margin-top: 8px;">${svo.rType } </p> 
+                                        <p style="font-size: 17px; margin-top: 8px;">${svo.rType } </p> 
                                         <span>• </span>
-                                        <p style="font-size: 21px; margin-top: 8px;">리뷰${svo.rScoreCount }  </p> 
+                                        <p style="font-size: 17px; margin-top: 8px;">리뷰${svo.rScoreCount }  </p> 
                                         <span> • </span>
                                       
                                         <fmt:parseNumber var="sre" value="${svo.rScore }" integerOnly="true"/>
 				         				 <c:choose>
 				           					 <c:when test="${sre=='5' }">
-				             				 <p style="font-size: xx-large"><span>★★★★★</span></p>
+				             				 <p style="font-size: x-large;"><span>★★★★★</span></p>
 				            				</c:when>
 				         			     	 <c:when test="${sre=='4' }">
-				            				  <p style="font-size: xx-large"><span>★★★★</span>★</p>
+				            				  <p style="font-size: x-large"><span>★★★★</span>★</p>
 				           					 </c:when>
 				          			 		 <c:when test="${sre=='3' }">
-				            				  <p style="font-size: xx-large"><span>★★★</span>★★</p>
+				            				  <p style="font-size: x-large"><span>★★★</span>★★</p>
 				            		 		</c:when>
 				           					 <c:when test="${sre=='2' }">
-				            				  <p style="font-size: xx-large"><span>★★</span>★★★</p>
+				            				  <p style="font-size: x-large"><span>★★</span>★★★</p>
 				      				    	  </c:when>
 				       				    	 <c:when test="${sre=='1' }">
-				            				  <p style="font-size: xx-large"><span>★</span>★★★★</p>
+				            				  <p style="font-size: x-large"><span>★</span>★★★★</p>
 				           					 </c:when>
 				          					  <c:otherwise>
-				          				     <p style="font-size: xx-large"><span></span>★★★★★</p>
+				          				     <p style="font-size: x-large"><span></span>★★★★★</p>
 				        				    </c:otherwise>
 				         					 </c:choose>
                                         <ul>
@@ -102,13 +158,13 @@
 
 				<!-- ===============================가게 한개 끝!=================================== -->
                         
+		
 
-			<!--  ============================= 가게 요약 끝! =======================================-->
-			
-			
+
 			<!--  =============================  페이징!! 시작!===================================-->
-			<div class="clear"></div>
-
+		
+		
+		<!-- 	
 			<div class="text-center">
 				<ul class="pagination">
 				<c:if test="${startPage>1 }">
@@ -119,7 +175,7 @@
 					<c:forEach var="i" begin="${startPage }" end="${endPage }">
 					
 					<c:if test="${curpage==i }">
-						<c:set var="type" value="class=active"/><!-- 클릭한 부분=active! 현재페이지! css조작만 할뿐! model에서는 불가능!-->
+						<c:set var="type" value="class=active"/>
 					</c:if>
 					
 					<c:if test="${curpage!=i }">
@@ -135,9 +191,51 @@
 				</ul>
 			</div>
 			
+			 -->
+			 
+		<table class="table">
+		<tr>
+		<td>
+		<div class="page text-center">
+			<nav aria-label="...">
+			    <ul class="pagination justify-content-center">
+				   	<c:if test="${startPage>1 }">
+				        <li class="page-item">
+				            <span class="page-link pageBtn" data-page="${curpage>1?curpage-1:curpage }" aria-label="Previous"> 
+				                <span aria-hidden="true">&laquo;</span>
+				                <span class="sr-only">Previous</span>
+				            </span>
+				        </li>
+				    </c:if>
+			        <c:set var="type" value=""/>
+					<c:forEach var="i" begin="${startPage }" end="${endPage }">
+						<c:if test="${curpage==i }">
+							<c:set var="type" value="class=\"page-item active\""/> <%-- 현재페이지 파란색 --%>
+						</c:if>
+						<c:if test="${curpage!=i }">
+							<c:set var="type" value="class=page-item"/>
+						</c:if>
+						<li ${type }>
+							<span class="page-link revpageBtn">${i }</span>
+						</li>
+					</c:forEach>
+					<c:if test="${endPage<allPage }">
+			    	    <li class="page-item">
+				        <span class="page-link pageBtn" data-page="${endPage+1 }" aria-label="Next"> 
+				        	<span aria-hidden="true">&raquo;</span> 
+				        	<span class="sr-only">Next</span>
+				        </span>
+			            </li>
+			    	</c:if>
+						
+			        </ul>
+			    </nav>
+			</div>
+			</td>
+			</tr>
+			</table>
+			
 			<!--  =============================  페이징!! 끝!===================================-->
-			
-			
 
 			</div>
 		</div>
