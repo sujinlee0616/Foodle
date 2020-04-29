@@ -322,6 +322,7 @@ function takeoutButChgCL(){
 
 </script>
 
+
 </head>
 <body onload=" searchNearby();">
 
@@ -449,67 +450,21 @@ function takeoutButChgCL(){
         
                    <div class="detail-options-wrap nearbysearchlist" id="nearbyList"></div>
                
-    	<%--			
-    	          <c:if test="${defList != ''}">
-					 <c:forEach var="i" items="${defList }" >  
-    
-								
-                        <div class=" featured-responsive" >
-                            <div class="featured-place-wrap" >
-                                <a href="main.jsp?mode=5">
-                   
-                   
-                   <!--  =======================그림 부분 시작 ============================= -->
-                                	<div class="featured-title-box">
-                                   	 <img src="${pageContext.request.contextPath }/images/featured1.jpg" class="img-fluid" alt="#">
-                                    </div>
-                                    <span class="featured-rating">6.5</span>
-                    <!--  =======================그림 부분  끝============================= -->
-                    
-                    
-                   <!--  =======================요약설명  시작============================= -->
-                         
-                                    <div class="featured-title-box">
-                                        <h6> rno: ${i.rest_rno } DEFAULT</h6>
-                                        <p>${i.type_name} </p> <span>• </span>
-                                        <p>테이크아웃- ${i.takeout_col }</p> <span> • </span>
-                                        <p><span>${i.menu_price }</span>\</p>
-                                        <ul>
-                                            <li><span class="icon-location-pin"></span>
-                                                <p>${i.rest_adress }</p>
-                                            </li>
-                                            <li><span class="icon-screen-smartphone"></span>
-                                                <p>평점순 - ${i.rest_grade }</p>
-                                            </li>
-                                        </ul>
-                                        <div class="bottom-icons">
-                                            <div class="closed-now">CLOSED NOW</div>
-                                            <span class="ti-heart"></span>
-                                        </div>
-                                    </div>
-                   <!--  =======================요약설명  끝 ============================= -->                  
-                                    
-                                </a>
-                            </div>
-                        </div>
-                        
-                	</c:forEach>
-                </c:if>	     
-             --%>
+    	
 					<!-- ===============================가게 한개 끝!=================================== -->
 				
 						</div>
 					</div>
 					
-					<!--============================= KAKAO MAP ============================= 
+					<!--============================= KAKAO MAP ============================= 	 -->	
 
 					<div class="col-md-5 responsive-wrap map-wrap nearbymapwrap">
 						<div class="map-fix nearbymapfix">
-							<div id="map" data-lat="40.674" data-lon="-73.945" data-zoom="14"></div>
+							<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
 						</div>
 					</div>
 					
-	 -->				
+			
 
 
 <!-- ============================================지역 카테고리 끝!============================================= -->						

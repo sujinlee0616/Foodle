@@ -66,7 +66,7 @@ public class NearByNewModel {
 		
 		int curPage=Integer.parseInt(page);
 		
-		int rowSize=20;
+		int rowSize=40;
 		int start=(rowSize*curPage)-(rowSize-1);
 		int end=(rowSize*curPage);
 		
@@ -105,7 +105,6 @@ public class NearByNewModel {
 				vo.setrAddr2(addr);
 				
 				}	
-				
 				
 				String name=vo.getrName();
 				if(name.length()> 20){

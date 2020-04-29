@@ -95,14 +95,14 @@
             </div>
             <div class="row">
                 <div class="col-md-4">
-                	<a href="main.jsp?mode=4">
+                	<a href="../restaurant/list_thema.do">
 	                    <div class="find-place-img_wrap">
 	                        <div class="grid">
 	                            <figure class="effect-ruby">
 	                                <img src="../images/find1.jpg" class="img-fluid" alt="img13" />
 	                                <figcaption>
 	                                    <h5>특별한 날엔 </h5>
-	                                    <p>1,848개</p>
+	                                    <p>92개</p>
 	                                </figcaption>
 	                            </figure>
 	                        </div>
@@ -112,14 +112,14 @@
                 <div class="col-md-4">
                     <div class="row find-img-align">
                         <div class="col-md-12">
-                       	 	<a href="../restaurant/list_thema.do?detailThema_col=테마카페">
+                       	 	<a href="../restaurant/list_thema.do">
 	                            <div class="find-place-img_wrap">
 	                                <div class="grid">
 	                                    <figure class="effect-ruby">
 	                                        <img src="../images/find-place2.jpg" class="img-fluid" alt="img13" />
 	                                        <figcaption>
 	                                            <h5>브런치</h5>
-	                                            <p>1,204개</p>
+	                                            <p>139개</p>
 	                                        </figcaption>
 	                                    </figure>
 	                                </div>
@@ -129,7 +129,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                        	<a href="../restaurant/list_thema.do?detailThema_col=치맥&피맥">
+                        	<a href="../restaurant/list_thema.do">
 	                            <div class="find-place-img_wrap">
 	                                <div class="grid">
 	                                    <figure class="effect-ruby">
@@ -148,14 +148,14 @@
                 <div class="col-md-4">
                     <div class="row find-img-align">
                         <div class="col-md-12">
-                      		<a href="../restaurant/list_thema.do?detailThema_col=가족모임">
+                      		<a href="../restaurant/list_thema.do">
 	                            <div class="find-place-img_wrap">
 	                                <div class="grid">
 	                                    <figure class="effect-ruby">
 	                                        <img src="../images/find4.jpg" class="img-fluid" alt="img13" />
 	                                        <figcaption>
 	                                            <h5>아이와 함께라면</h5>
-	                                            <p>3,824개</p>
+	                                            <p>1,669개</p>
 	                                        </figcaption>
 	                                    </figure>
 	                                </div>
@@ -165,14 +165,14 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                        	<a href="../restaurant/list_thema.do?detailThema_col=술">
+                        	<a href="../restaurant/list_thema.do">
 	                            <div class="find-place-img_wrap">
 	                                <div class="grid">
 	                                    <figure class="effect-ruby">
 	                                        <img src="../images/find5.jpg" class="img-fluid" alt="img13" />
 	                                        <figcaption>
 	                                            <h5>술 마시는 친구와 함께</h5>
-	                                            <p>4,427개</p>
+	                                            <p>951개</p>
 	                                        </figcaption>
 	                                    </figure>
 	                                </div>

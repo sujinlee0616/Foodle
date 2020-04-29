@@ -377,6 +377,9 @@ public class MypageModel {
 		
 		list = MypageDAO.mypageCouponSearchList(map);
 		
+//////////////////////////////////////////////////////////////////주석처리부분 10:80		
+/*		
+		
 		for(int i = 0 ; i < list.size() ; i++)
 		{
 			if(list.get(0).getMvo().getrName().length()>5)
@@ -391,7 +394,7 @@ public class MypageModel {
 		}
 		
 			
-		
+*/		
 		request.setAttribute("list", list);
 		
 		return "../mypage/mypage_coupon_search_list.jsp";
