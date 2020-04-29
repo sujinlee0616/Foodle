@@ -14,26 +14,31 @@
 <title>Insert title here</title>
 <style type="text/css">
 .mblock{
-  min-height: calc(100vh - 72px - 236px);
+  min-height: calc(100vh - 72px - 209px);
 }
 </style>
 </head>
 <body>
-<section class="main-block light-bg mblock" id="popular">
+<section class="main-block list-block light-bg mblock" id="popular">
   <div class="container">
     <c:if test="${totalCount==0 }">
     	<div class="row">
-       		<div class="col-md-6">
-          		<h5>"${area }&nbsp;${cate }"과(와) 일치하는 검색결과가 없습니다.</h5>
-          		<p>다른 검색어를 입력해주세요 ^^;;</p>
-       		</div>
+    	  <div class="col-md-12">
+          	<h5>"${area }&nbsp;${cate }"과(와) 일치하는 검색결과가 없습니다.</h5>
+          	<ul>
+          	  <li>다른 검색어를 사용해 보세요.</li>
+          	</ul>
+          </div>
+          <div class="col-md-12 text-center">
+          	<img src="../search/noimage.png" style="margin-top: 50px;">
+          </div>
     	</div>
     </c:if>
     <c:if test="${totalCount!=0 }">
     	<div class="row">
        		<div class="col-md-6">
           		<h5>"${area }&nbsp;${cate }"과(와) 일치하는 검색결과</h5>
-          		<p>총 <span>${totalCount }개의 맛집이 기다리고 있어요!!</span></p>
+          		<p>총 <span>${totalCount }</span>개의 맛집이 기다리고 있어요!!</p>
        		</div>
     	</div>
 		<div class="row detail-options-wrap py-5">

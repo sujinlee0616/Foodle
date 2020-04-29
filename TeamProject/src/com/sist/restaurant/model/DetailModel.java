@@ -246,6 +246,7 @@ public class DetailModel {
 			RESCOUPON          VARCHAR2(200)
 		 * 
 		 */
+		
 		String rno=request.getParameter("rno");
 		String respeople=request.getParameter("respeople");
 		String resdate=request.getParameter("resdate");
@@ -280,16 +281,20 @@ public class DetailModel {
 		
 		RestaurantDetailDAO.reserveInsert(map);
 		
+		
 		// 사용한 쿠폰 삭제
-		if(rescoupon!="0") {
+		if(!rescoupon.trim().equals("0")) {
+			
+			System.out.println("AAAA");
+			
 			String cprice=rescoupon.substring(rescoupon.indexOf("*")+2,rescoupon.indexOf("(")-1);
 			String cname=rescoupon.substring(0,rescoupon.indexOf("*")-1);
 			String cenddate=rescoupon.substring(rescoupon.indexOf("~")+1,rescoupon.indexOf(")"));
 			
-			/*System.out.println("cprice:"+cprice);
+			System.out.println("cprice:"+cprice);
 			System.out.println("cname:"+cname);
 			System.out.println("cenddate:"+cenddate);
-			System.out.println("userid:"+userid);*/
+			System.out.println("userid:"+userid);
 			
 			map=new HashMap<String, Object>();
 			map.put("cprice", cprice);
@@ -299,6 +304,7 @@ public class DetailModel {
 			
 			RestaurantDetailDAO.reserveCouponDelete(map);
 		}
+		
 		
 		return "redirect:../mypage/mypage.do";
 	}

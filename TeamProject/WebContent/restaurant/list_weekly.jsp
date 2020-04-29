@@ -47,11 +47,15 @@ select{
 	margin-right: 3px;
 }
 
+.mblock{
+  min-height: calc(100vh - 72px - 209px);
+}
+
 </style>
 </head>
 <body>
     <!--============================= LIST =============================-->
-    <section class="list-block light-bg">
+    <section class="list-block light-bg mblock">
         <div class="container py-5">
             <!-- Menu Title -->
             <div class="row">
@@ -64,7 +68,7 @@ select{
             </div>
             <div class="row">
               <div class="filter mt-4" style="border:none;">
-              	<select id="selectedArea" onchange="AreaFilter(this,'Area');">
+              	<select id="selectedArea" class="areaBox" onchange="AreaFilter(this,'Area');">
 					<option value="none" selected hidden disabled>지역선택</option>
 					<option value="강북구">강북구</option>
 					<option value="강남구">강남구</option>
@@ -83,7 +87,7 @@ select{
 					<option value="종로구">종로구</option>
 					<option value="중구">중구</option>
 				</select>
-              	<select id="selectedMenu" onchange="MenuFilter(this,'Menu');">
+              	<select id="selectedMenu" class="menuBox" onchange="MenuFilter(this,'Menu');">
 					<option value="none" selected hidden disabled>업종선택</option>
 					<option value="한식">한식</option>
 					<option value="일식">일식</option>
@@ -95,7 +99,7 @@ select{
 					<option value="뷔페">뷔페</option>
 					<option value="기타">기타/세계</option>
 				</select>
-				<select id="selectedSort" onchange="SortFilter(this,'Sort');">
+				<select id="selectedSort" class="sortBox" onchange="SortFilter(this,'Sort');">
 					<option value="" selected hidden disabled>정렬순서</option>
 					<option value="평점">평점</option>
 					<option value="좋아요">좋아요</option>
@@ -103,8 +107,8 @@ select{
 					<option value="높은가격">높은 가격</option>
 					<option value="낮은가격">낮은 가격</option>
 				</select>
-				<button id="openBtn" value="open">OPEN</button>
-				<button id="deliveryBtn" value="deliveryOK">배달</button>
+				<button id="openBtn" class="openButton" value="open">OPEN</button>
+				<button id="deliveryBtn" class="deliveryButton" value="deliveryOK">배달</button>
               </div>
             </div>
             <!-- 필터에서 선택한 메뉴등이 출력되는 곳 -->
@@ -229,7 +233,7 @@ select{
     var filter4; // delivery
     var filter5; // area
     var today='<c:out value="${today}"/>';
-    
+
     function AreaFilter(a,type){
     	// 여기는 type으로 area가 온다
 		var filt=a.value;
@@ -393,6 +397,34 @@ select{
 			$(this).css('cursor','pointer');
 		})
 		
+		// 필터 버튼의 마우스 포인터 변경
+		$('.openButton').hover(function(){
+		$(this).css('cursor','pointer');
+		},function(){
+		$(this).css('cursor','none');
+		});
+		$('.deliveryButton').hover(function(){
+		$(this).css('cursor','pointer');
+		},function(){
+		$(this).css('cursor','none');
+		});
+		$('.areaBox').hover(function(){
+		$(this).css('cursor','pointer');
+		},function(){
+		$(this).css('cursor','none');
+		});
+		$('.menuBox').hover(function(){
+		$(this).css('cursor','pointer');
+		},function(){
+		$(this).css('cursor','none');
+		});
+		$('.sortBox').hover(function(){
+		$(this).css('cursor','pointer');
+		},function(){
+		$(this).css('cursor','none');
+		});
+		
+		
 		$('#openBtn').click(function(){
 			var filt=$(this).val();
 			console.log(filt);
@@ -432,6 +464,9 @@ select{
 					}
 				});
 				
+				$(this).css("background-color", "rgb(255,116,116)");
+				$(this).css("color", "rgb(255,255,255)");
+				
 				$('#openBtn').val('close');
 			}
 			else
@@ -467,6 +502,9 @@ select{
 						$('#tCount').html(res);
 					}
 				});
+				
+				$(this).css("background-color", "rgb(255,255,255)");
+				$(this).css("color", "rgb(0,0,0)");
 				
 				$('#openBtn').val('open');
 			}
@@ -515,6 +553,9 @@ select{
 					}
 				});
 				
+				$(this).css("background-color", "rgb(255,116,116)");
+				$(this).css("color", "rgb(255,255,255)");
+				
 				$('#deliveryBtn').val('deliveryNO');
 			}
 			else
@@ -553,6 +594,9 @@ select{
 						$('#tCount').html(res);
 					}
 				});
+				
+				$(this).css("background-color", "rgb(255,255,255)");
+				$(this).css("color", "rgb(0,0,0)");
 				
 				$('#deliveryBtn').val('deliveryOK');
 			}

@@ -93,12 +93,12 @@ public class MypageDAO {
 		
 		return list;
 	}
-	public static int mypageCouponTotalPage() {
+	public static int mypageCouponTotalPage(String userid) {
 		int total=0;
 		SqlSession session=null;
 		try {
 			session=ssf.openSession();
-			total=session.selectOne("mypageCouponTotalPage");
+			total=session.selectOne("mypageCouponTotalPage", userid);
 		} catch(Exception ex) {
 			System.out.println("replyTotalPage(): "+ex.getMessage());
 		} finally {
@@ -107,12 +107,12 @@ public class MypageDAO {
 		}
 		return total;
 	}
-	public static int mypageReserveTotalPage() {
+	public static int mypageReserveTotalPage(String userid) {
 		int total=0;
 		SqlSession session=null;
 		try {
 			session=ssf.openSession();
-			total=session.selectOne("mypageReserveTotalPage");
+			total=session.selectOne("mypageReserveTotalPage",userid);
 		} catch(Exception ex) {
 			System.out.println("replyTotalPage(): "+ex.getMessage());
 		} finally {
@@ -198,12 +198,12 @@ public class MypageDAO {
 	}
 	
 	
-	public static int mypageReviewTotalPage() {
+	public static int mypageReviewTotalPage(String userid) {
 		int total=0;
 		SqlSession session=null;
 		try {
 			session=ssf.openSession();
-			total=session.selectOne("mypageReviewTotalPage");
+			total=session.selectOne("mypageReviewTotalPage",userid);
 		} catch(Exception ex) {
 			System.out.println("replyTotalPage(): "+ex.getMessage());
 		} finally {
@@ -302,12 +302,12 @@ public class MypageDAO {
 		
 		return list;
 	}	
-	public static int mypageWishTotalPage() {
+	public static int mypageWishTotalPage(String userid) {
 		int total=0;
 		SqlSession session=null;
 		try {
 			session=ssf.openSession();
-			total=session.selectOne("mypageWishTotalPage");
+			total=session.selectOne("mypageWishTotalPage",userid);
 		} catch(Exception ex) {
 			System.out.println("replyTotalPage(): "+ex.getMessage());
 		} finally {

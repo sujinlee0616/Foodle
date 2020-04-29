@@ -49,7 +49,7 @@ public class MypageModel {
 		int rowSize=9;
 		int start=(rowSize*curpage)-(rowSize-1);
 		int end=rowSize*curpage;
-		int total = MypageDAO.mypageWishTotalPage();
+		int total = MypageDAO.mypageWishTotalPage((String) session.getAttribute("id"));
 		
 		
 		Map map=new HashMap();
@@ -114,7 +114,7 @@ public class MypageModel {
 		int rowSize=5;
 		int start=(rowSize*curpage)-(rowSize-1);
 		int end=rowSize*curpage;
-		int total = MypageDAO.mypageReserveTotalPage();
+		int total = MypageDAO.mypageReserveTotalPage((String) session.getAttribute("id"));
 		
 		
 		Map map=new HashMap();
@@ -213,7 +213,7 @@ public class MypageModel {
 					reviewRangeList+=reviewRange[i]+",";
 			}
 		
-		int total = MypageDAO.mypageReviewTotalPage();
+		int total = MypageDAO.mypageReviewTotalPage((String) session.getAttribute("id"));
 		
 		if(page==null)
 			page="1";
@@ -302,7 +302,7 @@ public class MypageModel {
 		int rowSize=6;
 		int start=(rowSize*curpage)-(rowSize-1);
 		int end=rowSize*curpage;
-		int total = MypageDAO.mypageCouponTotalPage();
+		int total = MypageDAO.mypageCouponTotalPage((String) session.getAttribute("id"));
 		
 		Map map=new HashMap();
 		map.put("start", start);

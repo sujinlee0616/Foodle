@@ -101,8 +101,9 @@
 		WHERE num BETWEEN #{start} AND #{end} 
 	</select>
 	
-	<select id="mypageCouponTotalPage" resultType="int">
+	<select id="mypageCouponTotalPage" resultType="int" parameterType="String">
 		SELECT CEIL(COUNT(*)/6.0) FROM coupon
+		WHERE userid=#{userid}
 	</select>
 
 	
@@ -128,12 +129,14 @@
 	</select>
 
 
-	<select id="mypageReviewTotalPage" resultType="int">
+	<select id="mypageReviewTotalPage" resultType="int" parameterType="String">
 		SELECT CEIL(COUNT(*)/10.0) FROM review
+		WHERE userid=#{userid}
 	</select>
 	
-	<select id="mypageReserveTotalPage" resultType="int">
+	<select id="mypageReserveTotalPage" resultType="int" parameterType="String">
 		SELECT CEIL(COUNT(*)/5.0) FROM reservation
+		WHERE userid=#{userid}
 	</select>
 	
 	<select id="mypageInfoupdateDetail" resultType="MemberVO"
@@ -172,8 +175,9 @@
         WHERE num BETWEEN #{start} AND #{end}
 	</select>
 	
-	<select id="mypageWishTotalPage" resultType="int">
+	<select id="mypageWishTotalPage" resultType="int" parameterType="String">
 		SELECT CEIL(COUNT(*)/9.0) FROM mywish
+		WHERE userid=#{userid}
 	</select>
 	
 </mapper>
