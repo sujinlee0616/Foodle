@@ -520,7 +520,7 @@
 		var resmenu=$('#restaurant-menu').text();
 		$('#resmenu').val(resmenu);
 		$('#resprice').val(mSum+"원");
-		$('#rescoupon').val(0);
+		$('#rescoupon').val("0");
 	});
 		
 		
