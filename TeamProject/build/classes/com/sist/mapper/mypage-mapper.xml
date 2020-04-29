@@ -28,6 +28,11 @@
 		<result column="resMenu" property="resmenu"/>
 		 		
 		<result column="rName" property="mvo.rName"/>
+		<result column="rScore" property="mvo.rScore"/>
+		<result column="rTel" property="mvo.rTel"/>
+		<result column="rAddr1" property="mvo.rAddr1"/>
+		
+		<result column="iLink" property="mvo.ivo.iLink"/>
 	</resultMap>
 	
 	
@@ -59,13 +64,15 @@
 		<result column="rName" property="mvo.rName"/>
 	</resultMap>
 
-	<select id="mypageRerveList" resultMap="reservationMap"
-		parameterType="string">
-		SELECT reservation.*,maininfo.rno,maininfo.rname 
-		FROM reservation,maininfo
-		WHERE reservation.userid=#{userid}
-		AND maininfo.rno=reservation.rno
-		ORDER BY resDate DESC
+
+
+	<select id="mypageReserveList" resultMap="reservationMap"
+		parameterType="hashmap">
+		SELECT rno,rname,rscore,rtel,raddr1,iname,ilink,resdate,restime,respeople, num
+		FROM(SELECT rno,rname,rscore,rtel,raddr1,iname,ilink,resdate,restime,respeople, rownum as num
+		FROM(SELECT reservation.rno as rno,maininfo.rno as rno1,image.rno as rno2,rname,rscore,rtel,raddr1,iname,ilink,resdate,restime,respeople
+		FROM reservation,maininfo,image WHERE maininfo.rno=reservation.rno AND reservation.rno=image.rno AND userid=#{userid} AND iname='Mainimage'))
+		WHERE num BETWEEN #{start} AND #{end}
 	</select>
 	<select id="mypageCouponList" resultMap="couponMap"
 		parameterType="hashmap">
@@ -124,7 +131,11 @@
 	<select id="mypageReviewTotalPage" resultType="int">
 		SELECT CEIL(COUNT(*)/10.0) FROM review
 	</select>
-
+	
+	<select id="mypageReserveTotalPage" resultType="int">
+		SELECT CEIL(COUNT(*)/5.0) FROM reservation
+	</select>
+	
 	<select id="mypageInfoupdateDetail" resultType="MemberVO"
 		parameterType="String">
 		SELECT * FROM member

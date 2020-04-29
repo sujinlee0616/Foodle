@@ -16,20 +16,41 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
 
- /*
-
+ /* 
   $(window).scroll(function() {
-	//var test =$(window).scrollTop() -700;
-      if ($(window).scrollTop() == $(document).height() - $(window).height()) {
-    	  page++;
+      //var test =$(window).scrollTop() -700;
+      if ($(window).scrollTop() == $(document).height() - $(window).height()+300) {
+         page++;
         console.log(page);
         searchNearby('scroll');
         //$("body").append('<div class="big-box"><h6>Page ' + page + '</h6></div>');
-
       }
   });
+  
+  */
+  
+  
+  
+//Get the button
+  var mybutton = document.getElementById("myBtn");
 
-*/
+  // When the user scrolls down 20px from the top of the document, show the button
+  window.onscroll = function() {scrollFunction()};
+
+  function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+      mybutton.style.display = "block";
+    } else {
+      mybutton.style.display = "none";
+    }
+  }
+
+  // When the user clicks on the button, scroll to the top of the document
+  function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+}
+
 </script>
 
 <style type="text/css">
@@ -141,7 +162,7 @@ test value: ${result}
                    <!--  =======================요약설명  끝 ============================= -->                  
                     
                      <div>
-                     <span style="display: block;" class="featured-rate">${i.rScore }</span> 
+            <!--   <span style="display: block;" class="featured-rate">${i.rScore }</span>    --> 
                      
                       
                   <!--     <span class="ti-heart"></span>  -->  
