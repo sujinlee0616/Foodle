@@ -55,11 +55,11 @@ select{
         <div class="container py-5">
             <!-- Menu Title -->
             <div class="row">
-                <div class="col-md-5">
-                    <div class="title" id="tCount">
-                        <h5>주간 맛집</h5>
-                        <p>총<span>${totalCount }</span>개의 맛집이 기다리고 있어요!!</p>
-                    </div>
+                <div class="col-md-5" id="tCount">
+                	<div class="title">
+						<h5>주간 맛집</h5>
+						<p>총<span>${totalCount }</span>개의 맛집이 기다리고 있어요!!</p>
+					</div>
                 </div>
             </div>
             <div class="row">
@@ -229,7 +229,6 @@ select{
     var filter4; // delivery
     var filter5; // area
     var today='<c:out value="${today}"/>';
-    var tCount='<c:out value="${totalCount}"/>';
     
     function AreaFilter(a,type){
     	// 여기는 type으로 area가 온다
@@ -240,10 +239,6 @@ select{
 		
 		let msg="<span class='btn btn-xs fblock' style='background-color:#ff7474; color:#fff;' id='"+a.value+"' onClick=\"RemoveFilter(this,'"+type+"')\">"+a.value+"</span>";
 		$('#areaSort').html(msg);
-		
-		msg1="<h5>주간 맛집</h5>&nbsp;<p>총<span>"+tCount+"</span>개의 맛집이 기다리고 있어요!!</p>"
-		$('#tCount').html(msg1);
-		console.log(tCount);
 		
 		$.ajax({
 			type:'post',
@@ -263,6 +258,17 @@ select{
 			success:function(res)
 			{
 				$('#pageInfo').html(res);
+			}
+		});
+		// 검색된 가게의 수
+		$.ajax({
+			type:'post',
+			url:'../restaurant/list_weekly_count.do',
+			async:false,
+			data:{"filter1":filter1,"filter2":filter2,"filter3":filter3,"filter4":filter4,"filter5":filter5,"today":today},
+			success:function(res)
+			{
+				$('#tCount').html(res);
 			}
 		});
 	}
@@ -297,6 +303,17 @@ select{
 				$('#pageInfo').html(res);
 			}
 		});
+		// 검색된 가게의 수
+		$.ajax({
+			type:'post',
+			url:'../restaurant/list_weekly_count.do',
+			async:false,
+			data:{"filter1":filter1,"filter2":filter2,"filter3":filter3,"filter4":filter4,"filter5":filter5,"today":today},
+			success:function(res)
+			{
+				$('#tCount').html(res);
+			}
+		});
 	}
     
 	function SortFilter(s,type){
@@ -327,6 +344,17 @@ select{
 			success:function(res)
 			{
 				$('#pageInfo').html(res);
+			}
+		});
+		// 검색된 가게의 수
+		$.ajax({
+			type:'post',
+			url:'../restaurant/list_weekly_count.do',
+			async:false,
+			data:{"filter1":filter1,"filter2":filter2,"filter3":filter3,"filter4":filter4,"filter5":filter5,"today":today},
+			success:function(res)
+			{
+				$('#tCount').html(res);
 			}
 		});
 	}
@@ -392,6 +420,17 @@ select{
 						$('#pageInfo').html(res);
 					}
 				});
+				// 검색된 가게의 수
+				$.ajax({
+					type:'post',
+					url:'../restaurant/list_weekly_count.do',
+					async:false,
+					data:{"filter1":filter1,"filter2":filter2,"filter3":filter3,"filter4":filter4,"filter5":filter5,"today":today},
+					success:function(res)
+					{
+						$('#tCount').html(res);
+					}
+				});
 				
 				$('#openBtn').val('close');
 			}
@@ -415,6 +454,17 @@ select{
 					success:function(res)
 					{
 						$('#pageInfo').html(res);
+					}
+				});
+				// 검색된 가게의 수
+				$.ajax({
+					type:'post',
+					url:'../restaurant/list_weekly_count.do',
+					async:false,
+					data:{"filter1":filter1,"filter2":filter2,"filter3":filter3,"filter4":filter4,"filter5":filter5,"today":today},
+					success:function(res)
+					{
+						$('#tCount').html(res);
 					}
 				});
 				
@@ -453,6 +503,17 @@ select{
 						$('#pageInfo').html(res);
 					}
 				});
+				// 검색된 가게의 수
+				$.ajax({
+					type:'post',
+					url:'../restaurant/list_weekly_count.do',
+					async:false,
+					data:{"filter1":filter1,"filter2":filter2,"filter3":filter3,"filter4":filter4,"filter5":filter5,"today":today},
+					success:function(res)
+					{
+						$('#tCount').html(res);
+					}
+				});
 				
 				$('#deliveryBtn').val('deliveryNO');
 			}
@@ -479,6 +540,17 @@ select{
 					success:function(res)
 					{
 						$('#pageInfo').html(res);
+					}
+				});
+				// 검색된 가게의 수
+				$.ajax({
+					type:'post',
+					url:'../restaurant/list_weekly_count.do',
+					async:false,
+					data:{"filter1":filter1,"filter2":filter2,"filter3":filter3,"filter4":filter4,"filter5":filter5,"today":today},
+					success:function(res)
+					{
+						$('#tCount').html(res);
 					}
 				});
 				
@@ -519,6 +591,17 @@ select{
 					$('#pageInfo').html(res);
 				}
 			});
+			// 검색된 가게의 수
+			$.ajax({
+				type:'post',
+				url:'../restaurant/list_weekly_count.do',
+				async:false,
+				data:{"filter1":filter1,"filter2":filter2,"filter3":filter3,"filter4":filter4,"filter5":filter5,"today":today},
+				success:function(res)
+				{
+					$('#tCount').html(res);
+				}
+			});
 		}
 		
 		if(type=='Menu')
@@ -547,6 +630,17 @@ select{
 					$('#pageInfo').html(res);
 				}
 			});
+			// 검색된 가게의 수
+			$.ajax({
+				type:'post',
+				url:'../restaurant/list_weekly_count.do',
+				async:false,
+				data:{"filter1":filter1,"filter2":filter2,"filter3":filter3,"filter4":filter4,"filter5":filter5,"today":today},
+				success:function(res)
+				{
+					$('#tCount').html(res);
+				}
+			});
 		}
 		
 		if(type=='Sort')
@@ -573,6 +667,17 @@ select{
 				success:function(res)
 				{
 					$('#pageInfo').html(res);
+				}
+			});
+			// 검색된 가게의 수
+			$.ajax({
+				type:'post',
+				url:'../restaurant/list_weekly_count.do',
+				async:false,
+				data:{"filter1":filter1,"filter2":filter2,"filter3":filter3,"filter4":filter4,"filter5":filter5,"today":today},
+				success:function(res)
+				{
+					$('#tCount').html(res);
 				}
 			});
 		}
