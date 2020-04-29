@@ -83,12 +83,14 @@ public class ReviewInsertModel {
 		// 클라이언트가 입력해준 데이터 VO에 저장 
 		ReviewVO vo=new ReviewVO();
 	
+	/*	
 		vo.setUserId(id);
 		vo.setRNo(Integer.parseInt(rNo));
 		vo.setRevScore(Double.parseDouble(rating));
 		vo.setRevContent(content);
 		System.out.println("vo="+vo);
-	
+	*/
+		
 		// DAO 
 		ReviewInsertDAO.reviewInsertData(vo);
 		

@@ -99,9 +99,9 @@ public class NearByNewModel {
 		for(NearbyVO vo:nearbyList){
 			
 				String addr=vo.getrAddr2();
-				if(addr.length()> 20){
+				if(addr.length()> 18){
 				
-				addr=addr.substring(0,20).concat("...");
+				addr=addr.substring(0,18).concat("...");
 				vo.setrAddr2(addr);
 				
 				}	
