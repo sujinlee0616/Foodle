@@ -37,6 +37,42 @@
 
 
 </style>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript">
+$(function() {
+	var detailThema_col=$('.themaTitle').text();
+	var infoThema_col=$('.themaDesctiption').text();
+	
+	$('.revpageBtn').click(function(){
+		var page=$(this).text();
+
+		$.ajax({
+			type:'post',
+			url:'../restaurant/result_thema_list.do',
+			data:{"detailThema_col":detailThema_col,"infoThema_col":infoThema_col,"page":page},
+			success:function(res) {
+				$('#result_thema_list').html(res);
+			}
+		})
+	})
+	
+	
+	$('.pageBtn').click(function() {
+		var page=$(this).attr('data-page');
+		
+		$.ajax({
+			type:'post',
+			url:'../restaurant/result_thema_list.do',
+			data:{"detailThema_col":detailThema_col,"infoThema_col":infoThema_col,"page":page},
+			success:function(res) {
+				$('#result_thema_list').html(res);
+			}
+		})
+	})
+}) 
+</script>
+
 </head>
 <body>
 
@@ -156,6 +192,48 @@
 			</div>
 			
 			 -->
+			 
+		<table class="table">
+		<tr>
+		<td>
+		<div class="page text-center">
+			<nav aria-label="...">
+			    <ul class="pagination justify-content-center">
+				   	<c:if test="${startPage>1 }">
+				        <li class="page-item">
+				            <span class="page-link pageBtn" data-page="${curpage>1?curpage-1:curpage }" aria-label="Previous"> 
+				                <span aria-hidden="true">&laquo;</span>
+				                <span class="sr-only">Previous</span>
+				            </span>
+				        </li>
+				    </c:if>
+			        <c:set var="type" value=""/>
+					<c:forEach var="i" begin="${startPage }" end="${endPage }">
+						<c:if test="${curpage==i }">
+							<c:set var="type" value="class=\"page-item active\""/> <%-- 현재페이지 파란색 --%>
+						</c:if>
+						<c:if test="${curpage!=i }">
+							<c:set var="type" value="class=page-item"/>
+						</c:if>
+						<li ${type }>
+							<span class="page-link revpageBtn">${i }</span>
+						</li>
+					</c:forEach>
+					<c:if test="${endPage<allPage }">
+			    	    <li class="page-item">
+				        <span class="page-link pageBtn" data-page="${endPage+1 }" aria-label="Next"> 
+				        	<span aria-hidden="true">&raquo;</span> 
+				        	<span class="sr-only">Next</span>
+				        </span>
+			            </li>
+			    	</c:if>
+						
+			        </ul>
+			    </nav>
+			</div>
+			</td>
+			</tr>
+			</table>
 			
 			<!--  =============================  페이징!! 끝!===================================-->
 

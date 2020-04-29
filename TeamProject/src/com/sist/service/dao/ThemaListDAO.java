@@ -165,6 +165,20 @@ public class ThemaListDAO {
 		}
 		
 		
+		public static int searchThemaTotalPage(String detailThema_col) {
+			int count=0;
+			SqlSession session=null;
+			try {
+				session=ssf.openSession();
+				count=session.selectOne("searchThemaTotalPage", detailThema_col);
+			} catch(Exception ex) {
+				System.out.println("searchThemaTotalPage(): "+ex.getMessage());	
+			} finally {
+				if(session!=null)
+					session.close();
+			}
+			return count;
+		}
 		
 		
 

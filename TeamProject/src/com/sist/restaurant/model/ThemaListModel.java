@@ -93,13 +93,13 @@ public class ThemaListModel {
 		
 		int curPage=Integer.parseInt(page);
 		
-		int rowSize=20;
+		int rowSize=12;
 		int start=(rowSize*curPage)-(rowSize-1);
 		int end=(rowSize*curPage);	
 		
 		//cate_select_ok로 부터 디폴트 페이지 정보/ 
-		String no=request.getParameter("no"); // 현재로선 1 or other number
-		System.out.println("no => "+no);
+		//String no=request.getParameter("no"); // 현재로선 1 or other number
+		//System.out.println("no => "+no);
 		String detailThema_col=	request.getParameter("detailThema_col"); // 가족모임
 		System.out.println("detailThema_col=> "+detailThema_col);
 		String infoThema_col=request.getParameter("infoThema_col");  //어떤 가족 모임 장소를 찾고 계신가요?
@@ -111,7 +111,8 @@ public class ThemaListModel {
 		themaResultRequest.put("no", request.getParameter("no"));
 		themaResultRequest.put("detailThema_col", request.getParameter("detailThema_col"));
 		themaResultRequest.put("infoThema_col", request.getParameter("infoThema_col"));
-		
+		themaResultRequest.put("start", start);
+		themaResultRequest.put("end", end);
 		
 		
 		//dao연결 하러      고고!
@@ -132,9 +133,29 @@ public class ThemaListModel {
 		}
 		
 		
+		// totalpage
+		int totalpage=ThemaListDAO.searchThemaTotalPage(detailThema_col);
+		
+		// 페이지 블록 나누기
+		final int BLOCK=5;
+		int startPage=((curPage-1)/BLOCK*BLOCK)+1;
+		int endPage=((curPage-1)/BLOCK*BLOCK)+BLOCK;
+		
+		int allPage=totalpage;
+		if(endPage>allPage)
+			endPage=allPage;
+		
+		
 		request.setAttribute("slist", slist);
 		request.setAttribute("infoThema_col",infoThema_col); //~~~테마 설명문!
 		request.setAttribute("detailThema_col", detailThema_col);
+		
+		request.setAttribute("curpage", curPage);
+		request.setAttribute("totalpage", totalpage);
+		request.setAttribute("BLOCK", BLOCK);
+		request.setAttribute("startPage", startPage);
+		request.setAttribute("endPage", endPage);
+		request.setAttribute("allPage", allPage);
 		
 		return "../restaurant/result_thema_list.jsp";
 	}
