@@ -278,5 +278,32 @@ public class WeeklyModel {
 		
 		return "../restaurant/list_weekly_filter_page.jsp";
 	}
-	
+	@RequestMapping("restaurant/list_weekly_count.do")
+	public String list_weekly_count(HttpServletRequest request, HttpServletResponse response)
+	{
+		try {
+			request.setCharacterEncoding("utf-8");
+		} catch (Exception e) {}
+		
+		String today=request.getParameter("today");
+		String filter1=request.getParameter("filter1");
+		String filter2=request.getParameter("filter2");
+		String filter3=request.getParameter("filter3");
+		String filter4=request.getParameter("filter4");
+		String filter5=request.getParameter("filter5");
+		
+		Map map=new HashMap();
+		map.put("today", today);
+		map.put("filter1", filter1);
+		map.put("filter2", filter2);
+		map.put("filter3", filter3);
+		map.put("filter4", filter4);
+		map.put("filter5", filter5);
+		
+		int totalCount=WeeklyDAO.weeklyTotalCount(map);
+		
+		request.setAttribute("totalCount", totalCount);
+		
+		return "../restaurant/list_weekly_count.jsp";
+	}
 }
