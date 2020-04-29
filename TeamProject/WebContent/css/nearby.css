@@ -189,14 +189,19 @@ div .nearbysearchlist{
 	
 }	
 
+/*
 .closed-now {
     color: #ff3a6d;
     font-size: 25px;
     display: block;
     font-weight: 400;
+    margin-top: 203px;
     display: inline-block;
     
 }
+
+*/
+
 
 .nearbysearchlist h6{
 
@@ -327,39 +332,25 @@ div .nearbysearchlist{
 }
 
 
-
- 
- .openButtBeforeArea {
-  width: 163px;
-  font-family: inherit;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-   border: 2px solid #e8e8e8;
-   border-radius : 22px;
-   margin-left: 20px;
-   margin-bottom: 5px;
-   height : 55px;
-   color: black;
-   font-size: 23px;
-   background-color: white;
-   font-weight: 650px;
+#myBtn {
+    display: none;
+	position: fixed;
+    bottom: 220px;
+    right: 90px;
+    z-index: 99;
+    font-size: 40px;
+    border: none;
+    outline: none;
+  	background-color: #ffffff;
+    border: 4px solid #f77575;
+    color: black;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 4px;
 }
 
-.openButtAfterArea {
-  width: 163px;
-  font-family: inherit;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  border: 2px solid #ff7474;
-   border-radius :22px;
-   margin-left: 20px;
-   margin-bottom: 5px;
-   height : 55px;
+#myBtn:hover {
+  background-color: #f77575;
+   border: 4px solid #ffffff;
    color: white;
-   font-size: 23px;
-   background-color: #ff7474;
 }
-
-
