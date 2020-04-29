@@ -56,16 +56,35 @@ select{
             <!-- Menu Title -->
             <div class="row">
                 <div class="col-md-5">
-                    <div class="title">
+                    <div class="title" id="tCount">
                         <h5>주간 맛집</h5>
-                        <p><span>TOP 15</span></p>
+                        <p>총<span>${totalCount }</span>개의 맛집이 기다리고 있어요!!</p>
                     </div>
                 </div>
             </div>
             <div class="row">
               <div class="filter mt-4" style="border:none;">
+              	<select id="selectedArea" onchange="AreaFilter(this,'Area');">
+					<option value="none" selected hidden disabled>지역선택</option>
+					<option value="강북구">강북구</option>
+					<option value="강남구">강남구</option>
+					<option value="강동구">강동구</option>
+					<option value="강서구">강서구</option>
+					<option value="노원구">노원구</option>
+					<option value="동대문구">동대문구</option>
+					<option value="마포구">마포구</option>
+					<option value="서초구">서초구</option>
+					<option value="서대문구">서대문구</option>
+					<option value="성동구">성동구</option>
+					<option value="성북구">성북구</option>
+					<option value="송파구">송파구</option>
+					<option value="영등포구">영등포구</option>
+					<option value="용산구">용산구</option>
+					<option value="종로구">종로구</option>
+					<option value="중구">중구</option>
+				</select>
               	<select id="selectedMenu" onchange="MenuFilter(this,'Menu');">
-					<option value="none" selected hidden disabled>--업종--</option>
+					<option value="none" selected hidden disabled>업종선택</option>
 					<option value="한식">한식</option>
 					<option value="일식">일식</option>
 					<option value="중식">중식</option>
@@ -77,7 +96,7 @@ select{
 					<option value="기타">기타/세계</option>
 				</select>
 				<select id="selectedSort" onchange="SortFilter(this,'Sort');">
-					<option value="" selected hidden disabled>--정렬--</option>
+					<option value="" selected hidden disabled>정렬순서</option>
 					<option value="평점">평점</option>
 					<option value="좋아요">좋아요</option>
 					<option value="조회수">조회수</option>
@@ -90,6 +109,9 @@ select{
             </div>
             <!-- 필터에서 선택한 메뉴등이 출력되는 곳 -->
             <div class="selected_filter mt-2 displaymenu" id="print">
+              <p id="areaSort"></p>
+              <p id="menuSort"></p>
+              <p id="Sort"></p>
             </div>
 	        <div class="row detail-options-wrap py-5" id="resInfo">
 	                <!-- ============================= RESTAURANTS ============================= -->
@@ -203,9 +225,47 @@ select{
     <script type="text/javascript">
     var filter1; // menu
 	var filter2; // sort
-    var filter3;
-    var filter4;
+    var filter3; // open
+    var filter4; // delivery
+    var filter5; // area
     var today='<c:out value="${today}"/>';
+    var tCount='<c:out value="${totalCount}"/>';
+    
+    function AreaFilter(a,type){
+    	// 여기는 type으로 area가 온다
+		var filt=a.value;
+		console.log(type);
+		
+		filter5=filt;
+		
+		let msg="<span class='btn btn-xs fblock' style='background-color:#ff7474; color:#fff;' id='"+a.value+"' onClick=\"RemoveFilter(this,'"+type+"')\">"+a.value+"</span>";
+		$('#areaSort').html(msg);
+		
+		msg1="<h5>주간 맛집</h5>&nbsp;<p>총<span>"+tCount+"</span>개의 맛집이 기다리고 있어요!!</p>"
+		$('#tCount').html(msg1);
+		console.log(tCount);
+		
+		$.ajax({
+			type:'post',
+			url:'../restaurant/list_weekly_filter.do',
+			async:false,
+			data:{"filter1":filter1,"filter2":filter2,"filter3":filter3,"filter4":filter4,"filter5":filter5,"today":today},
+			success:function(res)
+			{
+				$('#resInfo').html(res);
+			}
+		});
+		$.ajax({
+			type:'post',
+			url:'../restaurant/list_weekly_filter_page.do',
+			async:false,
+			data:{"filter1":filter1,"filter2":filter2,"filter3":filter3,"filter4":filter4,"filter5":filter5,"today":today},
+			success:function(res)
+			{
+				$('#pageInfo').html(res);
+			}
+		});
+	}
     
     function MenuFilter(m,type){
     	// 여기는 type으로 menu가 온다
@@ -215,16 +275,26 @@ select{
 		filter1=filt;
 		
 		let msg="<span class='btn btn-xs fblock' style='background-color:#ff7474; color:#fff;' id='"+m.value+"' onClick=\"RemoveFilter(this,'"+type+"')\">"+m.value+"</span>";
-		$('#print').append(msg);
+		$('#menuSort').html(msg);
 		
 		$.ajax({
 			type:'post',
 			url:'../restaurant/list_weekly_filter.do',
 			async:false,
-			data:{"filter1":filter1,"filter2":filter2,"filter3":filter3,"filter4":filter4,"today":today},
+			data:{"filter1":filter1,"filter2":filter2,"filter3":filter3,"filter4":filter4,"filter5":filter5,"today":today},
 			success:function(res)
 			{
 				$('#resInfo').html(res);
+			}
+		});
+		$.ajax({
+			type:'post',
+			url:'../restaurant/list_weekly_filter_page.do',
+			async:false,
+			data:{"filter1":filter1,"filter2":filter2,"filter3":filter3,"filter4":filter4,"filter5":filter5,"today":today},
+			success:function(res)
+			{
+				$('#pageInfo').html(res);
 			}
 		});
 	}
@@ -237,16 +307,26 @@ select{
 		filter2=filt;
 		
 		let msg="<span class='btn btn-xs fblock' style='background-color:#ff7474; color:#fff;' id='"+s.value+"' onClick=\"RemoveFilter(this,'"+type+"')\">"+s.value+"</span>";
-		$('#print').append(msg);
+		$('#Sort').html(msg);
 		
 		$.ajax({
 			type:'post',
 			url:'../restaurant/list_weekly_filter.do',
 			async:false,
-			data:{"filter1":filter1,"filter2":filter2,"filter3":filter3,"filter4":filter4,"today":today},
+			data:{"filter1":filter1,"filter2":filter2,"filter3":filter3,"filter4":filter4,"filter5":filter5,"today":today},
 			success:function(res)
 			{
 				$('#resInfo').html(res);
+			}
+		});
+		$.ajax({
+			type:'post',
+			url:'../restaurant/list_weekly_filter_page.do',
+			async:false,
+			data:{"filter1":filter1,"filter2":filter2,"filter3":filter3,"filter4":filter4,"filter5":filter5,"today":today},
+			success:function(res)
+			{
+				$('#pageInfo').html(res);
 			}
 		});
 	}
@@ -263,10 +343,20 @@ select{
 					type:'post',
 					url:'../restaurant/list_weekly_filter.do',
 					async:false,
-					data:{"filter1":filter1,"filter2":filter2,"filter3":filter3,"filter4":filter4,"today":today},
+					data:{"filter1":filter1,"filter2":filter2,"filter3":filter3,"filter4":filter4,"filter5":filter5,"today":today},
 					success:function(res)
 					{
 						$('#resInfo').html(res);
+					}
+				});
+				$.ajax({
+					type:'post',
+					url:'../restaurant/list_weekly_filter_page.do',
+					async:false,
+					data:{"filter1":filter1,"filter2":filter2,"filter3":filter3,"filter4":filter4,"filter5":filter5,"today":today},
+					success:function(res)
+					{
+						$('#pageInfo').html(res);
 					}
 				});
 				
@@ -278,10 +368,20 @@ select{
 					type:'post',
 					url:'../restaurant/list_weekly_filter.do',
 					async:false,
-					data:{"filter1":filter1,"filter2":filter2,"filter3":filter3,"filter4":filter4,"today":today},
+					data:{"filter1":filter1,"filter2":filter2,"filter3":filter3,"filter4":filter4,"filter5":filter5,"today":today},
 					success:function(res)
 					{
 						$('#resInfo').html(res);
+					}
+				});
+				$.ajax({
+					type:'post',
+					url:'../restaurant/list_weekly_filter_page.do',
+					async:false,
+					data:{"filter1":filter1,"filter2":filter2,"filter3":filter3,"filter4":filter4,"filter5":filter5,"today":today},
+					success:function(res)
+					{
+						$('#pageInfo').html(res);
 					}
 				});
 				
@@ -304,10 +404,20 @@ select{
 					type:'post',
 					url:'../restaurant/list_weekly_filter.do',
 					async:false,
-					data:{"filter1":filter1,"filter2":filter2,"filter3":filter3,"filter4":filter4,"today":today},
+					data:{"filter1":filter1,"filter2":filter2,"filter3":filter3,"filter4":filter4,"filter5":filter5,"today":today},
 					success:function(res)
 					{
 						$('#resInfo').html(res);
+					}
+				});
+				$.ajax({
+					type:'post',
+					url:'../restaurant/list_weekly_filter_page.do',
+					async:false,
+					data:{"filter1":filter1,"filter2":filter2,"filter3":filter3,"filter4":filter4,"filter5":filter5,"today":today},
+					success:function(res)
+					{
+						$('#pageInfo').html(res);
 					}
 				});
 				
@@ -322,10 +432,20 @@ select{
 					type:'post',
 					url:'../restaurant/list_weekly_filter.do',
 					async:false,
-					data:{"filter1":filter1,"filter2":filter2,"filter3":filter3,"filter4":filter4,"today":today},
+					data:{"filter1":filter1,"filter2":filter2,"filter3":filter3,"filter4":filter4,"filter5":filter5,"today":today},
 					success:function(res)
 					{
 						$('#resInfo').html(res);
+					}
+				});
+				$.ajax({
+					type:'post',
+					url:'../restaurant/list_weekly_filter_page.do',
+					async:false,
+					data:{"filter1":filter1,"filter2":filter2,"filter3":filter3,"filter4":filter4,"filter5":filter5,"today":today},
+					success:function(res)
+					{
+						$('#pageInfo').html(res);
 					}
 				});
 				
@@ -340,6 +460,34 @@ select{
 		// 여기는 Menu, Sort 둘 중 하나가 올거야
 		console.log(type);
 		
+		if(type=='Area')
+		{
+			filter5=null;
+			
+			$.ajax({
+				type:'post',
+				url:'../restaurant/list_weekly_filter.do',
+				async:false,
+				data:{"filter1":filter1,"filter2":filter2,"filter3":filter3,"filter4":filter4,"filter5":filter5,"today":today},
+				success:function(res)
+				{
+					$('#resInfo').html(res);
+					var thisid = "#"+r.id;
+					$(thisid).remove();
+				}
+			});
+			$.ajax({
+				type:'post',
+				url:'../restaurant/list_weekly_filter_page.do',
+				async:false,
+				data:{"filter1":filter1,"filter2":filter2,"filter3":filter3,"filter4":filter4,"filter5":filter5,"today":today},
+				success:function(res)
+				{
+					$('#pageInfo').html(res);
+				}
+			});
+		}
+		
 		if(type=='Menu')
 		{
 			filter1=null;
@@ -348,12 +496,22 @@ select{
 				type:'post',
 				url:'../restaurant/list_weekly_filter.do',
 				async:false,
-				data:{"filter1":filter1,"filter2":filter2,"filter3":filter3,"filter4":filter4,"today":today},
+				data:{"filter1":filter1,"filter2":filter2,"filter3":filter3,"filter4":filter4,"filter5":filter5,"today":today},
 				success:function(res)
 				{
 					$('#resInfo').html(res);
 					var thisid = "#"+r.id;
 					$(thisid).remove();
+				}
+			});
+			$.ajax({
+				type:'post',
+				url:'../restaurant/list_weekly_filter_page.do',
+				async:false,
+				data:{"filter1":filter1,"filter2":filter2,"filter3":filter3,"filter4":filter4,"filter5":filter5,"today":today},
+				success:function(res)
+				{
+					$('#pageInfo').html(res);
 				}
 			});
 		}
@@ -366,12 +524,22 @@ select{
 				type:'post',
 				url:'../restaurant/list_weekly_filter.do',
 				async:false,
-				data:{"filter1":filter1,"filter2":filter2,"filter3":filter3,"filter4":filter4,"today":today},
+				data:{"filter1":filter1,"filter2":filter2,"filter3":filter3,"filter4":filter4,"filter5":filter5,"today":today},
 				success:function(res)
 				{
 					$('#resInfo').html(res);
 					var thisid = "#"+r.id;
 					$(thisid).remove();
+				}
+			});
+			$.ajax({
+				type:'post',
+				url:'../restaurant/list_weekly_filter_page.do',
+				async:false,
+				data:{"filter1":filter1,"filter2":filter2,"filter3":filter3,"filter4":filter4,"filter5":filter5,"today":today},
+				success:function(res)
+				{
+					$('#pageInfo').html(res);
 				}
 			});
 		}
@@ -386,7 +554,7 @@ select{
 			type:'post',
 			url:'../restaurant/list_weekly_filter.do',
 			async:false,
-			data:{"filter1":filter1,"filter2":filter2,"filter3":filter3,"filter4":filter4,"today":today,"page":page},
+			data:{"filter1":filter1,"filter2":filter2,"filter3":filter3,"filter4":filter4,"filter5":filter5,"today":today,"page":page},
 			success:function(res)
 			{
 				$('#resInfo').html(res);
@@ -397,7 +565,7 @@ select{
 			type:'post',
 			url:'../restaurant/list_weekly_filter_page.do',
 			async:false,
-			data:{"filter1":filter1,"filter2":filter2,"filter3":filter3,"filter4":filter4,"today":today,"page":page},
+			data:{"filter1":filter1,"filter2":filter2,"filter3":filter3,"filter4":filter4,"filter5":filter5,"today":today,"page":page},
 			success:function(res)
 			{
 				$('#pageInfo').html(res);
@@ -412,7 +580,7 @@ select{
 			type:'post',
 			url:'../restaurant/list_weekly_filter.do',
 			async:false,
-			data:{"filter1":filter1,"filter2":filter2,"filter3":filter3,"filter4":filter4,"today":today,"page":page},
+			data:{"filter1":filter1,"filter2":filter2,"filter3":filter3,"filter4":filter4,"filter5":filter5,"today":today,"page":page},
 			success:function(res)
 			{
 				$('#resInfo').html(res);
@@ -423,7 +591,7 @@ select{
 			type:'post',
 			url:'../restaurant/list_weekly_filter_page.do',
 			async:false,
-			data:{"filter1":filter1,"filter2":filter2,"filter3":filter3,"filter4":filter4,"today":today,"page":page},
+			data:{"filter1":filter1,"filter2":filter2,"filter3":filter3,"filter4":filter4,"filter5":filter5,"today":today,"page":page},
 			success:function(res)
 			{
 				$('#pageInfo').html(res);
@@ -439,7 +607,7 @@ select{
 			type:'post',
 			url:'../restaurant/list_weekly_filter.do',
 			async:false,
-			data:{"filter1":filter1,"filter2":filter2,"filter3":filter3,"filter4":filter4,"today":today,"page":page},
+			data:{"filter1":filter1,"filter2":filter2,"filter3":filter3,"filter4":filter4,"filter5":filter5,"today":today,"page":page},
 			success:function(res)
 			{
 				$('#resInfo').html(res);
@@ -450,7 +618,7 @@ select{
 			type:'post',
 			url:'../restaurant/list_weekly_filter_page.do',
 			async:false,
-			data:{"filter1":filter1,"filter2":filter2,"filter3":filter3,"filter4":filter4,"today":today,"page":page},
+			data:{"filter1":filter1,"filter2":filter2,"filter3":filter3,"filter4":filter4,"filter5":filter5,"today":today,"page":page},
 			success:function(res)
 			{
 				$('#pageInfo').html(res);

@@ -28,8 +28,9 @@ public class WeeklyModel {
 		String filter2=request.getParameter("filter2");
 		String filter3=request.getParameter("filter3");
 		String filter4=request.getParameter("filter4");
+		String filter5=request.getParameter("filter5");
 		
-		System.out.println("weekly's "+filter1+","+filter2+","+filter3+","+filter4);
+		System.out.println("weekly's "+filter1+","+filter2+","+filter3+","+filter4+","+filter5);
 		
 		String page=request.getParameter("page");
 		
@@ -40,7 +41,6 @@ public class WeeklyModel {
 		int start=(rowSize*curPage)-(rowSize-1);
 		int end=(rowSize*curPage);
 		
-		
 		Map map=new HashMap();
 		map.put("start", start);
 		map.put("end", end);
@@ -49,6 +49,7 @@ public class WeeklyModel {
 		map.put("filter2", filter2);
 		map.put("filter3", filter3);
 		map.put("filter4", filter4);
+		map.put("filter5", filter5);
 		
 		List<MainInfoVO> list=WeeklyDAO.weeklyListData(map);
 		
@@ -63,8 +64,7 @@ public class WeeklyModel {
 		}
 		
 		int totalPage=WeeklyDAO.weeklyTotalPage(map);
-		System.out.println("1 totalpage="+totalPage);
-		System.out.println("==========================================");
+		int totalCount=WeeklyDAO.weeklyTotalCount(map);
 		
 		// 1~10, 11~20
 		final int BLOCK=5;
@@ -78,6 +78,7 @@ public class WeeklyModel {
 		request.setAttribute("list", list);
 		request.setAttribute("curPage", curPage);
 		request.setAttribute("totalPage", totalPage);
+		request.setAttribute("totalCount", totalCount);
 		request.setAttribute("BLOCK", BLOCK);
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("endPage", endPage);
@@ -101,8 +102,9 @@ public class WeeklyModel {
 		String filter2=request.getParameter("filter2");
 		String filter3=request.getParameter("filter3");
 		String filter4=request.getParameter("filter4");
+		String filter5=request.getParameter("filter5");
 
-		System.out.println("filter's "+filter1+","+filter2+","+filter3+","+filter4);
+		System.out.println("filter's "+filter1+","+filter2+","+filter3+","+filter4+","+filter5);
 		
 		String page=request.getParameter("page");
 		if(page==null)
@@ -121,6 +123,7 @@ public class WeeklyModel {
 		map.put("filter2", filter2);
 		map.put("filter3", filter3);
 		map.put("filter4", filter4);
+		map.put("filter5", filter5);
 		
 		List<MainInfoVO> list=WeeklyDAO.weeklyListData(map);
 		
@@ -135,8 +138,7 @@ public class WeeklyModel {
 		}
 		
 		int totalPage=WeeklyDAO.weeklyTotalPage(map);
-		System.out.println("2 totalpage="+totalPage);
-		System.out.println("==========================================");
+		int totalCount=WeeklyDAO.weeklyTotalCount(map);
 		
 		// 1~10, 11~20
 		final int BLOCK=5;
@@ -150,6 +152,7 @@ public class WeeklyModel {
 		request.setAttribute("list", list);
 		request.setAttribute("curPage", curPage);
 		request.setAttribute("totalPage", totalPage);
+		request.setAttribute("totalCount", totalCount);
 		request.setAttribute("BLOCK", BLOCK);
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("endPage", endPage);
@@ -170,6 +173,7 @@ public class WeeklyModel {
 		String filter2=request.getParameter("filter2");
 		String filter3=request.getParameter("filter3");
 		String filter4=request.getParameter("filter4");
+		String filter5=request.getParameter("filter5");
 		
 		String page=request.getParameter("page");
 		if(page==null)
@@ -188,6 +192,7 @@ public class WeeklyModel {
 		map.put("filter2", filter2);
 		map.put("filter3", filter3);
 		map.put("filter4", filter4);
+		map.put("filter5", filter5);
 		
 		List<MainInfoVO> list=WeeklyDAO.weeklyListData(map);
 		
@@ -202,6 +207,7 @@ public class WeeklyModel {
 		}
 		
 		int totalPage=WeeklyDAO.weeklyTotalPage(map);
+		int totalCount=WeeklyDAO.weeklyTotalCount(map);
 		
 		// 1~10, 11~20
 		final int BLOCK=5;
@@ -215,6 +221,7 @@ public class WeeklyModel {
 		request.setAttribute("list", list);
 		request.setAttribute("curPage", curPage);
 		request.setAttribute("totalPage", totalPage);
+		request.setAttribute("totalCount", totalCount);
 		request.setAttribute("BLOCK", BLOCK);
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("endPage", endPage);
