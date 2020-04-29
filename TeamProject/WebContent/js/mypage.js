@@ -25,9 +25,10 @@
 
 
 $(function() {
-	
+	$("#floatMenu").hide();
 	// 최근 본 
 	$('#mypage_recent').click(function(){
+		$("#floatMenu").hide();
 		$.ajax({
 	   		type:'post',
 	       	url:'../main/home_recent.do',
@@ -39,7 +40,7 @@ $(function() {
 	})
 	
 	
-	$("#floatMenu").hide();
+
 	$('#mypage_wish').click(function() {
 		$("#floatMenu").show();
 		$.ajax({
