@@ -44,7 +44,7 @@
 					</span>
 				</div>
 				<div class="col-md-2 col-sm-6 col-xs-6 category-responsive">
-					<a href="../mypage/recentpage.do" class="category-wrap">
+					<span id="mypage_recent" class="category-wrap">
 						<div class="category-block">
 							<svg class="category-img" id="Capa_2"
 								xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -235,15 +235,12 @@
 		</div>
 	</section>
 	
-	<!-- 원래 있던 자바스크립트 -->
+	<!-- 원래 있던 자바스크립트 --> <!-- 이거 있어야 헤더에 유저명 클릭하면 UI 나옴 -->
 	<!--//END MY PAGE -->
-	<!--
- 	<script src="js/jquery-3.2.1.min.js"></script>
-	<script src="js/popper.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/jquery.magnific-popup.js"></script>
-	<script src="js/swiper.min.js"></script>
-	 -->
+ 	<script src="../js/jquery-3.2.1.min.js"></script>
+	<script src="../js/popper.min.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	
 	
 	<!-- 내가 사용하는(만든) 자바스크립트 -->
 	<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>

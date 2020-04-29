@@ -87,12 +87,14 @@ public class MypageModel {
 	public String mypage_recentpage(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
 
+		System.out.println("============== 최근본 페이지 ============= ");
+		
 		
 		
 		request.setAttribute("mypage_sub", "mypage_recentpage.jsp");
 		request.setAttribute("main_header", "../common/header_sub.jsp");
 		request.setAttribute("main_jsp", "../mypage/mypage.jsp");
-		return "../main/main.jsp";
+		return "../mypage/recentpage.jsp";
 	}
 
 	@RequestMapping("mypage/reserve.do")
