@@ -65,11 +65,47 @@
 					              <div class="closed-now">CLOSED NOW</div>
 					           </c:otherwise>
 					        </c:choose>
-					        <span class="ti-heart"></span>
+					        <span class="mywish2 px-1" value="${vo.rNo }" id="mywish2_${vo.rNo }" style="text-align:right; color:red; font-size:20px;">${vo.myWish }</span>
 						</div>
 					</div>
 				</div>
 			</div>
 		</c:forEach>
+		
+<script>
+$(function(){
+	// 찜 hover
+    $('.mywish2').hover(function(){
+		$(this).css('cursor','pointer');
+	})
+	// 찜 
+	$('.mywish2').click(function() {
+		let no=$(this).attr('value');
+		//alert(no);
+		$.ajax({
+			type:'POST',
+			url:'../restaurant/mywish.do',
+			data:{"rno":no},
+			success:function(res){
+				console.log(res);    				
+				if(res.trim()=='NOLOGIN') {
+					alert("로그인 후 이용해주세요.");
+				}
+				else if(res.trim()=='myWishInsert'){ 
+					$('#mywish2_'+no).text('♥');
+					
+				}
+				else { // myWishDelete
+					$('#mywish2_'+no).text('♡');
+					
+				}
+			},
+			error:function(e){
+				alert(e);
+			}
+		});
+	});
+})
+</script>
 </body>
 </html>

@@ -65,11 +65,11 @@ $(function(){
 				}
 				else if(res.trim()=='myWishInsert'){ 
 					$('#mywish2_'+no).text('♥');
-					location.reload();
+					//location.reload();
 				}
 				else { // myWishDelete
 					$('#mywish2_'+no).text('♡');
-					location.reload();
+					//location.reload();
 				}
 			},
 			error:function(e){

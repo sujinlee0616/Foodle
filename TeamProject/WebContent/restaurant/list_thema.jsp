@@ -86,7 +86,11 @@ $(function(){
 	})
 	// 클릭 이벤트 끝!
 
-	
+	// 큰 메뉴 선택 효과
+	$('.bysituation').click(function(){
+		$('.bysituation').css("color","black");
+		$(this).css("color","#ff7474");
+	})
 	
 	
 	
