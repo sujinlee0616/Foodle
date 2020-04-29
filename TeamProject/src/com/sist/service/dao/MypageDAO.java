@@ -24,27 +24,6 @@ public class MypageDAO {
 		ssf=CreateSQLSessionFactory.getSsf();
 	}
 	
-	public static List<ReservationVO> mypageReserveList(String userid)
-	{
-		List<ReservationVO> list = new ArrayList<ReservationVO>();
-		SqlSession session=null;
-		
-		try 
-		{
-			session=ssf.openSession();
-			if(userid!=null)
-				list = session.selectList("mypageRerveList",userid);
-		} 
-		catch (Exception ex) {
-			System.out.println("memberLogin: "+ex.getMessage());
-		}
-		finally {
-			if(session!=null)
-				session.close(); 
-		}
-		
-		return list;
-	}
 	public static List<CouponVO> mypageCouponList(Map map)
 	{
 		List<CouponVO> list = new ArrayList<CouponVO>();
@@ -90,6 +69,8 @@ public class MypageDAO {
 		
 		return list;
 	}
+	
+	
 	public static List<CouponVO> mypageCouponSearchList(Map map)
 	{
 		List<CouponVO> list = new ArrayList<CouponVO>();
@@ -126,6 +107,46 @@ public class MypageDAO {
 		}
 		return total;
 	}
+	public static int mypageReserveTotalPage() {
+		int total=0;
+		SqlSession session=null;
+		try {
+			session=ssf.openSession();
+			total=session.selectOne("mypageReserveTotalPage");
+		} catch(Exception ex) {
+			System.out.println("replyTotalPage(): "+ex.getMessage());
+		} finally {
+			if(session!=null)
+				session.close();
+		}
+		return total;
+	}
+	
+	
+	public static List<ReservationVO> mypageReserveList(Map map)
+	{
+		List<ReservationVO> list = new ArrayList<ReservationVO>();
+		SqlSession session=null;
+		
+		try 
+		{
+			session=ssf.openSession();
+			if(map.get("userid")!=null)
+				list = session.selectList("mypageReserveList",map);
+				
+			
+		} 
+		catch (Exception ex) {
+			System.out.println("memberLogin: "+ex.getMessage());
+		}
+		finally {
+			if(session!=null)
+				session.close(); 
+		}
+		
+		return list;
+	}
+	
 	
 	public static List<ReviewVO> mypageReviewList(Map map)
 	{
@@ -160,6 +181,8 @@ public class MypageDAO {
 			session=ssf.openSession();
 			if(map.get("userid")!=null)
 				list = session.selectList("mypageReviewRangeList",map);
+	
+		
 				
 			
 		} 
@@ -256,7 +279,7 @@ public class MypageDAO {
 			{			
 				list = session.selectList("mypageMyWishList",map);		
 			}
-			
+			System.out.println(list.size());
 			/*
 			System.out.println("1:+"+list.get(0).getRegdate());
 			System.out.println("2:+"+list.get(0).getRNo());

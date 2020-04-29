@@ -173,13 +173,124 @@ $(function() {
 	});
 
 	$('#mypage_reserve').click(function() {
-		$("#floatMenu").hide();
+		$("#floatMenu").show();
 		$.ajax({
 			type : 'POST',
 			url : '../mypage/reserve.do',
 			success : function(res) {
 
 				$('#myContents').html(res);
+				
+				$('#floatMenu').html(
+					'<ul class="p-0">'	       
+					+'  <li>'
+					+'      <a id="reserveNextPage">'
+					+'          <svg height="30" viewBox="10 0 30 30" width="80" xmlns="http://www.w3.org/2000/svg">'
+					+'              <path d="M14.83 30.83l9.17-9.17 9.17 9.17 2.83-2.83-12-12-12 12z"></path>'
+					+'              <path d="M0 0h48v48h-48z" fill="none"></path>'
+					+'          </svg>'
+					+'      </a>'
+					+'  </li>'
+					+'  <li>'
+					+'      <a id="reserveBeforePage">'
+					+'          <svg height="30" viewBox="10 0 30 30" width="80" xmlns="http://www.w3.org/2000/svg">'
+					+'              <path d="M14.83 16.42l9.17 9.17 9.17-9.17 2.83 2.83-12 12-12-12z"></path>'
+					+'              <path d="M0-.75h48v48h-48z" fill="none"></path>'
+					+'          </svg>'
+					+'      </a>'
+					+'  </li>'
+					+'	<label style="font-size:13px display: block;" >페이지 번호를 입력하세요</label>'
+					+'  <input type="text" id="reserveInputPage" style="width:50px; float:left; text-align:center">'
+					+'  <button id="reserveInputPageSearch"><img src="../images/header_searchicon.png" style="width:32px; height:32px; left:30px"></button>'		             
+					+'	<button type="button" id="reserveCurPage" class="btn btn-success">page</button>'
+					+'	<button type="button" id="reserveTotalPage" class="btn btn-success">tal</button>'
+					+'</ul>'
+				);
+				//page 초기값
+				$('#reserveCurPage').text($('#reserveCurHidden').val());
+				$('#reserveTotalPage').text($('#reserveTotalHidden').val());
+				///////////////////////////////////////
+				
+				$('#reserveBeforePage').click(function(){
+					var curpage = $('#reserveCurHidden').val();
+				
+					if(curpage <= 1 || curpage == undefined)
+						curpage=1;
+					else
+						curpage=Number(curpage)-1;
+					
+						$('#reserveCurPage').text(curpage);
+					
+					$.ajax({
+						type : 'POST',
+						url : '../mypage/reserve.do',
+						data : {"pageMove":"before","page":curpage},
+						success : function(res) 
+						{						
+							
+							$('#myContents').html(res);
+						}
+					});
+				});
+				
+				$('#reserveNextPage').click(function(){
+					var curpage = $('#reserveCurHidden').val();
+					
+					console.log($('#reserveTotalHidden').val());
+					
+					if(curpage == undefined || curpage >= $('#reserveTotalHidden').val())
+						curpage=$('#reserveTotalPage').text();
+					else
+						curpage=Number(curpage)+1;
+					
+						$('#reserveCurPage').text(curpage);
+				
+					$.ajax({
+						type : 'POST',
+						url : '../mypage/reserve.do',
+						data : {"pageMove":"next","page":curpage},
+
+						success : function(res) 
+						{						
+							
+							$('#myContents').html(res);
+						}
+					});
+				});
+			
+				$('#reserveInputPageSearch').click(function(){
+					var inputPage = $('#reserveInputPage').val();
+					
+					if(isNaN(inputPage)==false && inputPage>0 && inputPage<=Number($('#reserveTotalPage').text()))
+					{
+						var curpage = inputPage;
+						
+						if(curpage >$('#reserveTotalPage').text())
+						{
+							$('#reserveInputPage').val("");
+							return;
+						}
+						$('#reserveCurPage').val(curpage);
+						$('#reserveCurPage').text(curpage);
+					
+						$.ajax({
+							type : 'POST',
+							url : '../mypage/reserve.do',
+							data : {"pageMove":"before","page":curpage},
+							success : function(res) 
+							{						
+								
+								$('#myContents').html(res);
+								$('#reserveInputPage').val("");
+							},
+							error : function(e) {
+								alert(e);
+							}
+						})					
+					}	
+					else
+						$('#reserveInputPage').val("");
+				})
 			},
 			error : function(e) {
 				alert(e);
@@ -233,7 +344,7 @@ $(function() {
 				$('#reviewCurPage').text($('#reviewCurHidden').val());
 				$('#reviewTotalPage').text($('#reviewTotalHidden').val());
 				///////////////////////////////////////
-
+				
 		
 				     
 				
@@ -241,7 +352,7 @@ $(function() {
 				$('#reviewRevDate').click(function(){
 	
 
-					var reviewRangeList ="";
+					
 					
 					
 					if($('#reviewRangeList').val()!=undefined)
@@ -443,6 +554,7 @@ $(function() {
 				
 				$('#reviewBeforePage').click(function(){
 					
+					var reviewRangeList ="";
 					
 					if($('#reviewRangeList').val()!=undefined)
 					{
@@ -471,20 +583,23 @@ $(function() {
 				
 				$('#reviewNextPage').click(function(){
 					
+					var reviewRangeList ="";
+						
+					
 					if($('#reviewRangeList').val()!=undefined)
 					{
 						reviewRangeList=$('#reviewRangeList').val();
 					}
 					var curpage = $('#reviewCurHidden').val();
 					
-					console.log($('#reviewTotalHidden').val());
 					
 					if(curpage == undefined || curpage >= $('#reviewTotalHidden').val())
 						curpage=$('#reviewTotalPage').text();
 					else
 						curpage=Number(curpage)+1;
 					
-						$('#reviewCurPage').text(curpage);
+					
+					$('#reviewCurPage').text(curpage);
 				
 					$.ajax({
 						type : 'POST',
@@ -501,6 +616,8 @@ $(function() {
 			
 				$('#reviewInputPageSearch').click(function(){
 					
+					var reviewRangeList ="";
+						
 					if($('#reviewRangeList').val()!=undefined)
 					{
 						reviewRangeList=$('#reviewRangeList').val();
