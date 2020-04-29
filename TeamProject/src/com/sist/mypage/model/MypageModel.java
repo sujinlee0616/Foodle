@@ -33,6 +33,7 @@ public class MypageModel {
 
 	@RequestMapping("mypage/wish.do")
 	public String mypage_wish(HttpServletRequest request, HttpServletResponse response) {
+		
 		HttpSession session = request.getSession();
 	
 		List<MyWishVO> list = new ArrayList<MyWishVO>();
@@ -59,7 +60,7 @@ public class MypageModel {
 			
 	
 		
-		/*list = MypageDAO.mypageMyWishList(map); */
+		list = MypageDAO.mypageMyWishList(map); 
 		
 	
 		for(int i = 0 ; i < list.size() ; i++)
@@ -99,10 +100,34 @@ public class MypageModel {
 		HttpSession session = request.getSession();
 
 		List<ReservationVO> list = new ArrayList<ReservationVO>();
-		list = MypageDAO.mypageReserveList((String) session.getAttribute("id"));
+		
+		String page=request.getParameter("page");
+		String pageMove=request.getParameter("pageMove");
+	
+		
 
+		if(page==null)
+			page="1";
+		int curpage=Integer.parseInt(page);
+		int rowSize=5;
+		int start=(rowSize*curpage)-(rowSize-1);
+		int end=rowSize*curpage;
+		int total = MypageDAO.mypageReserveTotalPage();
+		
+		
+		Map map=new HashMap();
+		map.put("start", start);
+		map.put("end", end);
+		map.put("userid", (String) session.getAttribute("id"));
+	
+
+		list = MypageDAO.mypageReserveList(map);
+		
+		System.out.println(total + ": total");
+		request.setAttribute("page", curpage);
+		request.setAttribute("total", total);
 		request.setAttribute("list", list);
-
+		
 		return "../mypage/mypage_reserve.jsp";
 	}
 	
@@ -116,17 +141,22 @@ public class MypageModel {
 
 		
 		String page=request.getParameter("page");
+	
 		String pageMove=request.getParameter("pageMove");
 		String reviewRangeList=request.getParameter("reviewRangeList");
+		if(reviewRangeList=="")
+			reviewRangeList=null;
 		
 		if(reviewRangeList!=null)
 			reviewRangeList=reviewRangeList.substring(0,reviewRangeList.length()-1);
 		
 		
-		System.out.println(reviewRangeList);
+		
 		String[] reviewRangeTemp;
 		if(reviewRangeList!=null)
+		{
 			reviewRangeTemp = reviewRangeList.split(",");
+		}
 		else
 			reviewRangeTemp = new String[0];
 		
@@ -165,12 +195,21 @@ public class MypageModel {
 		}
 	
 		reviewRangeList="";
-		for(int i = reviewRange.length-1 ; i >= 0 ; i--)
+		System.out.println(pageMove);
+		if(pageMove==null)
 		{
-			if(reviewRange[i]!=null)
-				reviewRangeList+=reviewRange[i]+",";
+			for(int i = reviewRange.length-1 ; i >= 0 ; i--)
+			{
+				if(reviewRange[i]!=null)
+					reviewRangeList+=reviewRange[i]+",";
+			}
 		}
-		
+		else
+			for(int i = 0 ; i < reviewRange.length ; i++)
+			{
+				if(reviewRange[i]!=null)
+					reviewRangeList+=reviewRange[i]+",";
+			}
 		
 		int total = MypageDAO.mypageReviewTotalPage();
 		
@@ -199,10 +238,10 @@ public class MypageModel {
 		if(map.get("range")!=null)
 		{
 			//DAO 정렬
-			System.out.println(map.get("start")+":start");
+		/*	System.out.println(map.get("start")+":start");
 			System.out.println(map.get("end")+":end");
 			System.out.println(map.get("userid")+":userid");
-			System.out.println(map.get("range")+":range");
+			System.out.println(map.get("range")+":range");*/
 			
 			list = MypageDAO.mypageReviewRangeList(map);
 		}
@@ -210,7 +249,7 @@ public class MypageModel {
 			list = MypageDAO.mypageReviewList(map);
 		
 
-		list = MypageDAO.mypageReviewList(map);
+		
 	
 		
 
@@ -228,12 +267,12 @@ public class MypageModel {
 	
 		request.setAttribute("page", curpage);
 		request.setAttribute("total", total);
-
-
+		System.out.println(curpage);
+		
 
 		request.setAttribute("list", list);
 		request.setAttribute("reviewRangeList", reviewRangeList);
-		
+		System.out.println(reviewRangeList);
 		return "../mypage/mypage_review.jsp";
 		
 		
@@ -275,7 +314,7 @@ public class MypageModel {
 		request.setAttribute("page", curpage);
 		request.setAttribute("total", total);
 		request.setAttribute("list", list);
-
+		
 		
 		return "../mypage/mypage_coupon.jsp";
 	}
@@ -305,7 +344,7 @@ public class MypageModel {
 		
 		
 		
-		/*list = MypageDAO.mypageCouponSearch(map);*/
+		list = MypageDAO.mypageCouponSearch(map);
 		
 		request.setAttribute("list", list);
 		
@@ -320,12 +359,12 @@ public class MypageModel {
 
 		List<CouponVO> list = new ArrayList<CouponVO>();
 		int start = 1;
-		int end = 20;
+		int end = 10;
 		String rname = request.getParameter("rname");
 		
 	
 		
-		System.out.println("rname:"+rname);
+		
 		
 		Map map=new HashMap();
 		
@@ -334,9 +373,9 @@ public class MypageModel {
 		map.put("end", end);
 		map.put("rname", rname);
 		
-		/*list = MypageDAO.mypageCouponSearchList(map);*/
+		list = MypageDAO.mypageCouponSearchList(map);
 		
-		/*for(int i = 0 ; i < list.size() ; i++)
+		for(int i = 0 ; i < list.size() ; i++)
 		{
 			if(list.get(0).getMvo().getrName().length()>5)
 			{
@@ -347,7 +386,7 @@ public class MypageModel {
 				list.get(i).getMvo().setrName(temp);
 		
 			}
-		}*/
+		}
 		
 			
 		
