@@ -12,7 +12,7 @@
  - 하지은: DB 수집/정제, 메인, 상세페이지 (예약, 리뷰 등), 찜, 최근 본 
  
 ### DB설계
- - 테이블 명세서: https://docs.google.com/spreadsheets/d/1b_Wp0wDMxqt5vIUPOq7LHg1mNOBhBCAkQ_Nv7Ty-_d4/edit?usp=sharing
+ - 테이블 명세서: https://bit.ly/2VUN02I
  
 ### 시연 (동영상) 
  - 동영상 url 업로드 예정 
